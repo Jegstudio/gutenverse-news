@@ -1,0 +1,131 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/post-meta",
+    "title": "Post Meta",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
+    "description": "Your Block description.",
+    "category": "gvnews-single-post",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "metaLeft": {
+            "type": "array",
+            "default": []
+        },
+        "metaRight": {
+            "type": "array",
+            "default": []
+        },
+        "showAvatar": {
+            "type": "boolean",
+            "default": true
+        },
+        "postDate": {
+            "type": "string",
+            "default": "modified"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Single\\Post\\Post_Meta"
+        },
+        "column": {            
+            "type": "object",
+            "default": {}
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": 12
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        }, 
+        "margin": {
+            "type": "number",
+            "default": 20
+        },
+        "enableAutoplay": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplayDelay": {
+            "type": "number",
+            "default": 3000
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "single",
+        "post",
+        "meta",
+        "author",
+        "date",
+        "category",
+        "zoom",
+        "trending",
+        "reading",
+        "time"
+    ]
+}

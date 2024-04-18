@@ -1,0 +1,161 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/archive-hero",
+    "title": "Archive Hero",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
+    "description": "Your Block description.",
+    "category": "gvnews-archive",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Archive\\Archive_Hero"
+        },
+        "heroType": {
+            "type": "string",
+            "default": "1"
+        },
+        "heroStyle": {
+            "type": "string",
+            "default": "1"
+        },
+        "heroMargin": {
+            "type": "string",
+            "default": ""
+        },
+        "dateFormat": {
+            "type": "string",
+            "default": "default"
+        },
+        "dateFormatCustom": {
+            "type": "string",
+            "default": "Y/m/d"
+        },
+        "firstPage": {
+            "type": "boolean",
+            "default": false
+        },
+        "heroHeightDesktop": {
+            "type": "string",
+            "default": ""
+        },
+        "heroHeight1024": {
+            "type": "string",
+            "default": ""
+        },
+        "heroHeight768": {
+            "type": "string",
+            "default": ""
+        },
+        "heroHeight667": {
+            "type": "string",
+            "default": ""
+        },
+        "heroHeight568": {
+            "type": "string",
+            "default": ""
+        },
+        "heroHeight480": {
+            "type": "string",
+            "default": ""
+        },
+        "heroItem__i__Enable": {
+            "type": "boolean",
+            "default": false
+        },
+        "heroItem__i__Background": {
+            "type": "object",
+            "default": {}
+        },
+        "scheme": {
+            "type": "string",
+            "default": ""
+        },
+        "elClass": {
+            "type": "string",
+            "default": ""
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": "auto"
+        },
+        "titleTypography": {
+            "type": "object"
+        },
+        "metaTypography": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": []
+        },
+        "background": {
+            "type": "object",
+            "default": []
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": []
+        },
+        "border": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": ["single", "archive", "hero"]
+}

@@ -1,0 +1,137 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/header",
+    "title": "Header",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Header",
+    "description": "Your Block description.",
+    "category": "gvnews-element",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Element\\Header"
+        },
+        "icon": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": "Header"
+        },
+        "second_title": {
+            "type": "string",
+            "default": ""
+        },
+        "url_title": {
+            "type": "string",
+            "default": ""
+        },
+        "headerType": {
+            "type": "string",
+            "default": "heading_6"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
+        "column": {
+            "type": "object",
+            "default": {}
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "header"
+    ]
+}

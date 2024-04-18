@@ -1,0 +1,262 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/hero-9",
+    "title": "Hero 9",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
+    "description": "Your Block description.",
+    "category": "gvnews-hero",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Hero\\Hero_9"
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": "auto"
+        },
+        "contentType": {
+            "type": "string",
+            "default": ""
+        },
+        "uniqueContent": {
+            "type": "string",
+            "default": "disable"
+        },
+        "includeOnly": {
+            "type": "boolean",
+            "default": false
+        },
+        "postType": {
+            "type": "string",
+            "default": "post"
+        },
+        "numberPost": {
+            "type": "string",
+            "default": 2
+        },
+        "heroItemOverlay": {
+            "type": "array",
+            "default": [{
+                "overlayEnable": false
+            }, {
+                "overlayEnable": false
+            }]
+        },
+        "postOffset": {
+            "type": "string",
+            "default": 0
+        },
+        "includePost": {
+            "type": "array",
+            "default": []
+        },
+        "excludePost": {
+            "type": "array",
+            "default": []
+        },
+        "includeCategory": {
+            "type": "array",
+            "default": []
+        },
+        "excludeCategory": {
+            "type": "array",
+            "default": []
+        },
+        "includeAuthor": {
+            "type": "array",
+            "default": []
+        },
+        "includeTag": {
+            "type": "array",
+            "default": []
+        },
+        "excludeTag": {
+            "type": "array",
+            "default": []
+        },
+        "sortBy": {
+            "type": "string",
+            "default": ""
+        },
+        "excerptLength": {
+            "type": "string",
+            "default": 20
+        },
+        "excerptEllipsis": {
+            "type": "string",
+            "default": "..."
+        },
+        "normalImage": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaDateType": {
+            "type": "string",
+            "default": "published"
+        },
+        "metaDateFormat": {
+            "type": "string",
+            "default": "default"
+        },
+        "metaDateFormatCustom": {
+            "type": "string",
+            "default": "d M Y"
+        },
+        "enableslider": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplay": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplayDelay": {
+            "type": "string",
+            "default": 3000
+        },
+        "sliderItem": {
+            "type": "string",
+            "default": 2
+        },
+        "override1": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground1": {
+            "type": "object",
+            "default": {}
+        },
+        "override2": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground2": {
+            "type": "object",
+            "default": {}
+        },
+        "override3": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground3": {
+            "type": "object",
+            "default": {}
+        },
+        "override4": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground4": {
+            "type": "object",
+            "default": {}
+        },
+        "override5": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground5": {
+            "type": "object",
+            "default": {}
+        },
+        "override6": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground6": {
+            "type": "object",
+            "default": {}
+        },
+        "override7": {
+            "type": "boolean",
+            "default": false
+        },
+        "bacground7": {
+            "type": "object",
+            "default": {}
+        },
+        "heroMargin": {
+            "type": "string",
+            "default": 0
+        },
+        "heroStyle": {
+            "type": "string",
+            "default": 1
+        },
+        "heightDesktop": {
+            "type": "string",
+            "default": ""
+        },
+        "height1024": {
+            "type": "string",
+            "default": ""
+        },
+        "height768": {
+            "type": "string",
+            "default": ""
+        },
+        "height667": {
+            "type": "string",
+            "default": ""
+        },
+        "height568": {
+            "type": "string",
+            "default": ""
+        },
+        "height480": {
+            "type": "string",
+            "default": ""
+        },
+        "column": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "enableExcerpt": {
+            "type": "boolean",
+            "default": true
+        },
+        "itemAmount": {
+            "type": "string",
+            "default": 2
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": []
+}

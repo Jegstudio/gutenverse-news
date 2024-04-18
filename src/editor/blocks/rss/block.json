@@ -1,0 +1,185 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/rss",
+    "title": "RSS Block",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Rss",
+    "description": "Your Block description.",
+    "category": "gvnews-element",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Element\\Rss"
+        },
+        "feedurl": {
+            "type": "string",
+            "default": ""
+        },
+        "blockType": {
+            "type": "string",
+            "default": "3"
+        },
+        "thumb": {
+            "type": "boolean",
+            "default": false
+        },
+        "fallback": {
+            "type": "boolean",
+            "default": false
+        },
+        "numberPost": {
+            "type": "string",
+            "default": 4
+        },
+        "fallbackimg": {
+            "type": "object"
+        },
+        "enableBoxed": {
+            "type": "boolean",
+            "default": false
+        },
+        "enableBoxShadow": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaDateType": {
+            "type": "string",
+            "default": "published"
+        },
+        "metaDateFormat": {
+            "type": "string",
+            "default": "default"
+        },
+        "metaDateFormatCustom": {
+            "type": "string",
+            "default": "d M Y"
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": "auto"
+        },
+        "excerptLength": {
+            "type": "string",
+            "default": 20
+        },
+        "excerptEllipsis": {
+            "type": "string",
+            "default": "..."
+        },
+        "icon": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": "RSS Module"
+        },
+        "second_title": {
+            "type": "string",
+            "default": ""
+        },
+        "url_title": {
+            "type": "string",
+            "default": ""
+        },
+        "headerType": {
+            "type": "string",
+            "default": "heading_6"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
+        "incMenu": {
+            "type": "array",
+            "default": []
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "post",
+        "rss"
+    ]
+}

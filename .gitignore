@@ -1,0 +1,14 @@
+# Folders to ignore
+.idea
+build
+vendor
+release
+node_modules
+gutenverse-news/block
+gutenverse-news/assets/js
+gutenverse-news/assets/css
+gutenverse-news/lib/dependencies
+
+# Files to ignore
+package-lock.json
+gutenverse-news.pot

@@ -1,0 +1,234 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/user-list",
+    "title": "User List",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\User_List",
+    "description": "Your Block description.",
+    "category": "gvnews-element",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Element\\Userlist"
+        },
+        "listStyle": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "showRole": {
+            "type": "array",
+            "default": []
+        },
+        "hideRole": {
+            "type": "array",
+            "default": []
+        },
+        "includeUser": {
+            "type": "array",
+            "default": []
+        },
+        "excludeUser": {
+            "type": "array",
+            "default": []
+        },
+        "numberUser": {
+            "type": "string",
+            "default": 4
+        },
+        "blockWidth": {
+            "type": "string",
+            "default": "gvnews_4_block"
+        },
+        "blockWidth2": {
+            "type": "string",
+            "default": "gvnews_3_block"
+        },
+        "blockWidth3": {
+            "type": "string",
+            "default": "gvnews_5_block"
+        },
+        "hideDescription": {
+            "type": "boolean",
+            "default": false
+        },
+        "showFollow": {
+            "type": "boolean",
+            "default": false
+        },
+        "showSubscribe": {
+            "type": "boolean",
+            "default": false
+        },
+        "truncateDescription": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideSocial": {
+            "type": "boolean",
+            "default": false
+        },
+        "userAlign": {
+            "type": "string",
+            "default": "center"
+        },
+        "icon": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": "Header"
+        },
+        "second_title": {
+            "type": "string",
+            "default": ""
+        },
+        "url_title": {
+            "type": "string",
+            "default": ""
+        },
+        "headerType": {
+            "type": "string",
+            "default": "heading_6"
+        },
+        "column": {
+            "type": "object",
+            "default": {}
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "nameColor": {
+            "type": "object"
+        },
+        "descColor": {
+            "type": "object"
+        },
+        "borderColor": {
+            "type": "object"
+        },
+        "accentColor": {
+            "type": "object"
+        },
+        "blockColor": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
+        "subBtnBg": {
+            "type": "object"
+        },
+        "subBtnCl": {
+            "type": "object"
+        },
+        "subBtnBd": {
+            "type": "object"
+        },
+        "subBtnBgHv": {
+            "type": "object"
+        },
+        "subBtnClHv": {
+            "type": "object"
+        },
+        "subBtnBdHv": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "user",
+        "list"
+    ]
+}

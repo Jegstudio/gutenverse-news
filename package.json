@@ -1,0 +1,47 @@
+{
+  "name": "gutenverse-news",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start --prefix gutenverse-core & npm run start:js & npm run start:css",
+    "start:js": "cross-env NODE_ENV=development webpack --config .config/webpack.config.dev.js --watch",
+    "start:css": "cross-env NODE_ENV=development gulp watch",
+    "build": "concurrently \"npm run build:js\" \"npm run build:css\"",
+    "build:js": "cross-env NODE_ENV=production webpack --config .config/webpack.config.prod.js",
+    "build:css": "cross-env NODE_ENV=production gulp build",
+    "release": "gulp release",
+    "production": "cross-env NODE_ENV=production && npm run production --prefix gutenverse-core && gulp clean && npm run build && gulp release",
+    "postinstall": "if [ ! -d \"gutenverse-core\" ]; then git submodule add git@github.com:Jegstudio/gutenverse-core.git; fi && git submodule update --init --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Jegstudio/gutenverse-news.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8 <9"
+  },
+  "overrides": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "webpack": "^5.78.0"
+  },
+  "dependencies": {
+    "gutenverse-core": "file:gutenverse-core"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "copy-webpack-plugin": "^12.0.2",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "gulp-string-replace": "^1.1.2",
+    "gulp-wp-pot": "^2.5.0",
+    "gulp-zip": "^5.1.0",
+    "path": "^0.12.7",
+    "react-player": "^2.16.0"
+  }
+}

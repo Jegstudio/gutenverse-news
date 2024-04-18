@@ -1,0 +1,304 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/block-25",
+    "title": "Module 25",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",
+    "description": "Your Block description.",
+    "category": "gvnews-module",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Module\\Module_25"
+        },
+        "icon": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "second_title": {
+            "type": "string",
+            "default": ""
+        },
+        "url_title": {
+            "type": "string",
+            "default": ""
+        },
+        "headerType": {
+            "type": "string",
+            "default": "heading_6"
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": "auto"
+        },
+        "headerCategory": {
+            "type": "array",
+            "default": []
+        },
+        "headerAuthor": {
+            "type": "array",
+            "default": []
+        },
+        "headerTag": {
+            "type": "array",
+            "default": []
+        },
+        "headerDefault": {
+            "type": "string",
+            "default": "ALL"
+        },
+        "contentType": {
+            "type": "string",
+            "default": ""
+        },
+        "uniqueContent": {
+            "type": "string",
+            "default": "disable"
+        },
+        "includeOnly": {
+            "type": "boolean",
+            "default": false
+        },
+        "postType": {
+            "type": "string",
+            "default": "post"
+        },
+        "numberPost": {
+            "type": "string",
+            "default": 3
+        },
+        "postOffset": {
+            "type": "string",
+            "default": 0
+        },
+        "includePost": {
+            "type": "array",
+            "default": []
+        },
+        "excludePost": {
+            "type": "array",
+            "default": []
+        },
+        "includeCategory": {
+            "type": "array",
+            "default": []
+        },
+        "excludeCategory": {
+            "type": "array",
+            "default": []
+        },
+        "includeAuthor": {
+            "type": "array",
+            "default": []
+        },
+        "includeTag": {
+            "type": "array",
+            "default": []
+        },
+        "excludeTag": {
+            "type": "array",
+            "default": []
+        },
+        "sortBy": {
+            "type": "string",
+            "default": ""
+        },
+        "excerptLength": {
+            "type": "string",
+            "default": 20
+        },
+        "excerptEllipsis": {
+            "type": "string",
+            "default": "..."
+        },
+        "normalImage": {
+            "type": "boolean",
+            "default": false
+        },
+        "paginationMode": {
+            "type": "string",
+            "default": "disable"
+        },
+        "showNavText": {
+            "type": "boolean",
+            "default": false
+        },
+        "paginationPost": {
+            "type": "string",
+            "default": 5
+        },
+        "loadLimit": {
+            "type": "string",
+            "default": 0
+        },
+        "enableBoxed": {
+            "type": "boolean",
+            "default": false
+        },
+        "enableBoxShadow": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaDateType": {
+            "type": "string",
+            "default": "published"
+        },
+        "metaDateFormat": {
+            "type": "string",
+            "default": "default"
+        },
+        "metaDateFormatCustom": {
+            "type": "string",
+            "default": "d M Y"
+        },
+        "metaDateIcon": {
+            "type": "string",
+            "default": "fas fa-clock"
+        },
+        "metaDateIconPosition": {
+            "type": "string",
+            "default": "before"
+        },
+        "metaCategoryEnabled": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaCategoryIcon": {
+            "type": "string",
+            "default": "fas fa-tag"
+        },
+        "metaPosition": {
+            "type": "string",
+            "default": "top"
+        },
+        "column": {
+            "type": "object",
+            "default": {}
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "typographyContent": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "enableExcerpt": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": []
+}

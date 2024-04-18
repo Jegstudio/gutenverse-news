@@ -1,0 +1,114 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/archive-breadcrumb",
+    "title": "Archive Breadcrumb",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
+    "description": "Your Block description.",
+    "category": "gvnews-archive",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Archive\\Archive_Breadcrumb"
+        },
+        "textColor": {
+            "type": "object"
+        },
+        "textColorHover": {
+            "type": "object"
+        },
+        "arrowColor": {
+            "type": "object"
+        },
+        "fontSize": {
+            "type": "string"
+        },
+        "scheme": {
+            "type": "string",
+            "default": ""
+        },
+        "elClass": {
+            "type": "string",
+            "default": ""
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": "auto"
+        },
+        "breadcrumbTypography": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": []
+        },
+        "background": {
+            "type": "object",
+            "default": []
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": []
+        },
+        "border": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": ["single", "archive", "breadcrumb"]
+}

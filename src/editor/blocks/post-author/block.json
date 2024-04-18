@@ -1,0 +1,107 @@
+{
+    "apiVersion": 2,
+    "name": "gvnews/post-author",
+    "title": "Post Author",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_author",
+    "description": "Your Block description.",
+    "category": "gvnews-single-post",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "authorTypography": {
+            "type": "object"
+        },
+        "gvnewsModule": {
+            "type": "string",
+            "default": "GUTENVERSE\\NEWS\\Block\\Single\\Post\\Post_Author"
+        },
+        "columnWidth": {
+            "type": "string",
+            "default": 12
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
+        },
+        "border": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
+        "borderHover": {
+            "type": "object"
+        },
+        "boxShadowHover": {
+            "type": "object"
+        }, 
+        "margin": {
+            "type": "number",
+            "default": 20
+        },
+        "enableAutoplay": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplayDelay": {
+            "type": "number",
+            "default": 3000
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "single",
+        "post",
+        "author"
+    ]
+}
