@@ -11,7 +11,6 @@
     "build": "concurrently \"npm run build:js\" \"npm run build:css\"",
     "build:js": "cross-env NODE_ENV=production webpack --config .config/webpack.config.prod.js",
     "build:css": "cross-env NODE_ENV=production gulp build",
-    "release": "gulp release",
     "production": "cross-env NODE_ENV=production && npm run production --prefix gutenverse-core && gulp clean && npm run build && gulp release",
     "postinstall": "if [ ! -d \"gutenverse-core\" ]; then git submodule add git@github.com:Jegstudio/gutenverse-core.git; fi && git submodule update --init --recursive"
   },
