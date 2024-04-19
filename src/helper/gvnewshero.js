@@ -153,4 +153,7 @@
       }
     },
   }
+  if(gvnews.hero) {
+    gvnews.hero.init()
+  }
 })()

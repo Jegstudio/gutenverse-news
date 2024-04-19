@@ -1,0 +1,2 @@
+import './gvnewsslider';
+import './slider';

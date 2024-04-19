@@ -47,8 +47,8 @@ class Editor_Assets {
 			GUTENVERSE_NEWS_VERSION,
 		);
 
-		$helper = include GUTENVERSE_NEWS_DIR . '/lib/dependencies/helper.asset.php';
-		wp_enqueue_script( 'gvnews-helper-script', GUTENVERSE_NEWS_URL . '/assets/js/helper.js', $helper['dependencies'], GUTENVERSE_NEWS_VERSION, true );
+		$backend = include GUTENVERSE_NEWS_DIR . '/lib/dependencies/backend.asset.php';
+		wp_enqueue_script( 'gvnews-backend-script', GUTENVERSE_NEWS_URL . '/assets/js/backend.js', $backend['dependencies'], GUTENVERSE_NEWS_VERSION, true );
 
 		$block = ( include GUTENVERSE_NEWS_DIR . '/lib/dependencies/blocks.asset.php' )['dependencies'];
 
