@@ -67,13 +67,23 @@ class Frontend_Assets {
 	 */
 	public function frontend_scripts() {
 		$depen = array( 'jquery' );
-		if ( $this->load_block_script( array( 'gvnews/block-32', 'gvnews/block-33', 'gvnews/block-34' ) ) ) {
+		if ( $this->load_block_script(
+			array(
+				'gvnews/block-32',
+				'gvnews/block-33',
+				'gvnews/block-34',
+			)
+		) ) {
 			wp_register_script( 'gvnews-isotope', GUTENVERSE_NEWS_URL . '/assets/js/isotope.js', array(), GUTENVERSE_NEWS_VERSION, true );
 			wp_enqueue_script( 'gvnews-isotope' );
 			$depen = array_merge( $depen, array( 'gvnews-isotope' ) );
 		}
 
-		if ( $this->load_block_script( array( 'gvnews/news-ticker' ) ) ) {
+		if ( $this->load_block_script(
+			array(
+				'gvnews/news-ticker',
+			)
+		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/newsticker.asset.php';
 			wp_register_script( 'gvnews-newsticker', GUTENVERSE_NEWS_URL . '/assets/js/newsticker.js', array(), GUTENVERSE_NEWS_VERSION, true );
 			wp_enqueue_script( 'gvnews-newsticker' );
@@ -117,13 +127,31 @@ class Frontend_Assets {
 			$depen = array_merge( array_merge( $depen, $helper['dependencies'] ), array( 'gvnews-tinyslider' ) );
 		}
 
-		if ( $this->load_block_script( array( 'gvnews/slider-1', 'gvnews/slider-2', 'gvnews/slider-3', 'gvnews/slider-4', 'gvnews/slider-5', 'gvnews/slider-6', 'gvnews/slider-7', 'gvnews/slider-8', 'gvnews/slider-9' ) ) ) {
+		if ( $this->load_block_script(
+			array(
+				'gvnews/slider-1',
+				'gvnews/slider-2',
+				'gvnews/slider-3',
+				'gvnews/slider-4',
+				'gvnews/slider-5',
+				'gvnews/slider-6',
+				'gvnews/slider-7',
+				'gvnews/slider-8',
+				'gvnews/slider-9',
+			)
+		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/slider.asset.php';
 			wp_register_script( 'gvnews-slider', GUTENVERSE_NEWS_URL . '/assets/js/slider.js', array( 'gvnews-tinyslider', 'gvnews-helper-script' ), GUTENVERSE_NEWS_VERSION, true );
 			wp_enqueue_script( 'gvnews-slider' );
 		}
 
-		if ( $this->load_block_script( array( 'gvnews/carousel-1', 'gvnews/carousel-2', 'gvnews/carousel-3' ) ) ) {
+		if ( $this->load_block_script(
+			array(
+				'gvnews/carousel-1',
+				'gvnews/carousel-2',
+				'gvnews/carousel-3',
+			)
+		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/carousel.asset.php';
 			wp_register_script( 'gvnews-carousel', GUTENVERSE_NEWS_URL . '/assets/js/carousel.js', array( 'gvnews-tinyslider', 'gvnews-helper-script' ), GUTENVERSE_NEWS_VERSION, true );
 			wp_enqueue_script( 'gvnews-carousel' );
