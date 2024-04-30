@@ -109,7 +109,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	 * @return string
 	 */
 	public function get_content_after( $attr ) {
-		return apply_filters( 'gnvews_module_block_container_extend_after', '', $attr );
+		return apply_filters( 'gvnews_module_block_container_extend_after', '', $attr );
 	}
 
 	/**

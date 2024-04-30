@@ -300,7 +300,7 @@ if ( ! function_exists( 'gvnews_edit_post' ) ) {
 
 			$wrapper_classes = gvnews_build_html_classes(
 				array(
-					'gnvews-edit-post',
+					'gvnews-edit-post',
 					esc_attr( $position ),
 				)
 			);

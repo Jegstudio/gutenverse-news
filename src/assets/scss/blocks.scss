@@ -5872,14 +5872,14 @@
 
 /* front post edit */
 
-.gnvews-edit-post .fa.fa-pencil:before {
+.gvnews-edit-post .fa.fa-pencil:before {
   content: "\f040";
 }
 
 .gvnews-block.gvnews-block-wrapper {
 
-  .gnvews-edit-post,
-  .gvnews_menu .gnvews-edit-post {
+  .gvnews-edit-post,
+  .gvnews_menu .gvnews-edit-post {
     position: absolute;
     top: -15px;
     opacity: 0;
@@ -5898,7 +5898,7 @@
   }
 }
 
-.gnvews-edit-post {
+.gvnews-edit-post {
   &.left {
     color: #fff;
     left: 0;
