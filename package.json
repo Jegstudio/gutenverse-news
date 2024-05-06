@@ -12,7 +12,7 @@
     "build:js": "cross-env NODE_ENV=production webpack --config .config/webpack.config.prod.js",
     "build:css": "cross-env NODE_ENV=production gulp build",
     "production": "cross-env NODE_ENV=production && npm run production --prefix gutenverse-core && gulp clean && npm run build && gulp release",
-    "postinstall": "if [ ! -d \"gutenverse-core\" ]; then git submodule add git@github.com:Jegstudio/gutenverse-core.git; fi && git submodule update --init --recursive"
+    "postinstall": "if [ ! -d \"gutenverse-core\" ]; then git submodule add git@github.com:Jegstudio/gutenverse-core.git; fi && git submodule update --init --recursive && npm install --prefix gutenverse-core"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@ import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gut
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
-import { settingPanel } from '../../../control-panel/panel-setting';
+import { settingPanel } from './panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';

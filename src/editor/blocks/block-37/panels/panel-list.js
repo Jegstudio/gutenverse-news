@@ -5,7 +5,7 @@ import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/p
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
-import { designPanel } from '../../../control-panel/panel-design';
+import { designPanel } from './panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 
 export const panelList = () => {

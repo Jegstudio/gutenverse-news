@@ -3,10 +3,11 @@ import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gut
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
-import { settingPanel } from '../../../control-panel/panel-setting';
+import { settingPanel } from './panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { CheckboxControl } from 'gutenverse-core/controls';
 
 export const panelList = () => {
     return [
@@ -55,7 +56,21 @@ export const panelList = () => {
         {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: designPanel,
+            panelArray: (props) => {
+                return designPanel({
+                    ...props,
+                    extendedOption : () => {
+                        return [
+                            {
+                                id: 'showBorder',
+                                label: __('Show bottom border', 'gutenverse-news'),
+                                description: __('Enable this option to show bottom border line for each article.', 'gutenverse-news'),
+                                component: CheckboxControl
+                            },
+                        ];
+                    }
+                });
+            },
             tabRole: TabStyle
         },
         {

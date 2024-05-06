@@ -6,6 +6,7 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
+import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 
 export const panelList = () => {
     return [
@@ -16,7 +17,8 @@ export const panelList = () => {
                 ...props,
                 styleId: 'news-ticker-background',
                 normalOptions: [ 'default', 'gradient' ],
-            })
+            }),
+            tabRole: TabSetting
         },
         {
             title: __('Header Filter', 'gutenverse-news'),
@@ -25,27 +27,32 @@ export const panelList = () => {
                 ...props,
                 styleId: 'news-ticker-background',
                 normalOptions: [ 'default', 'gradient' ],
-            })
+            }),
+            tabRole: TabSetting
         },
         {
             title: __('Content Filter', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: filterPanel
+            panelArray: filterPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Content Setting', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: settingPanel
+            panelArray: settingPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Pagination', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: paginationPanel
+            panelArray: paginationPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: designPanel
+            panelArray: designPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Background', 'gutenverse-news'),
@@ -57,17 +64,20 @@ export const panelList = () => {
                 hoverSelector: [ `.${props.elementId} .gvnews_pb_boxed:hover`, `.${props.elementId}:hover` ],
                 normalOptions: [ 'default', 'gradient' ],
                 hoverOptions: [ 'default', 'gradient' ],
-            })
+            }),
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: borderPanel
+            panelArray: borderPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: responsivePanel
+            panelArray: responsivePanel,
+            tabRole: TabStyle
         },
         {
             title: __('Spacing', 'gutenverse-news'),
@@ -75,7 +85,8 @@ export const panelList = () => {
             panelArray: (props) => advancePanel({
                 ...props,
                 styleId: 'block-21-advance',
-            })
+            }),
+            tabRole: TabStyle
         }
     ];
 };
