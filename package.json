@@ -21,8 +21,8 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8 <9"
+    "node": ">=20.10.0",
+    "npm": ">=10.2.3"
   },
   "overrides": {
     "react": "^18.0.0",
@@ -34,13 +34,13 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "copy-webpack-plugin": "^12.0.2",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-string-replace": "^1.1.2",
     "gulp-wp-pot": "^2.5.0",
-    "gulp-zip": "^5.1.0",
+    "gulp-zip": "^6.0.0",
     "path": "^0.12.7"
   }
 }
