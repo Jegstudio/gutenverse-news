@@ -76,7 +76,7 @@ gulp.task('clean', function () {
  */
 gulp.task('copy-plugin-folder', function () {
     return gulp
-        .src(['gutenverse-news/**/*', '!gutenverse-news/lib/'])
+        .src(['gutenverse-news/**/*', '!gutenverse-news/lib/framework/**'])
         .pipe(gulp.dest('./release/gutenverse-news/'));
 });
 
