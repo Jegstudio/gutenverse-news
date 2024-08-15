@@ -76,22 +76,29 @@ gulp.task('clean', function () {
  */
 gulp.task('copy-plugin-folder', function () {
     return gulp
-        .src(['gutenverse-news/**/*', '!gutenverse-news/lib/framework/**'])
+        .src(['./gutenverse-news/**/*', '!./gutenverse-news/lib/framework/**'], { encoding: false })
         .pipe(gulp.dest('./release/gutenverse-news/'));
 });
 
 gulp.task('copy-framework', function () {
     return gulp
-        .src('./gutenverse-core/framework/**/*')
+        .src('./gutenverse-core/framework/**/*', { encoding: false })
         .pipe(gulp.dest('./release/gutenverse-news/lib/framework/'));
 });
 
-gulp.task( 'zip', function() {
+async function getZip() {
+    const zip = await import('gulp-zip');
+    return zip.default;
+}
+
+gulp.task('zip', async function () {
+    const zip = await getZip();
+
     return gulp
-        .src('./release/gutenverse-news/**')
+        .src('./release/gutenverse-news/**', { base: './release', encoding: false })
         .pipe(zip('gutenverse-news.zip'))
         .pipe(gulp.dest('./release'));
-} );
+});
 
 gulp.task('replace-text-domain', function () {
     return gulp
