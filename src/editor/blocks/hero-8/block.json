@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/hero-8",
+    "name": "gutenverse/news-hero-8",
     "title": "Hero 8",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
     "description": "Your Block description.",

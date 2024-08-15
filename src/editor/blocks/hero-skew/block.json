@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/hero-skew",
+    "name": "gutenverse/news-hero-skew",
     "title": "Hero Skew",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
     "description": "Your Block description.",

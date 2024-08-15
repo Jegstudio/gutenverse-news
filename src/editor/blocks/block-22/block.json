@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/block-22",
+    "name": "gutenverse/news-block-22",
     "title": "Module 22",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",
     "description": "Your Block description.",

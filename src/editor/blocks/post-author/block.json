@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-author",
+    "name": "gutenverse/news-post-author",
     "title": "Post Author",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_author",
     "description": "Your Block description.",

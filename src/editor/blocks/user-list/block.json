@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/user-list",
+    "name": "gutenverse/news-user-list",
     "title": "User List",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\User_List",
     "description": "Your Block description.",

@@ -38,7 +38,7 @@ class Archive extends Grab {
 	 * @return string
 	 */
 	public function get_content() {
-		$name       = str_replace( 'GUTENVERSE\NEWS\Block\Archive\Archive_', 'gvnews/archive-', $this->attributes['gvnewsModule'] );
+		$name       = str_replace( 'GUTENVERSE\NEWS\Block\Archive\Archive_', 'gutenverse/news-archive-', $this->attributes['gvnewsModule'] );
 		$this->name = strtolower( $name );
 		$attr       = array(
 			'short_code' => $this->attributes['gvnewsModule'],
@@ -66,7 +66,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_title( $attr ) {
-		if ( 'gvnews/archive-title' === $this->name ) {
+		if ( 'gutenverse/news-archive-title' === $this->name ) {
 			$attr['title'] = $this->attributes['title'];
 		}
 		return $attr;
@@ -79,7 +79,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_breadcrumb( $attr ) {
-		if ( 'gvnews/archive-breadcrumb' === $this->name ) {
+		if ( 'gutenverse/news-archive-breadcrumb' === $this->name ) {
 			$attr['scheme'] = $this->attributes['scheme'];
 		}
 		return $attr;
@@ -92,7 +92,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_pagination( $attr ) {
-		if ( 'gvnews/archive-pagination' === $this->name ) {
+		if ( 'gutenverse/news-archive-pagination' === $this->name ) {
 			$attr['pagination_mode']     = $this->attributes['paginationMode'];
 			$attr['pagination_align']    = $this->attributes['paginationAlign'];
 			$attr['pagination_navtext']  = $this->attributes['paginationNavtext'];
@@ -108,7 +108,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_description( $attr ) {
-		if ( 'gvnews/archive-desc' === $this->name ) {
+		if ( 'gutenverse/news-archive-desc' === $this->name ) {
 			$attr = $attr;
 		}
 		return $attr;
@@ -121,7 +121,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_hero( $attr ) {
-		if ( 'gvnews/archive-hero' === $this->name ) {
+		if ( 'gutenverse/news-archive-hero' === $this->name ) {
 			$attr['hero_type']           = $this->attributes['heroType'];
 			$attr['hero_style']          = 'gvnews_hero_style_' . $this->attributes['heroStyle'];
 			$attr['hero_margin']         = $this->attributes['heroMargin'];
@@ -171,7 +171,7 @@ class Archive extends Grab {
 	 * @return array
 	 */
 	private function archive_block( $attr ) {
-		if ( 'gvnews/archive-block' === $this->name ) {
+		if ( 'gutenverse/news-archive-block' === $this->name ) {
 			$attr['block_type']         = $this->attributes['blockType'];
 			$attr['number_post']        = $this->attributes['numberPost'];
 			$attr['excerpt_length']     = $this->attributes['excerptLength'];

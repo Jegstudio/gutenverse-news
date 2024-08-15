@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/archive-pagination",
+    "name": "gutenverse/news-archive-pagination",
     "title": "Archive Pagination",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
     "description": "Your Block description.",

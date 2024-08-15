@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/carousel-3",
+    "name": "gutenverse/news-carousel-3",
     "title": "Carousel 3",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Carousel",
     "description": "Your Block description.",

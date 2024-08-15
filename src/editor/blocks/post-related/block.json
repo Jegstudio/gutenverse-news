@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-related",
+    "name": "gutenverse/news-post-related",
     "title": "Post Related",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related",
     "description": "Your Block description.",

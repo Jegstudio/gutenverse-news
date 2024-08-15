@@ -58,7 +58,7 @@ class Archive extends StyleAbstract {
 	 */
 	protected function set_attrs( $attrs, $name = false ) {
 		if ( $name ) {
-			$name = str_replace( 'gvnews/', '', $name );
+			$name = str_replace( 'gutenverse/news-', '', $name );
 		} elseif ( isset( $this->name ) ) {
 			$name = $this->name;
 		}
@@ -110,7 +110,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive title
 	 */
 	private function archive_title() {
-		if ( 'gvnews/archive-title' === $this->name ) {
+		if ( 'gutenverse/news-archive-title' === $this->name ) {
 			if ( isset( $this->attrs['titleColor'] ) ) {
 				$this->inject_style(
 					array(
@@ -142,7 +142,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive breadcrumb
 	 */
 	private function archive_breadcrumb() {
-		if ( 'gvnews/archive-breadcrumb' === $this->name ) {
+		if ( 'gutenverse/news-archive-breadcrumb' === $this->name ) {
 			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
@@ -210,7 +210,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive pagination
 	 */
 	private function archive_pagination() {
-		if ( 'gvnews/archive-pagination' === $this->name ) {
+		if ( 'gutenverse/news-archive-pagination' === $this->name ) {
 			if ( isset( $this->attrs['paginationTypography'] ) ) {
 				$this->inject_typography(
 					array(
@@ -230,7 +230,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive description
 	 */
 	private function archive_description() {
-		if ( 'gvnews/archive-description' === $this->name ) {
+		if ( 'gutenverse/news-archive-description' === $this->name ) {
 			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
@@ -262,7 +262,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive hero
 	 */
 	private function archive_hero() {
-		if ( 'gvnews/archive-hero' === $this->name ) {
+		if ( 'gutenverse/news-archive-hero' === $this->name ) {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
@@ -300,7 +300,7 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive block
 	 */
 	private function archive_block() {
-		if ( 'gvnews/archive-block' === $this->name ) {
+		if ( 'gutenverse/news-archive-block' === $this->name ) {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(

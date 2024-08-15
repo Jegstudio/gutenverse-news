@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/archive-hero",
+    "name": "gutenverse/news-archive-hero",
     "title": "Archive Hero",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
     "description": "Your Block description.",

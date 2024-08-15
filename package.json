@@ -40,7 +40,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-string-replace": "^1.1.2",
     "gulp-wp-pot": "^2.5.0",
-    "gulp-zip": "^6.0.0",
+    "gulp-zip": "^5.1.0",
     "path": "^0.12.7"
   }
 }

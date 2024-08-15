@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-meta",
+    "name": "gutenverse/news-post-meta",
     "title": "Post Meta",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
     "description": "Your Block description.",

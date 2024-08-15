@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/slider-3",
+    "name": "gutenverse/news-slider-3",
     "title": "Slider 3",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
     "description": "Your Block description.",

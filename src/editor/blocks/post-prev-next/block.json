@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-prev-next",
+    "name": "gutenverse/news-post-prev-next",
     "title": "Post Next Prev",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Prev_Next",
     "description": "Your Block description.",

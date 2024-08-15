@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-tag",
+    "name": "gutenverse/news-post-tag",
     "title": "Post Tag",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag",
     "description": "Your Block description.",

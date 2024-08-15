@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-comment",
+    "name": "gutenverse/news-post-comment",
     "title": "Post Comment",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Comment",
     "description": "Your Block description.",

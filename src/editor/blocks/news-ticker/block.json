@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/news-ticker",
+    "name": "gutenverse/news-news-ticker",
     "title": "News Ticker",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\News_Ticker",
     "description": "Your Block description.",

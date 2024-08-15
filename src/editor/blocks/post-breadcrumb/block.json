@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/post-breadcrumb",
+    "name": "gutenverse/news-post-breadcrumb",
     "title": "Post Breadcrumb",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Breadcrumb",
     "description": "Your Block description.",

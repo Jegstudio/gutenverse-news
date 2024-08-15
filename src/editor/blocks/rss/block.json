@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/rss",
+    "name": "gutenverse/news-rss",
     "title": "RSS Block",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Rss",
     "description": "Your Block description.",

@@ -69,9 +69,9 @@ class Frontend_Assets {
 		$depen = array( 'jquery' );
 		if ( $this->load_block_script(
 			array(
-				'gvnews/block-32',
-				'gvnews/block-33',
-				'gvnews/block-34',
+				'gutenverse/news-block-32',
+				'gutenverse/news-block-33',
+				'gutenverse/news-block-34',
 			)
 		) ) {
 			wp_register_script( 'gvnews-isotope', GUTENVERSE_NEWS_URL . '/assets/js/isotope.js', array(), GUTENVERSE_NEWS_VERSION, true );
@@ -81,7 +81,7 @@ class Frontend_Assets {
 
 		if ( $this->load_block_script(
 			array(
-				'gvnews/news-ticker',
+				'gutenverse/news-news-ticker',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/newsticker.asset.php';
@@ -92,33 +92,33 @@ class Frontend_Assets {
 
 		if ( $this->load_block_script(
 			array(
-				'gvnews/slider-1',
-				'gvnews/slider-2',
-				'gvnews/slider-3',
-				'gvnews/slider-4',
-				'gvnews/slider-5',
-				'gvnews/slider-6',
-				'gvnews/slider-7',
-				'gvnews/slider-8',
-				'gvnews/slider-9',
-				'gvnews/carousel-1',
-				'gvnews/carousel-2',
-				'gvnews/carousel-3',
-				'gvnews/hero-1',
-				'gvnews/hero-2',
-				'gvnews/hero-3',
-				'gvnews/hero-4',
-				'gvnews/hero-5',
-				'gvnews/hero-6',
-				'gvnews/hero-7',
-				'gvnews/hero-8',
-				'gvnews/hero-9',
-				'gvnews/hero-10',
-				'gvnews/hero-11',
-				'gvnews/hero-12',
-				'gvnews/hero-13',
-				'gvnews/hero-14',
-				'gvnews/hero-skew',
+				'gutenverse/news-slider-1',
+				'gutenverse/news-slider-2',
+				'gutenverse/news-slider-3',
+				'gutenverse/news-slider-4',
+				'gutenverse/news-slider-5',
+				'gutenverse/news-slider-6',
+				'gutenverse/news-slider-7',
+				'gutenverse/news-slider-8',
+				'gutenverse/news-slider-9',
+				'gutenverse/news-carousel-1',
+				'gutenverse/news-carousel-2',
+				'gutenverse/news-carousel-3',
+				'gutenverse/news-hero-1',
+				'gutenverse/news-hero-2',
+				'gutenverse/news-hero-3',
+				'gutenverse/news-hero-4',
+				'gutenverse/news-hero-5',
+				'gutenverse/news-hero-6',
+				'gutenverse/news-hero-7',
+				'gutenverse/news-hero-8',
+				'gutenverse/news-hero-9',
+				'gutenverse/news-hero-10',
+				'gutenverse/news-hero-11',
+				'gutenverse/news-hero-12',
+				'gutenverse/news-hero-13',
+				'gutenverse/news-hero-14',
+				'gutenverse/news-hero-skew',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/tinyslider.asset.php';
@@ -129,15 +129,15 @@ class Frontend_Assets {
 
 		if ( $this->load_block_script(
 			array(
-				'gvnews/slider-1',
-				'gvnews/slider-2',
-				'gvnews/slider-3',
-				'gvnews/slider-4',
-				'gvnews/slider-5',
-				'gvnews/slider-6',
-				'gvnews/slider-7',
-				'gvnews/slider-8',
-				'gvnews/slider-9',
+				'gutenverse/news-slider-1',
+				'gutenverse/news-slider-2',
+				'gutenverse/news-slider-3',
+				'gutenverse/news-slider-4',
+				'gutenverse/news-slider-5',
+				'gutenverse/news-slider-6',
+				'gutenverse/news-slider-7',
+				'gutenverse/news-slider-8',
+				'gutenverse/news-slider-9',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/slider.asset.php';
@@ -147,9 +147,9 @@ class Frontend_Assets {
 
 		if ( $this->load_block_script(
 			array(
-				'gvnews/carousel-1',
-				'gvnews/carousel-2',
-				'gvnews/carousel-3',
+				'gutenverse/news-carousel-1',
+				'gutenverse/news-carousel-2',
+				'gutenverse/news-carousel-3',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/carousel.asset.php';
@@ -158,21 +158,21 @@ class Frontend_Assets {
 		}
 		if ( $this->load_block_script(
 			array(
-				'gvnews/hero-1',
-				'gvnews/hero-2',
-				'gvnews/hero-3',
-				'gvnews/hero-4',
-				'gvnews/hero-5',
-				'gvnews/hero-6',
-				'gvnews/hero-7',
-				'gvnews/hero-8',
-				'gvnews/hero-9',
-				'gvnews/hero-10',
-				'gvnews/hero-11',
-				'gvnews/hero-12',
-				'gvnews/hero-13',
-				'gvnews/hero-14',
-				'gvnews/hero-skew',
+				'gutenverse/news-hero-1',
+				'gutenverse/news-hero-2',
+				'gutenverse/news-hero-3',
+				'gutenverse/news-hero-4',
+				'gutenverse/news-hero-5',
+				'gutenverse/news-hero-6',
+				'gutenverse/news-hero-7',
+				'gutenverse/news-hero-8',
+				'gutenverse/news-hero-9',
+				'gutenverse/news-hero-10',
+				'gutenverse/news-hero-11',
+				'gutenverse/news-hero-12',
+				'gutenverse/news-hero-13',
+				'gutenverse/news-hero-14',
+				'gutenverse/news-hero-skew',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/hero.asset.php';

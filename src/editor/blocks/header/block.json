@@ -1,6 +1,6 @@
 {
     "apiVersion": 2,
-    "name": "gvnews/header",
+    "name": "gutenverse/news-header",
     "title": "Header",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Header",
     "description": "Your Block description.",

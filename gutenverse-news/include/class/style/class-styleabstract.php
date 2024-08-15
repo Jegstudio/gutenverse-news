@@ -68,7 +68,7 @@ abstract class StyleAbstract extends StyleInterface {
 	 */
 	protected function set_attrs( $attrs, $name = false ) {
 		if ( $name ) {
-			$name = str_replace( 'gvnews/', '', $name );
+			$name = str_replace( 'gutenverse/news-', '', $name );
 		} elseif ( isset( $this->name ) ) {
 			$name = $this->name;
 		}
