@@ -15,12 +15,15 @@ import HeaderModule from '../../part/header';
 import Block38Columns from './Block38Columns';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Block38Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes } = props;
+    const {
+        attributes
+    } = props;
 
     const {
         elementId,

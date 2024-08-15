@@ -14,6 +14,7 @@ import { RawHTML } from '@wordpress/element';
 import { ModuleSkeleton } from '../../part/placeholder';
 import HeaderModule from '../../part/header';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const UserlistBlock = compose(
     withCustomStyle(panelList),
@@ -21,6 +22,7 @@ const UserlistBlock = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
     const {
@@ -45,6 +47,14 @@ const UserlistBlock = compose(
         hideSocial,
         userAlign,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -220,7 +230,7 @@ const UserlistBlock = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_userlist ${listStyle} ${listStyle == 'style-4' ? 'gvnews_1_block' : ''} ${listStyle == 'style-1' ? blockWidth : listStyle == 'style-2' ? blockWidth2 : listStyle == 'style-3' ? blockWidth3 : listStyle == 'style-5' ? blockWidth : ''}`} style={listStyle == 'style-4' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_center' ? { 'text-align': 'center' } : userAlign == 'gvnews_user_align_left' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_right' ? { 'text-align': 'right' } : {}}>
                     <HeaderModule {...headerData} />

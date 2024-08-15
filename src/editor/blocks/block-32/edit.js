@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { withCustomStyle } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';

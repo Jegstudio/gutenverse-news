@@ -15,12 +15,16 @@ import HeaderModule from '../../part/header';
 import Block28Columns from './Block28Columns';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Block28Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes } = props;
+    const {
+        attributes,
+        setElementRef
+    } = props;
 
     const {
         elementId,
@@ -60,6 +64,14 @@ const Block28Block = compose(
         showDateFormat,
         showDateFormatCustom,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -230,7 +242,7 @@ const Block28Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps}>
+            <div {...blockProps} ref={blockStyleRef}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div
                         className={`gvnews_postblock_28 gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 ${enableBoxed ? 'gvnews_pb_boxed' : ''

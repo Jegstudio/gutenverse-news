@@ -15,6 +15,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Slider9Block = compose(
     withCustomStyle(panelList),
@@ -22,7 +23,8 @@ const Slider9Block = compose(
 )((props) => {
     const {
         attributes,
-        isSelected
+        isSelected,
+        setElementRef
     } = props;
 
     const {
@@ -51,6 +53,14 @@ const Slider9Block = compose(
         autoplay,
         autoplayDelay,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -297,7 +307,7 @@ const Slider9Block = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 {block ? block : 'loading'}

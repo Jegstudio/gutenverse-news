@@ -14,6 +14,7 @@ import { RawHTML } from '@wordpress/element';
 import { ModuleSkeleton } from '../../part/placeholder';
 import HeaderModule from '../../part/header';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const HeaderBlock = compose(
     withCustomStyle(panelList),
@@ -21,7 +22,7 @@ const HeaderBlock = compose(
 )((props) => {
     const {
         attributes,
-        deviceType,
+        setElementRef,
     } = props;
 
     const {
@@ -31,6 +32,14 @@ const HeaderBlock = compose(
         second_title,
         headerType,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -55,7 +64,7 @@ const HeaderBlock = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <HeaderModule {...headerData} />
             </div>

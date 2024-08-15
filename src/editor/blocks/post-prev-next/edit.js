@@ -12,18 +12,28 @@ import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const PostPrevNext = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
     const {
-        attributes
+        attributes,
+        setElementRef
     } = props;
 
     const {
         elementId,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -88,7 +98,7 @@ const PostPrevNext = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews_custom_prev_next_wrapper gvnews_prev_next_container">
                 <div className="gvnews_prevnext_post">
                     {content ? content : <ModuleOverlay />}

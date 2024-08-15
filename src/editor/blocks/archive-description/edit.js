@@ -8,19 +8,28 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { __ } from '@wordpress/i18n';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef, useEffect } from '@wordpress/element';
 
 const ArchiveDescription = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
     const {
-        attributes
+        attributes,
+        setElementRef
     } = props;
 
     const {
         elementId,
     } = attributes;
 
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -38,7 +47,7 @@ const ArchiveDescription = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div {...blockProps}>
+        <div {...blockProps} ref={blockStyleRef}>
             <div className="gvnews_archive_description_wrapper">
                 <h2 className="gvnews_archive_description">{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
             </div>

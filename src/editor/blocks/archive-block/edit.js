@@ -8,12 +8,16 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import BlockHandler from './block-handler';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef, useEffect } from '@wordpress/element';
 
 const ArchiveBlock = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes } = props;
+    const {
+        attributes,
+        setElementRef
+    } = props;
 
     const {
         elementId,
@@ -30,6 +34,14 @@ const ArchiveBlock = compose(
         dateFormatCustom,
         firstPage,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -60,7 +72,7 @@ const ArchiveBlock = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps}>
+            <div {...blockProps} ref={blockStyleRef}>
                 <div className="guten-raw-wrapper gvnews-editor">
                     <BlockHandler {...theProps} />
                 </div>

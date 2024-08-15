@@ -7,13 +7,15 @@ import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const ArchivePagination = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
     const {
-        attributes
+        attributes,
+        setElementRef
     } = props;
 
     const {
@@ -41,7 +43,7 @@ const ArchivePagination = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div {...blockProps} >
+        <div {...blockProps} ref={blockStyleRef}>
             <div className={`gvnews_navigation gvnews_pagination gvnews_col_3o3 gvnews_page${paginationMode} gvnews_align${paginationAlign} ${!paginationNavtext && 'no_navtext'} ${!paginationPageinfo && 'no_pageinfo'}`}>
                 <span className="page_info">Page 1 of 3</span>
                 <span className="page_number active">1</span>

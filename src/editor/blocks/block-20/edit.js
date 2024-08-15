@@ -16,6 +16,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import Block20Columns from './Block20Columns';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Block20Block = compose(
     withCustomStyle(panelList),
@@ -23,6 +24,7 @@ const Block20Block = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
     const {
@@ -60,6 +62,14 @@ const Block20Block = compose(
         metaDateFormat,
         metaDateFormatCustom,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -226,7 +236,7 @@ const Block20Block = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_postblock_20 gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />

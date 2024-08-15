@@ -13,12 +13,17 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Hero14Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes, isSelected } = props;
+    const {
+        attributes,
+        isSelected,
+        setElementRef
+    } = props;
 
     const {
         elementId,
@@ -45,6 +50,14 @@ const Hero14Block = compose(
         metaDateFormat,
         metaDateFormatCustom,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -245,7 +258,7 @@ const Hero14Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps}>
+            <div {...blockProps} ref={blockStyleRef}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
                         <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>

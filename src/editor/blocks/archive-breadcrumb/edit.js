@@ -7,13 +7,15 @@ import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef, useEffect } from '@wordpress/element';
 
 const ArchiveBreadcrumb = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
     const {
-        attributes
+        attributes,
+        setElementRef
     } = props;
 
     const {
@@ -21,6 +23,13 @@ const ArchiveBreadcrumb = compose(
         scheme
     } = attributes;
 
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -38,7 +47,7 @@ const ArchiveBreadcrumb = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div {...blockProps} >
+        <div {...blockProps} ref={blockStyleRef}>
             <div className={`gvnews_archive_breadcrumb_wrapper ${scheme}`} >
                 <div className={'gvnews_breadcrumbs gvnews_breadcrumb_container'}>
                     <div id="breadcrumbs">

@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState, Fragment }  from '@wordpress/element';
+import { useEffect, useState, Fragment } from '@wordpress/element';
 import { withCustomStyle } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -13,6 +13,7 @@ import { select, subscribe, useSelect } from '@wordpress/data';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const PostMeta = compose(
     withCustomStyle(panelList),
@@ -20,6 +21,7 @@ const PostMeta = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
 
@@ -28,6 +30,14 @@ const PostMeta = compose(
         metaRight = [],
         elementId,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
@@ -59,7 +69,7 @@ const PostMeta = compose(
                         alt="admin"
                         src={author.name}
                         srcSet={author.avatar}
-                        className={`avatar avatar-80 photo`}
+                        className={'avatar avatar-80 photo'}
                         height="80"
                         width="80"
                         loading="lazy"
@@ -77,10 +87,10 @@ const PostMeta = compose(
                 metaText.push(output);
             });
 
-            return <Fragment>{metaText}</Fragment>
+            return <Fragment>{metaText}</Fragment>;
         }
         return <Fragment>
-            <img alt="admin" src={`${imgDir}/author.png`}/>
+            <img alt="admin" src={`${imgDir}/author.png`} />
             <span className="meta_text">by</span>
             <a href="#">admin</a>
         </Fragment>;
@@ -88,14 +98,14 @@ const PostMeta = compose(
 
     useEffect(() => {
         const selectedCategoriesAttr = select('core/editor').getEditedPostAttribute('categories');
-        const selectedCategories = selectedCategoriesAttr ? selectedCategoriesAttr : []
+        const selectedCategories = selectedCategoriesAttr ? selectedCategoriesAttr : [];
         setCategoriesIds(selectedCategories);
         const editorDate = select('core/editor').getEditedPostAttribute('date');
         setEditorDate(editorDate);
 
         const unsubscribe = subscribe(() => {
             const updatedCategoriesAttr = select('core/editor').getEditedPostAttribute('categories');
-            const updatedCategories = updatedCategoriesAttr ? updatedCategoriesAttr : []
+            const updatedCategories = updatedCategoriesAttr ? updatedCategoriesAttr : [];
 
             setCategoriesIds(updatedCategories);
             const udpatedEditorDate = select('core/editor').getEditedPostAttribute('date');
@@ -146,10 +156,10 @@ const PostMeta = compose(
         const categoryRecords = getEntityRecords('taxonomy', 'category', { per_page: -1 }) || [];
 
         return categoryRecords
-        .filter((category) => categoriesIds.includes(category.id))
-        .map((category, index) => {
-            return category.name;
-        });
+            .filter((category) => categoriesIds.includes(category.id))
+            .map((category, index) => {
+                return category.name;
+            });
     }, [categoriesIds]);
 
     useEffect(() => {
@@ -161,15 +171,15 @@ const PostMeta = compose(
             }));
         } else {
             setCategoryMeta(<Fragment>
-                <a href="#" rel="category tag">Dummy</a>, 
-                <a href="#" rel="category tag">Another</a>, 
-                <a href="#" rel="category tag">Category</a>    
-            </Fragment>)
+                <a href="#" rel="category tag">Dummy</a>,
+                <a href="#" rel="category tag">Another</a>,
+                <a href="#" rel="category tag">Category</a>
+            </Fragment>);
         }
     }, [categories]);
 
     const MetaAuthor = () => {
-        return <div className={`gvnews_meta_author`}>
+        return <div className={'gvnews_meta_author'}>
             <AuthorMeta />
         </div>;
     };
@@ -177,33 +187,33 @@ const PostMeta = compose(
     const convertDateFormat = inputDate => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const inputDateObj = new Date(inputDate);
-        
+
         if (isNaN(inputDateObj.getTime())) {
-          // Invalid input date, return an error message or handle it as needed.
-          return "Invalid date format";
+            // Invalid input date, return an error message or handle it as needed.
+            return 'Invalid date format';
         }
-        
+
         const formattedDate = inputDateObj.toLocaleDateString('en-US', options);
         return formattedDate.toUpperCase(); // Convert to uppercase for the "OCTOBER" part
-      }
+    };
 
     function getCurrentDateTimeFormatted() {
         const now = new Date();
-      
+
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-based
         const day = String(now.getDate()).padStart(2, '0');
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-      
+
         const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
         return formattedDate;
-      }
-      
+    }
+
 
     const MetaDate = () => {
-        const date = editorDate ? convertDateFormat(editorDate) : convertDateFormat(getCurrentDateTimeFormatted())
+        const date = editorDate ? convertDateFormat(editorDate) : convertDateFormat(getCurrentDateTimeFormatted());
 
         return <div className="gvnews_meta_date">
             <a href="#">{date}</a>
@@ -249,19 +259,19 @@ const PostMeta = compose(
 
     const MetaLeftElement = () => {
         return <div className="meta_left">
-            <RenderMeta metas={metaLeft ? metaLeft: []} />
+            <RenderMeta metas={metaLeft ? metaLeft : []} />
         </div>;
     };
 
     const MetaRightElement = () => {
         return <div className="meta_left">
-            <RenderMeta metas={metaRight ? metaRight: []} />
+            <RenderMeta metas={metaRight ? metaRight : []} />
         </div>;
     };
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             {contentData ? <div className="gvnews_post_meta gvnews_custom_meta_wrapper">
                 {MetaLeftElement()}
                 {MetaRightElement()}

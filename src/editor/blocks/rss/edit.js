@@ -15,6 +15,7 @@ import HeaderModule from '../../part/header';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const RssBlock = compose(
     withCustomStyle(panelList),
@@ -22,6 +23,7 @@ const RssBlock = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
     const {
@@ -47,6 +49,14 @@ const RssBlock = compose(
         enableBoxShadow,
         metaDateType
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -153,7 +163,7 @@ const RssBlock = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}

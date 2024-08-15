@@ -13,6 +13,7 @@ import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
 import { RawHTML } from '@wordpress/element';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const PostBreadcrumb = compose(
     withCustomStyle(panelList),
@@ -20,11 +21,20 @@ const PostBreadcrumb = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
     const {
         elementId,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -85,26 +95,26 @@ const PostBreadcrumb = compose(
     ]);
 
     const DummyBlocks = () => {
-        return <div class="gvnews_breadcrumbs gvnews_breadcrumb_container">
-        <div id="breadcrumbs">
-            <span className="">
-                <a href="#" target="_self">Home</a>
-            </span>
-            <i className="fas fa-angle-right"></i>
-            <span className="">
-                <a href="" target="_self">Category</a>
-            </span>
-            <i className="fas fa-angle-right"></i>
-            <span className="breadcrumb_last_link">
-                <a href="#" target="_self">Child Category</a>
-            </span>
-        </div>            
-    </div>
-    }
+        return <div className="gvnews_breadcrumbs gvnews_breadcrumb_container">
+            <div id="breadcrumbs">
+                <span className="">
+                    <a href="#" target="_self">Home</a>
+                </span>
+                <i className="fas fa-angle-right"></i>
+                <span className="">
+                    <a href="" target="_self">Category</a>
+                </span>
+                <i className="fas fa-angle-right"></i>
+                <span className="breadcrumb_last_link">
+                    <a href="#" target="_self">Child Category</a>
+                </span>
+            </div>
+        </div>;
+    };
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews_custom_related_wrapper">
                 <div className="gvnews_custom_breadcrumb_wrapper">
                     {content ? content : <DummyBlocks />}

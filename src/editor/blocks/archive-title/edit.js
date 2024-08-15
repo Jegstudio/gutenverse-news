@@ -7,7 +7,7 @@ import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import QueryTitle from '../../query/query-title';
-import { useRef } from '@wordpress/element';
+import { useRef, useEffect } from '@wordpress/element';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 
 const ArchiveTitle = compose(
@@ -16,7 +16,8 @@ const ArchiveTitle = compose(
 )((props) => {
     const {
         attributes,
-        setAttributes
+        setAttributes,
+        setElementRef
     } = props;
 
     const {
@@ -39,16 +40,26 @@ const ArchiveTitle = compose(
         ),
     });
 
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
+
     return <>
         <PanelController panelList={panelList} {...props} />
-        <QueryTitle {
-            ...{
-                blockProps,
-                setAttributes,
-                type: 'archive',
-                titleRef: titleRichTextRef
-            }
-        } />
+        <div ref={blockStyleRef}>
+            <QueryTitle {
+                ...{
+                    blockProps,
+                    setAttributes,
+                    type: 'archive',
+                    titleRef: titleRichTextRef
+                }
+            } />
+        </div>
     </>;
 });
 

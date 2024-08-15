@@ -41,6 +41,7 @@ import Block26Columns from '../block-26/Block26Columns';
 import Block27Columns from '../block-27/Block27Columns';
 import { select, subscribe } from '@wordpress/data';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const PostRelated = compose(
     withCustomStyle(panelList),
@@ -48,7 +49,9 @@ const PostRelated = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
+
     const {
         elementId,
         postType,
@@ -76,6 +79,14 @@ const PostRelated = compose(
         metaDateFormatCustom,
         showNavText
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const [postBulk, getPost] = useState(false);
     const [moduleOption, setModuleOption] = useState(false);
@@ -342,7 +353,7 @@ const PostRelated = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps}>
+        <div  {...blockProps} ref={blockStyleRef}>
             <div className="gvnews_custom_related_wrapper">
                 <div className={`${templateType.replace('template_', 'gvnews_postblock_')} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
                     <HeaderModule {...headerData} />

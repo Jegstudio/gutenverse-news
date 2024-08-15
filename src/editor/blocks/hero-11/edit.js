@@ -10,12 +10,15 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 
-
 const Hero11Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes, setElementRef, isSelected } = props;
+    const {
+        attributes,
+        setElementRef,
+        isSelected
+    } = props;
 
     const {
         elementId,

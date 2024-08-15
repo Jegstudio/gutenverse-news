@@ -7,7 +7,7 @@ import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import QueryTitle from '../../query/query-title';
-import { useRef } from '@wordpress/element';
+import { useRef, useEffect } from '@wordpress/element';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 
 const PostTitle = compose(
@@ -16,6 +16,7 @@ const PostTitle = compose(
 )((props) => {
     const {
         attributes,
+        setElementRef
     } = props;
 
     const {
@@ -25,6 +26,12 @@ const PostTitle = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const titleRichTextRef = useRef();
+
+    useEffect(() => {
+        if (titleRichTextRef.current) {
+            setElementRef(titleRichTextRef.current);
+        }
+    }, [titleRichTextRef]);
 
     const blockProps = useBlockProps({
         className: classnames(

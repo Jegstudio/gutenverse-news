@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from '@wordpress/element';
 import { withCustomStyle } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -16,12 +16,16 @@ import PaginationModule from '../../part/pagination';
 import Block21Columns from './Block21Columns';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useRef } from '@wordpress/element';
 
 const Block21Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes } = props;
+    const {
+        attributes,
+        setElementRef
+    } = props;
 
     const {
         elementId,
@@ -58,6 +62,14 @@ const Block21Block = compose(
         metaDateFormat,
         metaDateFormatCustom,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -228,7 +240,7 @@ const Block21Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps}>
+            <div {...blockProps} ref={blockStyleRef}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div
                         className={`gvnews_postblock_21 gvnews_postblock gvnews_col_${

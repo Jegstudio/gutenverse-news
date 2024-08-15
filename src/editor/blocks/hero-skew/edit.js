@@ -14,7 +14,11 @@ const HeroSkewBlock = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes, setElementRef, isSelected } = props;
+    const {
+        attributes,
+        setElementRef,
+        isSelected
+    } = props;
 
     const {
         elementId,
