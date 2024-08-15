@@ -204,6 +204,7 @@ const PostRelated = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     useEffect(() => {
@@ -353,7 +354,7 @@ const PostRelated = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews_custom_related_wrapper">
                 <div className={`${templateType.replace('template_', 'gvnews_postblock_')} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
                     <HeaderModule {...headerData} />

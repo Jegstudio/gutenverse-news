@@ -192,6 +192,7 @@ const Block21Block = compose(
             animationClass,
             displayClass
         ),
+        ref: blockStyleRef
     });
 
     const headerData = {
@@ -240,7 +241,7 @@ const Block21Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps} ref={blockStyleRef}>
+            <div {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div
                         className={`gvnews_postblock_21 gvnews_postblock gvnews_col_${

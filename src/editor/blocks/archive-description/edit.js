@@ -43,11 +43,12 @@ const ArchiveDescription = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div {...blockProps} ref={blockStyleRef}>
+        <div {...blockProps}>
             <div className="gvnews_archive_description_wrapper">
                 <h2 className="gvnews_archive_description">{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
             </div>

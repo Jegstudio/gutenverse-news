@@ -161,6 +161,7 @@ const UserlistBlock = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     function RenderBlockUser(props) {
@@ -230,7 +231,7 @@ const UserlistBlock = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_userlist ${listStyle} ${listStyle == 'style-4' ? 'gvnews_1_block' : ''} ${listStyle == 'style-1' ? blockWidth : listStyle == 'style-2' ? blockWidth2 : listStyle == 'style-3' ? blockWidth3 : listStyle == 'style-5' ? blockWidth : ''}`} style={listStyle == 'style-4' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_center' ? { 'text-align': 'center' } : userAlign == 'gvnews_user_align_left' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_right' ? { 'text-align': 'right' } : {}}>
                     <HeaderModule {...headerData} />

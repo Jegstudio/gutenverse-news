@@ -22,7 +22,8 @@ const Block38Block = compose(
     withCopyElementToolbar()
 )((props) => {
     const {
-        attributes
+        attributes,
+        setElementRef
     } = props;
 
     const {
@@ -60,6 +61,14 @@ const Block38Block = compose(
         metaDateFormat,
         metaDateFormatCustom,
     } = attributes;
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -172,6 +181,7 @@ const Block38Block = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-block-38', elementId, animationClass, displayClass),
+        ref: blockStyleRef
     });
 
     const headerData = {

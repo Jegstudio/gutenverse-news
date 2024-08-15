@@ -50,6 +50,7 @@ const PostPrevNext = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     useEffect(() => {
@@ -93,12 +94,11 @@ const PostPrevNext = compose(
                 </a>
             </>);
         }
-        
     }, [prevNextData]);
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews_custom_prev_next_wrapper gvnews_prev_next_container">
                 <div className="gvnews_prevnext_post">
                     {content ? content : <ModuleOverlay />}

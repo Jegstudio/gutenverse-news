@@ -49,6 +49,7 @@ const ArchiveBlock = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-archive-block', elementId, animationClass, displayClass),
+        ref: blockStyleRef
     });
 
     const theProps = {
@@ -72,7 +73,7 @@ const ArchiveBlock = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps} ref={blockStyleRef}>
+            <div {...blockProps}>
                 <div className="guten-raw-wrapper gvnews-editor">
                     <BlockHandler {...theProps} />
                 </div>

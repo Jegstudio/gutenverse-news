@@ -60,11 +60,12 @@ const HeaderBlock = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <HeaderModule {...headerData} />
             </div>

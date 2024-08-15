@@ -76,6 +76,7 @@ const PostBreadcrumb = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     useEffect(() => {
@@ -114,7 +115,7 @@ const PostBreadcrumb = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews_custom_related_wrapper">
                 <div className="gvnews_custom_breadcrumb_wrapper">
                     {content ? content : <DummyBlocks />}

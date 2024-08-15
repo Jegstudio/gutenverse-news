@@ -43,11 +43,12 @@ const ArchiveBreadcrumb = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div {...blockProps} ref={blockStyleRef}>
+        <div {...blockProps}>
             <div className={`gvnews_archive_breadcrumb_wrapper ${scheme}`} >
                 <div className={'gvnews_breadcrumbs gvnews_breadcrumb_container'}>
                     <div id="breadcrumbs">

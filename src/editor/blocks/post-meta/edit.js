@@ -126,6 +126,7 @@ const PostMeta = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     useEffect(() => {
@@ -271,7 +272,7 @@ const PostMeta = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             {contentData ? <div className="gvnews_post_meta gvnews_custom_meta_wrapper">
                 {MetaLeftElement()}
                 {MetaRightElement()}

@@ -185,6 +185,7 @@ const Block29Block = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-block-29', elementId, animationClass, displayClass),
+        ref: blockStyleRef
     });
 
     const headerData = {
@@ -244,7 +245,7 @@ const Block29Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps} ref={blockStyleRef}>
+            <div {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div
                         className={`gvnews_postblock_29 gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 ${enableBoxed ? 'gvnews_pb_boxed' : ''

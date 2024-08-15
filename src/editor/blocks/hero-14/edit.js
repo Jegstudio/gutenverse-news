@@ -161,6 +161,7 @@ const Hero14Block = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-hero-14', elementId, animationClass, displayClass),
+        ref: blockStyleRef
     });
 
     const moduleData = {
@@ -258,7 +259,7 @@ const Hero14Block = compose(
     return (
         <>
             <PanelController panelList={panelList} {...props} />
-            <div {...blockProps} ref={blockStyleRef}>
+            <div {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor">
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
                         <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>

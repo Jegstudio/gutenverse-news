@@ -45,6 +45,7 @@ const ArchiveHero = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-archive-hero', elementId, animationClass, displayClass),
+        ref: heroSliderRef
     });
 
     return (

@@ -109,6 +109,7 @@ const RssBlock = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     const [block, setBlock] = useState(false);
@@ -163,7 +164,7 @@ const RssBlock = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}

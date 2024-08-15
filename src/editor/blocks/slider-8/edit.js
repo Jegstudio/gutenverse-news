@@ -183,6 +183,7 @@ const Slider8Block = compose(
             animationClass,
             displayClass,
         ),
+        ref: blockStyleRef
     });
 
     const moduleData = {
@@ -297,7 +298,7 @@ const Slider8Block = compose(
 
     return <>
         <PanelController panelList={panelList} {...props} />
-        <div  {...blockProps} ref={blockStyleRef}>
+        <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 {block ? block : 'loading'}

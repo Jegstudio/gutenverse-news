@@ -20,9 +20,20 @@ const Block32Block = compose(
     withCustomStyle(panelList),
     withCopyElementToolbar()
 )((props) => {
-    const { attributes } = props;
+    const {
+        attributes,
+        setElementRef
+    } = props;
 
     const isotope = useRef();
+
+    const blockStyleRef = useRef();
+
+    useEffect(() => {
+        if (blockStyleRef.current) {
+            setElementRef(blockStyleRef.current);
+        }
+    }, [blockStyleRef]);
 
     const {
         elementId,
@@ -171,6 +182,7 @@ const Block32Block = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-block-32', elementId, animationClass, displayClass),
+        ref: blockStyleRef
     });
 
     const headerData = {
@@ -218,7 +230,7 @@ const Block32Block = compose(
                         ref={isotope}
                         isotope-selector={`gvnews_postblock_32_${elementId}`}
                         className={`gvnews_postblock_32 gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 ${enableBoxed ? 'gvnews_pb_boxed' : ''
-                        } ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                            } ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                         <HeaderModule {...headerData} />
                         {block ? block : 'loading'}
                         <PaginationModule {...paginationData} />
