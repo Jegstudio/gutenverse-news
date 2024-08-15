@@ -127,8 +127,36 @@ class Init {
 		$this->init_hook();
 		$this->register_framework();
 		add_action( 'plugins_loaded', array( $this, 'plugin_loaded' ) );
+		add_action( 'plugins_loaded', array( $this, 'framework_loaded' ), 99 );
+		add_filter( 'gutenverse_companion_plugin_list', array( $this, 'plugin_name' ) );
+		register_activation_hook( GUTENVERSE_NEWS_FILE, array( $this, 'set_activation_transient' ) );
 	}
 
+	/**
+	 * Set Activation Transient
+	 */
+	public function set_activation_transient() {
+		set_transient( 'gutenverse_redirect', 1, 30 );
+	}
+
+	/**
+	 * Register Plugin name.
+	 *
+	 * @param array $list .
+	 */
+	public function plugin_name( $list ) {
+		$list[] = GUTENVERSE_NEWS_NAME;
+
+		return $list;
+	}
+
+	/**
+	 * Only load when framework already loaded.
+	 */
+	public function framework_loaded() {
+		$this->init_instance();
+		$this->load_textdomain();
+	}
 
 	/**
 	 * Method register_framework
@@ -167,8 +195,6 @@ class Init {
 		$init = \Gutenverse_Initialize_Framework::instance();
 		if ( $init->check_compatibility() ) {
 			$this->init_framework();
-			$this->init_instance();
-			$this->load_textdomain();
 		}
 	}
 
