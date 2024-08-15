@@ -48,6 +48,7 @@ export const settingPanel = ({postType}) => {
             id: 'postOffset',
             label: __('Post Offset', 'gutenverse-news'),
             component: NumberControl,
+            forceType: 'string'
         },
         {
             id: 'uniqueContent',

@@ -44,6 +44,7 @@ export const filterHero = ({postType}) => {
             label: __('Post Offset', 'gutenverse-news'),
             description: __('Number of post offset (start of content).', 'gutenverse-news'),
             component: NumberControl,
+            forceType: 'string'
         },
         {
             id: 'uniqueContent',
