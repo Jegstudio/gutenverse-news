@@ -26,6 +26,13 @@ abstract class StyleAbstract extends StyleInterface {
 	protected $element_id;
 
 	/**
+	 * Name
+	 *
+	 * @var array
+	 */
+	protected $name;
+
+	/**
 	 * Generated Style for each device.
 	 *
 	 * @var array
@@ -90,5 +97,14 @@ abstract class StyleAbstract extends StyleInterface {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get Name.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return $this->name;
 	}
 }
