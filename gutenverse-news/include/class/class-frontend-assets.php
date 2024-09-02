@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS;
 
+use Gutenverse\Framework\Init;
+
 /**
  * Class Frontend Script
  *
@@ -16,12 +18,105 @@ namespace GUTENVERSE\NEWS;
  */
 class Frontend_Assets {
 
+	/**
+	 * News Block Data
+	 *
+	 * @var array
+	 */
+	protected $news_block_data = array();
+
+	/**
+	 * Check if Bypass
+	 *
+	 * @var boolean
+	 */
+	protected $is_bypass = false;
+
+	/**
+	 * Get file name
+	 *
+	 * @var string
+	 */
+	protected $file_name = '';
+
+	/**
+	 * News Block File Data
+	 *
+	 * @var array
+	 */
+	protected $news_file = array();
 
 	/**
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99999 );
+		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
+		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
+		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
+	}
+
+	/**
+	 * Loop Block.
+	 */
+	public function get_blocks() {
+		if ( $this->is_bypass ) {
+			$cache           = Init::instance()->style_cache;
+			$validation_data = $this->news_block_data;
+			if ( $this->news_block_data ) {
+				$cache->create_cache_file( $this->file_name, wp_json_encode( $validation_data, true ) );
+			}
+			$this->news_file[]     = $this->file_name;
+			$this->news_block_data = array();
+			$this->is_bypass       = false;
+		}
+	}
+
+	/**
+	 * Loop Block.
+	 *
+	 * @param array  $block Array of Blocks.
+	 * @param string $style $style content.
+	 */
+	public function loop_blocks( $block, &$style ) {
+		$this->get_news_block_data( $block );
+	}
+
+	/**
+	 * Loop Block.
+	 *
+	 *  @param array $block Block Array.
+	 */
+	public function get_news_block_data( $block ) {
+		if ( strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
+			$this->news_block_data[] = $block['blockName'];
+		}
+	}
+
+	/**
+	 * Check if we going to by pass css generation.
+	 *
+	 * @param boolean $flag Flag.
+	 * @param string  $name Name of file.
+	 *
+	 * @return bool
+	 */
+	public function bypass_generate_css( $flag, $name ) {
+		if ( 'direct' !== apply_filters( 'gutenverse_frontend_render_mechanism', 'direct' ) ) {
+			$cache    = Init::instance()->style_cache;
+			$cache_id = $cache->get_style_cache_id();
+			$filename = $name . '-news-script-' . $cache_id . '.json';
+			if ( ! $cache->is_file_exist( $filename ) ) {
+				$this->file_name       = $filename;
+				$this->is_bypass       = true;
+				$this->news_block_data = array();
+				return false;
+			} else {
+				$this->news_file[] = $filename;
+			}
+		}
+
+		return $flag;
 	}
 
 	/**
@@ -66,8 +161,30 @@ class Frontend_Assets {
 	 * @return void
 	 */
 	public function frontend_scripts() {
+		$block_script_data = null;
+
+		if ( 'direct' === apply_filters( 'gutenverse_frontend_render_mechanism', 'direct' ) ) {
+			$block_script_data = $this->news_block_data;
+		} else {
+			$cache        = Init::instance()->style_cache;
+			$merged_datas = array();
+
+			foreach ( $this->news_file as $filename ) {
+				$merged_data = json_decode( $cache->read_cache_file( $filename ), true );
+
+				if ( is_array( $merged_data ) ) {
+					$merged_datas = array_merge( $merged_data, $merged_datas );
+				}
+			}
+
+			$merged_datas = array_unique( $merged_datas );
+
+			$block_script_data = $merged_datas;
+		}
+
 		$depen = array( 'jquery' );
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-block-32',
 				'gutenverse/news-block-33',
@@ -80,6 +197,7 @@ class Frontend_Assets {
 		}
 
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-news-ticker',
 			)
@@ -91,6 +209,7 @@ class Frontend_Assets {
 		}
 
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-slider-1',
 				'gutenverse/news-slider-2',
@@ -128,6 +247,7 @@ class Frontend_Assets {
 		}
 
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-slider-1',
 				'gutenverse/news-slider-2',
@@ -146,6 +266,7 @@ class Frontend_Assets {
 		}
 
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-carousel-1',
 				'gutenverse/news-carousel-2',
@@ -157,6 +278,7 @@ class Frontend_Assets {
 			wp_enqueue_script( 'gvnews-carousel' );
 		}
 		if ( $this->load_block_script(
+			$block_script_data,
 			array(
 				'gutenverse/news-hero-1',
 				'gutenverse/news-hero-2',
@@ -190,16 +312,12 @@ class Frontend_Assets {
 	/**
 	 * Method load_block_script
 	 *
+	 * @param array $block_script_data array block names.
 	 * @param array $block_names array block names.
 	 * @return boolean
 	 */
-	public function load_block_script( $block_names = array() ) {
-		foreach ( $block_names as $block_name ) {
-			if ( has_block( $block_name ) ) {
-				return true;
-			}
-		}
-		return false;
+	public function load_block_script( $block_script_data = array(), $block_names = array() ) {
+		return ! empty( array_intersect( $block_script_data, $block_names ) );
 	}
 
 	/**
