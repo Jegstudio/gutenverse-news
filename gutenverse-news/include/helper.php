@@ -523,13 +523,13 @@ if ( ! function_exists( 'gvnews_is_bp_active' ) ) {
  */
 if ( ! function_exists( 'gvnews_translate_polylang' ) ) {
 	/**
-	 * Method gvnews_return_polylang
+	 * Method gvnews_translate_polylang
 	 *
 	 * @param string $text text.
 	 *
 	 * @return string
 	 */
-	function gvnews_return_polylang( $text ) {
+	function gvnews_translate_polylang( $text ) {
 		return apply_filters( 'gvnews_translate_polylang', $text );
 	}
 }
