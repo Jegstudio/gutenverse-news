@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: news, blog, magazine, block
 Tested up to: 6.4
 Requires PHP: 7.4.30
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,3 +76,10 @@ To find Gutenverse News blocks in the block editor:
 Click on the top left corner of the editor.
 Enter the keyword "gutenverse" or "News" in the search bar.
 The editor will display a list of all available Gutenverse News blocks. You can also search for specific blocks by adding details, such as "module" or "Hero"
+
+== Changelog ==
+= 1.0.1 =
+##### Bug Fixes
+* **Bug Fix**, Fix compatibility with translation plugin.
+##### Improvements
+* **Script Load**, Better Frontend Script Load Mechanism.

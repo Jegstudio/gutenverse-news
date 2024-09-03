@@ -4,7 +4,7 @@
  * Description: Powerful and intuitive News Block designed to streamline the process of creating WordPress news website.
  * Plugin URI: https://gutenverse.com/
  * Author: Jegstudio
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: https://jegtheme.com/
  * License: GPLv3
  * Text Domain: gutenverse-news
@@ -13,7 +13,7 @@
  */
 
 defined( 'GUTENVERSE_NEWS' ) || define( 'GUTENVERSE_NEWS', 'gutenverse-news' );
-defined( 'GUTENVERSE_NEWS_VERSION' ) || define( 'GUTENVERSE_NEWS_VERSION', '0.0.1' );
+defined( 'GUTENVERSE_NEWS_VERSION' ) || define( 'GUTENVERSE_NEWS_VERSION', '1.0.1' );
 defined( 'GUTENVERSE_NEWS_NOTICE_VERSION' ) || define( 'GUTENVERSE_NEWS_NOTICE_VERSION', '1.0.0' );
 defined( 'GUTENVERSE_NEWS_NAME' ) || define( 'GUTENVERSE_NEWS_NAME', 'Gutenverse News' );
 defined( 'GUTENVERSE_NEWS_FILE' ) || define( 'GUTENVERSE_NEWS_FILE', __FILE__ );
