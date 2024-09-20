@@ -206,6 +206,7 @@ class Init {
 	 */
 	public function init_framework() {
 		if ( $this->can_load_framework() ) {
+			defined( 'GUTENVERSE_FRAMEWORK_URL_PATH' ) || define( 'GUTENVERSE_FRAMEWORK_URL_PATH', plugins_url( GUTENVERSE_NEWS ) . '/lib/framework' );
 			require_once GUTENVERSE_NEWS_DIR . 'lib/framework/bootstrap.php';
 		}
 	}
