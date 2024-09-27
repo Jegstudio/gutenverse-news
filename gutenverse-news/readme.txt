@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.4
 Requires PHP: 7.4.30
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,6 +156,10 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 1.0.3 =
+##### Bug Fixes
+* Fix issue with system status on sites using WP Engine
 
 = 1.0.2 =
 ##### Improvements
