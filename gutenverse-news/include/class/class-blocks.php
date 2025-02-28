@@ -53,15 +53,15 @@ class Blocks {
 	 */
 	public function register_blocks() {
 		// Static block.
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-1/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-2/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-3/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-4/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-5/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-6/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-7/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-8/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-9/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-01/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-02/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-03/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-04/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-05/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-06/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-07/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-08/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-09/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-10/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-11/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-12/block.json' );
@@ -92,15 +92,15 @@ class Blocks {
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-37/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-38/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/block-39/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-1/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-2/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-3/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-4/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-5/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-6/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-7/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-8/block.json' );
-		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-9/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-01/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-02/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-03/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-04/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-05/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-06/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-07/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-08/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-09/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-10/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-11/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/hero-12/block.json' );
