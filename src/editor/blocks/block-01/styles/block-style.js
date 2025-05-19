@@ -4,12 +4,17 @@ const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
     /**
- * Panel Header
- */
+     * Panel Header
+     */
     isNotEmpty(attributes['headerBackgroundColor']) && data.push({
         'type': 'color',
         'id': 'headerBackgroundColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_1 .gvnews_block_title span, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_2 .gvnews_block_title span, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_4 .gvnews_block_title span, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_5 .gvnews_block_title span`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_1 .gvnews_block_title span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_2 .gvnews_block_title span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_4 .gvnews_block_title span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_5 .gvnews_block_title span`
+        ],
         'properties': [
             {
                 'name': 'background',
@@ -57,7 +62,11 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['headerLineColor']) && data.push({
         'type': 'color',
         'id': 'headerLineColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_1, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_6, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_9`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_1`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_6`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_9`
+        ],
         'properties': [
             {
                 'name': 'border-color',
@@ -97,6 +106,81 @@ const getBlockStyle = (elementId, attributes) => {
         'properties': [
             {
                 'name': 'border-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    /**
+     * Panel Design
+     */
+    isNotEmpty(attributes['typography']) && data.push({
+        'type': 'typography',
+        'id': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
+    });
+
+    isNotEmpty(attributes['typographyMeta']) && data.push({
+        'type': 'typography',
+        'id': 'typographyMeta',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div`,
+    });
+
+    isNotEmpty(attributes['typographyContent']) && data.push({
+        'type': 'typography',
+        'id': 'typographyContent',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt p`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore`
+        ],
+    });
+
+    isNotEmpty(attributes['titleColor']) && data.push({
+        'type': 'color',
+        'id': 'titleColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['aHover']) && data.push({
+        'type': 'color',
+        'id': 'aHover',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a:hover`
+        ],
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['metaColor']) && data.push({
+        'type': 'color',
+        'id': 'metaColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['excerptColor']) && data.push({
+        'type': 'color',
+        'id': 'excerptColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt`,
+        'properties': [
+            {
+                'name': 'color',
                 'valueType': 'direct'
             }
         ],
