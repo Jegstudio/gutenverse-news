@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 
@@ -155,4 +156,32 @@ const getParentColumnWidth = (parents, getBlock) => {
 
 }
 
-export { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate , getParentColumnWidth };
+const getModuleOptions = () => {
+    if (window.GVNewsConfig && window.GVNewsConfig.moduleOption) {
+        return window.GVNewsConfig.moduleOption;
+    }
+
+    return {
+        string: {
+            read_more: __('Read more', 'gutenverse-news'),
+            next: __('Next', 'gutenverse-news'),
+            previous: __('Previous', 'gutenverse-news'),
+            load_more: __('Load More', 'gutenverse-news'),
+            by: __('by', 'gutenverse-news'),
+            no_content: __('No Content Available', 'gutenverse-news'),
+        },
+        option: {
+            meta_show: true,
+            meta_comment: true,
+            meta_author: true,
+            meta_rating: true,
+            meta_date: true,
+            meta_views: true,
+            date_format: 'F j, Y',
+            date_module: 'F j, Y',
+            post_count: 0,
+        }
+    }
+}
+
+export { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
