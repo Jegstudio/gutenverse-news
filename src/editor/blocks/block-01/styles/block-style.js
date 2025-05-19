@@ -205,11 +205,28 @@ const getBlockStyle = (elementId, attributes) => {
     /**
      * Border panel
      */
-
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
         'selector': `.${elementId} .gvnews_postblock`,
+    });
+
+    isNotEmpty(attributes['borderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderResponsive',
+        'selector': `.${elementId} .gvnews_postblock`,
+    });
+
+    isNotEmpty(attributes['borderHover']) && data.push({
+        'type': 'border',
+        'id': 'borderHover',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+    });
+
+    isNotEmpty(attributes['borderHoverResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderHoverResponsive',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
     });
 
 
