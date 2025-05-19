@@ -80,7 +80,14 @@ abstract class StyleAbstract extends StyleInterface {
 			$name = $this->name;
 		}
 		if ( $name ) {
+			preg_match( '/^block|hero/', 'block-1', $matches );
+
+			if ( ! empty( $matches ) && in_array( $matches[0], array( 'block', 'hero' ) ) ) {
+				$name = preg_replace( '/-(\d)$/', '-0$1', $name );
+			}
+
 			$path = GUTENVERSE_NEWS_DIR . "block/{$name}/block.json";
+
 			if ( ! file_exists( $path ) ) {
 				return;
 			}

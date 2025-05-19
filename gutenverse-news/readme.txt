@@ -156,6 +156,10 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+= 1.0.5 =
+##### Bug Fixes
+* Fix missing blocks issue
+
 = 1.0.4 =
 ##### Bug Fixes
 * Fix sticky & vertical align issue on wrapped column 100%
