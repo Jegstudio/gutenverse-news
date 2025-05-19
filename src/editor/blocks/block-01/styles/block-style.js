@@ -186,6 +186,21 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    /**
+     * Panel Background
+     */
+    isNotEmpty(attributes['background']) && data.push({
+        'type': 'background',
+        'id': 'background',
+        'selector': `.${elementId} .gvnews_postblock`,
+    });
+
+    isNotEmpty(attributes['backgroundHover']) && data.push({
+        'type': 'background',
+        'id': 'backgroundHover',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+    });
+
     return data;
 };
 
