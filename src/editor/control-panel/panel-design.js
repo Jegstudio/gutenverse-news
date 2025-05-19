@@ -57,7 +57,7 @@ export const designPanel = (props) => {
             component: TypographyControl,
             style: [
                 {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_postblock .gvnews_post_title a`,
+                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
                     hasChild: true,
                     render: (value, id) => handleTypography(value, props, id)
                 }
