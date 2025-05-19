@@ -136,4 +136,23 @@ const searchCustomPostTemplate = input => new Promise(resolve => {
 //     })
 // });
 
-export {searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate};
+const getParentColumnWidth = (parents, getBlock) => {
+    if (undefined !== parents) {
+        const block = getBlock(parents);
+
+        if (undefined !== block.attributes.width.Desktop) {
+            if (block.attributes.width.Desktop < 34) {
+                return 4;
+            } else if (block.attributes.width.Desktop < 51) {
+                return 6;
+
+            } else if (block.attributes.width.Desktop < 67) {
+                return 8;
+            }
+        }
+        return 12;
+    }
+
+}
+
+export { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate , getParentColumnWidth };
