@@ -159,6 +159,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 1.0.5 - DEV =
 ##### Bug Fixes
 * Fix missing blocks issue
+* Fix Title Typography in News Module not working
 
 = 1.0.4 =
 ##### Bug Fixes
