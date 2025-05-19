@@ -140,7 +140,7 @@ const getParentColumnWidth = (parents, getBlock) => {
     if (undefined !== parents) {
         const block = getBlock(parents);
 
-        if (undefined !== block.attributes.width.Desktop) {
+        if (block?.attributes?.width?.Desktop !== undefined) {
             if (block.attributes.width.Desktop < 34) {
                 return 4;
             } else if (block.attributes.width.Desktop < 51) {
