@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState, Fragment }  from '@wordpress/element';
+import { useEffect, useState }  from '@wordpress/element';
 import { withCustomStyle } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -72,7 +72,7 @@ const PostPrevNext = compose(
 
     useEffect(() => {
         if(prevNextData.previous || prevNextData.next){
-            setContent(<Fragment>
+            setContent(<>
                 {prevNextData.previous && <a className="post prev-post">
                     <span className="caption">{__('Previous Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.previous.title}</h3>
@@ -81,7 +81,7 @@ const PostPrevNext = compose(
                     <span className="caption">{__('Next Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.next.title}</h3>
                 </a>}
-            </Fragment>);
+            </>);
         } else {
             setContent(<>
                 <a href="#" className="post prev-post">

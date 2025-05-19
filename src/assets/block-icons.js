@@ -1,5 +1,4 @@
 /* GVNews Block Icons */
-import React from 'react';
 import Block1Block from './svg/module-1.svg';
 import Block2Block from './svg/module-2.svg';
 import Block3Block from './svg/module-3.svg';

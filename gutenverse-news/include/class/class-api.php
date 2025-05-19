@@ -413,7 +413,7 @@ class Api {
 	public function get_editable_roles() {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
-			$roles = new WP_Roles();
+			$roles = new \WP_Roles();
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
@@ -449,14 +449,12 @@ class Api {
 				$name = get_the_author_meta( 'display_name', $user->ID );
 			}
 			$data['users'][] = array(
-				'ID'      => $user->ID,
-				'name'    => $name,
-				'avatar'  => get_avatar( $user->ID, 500 ),
-				'role'    => $user->roles[0],
-				'desc'    => get_the_author_meta( 'description', $user->ID ),
-				'meta'    => $meta,
-				'fcount'  => function_exists( 'bp_follow_total_follow_counts' ) ? bp_follow_total_follow_counts( array( 'user_id' => $user->ID ) ) : array( 'followers' => 0 ),
-				'fbutton' => function_exists( 'gvnews_video_render_subscribe_member_actions' ) ? true : false,
+				'ID'     => $user->ID,
+				'name'   => $name,
+				'avatar' => get_avatar( $user->ID, 500 ),
+				'role'   => $user->roles[0],
+				'desc'   => get_the_author_meta( 'description', $user->ID ),
+				'meta'   => $meta
 			);
 		}
 
@@ -467,7 +465,7 @@ class Api {
 	/**
 	 * Method get_post
 	 *
-	 * @param array $attributes attributes.
+	 * @param Object $attributes attributes.
 	 *
 	 * @return JSOn
 	 */
@@ -548,13 +546,6 @@ class Api {
 				} else {
 					$inclaut .= ',' . $cat['value'];
 				}
-			}
-		}
-
-		if ( gvnews_is_bp_active() ) {
-			if ( $attributes['bp_member_only'] ) {
-				$attr['include_author_bp'] = isset( $attributes['include_author_bp'] ) && $attr['include_author_bp'] > 0 ? $attr['include_author_bp'] : implode( ',', array( bp_displayed_user_id() ) );
-				$attr['include_author']    = $attributes['include_author_bp'];
 			}
 		}
 

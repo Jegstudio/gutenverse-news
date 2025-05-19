@@ -500,23 +500,6 @@ if ( ! function_exists( 'gvnews_normalize_duration' ) ) {
 	}
 }
 
-/**
- * Check if BuddyPress Installed and active.
- */
-if ( ! function_exists( 'gvnews_is_bp_active' ) ) {
-	/**
-	 * Gvnews is bp active.
-	 *
-	 * @return bool boolean.
-	 */
-	function gvnews_is_bp_active() {
-		if ( function_exists( 'bp_is_active' ) ) {
-			return true;
-		}
-
-		return false;
-	}
-}
 
 /**
  * Polylang Integration

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useInstanceId } from '@wordpress/compose';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate } from '../../editor/utils/helper';
 import { checkDependency } from './dependency';

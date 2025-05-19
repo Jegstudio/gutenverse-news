@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 import { useAnimationFrontend } from 'gutenverse-core/hooks';

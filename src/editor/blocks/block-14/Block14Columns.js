@@ -1,8 +1,8 @@
 
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3, MetaCategory } from '../../part/meta';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
+import { Fragment } from '@wordpress/element';
 
 const Block14Columns = props => {
     const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
@@ -12,7 +12,7 @@ const Block14Columns = props => {
         const block = [];
         if (1 == props.type) {
             block.push(
-                <React.Fragment key={post.id} >
+                <Fragment key={post.id} >
                     <ThumbModule size={500} cat={false} post={post}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
@@ -21,7 +21,7 @@ const Block14Columns = props => {
                         </h3>
                         {attr.option && !attr.option.meta_show && <MetaModule3 {...props}/>}
                     </div>
-                </React.Fragment>
+                </Fragment>
             );
         } else {
             block.push(

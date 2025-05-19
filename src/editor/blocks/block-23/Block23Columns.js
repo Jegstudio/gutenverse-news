@@ -1,5 +1,3 @@
-import { Fragment }  from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3 } from '../../part/meta';
 import { PostTitle, PostExcerpt } from '../../part/post';
@@ -10,14 +8,14 @@ const Block23Columns = props => {
     const RenderBlock1 = props=>{
         const {post, attr} = props;
         return (
-            <Fragment>
+            <>
                 <ThumbModule size={715} cat={true} post={post}/>
                 <div className="gvnews_postblock_content">
                     {post.title && <PostTitle post={post} />}
                     {post.excerpt && <PostExcerpt post={post} attr={attr}/>}
                     {attr.option && <MetaModule3 {...props} />}
                 </div>
-            </Fragment>
+            </>
         );
     };
 

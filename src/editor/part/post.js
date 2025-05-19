@@ -1,4 +1,3 @@
-import React from 'react';
 import { MetaModule1, MetaModule2, MetaModule3, MetaCategory } from './meta';
 
 const PostTitle = (props) => {

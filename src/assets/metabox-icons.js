@@ -1,4 +1,3 @@
-import React from 'react';
 import Share from './svg/share.svg';
 import Cogs from './svg/cogs.svg';
 import Magnifying from './svg/magnifying.svg';

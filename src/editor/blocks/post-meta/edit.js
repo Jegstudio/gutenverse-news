@@ -87,13 +87,13 @@ const PostMeta = compose(
                 metaText.push(output);
             });
 
-            return <Fragment>{metaText}</Fragment>;
+            return <>{metaText}</>;
         }
-        return <Fragment>
+        return <>
             <img alt="admin" src={`${imgDir}/author.png`} />
             <span className="meta_text">by</span>
             <a href="#">admin</a>
-        </Fragment>;
+        </>;
     };
 
     useEffect(() => {
@@ -171,11 +171,11 @@ const PostMeta = compose(
                 return <span key={index} className="category-separator"><a href="#" rel="category tag">{category}</a>{comma}</span>;
             }));
         } else {
-            setCategoryMeta(<Fragment>
+            setCategoryMeta(<>
                 <a href="#" rel="category tag">Dummy</a>,
                 <a href="#" rel="category tag">Another</a>,
                 <a href="#" rel="category tag">Category</a>
-            </Fragment>);
+            </>);
         }
     }, [categories]);
 

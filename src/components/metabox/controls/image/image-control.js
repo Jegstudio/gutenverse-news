@@ -1,10 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react';
 import { useInstanceId } from '@wordpress/compose';
 import { ControlHeadingSimple } from 'gutenverse-core/controls';
 import { MediaUploadCheck, MediaUpload } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import { Trash } from 'react-feather';
 import { compose } from 'redux';
 import { withParentControl } from 'gutenverse-core/hoc';
 import { withDeviceControl } from 'gutenverse-core/hoc';
@@ -84,7 +81,7 @@ const ImageControl = (props) => {
                         allowedTypes={ALLOWED_MEDIA_TYPES}
                         value={value.id}
                         render={({ open }) => (
-                            <Fragment>
+                            <>
                                 <div
                                     className="gvnews-image-control-preview"
                                     onDrop={handleDrop}
@@ -92,13 +89,13 @@ const ImageControl = (props) => {
                                     {imageId ? (
                                         <img src={image} alt="Uploaded" />
                                     ) : (
-                                        <Fragment>
+                                        <>
                                             <UploadSvg />
                                             <div className="gvnews-image-control-preview-text">
                                                 <span>{__('Drag and drop to upload ', 'gutenverse-news')}</span>
                                                 <span className="gvnews-image-control-preview-choose" onClick={open}>{__('Choose Image', 'gutenverse-news')}</span>
                                             </div>
-                                        </Fragment>
+                                        </>
                                     )}
                                 </div>
                                 <div className={'gvnews-image-control-button'} >
@@ -109,7 +106,7 @@ const ImageControl = (props) => {
                                     </button>
                                     {image && <button className={'gvnews-image-control-remove'} onClick={onRemoveMedia}><TimesSvg /></button>}
                                 </div>
-                            </Fragment>
+                            </>
                         )}
                     />
                 </MediaUploadCheck>

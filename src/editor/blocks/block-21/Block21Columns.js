@@ -1,5 +1,4 @@
-import { Fragment }  from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
@@ -10,7 +9,7 @@ const Block21Columns = props => {
     const RenderBlock1 = props=>{
         const {post, attr} = props;
         return (
-            <Fragment>
+            <>
                 {<ThumbModule size={715} cat={false} post={post} />}
                 <ContentModule
                     title={true}
@@ -19,7 +18,7 @@ const Block21Columns = props => {
                     post={post}
                     attr={attr}
                 />
-            </Fragment>
+            </>
         );
     };
 

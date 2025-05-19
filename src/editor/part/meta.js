@@ -1,4 +1,3 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { formatDateString } from '../utils/date-util';
 import { timeDifference } from '../utils/date-util';

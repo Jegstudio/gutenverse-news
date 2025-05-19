@@ -9,10 +9,10 @@ const Block1Columns = props => {
 
     const RenderBlock1 = props=>{
         return (
-            <React.Fragment>
+            <>
                 <ThumbModule size={500} cat={true} post={props.post}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
-            </React.Fragment>
+            </>
         );
     };
 
@@ -28,7 +28,7 @@ const Block1Columns = props => {
     const RenderBlock3 = props=>{
         return(
             <article className="gvnews_post gvnews_pl_xs_2">
-                <i className='fas fa-caret-right'></i>
+                <i className="fas fa-caret-right"></i>
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
                 </div>

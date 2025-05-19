@@ -1,5 +1,3 @@
-import { Fragment }  from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
@@ -9,10 +7,10 @@ const Block2Columns = props => {
 
     const RenderBlock1 = props=>{
         return (
-            <Fragment>
+            <>
                 <ThumbModule size={715} cat={true} post={props.post}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
-            </Fragment>
+            </>
         );
     };
 
@@ -99,10 +97,10 @@ const Block2Columns = props => {
         }
     };
 
-    return <Fragment>
+    return <>
         { postData ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
-    </Fragment>;
+    </>;
 };
 
 export default Block2Columns;

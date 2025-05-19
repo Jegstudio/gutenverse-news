@@ -1,5 +1,4 @@
 
-import { __ } from '@wordpress/i18n';
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
@@ -11,10 +10,10 @@ const Block13Columns = props => {
         const block = [];
         if (1 == props.type) {
             block.push(
-                <React.Fragment>
+                <>
                     <ThumbModule size={715} cat={true} post={post}/>
                     <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={attr}/>
-                </React.Fragment>
+                </>
             );
         } else {
             block.push(
@@ -47,7 +46,7 @@ const Block13Columns = props => {
         }
 
         return(
-            <Fragment>
+            <>
                 <article className="gvnews_post gvnews_pl_lg_1">
                     <RenderBlock1 key={postData[0].id} attr={attr} type={1} post={postData[0]}/>
                 </article>
@@ -56,7 +55,7 @@ const Block13Columns = props => {
                         {rows}
                     </div>
                 </div>
-            </Fragment>
+            </>
         );
     };
 
@@ -85,7 +84,7 @@ const Block13Columns = props => {
         }
 
         return(
-            <React.Fragment>
+            <>
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-6">
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
@@ -100,7 +99,7 @@ const Block13Columns = props => {
                         {rows2}
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     };
 
@@ -132,7 +131,7 @@ const Block13Columns = props => {
         }
 
         return(
-            <React.Fragment>
+            <>
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
@@ -150,7 +149,7 @@ const Block13Columns = props => {
                         {rows3}
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRef, useState, useEffect } from '@wordpress/element';
 import Control from './control';
 import { checkDependency } from './dependency';

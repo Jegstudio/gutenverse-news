@@ -1,4 +1,3 @@
-import React from 'react';
 import { useInstanceId } from '@wordpress/compose';
 import { ControlHeadingSimple } from 'gutenverse-core/controls';
 import { compose } from 'redux';

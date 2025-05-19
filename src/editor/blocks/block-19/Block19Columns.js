@@ -1,5 +1,3 @@
-import { Fragment }  from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import { MetaModule2} from '../../part/meta';
 import ThumbModule from '../../part/thumbnail';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
@@ -11,7 +9,7 @@ const Block19Columns = props => {
         const {attr, post} = props;
 
         let PostMeta = () => (
-            <Fragment>
+            <>
                 <ThumbModule size={715} cat={false} post={post}/>
                 <div className="gvnews_postblock_content">
                     <h3 className="gvnews_post_title">
@@ -19,7 +17,7 @@ const Block19Columns = props => {
                     </h3>
                     {attr.option && !attr.option.meta_show && <MetaModule2 {...props}/>}
                 </div>
-            </Fragment>
+            </>
         );
 
         if (1==props.type){

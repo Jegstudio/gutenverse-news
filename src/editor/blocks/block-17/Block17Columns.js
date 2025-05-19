@@ -11,12 +11,12 @@ const Block17Columns = props => {
         const {attr, post} = props;
         let aclass = '';
         let PostMeta = () => (
-            <React.Fragment>
+            <>
                 {attr.option && !attr.option.meta_show && <MetaModule1 {...props}/>}
                 <div className="gvnews_post_excerpt">
                     <p>{post.excerpt && post.excerpt.replace('&hellip;','').split(' ').splice(0,attr.length).join(' ') + attr.elipsis}</p>
                 </div>
-            </React.Fragment>
+            </>
         );
 
         if (1==props.type){

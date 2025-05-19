@@ -1,4 +1,3 @@
-import React from 'react';
 import { MetaModule1, MetaModule2, MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
