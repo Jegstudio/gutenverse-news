@@ -92,6 +92,7 @@ export const panelList = () => {
             panelArray: (props) => advancePanel({
                 ...props,
                 styleId: 'block-1-advance',
+                selector: [`.${props.elementId} .gvnews_postblock`],
             }),
             tabRole: TabStyle
         },
