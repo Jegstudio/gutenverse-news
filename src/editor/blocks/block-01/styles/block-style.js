@@ -186,6 +186,7 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+
     /**
      * Panel Background
      */
@@ -200,6 +201,17 @@ const getBlockStyle = (elementId, attributes) => {
         'id': 'backgroundHover',
         'selector': `.${elementId} .gvnews_postblock:hover`,
     });
+
+    /**
+     * Border panel
+     */
+
+    isNotEmpty(attributes['border']) && data.push({
+        'type': 'border',
+        'id': 'border',
+        'selector': `.${elementId} .gvnews_postblock`,
+    });
+
 
     return data;
 };
