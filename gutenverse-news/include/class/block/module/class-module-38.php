@@ -25,11 +25,16 @@ class Module_38 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post ) {
-		$post_id    = $post->ID;
-		$thumb_id   = get_post_thumbnail_id( $post_id );
-		$thumb_data = wp_get_attachment_image_src( $thumb_id, 'full' );
-		$style      = "style='background-image: url({$thumb_data[0]})'";
-		$permalink  = esc_url( get_the_permalink( $post ) );
+		$post_id  = $post->ID;
+		$thumb_id = get_post_thumbnail_id( $post_id );
+		$style    = '';
+
+		if ( $thumb_id ) {
+			$thumb_data = wp_get_attachment_image_src( $thumb_id, 'full' );
+			$style      = "style='background-image: url({$thumb_data[0]})'";
+		}
+
+		$permalink = esc_url( get_the_permalink( $post ) );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . '>
 					' . gvnews_edit_post( $post_id, 'right' ) . "
