@@ -154,7 +154,7 @@ const getParentColumnWidth = (parents, getBlock) => {
         return 12;
     }
 
-}
+};
 
 const getModuleOptions = () => {
     if (window.GVNewsConfig && window.GVNewsConfig.moduleOption) {
@@ -181,7 +181,7 @@ const getModuleOptions = () => {
             date_module: 'F j, Y',
             post_count: 0,
         }
-    }
-}
+    };
+};
 
 export { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
