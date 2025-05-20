@@ -1,10 +1,9 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState }  from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { useEffect, useState } from '@wordpress/element';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -14,16 +13,20 @@ import PaginationModule from '../../part/pagination';
 import HeaderModule from '../../part/header';
 import Block31Columns from './Block31Columns';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const Block31Block = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -62,13 +65,16 @@ const Block31Block = compose(
         metaDateFormatCustom,
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -181,7 +187,7 @@ const Block31Block = compose(
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-block-31', elementId, animationClass, displayClass),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     const headerData = {
@@ -220,22 +226,21 @@ const Block31Block = compose(
         );
     }, [blockWidth, excerptLength, excerptEllipsis, moduleOption, postData, metaDateType, metaDateFormat, metaDateFormatCustom, overlay]);
 
-    return (
-        <>
-            <PanelController panelList={panelList} {...props} />
-            <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor">
-                    <div
-                        className={`gvnews_postblock_31 gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 ${enableBoxed ? 'gvnews_pb_boxed' : ''
-                        } ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
-                        <HeaderModule {...headerData} />
-                        {block ? block : 'loading'}
-                        <PaginationModule {...paginationData} />
-                    </div>
+    return <>
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <div {...blockProps}>
+            <div className="gvnews-raw-wrapper gvnews-editor">
+                <div
+                    className={`gvnews_postblock_31 gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 ${enableBoxed ? 'gvnews_pb_boxed' : ''
+                    } ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                    <HeaderModule {...headerData} />
+                    {block ? block : 'loading'}
+                    <PaginationModule {...paginationData} />
                 </div>
             </div>
-        </>
-    );
+        </div>
+    </>;
 });
 
 export default Block31Block;
