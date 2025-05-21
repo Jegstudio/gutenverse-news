@@ -19,7 +19,10 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getParentColumnWidth } from '../../utils/helper';
+import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+
+const moduleOption = getModuleOptions();
+const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const Block23Block = compose(
     withPartialRender,
@@ -90,12 +93,10 @@ const Block23Block = compose(
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(12);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(15);
-    const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
@@ -120,18 +121,6 @@ const Block23Block = compose(
         postBulk,
         postOffset
     ]);
-
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
 
     useEffect(() => {
         if (columnWidth == 'auto') {

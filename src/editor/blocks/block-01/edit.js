@@ -19,9 +19,7 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth ,  } from '../../utils/helper';
-
-
+import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -85,7 +83,6 @@ const Block1Block = compose(
         []
     );
 
-
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
@@ -124,7 +121,6 @@ const Block1Block = compose(
         postBulk,
         postOffset
     ]);
-
 
     useEffect(() => {
         if (columnWidth == 'auto') {
