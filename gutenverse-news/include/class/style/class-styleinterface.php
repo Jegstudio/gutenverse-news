@@ -112,7 +112,6 @@ abstract class StyleInterface {
 		$generated_style = array();
 
 		foreach ( $this->generated as $device => $css ) {
-			$device_style = array();
 
 			foreach ( $css as $selector => $property ) {
 				$property_string = join( ' ', $property );
@@ -121,7 +120,7 @@ abstract class StyleInterface {
 				}
 			}
 
-			$generated_device_style = join( ' ', $device_style );
+				$generated_device_style = join( ' ', $device_style );
 
 			if ( ! empty( $generated_device_style ) ) {
 				if ( 'Desktop' === $device ) {
@@ -132,6 +131,8 @@ abstract class StyleInterface {
 					$generated_style[] = "@media only screen and (max-width: 780px) { {$generated_device_style} }";
 				} elseif ( 'Mobile' === $device ) {
 					$generated_style[] = "@media only screen and (max-width: 425px) { {$generated_device_style} }";
+				} else {
+					$generated_style[] = "{$device} { {$generated_device_style} }";
 				}
 			}
 		}
@@ -182,10 +183,14 @@ abstract class StyleInterface {
 				}
 			}
 		} elseif ( isset( $data['value'] ) ) {
-			$property = call_user_func( $data['property'], $data['value'] );
 			$selector = $data['selector'];
-
-			$this->generated['Desktop'][ $selector ][] = $property;
+			if ( isset( $data['custom'] ) && ! empty( $data['custom'] ) ) {
+				$media                                    = $data['custom'];
+				$this->generated[ $media ][ $selector ][] = $data['value'];
+			} else {
+				$property                                  = call_user_func( $data['property'], $data['value'] );
+				$this->generated['Desktop'][ $selector ][] = $property;
+			}
 		}
 	}
 

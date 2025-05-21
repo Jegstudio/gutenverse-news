@@ -43,31 +43,19 @@ class Hero extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
-		if ( isset( $this->attrs['bacground1'] ) && $this->attrs['override1'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_1 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground1'] );
-		}
-		if ( isset( $this->attrs['bacground2'] ) && $this->attrs['override2'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_2 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground2'] );
-		}
-		if ( isset( $this->attrs['bacground3'] ) && $this->attrs['override3'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_3 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground3'] );
-		}
-		if ( isset( $this->attrs['bacground4'] ) && $this->attrs['override4'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_4 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground4'] );
-		}
-		if ( isset( $this->attrs['bacground5'] ) && $this->attrs['override5'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_5 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground5'] );
-		}
-		if ( isset( $this->attrs['bacground6'] ) && $this->attrs['override6'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_6 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground6'] );
-		}
-		if ( isset( $this->attrs['bacground7'] ) && $this->attrs['override7'] ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_7 .gvnews_thumb a > div:" . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $this->attrs['bacground7'] );
+
+		if ( isset( $this->attrs['heroItemOverlay'] ) ) {
+			foreach ( $this->attrs['heroItemOverlay'] as $key => $overlay ) {
+				if ( $overlay['overlayEnable'] ) {
+					$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $overlay['OverlayGradient'] );
+				}
+			}
+
 		}
 
 		$selector = array(
-			'normal' => ".{$this->element_id} .gvnews_heroblock",
-			'hover'  => ".{$this->element_id} .gvnews_heroblock:hover",
+			'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+			'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
 		);
 
 		if ( isset( $this->attrs['border'] ) ) {
@@ -127,6 +115,77 @@ class Hero extends StyleAbstract {
 						return $this->handle_box_shadow( $value );
 					},
 					'value'          => $this->attrs['boxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( ! empty( $this->attrs['heightDesktop'] ) ) {
+			$height = $this->attrs['heightDesktop'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (min-width: 1025px)',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['height1024'] ) ) {
+			$height = $this->attrs['height1024'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (max-width: 1024px) and (min-width: 769px)',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['height768'] ) ) {
+			$height = $this->attrs['height768'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (max-width: 768px) and (min-width: 668px)',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['height667'] ) ) {
+			$height = $this->attrs['height667'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (max-width: 667px) and (min-width: 569px)',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['height568'] ) ) {
+			$height = $this->attrs['height568'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (max-width: 568px) and (min-width: 481px)',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['height480'] ) ) {
+			$height = $this->attrs['height480'];
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+					'value'          => "height: {$height}px; ",
+					'custom'         => '@media only screen and (max-width: 480px)',
 					'device_control' => false,
 				)
 			);
