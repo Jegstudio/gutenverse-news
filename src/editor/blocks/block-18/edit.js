@@ -18,6 +18,8 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import { useSelect } from '@wordpress/data';
+import { getParentColumnWidth } from '../../utils/helper';
 
 const Block18Block = compose(
     withPartialRender,
@@ -69,6 +71,14 @@ const Block18Block = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
 
     useEffect(() => {
         if (elementRef) {
@@ -126,7 +136,7 @@ const Block18Block = compose(
     useEffect(() => {
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
-                getWidth(12);
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
             } else if (deviceType === 'Tablet') {
                 getWidth(8);
             } else {
