@@ -1,0 +1,105 @@
+import { isNotEmpty } from 'gutenverse-core/helper';
+
+const getHeroStyle = (elementId, attributes) => {
+    let data = [];
+
+    if (isNotEmpty(attributes['heroItemOverlay'])) {
+        let repeaterOption = getHeroStyleOptions(elementId, attributes['heroItemOverlay'] ,attributes['heroStyle']);
+        data.push({
+            'type': 'repeater',
+            'id': 'heroItemOverlay',
+            'repeaterOpt': repeaterOption
+        });
+    }
+
+    /**
+     * Border panel
+     */
+    isNotEmpty(attributes['border']) && data.push({
+        'type': 'border',
+        'id': 'border',
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+    isNotEmpty(attributes['borderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderResponsive',
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+    isNotEmpty(attributes['borderHover']) && data.push({
+        'type': 'border',
+        'id': 'borderHover',
+        'selector': `.${elementId} .gvnews_heroblock:hover`,
+    });
+
+    isNotEmpty(attributes['borderHoverResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderHoverResponsive',
+        'selector': `.${elementId} .gvnews_heroblock:hover`,
+    });
+
+    /**
+     * Panel Spacing
+     */
+    isNotEmpty(attributes['margin']) && data.push({
+        'type': 'dimension',
+        'id': 'margin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+    isNotEmpty(attributes['padding']) && data.push({
+        'type': 'dimension',
+        'id': 'padding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+    isNotEmpty(attributes['zIndex']) && data.push({
+        'type': 'plain',
+        'id': 'zIndex',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'z-index',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+
+    return data;
+};
+
+
+const getHeroStyleOptions = (elementId, attribute , heroStyle) => {
+    let additional = (heroStyle === 5) ? 'after' : 'before';
+    return attribute.map((el, index) => {
+        let arrOpt = [];
+
+        el.overlayEnable && isNotEmpty(el.OverlayGradient) && arrOpt.push({
+            'type': 'background',
+            'id': 'OverlayGradient',
+            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_thumb a > div:${additional}`,
+        });
+
+        return arrOpt;
+    });
+}
+
+
+export default getHeroStyle;

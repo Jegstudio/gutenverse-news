@@ -1,22 +1,26 @@
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
 import { compose } from '@wordpress/compose';
-import { useEffect, useRef }  from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { PanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import getHeroStyle from '../../control-panel/hero-style';
+
 
 const Hero3Block = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef,
+        setBlockRef,
+        clientId,
         isSelected
     } = props;
 
@@ -52,13 +56,16 @@ const Hero3Block = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
 
-    const heroSliderRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getHeroStyle, elementRef);
 
     useEffect(() => {
-        if (heroSliderRef.current) {
-            setElementRef(heroSliderRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [heroSliderRef.current]);
+    }, [elementRef]);
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -69,18 +76,19 @@ const Hero3Block = compose(
             animationClass,
             displayClass,
         ),
-        ref: heroSliderRef
+        ref: elementRef
     });
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 <HeroHandler
                     {...{
                         heroType: '3',
-                        heroSliderRef,
+                        elementRef,
                         columnWidth,
                         sliderItem,
                         numberPost,
