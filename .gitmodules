@@ -1,3 +1,4 @@
 [submodule "gutenverse-core"]
 	path = gutenverse-core
 	url = git@github.com:Jegstudio/gutenverse-core.git
+	branch = main
