@@ -310,8 +310,8 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['border'] ) ) {
 			if ( $this->attrs['border'] ) {
 				$selectorbx = array(
-					'normal' => ".{$this->element_id} .gvnews_postblock",
-					'hover'  => ".{$this->element_id} .gvnews_postblock:hover",
+					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
 				);
 				$this->feature_border( $selectorbx );
 			}
