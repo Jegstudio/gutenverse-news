@@ -80,16 +80,17 @@ class Image_Normal_Load implements Image_Interface {
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
 
 		$post_thumbnail_id = get_post_thumbnail_id( $id );
+		$percentage = 100;
 
 		if ( $post_thumbnail_id ) {
 			$image_size = wp_get_attachment_image_src( $post_thumbnail_id, $size );
 			$image      = get_post( $post_thumbnail_id );
-		}
 
-		if ( $image_size[1] > 0 ) {
-			$percentage = round( $image_size[2] / $image_size[1] * 100, 3 );
-		} else {
-			$percentage = $image_size[2];
+			if ( $image_size[1] > 0 ) {
+				$percentage = round( $image_size[2] / $image_size[1] * 100, 3 );
+			} else {
+				$percentage = $image_size[2];
+			}
 		}
 
 		$thumbnail  = '<div class="thumbnail-container" style="padding-bottom:' . $percentage . '%">';
