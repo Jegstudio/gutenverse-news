@@ -4,7 +4,7 @@ const getHeroStyle = (elementId, attributes) => {
     let data = [];
 
     if (isNotEmpty(attributes['heroItemOverlay'])) {
-        let repeaterOption = getHeroStyleOptions(elementId, attributes['heroItemOverlay'] ,attributes['heroStyle']);
+        let repeaterOption = getHeroStyleOptions(elementId, attributes['heroItemOverlay'], attributes['heroStyle']);
         data.push({
             'type': 'repeater',
             'id': 'heroItemOverlay',
@@ -81,12 +81,38 @@ const getHeroStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_heroblock`,
     });
 
+    /**
+     * Box shadow.
+     */
+    isNotEmpty(attributes['boxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_heroblock`,
+    });
+
+    isNotEmpty(attributes['boxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadowHover',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_heroblock:hover`,
+    });
 
     return data;
 };
 
 
-const getHeroStyleOptions = (elementId, attribute , heroStyle) => {
+const getHeroStyleOptions = (elementId, attribute, heroStyle) => {
     let additional = (heroStyle === 5) ? 'after' : 'before';
     return attribute.map((el, index) => {
         let arrOpt = [];

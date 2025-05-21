@@ -72,6 +72,34 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_postblock`,
     });
 
+    /**
+     * Box shadow.
+     */
+    isNotEmpty(attributes['boxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock`,
+    });
+
+    isNotEmpty(attributes['boxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadowHover',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+    });
+
+
     return data;
 };
 
