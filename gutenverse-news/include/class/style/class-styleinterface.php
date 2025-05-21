@@ -112,7 +112,7 @@ abstract class StyleInterface {
 		$generated_style = array();
 
 		foreach ( $this->generated as $device => $css ) {
-
+			$device_style = array();
 			foreach ( $css as $selector => $property ) {
 				$property_string = join( ' ', $property );
 				if ( ! empty( $property_string ) ) {
