@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect, useRef } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -14,16 +14,24 @@ import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { MetaCategory } from '../../part/meta';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
+import { useSelect } from '@wordpress/data';
+import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+
+const moduleOption = getModuleOptions();
+const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const Carousel2Block = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
         isSelected,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -60,14 +68,23 @@ const Carousel2Block = compose(
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(15);
-    const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
-    const carouselRef = useRef();
+    const elementRef = useRef(null);
+
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     useEffect(() => {
         let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
@@ -93,21 +110,9 @@ const Carousel2Block = compose(
     ]);
 
     useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
-
-    useEffect(() => {
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
-                getWidth(12);
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
             } else if (deviceType === 'Tablet') {
                 getWidth(8);
             } else {
@@ -122,10 +127,10 @@ const Carousel2Block = compose(
     ]);
 
     useEffect(() => {
-        if (carouselRef.current) {
-            setElementRef(carouselRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [carouselRef.current]);
+    }, [elementRef]);
 
     useEffect(() => {
         postBulk ? setOverlay(true) : null;
@@ -182,7 +187,7 @@ const Carousel2Block = compose(
             animationClass,
             displayClass,
         ),
-        ref: carouselRef
+        ref: elementRef
     });
 
     const moduleData = {
@@ -282,7 +287,7 @@ const Carousel2Block = compose(
         setTimeout(function () {
             let gvnewsLibrary = window.gvnews;
             gvnewsLibrary = gvnews.library;
-            var blockCarousel = carouselRef.current.getElementsByClassName('gvnews_postblock_carousel');
+            var blockCarousel = elementRef.current.getElementsByClassName('gvnews_postblock_carousel');
             if (blockCarousel.length) {
                 gvnewsLibrary.forEach(blockCarousel, function (ele, i) {
                     gvnews.carousel({
@@ -303,7 +308,8 @@ const Carousel2Block = compose(
     }
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
