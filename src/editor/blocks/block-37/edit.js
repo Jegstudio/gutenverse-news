@@ -17,7 +17,7 @@ import { useRef } from '@wordpress/element';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
-import getBlockStyle from './styles/block-style';
+import getBlockStyle from '../../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
 
