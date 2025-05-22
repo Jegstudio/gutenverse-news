@@ -4,7 +4,7 @@ const getCarouselStyle = (elementId, attributes) => {
     let data = [];
 
     /**
-     * Border panel
+     * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
@@ -28,6 +28,30 @@ const getCarouselStyle = (elementId, attributes) => {
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
         'selector': `.${elementId} .gvnews_postblock:hover`,
+    });
+
+    isNotEmpty(attributes['boxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadow',
+        'selector': `.${elementId} .gvnews_postblock`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['boxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadowHover',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
     });
 
     /**

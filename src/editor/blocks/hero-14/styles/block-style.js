@@ -4,7 +4,7 @@ const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
     /**
-     * Border panel
+     * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',

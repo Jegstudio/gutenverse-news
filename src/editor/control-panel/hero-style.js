@@ -13,7 +13,7 @@ const getHeroStyle = (elementId, attributes) => {
     }
 
     /**
-     * Border panel
+     * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
@@ -125,7 +125,7 @@ const getHeroStyleOptions = (elementId, attribute, heroStyle) => {
 
         return arrOpt;
     });
-}
+};
 
 
 export default getHeroStyle;

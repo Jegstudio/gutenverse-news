@@ -30,6 +30,30 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_archive_title:hover`,
     });
 
+    isNotEmpty(attributes['boxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadow',
+        'selector': `.${elementId} .gvnews_postblock`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['boxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'boxShadowHover',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     /**
      * Panel Spacing
      */
