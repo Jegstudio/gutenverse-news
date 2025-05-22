@@ -1,35 +1,41 @@
 import { compose } from '@wordpress/compose';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { __ } from '@wordpress/i18n';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef, useEffect } from '@wordpress/element';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const ArchiveDescription = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
         elementId,
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -43,11 +49,12 @@ const ArchiveDescription = compose(
             animationClass,
             displayClass,
         ),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className="gvnews_archive_description_wrapper">
                 <h2 className="gvnews_archive_description">{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
