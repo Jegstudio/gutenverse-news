@@ -39,7 +39,7 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 	 *
 	 * @var mixed
 	 */
-	protected static $index;
+	protected static $index = 0;
 
 	/**
 	 * Result
