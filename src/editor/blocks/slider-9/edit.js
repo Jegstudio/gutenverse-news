@@ -1,9 +1,9 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -14,17 +14,25 @@ import { SliderCaption } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
+import { useSelect } from '@wordpress/data';
+import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+
+const moduleOption = getModuleOptions();
+const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const Slider9Block = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
         isSelected,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -54,24 +62,33 @@ const Slider9Block = compose(
         autoplayDelay,
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(15);
-    const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
@@ -98,21 +115,9 @@ const Slider9Block = compose(
     ]);
 
     useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
-
-    useEffect(() => {
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
-                getWidth(12);
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
             } else if (deviceType === 'Tablet') {
                 getWidth(8);
             } else {
@@ -181,7 +186,7 @@ const Slider9Block = compose(
             animationClass,
             displayClass,
         ),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     const moduleData = {
@@ -307,7 +312,8 @@ const Slider9Block = compose(
     }
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
