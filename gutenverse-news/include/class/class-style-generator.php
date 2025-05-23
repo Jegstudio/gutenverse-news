@@ -55,7 +55,7 @@ class Style_Generator {
 	 *
 	 * @return Style_Abstract
 	 */
-	public function get_block_style_instance( $instance, $name, $attrs ) {
+	public function get_block_style_instance( $instance, $name = '', $attrs ) {
 		switch ( true ) {
 			case 'gutenverse/news-block-link' === $name:
 				$instance = new Block_Link( $attrs, $name );
