@@ -161,6 +161,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix missing blocks issue
 * Fix Title Typography in News Module not working
 * Fix Undefined Offset warning when post not have a thumbnail
+* Fix Archive Block not showing posts in the Editor
 
 = 1.0.4 =
 ##### Bug Fixes

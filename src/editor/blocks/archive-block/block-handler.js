@@ -473,7 +473,7 @@ const BlockColumns = (props) => {
     } else if (['3', '4', '5', '6', '7', '10', '12', '18'].includes(blockType)) {
         columns.map((column) => {
             const { id, component } = column;
-            if (blockType === id && adsData) {
+            if (blockType === id) {
                 content = component({
                     blockWidth,
                     excerpLength,
