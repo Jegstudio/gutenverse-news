@@ -12,7 +12,7 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 
-import getHeroStyle from '../../control-panel/hero-style';
+import getHeroStyle from '../../control-panel/panel-styles/hero-style';
 
 
 const Hero2Block = compose(
