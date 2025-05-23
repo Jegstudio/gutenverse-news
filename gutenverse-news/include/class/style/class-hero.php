@@ -30,11 +30,11 @@ class Hero extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
-				'border'      => null,
-				'positioning' => null,
-				'animation'   => null,
-				'advance'     => null,
+				'border'  => array(
+					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock:hover",
+				),
+				'advance' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 			)
 		);
 	}
@@ -50,20 +50,6 @@ class Hero extends StyleAbstract {
 					$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $overlay['OverlayGradient'] );
 				}
 			}
-
-		}
-
-		$selector = array(
-			'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
-			'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
-		);
-
-		if ( isset( $this->attrs['border'] ) ) {
-			$this->handle_border( 'border', $selector['normal'] );
-		}
-
-		if ( isset( $this->attrs['borderHover'] ) ) {
-			$this->handle_border( 'borderHover', $selector['hover'] );
 		}
 
 		if ( isset( $this->attrs['heroMargin'] ) ) {

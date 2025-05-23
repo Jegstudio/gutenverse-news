@@ -30,11 +30,16 @@ class Block extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
-				'border'      => null,
-				'positioning' => null,
-				'animation'   => null,
-				'advance'     => null,
+				'background' => array(
+					'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+					'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
+				),
+				'border'     => array(
+					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
+					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
+				),
+				'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+
 			)
 		);
 	}
@@ -306,15 +311,6 @@ class Block extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
-		}
-		if ( isset( $this->attrs['border'] ) ) {
-			if ( $this->attrs['border'] ) {
-				$selectorbx = array(
-					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
-					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
-				);
-				$this->feature_border( $selectorbx );
-			}
 		}
 	}
 }

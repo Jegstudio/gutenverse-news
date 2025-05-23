@@ -17,6 +17,20 @@ namespace GUTENVERSE\NEWS\Style;
 abstract class StyleInterface {
 
 	/**
+	 * Block unique ID
+	 *
+	 * @var string
+	 */
+	protected $element_id;
+
+	/**
+	 * Block Style
+	 *
+	 * @var array
+	 */
+	protected $style;
+
+	/**
 	 * Block Attributes
 	 *
 	 * @var array
@@ -497,7 +511,35 @@ abstract class StyleInterface {
 				case 'advance':
 					$this->feature_advance( $selector );
 					break;
+				case 'background':
+					$this->feature_background( $selector );
+					break;
+				case 'border':
+					$this->feature_border( $selector );
+					break;
 			}
+		}
+	}
+
+		/**
+		 * Handle Background Feature
+		 *
+		 * @param string $selector Selector.
+		 */
+	protected function feature_background( $selector ) {
+		if ( empty( $selector ) ) {
+			$selector = array(
+				'normal' => ".{$this->element_id}",
+				'hover'  => ".{$this->element_id}:hover",
+			);
+		}
+
+		if ( isset( $this->attrs['background'] ) ) {
+			$this->handle_background( $selector['normal'], $this->attrs['background'] );
+		}
+
+		if ( isset( $this->attrs['backgroundHover'] ) ) {
+			$this->handle_background( $selector['hover'], $this->attrs['backgroundHover'] );
 		}
 	}
 
