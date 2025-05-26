@@ -1,29 +1,44 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect, useRef } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { select, subscribe } from '@wordpress/data';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const PostTag = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
+        clientId,
+        setBlockRef
     } = props;
 
     const {
         elementId,
     } = attributes;
+
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -39,6 +54,7 @@ const PostTag = compose(
             animationClass,
             displayClass,
         ),
+        ref: elementRef
     });
 
     useEffect(() => {
@@ -79,7 +95,7 @@ const PostTag = compose(
         }
     }, [tags]);
 
-    const DummyBlock = ()=> { 
+    const DummyBlock = () => {
         return <div className="gvnews_post_tags">
             <span>Tags:</span>
             <a href="#" rel="tag">First</a>
@@ -87,12 +103,13 @@ const PostTag = compose(
             <a href="#" rel="tag">Third</a>
             <a href="#" rel="tag">Forth</a>
             <a href="#" rel="tag">Fifth</a>
-            <a href="#" rel="tag">Sixth</a>    
-        </div>
-    }
+            <a href="#" rel="tag">Sixth</a>
+        </div>;
+    };
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews_custom_tag_wrapper">
                 {content ? <div className="gvnews_post_tags">
