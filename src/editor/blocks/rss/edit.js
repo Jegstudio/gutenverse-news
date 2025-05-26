@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import {  useState, useEffect, Fragment }  from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -14,16 +14,19 @@ import { RawHTML } from '@wordpress/element';
 import HeaderModule from '../../part/header';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const RssBlock = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -50,13 +53,16 @@ const RssBlock = compose(
         metaDateType
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -109,7 +115,7 @@ const RssBlock = compose(
             animationClass,
             displayClass,
         ),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     const [block, setBlock] = useState(false);
@@ -163,7 +169,8 @@ const RssBlock = compose(
     ]);
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                 <HeaderModule {...headerData} />
