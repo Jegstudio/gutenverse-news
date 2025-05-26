@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -12,16 +12,23 @@ import { useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { formatDateString } from '../../utils/date-util';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { ModuleSkeleton } from '../../part/placeholder';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
+import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+
+const moduleOption = getModuleOptions();
+const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const NewsTickerBlock = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -50,16 +57,24 @@ const NewsTickerBlock = compose(
         animationDirection,
     } = attributes;
 
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
+
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [postBulk, getPost] = useState(false);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(15);
-    const [postCount, setPostCount] = useState(0);
     const [ticker, initTicker] = useState(false);
-    const newsTickerRef = useRef();
 
     useEffect(() => {
         let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
@@ -83,18 +98,6 @@ const NewsTickerBlock = compose(
         postBulk,
         postOffset
     ]);
-
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
 
     useEffect(() => {
         let attr = {
@@ -139,12 +142,6 @@ const NewsTickerBlock = compose(
         loadPost
     ]);
 
-    useEffect(() => {
-        if (newsTickerRef.current) {
-            setElementRef(newsTickerRef.current);
-        }
-    }, [newsTickerRef.current]);
-
     function newsTickerInit() {
         let options = extend(
             {
@@ -164,7 +161,7 @@ const NewsTickerBlock = compose(
         gvnewstickerList.forEach(function (item) {
             if (typeof options[item] === 'string') {
                 let str = options[item],
-                    el = 'item' === item && options['container'] && options['container'].nodeName ? options['container'].querySelectorAll(str) : newsTickerRef.current.querySelector(str);
+                    el = 'item' === item && options['container'] && options['container'].nodeName ? options['container'].querySelectorAll(str) : elementRef.current.querySelector(str);
                 optionsElements[item] = str;
                 if (el && (el.nodeName || ('object' === typeof el && el.length))) {
                     options[item] = el;
@@ -328,7 +325,7 @@ const NewsTickerBlock = compose(
             animationClass,
             displayClass,
         ),
-        ref: newsTickerRef
+        ref: elementRef
     });
 
     const moduleData = {
@@ -392,7 +389,8 @@ const NewsTickerBlock = compose(
     ]);
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews_breakingnews clearfix">
@@ -407,8 +405,8 @@ const NewsTickerBlock = compose(
                             {ticker && initTicker(false)}
                         </div>
                         <div className="gvnews_news_ticker_control">
-                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><span><i class="fas fa-angle-right"></i></span></div>
-                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><span><i class="fas fa-angle-left"></i></span></div>
+                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><span><i className="fas fa-angle-right"></i></span></div>
+                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><span><i className="fas fa-angle-left"></i></span></div>
                         </div>
                     </div>
                 </div>
