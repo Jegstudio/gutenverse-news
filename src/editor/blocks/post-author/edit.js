@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import { useEffect, useState, useRef, Fragment } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -13,19 +13,34 @@ import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
 import { RawHTML } from '@wordpress/element';
 import { select, useSelect } from '@wordpress/data';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const PostAuthor = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
-        attributes
+        attributes,
+        clientId,
+        setBlockRef
     } = props;
 
     const {
         elementId,
     } = attributes;
+
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
 
     const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
@@ -44,6 +59,7 @@ const PostAuthor = compose(
             animationClass,
             displayClass,
         ),
+        ref: elementRef
     });
 
     useEffect(() => {
@@ -87,22 +103,25 @@ const PostAuthor = compose(
                 </div>);
             }));
         } else {
-            setContent(<div className="gvnews_authorbox">
+            setContent(
+                <div className="gvnews_authorbox">
                     <div className="gvnews_author_image">
-                        <img alt="admin" src={`${imgDir}/author.png`}/>
+                        <img alt="admin" src={`${imgDir}/author.png`} />
                     </div>
-                    <div class="gvnews_author_content">
+                    <div className="gvnews_author_content">
                         <h3 className="gvnews_author_name">
                             <a href="#">admin</a>
                         </h3>
                         <p></p>
                     </div>
-                </div>)
+                </div>
+            );
         }
     }, [authorData]);
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews_custom_share_wrapper">
                 <div className="gvnews_custom_author_wrapper gvnews_author_box_container">
