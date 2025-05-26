@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import { useEffect, useState, Fragment } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -12,16 +12,19 @@ import { ModuleOverlay } from '../../part/placeholder';
 import { select, subscribe, useSelect } from '@wordpress/data';
 import { addQueryArgs } from '@wordpress/url';
 import apiFetch from '@wordpress/api-fetch';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const PostMeta = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
 
@@ -31,13 +34,16 @@ const PostMeta = compose(
         elementId,
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
@@ -126,7 +132,7 @@ const PostMeta = compose(
             animationClass,
             displayClass,
         ),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     useEffect(() => {
@@ -271,7 +277,8 @@ const PostMeta = compose(
     };
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             {contentData ? <div className="gvnews_post_meta gvnews_custom_meta_wrapper">
                 {MetaLeftElement()}
