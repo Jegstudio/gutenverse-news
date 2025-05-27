@@ -31,10 +31,13 @@ class Slider extends StyleAbstract {
 		$this->set_feature(
 			array(
 				'background'  => null,
-				'border'      => null,
+				'border'      => array(
+					'normal' => ".{$this->element_id} .gvnews_slider_wrapper",
+					'hover'  => ".{$this->element_id} .gvnews_slider_wrapper:hover",
+				),
 				'positioning' => null,
 				'animation'   => null,
-				'advance'     => null,
+				'advance'     => ".{$this->element_id} .gvnews_slider_wrapper",
 			)
 		);
 	}
