@@ -1,10 +1,10 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
-import { withCustomStyle } from 'gutenverse-core/hoc';
+import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { PanelController } from 'gutenverse-core/controls';
+import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
@@ -15,14 +15,18 @@ import { ModuleSkeleton } from '../../part/placeholder';
 import HeaderModule from '../../part/header';
 import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
+import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import getBlockStyle from './styles/block-style';
 
 const UserlistBlock = compose(
-    withCustomStyle(panelList),
-    withCopyElementToolbar()
+    withPartialRender,
+    withPassRef
 )((props) => {
     const {
         attributes,
-        setElementRef
+        clientId,
+        setBlockRef
     } = props;
 
     const {
@@ -48,13 +52,16 @@ const UserlistBlock = compose(
         userAlign,
     } = attributes;
 
-    const blockStyleRef = useRef();
+    const elementRef = useRef(null);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useEffect(() => {
-        if (blockStyleRef.current) {
-            setElementRef(blockStyleRef.current);
+        if (elementRef) {
+            setBlockRef(elementRef);
         }
-    }, [blockStyleRef]);
+    }, [elementRef]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -161,7 +168,7 @@ const UserlistBlock = compose(
             animationClass,
             displayClass,
         ),
-        ref: blockStyleRef
+        ref: elementRef
     });
 
     function RenderBlockUser(props) {
@@ -230,7 +237,8 @@ const UserlistBlock = compose(
     };
 
     return <>
-        <PanelController panelList={panelList} {...props} />
+        <CopyElementToolbar {...props} />
+        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_userlist ${listStyle} ${listStyle == 'style-4' ? 'gvnews_1_block' : ''} ${listStyle == 'style-1' ? blockWidth : listStyle == 'style-2' ? blockWidth2 : listStyle == 'style-3' ? blockWidth3 : listStyle == 'style-5' ? blockWidth : ''}`} style={listStyle == 'style-4' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_center' ? { 'text-align': 'center' } : userAlign == 'gvnews_user_align_left' ? { 'text-align': 'left' } : userAlign == 'gvnews_user_align_right' ? { 'text-align': 'right' } : {}}>
