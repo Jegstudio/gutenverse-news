@@ -56,12 +56,22 @@ class Grab {
 	}
 
 	/**
+	 * Get element ID.
+	 *
+	 * @return string
+	 */
+	protected function get_element_id() {
+		$element_id = isset( $this->attributes['elementId'] ) ? $this->attributes['elementId'] : '';
+		return esc_attr( $element_id );
+	}
+
+	/**
 	 * Method render_frontend
 	 *
 	 * @return string
 	 */
 	public function render_frontend() {
-		$element_id      = $this->attributes['elementId'];
+		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
 		$extra_classes   = ' ';
 		if ( isset( $this->attributes['widthClass'] ) && $this->attributes['widthClass'] ) {
@@ -158,7 +168,7 @@ class Grab {
 			$id = 'id="' . $id . '"';
 		}
 
-		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->attributes['elementId'];
+		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->get_element_id();
 
 		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
 	}

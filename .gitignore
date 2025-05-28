@@ -11,4 +11,5 @@ gutenverse-news/lib/dependencies
 
 # Files to ignore
 package-lock.json
+pnpm-lock.yaml
 gutenverse-news.pot
