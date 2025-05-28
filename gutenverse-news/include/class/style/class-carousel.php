@@ -30,10 +30,13 @@ class Carousel extends StyleAbstract {
 		$this->set_feature(
 			array(
 				'background'  => null,
-				'border'      => null,
+				'border'      => array(
+					'normal' => ".{$this->element_id} .gvnews_postblock",
+					'hover'  => ".{$this->element_id} .gvnews_postblock:hover",
+				),
 				'positioning' => null,
 				'animation'   => null,
-				'advance'     => null,
+				'advance'     => ".{$this->element_id} .gvnews_postblock",
 			)
 		);
 	}
@@ -41,15 +44,5 @@ class Carousel extends StyleAbstract {
 	/**
 	 * Generate style base on attribute.
 	 */
-	public function generate() {
-		if ( isset( $this->attrs['border'] ) ) {
-			if ( $this->attrs['border'] ) {
-				$selectorbx = array(
-					'normal' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} ",
-					'hover'  => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} ",
-				);
-				$this->feature_border( $selectorbx );
-			}
-		}
-	}
+	public function generate() {}
 }
