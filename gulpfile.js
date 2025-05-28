@@ -11,11 +11,10 @@ const postcss = require('gulp-postcss');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass')(require('sass'));
 const del = require('del');
-const zip = require( 'gulp-zip' );
 const replace = require('gulp-string-replace');
 const pot = require('gulp-wp-pot');
 
-const pluginFolder = path.join(__dirname, "./release/gutenverse-news");
+const pluginFolder = path.join(__dirname, './release/gutenverse-news');
 const languageFolder = path.join(pluginFolder, '/languages/gutenverse-news.pot');
 
 const postCSSOptions = [
