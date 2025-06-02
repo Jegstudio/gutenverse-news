@@ -4,5 +4,6 @@ module.exports = configs.map(
 	(config) => ({
 		...config,
 		mode: "production",
+		devtool: "source-map",
 	})
 );

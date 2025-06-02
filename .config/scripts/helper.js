@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helper = {
 	mode: "development",
-	devtool: "cheap-module-source-map",
+	devtool: "source-map",
 	entry: {
 		helper: {
 			import: path.resolve( __dirname, "../../src/helper/index.js" ),
