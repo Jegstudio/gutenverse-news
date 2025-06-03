@@ -105,6 +105,12 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_post_title`,
     });
 
+    isNotEmpty(attributes['titleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_title`,
+    });
+
     return data;
 };
 

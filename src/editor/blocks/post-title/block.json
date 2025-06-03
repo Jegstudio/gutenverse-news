@@ -98,7 +98,11 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+        "titleTypography": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false
