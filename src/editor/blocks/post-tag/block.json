@@ -45,8 +45,8 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
+			"type": "object",
+			"copyStyle": true
         },
         "enableAutoplay": {
             "type": "boolean",
