@@ -105,6 +105,30 @@
             "type": "string",
             "default": "ALL"
         },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
         "match": {
             "type": "string",
             "default": "category"
@@ -158,8 +182,7 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
+            "type": "object"
         },
         "enableAutoplay": {
             "type": "boolean",
