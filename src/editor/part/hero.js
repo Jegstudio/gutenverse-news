@@ -188,7 +188,7 @@ const HeroView = ({ rows, heroType, heroStyle, enableslider, blockWidth, autopla
  * @returns {JSX.Element}
  */
 const Hero = (props) => {
-    const { heroType, numberPostShow, columnWidth, heroSliderRef } = props;
+    const { heroType, numberPostShow, columnWidth, elementRef } = props;
     const {
         sliderItem,
         numberPost,
@@ -223,7 +223,6 @@ const Hero = (props) => {
     const [loadPost, loadMore] = useState(16);
     const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
-    const [slider, initSlider] = useState(false);
     const [block, setBlock] = useState(false);
 
     useEffect(() => {
@@ -378,9 +377,8 @@ const Hero = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
-            {slider && initSlider(false)}
+            {enableslider && elementRef.current && gvnews.hero.init(elementRef.current)}
+            {enableslider && elementRef.current && gvnews.hero.heroSlider(elementRef.current)}
         </>
     );
 };
@@ -408,7 +406,6 @@ const HeroArchive = (props) => {
     const [loadPost, loadMore] = useState(16);
     const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
-    const [slider, initSlider] = useState(false);
     const [block, setBlock] = useState(false);
 
     useEffect(() => {
@@ -537,9 +534,8 @@ const HeroArchive = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
-            {slider && initSlider(false)}
+            {enableslider && elementRef.current && gvnews.hero.init(elementRef.current)}
+            {enableslider && elementRef.current && gvnews.hero.heroSlider(elementRef.current)}
         </>
     );
 };
