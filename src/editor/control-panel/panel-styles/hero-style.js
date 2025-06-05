@@ -113,7 +113,7 @@ const getHeroStyle = (elementId, attributes) => {
 
 
 const getHeroStyleOptions = (elementId, attribute, heroStyle) => {
-    let additional = (heroStyle === 5) ? 'after' : 'before';
+    let additional = (heroStyle === '5') ? 'after' : 'before';
     return attribute.map((el, index) => {
         let arrOpt = [];
 
