@@ -1,9 +1,10 @@
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { useEffect, useState }  from '@wordpress/element';
+import { useEffect, useRef, useState }  from '@wordpress/element';
 import { ModuleOverlay, ModuleSkeleton } from '../placeholder';
 import HeroViewComponent from './hero-view-component';
 import HeroContentWrapperComponent from './hero-content-wrapper';
+import { getModuleOptions } from '../../utils/helper';
 
 const HeroArchiveComponent = (props) => {
     const { heroType, numberPostShow, columnWidth, heroSliderRef } = props;
@@ -21,15 +22,15 @@ const HeroArchiveComponent = (props) => {
         heightDesktop,
     } = props;
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(16);
-    const [postCount, setPostCount] = useState(0);
     const [overlay, setOverlay] = useState(false);
     const [slider, initSlider] = useState(false);
     const [block, setBlock] = useState(false);
+    const moduleOption = useRef(null);
+    const postCount = useRef(0);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -43,7 +44,7 @@ const HeroArchiveComponent = (props) => {
     useEffect(() => {
         let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
         let num = parseInt(sliderItem * numberPostShow);
-        let count = parseInt(postCount);
+        let count = parseInt(postCount.current);
         if (postBulk && postBulk.length) {
             if (postBulk.slice(off, num + off).length) {
                 if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
@@ -54,7 +55,7 @@ const HeroArchiveComponent = (props) => {
                 if (count > off) {
                     loadMore(loadPost * sliderItem);
                 } else {
-                    if (count != postCount) {
+                    if (count != postCount.current) {
                         loadMore(count);
                     }
                 }
@@ -65,19 +66,25 @@ const HeroArchiveComponent = (props) => {
         }
     }, [numberPost, postBulk, postOffset, sliderItem]);
 
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     apiFetch({
+    //         path: addQueryArgs('/gvnews-client/v1/module-option'),
+    //     }).then((data) => {
+    //         const parsedData = JSON.parse(data);
+    //         setModuleOption(parsedData);
+    //         if (parsedData.option.post_count) {
+    //             setPostCount(parsedData.option.post_count.publish);
+    //         }
+    //     });
+    // }, []);
 
     useEffect(() => {
+
+        if (moduleOption.current == null) {
+            moduleOption.current = getModuleOptions();
+            postCount.current = moduleOption.current.option.post_count.publish;
+        }
+
         postBulk ? setOverlay(true) : null;
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-posts-archive'),
@@ -100,9 +107,9 @@ const HeroArchiveComponent = (props) => {
     }, [loadPost]);
 
     const resetBlock = () => {
-        if (postData && postData.length && moduleOption) {
+        if (postData && postData.length && moduleOption.current) {
             const attr = {
-                option: moduleOption,
+                option: moduleOption.current,
                 date: {
                     format: dateFormat,
                     custom: dateFormatCustom,
@@ -137,8 +144,8 @@ const HeroArchiveComponent = (props) => {
                     }}
                 />
             );
-        } else if (postBulk && moduleOption) {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        } else if (postBulk && moduleOption.current) {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.current.string.no_content}</div>);
         }
     };
 
