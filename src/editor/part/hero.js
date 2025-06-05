@@ -329,7 +329,9 @@ const Hero = (props) => {
                 },
             };
             const rows = [];
-            for (let i = 0; i < sliderItem; i++) {
+            const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
+
+            for (let i = 0; i < Math.min(sliderItem, maxSliderItem); i++) {
                 rows.push(
                     <HeroContentWrapper
                         {...{
@@ -486,7 +488,9 @@ const HeroArchive = (props) => {
                 },
             };
             const rows = [];
-            for (let i = 0; i < sliderItem; i++) {
+            const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
+
+            for (let i = 0; i < Math.min(sliderItem, maxSliderItem); i++) {
                 rows.push(
                     <HeroContentWrapper
                         {...{
