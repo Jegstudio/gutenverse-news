@@ -7,7 +7,7 @@ const getHeroStyle = (elementId, attributes) => {
         data.push({
             'type': 'plain',
             'id': 'heroMargin',
-            'responsive': true,
+            'responsive': false,
             'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
             'properties': [
                 {
@@ -25,7 +25,7 @@ const getHeroStyle = (elementId, attributes) => {
         data.push({
             'type': 'plain',
             'id': 'heroMargin',
-            'responsive': true,
+            'responsive': false,
             'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
             'properties': [
                 {

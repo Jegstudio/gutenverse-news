@@ -17,7 +17,7 @@ export const settingHero = (props) => {
             label: __('Hero Margin', 'gutenverse-news'),
             description: __('Margin of each hero element.', 'gutenverse-news'),
             component: RangeControl,
-            allowDeviceControl: true,
+            allowDeviceControl: false,
             unit: 'px',
             min: 0,
             max: 30,
@@ -36,7 +36,7 @@ export const settingHero = (props) => {
                 {
                     'type': 'plain',
                     'id': 'heroMargin',
-                    'responsive': true,
+                    'responsive': false,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
                     'properties': [
                         {
@@ -54,7 +54,7 @@ export const settingHero = (props) => {
                 {
                     'type': 'plain',
                     'id': 'heroMargin',
-                    'responsive': true,
+                    'responsive': false,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
                     'properties': [
                         {
