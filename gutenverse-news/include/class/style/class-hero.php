@@ -83,7 +83,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['boxShadow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector['normal'],
+					'selector'       => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -96,7 +96,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['boxShadowHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector['hover'],
+					'selector'       => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
