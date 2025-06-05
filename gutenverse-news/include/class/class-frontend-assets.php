@@ -50,7 +50,8 @@ class Frontend_Assets {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_filter( 'gutenverse_include_frontend', array( $this, 'enqueue_frontend_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99999 );
+		add_filter( 'gutenverse_include_frontend', array( $this, 'enqueue_frontend_style' ) );
 		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
 		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
 		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
@@ -88,7 +89,7 @@ class Frontend_Assets {
 	 *  @param array $block Block Array.
 	 */
 	public function get_news_block_data( $block ) {
-		if ( isset( $block['blockName'] ) && ! empty( $block['blockName'] ) && strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
+		if ( strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
 			$this->news_block_data[] = $block['blockName'];
 		}
 	}
@@ -123,8 +124,11 @@ class Frontend_Assets {
 	 * Frontend Script
 	 */
 	public function enqueue_frontend_scripts() {
-		$this->frontend_styles();
 		$this->frontend_scripts();
+	}
+
+	public function enqueue_frontend_style() {
+		$this->frontend_styles();
 	}
 
 	/**
