@@ -50,7 +50,7 @@ class Frontend_Assets {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99999 );
+		add_filter( 'gutenverse_include_frontend', array( $this, 'enqueue_frontend_scripts' ) );
 		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
 		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
 		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
