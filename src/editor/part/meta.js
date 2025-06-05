@@ -18,8 +18,9 @@ const MetaAuthor = props => {
 
 const MetaDate = props => {
     const {post, attr, showIcon = true, customIcon = false} = props;
-    let date = new Date(post.date.modified * 1000).toISOString();
-    let timestamp = post.date.modified * 1000;
+    const typeDate = attr.option.option.post_date_setting;
+    let date = new Date(post.date[typeDate] * 1000).toISOString();
+    let timestamp = post.date[typeDate] * 1000;
 
     return  <div className="gvnews_meta_date">
         <a>
