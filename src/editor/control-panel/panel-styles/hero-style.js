@@ -3,6 +3,45 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 const getHeroStyle = (elementId, attributes) => {
     let data = [];
 
+    if (isNotEmpty(attributes['heroMargin'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'heroMargin',
+            'responsive': true,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 -{value}px -{value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        },);
+        data.push({
+            'type': 'plain',
+            'id': 'heroMargin',
+            'responsive': true,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 {value}px {value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+    }
+
     if (isNotEmpty(attributes['heroItemOverlay'])) {
         let repeaterOption = getHeroStyleOptions(elementId, attributes['heroItemOverlay'], attributes['heroStyle']);
         data.push({

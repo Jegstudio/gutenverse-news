@@ -17,6 +17,8 @@ export const settingHero = (props) => {
             label: __('Hero Margin', 'gutenverse-news'),
             description: __('Margin of each hero element.', 'gutenverse-news'),
             component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
             min: 0,
             max: 30,
             step: 1,
@@ -29,7 +31,45 @@ export const settingHero = (props) => {
                     selector: `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
                     render: value => `padding: 0 0 ${value}px ${value}px;`
                 }
-            ]
+            ],
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'heroMargin',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
+                    'properties': [
+                        {
+                            'name': 'margin',
+                            'valueType': 'pattern',
+                            'pattern': '0 0 -{value}px -{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                },
+                {
+                    'type': 'plain',
+                    'id': 'heroMargin',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
+                    'properties': [
+                        {
+                            'name': 'padding',
+                            'valueType': 'pattern',
+                            'pattern': '0 0 {value}px {value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                },
+            ],
         },
         {
             id: 'heroStyle',
