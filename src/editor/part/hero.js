@@ -1,5 +1,5 @@
-import HeroArchiveComponent from './hero/hero-archive-component';
-import HeroComponent from './hero/hero-component';
+import HeroArchiveComponent from './hero-components/hero-archive-component';
+import HeroComponent from './hero-components/hero-component';
 
 const HeroHandler = (props) => {
     const { type = 'block', heroType } = props;
