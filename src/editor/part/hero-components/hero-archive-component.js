@@ -109,7 +109,7 @@ const HeroArchiveComponent = (props) => {
     const resetBlock = () => {
         if (postData && postData.length && moduleOption.current) {
             const attr = {
-                option: moduleOption.current.option,
+                option: moduleOption.current,
                 date: {
                     format: dateFormat,
                     custom: dateFormatCustom,
