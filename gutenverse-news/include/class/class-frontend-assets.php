@@ -127,6 +127,9 @@ class Frontend_Assets {
 		$this->frontend_scripts();
 	}
 
+	/**
+	 * Frontend Style
+	 */
 	public function enqueue_frontend_style() {
 		$this->frontend_styles();
 	}
@@ -138,7 +141,7 @@ class Frontend_Assets {
 	 */
 	public function frontend_styles() {
 		wp_enqueue_style(
-			'gvnews-block-frontend-style',
+			'gutenverse-frontend',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
 			array(),
 			GUTENVERSE_NEWS_VERSION
