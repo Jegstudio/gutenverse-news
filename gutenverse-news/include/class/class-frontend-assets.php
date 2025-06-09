@@ -141,7 +141,7 @@ class Frontend_Assets {
 	 */
 	public function frontend_styles() {
 		wp_enqueue_style(
-			'gutenverse-frontend',
+			'gvnews-block-frontend-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
 			array(),
 			GUTENVERSE_NEWS_VERSION
