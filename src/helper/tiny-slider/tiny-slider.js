@@ -221,6 +221,11 @@
 
       // Add the <style> element to the page
       document.querySelector('head').appendChild(style)
+      const iframe = document.querySelector('iframe[name="editor-canvas"]');
+      if( iframe ) {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.querySelector('head').appendChild(style)
+      }
 
       return style.sheet ? style.sheet : style.styleSheet
     }
