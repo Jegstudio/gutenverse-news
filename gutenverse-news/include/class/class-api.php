@@ -164,14 +164,25 @@ class Api {
 			$posts = $feed->get_items( 0, $attr['numberPost'] );
 			foreach ( $posts as $post ) {
 				$construct = new \GUTENVERSE\NEWS\Util\Feed( $post, $attr );
-				$result[]  = array(
+				$data      = array(
 					'title'     => $construct->title,
 					'permalink' => $construct->permalink,
 					'date'      => array(
 						'published' => isset( $construct->publish_date ) ? $construct->publish_date : '',
 						'modified'  => isset( $construct->update_date ) ? $construct->publish_date : '',
 					),
+					'excerpt'   => $construct->description,
 				);
+
+				if ( ! empty( $construct->thumbnail_url ) ) {
+					$data['thumbnail']['url'] = esc_url( $construct->thumbnail_url );
+				}
+
+				if ( ! empty( $construct->post_author_name ) ) {
+					$data['author']['name'] = $construct->post_author_name;
+				}
+
+				$result[] = $data;
 			}
 		}
 		return wp_json_encode( $result );
@@ -376,6 +387,7 @@ class Api {
 		$data['option']['meta_comment'] = true;
 		$data['option']['date_format']  = get_option( 'date_format' );
 		$data['option']['date_module']  = get_option( 'date_format' );
+		$data['option']['date_type']    = 'published';
 		$data['option']['post_count']   = wp_count_posts();
 		$data['option']['video_count']  = $video_count;
 
@@ -454,7 +466,7 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta
+				'meta'   => $meta,
 			);
 		}
 

@@ -30,22 +30,6 @@ export const generalPanel = (props) => {
                     image: <img src={`${imgDir}/content-3.png`}/>,
                     value: '3'
                 },
-                {
-                    image: <img src={`${imgDir}/content-video-1.png`}/>,
-                    value: 'video_1'
-                },
-                {
-                    image: <img src={`${imgDir}/content-video-2.png`}/>,
-                    value: 'video_2'
-                },
-                {
-                    image: <img src={`${imgDir}/content-video-3.png`}/>,
-                    value: 'video_3'
-                },
-                {
-                    image: <img src={`${imgDir}/content-video-4.png`}/>,
-                    value: 'video_4'
-                },
             ],
         },
         {

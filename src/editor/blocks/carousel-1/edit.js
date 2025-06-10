@@ -12,7 +12,7 @@ import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
-import { getDeviceType, getEditorWidth } from 'gutenverse-core/editor-helper';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
@@ -279,8 +279,6 @@ const Carousel1Block = compose(
         iMargin
     ]);
 
-    let editorWidth = getEditorWidth();
-
     const device = useSelect((select) => {
         return select('core/editor').getDeviceType();
     }, []);
@@ -290,37 +288,10 @@ const Carousel1Block = compose(
             setTimeout(function () {
                 let gvnewsLibrary = window.gvnews;
                 gvnewsLibrary = gvnews.library;
-
                 var blockCarousel = elementRef.current.getElementsByClassName('gvnews_postblock_carousel');
-
                 if (blockCarousel.length) {
                     gvnewsLibrary.forEach(blockCarousel, function (ele, i) {
-                        let config = {};
-                        const defaultConfig = {
-                            0: {
-                                items: 1,
-                            },
-                            321: {
-                                items: 2,
-                                gutter: 15
-                            },
-                            568: {
-                                items: 3,
-                                gutter: 15
-                            },
-                            1024: {
-                                items: parseInt(ncolumn) || 3,
-                            },
-                        };
-                        if (editorWidth) {
-                            for (const breakpoint in defaultConfig) {
-                                if (parseInt(breakpoint) <= editorWidth) {
-                                    config = defaultConfig[breakpoint];
-                                }
-                            }
-                        }
-
-                        const carouselConfig = {
+                        const carousel = gvnews.carousel({
                             container: ele,
                             textDirection: 'ltr',
                             onInit: function (info) {
@@ -330,30 +301,36 @@ const Carousel1Block = compose(
                                 if ('undefined' !== typeof info.prevButton) {
                                     gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
                                 }
+                            },
+                        });
+
+                        if (carousel) {
+                            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+
+                            if (iframe) {
+                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                const sourceSheet = carousel.getInfo().sheet;
+
+                                const newStyle = iframeDoc.createElement('style');
+                                newStyle.setAttribute('data-source', 'injected-by-script');
+                                iframeDoc.head.appendChild(newStyle);
+
+                                const targetSheet = newStyle.sheet;
+
+                                try {
+                                    for (let rule of sourceSheet.cssRules) {
+                                        targetSheet.insertRule(rule.cssText, targetSheet.cssRules.length);
+                                    }
+                                } catch (e) {
+                                    console.warn('There\'s an issue while generating Style for Carousel', e);
+                                }
                             }
-                        };
-
-                        const carousel = gvnews.carousel({
-                            ...carouselConfig,
-                            ...config,
-                        });
-
-                        const tnsInner = ele.querySelector('.tns-outer .tns-inner');
-                        const wrapper = tnsInner.querySelector('.gvnews_carousel_post');
-                        const items = wrapper.querySelectorAll('.tns-item');
-
-                        tnsInner.style.marginRight = `-${config?.gutter}px`;
-                        wrapper.style.width = `calc(100% * 16/ ${config?.items})`;
-
-                        items.forEach((item) => {
-                            item.style.width = 'calc(100% / 16)';
-                            item.style.paddingRight = `${config?.gutter}px`;
-                        });
+                        }
                     });
                 }
             }, 1000);
         }
-    }
+    };
 
     initSlider();
 
