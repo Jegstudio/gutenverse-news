@@ -3,6 +3,7 @@ import { advancePanel, animationPanel, backgroundPanel, borderPanel, positioning
 import { designPanel } from './panel-design';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { panelType } from './panel-type';
 
 export const panelList = () => {
     return [
@@ -11,6 +12,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: generalPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Block Type', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: panelType,
+            tabRole: TabSetting,
         },
         {
             title: __('Design', 'gutenverse-news'),
