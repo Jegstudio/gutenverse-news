@@ -17,6 +17,7 @@ use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Slider;
 use GUTENVERSE\NEWS\Style\User_List;
+use GUTENVERSE\NEWS\Style\Post_Title;
 
 /**
  * Class Style Generator
@@ -87,6 +88,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );
+					break;
+				case stristr( $name, 'gutenverse/news-post-title' ):
+					$instance = new Post_Title( $attrs, $name );
 					break;
 			}
 		}
