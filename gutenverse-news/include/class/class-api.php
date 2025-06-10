@@ -164,21 +164,25 @@ class Api {
 			$posts = $feed->get_items( 0, $attr['numberPost'] );
 			foreach ( $posts as $post ) {
 				$construct = new \GUTENVERSE\NEWS\Util\Feed( $post, $attr );
-				$result[]  = array(
+				$data      = array(
 					'title'     => $construct->title,
 					'permalink' => $construct->permalink,
 					'date'      => array(
 						'published' => isset( $construct->publish_date ) ? $construct->publish_date : '',
 						'modified'  => isset( $construct->update_date ) ? $construct->publish_date : '',
 					),
-					'thumbnail' => array(
-						'url' => esc_url( $construct->thumbnail_url ),
-					),
-					'author'    => array(
-						'name' => $construct->post_author_name,
-					),
 					'excerpt'   => $construct->description,
 				);
+
+				if ( ! empty( $construct->thumbnail_url ) ) {
+					$data['thumbnail']['url'] = esc_url( $construct->thumbnail_url );
+				}
+
+				if ( ! empty( $construct->post_author_name ) ) {
+					$data['author']['name'] = $construct->post_author_name;
+				}
+
+				$result[] = $data;
 			}
 		}
 		return wp_json_encode( $result );
