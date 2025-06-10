@@ -179,6 +179,7 @@ const getModuleOptions = () => {
             meta_views: true,
             date_format: 'F j, Y',
             date_module: 'F j, Y',
+            date_type: 'published', /* publish |  modified | both */
             post_count: 0,
         }
     };

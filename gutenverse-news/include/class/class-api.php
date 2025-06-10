@@ -376,6 +376,7 @@ class Api {
 		$data['option']['meta_comment'] = true;
 		$data['option']['date_format']  = get_option( 'date_format' );
 		$data['option']['date_module']  = get_option( 'date_format' );
+		$data['option']['date_type']    = 'published';
 		$data['option']['post_count']   = wp_count_posts();
 		$data['option']['video_count']  = $video_count;
 
@@ -454,7 +455,7 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta
+				'meta'   => $meta,
 			);
 		}
 

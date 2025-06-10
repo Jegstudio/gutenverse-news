@@ -114,16 +114,16 @@ class Editor_Assets {
 				'no_content' => esc_html__( 'No Content Available', 'gutenverse-news' ),
 			),
 			'option' => array(
-				'meta_show'         => true,
-				'meta_comment'      => true,
-				'meta_author'       => true,
-				'meta_rating'       => true,
-				'meta_date'         => true,
-				'meta_views'        => true,
-				'date_format'       => get_option( 'date_format' ),
-				'date_module'       => get_option( 'date_format' ),
-				'post_count'        => wp_count_posts(),
-				'post_date_setting' => 'published', /* publish |  modified | both */
+				'meta_show'    => true,
+				'meta_comment' => true,
+				'meta_author'  => true,
+				'meta_rating'  => true,
+				'meta_date'    => true,
+				'meta_views'   => true,
+				'date_format'  => get_option( 'date_format' ),
+				'date_module'  => get_option( 'date_format' ),
+				'date_type'    => 'published', /* publish |  modified | both */
+				'post_count'   => wp_count_posts(),
 			),
 		);
 		return apply_filters( 'gvnews_module_options', $data );
