@@ -183,7 +183,8 @@ class Feed {
 			$fallimage = $this->attr['fallimage'];
 		}
 		if ( ! $this->featured && $this->attr['fallback'] ) {
-			$attachment_image = wp_get_attachment_image( $fallimage, $size );
+			$attachment_image    = wp_get_attachment_image( $fallimage, $size );
+			$this->thumbnail_url = wp_get_attachment_url( $fallimage );
 			return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $attachment_image ? $attachment_image : $this->featured ) . '</div>';
 		}
 

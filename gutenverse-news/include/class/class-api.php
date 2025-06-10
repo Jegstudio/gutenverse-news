@@ -164,7 +164,7 @@ class Api {
 			$posts = $feed->get_items( 0, $attr['numberPost'] );
 			foreach ( $posts as $post ) {
 				$construct = new \GUTENVERSE\NEWS\Util\Feed( $post, $attr );
-				$result[] = array(
+				$result[]  = array(
 					'title'     => $construct->title,
 					'permalink' => $construct->permalink,
 					'date'      => array(
@@ -174,6 +174,10 @@ class Api {
 					'thumbnail' => array(
 						'url' => esc_url( $construct->thumbnail_url ),
 					),
+					'author'    => array(
+						'name' => $construct->post_author_name,
+					),
+					'excerpt'   => $construct->description,
 				);
 			}
 		}
