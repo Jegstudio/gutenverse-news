@@ -72,7 +72,13 @@ class Rss extends Grab {
 			);
 		}
 
-		$name     = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . $this->attributes['blockType'];
+		$block_type = 3;
+
+		if ( isset( $this->attributes['blockType'] ) ) {
+			$block_type = 3;
+		}
+
+		$name     = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . $block_type;
 		$mod      = gvnews_get_view_class_from_shortcode( $name );
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
