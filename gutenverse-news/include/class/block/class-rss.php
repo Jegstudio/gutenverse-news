@@ -72,28 +72,39 @@ class Rss extends Grab {
 			);
 		}
 
-		$name     = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . $this->attributes['blockType'];
+		$block_type = 3;
+
+		if ( isset( $this->attributes['blockType'] ) ) {
+			$block_type = 3;
+		}
+
+		$name     = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . $block_type;
 		$mod      = gvnews_get_view_class_from_shortcode( $name );
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$feed = fetch_feed( esc_url( $this->attributes['feedurl'] ) );
-		$posts = $feed->get_items( 0, $this->attributes['numberPost'] );
-		if ( ! is_wp_error( $feed ) && $posts ) {
-			$result = array(
-				'result' => array(),
-			);
 
-			foreach ( $posts as $post ) {
-				$result['result'][] = new Feed( $post, $attr );
+		if ( ! is_wp_error( $feed ) ) {
+			$posts = $feed->get_items( 0, $this->attributes['numberPost'] );
+
+			if ( $posts ) {
+				$result = array(
+					'result' => array(),
+				);
+
+				foreach ( $posts as $post ) {
+					$result['result'][] = new Feed( $post, $attr );
+				}
+
+				$result['next']       = false;
+				$result['prev']       = false;
+				$result['total_page'] = 1;
+
+				$attr['pagination_mode'] = 'disable';
+				$attr['results']         = $result;
+
+				return $instance->build_module( $attr );
 			}
-
-			$result['next']       = false;
-			$result['prev']       = false;
-			$result['total_page'] = 1;
-
-			$attr['pagination_mode'] = 'disable';
-			$attr['results']         = $result;
-			return $instance->build_module( $attr );
 		}
 	}
 }

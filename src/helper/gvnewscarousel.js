@@ -39,17 +39,17 @@
                                         onInit: false,
                                     };
 
-                                    jcarouselDefault.items = 'undefined' === typeof jcarouselDefault.container.dataset.items ? 3 : parseInt(jcarouselDefault.container.dataset.items);
+                                    jcarouselDefault.items = options?.items ? options.items : ('undefined' === typeof jcarouselDefault.container.dataset.items ? 3 : parseInt(jcarouselDefault.container.dataset.items));
                                     jcarouselDefault.controls = 'undefined' === typeof jcarouselDefault.container.dataset.nav ? jcarouselDefault.controls : jcarouselDefault.container.dataset.nav;
                                     jcarouselDefault.autoplay = 'undefined' === typeof jcarouselDefault.container.dataset.autoplay ? jcarouselDefault.autoplay : jcarouselDefault.container.dataset.autoplay;
                                     jcarouselDefault.autoplayTimeout = 'undefined' === typeof jcarouselDefault.container.dataset.delay ? jcarouselDefault.autoplayTimeout : parseInt(jcarouselDefault.container.dataset.delay);
-                                    jcarouselDefault.gutter = 'undefined' === typeof jcarouselDefault.container.dataset.margin ? jcarouselDefault.gutter : parseInt(jcarouselDefault.container.dataset.margin);
+                                    jcarouselDefault.gutter = options?.gutter ? options.gutter : ('undefined' === typeof jcarouselDefault.container.dataset.margin ? jcarouselDefault.gutter : parseInt(jcarouselDefault.container.dataset.margin));
 
                                     // Bypass lazyload tinyslider.
                                     jcarouselDefault.lazyload = 'undefined' === typeof jcarouselDefault.container.dataset.lazyload ? jcarouselDefault.lazyload : jcarouselDefault.container.dataset.lazyload;
                                     jcarouselDefault.lazyloadSelector = 'undefined' === typeof jcarouselDefault.container.dataset.lazyload ? jcarouselDefault.lazyloadSelector : 'imgs';
 
-                                    jcarouselDefault.textDirection ='ltr';
+                                    jcarouselDefault.textDirection = 'ltr';
 
                                     /*** Postblock Carousel 1 ***/
                                     if (gvnewsLibrary.hasClass(wrapper, 'gvnews_postblock_carousel_1')) {
@@ -126,9 +126,9 @@
                                         });
                                         // Bypass lazyload tinyslider.
                                         carouselSlider.events.on('indexChanged', function (info) {
-                                            if ( info.container ) {
+                                            if (info.container) {
                                                 gvnewsLibrary.forEach(info.container.querySelectorAll('.tns-slide-active .lazyloading'), function (ele, i) {
-                                                    if ( lazySizes ) {
+                                                    if (lazySizes) {
                                                         lazySizes.loader.unveil(ele);
                                                     }
                                                 });

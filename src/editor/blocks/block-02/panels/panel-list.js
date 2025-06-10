@@ -39,18 +39,18 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Pagination', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Header', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => headerStylesPanel({
                 ...props,
             }),
-            tabRole: TabSetting
-        },
-        {
-            title: __('Pagination', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: paginationPanel,
-            tabRole: TabSetting
+            tabRole: TabStyle
         },
         {
             title: __('Design', 'gutenverse-news'),

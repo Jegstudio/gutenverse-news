@@ -279,29 +279,64 @@ const Carousel1Block = compose(
         iMargin
     ]);
 
-    if ('function' === typeof gvnews.carousel && postData && !overlay) {
-        setTimeout(function () {
-            let gvnewsLibrary = window.gvnews;
-            gvnewsLibrary = gvnews.library;
-            var blockCarousel = elementRef.current.getElementsByClassName('gvnews_postblock_carousel');
-            if (blockCarousel.length) {
-                gvnewsLibrary.forEach(blockCarousel, function (ele, i) {
-                    gvnews.carousel({
-                        container: ele,
-                        textDirection: 'ltr',
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+    const device = useSelect((select) => {
+        return select('core/editor').getDeviceType();
+    }, []);
+
+    const initSlider = () => {
+        if ('function' === typeof gvnews.carousel && postData && !overlay) {
+            setTimeout(function () {
+                let gvnewsLibrary = window.gvnews;
+                gvnewsLibrary = gvnews.library;
+                var blockCarousel = elementRef.current.getElementsByClassName('gvnews_postblock_carousel');
+                if (blockCarousel.length) {
+                    gvnewsLibrary.forEach(blockCarousel, function (ele, i) {
+                        const carousel = gvnews.carousel({
+                            container: ele,
+                            textDirection: 'ltr',
+                            onInit: function (info) {
+                                if ('undefined' !== typeof info.nextButton) {
+                                    gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+                                }
+                                if ('undefined' !== typeof info.prevButton) {
+                                    gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
+                                }
+                            },
+                        });
+
+                        if (carousel) {
+                            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+
+                            if (iframe) {
+                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                const sourceSheet = carousel.getInfo().sheet;
+
+                                const newStyle = iframeDoc.createElement('style');
+                                newStyle.setAttribute('data-source', 'injected-by-script');
+                                iframeDoc.head.appendChild(newStyle);
+
+                                const targetSheet = newStyle.sheet;
+
+                                try {
+                                    for (let rule of sourceSheet.cssRules) {
+                                        targetSheet.insertRule(rule.cssText, targetSheet.cssRules.length);
+                                    }
+                                } catch (e) {
+                                    console.warn('There\'s an issue while generating Style for Carousel', e);
+                                }
                             }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
+                        }
                     });
-                });
-            }
-        }, 1000);
-    }
+                }
+            }, 1000);
+        }
+    };
+
+    initSlider();
+
+    useEffect(() => {
+        initSlider();
+    }, [device]);
 
     return <>
         <CopyElementToolbar {...props} />

@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import {  useState, useEffect, Fragment }  from '@wordpress/element';
+import { useState, useEffect, Fragment } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -18,6 +18,7 @@ import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import ThumbModule from '../../part/thumbnail';
 
 const RssBlock = compose(
     withPartialRender,
@@ -89,6 +90,11 @@ const RssBlock = compose(
                 attr: {
                     feedurl: feedurl,
                     numberPost: numberPost,
+                    thumbnail: thumb,
+                    excerpt_length: excerptLength,
+                    fallimage: fallbackimg,
+                    fallback: fallback,
+                    thumbnail_size: blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3',
                 }
             }
         }).then((data) => {
@@ -96,7 +102,9 @@ const RssBlock = compose(
         });
     }, [
         feedurl,
-        numberPost
+        numberPost,
+        thumb,
+        excerptLength
     ]);
 
     const headerData = {
@@ -146,7 +154,8 @@ const RssBlock = compose(
             const content = postData.map((post, index) => {
                 if (index < limit) {
                     return <article key={index} className="gvnews_post gvnews_pl_md_2">
-                        <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={attr} />
+                        <ThumbModule size={715} cat={false} post={post} />
+                        <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;
                 }
             });

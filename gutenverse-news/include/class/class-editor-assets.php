@@ -122,6 +122,7 @@ class Editor_Assets {
 				'meta_views'   => true,
 				'date_format'  => get_option( 'date_format' ),
 				'date_module'  => get_option( 'date_format' ),
+				'date_type'    => 'published', /* publish |  modified | both */
 				'post_count'   => wp_count_posts(),
 			),
 		);
