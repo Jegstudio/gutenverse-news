@@ -80,6 +80,13 @@ class Feed {
 	public $featured;
 
 	/**
+	 * Thumbnail URL
+	 *
+	 * @var strng
+	 */
+	public $thumbnail_url;
+
+	/**
 	 * RSS Feed Filter
 	 *
 	 * @var string
@@ -140,6 +147,22 @@ class Feed {
 
 				$image = ! empty( $first_image ) ? $first_image : false;
 			}
+		}
+
+		$this->thumbnail_url = $image;
+
+		if ( isset( $this->attr['thumbnail_size'] ) && empty( $image ) ) {
+			switch ( $this->attr['thumbnail_size'] ) {
+				case '1':
+					$thumbnail_size = 'gvnews-120x86';
+					break;
+				case '3':
+				case '2':
+				default:
+					$thumbnail_size = 'gvnews-350x250';
+					break;
+			}
+			$this->featured = $this->get_thumbnail( $thumbnail_size );
 		}
 
 		return $image ? '<img src="' . $image . '">' : '';

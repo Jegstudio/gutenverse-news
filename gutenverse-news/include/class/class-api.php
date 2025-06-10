@@ -164,12 +164,15 @@ class Api {
 			$posts = $feed->get_items( 0, $attr['numberPost'] );
 			foreach ( $posts as $post ) {
 				$construct = new \GUTENVERSE\NEWS\Util\Feed( $post, $attr );
-				$result[]  = array(
+				$result[] = array(
 					'title'     => $construct->title,
 					'permalink' => $construct->permalink,
 					'date'      => array(
 						'published' => isset( $construct->publish_date ) ? $construct->publish_date : '',
 						'modified'  => isset( $construct->update_date ) ? $construct->publish_date : '',
+					),
+					'thumbnail' => array(
+						'url' => esc_url( $construct->thumbnail_url ),
 					),
 				);
 			}
