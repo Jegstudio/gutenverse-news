@@ -26,14 +26,14 @@ class Archive_Breadcrumb extends Archive_View_Abstract {
 	private $last_link_class = 'breadcrumb_last_link';
 
 	/**
-	 * Method render_module_front
+	 * Method render_module
 	 *
 	 * @param array  $attr         attribute.
-	 * @param string $column_class column class.
+	 * @param string $column_class column class..
 	 *
 	 * @return string
 	 */
-	public function render_module_front( $attr, $column_class ) {
+	public function render_module( $attr, $column_class ) {
 
 		$breadcrumb = '';
 
