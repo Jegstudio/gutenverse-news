@@ -22,10 +22,12 @@
             "default": 8
         },
         "boxed": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "boxedShadow": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "excerptLength": {
             "type": "string",

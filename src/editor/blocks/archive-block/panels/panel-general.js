@@ -1,8 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
 
-export const generalPanel = () => {
-
+export const generalPanel = (props) => {
+    const {
+        boxed
+    } = props;
     return [
         {
             id: 'numberPost',
@@ -21,6 +23,7 @@ export const generalPanel = () => {
         },
         {
             id: 'boxedShadow',
+            show: boxed,
             component: CheckboxControl,
             label: __('Enable Shadow', 'gutenverse-news'),
             description: __('Enable excerpt ellipsis', 'gutenverse-news'),
