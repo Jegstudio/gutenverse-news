@@ -33,7 +33,7 @@ class Archive extends Grab {
 	protected $name;
 
 	/**
-	 * Build element with wrapper
+	 * Build element with wrapper (override from parent)
 	 *
 	 * @param string $element_name  Element name.
 	 * @param string $inner         Inner element.
@@ -69,46 +69,6 @@ class Archive extends Grab {
 		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->get_element_id();
 
 		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
-	}
-
-	/**
-	 * Render content
-	 *
-	 * @return string
-	 */
-	public function render_content() {
-		$blockid = strtolower( str_replace( '_', '-', $this->attributes['gvnewsModule'] ) );
-		$content = $this->get_content();
-
-		return $this->render_wrapper(
-			"block-{$blockid}",
-			$content,
-		);
-	}
-
-	/**
-	 * Method render_gutenberg
-	 *
-	 * @return string
-	 */
-	public function render_gutenberg() {
-		return $this->render_content();
-	}
-
-	/**
-	 * Method render_frontend
-	 *
-	 * @return string
-	 */
-	public function render_frontend() {
-		$element_id      = $this->get_element_id();
-		$display_classes = $this->set_display_classes();
-		$extra_classes   = ' ';
-		if ( isset( $this->attributes['widthClass'] ) && $this->attributes['widthClass'] ) {
-			$extra_classes .= $this->attributes['widthClass'];
-		}
-
-		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper">' . $this->render_content() . '</div>';
 	}
 
 	/**
