@@ -47,9 +47,8 @@ const PostTag = compose(
 
     const blockProps = useBlockProps({
         className: classnames(
-            'gvnews-block',
-            'gvnews-block-wrapper',
-            'gvnews-post-tag',
+            'guten-element',
+            'gvnews-post-tags',
             elementId,
             animationClass,
             displayClass,
@@ -96,7 +95,7 @@ const PostTag = compose(
     }, [tags]);
 
     const DummyBlock = () => {
-        return <div className="gvnews_post_tags">
+        return <>
             <span>Tags:</span>
             <a href="#" rel="tag">First</a>
             <a href="#" rel="tag">Second</a>
@@ -104,17 +103,14 @@ const PostTag = compose(
             <a href="#" rel="tag">Forth</a>
             <a href="#" rel="tag">Fifth</a>
             <a href="#" rel="tag">Sixth</a>
-        </div>;
+        </>;
     };
 
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews_custom_tag_wrapper">
-                {content ? <div className="gvnews_post_tags">
-                    <span>Tags:</span> {content} </div> : <DummyBlock />}
-            </div>
+        <div {...blockProps}>
+            { content ? <><span>Tags:</span> {content}</> : <DummyBlock /> }
         </div>
     </>;
 });

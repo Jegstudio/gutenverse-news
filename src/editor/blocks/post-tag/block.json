@@ -2,7 +2,7 @@
     "apiVersion": 2,
     "name": "gutenverse/news-post-tag",
     "title": "Post Tag",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag_V2",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
     "attributes": {
@@ -24,14 +24,21 @@
             "type": "string",
             "default": 12
         },
-        "background": {
-            "type": "object",
-            "default": {}
-        },
-        "backgroundHover": {
-            "type": "object",
-            "default": {}
-        },
+		"background": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+		"backgroundHover": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
@@ -98,7 +105,11 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+        "mask": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false
