@@ -172,10 +172,26 @@
         "border": {
             "type": "object"
         },
-        "boxShadow": {
+        "borderResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "border",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "borderHover": {
             "type": "object"
         },
-        "borderHover": {
+        "borderHoverResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "borderHover",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "boxShadow": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -234,7 +250,11 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+        "mask": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false

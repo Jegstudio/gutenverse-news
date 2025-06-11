@@ -15,6 +15,7 @@ use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\News_Ticker;
+use GUTENVERSE\NEWS\Style\Post_Related;
 use GUTENVERSE\NEWS\Style\Slider;
 use GUTENVERSE\NEWS\Style\User_List;
 use GUTENVERSE\NEWS\Style\Post_Title;
@@ -95,6 +96,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-post-tag' ):
 					$instance = new Post_Tag( $attrs, $name );
+					break;
+				case stristr( $name, 'gutenverse/news-post-related' ):
+					$instance = new Post_Related( $attrs, $name );
 					break;
 			}
 		}
