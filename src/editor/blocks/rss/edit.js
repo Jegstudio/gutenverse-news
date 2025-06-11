@@ -154,7 +154,7 @@ const RssBlock = compose(
             const content = postData.map((post, index) => {
                 if (index < limit) {
                     return <article key={index} className="gvnews_post gvnews_pl_md_2">
-                        <ThumbModule size={715} cat={false} post={post} />
+                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} />}
                         <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;
                 }
