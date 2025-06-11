@@ -80,6 +80,13 @@ class Feed {
 	public $featured;
 
 	/**
+	 * Thumbnail URL
+	 *
+	 * @var strng
+	 */
+	public $thumbnail_url;
+
+	/**
 	 * RSS Feed Filter
 	 *
 	 * @var string
@@ -142,6 +149,22 @@ class Feed {
 			}
 		}
 
+		$this->thumbnail_url = $image;
+
+		if ( isset( $this->attr['thumbnail_size'] ) && empty( $image ) ) {
+			switch ( $this->attr['thumbnail_size'] ) {
+				case '1':
+					$thumbnail_size = 'gvnews-120x86';
+					break;
+				case '3':
+				case '2':
+				default:
+					$thumbnail_size = 'gvnews-350x250';
+					break;
+			}
+			$this->featured = $this->get_thumbnail( $thumbnail_size );
+		}
+
 		return $image ? '<img src="' . $image . '">' : '';
 	}
 
@@ -160,7 +183,8 @@ class Feed {
 			$fallimage = $this->attr['fallimage'];
 		}
 		if ( ! $this->featured && $this->attr['fallback'] ) {
-			$attachment_image = wp_get_attachment_image( $fallimage, $size );
+			$attachment_image    = wp_get_attachment_image( $fallimage, $size );
+			$this->thumbnail_url = wp_get_attachment_url( $fallimage );
 			return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $attachment_image ? $attachment_image : $this->featured ) . '</div>';
 		}
 
