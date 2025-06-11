@@ -51,6 +51,13 @@ class Archive extends Grab {
 			$classes = $classes . ' ' . $class;
 		}
 
+		if ( isset( $this->attributes['boxed'] ) && $this->attributes['boxed'] ) {
+			$classes .= ' gvnews_pb_boxed';
+		}
+		if ( isset( $this->attributes['boxed_shadow'] ) && $this->attributes['boxed_shadow'] ) {
+			$classes .= ' gvnews_pb_boxed_shadow';
+		}
+
 		foreach ( $array_data as $key => $value ) {
 			$data = $data . ' data-' . $key . '="' . $value . '"';
 		}

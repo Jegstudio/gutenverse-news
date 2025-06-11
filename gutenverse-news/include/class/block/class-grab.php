@@ -123,7 +123,7 @@ class Grab {
 		/**
 		* Call module class
 		*
-		* @var ModuleViewAbstract $instance
+		* @var \GUTENVERSE\NEWS\Block\Block_View_Abstract $instance
 		*/
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
