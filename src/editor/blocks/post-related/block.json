@@ -2,7 +2,7 @@
     "apiVersion": 2,
     "name": "gutenverse/news-post-related",
     "title": "Post Related",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related_V2",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
     "attributes": {

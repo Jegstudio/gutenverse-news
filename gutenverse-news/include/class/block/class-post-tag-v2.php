@@ -11,19 +11,20 @@ namespace GUTENVERSE\NEWS\Block;
 
 use Gutenverse\Framework\Block\Block_Abstract;
 use GUTENVERSE\NEWS\Util\Single\Single_Post;
+use GUTENVERSE\NEWS\Block\Post_Guten;
 
 /**
  * Class Post Block
  *
  * @package gutenverse\block
  */
-class Post_Tag_V2 extends Block_Abstract {
+class Post_Tag_V2 extends Post_Guten {
 	/**
 	 * Hold Post Tags Classname
 	 *
 	 * @var array
 	 */
-	private static $className = 'gvnews-post-tags';
+	protected $className = 'gvnews-post-tags';
 	/**
 	 * Render content
 	 *
@@ -37,26 +38,5 @@ class Post_Tag_V2 extends Block_Abstract {
 
 			return $tag;
 		}
-	}
-
-	/**
-	 * Render view in editor
-	 */
-	public function render_gutenberg() {
-		return $this->render_content();
-	}
-
-	/**
-	 * Render view in frontend
-	 */
-	public function render_frontend() {
-		$element_id      = $this->get_element_id();
-		$display_classes = $this->set_display_classes();
-		$animation_class = $this->set_animation_classes();
-		$custom_classes  = $this->get_custom_classes();
-
-		return '<div class="guten-element '. $element_id . $animation_class . $custom_classes. ' ' . self::$className. $display_classes . '">' . 
-				$this->render_content() . 
-			'</div>';
 	}
 }
