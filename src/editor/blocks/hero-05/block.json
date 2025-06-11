@@ -35,15 +35,11 @@
         },
         "numberPost": {
             "type": "string",
-            "default": 5
+            "default": 3
         },
         "heroItemOverlay": {
             "type": "array",
             "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
                 "overlayEnable": false
             }, {
                 "overlayEnable": false

@@ -52,6 +52,46 @@ const getHeroStyle = (elementId, attributes) => {
     }
 
     /**
+     * Panel Setting
+     */
+    isNotEmpty(attributes['heroMargin']) && data.push(
+        {
+            'type': 'plain',
+            'id': 'heroMargin',
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 {value}px {value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                }
+            ],
+            'selector': `.${elementId} article.gvnews_post`,
+        },
+        {
+            'type': 'plain',
+            'id': 'heroMargin',
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 -{value}px -{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                }
+            ],
+            'selector': `.${elementId} .gvnews_heroblock_wrapper`,
+        }
+    );
+
+    /**
      * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({
@@ -152,7 +192,7 @@ const getHeroStyle = (elementId, attributes) => {
 
 
 const getHeroStyleOptions = (elementId, attribute, heroStyle) => {
-    let additional = (heroStyle === 5) ? 'after' : 'before';
+    let additional = (heroStyle === '5') ? 'after' : 'before';
     return attribute.map((el, index) => {
         let arrOpt = [];
 
