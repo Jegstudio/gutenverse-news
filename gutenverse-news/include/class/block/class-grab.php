@@ -32,6 +32,15 @@ class Grab {
 	protected $content;
 
 	/**
+	 * Method get_content
+	 *
+	 * @return string
+	 */
+	public function get_content() {
+		return '';
+	}
+
+	/**
 	 * Render content
 	 *
 	 * @return string
@@ -181,16 +190,16 @@ class Grab {
 	public function get_vc_class_name() {
 		$class_name = null;
 
-		if ( isset( $this->attribute['css'] ) ) {
-			$css_exploded = explode( '{', $this->attribute['css'] );
+		if ( isset( $this->attributes['css'] ) ) {
+			$css_exploded = explode( '{', $this->attributes['css'] );
 			$class        = $css_exploded[0];
 			$class_name   = substr( $class, 1 );
 		}
 
-		if ( isset( $this->attribute['boxed'] ) && $this->attribute['boxed'] ) {
+		if ( isset( $this->attributes['boxed'] ) && $this->attributes['boxed'] ) {
 			$class_name .= ' gvnews_pb_boxed';
 		}
-		if ( isset( $this->attribute['boxed_shadow'] ) && $this->attribute['boxed_shadow'] ) {
+		if ( isset( $this->attributes['boxed_shadow'] ) && $this->attributes['boxed_shadow'] ) {
 			$class_name .= ' gvnews_pb_boxed_shadow';
 		}
 

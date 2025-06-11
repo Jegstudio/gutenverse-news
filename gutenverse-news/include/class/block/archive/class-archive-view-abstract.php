@@ -49,43 +49,9 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 	protected static $result = array();
 
 	/**
-	 * Method is_on_editor
-	 *
-	 * @return bool
-	 */
-	public function is_on_editor() {
-
-		if ( function_exists( 'gvnews_is_frontend_vc' ) && gvnews_is_frontend_vc() ) {
-			return true;
-		}
-
-		if ( isset( $_REQUEST['action'] ) ) {
-
-			if ( ( 'elementor' === $_REQUEST['action'] || 'elementor_ajax' === $_REQUEST['action'] ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Method render_module
-	 *
-	 * @param array      $attr         attribute.
-	 * @param string     $column_class column class.
-	 * @param array|null $result       result.
-	 *
-	 * @return string
-	 */
-	public function render_module( $attr, $column_class, $result = null ) {
-		return $this->render_module_front( $attr, $column_class );
-	}
-
-	/**
 	 * Method get_term
 	 *
-	 * @return array
+	 * @return object
 	 */
 	public function get_term() {
 		return ! self::$term ? get_queried_object() : self::$term;
@@ -191,13 +157,4 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 
 		return $result;
 	}
-	/**
-	 * Method render_module_front
-	 *
-	 * @param array  $attr         attribute.
-	 * @param string $column_class column class.
-	 *
-	 * @return string
-	 */
-	abstract public function render_module_front( $attr, $column_class );
 }

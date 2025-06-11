@@ -33,6 +33,78 @@ class Archive extends Grab {
 	protected $name;
 
 	/**
+	 * Build element with wrapper
+	 *
+	 * @param string $element_name  Element name.
+	 * @param string $inner         Inner element.
+	 * @param array  $array_classes Classes.
+	 * @param array  $array_data    Data attribute.
+	 * @param array  $id            Element ID.
+	 *
+	 * @return string
+	 */
+	protected function render_wrapper( $element_name, $inner, $array_classes = array(), $array_data = array(), $id = null ) {
+		$classes = '';
+		$data    = '';
+
+		foreach ( $array_classes as $class ) {
+			$classes = $classes . ' ' . $class;
+		}
+
+		foreach ( $array_data as $key => $value ) {
+			$data = $data . ' data-' . $key . '="' . $value . '"';
+		}
+
+		if ( $id ) {
+			$id = 'id="' . $id . '"';
+		}
+
+		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->get_element_id();
+
+		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
+	}
+
+	/**
+	 * Render content
+	 *
+	 * @return string
+	 */
+	public function render_content() {
+		$blockid = strtolower( str_replace( '_', '-', $this->attributes['gvnewsModule'] ) );
+		$content = $this->get_content();
+
+		return $this->render_wrapper(
+			"block-{$blockid}",
+			$content,
+		);
+	}
+
+	/**
+	 * Method render_gutenberg
+	 *
+	 * @return string
+	 */
+	public function render_gutenberg() {
+		return $this->render_content();
+	}
+
+	/**
+	 * Method render_frontend
+	 *
+	 * @return string
+	 */
+	public function render_frontend() {
+		$element_id      = $this->get_element_id();
+		$display_classes = $this->set_display_classes();
+		$extra_classes   = ' ';
+		if ( isset( $this->attributes['widthClass'] ) && $this->attributes['widthClass'] ) {
+			$extra_classes .= $this->attributes['widthClass'];
+		}
+
+		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper">' . $this->render_content() . '</div>';
+	}
+
+	/**
 	 * Get Content
 	 *
 	 * @return string
