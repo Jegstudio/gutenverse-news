@@ -3457,6 +3457,12 @@
 /* Postblock 14 */
 
 .gvnews_postblock_14 {
+  .gvnews_pl_lg_box .box_wrap .gvnews_pl_md_1, .gvnews_pl_lg_box .box_wrap .gvnews_pl_md_1 .gvnews_thumb {
+    margin-bottom: 0;
+  }
+  .gvnews_pl_lg_box .gvnews_post_category a {
+    color: var(--wp--preset--color--primary, #616161);
+  }
   .gvnews_posts_wrap {
     position: relative;
     overflow: hidden;

@@ -22,7 +22,7 @@ const Block17Columns = props => {
         if (1==props.type){
             aclass = 'gvnews_post gvnews_pl_md_1';
         }else{
-            aclass = 'gvnews_post gvnews_pl_sm';
+            aclass = `gvnews_post gvnews_pl_sm ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
         }
 
         return (
