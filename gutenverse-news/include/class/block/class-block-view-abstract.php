@@ -490,7 +490,7 @@ abstract class Block_View_Abstract {
 
 		$output .= '<div class="gvnews_post_meta">';
 		$output .= '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
-		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="fas fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		$output .= ! $feed ? '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" ><i class="far fa-comment"></i> ' . esc_attr( $comment ) . ' </a></div>' : '';
 		$output .= '</div>';
 
@@ -508,7 +508,7 @@ abstract class Block_View_Abstract {
 		$output = '';
 
 		$output .= '<div class="gvnews_post_meta">';
-		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="fas fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		$output .= '</div>';
 
 		return $output;
@@ -531,7 +531,7 @@ abstract class Block_View_Abstract {
 
 		$output .= '<div class="gvnews_post_meta">';
 		$output .= '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
-		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="fas fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		$output .= '</div>';
 
 		return $output;

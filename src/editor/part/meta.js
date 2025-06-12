@@ -24,7 +24,7 @@ const MetaDate = props => {
 
     return <div className="gvnews_meta_date">
         <a>
-            {showIcon && <i className={customIcon ? customIcon : 'fas fa-clock'}>&nbsp;</i>}
+            {showIcon && <i className={customIcon ? customIcon : 'far fa-clock'}>&nbsp;</i>}
             {'custom' == attr.date.format ? formatDateString(date, attr.date.custom) : 'ago' == attr.date.format ? timeDifference(timestamp) : formatDateString(date, attr.option.option.date_format)}
         </a>
     </div>;

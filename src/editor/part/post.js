@@ -20,7 +20,7 @@ const PostExcerpt = (props) => {
             </p>{' '}
             {props.read && (
                 <a className="gvnews_readmore">
-                    {props.attr.option.string && props.attr.option.string.load_more}
+                    {props.attr.option.string && props.attr.option.string.read_more}
                 </a>
             )}
         </div>
