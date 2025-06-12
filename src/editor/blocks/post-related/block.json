@@ -57,7 +57,7 @@
             "type": "string",
             "default": "Related "
         },
-        "secondTitle": {
+        "second_title": {
             "type": "string",
             "default": "Posts"
         },

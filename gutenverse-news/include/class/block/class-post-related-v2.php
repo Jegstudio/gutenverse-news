@@ -53,7 +53,7 @@ class Post_Related_V2 extends Post_Guten {
 
 		$attribute = array(
 			'first_title'             => $this->attributes['title'],
-			'second_title'            => $this->attributes['secondTitle'],
+			'second_title'            => $this->attributes['second_title'],
 			'header_type'             => $this->attributes['headerType'],
 			'date_format'             => $this->attributes['metaDateFormat'],
 			'date_format_custom'      => $this->attributes['metaDateFormatCustom'],

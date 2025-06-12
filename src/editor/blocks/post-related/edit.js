@@ -69,7 +69,7 @@ const PostRelated = compose(
         //header
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
@@ -113,7 +113,7 @@ const PostRelated = compose(
     const headerData = {
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
@@ -213,7 +213,7 @@ const PostRelated = compose(
                 //header
                 icon,
                 title,
-                secondTitle,
+                second_title,
                 headerType,
                 headerCategory,
                 headerAuthor,
@@ -327,7 +327,7 @@ const PostRelated = compose(
     }, [
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
