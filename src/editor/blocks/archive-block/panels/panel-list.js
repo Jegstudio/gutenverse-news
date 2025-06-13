@@ -56,7 +56,10 @@ export const panelList = () => {
         {
             title: __('Positioning', 'gutenverse'),
             initialOpen: false,
-            panelArray: positioningPanel,
+            panelArray: (props) => positioningPanel({
+                ...props,
+                selector: `.${props.elementId}`
+            }),
             tabRole: TabStyle
         },
         {

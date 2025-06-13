@@ -138,6 +138,138 @@ const getBlockStyle = (elementId, attributes) => {
     });
 
     /**
+     * Positioning Panel
+     */
+    isNotEmpty(attributes['positioningType']) && data.push(
+        {
+            'type': 'positioning',
+            'id': 'positioningType',
+            'selector': `.${elementId}`,
+            'skipDeviceType': 'first',
+            'attributeType': 'type',
+            'multiAttr': {
+                'positioningType': attributes['positioningType'],
+                'inBlock': attributes['inBlock']
+            }
+        },
+    );
+    isNotEmpty(attributes['positioningType']) && isNotEmpty(attributes['positioningWidth']) && data.push(
+        {
+            'type': 'positioning',
+            'id': 'positioningType',
+            'selector': `.${elementId}`,
+            'skipDeviceType': 'second',
+            'attributeType': 'type',
+            'multiAttr': {
+                'positioningWidth': attributes['positioningWidth'],
+                'positioningType': attributes['positioningType'],
+                'inBlock': attributes['inBlock']
+            }
+        }
+    );
+    isNotEmpty(attributes['positioningWidth']) && isNotEmpty(attributes['positioningType']) && data.push({
+        'type': 'positioning',
+        'id': 'positioningWidth',
+        'selector': `.${elementId}`,
+        'skipDeviceType': 'first',
+        'attributeType': 'width',
+        'multiAttr': {
+            'positioningWidth': attributes['positioningWidth'],
+            'positioningType': attributes['positioningType'],
+            'inBlock': attributes['inBlock']
+        }
+    });
+    isNotEmpty(attributes['positioningAlign']) && data.push(
+        {
+            'type': 'plain',
+            'id': 'positioningAlign',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'align-self',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId}`,
+        },
+        {
+            'type': 'positioning',
+            'id': 'positioningAlign',
+            'properties': [
+                {
+                    'name': 'vertical-align',
+                    'valueType': 'direct'
+                }
+            ],
+            'attributeType': 'align',
+            'selector': `.${elementId}`,
+        }
+    );
+    isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'plain',
+        'id': 'positioningLocation',
+        'properties': [
+            {
+                'name': 'position',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId}`,
+    });
+    isNotEmpty(attributes['positioningLeft']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningLeft',
+        'properties': [
+            {
+                'name': 'left',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId}`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningRight']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningRight',
+        'properties': [
+            {
+                'name': 'right',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId}`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningTop']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningTop',
+        'properties': [
+            {
+                'name': 'top',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId}`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningBottom']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningBottom',
+        'properties': [
+            {
+                'name': 'bottom',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId}`,
+        'attributeType': 'custom',
+    });
+
+    /**
      * Panel Spacing
      */
     isNotEmpty(attributes['margin']) && data.push({
