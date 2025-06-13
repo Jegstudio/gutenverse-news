@@ -307,9 +307,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_title > a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post .gvnews_post_title > a",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,
 					)
@@ -318,9 +317,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['metaTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_meta, .{$this->element_id} .gvnews_post_meta .fa, .{$this->element_id} .gvnews_postblock .jeg_subcat_list > li > a:hover, .{$this->element_id} .gvnews_pl_md_card .gvnews_post_category a, .{$this->element_id} .gvnews_postblock .jeg_subcat_list > li > a.current, .{$this->element_id} .gvnews_pl_md_5 .gvnews_post_meta, .{$this->element_id} .gvnews_pl_md_5 .gvnews_post_meta .fa, .{$this->element_id} .gvnews_post_category a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post > .gvnews_post_meta",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['metaTypography'],
 						'device_control' => false,
 					)
@@ -329,9 +327,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['contentTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_excerpt, .{$this->element_id} .gvnews_readmore",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post > .gvnews_post_excerpt",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['contentTypography'],
 						'device_control' => false,
 					)
