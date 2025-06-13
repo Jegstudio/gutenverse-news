@@ -11,7 +11,7 @@ const BlockArchive = (props) => {
         postOffset = 0,
         numberPost,
         columnWidth,
-        excerpLength,
+        excerptLength,
         excerptEllipsis,
         metaDateType,
         metaDateFormat,
@@ -89,7 +89,7 @@ const BlockArchive = (props) => {
                 {...{
                     blockType,
                     blockWidth,
-                    excerpLength,
+                    excerptLength,
                     excerptEllipsis,
                     moduleOption: moduleOption.current,
                     postData,
@@ -104,7 +104,7 @@ const BlockArchive = (props) => {
     }, [
         blockType,
         blockWidth,
-        excerpLength,
+        excerptLength,
         excerptEllipsis,
         moduleOption,
         postData,

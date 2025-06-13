@@ -110,7 +110,7 @@
             "default": ""
         },
         "excerptLength": {
-            "type": "string",
+            "type": "number",
             "default": 20
         },
         "excerptEllipsis": {
