@@ -30,7 +30,7 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
                 ...props,
-                styleId: 'archive-pagination-background',
+                styleId: 'archive-block-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
                 normalSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}`,

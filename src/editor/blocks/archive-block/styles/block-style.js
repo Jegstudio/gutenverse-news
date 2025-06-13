@@ -1,7 +1,15 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    data = backgroundStyle({
+        attributes,
+        data,
+        elementId,
+        backgroundSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}`,
+        backgroundHoverSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}:hover`,
+    });
 
     /**
      * Panel Design
@@ -76,22 +84,6 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-    });
-
-
-    /**
-     * Panel Background
-     */
-    isNotEmpty(attributes['background']) && data.push({
-        'type': 'background',
-        'id': 'background',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}`,
-    });
-
-    isNotEmpty(attributes['backgroundHover']) && data.push({
-        'type': 'background',
-        'id': 'backgroundHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}:hover`,
     });
 
     /**

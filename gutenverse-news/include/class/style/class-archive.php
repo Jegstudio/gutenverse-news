@@ -41,7 +41,10 @@ class Archive extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
+				'background'  => array(
+					'normal' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}",
+					'hover'  => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}:hover",
+				),
 				'border'      => null,
 				'positioning' => null,
 				'animation'   => null,
