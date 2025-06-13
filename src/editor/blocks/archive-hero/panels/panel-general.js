@@ -1,113 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, CheckboxControl, ImageRadioControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
+import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
 
 export const generalPanel = (props) => {
-    const { elementId, heroType, dateFormat } = props;
-
-    const { imgDir } = window['GVNewsConfig'];
+    const {
+        elementId,
+        heroType,
+        dateFormat
+    } = props;
 
     return [
-        {
-            id: 'heroType',
-            component: ImageRadioControl,
-            label: __('Hero Type', 'gutenverse-news'),
-            description: __('Choose which hero type that fit your content design.', 'gutenverse-news'),
-            options: [
-                {
-                    value: '1',
-                    image: <img src={`${imgDir}/hero-type-1.png`} />,
-                },
-                {
-                    value: '2',
-                    image: <img src={`${imgDir}/hero-type-2.png`} />,
-                },
-                {
-                    value: '3',
-                    image: <img src={`${imgDir}/hero-type-3.png`} />,
-                },
-                {
-                    value: '4',
-                    image: <img src={`${imgDir}/hero-type-4.png`} />,
-                },
-                {
-                    value: '5',
-                    image: <img src={`${imgDir}/hero-type-5.png`} />,
-                },
-                {
-                    value: '6',
-                    image: <img src={`${imgDir}/hero-type-6.png`} />,
-                },
-                {
-                    value: '7',
-                    image: <img src={`${imgDir}/hero-type-7.png`} />,
-                },
-                {
-                    value: '8',
-                    image: <img src={`${imgDir}/hero-type-8.png`} />,
-                },
-                {
-                    value: '9',
-                    image: <img src={`${imgDir}/hero-type-9.png`} />,
-                },
-                {
-                    value: '10',
-                    image: <img src={`${imgDir}/hero-type-10.png`} />,
-                },
-                {
-                    value: '11',
-                    image: <img src={`${imgDir}/hero-type-11.png`} />,
-                },
-                {
-                    value: '12',
-                    image: <img src={`${imgDir}/hero-type-12.png`} />,
-                },
-                {
-                    value: '13',
-                    image: <img src={`${imgDir}/hero-type-13.png`} />,
-                },
-                {
-                    value: 'skew',
-                    image: <img src={`${imgDir}/hero-type-Skew.png`} />,
-                },
-            ],
-        },
-        {
-            id: 'heroStyle',
-            component: ImageRadioControl,
-            label: __('Hero Style', 'gutenverse-news'),
-            description: __('Choose which hero style that fit your content design.', 'gutenverse-news'),
-            show: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'skew'].includes(heroType),
-            options: [
-                {
-                    image: <img src={`${imgDir}/hero-1.png`} />,
-                    value: '1',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-2.png`} />,
-                    value: '2',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-3.png`} />,
-                    value: '3',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-4.png`} />,
-                    value: '4',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-5.png`} />,
-                    value: '5',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-6.png`} />,
-                    value: '6',
-                },
-                {
-                    image: <img src={`${imgDir}/hero-7.png`} />,
-                    value: '7',
-                },
-            ],
-        },
         {
             id: 'heroMargin',
             component: RangeControl,
@@ -115,8 +16,47 @@ export const generalPanel = (props) => {
             min: 0,
             max: 30,
             step: 1,
+            unit: 'px',
             description: __('Margin of each hero element.', 'gutenverse-news'),
             show: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'skew'].includes(heroType),
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'heroMargin',
+                    'responsive': false,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
+                    'properties': [
+                        {
+                            'name': 'margin',
+                            'valueType': 'pattern',
+                            'pattern': '0 0 -{value}px -{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                },
+                {
+                    'type': 'plain',
+                    'id': 'heroMargin',
+                    'responsive': false,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
+                    'properties': [
+                        {
+                            'name': 'padding',
+                            'valueType': 'pattern',
+                            'pattern': '0 0 {value}px {value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                },
+            ],
         },
         {
             id: 'dateFormat',

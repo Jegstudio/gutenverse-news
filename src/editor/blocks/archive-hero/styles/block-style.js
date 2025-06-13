@@ -1,3 +1,4 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getPanelHeroStyle = (elementId, attributes) => {
@@ -18,6 +19,57 @@ const getBlockStyle = (elementId, attributes) => {
     let data = [...getPanelHeroStyle(elementId, attributes)];
 
     /**
+     * Panel Background.
+     */
+    data = backgroundStyle({
+        data,
+        attributes,
+        elementId,
+        backgroundSelector: `${elementId} .gvnews_heroblock`,
+        backgroundHoverSelector: `${elementId} .gvnews_heroblock:hover`,
+    });
+
+    if (isNotEmpty(attributes['heroMargin'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'heroMargin',
+            'responsive': false,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper`,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 -{value}px -{value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+        data.push({
+            'type': 'plain',
+            'id': 'heroMargin',
+            'responsive': false,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} article.gvnews_post`,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'pattern',
+                    'pattern': '0 0 {value}px {value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+    }
+
+    /**
      * Panel Design
      */
     isNotEmpty(attributes['titleTypography']) && data.push({
@@ -30,21 +82,6 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'typography',
         'id': 'metaTypography',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fa, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_subcat_list > li > a:hover, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_md_card .gvnews_post_category a, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_subcat_list > li > a.current, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_md_5 .gvnews_post_meta, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_md_5 .gvnews_post_meta .fa, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category a`,
-    });
-
-    /**
-     * Panel Background
-     */
-    isNotEmpty(attributes['background']) && data.push({
-        'type': 'background',
-        'id': 'background',
-        'selector': `.${elementId} .gvnews_heroblock`,
-    });
-
-    isNotEmpty(attributes['backgroundHover']) && data.push({
-        'type': 'background',
-        'id': 'backgroundHover',
-        'selector': `.${elementId} .gvnews_heroblock:hover`,
     });
 
     /**
