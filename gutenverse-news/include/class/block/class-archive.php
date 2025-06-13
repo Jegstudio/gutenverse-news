@@ -44,8 +44,10 @@ class Archive extends Grab {
 	 * @return string
 	 */
 	protected function render_wrapper( $element_name, $inner, $array_classes = array(), $array_data = array(), $id = null ) {
-		$classes = '';
-		$data    = '';
+		$classes    = '';
+		$data       = '';
+		$parts      = preg_split( '/[\\\\\/]/', $element_name );
+		$block_type = end( $parts );
 
 		foreach ( $array_classes as $class ) {
 			$classes = $classes . ' ' . $class;
@@ -67,9 +69,11 @@ class Archive extends Grab {
 			$id = 'id="' . $id . '"';
 		}
 
-		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->get_element_id();
+		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
 
-		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
+		return '<div ' . $id . ' class="' . $classes . ' ' . esc_attr( $this->attributes['scheme'] ) . ' ' . esc_attr( $this->attributes['elClass'] ) . '" ' . $data . '>'
+					. $inner .
+				'</div>';
 	}
 
 	/**

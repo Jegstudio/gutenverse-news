@@ -30,8 +30,6 @@ class Archive_Desc extends Archive_View_Abstract {
 		$term = $this->get_term();
 		$desc = isset( $term->description ) ? $term->description : '';
 
-		return "<div class='gvnews_archive_description_wrapper " . esc_attr( $this->get_vc_class_name() ) . ' ' . esc_attr( $attr['scheme'] ) . ' ' . esc_attr( $attr['el_class'] ) . "'>
-                <h2 class=\"gvnews_archive_description\">" . esc_attr( $desc ) . '</h2>
-            </div>';
+		return '<h2>' . esc_attr( $desc ) . '</h2>';
 	}
 }

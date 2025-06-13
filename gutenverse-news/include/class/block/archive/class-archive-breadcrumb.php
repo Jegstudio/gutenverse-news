@@ -47,9 +47,7 @@ class Archive_Breadcrumb extends Archive_View_Abstract {
 			}
 		}
 
-		return "<div class='gvnews_archive_breadcrumb_wrapper " . esc_attr( $this->get_vc_class_name() ) . ' ' . esc_attr( $attr['scheme'] ) . ' ' . esc_attr( $attr['el_class'] ) . "'>
-                <div class=\"gvnews_breadcrumbs\">{$breadcrumb}</div>
-            </div>";
+		return "<div>{$breadcrumb}</div>";
 	}
 
 	/**

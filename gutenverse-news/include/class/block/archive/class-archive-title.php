@@ -47,8 +47,6 @@ class Archive_Title extends Archive_View_Abstract {
 			$title = $attr['title'] . $title;
 		}
 
-		return "<div class='gvnews_archive_title_wrapper " . esc_attr( $this->get_vc_class_name() ) . ' ' . esc_attr( $attr['scheme'] ) . ' ' . esc_attr( $attr['el_class'] ) . "'>
-                <h1 class=\"gvnews_archive_title\">{$title}</h1>
-            </div>";
+		return "<h1>{$title}</h1>";
 	}
 }
