@@ -268,27 +268,23 @@ class Archive extends StyleAbstract {
 		if ( 'gutenverse/news-archive-hero' === $this->name ) {
 			if ( isset( $this->attrs['heroMargin'] ) ) {
 				$this->inject_style(
-					$this->inject_style(
-						array(
-							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper",
-							'property'       => function ( $value ) {
-								return "margin: 0 0 -{$value}px -{$value}px;";
-							},
-							'value'          => $this->attrs['heroMargin'],
-							'device_control' => false,
-						)
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper",
+						'property'       => function ( $value ) {
+							return "margin: 0 0 -{$value}px -{$value}px;";
+						},
+						'value'          => $this->attrs['heroMargin'],
+						'device_control' => false,
 					)
 				);
 				$this->inject_style(
-					$this->inject_style(
-						array(
-							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} article.gvnews_post",
-							'property'       => function ( $value ) {
-								return "padding: 0 0 {$value}px {$value}px;";
-							},
-							'value'          => $this->attrs['heroMargin'],
-							'device_control' => false,
-						)
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} article.gvnews_post",
+						'property'       => function ( $value ) {
+							return "padding: 0 0 {$value}px {$value}px;";
+						},
+						'value'          => $this->attrs['heroMargin'],
+						'device_control' => false,
 					)
 				);
 			}
