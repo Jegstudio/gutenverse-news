@@ -9,12 +9,12 @@ import { getModuleOptions } from '../../utils/helper';
 /**
  * Hero Element
  *
- * @param {heroType, numberPostShow, columnWidth, heroSliderRef} props
+ * @param {heroType, numberPostShow, columnWidth, elementRef} props
  * @param {sliderItem, numberPost, postOffset, contentType, uniqueContent, includeOnly, postType, includePost, excludePost, includeCategory, excludeCategory, includeAuthor, includeTag, excludeTag, sortBy, dateType, dateFormat, dateFormatCustom, heroStyle, enableslider, autoplay, autoplayDelay, heroMargin, heightDesktop} props
  * @returns {JSX.Element}
  */
 const HeroComponent = (props) => {
-    const { heroType, numberPostShow, columnWidth, heroSliderRef } = props;
+    const { heroType, numberPostShow, columnWidth, elementRef } = props;
     const {
         sliderItem,
         numberPost,
@@ -47,7 +47,6 @@ const HeroComponent = (props) => {
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(16);
     const [overlay, setOverlay] = useState(false);
-    const [slider, initSlider] = useState(false);
     const [block, setBlock] = useState(false);
     const moduleOption = useRef(null);
     const postCount = useRef(0);
@@ -162,7 +161,8 @@ const HeroComponent = (props) => {
                 },
             };
             const rows = [];
-            for (let i = 0; i < sliderItem; i++) {
+            const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
+            for (let i = 0; i < Math.min(sliderItem, maxSliderItem); i++) {
                 rows.push(
                     <HeroContentWrapperComponent
                         {...{
@@ -210,9 +210,8 @@ const HeroComponent = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
-            {slider && initSlider(false)}
+            {enableslider && elementRef.current && gvnews.hero.init(elementRef.current)}
+            {enableslider && elementRef.current && gvnews.hero.heroSlider(elementRef.current)}
         </>
     );
 };
