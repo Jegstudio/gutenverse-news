@@ -1,4 +1,4 @@
-
+import { useState, useEffect }  from '@wordpress/element';
 
 function Valid(value) {
     if ( value && value.length ) {
@@ -8,33 +8,41 @@ function Valid(value) {
 }
 
 function SubCatItem(props) {
+    const { active, setActive, title } = props;
     return (
         <li>
-            <a className="subclass-filter" href="#">
-                {props.title}
+            <a className={`subclass-filter ${active ? 'current' : ''}`} onClick={() => setActive(title)} href="#">
+                {title}
             </a>
         </li>
     );
 }
 
 function SubCat(props) {
+    const { onSubCatChange = () => {} } = props;
     if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
         return null;
     }
+    const [active, setActive] = useState('all');
+
+    useEffect(() => {
+        onSubCatChange(active);
+    }, [active]);
+
     return (
         <div className="gvnews_subcat okayNav loaded">
             <ul className="gvnews_subcat_list">
                 <li>
-                    <a className="subclass-filter current" href="#">{props.headerDefault}</a>
+                    <a className={`subclass-filter ${active === 'all' ? 'current' : ''}`} onClick={() => setActive('all')} href="#">{props.headerDefault}</a>
                 </li>
-                {Valid(props.headerCategory) && props.headerCategory.map(d => {
-                    return(<SubCatItem title={d.label}/>);
+                {Valid(props.headerCategory) && props.headerCategory.map( (d, index) => {
+                    return(<SubCatItem key={index} active={active === d.label} setActive={setActive} title={d.label}/>);
                 })}
-                {Valid(props.headerAuthor) && props.headerAuthor.map(d => {
-                    return(<SubCatItem title={d.label}/>);
+                {Valid(props.headerAuthor) && props.headerAuthor.map( (d, index) => {
+                    return(<SubCatItem key={index} active={active === d.label} setActive={setActive} title={d.label}/>);
                 })}
-                {Valid(props.headerTag) && props.headerTag.map(d => {
-                    return(<SubCatItem title={d.label}/>);
+                {Valid(props.headerTag) && props.headerTag.map( (d, index) => {
+                    return(<SubCatItem key={index} active={active === d.label} setActive={setActive} title={d.label}/>);
                 })}
             </ul>
         </div>

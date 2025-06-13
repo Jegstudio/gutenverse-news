@@ -124,7 +124,7 @@ const Block1Columns = props => {
         return(
             <div className="gvnews_posts gvnews-posts-row">
                 <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
-                    {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className="gvnews_postsmall col-sm-4">
                     {rows}
@@ -147,7 +147,7 @@ const Block1Columns = props => {
     };
 
     return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <RenderColumn />: postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <RenderColumn />: postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

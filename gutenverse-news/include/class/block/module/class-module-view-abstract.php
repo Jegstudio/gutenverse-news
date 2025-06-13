@@ -439,7 +439,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $categories as $category ) {
 					$cat = get_category( trim( $category ) );
 					if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
-						$sub_cat .= '<li><a class="subclass-filter" href="' . get_category_link( $cat->term_id ) . "\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
+						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
 					}
 				}
 			}
@@ -456,7 +456,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					$author_id   = trim( $author );
 					$author_url  = get_author_posts_url( $author_id );
 					$author_name = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"{$author_url}\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
@@ -474,7 +474,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $tags as $tag ) {
 					$tag_object = get_tag( trim( $tag ) );
 					if ( $tag_object ) {
-						$sub_cat .= '<li><a class="subclass-filter" href="' . get_tag_link( $tag_object->term_id ) . "\" data-type='tag' data-id='{$tag_object->term_id}'>{$tag_object->name}</a></li>";
+						$sub_cat .= '<li><a class="subclass-filter" href="#" data-type="tag" data-id="' . $tag_object->term_id . '">' . $tag_object->name . '</a></li>';
 					}
 				}
 			}
