@@ -9,7 +9,7 @@
 
     a {
         color: #616161;
-        background: var(--wp--preset--color--primary, #f5f5f5);
+        background: #f5f5f5;
         display: inline-block;
         letter-spacing: 1px;
         line-height: normal;
@@ -24,7 +24,7 @@
 
         &:hover {
             color: #fff;
-            background: var(--wp--preset--color--primary, #f70d28);
+            background: var(--wp--preset--color--accent, #f70d28);
         }
     }
 }
