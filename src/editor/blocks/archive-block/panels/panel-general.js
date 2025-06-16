@@ -3,7 +3,8 @@ import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'guten
 
 export const generalPanel = (props) => {
     const {
-        boxed
+        boxed,
+        dateFormat
     } = props;
     return [
         {
@@ -64,6 +65,7 @@ export const generalPanel = (props) => {
             ],
         },
         {
+            show: dateFormat === 'custom',
             id: 'dateFormatCustom',
             component: TextControl,
             label: __('Custom Date Format', 'gutenverse-news'),
