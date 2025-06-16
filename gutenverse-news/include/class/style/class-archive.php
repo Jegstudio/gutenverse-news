@@ -297,6 +297,78 @@ class Archive extends StyleAbstract {
 					)
 				);
 			}
+
+			if ( ! empty( $this->attrs['heroHeightDesktop'] ) ) {
+				$height = $this->attrs['heroHeightDesktop'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (min-width: 1025px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight1024'] ) ) {
+				$height = $this->attrs['heroHeight1024'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 1024px) and (min-width: 769px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight768'] ) ) {
+				$height = $this->attrs['heroHeight768'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 768px) and (min-width: 668px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight667'] ) ) {
+				$height = $this->attrs['heroHeight667'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 667px) and (min-width: 569px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight568'] ) ) {
+				$height = $this->attrs['heroHeight568'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 568px) and (min-width: 481px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight480'] ) ) {
+				$height = $this->attrs['heroHeight480'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 480px)',
+						'device_control' => false,
+					)
+				);
+			}
 			$hero_type = array( 1, 2, 3, 4, 5, 6, 7 );
 			foreach ( $hero_type as $value ) {
 				if ( isset( $this->attrs[ "heroItem{$value}Enable" ] ) && $this->attrs[ "heroItem{$value}Enable" ] ) {
