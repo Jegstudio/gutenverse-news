@@ -69,17 +69,9 @@
             "type": "object",
             "default": {}
         },
-        "scheme": {
-            "type": "string",
-            "default": ""
-        },
         "elClass": {
             "type": "string",
             "default": ""
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": "auto"
         },
         "titleTypography": {
             "type": "object"
