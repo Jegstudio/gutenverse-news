@@ -25,8 +25,8 @@ const getBlockStyle = (elementId, attributes) => {
         data,
         attributes,
         elementId,
-        backgroundSelector: `${elementId} .gvnews_heroblock`,
-        backgroundHoverSelector: `${elementId} .gvnews_heroblock:hover`,
+        backgroundSelector: `.${elementId} .gvnews_heroblock`,
+        backgroundHoverSelector: `.${elementId} .gvnews_heroblock:hover`,
     });
 
     if (isNotEmpty(attributes['heroMargin'])) {

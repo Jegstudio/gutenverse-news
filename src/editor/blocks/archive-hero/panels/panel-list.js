@@ -47,8 +47,8 @@ export const panelList = () => {
                 styleId: 'archive-pagination-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
-                normalSelector: `${props.elementId} .gvnews_heroblock`,
-                hoverSelector: `${props.elementId} .gvnews_heroblock:hover`
+                normalSelector: `.${props.elementId} .gvnews_heroblock`,
+                hoverSelector: `.${props.elementId} .gvnews_heroblock:hover`
             }),
             tabRole: TabStyle
         },
