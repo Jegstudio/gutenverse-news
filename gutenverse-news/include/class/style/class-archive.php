@@ -114,26 +114,26 @@ class Archive extends StyleAbstract {
 	 */
 	private function archive_title() {
 		if ( 'gutenverse/news-archive-title' === $this->name ) {
-			if ( isset( $this->attrs['titleColor'] ) ) {
-				$this->inject_style(
+
+			if ( isset( $this->attrs['titleTypography'] ) ) {
+				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_title",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['titleColor'],
+						'selector'       => ".{$this->element_id} .gvnews-archive-title",
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
+
+			if ( isset( $this->attrs['titleColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_title",
+						'selector'       => ".{$this->element_id} .gvnews-archive-title",
 						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
+							return $this->handle_color( $value, 'color' );
 						},
-						'value'          => $this->attrs['fontSize'],
+						'value'          => $this->attrs['titleColor'],
 						'device_control' => false,
 					)
 				);
@@ -149,7 +149,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb span a",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -161,7 +161,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['textColorHover'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a:hover",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb span a:hover",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -173,7 +173,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['arrowColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs i",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb i",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -182,25 +182,12 @@ class Archive extends StyleAbstract {
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a, .{$this->element_id} .gvnews_breadcrumbs i",
-						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
-						},
-						'value'          => $this->attrs['fontSize'],
-						'device_control' => false,
-					)
-				);
-			}
 
 			if ( isset( $this->attrs['breadcrumbTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id}.gvnews-archive-breadcrumb",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['breadcrumbTypography'],
 						'device_control' => false,
 					)
@@ -235,12 +222,12 @@ class Archive extends StyleAbstract {
 	private function archive_description() {
 		if ( 'gutenverse/news-archive-description' === $this->name ) {
 
-			if ( isset( $this->attrs['typography'] ) ) {
+			if ( isset( $this->attrs['descTypography'] ) ) {
 				$this->inject_typography(
 					array(
 						'selector'       => ".{$this->element_id} .gvnews-archive-desc",
 						'property'       => function ( $value ) {},
-						'value'          => $this->attrs['typography'],
+						'value'          => $this->attrs['descTypography'],
 						'device_control' => false,
 					)
 				);

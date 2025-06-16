@@ -44,17 +44,5 @@ export const generalPanel = (props) => {
                 }
             ]
         },
-        {
-            id: 'fontSize',
-            component: TextControl,
-            label: __('Font Size', 'gutenverse-news'),
-            description: __('Set font size with unit (Ex: 36px or 4em).', 'gutenverse-news'),
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breadcrumbs span a`, `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breadcrumbs i`],
-                    render: value => `font-size: ${value}`
-                }
-            ],
-        }
     ];
 };

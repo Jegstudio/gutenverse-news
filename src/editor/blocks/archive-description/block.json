@@ -32,18 +32,23 @@
             "type": "string",
             "default": 12
         },
-        "typography": {
+        "descTypography": {
             "type": "object",
             "copyStyle": true
         },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },

@@ -9,12 +9,12 @@ export const generalPanel = (props) => {
 
     return [
         {
-            id: 'typography',
+            id: 'descTypography',
             label: __('Text Typography', 'gutenverse-news'),
             component: TypographyControl,
             liveStyle: [
                 {
-                    'id': 'typography',
+                    'id': 'descTypography',
                     'type': 'typography',
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc`,
                 }

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, ColorControl } from 'gutenverse-core/controls';
+import { TextControl, ColorControl, TypographyControl } from 'gutenverse-core/controls';
 import { handleColor } from 'gutenverse-core/styling';
 
 export const generalPanel = (props) => {
@@ -14,24 +14,25 @@ export const generalPanel = (props) => {
             component: TextControl
         },
         {
+            id: 'titleTypography',
+            label: __('Title Typography', 'gutenverse-news'),
+            component: TypographyControl,
+            liveStyle: [
+                {
+                    id: 'titleTypography',
+                    type: 'typography',
+                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-archive-title`,
+                }
+            ],
+        },
+        {
             id: 'titleColor',
             label: __('Title Color', 'gutenverse-news'),
             component: ColorControl,
             style: [
                 {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_title`],
+                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-archive-title`],
                     render: value => handleColor(value, 'color')
-                }
-            ],
-        },
-        {
-            id: 'fontSize',
-            label: __('Font Size', 'gutenverse-news'),
-            component: TextControl,
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_title`],
-                    render: value => `font-size: ${value}`
                 }
             ],
         },

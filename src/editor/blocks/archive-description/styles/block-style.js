@@ -1,13 +1,21 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    data = backgroundStyle({
+        data,
+        elementId,
+        attributes,
+        backgroundSelector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc`,
+        backgroundHoverSelector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc:hover`,
+    });
 
     /**
      * Panel General
      */
-    isNotEmpty(attributes['typography']) && data.push({
-        'id': 'typography',
+    isNotEmpty(attributes['descTypography']) && data.push({
+        'id': 'descTypography',
         'type': 'typography',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc`,
     });

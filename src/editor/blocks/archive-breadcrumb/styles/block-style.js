@@ -1,7 +1,15 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    data = backgroundStyle({
+        data,
+        elementId,
+        attributes,
+        backgroundSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-archive-breadcrumb`,
+        backgroundHoverSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-archive-breadcrumb:hover`
+    });
 
     /**
      * Panel General
@@ -66,20 +74,20 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breadcrumbs span a, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breadcrumbs i`,
     });
 
-    /**
-     * Panel Background
-     */
-    isNotEmpty(attributes['background']) && data.push({
-        'type': 'background',
-        'id': 'background',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}`,
-    });
+    // /**
+    //  * Panel Background
+    //  */
+    // isNotEmpty(attributes['background']) && data.push({
+    //     'type': 'background',
+    //     'id': 'background',
+    //     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}`,
+    // });
 
-    isNotEmpty(attributes['backgroundHover']) && data.push({
-        'type': 'background',
-        'id': 'backgroundHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}:hover`,
-    });
+    // isNotEmpty(attributes['backgroundHover']) && data.push({
+    //     'type': 'background',
+    //     'id': 'backgroundHover',
+    //     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}:hover`,
+    // });
 
     /**
      * Panel Border

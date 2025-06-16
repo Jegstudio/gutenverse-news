@@ -44,7 +44,7 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
                 ...props,
-                styleId: 'archive-pagination-background',
+                styleId: 'archive-hero-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
                 normalSelector: `.${props.elementId} .gvnews_heroblock`,

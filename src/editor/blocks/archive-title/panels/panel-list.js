@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 
@@ -10,6 +10,19 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: generalPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Background', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => backgroundPanel({
+                ...props,
+                styleId: 'archive-title-background',
+                normalOptions: ['default', 'gradient'],
+                hoverOptions: ['default', 'gradient'],
+                normalSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId} .gvnews-archive-title`,
+                hoverSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId} .gvnews-archive-title:hover`,
+            }),
+            tabRole: TabStyle,
         },
         {
             title: __('Border', 'gutenverse-news'),
