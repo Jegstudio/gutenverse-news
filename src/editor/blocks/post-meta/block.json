@@ -2,7 +2,7 @@
     "apiVersion": 2,
     "name": "gutenverse/news-post-meta",
     "title": "Post Meta",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta_V2",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
     "attributes": {

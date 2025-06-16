@@ -2,7 +2,7 @@
     "apiVersion": 2,
     "name": "gutenverse/news-post-related",
     "title": "Post Related",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related_V2",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
     "attributes": {
@@ -72,10 +72,6 @@
         "templateType": {
             "type": "string",
             "default": "template_1"
-        },
-        "excerptLength": {
-            "type": "string",
-            "default": 20
         },
         "metaDateFormat": {
             "type": "string",
@@ -156,10 +152,6 @@
         "column": {
             "type": "object",
             "default": {}
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
         },
         "background": {
             "type": "object",

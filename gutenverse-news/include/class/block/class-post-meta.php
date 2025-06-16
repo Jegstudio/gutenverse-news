@@ -9,12 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
-use GUTENVERSE\NEWS\Block\Grab;
-use GUTENVERSE\NEWS\Util\Single\Single_Post;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+use GUTENVERSE\NEWS\Block\Post_Guten;
 
 /**
  * Post_Meta
@@ -22,15 +17,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Meta extends Grab {
-
+class Post_Meta extends Post_Guten {
 	/**
-	 * Method get_content
+	 * Hold Post Related Classname
+	 *
+	 * @var array
+	 */
+	protected $class_name = 'gvnews_post_meta gvnews_custom_meta_wrapper';
+	/**
+	 * Get content
 	 *
 	 * @return string
 	 */
 	public function get_content() {
-		$left_html = '';
+		$left_html  = '';
 		$right_html = '';
 
 		$lefts = is_array( $this->attributes['metaLeft'] ) ? $this->attributes['metaLeft'] : explode( ',', $this->attributes['metaLeft'] );
@@ -45,7 +45,7 @@ class Post_Meta extends Grab {
 		}
 		$right_html = "<div class='meta_right'>{$right_html}</div>";
 
-		return "<div class='gvnews_post_meta gvnews_custom_meta_wrapper " . esc_attr( $this->get_vc_class_name() ) . "'>" . $left_html . $right_html . '</div>';
+		return $left_html . $right_html;
 	}
 
 	/**
@@ -68,7 +68,6 @@ class Post_Meta extends Grab {
 			}
 		}
 	}
-
 
 	/**
 	 * Method render_category

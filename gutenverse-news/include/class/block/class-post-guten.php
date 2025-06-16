@@ -17,7 +17,7 @@ use Gutenverse\Framework\Block\Block_Abstract;
  * @package gutenverse\block
  */
 class Post_Guten extends Block_Abstract {
-    /**
+	/**
 	 * Block Attributes.
 	 *
 	 * @var array
@@ -31,12 +31,12 @@ class Post_Guten extends Block_Abstract {
 	 */
 	protected $content;
 	/**
-	 * Hold Post Tags Classname
+	 * Hold Post block Classname
 	 *
 	 * @var string
 	 */
-	protected $className = 'gvnews-custom-block';
-    /**
+	protected $class_name = 'gvnews-custom-block';
+	/**
 	 * Block attributes
 	 *
 	 * @param array $attributes .
@@ -53,7 +53,7 @@ class Post_Guten extends Block_Abstract {
 	protected function set_content( $content ) {
 		$this->content = $content;
 	}
-    /**
+	/**
 	 * Get module
 	 *
 	 * @param array  $attr      attribute.
@@ -75,7 +75,7 @@ class Post_Guten extends Block_Abstract {
 
 		return $content;
 	}
-    /**
+	/**
 	 * Get content
 	 *
 	 * @return string
@@ -105,25 +105,25 @@ class Post_Guten extends Block_Abstract {
 	 * Generate container class in editor
 	 */
 	public function generate_container_class() {
-        $class_list = array(            
-            'guten-element',
-            $this->get_element_id(),
-            $this->className,
-            'gvnews-block gvnews-block-wrapper',
-            $this->get_custom_classes(),
-            $this->set_animation_classes(),
-            $this->set_display_classes(),
-        );
+		$class_list = array(
+			'guten-element',
+			$this->get_element_id(),
+			$this->class_name,
+			'gvnews-block gvnews-block-wrapper',
+			$this->get_custom_classes(),
+			$this->set_animation_classes(),
+			$this->set_display_classes(),
+		);
 
-		return trim(implode(' ', $class_list));
+		return trim( implode( ' ', $class_list ) );
 	}
 
 	/**
 	 * Render view in frontend
 	 */
 	public function render_frontend() {
-		return '<div class="'. $this->generate_container_class() . '">' . 
-				$this->render_content() . 
+		return '<div class="' . $this->generate_container_class() . '">' .
+				$this->render_content() .
 			'</div>';
 	}
 }

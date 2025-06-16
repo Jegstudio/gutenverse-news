@@ -9,12 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
-use GUTENVERSE\NEWS\Block\Grab;
 use GUTENVERSE\NEWS\Util\Single\Single_Post;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+use GUTENVERSE\NEWS\Block\Post_Guten;
 
 /**
  * Post_Tag
@@ -22,31 +18,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Tag extends Grab {
-
+class Post_Tag extends Post_Guten {
 	/**
-	 * Method get_content
+	 * Hold Post Tags Classname
+	 *
+	 * @var array
+	 */
+	protected $class_name = 'gvnews-post-tags';
+	/**
+	 * Render content
 	 *
 	 * @return string
 	 */
-	public function get_content() {
+	public function render_content() {
 		if ( has_tag() ) {
 			ob_start();
 			Single_Post::get_instance()->render_post_tag();
 			$tag = ob_get_clean();
 
-			$wrapper_classes = gvnews_build_html_classes(
-				array(
-					'gvnews_custom_tag_wrapper',
-					esc_attr( $this->get_vc_class_name() ),
-				)
-			);
-
-			return "<div class='{$wrapper_classes}'>
-                    <div class=\"gvnews_post_tags\">
-                        {$tag}
-                    </div>
-                </div>";
+			return $tag;
 		}
 	}
 }

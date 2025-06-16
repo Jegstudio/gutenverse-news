@@ -2,7 +2,7 @@
     "apiVersion": 2,
     "name": "gutenverse/news-post-tag",
     "title": "Post Tag",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag_V2",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
     "attributes": {
