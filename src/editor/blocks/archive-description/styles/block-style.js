@@ -6,25 +6,18 @@ const getBlockStyle = (elementId, attributes) => {
     /**
      * Panel General
      */
+    isNotEmpty(attributes['typography']) && data.push({
+        'id': 'typography',
+        'type': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc`,
+    });
     isNotEmpty(attributes['textColor']) && data.push({
         'type': 'color',
         'id': 'textColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_description`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews-archive-desc`,
         'properties': [
             {
                 'name': 'color',
-                'valueType': 'direct'
-            }
-        ],
-    });
-
-    isNotEmpty(attributes['fontSize']) && data.push({
-        'type': 'plain',
-        'id': 'fontSize',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_description`,
-        'properties': [
-            {
-                'name': 'font-size',
                 'valueType': 'direct'
             }
         ],

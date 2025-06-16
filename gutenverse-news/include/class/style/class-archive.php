@@ -234,26 +234,26 @@ class Archive extends StyleAbstract {
 	 */
 	private function archive_description() {
 		if ( 'gutenverse/news-archive-description' === $this->name ) {
-			if ( isset( $this->attrs['textColor'] ) ) {
-				$this->inject_style(
+
+			if ( isset( $this->attrs['typography'] ) ) {
+				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_description",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['textColor'],
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc",
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs['typography'],
 						'device_control' => false,
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
+
+			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_description",
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc",
 						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
+							return $this->handle_color( $value, 'color' );
 						},
-						'value'          => $this->attrs['fontSize'],
+						'value'          => $this->attrs['textColor'],
 						'device_control' => false,
 					)
 				);

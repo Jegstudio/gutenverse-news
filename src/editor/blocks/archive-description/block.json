@@ -16,9 +16,6 @@
         "textColor": {
             "type": "object"
         },
-        "fontSize": {
-            "type": "string"
-        },
         "scheme": {
             "type": "string",
             "default": ""
@@ -34,6 +31,10 @@
         "columnWidth": {
             "type": "string",
             "default": 12
+        },
+        "typography": {
+            "type": "object",
+            "copyStyle": true
         },
         "background": {
             "type": "object",
