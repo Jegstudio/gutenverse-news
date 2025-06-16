@@ -9,10 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
-use GUTENVERSE\NEWS\Block\Grab;
-
 use GUTENVERSE\NEWS\Util\Single\Single_Post;
-
+use GUTENVERSE\NEWS\Block\Post_Guten;
 
 /**
  * Post_Related
@@ -20,11 +18,15 @@ use GUTENVERSE\NEWS\Util\Single\Single_Post;
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Related extends Grab {
-
-
+class Post_Related extends Post_Guten {
 	/**
-	 * Method get_content
+	 * Hold Post Related Classname
+	 *
+	 * @var array
+	 */
+	protected $class_name = 'gvnews-post-related gvnews-custom-related-wrapper';
+	/**
+	 * Get content
 	 *
 	 * @return string
 	 */
@@ -52,7 +54,7 @@ class Post_Related extends Grab {
 
 		$attribute = array(
 			'first_title'             => $this->attributes['title'],
-			'second_title'            => $this->attributes['secondTitle'],
+			'second_title'            => $this->attributes['second_title'],
 			'header_type'             => $this->attributes['headerType'],
 			'date_format'             => $this->attributes['metaDateFormat'],
 			'date_format_custom'      => $this->attributes['metaDateFormatCustom'],
@@ -83,16 +85,6 @@ class Post_Related extends Grab {
 
 		$content = $instance->build_module( $attribute );
 
-		$wrapper_classes = gvnews_build_html_classes(
-			array(
-				'gvnews_related_post_container',
-				'gvnews_custom_related_wrapper',
-				esc_attr( $this->get_vc_class_name() ),
-			)
-		);
-
-		return "<div class='{$wrapper_classes}'>" .
-		$content .
-		'</div>';
+		return $content;
 	}
 }

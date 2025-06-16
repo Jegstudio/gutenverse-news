@@ -16,7 +16,7 @@ const Block2Columns = props => {
 
     const RenderBlock2 = props=>{
         return (
-            <article className="gvnews_post gvnews_pl_sm">
+            <article className={`gvnews_post gvnews_pl_sm ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <ThumbModule size={715} cat={false} post={props.post}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>

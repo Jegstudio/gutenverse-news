@@ -111,11 +111,9 @@ const PostFeaturedImage = compose(
         <div  {...blockProps}>
             <div className="gvnews_custom_featured_wrapper">
                 <div className="gvnews_featured featured_image custom_post">
-                    <a href="#">
-                        <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
-                            {content ? content : <ModuleOverlay />}
-                        </div>
-                    </a>
+                    <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
+                        {content ? content : <ModuleOverlay />}
+                    </div>
                 </div>
             </div>
         </div>

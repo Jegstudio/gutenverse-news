@@ -57,7 +57,7 @@
             "type": "string",
             "default": "Related "
         },
-        "secondTitle": {
+        "second_title": {
             "type": "string",
             "default": "Posts"
         },
@@ -72,10 +72,6 @@
         "templateType": {
             "type": "string",
             "default": "template_1"
-        },
-        "excerptLength": {
-            "type": "string",
-            "default": 20
         },
         "metaDateFormat": {
             "type": "string",
@@ -105,6 +101,30 @@
             "type": "string",
             "default": "ALL"
         },
+        "headerTextColor": {
+            "type": "object"
+        },
+        "headerLineColor": {
+            "type": "object"
+        },
+        "headerLineColor2": {
+            "type": "object"
+        },
+        "headerBackgroundColor": {
+            "type": "object"
+        },
+        "headerBackgroundColor2": {
+            "type": "object"
+        },
+        "headerSecondColor": {
+            "type": "object"
+        },
+        "headerAccentColor": {
+            "type": "object"
+        },
+        "headerAccentColor2": {
+            "type": "object"
+        },
         "match": {
             "type": "string",
             "default": "category"
@@ -133,10 +153,6 @@
             "type": "object",
             "default": {}
         },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
-        },
         "background": {
             "type": "object",
             "default": {}
@@ -148,18 +164,33 @@
         "border": {
             "type": "object"
         },
-        "boxShadow": {
+        "borderResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "border",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "borderHover": {
             "type": "object"
         },
-        "borderHover": {
+        "borderHoverResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "borderHover",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "boxShadow": {
             "type": "object"
         },
         "boxShadowHover": {
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
+            "type": "object"
         },
         "enableAutoplay": {
             "type": "boolean",
@@ -211,7 +242,11 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+        "mask": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false

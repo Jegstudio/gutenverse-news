@@ -12,13 +12,6 @@ export const generalPanel = (props) => {
             id: 'titleTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_title`,
-                    hasChild: true,
-                    render: (value, id) => handleTypography(value, props, id)
-                }
-            ]
         },
     ];
 };

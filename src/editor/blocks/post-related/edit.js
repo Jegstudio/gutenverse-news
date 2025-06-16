@@ -1,7 +1,7 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
@@ -69,7 +69,7 @@ const PostRelated = compose(
         //header
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
@@ -113,7 +113,7 @@ const PostRelated = compose(
     const headerData = {
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
@@ -193,9 +193,11 @@ const PostRelated = compose(
 
     const blockProps = useBlockProps({
         className: classnames(
+            'guten-element',
+            'gvnews-post-related',
+            'gvnews-custom-related-wrapper',
             'gvnews-block',
             'gvnews-block-wrapper',
-            'gvnews-post-related',
             elementId,
             animationClass,
             displayClass,
@@ -211,7 +213,7 @@ const PostRelated = compose(
                 //header
                 icon,
                 title,
-                secondTitle,
+                second_title,
                 headerType,
                 headerCategory,
                 headerAuthor,
@@ -290,7 +292,7 @@ const PostRelated = compose(
                     break;
                 case 'template_18':
                     template = <Block18Columns {...columnData} />;
-                    break; z;
+                    break;
                 case 'template_19':
                     template = <Block19Columns {...columnData} />;
                     break;
@@ -325,7 +327,7 @@ const PostRelated = compose(
     }, [
         icon,
         title,
-        secondTitle,
+        second_title,
         headerType,
         headerCategory,
         headerAuthor,
@@ -352,11 +354,9 @@ const PostRelated = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews_custom_related_wrapper">
-                <div className={`${templateType.replace('template_', 'gvnews_postblock_')} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
-                    <HeaderModule {...headerData} />
-                    {content ? content : <ModuleOverlay />}
-                </div>
+            <div className={`${templateType.replace('template_', 'gvnews_postblock_')} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+                <HeaderModule {...headerData} />
+                {content ? content : <ModuleOverlay />}
             </div>
         </div>
     </>;
