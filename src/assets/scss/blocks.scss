@@ -23789,4 +23789,7 @@ input:checked+.slider {
     //fix style from core?
     transition: unset;
   }
+    .gvnews_post_title a {
+      color: var(--wp--preset--color--primary, #212121);
+    }
 }
