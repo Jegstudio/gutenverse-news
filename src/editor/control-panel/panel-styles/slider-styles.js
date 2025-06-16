@@ -4,6 +4,15 @@ const getSliderStyle = (elementId, attributes) => {
     let data = [];
 
     /**
+     * Panel General
+     */
+    isNotEmpty(attributes['overrideOverlay']) && data.push({
+        'type': 'background',
+        'id': 'overrideOverlay',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item:before`,
+    });
+
+    /**
      * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({

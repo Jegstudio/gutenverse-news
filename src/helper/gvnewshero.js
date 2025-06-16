@@ -108,7 +108,7 @@
         heroSlider: function (element) {
             if (isTnsActive) {
                 var base = this,
-                    block_hero = element.querySelectorAll('.gvnews_heroblock.tiny-slider');
+                block_hero = element.querySelectorAll('.gvnews_heroblock.tiny-slider');
                 if (block_hero.length > 0) {
                     base.gvnewsLibrary.forEach(block_hero, function (ele, i) {
                         var block = ele,

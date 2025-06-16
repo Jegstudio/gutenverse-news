@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS;
 
+use GUTENVERSE\NEWS\Block\Block_Manager;
+
 /**
  * Class Init
  *
@@ -23,8 +25,35 @@ class Blocks {
 	public function __construct() {
 			add_action( 'init', array( $this, 'register_blocks' ), 99 );
 			add_filter( 'gutenverse_block_categories', array( $this, 'block_category' ) );
+			add_filter( 'pre_render_block', array( $this, 'check_column_width' ), 10, 2 );
 	}
 
+	/**
+	 * Check wrapper column width.
+	 *
+	 * @param string|null $pre_render Pre rendered block.
+	 * @param array       $parsed_block Block parshed.
+	 * @return string|null
+	 */
+	public function check_column_width( $pre_render, $parsed_block ) {
+		if ( 'gutenverse/column' === $parsed_block['blockName'] ) {
+			if ( isset( $parsed_block['attrs']['width']['Desktop'] ) ) {
+				$desktop_width = $parsed_block['attrs']['width']['Desktop'];
+
+				if ( $desktop_width < 34 ) {
+					$column = 4;
+				} elseif ( $desktop_width < 51 ) {
+					$column = 6;
+				} elseif ( $desktop_width < 67 ) {
+					$column = 8;
+				} else {
+					$column = 12;
+				}
+				Block_Manager::get_instance()->force_set_width( $column );
+			}
+		}
+		return $pre_render;
+	}
 	/**
 	 * Block Category
 	 *

@@ -1,5 +1,24 @@
 @import 'single-post-block';
 
+/* Display condiditon style */
+@media only screen and (min-width: 781px) {
+    .hide-desktop {
+        display: none!important;
+    }
+}
+  
+@media (max-width: 780px) and (min-width: 426px) {
+    .hide-tablet {
+        display: none!important;
+    }
+}
+  
+@media (max-width: 425px) {
+    .hide-mobile {
+        display: none!important;
+    }
+}
+
 /* Clearfix */
 
 .gvnews-posts-row:after,
@@ -21959,13 +21978,11 @@ input:checked+.slider {
         text-align: right;
 
         &:before {
-          content: '\f177';
           margin-left: -3px;
         }
       }
 
       &.tns-next:before {
-        content: '\f178';
         margin-left: -2px;
       }
     }

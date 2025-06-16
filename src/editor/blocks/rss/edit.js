@@ -19,6 +19,10 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import ThumbModule from '../../part/thumbnail';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { useSelect } from '@wordpress/data';
+import { getParentColumnWidth } from '../../utils/helper';
+
 
 const RssBlock = compose(
     withPartialRender,
@@ -55,6 +59,14 @@ const RssBlock = compose(
     } = attributes;
 
     const elementRef = useRef(null);
+    const deviceType = getDeviceType();
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -131,12 +143,20 @@ const RssBlock = compose(
 
     useEffect(() => {
         if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(12);
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
         } else {
             getWidth(columnWidth);
         }
-    }, [columnWidth]);
+    }, [
+        columnWidth,
+        deviceType
+    ]);
 
     useEffect(() => {
         if (postData.length) {
@@ -154,7 +174,7 @@ const RssBlock = compose(
             const content = postData.map((post, index) => {
                 if (index < limit) {
                     return <article key={index} className="gvnews_post gvnews_pl_md_2">
-                        <ThumbModule size={715} cat={false} post={post} />
+                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} />}
                         <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;
                 }

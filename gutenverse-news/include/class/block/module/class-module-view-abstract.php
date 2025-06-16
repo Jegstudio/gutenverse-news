@@ -32,7 +32,12 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$heading = $this->render_header( $attr );
 		$name    = str_replace( 'module_', '', $this->class_name );
 		$content = $this->render_output( $attr, $column_class );
-		$script  = $this->render_script( $attr, $column_class );
+
+		if ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || gutenverse_is_block_editor() ) { // Check if render in editor or frontend.
+			$script = $this->render_script( $attr, $column_class );
+		} else {
+			$script = '';
+		}
 
 		$wrapper_classes = gvnews_build_html_classes(
 			array(
@@ -53,7 +58,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			)
 		);
 
-		return '<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$wrapper_classes}\" {$data_attr}}\">
+		return '<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$wrapper_classes}\" {$data_attr}>
 					{$heading}
 					{$content}
 					{$script}
