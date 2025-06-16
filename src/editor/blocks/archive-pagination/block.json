@@ -37,10 +37,6 @@
             "type": "string",
             "default": ""
         },
-        "columnWidth": {
-            "type": "string",
-            "default": "auto"
-        },
         "paginationTypography": {
             "type": "object"
         },
