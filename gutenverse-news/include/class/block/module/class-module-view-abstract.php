@@ -32,12 +32,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$heading = $this->render_header( $attr );
 		$name    = str_replace( 'module_', '', $this->class_name );
 		$content = $this->render_output( $attr, $column_class );
-
-		if ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || gutenverse_is_block_editor() ) { // Check if render in editor or frontend.
-			$script = $this->render_script( $attr, $column_class );
-		} else {
-			$script = '';
-		}
+		$script  = $this->render_script( $attr, $column_class );
 
 		$wrapper_classes = gvnews_build_html_classes(
 			array(
@@ -308,7 +303,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$page_links[] = '<a class="page_nav prev" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['prev_text'] ) . '</span></a>';
 		endif;
 		for ( $n = 1; $n <= $total; $n++ ) :
-			if ( $n == $current ) :
+			if ( $n === $current ) :
 				$page_links[] = "<span class='page_number active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</span>';
 				$dots         = true;
 		elseif ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
@@ -439,7 +434,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $categories as $category ) {
 					$cat = get_category( trim( $category ) );
 					if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
-						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
+						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
 					}
 				}
 			}
@@ -483,7 +478,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( ! empty( $sub_cat ) ) {
 			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
 			$sub_cat =
-			"<div class=\"gvnews_subcat\">
+			"<div class=\"gvnews_subcat okayNav loaded\">
                     <ul class=\"gvnews_subcat_list\">
                         {$sub_cat}
                     </ul>
