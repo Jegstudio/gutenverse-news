@@ -1378,6 +1378,10 @@
     display: inline-block;
     vertical-align: top;
     margin: 0 !important;
+
+    >a:focus {
+      outline-style: none !important;
+    }
   }
 }
 
@@ -1399,12 +1403,12 @@
 
   a:hover,
   button:hover {
-    color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--primary, #f70d28) !important;
   }
 }
 
 .gvnews-block.gvnews-block-wrapper .gvnews_subcat_list li a.current {
-  color: #212121;
+  color: #212121 !important;
 }
 
 .gvnews_block_heading:not(.gvnews_subcat_right) .okayNav__menu-toggle {
