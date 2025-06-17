@@ -163,7 +163,6 @@ class Archive extends Grab {
 			$attr['hero_height_667']     = $this->attributes['heroHeight667'];
 			$attr['hero_height_568']     = $this->attributes['heroHeight568'];
 			$attr['hero_height_480']     = $this->attributes['heroHeight480'];
-			$attr['column_width']        = isset( $this->attributes['columnWidth'] ) ? $this->attributes['columnWidth'] : '';
 			$hero_type                   = array( 1, 2, 3, 4, 5, 6, 7 );
 			foreach ( $hero_type as $value ) {
 				$attr[ "hero_item_{$value}_enable" ] = $this->attributes[ "heroItem{$value}Enable" ];
