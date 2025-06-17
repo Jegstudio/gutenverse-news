@@ -1,12 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { TextControl, ColorControl, TypographyControl } from 'gutenverse-core/controls';
 
-export const generalPanel = (props) => {
+export const generalPanel = () => {
 
     return [
         {
             id: 'title',
-            label: __('Title', 'gutenverse-news'),
+            description: __('Add text that appears before the archive title.', 'gutenverse-news'),
+            label: __('Text Before Title', 'gutenverse-news'),
             component: TextControl
         },
         {

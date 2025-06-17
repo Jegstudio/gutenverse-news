@@ -15,7 +15,7 @@
         },
         "title": {
             "type": "string",
-            "default": "Archive type: "
+            "default": ""
         },
         "titleTypography": {
             "type": "object"
