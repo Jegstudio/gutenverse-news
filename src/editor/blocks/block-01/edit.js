@@ -111,9 +111,9 @@ const Block1Block = compose(
                 if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
                     loadMore(loadPost + 15);
                 }
-                getTrim(postBulk.slice(off, parseInt(num + off)).filter(post => {
+                getTrim(postBulk.filter(post => {
                     return post?.category?.name === activeFilter || post?.author?.name === activeFilter || activeFilter === 'all';
-                }));
+                }).slice(off, parseInt(num + off)));
             } else {
                 count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
                 getTrim([]);
