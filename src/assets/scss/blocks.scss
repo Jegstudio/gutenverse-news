@@ -23068,6 +23068,27 @@ input:checked+.slider {
 .gvnews_comment_container {
 
     .comment-form {
+        p {
+            margin: 0 0 20px;
+
+            &.form-submit {
+                clear: both;
+            }
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            }
+            
+        a {
+            color: #c91212;
+            text-decoration: none;
+        }
+        .required {
+            color: #c91212;
+        }
         input[type="submit"] { // untuk button
             border: none;
             border-radius: 0;
@@ -23178,27 +23199,6 @@ input:checked+.slider {
     &:after {
       -webkit-transform: rotate(-45deg);
       transform: rotate(-45deg);
-    }
-  }
-
-  .comment-form {
-    p {
-      margin: 0 0 20px;
-
-      &.form-submit {
-        clear: both;
-      }
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.5em;
-    }
-    
-    a {
-      color: #c91212;
-      text-decoration: none;
     }
   }
 }
