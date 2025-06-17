@@ -24,29 +24,52 @@
             "type": "string",
             "default": 12
         },
-        "background": {
-            "type": "object",
-            "default": {}
-        },
-        "backgroundHover": {
-            "type": "object",
-            "default": {}
-        },
+		"background": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+		"backgroundHover": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
-        "boxShadow": {
+        "borderResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "border",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "borderHover": {
             "type": "object"
         },
-        "borderHover": {
+        "borderHoverResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "borderHover",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "boxShadow": {
             "type": "object"
         },
         "boxShadowHover": {
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
+			"type": "object",
+			"copyStyle": true
         },
         "enableAutoplay": {
             "type": "boolean",
@@ -98,7 +121,11 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+        "mask": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false

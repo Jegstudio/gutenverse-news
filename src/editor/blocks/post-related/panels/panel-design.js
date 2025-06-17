@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { SelectControl } from 'gutenverse-core/controls';
 
-export const designPanel = (props) => {
-    const {
-    } = props;
+export const designPanel = () => {
 
     return [
         {

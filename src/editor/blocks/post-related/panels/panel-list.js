@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, maskPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { contentPanel } from './panel-content';
 import { designPanel } from './panel-design';
 import { headerPanel } from '../../../control-panel/panel-header';
@@ -42,9 +42,40 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel
+        },
+        {
+            title: __('Positioning', 'gutenverse'),
+            initialOpen: false,
+            panelArray: positioningPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => advancePanel({
+                ...props,
+                styleId: 'block-1-advance',
+            }),
+            tabRole: TabSetting
+        },
+        {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Background', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => backgroundPanel({
+                ...props,
+                styleId: 'post-related-background',
+                normalOptions: ['default', 'gradient'],
+                hoverOptions: ['default', 'gradient'],
+            }),
             tabRole: TabStyle
         },
         {
@@ -54,17 +85,9 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Display', 'gutenverse-news'),
+            title: __('Masking', 'gutenverse'),
             initialOpen: false,
-            panelArray: responsivePanel
-        },
-        {
-            title: __('Spacing', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => advancePanel({
-                ...props,
-                styleId: 'block-1-advance',
-            }),
+            panelArray: maskPanel,
             tabRole: TabStyle
         }
     ];

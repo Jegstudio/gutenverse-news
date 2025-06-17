@@ -16,9 +16,8 @@ const save = ((props) => {
     const displayClass = useDisplayFrontend(attributes);
 
     const className = classnames(
-        'gvnews-block',
-        'gvnews-block-wrapper',
-        'gvnews-post-breadcrumb',
+        'guten-element',
+        'gvnews-post-tags',
         elementId,
         animationClass,
         displayClass

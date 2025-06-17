@@ -9,7 +9,7 @@ const Block11Columns = props => {
 
     const RenderBlock1 = props=>{
         return (
-            <article className="gvnews_post gvnews_pl_md_card">
+            <article className={`gvnews_post gvnews_pl_md_card ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <div className="gvnews_inner_post">
                     <ThumbModule size={715} cat={false} post={props.post}/>
                     <div className="gvnews_postblock_content">

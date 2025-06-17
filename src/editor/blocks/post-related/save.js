@@ -20,6 +20,7 @@ const save = ((props) => {
         'gvnews-block',
         'gvnews-block-wrapper',
         'gvnews-post-related',
+        'gvnews-custom-related-wrapper',
         elementId,
         animationClass,
         displayClass

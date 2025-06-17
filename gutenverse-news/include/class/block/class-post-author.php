@@ -50,7 +50,7 @@ class Post_Author extends Grab {
 			get_avatar( $author['id'], 80, null, $author['name'] ) .
 			'</div>' .
 			'<div class="gvnews_author_content">
-					  	<h3 class="gvnews_author_name"><a ref="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a></h3>
+					  	<h3 class="gvnews_author_name"><a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a></h3>
 						<p>' . esc_html( $author['desc'] ) . '</p>
 					</div>
 				</div>';

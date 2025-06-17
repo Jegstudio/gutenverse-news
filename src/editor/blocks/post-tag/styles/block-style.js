@@ -9,7 +9,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleTypography']) && data.push({
         'type': 'typography',
         'id': 'titleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
     });
 
     /**
@@ -18,31 +18,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId} .gvnews_post_tags:hover`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId} .gvnews_post_tags:hover`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -54,7 +54,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId} .gvnews_post_tags:hover`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -76,7 +76,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -89,7 +89,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -102,7 +102,180 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_post_tags`,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+    });
+
+    //Positioning Panel
+    isNotEmpty(attributes['positioningType']) && data.push(
+        {
+            'type': 'positioning',
+            'id': 'positioningType',
+            'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+            'skipDeviceType': 'first',
+            'attributeType': 'type',
+            'multiAttr': {
+                'positioningType': attributes['positioningType'],
+                'inBlock': attributes['inBlock']
+            }
+        },
+    );
+    isNotEmpty(attributes['positioningType']) && isNotEmpty(attributes['positioningWidth']) && data.push(
+        {
+            'type': 'positioning',
+            'id': 'positioningType',
+            'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+            'skipDeviceType': 'second',
+            'attributeType': 'type',
+            'multiAttr': {
+                'positioningWidth': attributes['positioningWidth'],
+                'positioningType': attributes['positioningType'],
+                'inBlock': attributes['inBlock']
+            }
+        }
+    );
+    isNotEmpty(attributes['positioningWidth']) && isNotEmpty(attributes['positioningType']) && data.push({
+        'type': 'positioning',
+        'id': 'positioningWidth',
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'skipDeviceType': 'first',
+        'attributeType': 'width',
+        'multiAttr': {
+            'positioningWidth': attributes['positioningWidth'],
+            'positioningType': attributes['positioningType'],
+            'inBlock': attributes['inBlock']
+        }
+    });
+    isNotEmpty(attributes['positioningAlign']) && data.push(
+        {
+            'type': 'plain',
+            'id': 'positioningAlign',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'align-self',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        },
+        {
+            'type': 'positioning',
+            'id': 'positioningAlign',
+            'properties': [
+                {
+                    'name': 'vertical-align',
+                    'valueType': 'direct'
+                }
+            ],
+            'attributeType': 'align',
+            'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        }
+    );
+    isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'plain',
+        'id': 'positioningLocation',
+        'properties': [
+            {
+                'name': 'position',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+    });
+    isNotEmpty(attributes['positioningLeft']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningLeft',
+        'properties': [
+            {
+                'name': 'left',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningRight']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningRight',
+        'properties': [
+            {
+                'name': 'right',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningTop']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningTop',
+        'properties': [
+            {
+                'name': 'top',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'attributeType': 'custom',
+    });
+    isNotEmpty(attributes['positioningBottom']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
+        'type': 'positioning',
+        'id': 'positioningBottom',
+        'properties': [
+            {
+                'name': 'bottom',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'attributeType': 'custom',
+    });
+
+    /**
+     * Panel Mask
+     */
+    isNotEmpty(attributes['mask']) && data.push({
+        'type': 'mask',
+        'id': 'mask',
+        'responsive': true,
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+    });
+    /**
+     * Panel Background
+     */
+
+    isNotEmpty(attributes['background']) && data.push({
+        'type': 'background',
+        'id': 'background',
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+    });
+
+    isNotEmpty(attributes['backgroundHover']) && data.push({
+        'type': 'background',
+        'id': 'backgroundHover',
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element:hover`,
+    });
+
+    isNotEmpty(attributes['backgroundTransition']) && data.push({
+        'type': 'unitPoint',
+        'id': 'backgroundTransition',
+        'selector': `.editor-styles-wrapper .is-root-container .${elementId}.guten-element`,
+        'properties': [
+            {
+                'name': 'transition',
+                'valueType': 'pattern',
+                'pattern': '{value}',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    },
+                }
+            },
+        ],
     });
 
     return data;
