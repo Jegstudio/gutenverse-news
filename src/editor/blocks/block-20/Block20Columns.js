@@ -11,7 +11,7 @@ const Block20Columns = props => {
         const {post, attr} = props;
         if (1==props.type){
             return (
-                <article className="gvnews_post gvnews_pl_sm">
+                <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
                     <ThumbModule size={715} cat={false} post={post}/>
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={attr}/>
                 </article>
@@ -40,7 +40,7 @@ const Block20Columns = props => {
         let start = blockWidth == 4 ? 1 : 0;
         const rows = <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/>;
         const rows2 = [];
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
                 if (blockWidth == 4) {
                     rows2.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
@@ -70,7 +70,7 @@ const Block20Columns = props => {
     };
 
     return  <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

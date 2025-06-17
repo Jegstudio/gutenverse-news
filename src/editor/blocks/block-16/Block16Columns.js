@@ -19,7 +19,7 @@ const Block16Columns = props => {
     const RenderBlock2 = props=>{
         return (
             <article className="gvnews_post gvnews_pl_xs_2">
-                <i className='fas fa-caret-right'></i>
+                <i className="fas fa-caret-right"></i>
                 <ContentModule title={true} meta={false} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
         );
@@ -38,7 +38,7 @@ const Block16Columns = props => {
         };
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
@@ -57,7 +57,7 @@ const Block16Columns = props => {
     };
 
     return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

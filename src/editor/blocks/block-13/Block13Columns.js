@@ -39,7 +39,7 @@ const Block13Columns = props => {
         };
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 rows.push(<RenderBlock1 key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
             }
@@ -73,7 +73,7 @@ const Block13Columns = props => {
         const rows = [];
         const rows2 = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 if ( i <= 2 ) {
                     rows.push(<RenderBlock1 key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
@@ -118,7 +118,7 @@ const Block13Columns = props => {
         const rows2 = [];
         const rows3 = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 if ( i <= 2 ) {
                     rows.push(<RenderBlock1 key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
@@ -164,7 +164,7 @@ const Block13Columns = props => {
     };
 
     return  <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

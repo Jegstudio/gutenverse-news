@@ -23,7 +23,7 @@ const Block24Columns = props => {
         return (
             <article className="gvnews_post gvnews_pl_xs_4">
                 <div className="gvnews_postblock_content">
-                    <i className='fas fa-caret-right'></i>
+                    <i className="fas fa-caret-right"></i>
                     {props.post.title && <PostTitle post={props.post} />}
                 </div>
             </article>
@@ -43,7 +43,7 @@ const Block24Columns = props => {
         };
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
@@ -51,7 +51,7 @@ const Block24Columns = props => {
 
         return(
             <div className="gvnews_posts">
-                {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                {postData.length > 0 ? <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/> : null}
                 <div className="gvnews_postsmall gvnews_load_more_flag">
                     {rows}
                 </div>
@@ -75,18 +75,16 @@ const Block24Columns = props => {
 
         const postDataLength = postData.length;
 
-        if (postData) {
+        if (postDataLength > 0) {
             const limit = postDataLength > 2 ? 2 : postDataLength;
             for (let i = 0; i < limit ; i++) {
                 rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
-        if (postData) {
-            if(postDataLength>2){
-                for (let i = 2; i < postDataLength; i++) {
-                    rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
-                }
+        if(postDataLength>2){
+            for (let i = 2; i < postDataLength; i++) {
+                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -114,18 +112,16 @@ const Block24Columns = props => {
 
         const postDataLength = postData.length;
 
-        if (postData) {
+        if (postDataLength > 0) {
             const limit = postDataLength > 3 ? 3 : postDataLength;
             for (let i = 0; i < limit ; i++) {
                 rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
-        if (postData) {
-            if(postDataLength>3){
-                for (let i = 3; i < postDataLength; i++) {
-                    rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
-                }
+        if(postDataLength>3){
+            for (let i = 3; i < postDataLength; i++) {
+                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -148,7 +144,7 @@ const Block24Columns = props => {
     };
 
     return  <div className="gvnews_block_container">
-        { postData ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

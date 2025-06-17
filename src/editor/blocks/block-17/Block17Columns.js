@@ -54,14 +54,14 @@ const Block17Columns = props => {
         let start = 0;
         let limit = 2;
 
-        if (4==blockWidth) {
+        if (4==blockWidth && postData.length > 0) {
             first.push(<RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/>);
             start = 1;
         } else if (12==blockWidth) {
             limit = 3;
         }
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
                 const key = i+1;
                 if (4==blockWidth){
@@ -83,7 +83,7 @@ const Block17Columns = props => {
     };
 
     return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

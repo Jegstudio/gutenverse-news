@@ -22,7 +22,7 @@ const Block19Columns = props => {
 
         if (1==props.type){
             return (
-                <article className="gvnews_post gvnews_pl_md_box">
+                <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
                     <div className="box_wrap">
                         <PostMeta/>
                     </div>
@@ -30,7 +30,7 @@ const Block19Columns = props => {
             );
         }else{
             return (
-                <article className="gvnews_post gvnews_pl_sm">
+                <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
                     <PostMeta/>
                 </article>
             );
@@ -49,7 +49,7 @@ const Block19Columns = props => {
             }
         };
         const rows = [];
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
                 rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
             }
@@ -57,7 +57,7 @@ const Block19Columns = props => {
 
         return(
             <div className="gvnews_posts">
-                <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/>
+                {postData.length > 0 ? <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/> : null}
                 <div className="gvnews_postsmall">
                     {rows}
                 </div>
@@ -79,7 +79,7 @@ const Block19Columns = props => {
         const rows = [];
         let limit = blockWidth == 8 ? 2 : 3;
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
                 if (i < limit){
                     rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={1}/>);
@@ -101,7 +101,7 @@ const Block19Columns = props => {
     };
 
     return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </div>;
 };

@@ -35,7 +35,7 @@ const Block21Columns = props => {
         };
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
                 rows.push(
                     <article
@@ -54,7 +54,7 @@ const Block21Columns = props => {
     };
 
     return <div className="gvnews_block_container gvnews_load_more_flag">
-        {postData ? (
+        {postData.length > 0 ? (
             <BuildColumn1 {...props} />
         ) : postBulk ? (
             <div className="gvnews_empty_module">
