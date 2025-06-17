@@ -194,3 +194,14 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Improvements
 * Better Frontend Script Load Mechanism.
+
+= 2.0.0 =
+##### Bug Fixes
+* Fix Blocks Module (1–9) not working
+* Fix Blocks Hero (1–9) not working
+* Fix auto column width detection not working on Block Module
+* Fix display option not working
+* Fix thumbnails not showing on RSS Block
+* Fix Gutenverse News Archive blocks not working properly
+* Fix some options not working on Gutenverse News Single Post blocks
+* Fix vulnerability issue in elementId parameter
