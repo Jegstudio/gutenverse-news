@@ -45,7 +45,7 @@ const Block2Columns = props => {
         return(
             <div className="gvnews_posts">
                 <article className="gvnews_post gvnews_pl_lg_1">
-                    {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className="gvnews_postsmall">
                     {rows}
@@ -76,7 +76,7 @@ const Block2Columns = props => {
         return(
             <div className={'gvnews_block_container'}>
                 <article className={'gvnews_post gvnews_pl_lg_2'}>
-                    {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className={'gvnews_posts_wrap'}>
                     <div className="gvnews_posts gvnews_load_more_flag">
@@ -98,7 +98,7 @@ const Block2Columns = props => {
     };
 
     return <>
-        { postData ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
+        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
         { overlay && <ModuleOverlay/> }
     </>;
 };

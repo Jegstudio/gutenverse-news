@@ -95,9 +95,11 @@ const Block2Block = compose(
 
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(12);
-    const [postData, getTrim] = useState(false);
+    const [postData, getTrim] = useState([]);
     const [loadPost, loadMore] = useState(15);
     const [overlay, setOverlay] = useState(false);
+    const [activeFilter, setActiveFilter] = useState('all');
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
@@ -108,19 +110,26 @@ const Block2Block = compose(
                 if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
                     loadMore(loadPost + 15);
                 }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
+                getTrim(postBulk.filter(post => {
+                    return post?.category?.name === activeFilter || post?.author?.name === activeFilter || activeFilter === 'all';
+                }).slice(off, parseInt(num + off)));
             } else {
                 count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
+                getTrim([]);
             }
         } else {
-            getTrim(false);
+            getTrim([]);
         }
     }, [
         numberPost,
         postBulk,
-        postOffset
+        postOffset,
+        activeFilter,
     ]);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, [postData]);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -205,6 +214,10 @@ const Block2Block = compose(
         headerAuthor,
         headerTag,
         headerDefault,
+        onSubCatChange: (val) => {
+            setIsLoaded(false);
+            setActiveFilter(val);
+        }
     };
 
     const paginationData = {
@@ -236,6 +249,7 @@ const Block2Block = compose(
             metaDateFormatCustom,
             postBulk,
             overlay,
+            activeFilter,
         }} />);
     }, [
         blockWidth,
@@ -248,6 +262,7 @@ const Block2Block = compose(
         metaDateFormatCustom,
         postBulk,
         overlay,
+        activeFilter,
     ]);
 
     return <>
@@ -255,9 +270,9 @@ const Block2Block = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_2 gvnews_postblocks gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_2 subclass ${isLoaded ? 'loaded' : 'loading'} gvnews_postblocks gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
-                    {block ? block : 'loading'}
+                    {block && isLoaded ? block : 'loading'}
                     <PaginationModule {...paginationData} />
                 </div>
             </div>

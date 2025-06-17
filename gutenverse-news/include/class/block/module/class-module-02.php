@@ -15,7 +15,7 @@ namespace GUTENVERSE\NEWS\Block\Module;
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Module_2 extends Module_View_Abstract {
+class Module_02 extends Module_View_Abstract {
 
 
 	/**
