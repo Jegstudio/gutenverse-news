@@ -77,52 +77,51 @@ class Ajax {
 	 * @return void
 	 */
 	public function ajax_parse_request( $wp ) {
-
 		if ( array_key_exists( $this->endpoint, $wp->query_vars ) ) {
 			// need to flag this request is ajax request.
 			add_filter( 'wp_doing_ajax', array( $this, 'is_doing_ajax' ) );
 
-			$action = $wp->query_vars['action'];
+			if ( array_key_exists( 'action', $wp->query_vars ) ) {
+				$action = $wp->query_vars['action'];
+				switch ( $action ) {
+					case 'gvnews_ajax_comment':
+						// ajax comment.
+						if ( isset( $_REQUEST['post_id'] ) && isset( $_REQUEST['post_type'] ) ) {
+							query_posts(
+								array(
+									'p'            => (int) sanitize_text_field( wp_unslash( $_REQUEST['post_id'] ) ),
+									'post_type'    => sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) ),
+									'withcomments' => 1,
+									'feed'         => 1,
+								)
+							);
 
-			switch ( $action ) {
-				case 'gvnews_ajax_comment':
-					// ajax comment.
-					if ( isset( $_REQUEST['post_id'] ) && isset( $_REQUEST['post_type'] ) ) {
-						query_posts(
-							array(
-								'p'            => (int) sanitize_text_field( wp_unslash( $_REQUEST['post_id'] ) ),
-								'post_type'    => sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) ),
-								'withcomments' => 1,
-								'feed'         => 1,
-							)
-						);
+							while ( have_posts() ) :
+								the_post();
+								global $post;
+								setup_postdata( $post );
+								get_template_part( 'fragment/comments' );
+							endwhile;
 
-						while ( have_posts() ) :
-							the_post();
-							global $post;
-							setup_postdata( $post );
-							get_template_part( 'fragment/comments' );
-						endwhile;
+							wp_reset_query();
+							break;
+						}
+				}
 
-						wp_reset_query();
-						break;
-					}
+				// Module Ajax.
+				$module_prefix = $this->module_ajax_prefix;
+				if ( 0 === strpos( $action, $module_prefix ) ) {
+					$module_name  = str_replace( $module_prefix, '', $action );
+					$path         = str_replace( 'module_', 'block-', $module_name );
+					$module_file  = file_get_contents( GUTENVERSE_NEWS_DIR . 'block/' . str_replace( '_', '-', $path ) . '/block.json' );
+					$module_data  = json_decode( $module_file, true );
+					$module_class = gvnews_get_view_class_from_shortcode( $module_data['attributes']['gvnewsModule']['default'] );
+
+					$this->module_ajax( $module_class );
+				}
+
+				do_action( 'gvnews_ajax_' . $action );
 			}
-
-			// Module Ajax.
-			$module_prefix = $this->module_ajax_prefix;
-			if ( 0 === strpos( $action, $module_prefix ) ) {
-				$module_name = str_replace( $module_prefix, '', $action );
-				$path = str_replace("module_", "block_", $module_name);
-
-				$module_file  = file_get_contents( GUTENVERSE_NEWS_DIR . 'block/' . str_replace( '_', '-', $path ) . '/block.json' );
-				$module_data  = json_decode( $module_file, true );
-				$module_class = gvnews_get_view_class_from_shortcode( $module_data['attributes']['gvnewsModule']['default'] );
-
-				$this->module_ajax( $module_class );
-			}
-
-			do_action( 'gvnews_ajax_' . $action );
 
 			exit;
 		}
