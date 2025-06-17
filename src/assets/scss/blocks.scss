@@ -23066,6 +23066,67 @@ input:checked+.slider {
 /** Comment Form **/
 
 .gvnews_comment_container {
+
+    .comment-form {
+        input[type="submit"] { // untuk button
+            border: none;
+            border-radius: 0;
+            background: #c91212;
+            color: #fff;
+            padding: 0 20px;
+            line-height: 40px;
+            height: 40px;
+            display: inline-block;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            outline: 0;
+            -webkit-appearance: none;
+            -webkit-transition: .3s ease;
+            transition: .3s ease;
+
+            &:hover {
+                box-shadow: rgba(0,0,0,0.15) 0px 0px 0px 100px inset;
+            }
+        }
+
+        input:not([type="submit"]) { // untuk input lainnya
+            box-shadow: none;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 300;
+            height: 40px;
+            max-width: 100%;
+            width: auto;
+            background: rgb(255, 255, 255);
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(224, 224, 224);
+            border-image: initial;
+            border-radius: 0px;
+            margin: 0px;
+            outline: none;
+            padding: 7px 14px;
+            transition: 0.25s;
+        }
+
+        input[type="checkbox"] {
+            display: inline;
+            height: auto;
+            line-height: inherit;
+            width: auto;
+        }
+
+        textarea {
+            min-height: 60px;
+            height: auto;
+            width: 100%;
+            resize: vertical;
+        }
+    }
+
   .comment-respond {
     border-top: 3px solid #eee;
     margin-top: 30px;
@@ -23134,6 +23195,11 @@ input:checked+.slider {
       font-weight: bold;
       margin-bottom: 0.5em;
     }
+    
+    a {
+      color: #c91212;
+      text-decoration: none;
+    }
   }
 }
 
@@ -23164,33 +23230,6 @@ input:checked+.slider {
   label {
     display: inline-block;
     padding-left: 20px;
-  }
-}
-
-.gvnews_comment_container {
-  .comment-form input[type="submit"] {
-    border: none;
-    border-radius: 0;
-    background: var(--wp--preset--color--primary);
-    color: #fff;
-    padding: 0 20px;
-    line-height: 40px;
-    height: 40px;
-    display: inline-block;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    outline: 0;
-    -webkit-appearance: none;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-  }
-
-  textarea {
-    min-height: 60px;
-    height: auto;
   }
 }
 
