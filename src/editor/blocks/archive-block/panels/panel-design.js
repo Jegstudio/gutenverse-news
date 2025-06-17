@@ -5,22 +5,6 @@ export const designPanel = () => {
 
     return [
         {
-            id: 'scheme',
-            component: SelectControl,
-            label: __('Element Color Scheme', 'gutenverse-news'),
-            description: __('choose element color scheme for your element ', 'gutenverse-news'),
-            options: [
-                {
-                    value: 'normal',
-                    label: __('Normal', 'gutenverse-news'),
-                },
-                {
-                    value: 'alt',
-                    label: __('Alternate - Opposite of global color scheme', 'gutenverse-news'),
-                },
-            ],
-        },
-        {
             id: 'columnWidth',
             component: SelectControl,
             label: __('Block / Column Width', 'gutenverse-news'),

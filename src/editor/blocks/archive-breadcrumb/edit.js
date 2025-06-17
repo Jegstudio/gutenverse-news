@@ -23,8 +23,7 @@ const ArchiveBreadcrumb = compose(
     } = props;
 
     const {
-        elementId,
-        scheme
+        elementId
     } = attributes;
 
     const elementRef = useRef(null);
@@ -57,21 +56,19 @@ const ArchiveBreadcrumb = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
-            <div className={`gvnews_archive_breadcrumb_wrapper ${scheme}`} >
-                <div className={'gvnews_breadcrumbs gvnews_breadcrumb_container'}>
-                    <div id="breadcrumbs">
-                        <span>
-                            <a href="" target="_self">Home</a>
-                        </span>
-                        <i className="fas fa-chevron-right"></i>
-                        <span>
-                            <a href="" target="_self">Category</a>
-                        </span>
-                        <i className="fas fa-chevron-right"></i>
-                        <span className="breadcrumb_last_link">
-                            <a href="" target="_self">Child Category</a>
-                        </span>
-                    </div>
+            <div className={'gvnews-archive-breadcrumb'}>
+                <div id="breadcrumbs">
+                    <span>
+                        <a href="" target="_self">Home</a>
+                    </span>
+                    <i className="fas fa-chevron-right"></i>
+                    <span>
+                        <a href="" target="_self">Category</a>
+                    </span>
+                    <i className="fas fa-chevron-right"></i>
+                    <span className="breadcrumb_last_link">
+                        <a href="" target="_self">Child Category</a>
+                    </span>
                 </div>
             </div>
         </div>

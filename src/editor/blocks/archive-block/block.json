@@ -49,10 +49,6 @@
             "type": "boolean",
             "default": false
         },
-        "scheme": {
-            "type": "string",
-            "default": ""
-        },
         "elClass": {
             "type": "string",
             "default": ""
