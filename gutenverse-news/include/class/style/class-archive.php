@@ -39,18 +39,39 @@ class Archive extends StyleAbstract {
 		$this->name = $name;
 		parent::__construct( $attrs, $name );
 
-		$this->set_feature(
-			array(
-				'background'  => array(
-					'normal' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}",
-					'hover'  => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}:hover",
-				),
-				'border'      => null,
-				'positioning' => null,
-				'animation'   => null,
-				'advance'     => null,
-			)
-		);
+		if ( ( 'gutenverse/news-archive-block' === $this->name ) ) {
+			$this->set_feature(
+				array(
+					'background' => array(
+						'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+						'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
+					),
+					'border'     => array(
+						'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
+						'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
+					),
+					'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+
+				)
+			);
+		} else {
+			$this->set_feature(
+				array(
+					'background'  => array(
+						'normal' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}",
+						'hover'  => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}:hover",
+					),
+					'border'      => array(
+						'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+						'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
+					),
+					'advance'     => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+					'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+					'animation'   => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+				)
+			);
+
+		}
 	}
 
 	/**
@@ -118,7 +139,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-title",
+						'selector'       => ".{$this->element_id} .gvnews-archive-title h1",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,
@@ -129,7 +150,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['titleColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-title",
+						'selector'       => ".{$this->element_id} .gvnews-archive-title h1",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -225,7 +246,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['descTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-desc",
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['descTypography'],
 						'device_control' => false,
@@ -236,7 +257,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-desc",
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},

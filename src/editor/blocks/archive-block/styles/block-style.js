@@ -9,8 +9,8 @@ const getBlockStyle = (elementId, attributes) => {
         attributes,
         data,
         elementId,
-        backgroundSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}`,
-        backgroundHoverSelector: `.gvnews-block.gvnews-block-wrapper.${elementId}:hover`,
+        backgroundSelector: `.${elementId} .gvnews_postblock`,
+        backgroundHoverSelector: `.${elementId} .gvnews_postblock:hover`,
     });
 
     /**
