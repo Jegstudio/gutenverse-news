@@ -252,7 +252,6 @@ const Block1Block = compose(
         metaDateFormatCustom,
         postBulk,
         overlay,
-        activeFilter,
     ]);
 
     return <>

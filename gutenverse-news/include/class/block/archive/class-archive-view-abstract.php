@@ -85,7 +85,7 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 	/**
 	 * Method get_term
 	 *
-	 * @return array
+	 * @return object
 	 */
 	public function get_term() {
 		return ! self::$term ? get_queried_object() : self::$term;
@@ -168,8 +168,8 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 	/**
 	 * Method get_result
 	 *
-	 * @param $attr        $attr attribute.
-	 * @param $number_post $number_post number post.
+	 * @param array $attr        attribute.
+	 * @param int   $number_post number post.
 	 *
 	 * @return array
 	 */

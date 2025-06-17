@@ -11,7 +11,7 @@
         },
         "gvnewsModule": {
             "type": "string",
-            "default": "GUTENVERSE\\NEWS\\Block\\Module\\Module_01"
+            "default": "GUTENVERSE\\NEWS\\Block\\Module\\Module_1"
         },
         "icon": {
             "type": "string",

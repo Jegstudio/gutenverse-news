@@ -225,17 +225,6 @@ const Block2Block = compose(
         showNavText,
     };
 
-    const moduleData = {
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
-    };
-
     const [block, setBlock] = useState(false);
     useEffect(() => {
         setBlock(<Block2Columns {...{
@@ -262,7 +251,6 @@ const Block2Block = compose(
         metaDateFormatCustom,
         postBulk,
         overlay,
-        activeFilter,
     ]);
 
     return <>
