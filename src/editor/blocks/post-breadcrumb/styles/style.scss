@@ -1,8 +1,11 @@
 .gvnews-post-breadcrumb {
 
+    box-sizing: border-box;
+
     .gvnews-post-breadcumbs-container {
         margin: 0;
         padding: 10px;
         box-sizing: border-box;
+        display: flex;
     }
 }

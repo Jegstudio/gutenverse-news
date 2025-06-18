@@ -73,6 +73,37 @@ const layoutStye = (props) => {
         'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
+    isNotEmpty(attributes['alignment']) && data.push({
+        'type': 'plain',
+        'id': 'alignment',
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'properties': [
+            {
+                'name': 'justify-content',
+                'valueType': 'direct',
+            },
+            {
+                'name': 'text-align',
+                'valueType': 'function',
+                'functionName': 'handleAlign',
+            }
+        ],
+        'responsive': true,
+    });
+
+    isNotEmpty(attributes['verticalAlignment']) && data.push({
+        'type': 'plain',
+        'id': 'verticalAlignment',
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'responsive': true
+    });
+
     return data;
 };
 
