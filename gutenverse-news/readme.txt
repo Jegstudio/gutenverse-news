@@ -159,6 +159,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 = 2.0.1 [DEV] =
 ##### Bug Fixes
+* Fix missing Submit Comment button on the Post Comment block
+* Fix block error when the Custom Format option is left empty
 
 = 2.0.0 =
 ##### Bug Fixes
