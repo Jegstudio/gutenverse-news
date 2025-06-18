@@ -1,4 +1,4 @@
-import { useState, useEffect }  from '@wordpress/element';
+import { useState, useEffect, useRef }  from '@wordpress/element';
 
 function Valid(value) {
     if ( value && value.length ) {
@@ -20,12 +20,18 @@ function SubCatItem(props) {
 
 function SubCat(props) {
     const { onSubCatChange = () => {} } = props;
+    const isFirstRender = useRef(true);
+
     if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
         return null;
     }
     const [active, setActive] = useState('all');
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
         onSubCatChange(active);
     }, [active]);
 
