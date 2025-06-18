@@ -99,7 +99,8 @@ const BlockModule = compose(
     const [postData, getTrim] = useState([]);
     const [loadPost, loadMore] = useState(columnAttr.loadPost || 15);
     const [overlay, setOverlay] = useState(columnAttr.overlay || false);
-    const [activeFilter, setActiveFilter] = useState('all');
+    const [activeFilter, setActiveFilter] = useState(-100);
+    const [activeType, setActiveType] = useState('all');
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -112,7 +113,10 @@ const BlockModule = compose(
                     loadMore(loadPost + 15);
                 }
                 getTrim(postBulk.filter(post => {
-                    return post?.category?.name === activeFilter || post?.author?.name === activeFilter || activeFilter === 'all';
+                    if (activeType === 'all' || activeFilter === -100) {
+                        return true;
+                    }
+                    return post[activeType]?.all?.includes(activeFilter);
                 }).slice(off, parseInt(num + off)));
             } else {
                 count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
@@ -215,9 +219,10 @@ const BlockModule = compose(
         headerAuthor,
         headerTag,
         headerDefault,
-        onSubCatChange: (val) => {
+        onSubCatChange: (value, type) => {
             setIsLoaded(false);
-            setActiveFilter(val);
+            setActiveFilter(value);
+            setActiveType(type);
         }
     };
 
