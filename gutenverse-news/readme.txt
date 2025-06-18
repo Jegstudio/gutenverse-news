@@ -157,6 +157,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 2.0.1 [DEV] =
+##### Bug Fixes
+
 = 2.0.0 =
 ##### Bug Fixes
 * Fix Blocks Module (1–9) not working
