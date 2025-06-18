@@ -20,13 +20,9 @@ function SubCatItem(props) {
 
 function SubCat(props) {
     const { onSubCatChange = () => {} } = props;
-    const isFirstRender = useRef(true);
-
-    if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
-        return null;
-    }
     const [active, setActive] = useState(-100);
     const [activeType, setActiveType] = useState('all');
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -40,6 +36,10 @@ function SubCat(props) {
         setActive(val);
         setActiveType(category);
     };
+
+    if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
+        return null;
+    }
 
     return (
         <div className="gvnews_subcat okayNav loaded">
