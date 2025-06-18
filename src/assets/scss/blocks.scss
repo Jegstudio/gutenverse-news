@@ -1,4 +1,5 @@
 @import 'single-post-block';
+@import '../../editor/blocks/post-comment/styles/style';
 
 /* Display condiditon style */
 @media only screen and (min-width: 781px) {
@@ -23065,78 +23066,6 @@ input:checked+.slider {
 
 /** Comment Form **/
 
-.gvnews_comment_container {
-  .comment-respond {
-    border-top: 3px solid #eee;
-    margin-top: 30px;
-
-    .comment-reply-title {
-      font-weight: bold;
-      font-size: 24px;
-      margin: 20px 0 10px;
-      letter-spacing: -0.02em;
-      position: relative;
-    }
-  }
-
-  .comment-reply-title small a {
-    position: absolute;
-    top: 4px;
-    right: 15px;
-    width: 24px;
-    height: 24px;
-    text-indent: -9999em;
-
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      height: 100%;
-      top: 0;
-      left: 50%;
-      background: var(--wp--preset--color--primary);
-      -webkit-transition: background 0.2s linear;
-      -o-transition: background 0.2s linear;
-      transition: background 0.2s linear;
-    }
-
-    &:hover {
-
-      &:before,
-      &:after {
-        background: #212121;
-      }
-    }
-
-    &:before {
-      -webkit-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-
-    &:after {
-      -webkit-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-    }
-  }
-
-  .comment-form {
-    p {
-      margin: 0 0 20px;
-
-      &.form-submit {
-        clear: both;
-      }
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.5em;
-    }
-  }
-}
-
 .comment-form-email,
 .comment-form-url {
   width: 50%;
@@ -23164,33 +23093,6 @@ input:checked+.slider {
   label {
     display: inline-block;
     padding-left: 20px;
-  }
-}
-
-.gvnews_comment_container {
-  .comment-form input[type="submit"] {
-    border: none;
-    border-radius: 0;
-    background: var(--wp--preset--color--primary);
-    color: #fff;
-    padding: 0 20px;
-    line-height: 40px;
-    height: 40px;
-    display: inline-block;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    outline: 0;
-    -webkit-appearance: none;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-  }
-
-  textarea {
-    min-height: 60px;
-    height: auto;
   }
 }
 
