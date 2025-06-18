@@ -12,8 +12,8 @@ const getBlockStyle = (elementId, attributes) => {
         elementId,
         attributes,
         data,
-        backgroundSelector: `.${elementId} .gvnews-post-breadcumbs-container`,
-        backgroundHoverSelector: `.${elementId} .gvnews-post-breadcumbs-container:hover`,
+        backgroundSelector: `.${elementId}.gvnews-post-breadcrumb`,
+        backgroundHoverSelector: `.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     /**
@@ -22,31 +22,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container:hover`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container:hover`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -58,7 +58,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container:hover`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
         'properties': [
             {
                 'name': 'box-shadow',

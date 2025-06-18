@@ -11,7 +11,7 @@ const stylingStyle = (props) => {
     isNotEmpty(attributes['typography']) && data.push({
         'id': 'typography',
         'type': 'typography',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container span a`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb span a`,
     });
 
     isNotEmpty(attributes['gap']) && data.push({
@@ -29,13 +29,13 @@ const stylingStyle = (props) => {
                 }
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container span a, .${elementId} .gvnews-post-breadcumbs-container i`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb span a, .${elementId}.gvnews-post-breadcrumb i`,
     });
 
     isNotEmpty(attributes['textColor']) && data.push({
         'type': 'color',
         'id': 'textColor',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container span a`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb span a`,
         'properties': [
             {
                 'name': 'color',
@@ -47,7 +47,7 @@ const stylingStyle = (props) => {
     isNotEmpty(attributes['textColorHover']) && data.push({
         'type': 'color',
         'id': 'textColorHover',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container span a:hover`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb span a:hover`,
         'properties': [
             {
                 'name': 'color',
@@ -59,7 +59,7 @@ const stylingStyle = (props) => {
     isNotEmpty(attributes['arrowColor']) && data.push({
         'type': 'color',
         'id': 'arrowColor',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container i`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb i`,
         'properties': [
             {
                 'name': 'color',

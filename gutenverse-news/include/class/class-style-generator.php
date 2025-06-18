@@ -15,6 +15,7 @@ use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\News_Ticker;
+use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
 use GUTENVERSE\NEWS\Style\Post_Meta;
 use GUTENVERSE\NEWS\Style\Post_Related;
 use GUTENVERSE\NEWS\Style\Slider;
@@ -103,6 +104,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-post-meta' ):
 					$instance = new Post_Meta( $attrs, $name );
+					break;
+				case stristr( $name, 'gutenverse/news-post-breadcrumb' ):
+					$instance = new Post_Breadcrumb( $attrs, $name );
 					break;
 			}
 		}

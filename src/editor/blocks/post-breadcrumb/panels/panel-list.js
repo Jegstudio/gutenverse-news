@@ -26,8 +26,8 @@ export const panelList = () => {
                 styleId: 'post-breadcumb-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
-                normalSelector: `.${props.elementId} .gvnews_breadcrumb_container`,
-                hoverSelector: `.${props.elementId} .gvnews_breadcrumb_container:hover`
+                normalSelector: `.${props.elementId}.gvnews-post-breadcrumb`,
+                hoverSelector: `.${props.elementId}.gvnews-post-breadcrumb:hover`
             }),
             tabRole: TabStyle,
         },

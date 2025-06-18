@@ -18,7 +18,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -31,7 +31,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['width']) && data.push({
@@ -44,7 +44,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['height']) && data.push({
@@ -57,7 +57,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -70,13 +70,13 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['alignment']) && data.push({
         'type': 'plain',
         'id': 'alignment',
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
         'properties': [
             {
                 'name': 'justify-content',
@@ -100,7 +100,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
+        'selector': `.${elementId}.gvnews-post-breadcrumb`,
         'responsive': true
     });
 
