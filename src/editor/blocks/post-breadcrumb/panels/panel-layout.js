@@ -2,11 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { AlignLeft, AlignCenter, AlignRight } from 'gutenverse-core/components';
 import { DimensionControl, IconRadioControl, SelectControl, SizeControl } from 'gutenverse-core/controls';
 
-export const layoutPanel = (props) => {
-
-    const {
-        elementId
-    } = props;
+export const layoutPanel = () => {
 
     return [
         {

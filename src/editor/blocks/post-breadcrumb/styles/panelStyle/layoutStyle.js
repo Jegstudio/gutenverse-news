@@ -18,7 +18,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -31,7 +31,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
     isNotEmpty(attributes['width']) && data.push({
@@ -44,7 +44,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
     isNotEmpty(attributes['height']) && data.push({
@@ -57,7 +57,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -70,7 +70,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.${elementId} .gvnews-post-breadcumbs-container`,
     });
 
     return data;

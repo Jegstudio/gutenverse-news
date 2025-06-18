@@ -13,22 +13,19 @@
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Single\\Post\\Post_Breadcrumb"
         },
-        "column": {
-            "type": "object",
-            "default": {}
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
-        },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
@@ -42,26 +39,29 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
-        },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
+            "type": "number"
         },
         "padding": {
             "type": "object"
         },
+        "width": {
+            "type":"object",
+            "default": {}
+        },
+        "height": {
+            "type":"object",
+            "default": {}
+        },
+        "alignment": {
+			"type": "object",
+			"copyStyle": true
+		},
+        "verticalAlignment": {
+			"type": "object",
+			"copyStyle": true
+		},
         "zIndex": {
             "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
         },
         "hideDesktop": {
             "type": "boolean"
@@ -72,29 +72,20 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "positioningType": {
-            "type": "object"
+        "typography": {
+            "type":"object"
         },
-        "positioningWidth": {
-            "type": "object"
+        "gap": {
+            "type":"object"
         },
-        "positioningAlign": {
-            "type": "object"
+        "textColor": {
+            "type":"object"
         },
-        "positioningLocation": {
-            "type": "string"
+        "textColorHover": {
+            "type":"object"
         },
-        "positioningLeft": {
-            "type": "object"
-        },
-        "positioningRight": {
-            "type": "object"
-        },
-        "positioningTop": {
-            "type": "object"
-        },
-        "positioningBottom": {
-            "type": "object"
+        "arrowColor": {
+            "type":"object"
         }
     },
     "supports": {
