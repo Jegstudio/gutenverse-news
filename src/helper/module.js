@@ -136,11 +136,18 @@
         event.preventDefault();
 
         if (!base.lock_action) {
+            const filterID = $(target).data('id');
+            const filterType = $(target).data('type');
+
+            if (base.data.filter === filterID && base.data.filter_type === filterType) {
+                return;
+            }
+
             this.header.find('.subclass-filter').removeClass('current');
             $(target).addClass('current');
 
-            base.data.filter = $(target).data('id');
-            base.data.filter_type = $(target).data('type');
+            base.data.filter = filterID;
+            base.data.filter_type = filterType;
             base.data.current_page = 1;
 
             base.request_ajax('subclass');
