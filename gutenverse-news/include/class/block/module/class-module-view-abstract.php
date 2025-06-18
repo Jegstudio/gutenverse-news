@@ -407,7 +407,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		// Heading.
-		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>{$attr['second_title']}</strong>" : '';
+		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
 		$header_class  = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
 		$heading_title = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
 

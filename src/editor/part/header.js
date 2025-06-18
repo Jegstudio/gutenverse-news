@@ -71,7 +71,7 @@ function HeadTitle(props) {
                 {props.icon && <i className={props.icon}></i>}
                 {props.title}
                 {props.second_title && <strong>
-                    {props.second_title}
+                    &nbsp;{props.second_title}
                 </strong>}
             </span>
         </h3>
