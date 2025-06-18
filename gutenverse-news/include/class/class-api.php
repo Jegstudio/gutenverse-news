@@ -596,6 +596,10 @@ class Api {
 				$excerpt = $post->post_content;
 			}
 
+			$postCategories    = gvnews_get_all_categories( $post->ID );
+
+			$postTags          = gvnews_get_all_tags( $post->ID );
+
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
 			$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
@@ -613,6 +617,10 @@ class Api {
 				'category'  => array(
 					'id'   => $cat_id,
 					'name' => $category,
+					'all'  => $postCategories,
+				),
+				'tag'      => array(
+					'all' => $postTags,
 				),
 				'date'      => array(
 					'published' => get_post_timestamp( $post->ID, 'date' ),
@@ -623,6 +631,7 @@ class Api {
 					'id'     => $post->post_author,
 					'name'   => get_the_author_meta( 'display_name', $post->post_author ),
 					'avatar' => get_avatar_url( $post->post_author, array( 'size' => 75 ) ),
+					'all'    => array($post->post_author)
 				),
 				'comment'   => get_comments_number( $post->ID ),
 
