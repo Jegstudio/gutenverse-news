@@ -112,7 +112,10 @@ class Ajax {
 				$module_prefix = $this->module_ajax_prefix;
 				if ( 0 === strpos( $action, $module_prefix ) ) {
 					$module_name  = str_replace( $module_prefix, '', $action );
-					$path         = sprintf( '%02d', str_replace( 'module_', '', $module_name ) );
+					$path         = str_replace( 'module_', '', $module_name );
+					if ( is_numeric($path) ) {
+						$path = sprintf( '%02d', $path);
+					}
 					$path         = "block-{$path}";
 					$module_file  = file_get_contents( GUTENVERSE_NEWS_DIR . 'block/' . str_replace( '_', '-', $path ) . '/block.json' );
 					$module_data  = json_decode( $module_file, true );
