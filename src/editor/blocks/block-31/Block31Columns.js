@@ -40,7 +40,7 @@ const Block31Columns = (props) => {
 
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
                 rows.push(<RenderBlock1 key={i} attr={attr} post={postData[i]} width={blockWidth} />);
             }
@@ -51,7 +51,7 @@ const Block31Columns = (props) => {
 
     return (
         <div className="gvnews_block_container">
-            {postData ? (
+            {postData.length > 0 ? (
                 <BuildColumn1 />
             ) : postBulk ? (
                 <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
