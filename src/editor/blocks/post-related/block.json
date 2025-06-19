@@ -59,7 +59,7 @@
         },
         "second_title": {
             "type": "string",
-            "default": "Posts"
+            "default": ""
         },
         "urlTitle": {
             "type": "string",

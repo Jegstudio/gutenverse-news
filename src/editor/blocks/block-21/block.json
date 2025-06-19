@@ -19,11 +19,11 @@
         },
         "title": {
             "type": "string",
-            "default": "Related"
+            "default": ""
         },
         "second_title": {
             "type": "string",
-            "default": "Posts"
+            "default": ""
         },
         "url_title": {
             "type": "string",
