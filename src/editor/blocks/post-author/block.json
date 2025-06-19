@@ -22,12 +22,17 @@
         },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
@@ -41,19 +46,18 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "number",
-            "default": 20
-        },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
+            "type": "number"
         },
         "padding": {
             "type": "object"
+        },
+        "width": {
+            "type":"object",
+            "default": {}
+        },
+        "height": {
+            "type":"object",
+            "default": {}
         },
         "zIndex": {
             "type": "object"
