@@ -1,12 +1,12 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
-import layoutStye from './panelStyle/layoutStyle';
+import layoutStye from '../../../control-panel/panel-styles/parts/post-layout-style';
 import stylingStyle from './panelStyle/stylingStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
-    data = layoutStye({attributes, elementId, data});
+    data = layoutStye({attributes, elementId, data, selector: `.${elementId}.gvnews-post-breadcrumb`});
     data = stylingStyle({attributes, elementId, data});
     data = backgroundStyle({
         elementId,
