@@ -1,18 +1,13 @@
 import { compose } from '@wordpress/compose';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import apiFetch from '@wordpress/api-fetch';
-import { addQueryArgs } from '@wordpress/url';
-import { ModuleOverlay } from '../../part/placeholder';
-import { useSelect } from '@wordpress/data';
-import { select, subscribe } from '@wordpress/data';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
@@ -44,7 +39,6 @@ const PostComment = compose(
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const [content, setContent] = useState(false);
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -72,7 +66,7 @@ const PostComment = compose(
                             <a rel="nofollow" id="cancel-comment-reply-link" href="#" style={{ display: 'none' }} >{__('Cancel reply', 'gutenverse-news')}</a>
                         </small>
                     </h3>
-                    <form method="post" id="commentform" className="comment-form">
+                    <form onSubmit="event.preventDefault();" id="commentform" className="comment-form">
                         <p className="logged-in-as">
                             {__('Logged in as ', 'gutenverse-news')}
                             {`${currentUser.name}. `}
