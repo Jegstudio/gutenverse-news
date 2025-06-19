@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
 import { TabStyle } from 'gutenverse-core/controls';
-import layoutPanel from '../../../control-panel/panel-post-layout';
+import layoutPanel from './panel-layout';
 import { stylingPanel } from './panel-styling';
 
 export const panelList = () => {

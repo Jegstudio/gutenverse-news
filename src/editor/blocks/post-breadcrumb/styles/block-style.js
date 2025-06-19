@@ -1,6 +1,6 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
-import layoutStye from '../../../control-panel/panel-styles/parts/post-layout-style';
+import layoutStye from './panelStyle/layoutStyle';
 import stylingStyle from './panelStyle/stylingStyle';
 
 const getBlockStyle = (elementId, attributes) => {
