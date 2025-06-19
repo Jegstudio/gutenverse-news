@@ -1,7 +1,17 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import layoutStye from './panelStyles/layoutStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    data = layoutStye({attributes, data, selector: `.gvnews-block.${elementId}.gvnews-post-comment`});
+    data = backgroundStyle({
+        elementId,
+        attributes,
+        data,
+        backgroundSelector: `.${elementId}.gvnews-post-comment`,
+        backgroundHoverSelector: `.${elementId}.gvnews-post-comment:hover`,
+    });
 
     /**
      * Panel General
@@ -9,7 +19,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['commentTypography']) && data.push({
         'type': 'typography',
         'id': 'commentTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} *`,
+        'selector': `.${elementId}.gvnews-post-comment`,
     });
 
     /**

@@ -38,7 +38,6 @@ class Post_Breadcrumb extends StyleAbstract {
 					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
 					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb:hover",
 				),
-				'advance'    => null,
 			)
 		);
 	}
