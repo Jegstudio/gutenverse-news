@@ -314,6 +314,8 @@ class Frontend_Assets {
 		wp_localize_script( 'gvnews-helper-script', 'GVNewsConfig', $this->gvnews_config() );
 		wp_enqueue_script( 'imagesloaded' );
 		wp_enqueue_script( 'gvnews-helper-script' );
+
+		do_action( 'gvnews_after_frontend_script' );
 	}
 
 	/**
@@ -337,7 +339,8 @@ class Frontend_Assets {
 			'live_search'   => true,
 			'ajax_url'      => add_query_arg( array( 'ajax-request' => 'gvnews' ) ),
 			'module_prefix' => 'gvnews_module_ajax_',
+			'postid'        => get_the_ID(),
 		);
-		return $config;
+		return apply_filters( 'gvnews_helper_config', $config );
 	}
 }
