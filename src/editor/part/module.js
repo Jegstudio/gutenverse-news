@@ -100,7 +100,7 @@ const BlockModule = compose(
     const [loadPost, loadMore] = useState(columnAttr.loadPost || 15);
     const [overlay, setOverlay] = useState(columnAttr.overlay || false);
     const [activeFilter, setActiveFilter] = useState(-100);
-    const [activeType, setActiveType] = useState('all');
+    const [activeType, setActiveType] = useState({ value: -100, label: 'all' });
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -112,12 +112,7 @@ const BlockModule = compose(
                 if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
                     loadMore(loadPost + 15);
                 }
-                getTrim(postBulk.filter(post => {
-                    if (activeType === 'all' || activeFilter === -100) {
-                        return true;
-                    }
-                    return post[activeType]?.all?.includes(activeFilter);
-                }).slice(off, parseInt(num + off)));
+                getTrim(postBulk.slice(off, parseInt(num + off)));
             } else {
                 count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
                 getTrim([]);
@@ -129,7 +124,6 @@ const BlockModule = compose(
         numberPost,
         postBulk,
         postOffset,
-        activeFilter
     ]);
 
     useEffect(() => {
@@ -170,6 +164,24 @@ const BlockModule = compose(
             excludeTag,
             sortBy,
         };
+        if (activeFilter['value'] != -100) {
+            let incldOnly = true;
+            switch (activeType) {
+                case 'category':
+                    attr.includeCategory = [activeFilter];
+                    break;
+                case 'tag':
+                    attr.includeTag = [activeFilter];
+                    break;
+                case 'author':
+                    attr.includeAuthor = [activeFilter];
+                    break;
+                default:
+                    incldOnly = attr.includeOnly;
+                    break;
+            }
+            attr.includeOnly = incldOnly;
+        }
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
             method: 'POST',
@@ -195,7 +207,8 @@ const BlockModule = compose(
         includeTag,
         excludeTag,
         sortBy,
-        loadPost
+        loadPost,
+        activeFilter,
     ]);
 
     const blockProps = useBlockProps({
@@ -219,9 +232,9 @@ const BlockModule = compose(
         headerAuthor,
         headerTag,
         headerDefault,
-        onSubCatChange: (value, type) => {
+        onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
-            setActiveFilter(value);
+            setActiveFilter({value, label});
             setActiveType(type);
         }
     };

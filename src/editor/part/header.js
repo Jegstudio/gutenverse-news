@@ -21,20 +21,10 @@ function SubCatItem(props) {
 function SubCat(props) {
     const { onSubCatChange = () => {} } = props;
     const [active, setActive] = useState(-100);
-    const [activeType, setActiveType] = useState('all');
-    const isFirstRender = useRef(true);
 
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-        onSubCatChange(active, activeType);
-    }, [active]);
-
-    const catOnClickHandler = (category, val) => {
+    const catOnClickHandler = (type, val, label) => {
         setActive(val);
-        setActiveType(category);
+        onSubCatChange(val, type, label);
     };
 
     if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
@@ -45,16 +35,16 @@ function SubCat(props) {
         <div className="gvnews_subcat okayNav loaded">
             <ul className="gvnews_subcat_list">
                 <li>
-                    <a className={`subclass-filter ${active === -100 ? 'current' : ''}`} onClick={() => setActive(-100)} href="#">{props.headerDefault}</a>
+                    <a className={`subclass-filter ${active === -100 ? 'current' : ''}`} onClick={() => catOnClickHandler('all', -100, 'all')} href="#">{props.headerDefault}</a>
                 </li>
                 {Valid(props.headerCategory) && props.headerCategory.map( (d, index) => {
-                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('category', d.value)} title={d.label}/>);
+                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('category', d.value, d.label)} title={d.label}/>);
                 })}
                 {Valid(props.headerAuthor) && props.headerAuthor.map( (d, index) => {
-                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('author', d.value)} title={d.label}/>);
+                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('author', d.value, d.label)} title={d.label}/>);
                 })}
                 {Valid(props.headerTag) && props.headerTag.map( (d, index) => {
-                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('tag', d.value)} title={d.label}/>);
+                    return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('tag', d.value, d.label)} title={d.label}/>);
                 })}
             </ul>
         </div>
