@@ -3,7 +3,6 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 const layoutStye = (props) => {
 
     const {
-        elementId,
         attributes,
         data,
         selector,
@@ -72,37 +71,6 @@ const layoutStye = (props) => {
             }
         ],
         'selector': selector,
-    });
-
-    isNotEmpty(attributes['alignment']) && data.push({
-        'type': 'plain',
-        'id': 'alignment',
-        'selector': selector,
-        'properties': [
-            {
-                'name': 'justify-content',
-                'valueType': 'direct',
-            },
-            {
-                'name': 'text-align',
-                'valueType': 'function',
-                'functionName': 'handleAlign',
-            }
-        ],
-        'responsive': true,
-    });
-
-    isNotEmpty(attributes['verticalAlignment']) && data.push({
-        'type': 'plain',
-        'id': 'verticalAlignment',
-        'properties': [
-            {
-                'name': 'align-items',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': selector,
-        'responsive': true
     });
 
     return data;

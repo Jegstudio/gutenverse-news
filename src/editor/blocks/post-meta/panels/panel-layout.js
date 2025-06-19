@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { AlignLeft, AlignCenter, AlignRight } from 'gutenverse-core/components';
-import { DimensionControl, IconRadioControl, SelectControl, SizeControl } from 'gutenverse-core/controls';
+import { DimensionControl, NumberControl, SizeControl } from 'gutenverse-core/controls';
 
 const layoutPanel = () => {
 
@@ -100,47 +99,13 @@ const layoutPanel = () => {
             },
         },
         {
-            id: 'alignment',
-            label: __('Alignment', 'gutenverse'),
-            component: IconRadioControl,
+            id: 'zIndex',
+            label: __('Z Index', '--gctd--'),
+            component: NumberControl,
             allowDeviceControl: true,
-            options: [
-                {
-                    label: __('Align Left', 'gutenverse'),
-                    value: 'flex-start',
-                    icon: <AlignLeft />,
-                },
-                {
-                    label: __('Align Center', 'gutenverse'),
-                    value: 'center',
-                    icon: <AlignCenter />,
-                },
-                {
-                    label: __('Align Right', 'gutenverse'),
-                    value: 'flex-end',
-                    icon: <AlignRight />,
-                },
-            ],
-        },
-        {
-            id: 'verticalAlignment',
-            label: __('Vertical Align', 'gutenverse'),
-            component: SelectControl,
-            allowDeviceControl: true,
-            options: [
-                {
-                    label: __('Top'),
-                    value: 'flex-start'
-                },
-                {
-                    label: __('Middle'),
-                    value: 'center'
-                },
-                {
-                    label: __('Bottom'),
-                    value: 'flex-end'
-                },
-            ],
+            min: 1,
+            max: 9999,
+            step: 1,
         },
     ];
 };

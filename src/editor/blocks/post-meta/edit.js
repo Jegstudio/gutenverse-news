@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState, Fragment } from '@wordpress/element';
+import { useEffect, Fragment } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -8,10 +8,6 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import { ModuleOverlay } from '../../part/placeholder';
-import { select, subscribe, useSelect } from '@wordpress/data';
-import { addQueryArgs } from '@wordpress/url';
-import apiFetch from '@wordpress/api-fetch';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -45,84 +41,8 @@ const PostMeta = compose(
         }
     }, [elementRef]);
 
-    const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const [categoryMeta, setCategoryMeta] = useState(false);
-    const [contentData, setContentData] = useState(false);
-    const currentId = wp.data.select('core/editor').getCurrentPostId();
-
-    const [categoriesIds, setCategoriesIds] = useState([]);
-    const [editorDate, setEditorDate] = useState(false);
-    const authorId = select('core/editor').getEditedPostAttribute('author');
-
-    const AuthorMeta = () => {
-        if (contentData.authors && contentData.authors.length) {
-            const image = true;
-            const byClass = null;
-
-            let author_image = [];
-            let metaText = [];
-
-            contentData.authors.forEach((author, index) => {
-                let output = [];
-                let author_text = [];
-                let guest_author = (author.type === 'guest-author') ? true : false;
-
-                if (image && index < 3) {
-                    author_image.push(<img
-                        key={index}
-                        alt="admin"
-                        src={author.name}
-                        srcSet={author.avatar}
-                        className={'avatar avatar-80 photo'}
-                        height="80"
-                        width="80"
-                        loading="lazy"
-                        decoding="async"
-                    />);
-                    author_text.push(author_image);
-                    author_image = [];
-                }
-
-                if (index === 0) {
-                    author_text.push(<span key={`meta_text-${index}`} className={`meta_text ${byClass}`}>{__('by', 'gutenverse-news')}</span>);
-                }
-                author_text.push(guest_author ? <a key={`name-${index}`} href="#" title={`${__('Posts by', 'gutenverse-news')} ${author.name}`} className="author url fn" rel="author">{author.name}</a> : <a key={`name-${index}`} href="#">{author.name}</a>);
-                output.push(author_text);
-                metaText.push(output);
-            });
-
-            return <>{metaText}</>;
-        }
-        return <>
-            <img alt="admin" src={`${imgDir}/author.png`} />
-            <span className="meta_text">by</span>
-            <a href="#">admin</a>
-        </>;
-    };
-
-    useEffect(() => {
-        const selectedCategoriesAttr = select('core/editor').getEditedPostAttribute('categories');
-        const selectedCategories = selectedCategoriesAttr ? selectedCategoriesAttr : [];
-        setCategoriesIds(selectedCategories);
-        const editorDate = select('core/editor').getEditedPostAttribute('date');
-        setEditorDate(editorDate);
-
-        const unsubscribe = subscribe(() => {
-            const updatedCategoriesAttr = select('core/editor').getEditedPostAttribute('categories');
-            const updatedCategories = updatedCategoriesAttr ? updatedCategoriesAttr : [];
-
-            setCategoriesIds(updatedCategories);
-            const udpatedEditorDate = select('core/editor').getEditedPostAttribute('date');
-            setEditorDate(udpatedEditorDate);
-        });
-
-        return () => {
-            unsubscribe();
-        };
-    }, []);
-
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -134,62 +54,6 @@ const PostMeta = compose(
         ),
         ref: elementRef
     });
-
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post-meta-element'),
-            method: 'POST',
-            data: {
-                attr: {
-                    author: [authorId],
-                    id: currentId,
-                    post_date: editorDate,
-                }
-            },
-        }).then((data) => {
-            setContentData(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
-        });
-    }, [
-        authorId,
-        currentId,
-        editorDate
-    ]);
-
-    const categories = useSelect((select) => {
-        const { getEntityRecords } = select('core');
-        const categoryRecords = getEntityRecords('taxonomy', 'category', { per_page: -1 }) || [];
-
-        return categoryRecords
-            .filter((category) => categoriesIds.includes(category.id))
-            .map((category, index) => {
-                return category.name;
-            });
-    }, [categoriesIds]);
-
-    useEffect(() => {
-        const catLength = categories.length;
-        if (catLength) {
-            setCategoryMeta(categories.map((category, index) => {
-                const comma = index + 1 !== catLength ? ', ' : '';
-                return <span key={index} className="category-separator"><a href="#" rel="category tag">{category}</a>{comma}</span>;
-            }));
-        } else {
-            setCategoryMeta(<>
-                <a href="#" rel="category tag">Dummy</a>,
-                <a href="#" rel="category tag">Another</a>,
-                <a href="#" rel="category tag">Category</a>
-            </>);
-        }
-    }, [categories]);
-
-    const MetaAuthor = () => {
-        return <div className={'gvnews_meta_author'}>
-            <AuthorMeta />
-        </div>;
-    };
 
     const convertDateFormat = inputDate => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -219,59 +83,80 @@ const PostMeta = compose(
     }
 
 
-    const MetaDate = () => {
-        const date = editorDate ? convertDateFormat(editorDate) : convertDateFormat(getCurrentDateTimeFormatted());
+    const MetaDate = ({isLastItem}) => {
 
-        return <div className="gvnews_meta_date">
-            <a href="#">{date}</a>
+        return <div className={`gvnews-meta-date meta-items ${isLastItem}`}>
+            <a href="#">{convertDateFormat(getCurrentDateTimeFormatted())}</a>
         </div>;
     };
 
-    const MetaCategory = () => {
-        return <div className="gvnews_meta_category">
+    const MetaCategory = ({isLastItem}) => {
+        return <div className={`gvnews-meta-category meta-items ${isLastItem}`}>
             <span>
-                <span className="meta_text">{__('in', 'gutenverse-news')}</span>
-                {categoryMeta}
+                <span className="meta-text">{__('in', 'gutenverse-news')} </span>
+                <a href="#" rel="category tag">Dummy, </a>
+                <a href="#" rel="category tag">Another, </a>
+                <a href="#" rel="category tag">Category </a>
             </span>
         </div>;
     };
 
-    const MetaComment = () => {
-        return <div className="gvnews_meta_comment">
-            <a href="/#respond"><i className="far fa-comment"></i>{contentData.commentNumber}</a>
+    const MetaComment = ({isLastItem}) => {
+        return <div className={`gvnews-meta-comment meta-items ${isLastItem}`}>
+            <a href="/#respond"><i className="far fa-comment"></i> 100</a>
+        </div>;
+    };
+
+    const MetaAuthor = ({isLastItem}) => {
+        return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
+            <img
+                alt="admin"
+                srcSet="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=96&amp;d=mm&amp;r=g"
+                className="avatar avatar-80 photo"
+                height="80"
+                width="80"
+                loading="lazy"
+                decoding="async" />
+            <span className="meta_text null">by </span>
+            <a href="#">admin</a>
         </div>;
     };
 
 
     const RenderMeta = (props) => {
         return props.metas.map((meta, index) => {
+            const isLastItem = index === props.metas.length - 1? 'is-last-item' : '';
             let output;
+
             switch (meta.value) {
                 case 'author':
-                    output = <MetaAuthor key={index} />;
+                    output = <MetaAuthor key={index} isLastItem={isLastItem} />;
                     break;
                 case 'date':
-                    output = <MetaDate key={index} />;
+                    output = <MetaDate key={index} isLastItem={isLastItem} />;
                     break;
                 case 'category':
-                    output = <MetaCategory key={index} />;
+                    output = <MetaCategory key={index} isLastItem={isLastItem} />;
                     break;
                 case 'comment':
-                    output = <MetaComment key={index} />;
+                    output = <MetaComment key={index} isLastItem={isLastItem} />;
                     break;
+                default:
+                    output = null;
             }
+
             return output;
         });
     };
 
     const MetaLeftElement = () => {
-        return <div className="meta_left">
+        return <div className="meta-left">
             <RenderMeta metas={metaLeft ? metaLeft : []} />
         </div>;
     };
 
     const MetaRightElement = () => {
-        return <div className="meta_left">
+        return <div className="meta-right">
             <RenderMeta metas={metaRight ? metaRight : []} />
         </div>;
     };
@@ -280,10 +165,10 @@ const PostMeta = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            {contentData ? <div className="gvnews_post_meta gvnews_custom_meta_wrapper">
+            <div className="gvnews-post-meta">
                 {MetaLeftElement()}
                 {MetaRightElement()}
-            </div> : <ModuleOverlay />}
+            </div>
         </div>
     </>;
 });

@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { AlignLeft, AlignCenter, AlignRight } from 'gutenverse-core/components';
-import { DimensionControl, IconRadioControl, SelectControl, SizeControl } from 'gutenverse-core/controls';
+import { DimensionControl, IconRadioControl, NumberControl, SelectControl, SizeControl } from 'gutenverse-core/controls';
 
 const layoutPanel = () => {
 
@@ -141,6 +141,15 @@ const layoutPanel = () => {
                     value: 'flex-end'
                 },
             ],
+        },
+        {
+            id: 'zIndex',
+            label: __('Z Index', '--gctd--'),
+            component: NumberControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 9999,
+            step: 1,
         },
     ];
 };
