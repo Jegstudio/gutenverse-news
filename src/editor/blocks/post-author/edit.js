@@ -1,18 +1,12 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState, useRef, Fragment } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import apiFetch from '@wordpress/api-fetch';
-import { addQueryArgs } from '@wordpress/url';
-import { ModuleOverlay } from '../../part/placeholder';
-import { RawHTML } from '@wordpress/element';
-import { select, useSelect } from '@wordpress/data';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
@@ -42,13 +36,8 @@ const PostAuthor = compose(
         }
     }, [elementRef]);
 
-    const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const [authorData, setAuthorData] = useState(false);
-    const [content, setContent] = useState(false);
-    const currentId = wp.data.select('core/editor').getCurrentPostId();
-    const authorId = select('core/editor').getEditedPostAttribute('author');
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -62,70 +51,29 @@ const PostAuthor = compose(
         ref: elementRef
     });
 
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post-author'),
-            method: 'POST',
-            data: {
-                attr: {
-                    author: [authorId]
-                }
-            },
-        }).then((data) => {
-            setAuthorData(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
-        });
-    }, [
-        authorId,
-    ]);
-
-    useEffect(() => {
-        if (authorData.length) {
-            setContent(authorData.map((author, index) => {
-                const metas = author.meta ? author.meta.map((meta, key) => {
-                    return <a key={index} className="url">
-                        <i className={`fa ${meta.value}`}></i>
-                    </a>;
-                }) : '';
-                return (<div key={index} className="gvnews_authorbox">
-                    <div className="gvnews_author_image">
-                        <img src={author.avatar} className="avatar avatar-80 photo" />
-                    </div>
-                    <div className="gvnews_author_content">
-                        <h3 className="gvnews_author_name"><a>{author.name}</a></h3>
-                        <p className="gvnews_author_desc">{author.desc}</p>
-                        <div className="gvnews_author_socials">
-                            {metas}
-                        </div>
-                    </div>
-                </div>);
-            }));
-        } else {
-            setContent(
-                <div className="gvnews_authorbox">
-                    <div className="gvnews_author_image">
-                        <img alt="admin" src={`${imgDir}/author.png`} />
-                    </div>
-                    <div className="gvnews_author_content">
-                        <h3 className="gvnews_author_name">
-                            <a href="#">admin</a>
-                        </h3>
-                        <p></p>
-                    </div>
-                </div>
-            );
-        }
-    }, [authorData]);
-
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews_custom_share_wrapper">
-                <div className="gvnews_custom_author_wrapper gvnews_author_box_container">
-                    {content ? content : <ModuleOverlay />}
+            <div className="gvnews-author-box-container">
+                <div className="gvnews-authorbox">
+                    <div className="gvnews-author-image">
+                        <img
+                            alt="admin"
+                            srcSet="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=96&amp;d=mm&amp;r=g"
+                        />
+                    </div>
+                    <div className="gvnews-author-content">
+                        <h3 className="gvnews-author-name">
+                            <a href="#" onClick={(e) => e.preventDefault()} >admin</a>
+                        </h3>
+                        <p className="gvnews-author-desc">Example Description</p>
+                        <div className="gvnews-author-socials" >
+                            <a href="#" onClick={(e) => e.preventDefault()} className="url">
+                                <i className="fa fa-globe"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
