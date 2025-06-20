@@ -66,6 +66,7 @@ class Editor_Assets {
 			'gutenverse-news',
 			GUTENVERSE_NEWS_LANG_DIR
 		);
+		do_action( 'gvnews_after_editor_assets' );
 	}
 
 	/**
@@ -78,7 +79,7 @@ class Editor_Assets {
 		$config['gvnews_ajax_url'] = esc_url_raw( add_query_arg( array( 'ajax-request' => 'gvnews' ), esc_url( gvnews_home_url_multilang( '/', 'relative' ) ) ) );
 		$config['moduleOption']    = $this->get_module_option();
 
-		return $config;
+		return apply_filters( 'gvnews_editor_config', $config );
 	}
 
 	/**

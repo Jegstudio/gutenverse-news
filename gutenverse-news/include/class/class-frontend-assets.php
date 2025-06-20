@@ -341,6 +341,6 @@ class Frontend_Assets {
 			'module_prefix' => 'gvnews_module_ajax_',
 			'postid'        => get_the_ID(),
 		);
-		return apply_filters( 'gvnews_helper_config', $config );
+		return apply_filters( 'gvnews_frontend_config', $config );
 	}
 }
