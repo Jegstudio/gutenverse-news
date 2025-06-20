@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Style;
 
+use Gutenverse\Framework\Style_Abstract;
 use GUTENVERSE\NEWS\Style\StyleAbstract;
 
 /**
@@ -16,7 +17,22 @@ use GUTENVERSE\NEWS\Style\StyleAbstract;
  *
  * @package Gutenverse
  */
-class Post_Breadcrumb extends StyleAbstract {
+class Post_Breadcrumb extends Style_Abstract {
+
+
+	/**
+	 * Block Directory
+	 *
+	 * @var string
+	 */
+	protected $block_dir = GUTENVERSE_NEWS_DIR . '/block/';
+
+	/**
+	 * Block Name
+	 *
+	 * @var array
+	 */
+	protected $name = 'post-breadcrumb';
 
 
 	/**
