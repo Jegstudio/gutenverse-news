@@ -95,25 +95,25 @@ class Style_Generator {
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-title' ):
+				case 'gutenverse/news-post-title' === $name:
 					$instance = new Post_Title( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-tag' ):
+				case 'gutenverse/news-post-tag' === $name:
 					$instance = new Post_Tag( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-related' ):
+				case 'gutenverse/news-post-related' === $name:
 					$instance = new Post_Related( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-meta' ):
+				case 'gutenverse/news-post-meta' === $name:
 					$instance = new Post_Meta( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-breadcrumb' ):
+				case 'gutenverse/news-post-breadcrumb' === $name:
 					$instance = new Post_Breadcrumb( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-comment' ):
+				case 'gutenverse/news-post-comment' === $name:
 					$instance = new Post_Comment( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-author' ):
+				case 'gutenverse/news-post-author' === $name:
 					$instance = new Post_Author( $attrs, $name );
 					break;
 			}

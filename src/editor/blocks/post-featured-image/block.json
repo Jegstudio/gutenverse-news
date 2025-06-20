@@ -31,12 +31,17 @@
         },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
