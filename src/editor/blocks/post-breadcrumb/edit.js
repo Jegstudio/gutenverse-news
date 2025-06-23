@@ -42,6 +42,7 @@ const PostBreadcrumb = compose(
 
     const blockProps = useBlockProps({
         className: classnames(
+            'guten-element',
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-post-breadcrumb',
@@ -58,15 +59,15 @@ const PostBreadcrumb = compose(
         <div  {...blockProps}>
             <div className="breadcrumbs">
                 <span className="">
-                    <a href="#" target="_self">Home</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} >Home</a>
                 </span>
                 <i className="fas fa-angle-right"></i>
                 <span className="">
-                    <a href="" target="_self">Category</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} >Category</a>
                 </span>
                 <i className="fas fa-angle-right"></i>
                 <span className="breadcrumb_last_link">
-                    <a href="#" target="_self">Child Category</a>
+                    <a href="#" onClick={(e) => e.preventDefault()} >Child Category</a>
                 </span>
             </div>
         </div>

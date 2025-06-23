@@ -48,6 +48,7 @@ const PostMeta = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-post-meta',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,

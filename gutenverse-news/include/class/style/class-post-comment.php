@@ -46,12 +46,12 @@ class Post_Comment extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-comment",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-comment:hover",
 				),
 				'border'     => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-comment",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-comment:hover",
 				),
 				'advance'    => null,
 			)
@@ -67,7 +67,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['commentTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} *",
+					'selector'       => ".guten-element.{$this->element_id} *",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['commentTypography'],
 					'device_control' => false,
@@ -79,7 +79,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -92,7 +92,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -105,7 +105,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -118,7 +118,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['height'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'height' );
 					},
@@ -131,7 +131,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-comment",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
 					'property'       => function ( $value ) {
 						return "z-index: {$value};";
 					},

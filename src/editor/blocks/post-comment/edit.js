@@ -45,6 +45,7 @@ const PostComment = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-post-comment',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,

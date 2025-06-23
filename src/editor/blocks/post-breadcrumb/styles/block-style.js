@@ -6,14 +6,14 @@ import stylingStyle from './panelStyle/stylingStyle';
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
-    data = layoutStye({attributes, elementId, data, selector: `.${elementId}.gvnews-post-breadcrumb`});
+    data = layoutStye({attributes, elementId, data, selector: `.guten-element.${elementId}.gvnews-post-breadcrumb`});
     data = stylingStyle({attributes, elementId, data});
     data = backgroundStyle({
         elementId,
         attributes,
         data,
-        backgroundSelector: `.${elementId}.gvnews-post-breadcrumb`,
-        backgroundHoverSelector: `.${elementId}.gvnews-post-breadcrumb:hover`,
+        backgroundSelector: `.guten-element.${elementId}.gvnews-post-breadcrumb`,
+        backgroundHoverSelector: `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     /**
@@ -22,31 +22,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId}.gvnews-post-breadcrumb`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId}.gvnews-post-breadcrumb`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId}.gvnews-post-breadcrumb`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -58,7 +58,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId}.gvnews-post-breadcrumb:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
         'properties': [
             {
                 'name': 'box-shadow',

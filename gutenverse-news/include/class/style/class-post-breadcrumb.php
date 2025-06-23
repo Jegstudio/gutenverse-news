@@ -47,12 +47,12 @@ class Post_Breadcrumb extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb:hover",
 				),
 				'border'     => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb:hover",
 				),
 			)
 		);
@@ -67,7 +67,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb span a",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['typography'],
 					'device_control' => false,
@@ -78,7 +78,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['gap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb span a, .gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb i",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a, .guten-element.{$this->element_id}.gvnews-post-breadcrumb i",
 					'property'       => function ( $value ) {
 						return "margin-right: {$value}px;";
 					},
@@ -91,7 +91,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['textColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb span a",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -104,7 +104,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['textColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb span a:hover",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -117,7 +117,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['arrowColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb i",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -131,7 +131,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -144,7 +144,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -157,7 +157,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -170,7 +170,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['height'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'height' );
 					},
@@ -183,7 +183,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return "z-index: {$value};";
 					},
@@ -196,7 +196,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['alignment'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return "justify-content: {$value};";
 					},
@@ -206,7 +206,7 @@ class Post_Breadcrumb extends Style_Abstract {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return 'text-align: ' .
 						( 'flex-start' === $value ? 'left' :
@@ -222,7 +222,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['verticalAlignment'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-breadcrumb",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb",
 					'property'       => function ( $value ) {
 						return "align-items: {$value};";
 					},

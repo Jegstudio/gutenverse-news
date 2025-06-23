@@ -4,13 +4,13 @@ import layoutStye from './panelStyles/layoutStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
-    data = layoutStye({attributes, data, selector: `.gvnews-block.${elementId}.gvnews-post-comment`});
+    data = layoutStye({attributes, data, selector: `.guten-element.${elementId}.gvnews-post-comment`});
     data = backgroundStyle({
         elementId,
         attributes,
         data,
-        backgroundSelector: `.${elementId}.gvnews-post-comment`,
-        backgroundHoverSelector: `.${elementId}.gvnews-post-comment:hover`,
+        backgroundSelector: `.guten-element.${elementId}.gvnews-post-comment`,
+        backgroundHoverSelector: `.guten-element.${elementId}.gvnews-post-comment:hover`,
     });
 
     /**
@@ -28,31 +28,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -64,7 +64,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -86,7 +86,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -99,7 +99,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -112,7 +112,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.gvnews-block.${elementId}.gvnews-post-comment`,
+        'selector': `.guten-element.${elementId}.gvnews-post-comment`,
     });
 
     return data;

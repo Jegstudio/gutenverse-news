@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Author extends Block_Abstract {
+class Post_Author extends Post_Guten {
 
 	/**
 	 * Social media array.
@@ -59,12 +59,10 @@ class Post_Author extends Block_Abstract {
 	/**
 	 * Method get_content
 	 *
-	 * @param string $post_id post id.
-	 *
 	 * @return string
 	 */
-	public function render_content( $post_id ) {
-		$post_id   = get_the_ID();
+	public function get_content() {
+		$post_id   = ! empty( $this->context['postId'] ) ? esc_html( $this->context['postId'] ) : get_the_ID();
 		$author_id = is_author() ? get_queried_object_id() : get_post_field( 'post_author', $post_id );
 		$author    = array(
 			'id'   => $author_id,
@@ -73,22 +71,20 @@ class Post_Author extends Block_Abstract {
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
 
-		$block = '<div class="gvnews-author-box-container">' .
-					'<div class="gvnews-authorbox">
-						<div class="gvnews-author-image">' .
-							get_avatar( $author['id'], 80, null, $author['name'] ) .
-						'</div>' .
-						'<div class="gvnews-author-content">
-							<h3 class="gvnews-author-name">
-								<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
-							</h3>
-							<p>' . esc_html( $author['desc'] ) . '</p>
-							<div class="gvnews-author-socials">' .
-								$this->generate_social_element( $author_id ) .
-							'</div>
-						</div>
-					</div>' .
-				'</div>';
+		$block = '<div class="gvnews-authorbox">
+					<div class="gvnews-author-image">' .
+						get_avatar( $author['id'], 80, null, $author['name'] ) .
+					'</div>' .
+					'<div class="gvnews-author-content">
+						<h3 class="gvnews-author-name">
+							<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
+						</h3>
+						<p>' . esc_html( $author['desc'] ) . '</p>
+						<div class="gvnews-author-socials">' .
+							$this->generate_social_element( $author_id ) .
+						'</div>
+					</div>
+				</div>';
 
 		return $block;
 	}
@@ -104,10 +100,8 @@ class Post_Author extends Block_Abstract {
 	 * Render view in frontend
 	 */
 	public function render_frontend() {
-		$post_id         = ! empty( $this->context['postId'] ) ? esc_html( $this->context['postId'] ) : get_the_ID();
 		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
-		// $animation_class = $this->set_animation_classes();
 		$custom_classes = $this->get_custom_classes();
 
 		return '<div class="' .
@@ -116,7 +110,7 @@ class Post_Author extends Block_Abstract {
 							// $animation_class .
 							$custom_classes .
 							'gvnews-post-author guten-element"
-				>' . $this->render_content( $post_id ) . '</div>';
+				>' . $this->render_content() . '</div>';
 	}
 
 	/**

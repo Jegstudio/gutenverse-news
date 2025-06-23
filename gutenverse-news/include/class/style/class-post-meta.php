@@ -46,12 +46,12 @@ class Post_Meta extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
 				'border'     => array(
-					'normal' => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
-					'hover'  => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
 			)
 		);
@@ -66,7 +66,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['metaTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta span a",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta span a",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['metaTypography'],
 					'device_control' => false,
@@ -78,7 +78,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -91,7 +91,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -104,7 +104,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -117,7 +117,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['height'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'height' );
 					},
@@ -130,7 +130,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block-wrapper .{$this->element_id}.gvnews-post-meta",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'property'       => function ( $value ) {
 						return "z-index: {$value};";
 					},

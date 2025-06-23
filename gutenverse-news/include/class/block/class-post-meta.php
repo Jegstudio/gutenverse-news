@@ -17,40 +17,15 @@ use GUTENVERSE\NEWS\Block\Post_Guten;
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Meta extends Grab {
+class Post_Meta extends Post_Guten {
 
 	/**
-	 * Build element with wrapper
-	 *
-	 * @param string $element_name  Element name.
-	 * @param string $inner         Inner element.
-	 * @param array  $array_classes Classes.
-	 * @param array  $array_data    Data attribute.
-	 * @param array  $id            Element ID.
+	 * Method get_custom_classes;
 	 *
 	 * @return string
 	 */
-	protected function render_wrapper( $element_name, $inner, $array_classes = array(), $array_data = array(), $id = null ) {
-		$classes    = '';
-		$data       = '';
-		$parts      = preg_split( '/[\\\\\/]/', $element_name );
-		$block_type = end( $parts );
-
-		foreach ( $array_classes as $class ) {
-			$classes = $classes . ' ' . $class;
-		}
-
-		foreach ( $array_data as $key => $value ) {
-			$data = $data . ' data-' . $key . '="' . $value . '"';
-		}
-
-		if ( $id ) {
-			$id = 'id="' . $id . '"';
-		}
-
-		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
-
-		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
+	public function get_custom_classes() {
+		return 'gvnews-post-meta';
 	}
 
 	/**
