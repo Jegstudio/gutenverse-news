@@ -317,7 +317,7 @@ class Module_Query {
 		// Query.
 		$query = new \WP_Query( $args );
 
-		if ( ! empty( $attr['include_post'] ) && ! $included_only ) {
+		if ( ! empty( $attr['include_post'] ) && $included_only ) {
 			$args['orderby']  = 'post__in';
 			$args['post__in'] = explode( ',', $attr['include_post'] );
 			$unset            = array(
@@ -329,7 +329,7 @@ class Module_Query {
 				'lang',
 			);
 
-			if ( ! wp_doing_ajax() ) {
+			if ( wp_doing_ajax() ) {
 				$unset[] = 'category__in';
 				$unset[] = 'author__in';
 				$unset[] = 'tag__in';
