@@ -160,6 +160,8 @@ class Frontend_Assets {
 			array(),
 			GUTENVERSE_NEWS_VERSION
 		);
+
+		do_action( 'gvnews_after_frontend_styles' );
 	}
 
 	/**
