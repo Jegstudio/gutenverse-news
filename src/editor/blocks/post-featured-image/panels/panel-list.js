@@ -28,7 +28,7 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => advancePanel({
                 ...props,
-                styleId: 'block-1-advance',
+                styleId: 'post-featured-advanced',
             }),
             tabRole: TabStyle
         }

@@ -18,6 +18,7 @@ use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
 use GUTENVERSE\NEWS\Style\Post_Comment;
+use GUTENVERSE\NEWS\Style\Post_Featured;
 use GUTENVERSE\NEWS\Style\Post_Meta;
 use GUTENVERSE\NEWS\Style\Post_Related;
 use GUTENVERSE\NEWS\Style\Slider;
@@ -115,6 +116,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-post-author' === $name:
 					$instance = new Post_Author( $attrs, $name );
+					break;
+				case 'gutenverse/news-post-featured' === $name:
+					$instance = new Post_Featured( $attrs, $name );
 					break;
 			}
 		}

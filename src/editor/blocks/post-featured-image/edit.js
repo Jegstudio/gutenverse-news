@@ -81,7 +81,7 @@ const PostFeaturedImage = compose(
         className: classnames(
             'gvnews-block',
             'gvnews-block-wrapper',
-            'gvnews-featured-image',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,
@@ -109,11 +109,9 @@ const PostFeaturedImage = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews_custom_featured_wrapper">
-                <div className="gvnews_featured featured_image custom_post">
-                    <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
-                        {content ? content : <ModuleOverlay />}
-                    </div>
+            <div className="gvnews_featured featured_image custom_post">
+                <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
+                    {content ? content : <ModuleOverlay />}
                 </div>
             </div>
         </div>
