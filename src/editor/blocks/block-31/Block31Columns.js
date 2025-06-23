@@ -1,7 +1,4 @@
-import { __ } from '@wordpress/i18n';
-import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block31Columns = (props) => {
     const {

@@ -37,7 +37,7 @@ const Block17Columns = props => {
         );
     }
 
-    const BuildColumn1 = props=>{
+    const BuildColumn1 = () =>{
         const attr = {
             option : moduleOption,
             length : excerptLength,
@@ -62,7 +62,6 @@ const Block17Columns = props => {
 
         if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
-                const key = i+1;
                 if (4==blockWidth){
                     rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
                 }else{

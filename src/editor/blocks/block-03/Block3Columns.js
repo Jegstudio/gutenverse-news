@@ -2,7 +2,7 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block3Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
