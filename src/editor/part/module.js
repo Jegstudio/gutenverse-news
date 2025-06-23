@@ -119,7 +119,24 @@ const BlockModule = compose(
         getTrim([]);
         setPage(1);
         setForceReload(!forceReload);
-    }, [paginationMode, paginationPost, activeFilter]);
+    }, [
+        paginationMode,
+        paginationPost,
+        activeFilter,
+        contentType,
+        includeOnly,
+        postType,
+        includePost,
+        excludePost,
+        includeCategory,
+        excludeCategory,
+        includeAuthor,
+        includeTag,
+        excludeTag,
+        sortBy,
+        numberPost,
+        postOffset,
+    ]);
 
 
     useEffect(() => {
@@ -196,23 +213,7 @@ const BlockModule = compose(
             setOverlay(false);
             setIsLoaded(true);
         });
-    }, [
-        contentType,
-        includeOnly,
-        postType,
-        includePost,
-        excludePost,
-        includeCategory,
-        excludeCategory,
-        includeAuthor,
-        includeTag,
-        excludeTag,
-        sortBy,
-        page,
-        numberPost,
-        postOffset,
-        forceReload,
-    ]);
+    }, [ page, forceReload ]);
 
     useEffect(() => {
         if(firstRender.current) {
