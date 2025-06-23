@@ -1,9 +1,10 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block2Columns = props => {
-    const {postData, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         return (
@@ -15,8 +16,9 @@ const Block2Columns = props => {
     };
 
     const RenderBlock2 = props=>{
+        const { index = 'x' } = props;
         return (
-            <article className={`gvnews_post gvnews_pl_sm ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+            <article className={`gvnews_post gvnews_pl_sm ${isLoadMore && index > loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <ThumbModule size={715} cat={false} post={props.post}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
@@ -38,19 +40,21 @@ const Block2Columns = props => {
 
         if (postData) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
             }
         }
 
         return(
-            <div className="gvnews_posts">
+            <>
                 <article className="gvnews_post gvnews_pl_lg_1">
                     {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className="gvnews_postsmall">
-                    {rows}
+                    <div className="gvnews_posts">
+                        {rows}
+                    </div>
                 </div>
-            </div>
+            </>
         );
     };
 
@@ -69,21 +73,21 @@ const Block2Columns = props => {
 
         if (postData) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
             }
         }
 
         return(
-            <div className={'gvnews_block_container'}>
-                <article className={'gvnews_post gvnews_pl_lg_2'}>
+            <>
+                <article className="gvnews_post gvnews_pl_lg_2">
                     {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
-                <div className={'gvnews_posts_wrap'}>
-                    <div className="gvnews_posts gvnews_load_more_flag">
+                <div className="gvnews_posts_wrap">
+                    <div className="gvnews_posts">
                         {rows}
                     </div>
                 </div>
-            </div>
+            </>
         );
     };
 
@@ -97,10 +101,7 @@ const Block2Columns = props => {
         }
     };
 
-    return <>
-        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </>;
+    return <RenderColumn/>;
 };
 
 export default Block2Columns;

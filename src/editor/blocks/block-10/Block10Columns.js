@@ -1,16 +1,16 @@
-
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block10Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
+        const { index = 'x' } = props;
         return (
-            <article className="gvnews_post gvnews_pl_lg_4">
+            <article className={`gvnews_post gvnews_pl_lg_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <header className="gvnews_postblock_heading">
                     <h3 className="gvnews_post_title">
                         <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
@@ -38,7 +38,7 @@ const Block10Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -49,10 +49,7 @@ const Block10Columns = props => {
         );
     };
 
-    return <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <BuildColumn1/>;
 };
 
 export default Block10Columns;

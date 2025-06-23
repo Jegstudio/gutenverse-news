@@ -20,7 +20,7 @@ class Module_Query {
 	/**
 	 * Cache thumbnail
 	 *
-	 * @var $cache_thumbnail
+	 * @var array $cache_thumbnail
 	 */
 	private static $cache_thumbnail = array();
 
@@ -168,7 +168,7 @@ class Module_Query {
 		$args['post_type']           = isset( $attr['post_type'] ) ? $attr['post_type'] : 'post';
 		$args['paged']               = isset( $attr['paged'] ) ? $attr['paged'] : 1;
 		$args['offset']              = self::calculate_offset( $args['paged'], $attr['post_offset'], $attr['number_post'], $attr['pagination_number_post'] );
-		$args['posts_per_page']      = ( $args['paged'] > 1 ) ? $attr['pagination_number_post'] : $attr['number_post'];
+		$args['posts_per_page']      = ( $args['paged'] > 1 && $attr['pagination_number_post'] ) ? $attr['pagination_number_post'] : $attr['number_post'];
 		$args['no_found_rows']       = ! isset( $attr['pagination_mode'] ) || 'disable' === $attr['pagination_mode'];
 		$args['ignore_sticky_posts'] = 1;
 
@@ -356,7 +356,6 @@ class Module_Query {
 			gvnews_remove_filters( 'posts_join', array( __CLASS__, 'join_only_post' ) );
 			gvnews_remove_filters( 'posts_where', array( __CLASS__, 'where_only_post' ) );
 		}
-
 		return array(
 			'result'     => $result,
 			'next'       => self::has_next_page( $query->found_posts, $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
@@ -433,8 +432,8 @@ class Module_Query {
 	/**
 	 * Method recursive_category
 	 *
-	 * @param $categories $categories array.
-	 * @param result     $result array.
+	 * @param array $categories array.
+	 * @param array $result array.
 	 *
 	 * @return void
 	 */
@@ -473,7 +472,7 @@ class Module_Query {
 		if ( 1 === $paged || '1' === $paged ) {
 			$new_offset = $offset;
 		}
-		if ( 2 == $paged || '2' == $paged ) {
+		if ( 2 === $paged || '2' === $paged ) {
 			$new_offset = $number_post + $offset;
 		}
 		if ( $paged >= 3 ) {

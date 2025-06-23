@@ -1,11 +1,10 @@
-
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule, PostTitle } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block24Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {post} = props;
@@ -20,8 +19,9 @@ const Block24Columns = props => {
     };
 
     const RenderBlock2 = props=>{
+        const {index='x'} = props;
         return (
-            <article className="gvnews_post gvnews_pl_xs_4">
+            <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_content">
                     <i className="fas fa-caret-right"></i>
                     {props.post.title && <PostTitle post={props.post} />}
@@ -45,7 +45,7 @@ const Block24Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -78,13 +78,13 @@ const Block24Columns = props => {
         if (postDataLength > 0) {
             const limit = postDataLength > 2 ? 2 : postDataLength;
             for (let i = 0; i < limit ; i++) {
-                rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock1 index={0} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
         if(postDataLength>2){
             for (let i = 2; i < postDataLength; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -115,13 +115,13 @@ const Block24Columns = props => {
         if (postDataLength > 0) {
             const limit = postDataLength > 3 ? 3 : postDataLength;
             for (let i = 0; i < limit ; i++) {
-                rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock1 index={0} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
         if(postDataLength>3){
             for (let i = 3; i < postDataLength; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -143,10 +143,7 @@ const Block24Columns = props => {
         }
     };
 
-    return  <div className="gvnews_block_container">
-        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <RenderColumn/>;
 };
 
 export default Block24Columns;

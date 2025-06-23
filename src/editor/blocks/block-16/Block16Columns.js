@@ -1,11 +1,10 @@
-
-import { __ } from '@wordpress/i18n';
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block16Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         return (
@@ -17,8 +16,9 @@ const Block16Columns = props => {
     };
 
     const RenderBlock2 = props=>{
+        const { index = 'x' } = props;
         return (
-            <article className="gvnews_post gvnews_pl_xs_2">
+            <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <i className="fas fa-caret-right"></i>
                 <ContentModule title={true} meta={false} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
@@ -40,7 +40,7 @@ const Block16Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -56,10 +56,7 @@ const Block16Columns = props => {
         );
     };
 
-    return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <BuildColumn1/>;
 };
 
 export default Block16Columns;

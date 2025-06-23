@@ -1,14 +1,13 @@
-
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule1, MetaModule2 } from '../../part/meta';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block17Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     function RenderBlock1(props){
-        const {attr, post} = props;
+        const {attr, post, index = 'x'} = props;
         let aclass = '';
         let PostMeta = () => (
             <>
@@ -22,7 +21,7 @@ const Block17Columns = props => {
         if (1==props.type){
             aclass = 'gvnews_post gvnews_pl_md_1';
         }else{
-            aclass = `gvnews_post gvnews_pl_sm ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
+            aclass = `gvnews_post gvnews_pl_sm ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
         }
 
         return (
@@ -55,7 +54,7 @@ const Block17Columns = props => {
         let limit = 2;
 
         if (4==blockWidth && postData.length > 0) {
-            first.push(<RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/>);
+            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1}/>);
             start = 1;
         } else if (12==blockWidth) {
             limit = 3;
@@ -65,9 +64,9 @@ const Block17Columns = props => {
             for (let i = start; i < postData.length; i++) {
                 const key = i+1;
                 if (4==blockWidth){
-                    rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
                 }else{
-                    rows.push(i < limit ? <RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={1}/> : <RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
+                    rows.push(i < limit ? <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1}/> : <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
                 }
             }
         }
@@ -82,10 +81,7 @@ const Block17Columns = props => {
         );
     };
 
-    return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <BuildColumn1/>;
 };
 
 export default Block17Columns;

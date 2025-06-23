@@ -3,7 +3,6 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -18,9 +17,9 @@ import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { ModuleSkeleton, ModuleOverlay } from './placeholder';
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const BlockModule = compose(
     withPartialRender,
@@ -60,6 +59,7 @@ const BlockModule = compose(
         excludeTag,
         sortBy,
         paginationMode,
+        paginationPost,
         showNavText,
         enableBoxed,
         enableBoxShadow,
@@ -84,51 +84,43 @@ const BlockModule = compose(
         []
     );
 
+    const animationClass = useAnimationEditor(attributes);
+    const displayClass = useDisplayEditor(attributes);
+    const deviceType = getDeviceType();
+
+    const [blockWidth, getWidth] = useState(columnAttr.blockWidth);
+    const [postData, getTrim] = useState([]);
+    const [overlay, setOverlay] = useState(columnAttr.overlay || false);
+    const [activeFilter, setActiveFilter] = useState(-100);
+    const [activeType, setActiveType] = useState({ value: -100, label: 'all' });
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [page, setPage] = useState(1);
+    const [nextPrevTotalPagination, setNextPrevTotalPagination] = useState({
+        next: false,
+        prev: false,
+        totalPage: 1,
+    });
+    const [forceReload, setForceReload] = useState(false);
+    const [loadClass, setLoadClass] = useState('');
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const ColumnBlock = columnAttr.block;
+    const firstRender = useRef(true);
+
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
         }
     }, [elementRef]);
 
-    const animationClass = useAnimationEditor(attributes);
-    const displayClass = useDisplayEditor(attributes);
-    const deviceType = getDeviceType();
-
-    const [postBulk, getPost] = useState(false);
-    const [blockWidth, getWidth] = useState(columnAttr.blockWidth);
-    const [postData, getTrim] = useState([]);
-    const [loadPost, loadMore] = useState(columnAttr.loadPost || 15);
-    const [overlay, setOverlay] = useState(columnAttr.overlay || false);
-    const [activeFilter, setActiveFilter] = useState(-100);
-    const [activeType, setActiveType] = useState({ value: -100, label: 'all' });
-    const [isLoaded, setIsLoaded] = useState(false);
-
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim([]);
-            }
-        } else {
-            getTrim([]);
+        if(firstRender.current) {
+            return;
         }
-    }, [
-        numberPost,
-        postBulk,
-        postOffset,
-    ]);
+        getTrim([]);
+        setPage(1);
+        setForceReload(!forceReload);
+    }, [paginationMode, paginationPost, activeFilter]);
 
-    useEffect(() => {
-        setIsLoaded(true);
-    }, [postData]);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -148,13 +140,12 @@ const BlockModule = compose(
     ]);
 
     useEffect(() => {
-        postBulk ? setOverlay(true) : null;
         let attr = {
             contentType,
             uniqueContent,
             includeOnly,
             postType,
-            numberPost: loadPost,
+            numberPost,
             includePost,
             excludePost,
             includeCategory,
@@ -163,6 +154,11 @@ const BlockModule = compose(
             includeTag,
             excludeTag,
             sortBy,
+            page,
+            paginationPost: paginationPost || numberPost,
+            paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
+            postOffset,
+            advancedResponse: true,
         };
         if (activeFilter['value'] != -100) {
             let incldOnly = true;
@@ -189,11 +185,16 @@ const BlockModule = compose(
                 attr: attr
             }
         }).then((data) => {
-            getPost(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
+            const { result = [], ...pagination } = JSON.parse(data);
+            setNextPrevTotalPagination(pagination);
+            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+                result.length > 0 ? getTrim([...postData, ...result]) : null;
+                return;
+            }
+            getTrim(result);
         }).finally(() => {
             setOverlay(false);
+            setIsLoaded(true);
         });
     }, [
         contentType,
@@ -207,8 +208,46 @@ const BlockModule = compose(
         includeTag,
         excludeTag,
         sortBy,
-        loadPost,
-        activeFilter,
+        page,
+        numberPost,
+        postOffset,
+        forceReload,
+    ]);
+
+    useEffect(() => {
+        if(firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        if (postData.length > 0) {
+            const allColumns = <ColumnBlock {...{
+                blockWidth,
+                excerptLength,
+                excerptEllipsis,
+                moduleOption,
+                metaDateType,
+                metaDateFormat,
+                metaDateFormatCustom,
+                postData,
+                isLoadMore: (paginationMode === 'loadmore' || paginationMode === 'scrollload'),
+                numberPost,
+                paginationPost,
+                page,
+            }} />;
+            setBlock(allColumns);
+        } else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+        }
+        return () => setBlock(<ModuleSkeleton />);
+    }, [
+        blockWidth,
+        excerptLength,
+        excerptEllipsis,
+        moduleOption,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        postData,
     ]);
 
     const blockProps = useBlockProps({
@@ -236,51 +275,37 @@ const BlockModule = compose(
             setIsLoaded(false);
             setActiveFilter({value, label});
             setActiveType(type);
+            setLoadClass('');
+            setOverlay(true);
         }
     };
 
     const paginationData = {
         paginationMode,
         showNavText,
+        nextPrevTotalPagination,
+        onPageChange: (amount, loadClass) => {
+            const final = Math.max(page + amount, 1);
+            setIsLoaded(false);
+            setPage(final);
+            setLoadClass(loadClass);
+            if (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') {
+                setOverlay(true);
+            }
+        }
     };
-
-    const [block, setBlock] = useState(false);
-    const ColumnBlock = columnAttr.block;
-
-    useEffect(() => {
-        setBlock(<ColumnBlock {...{
-            blockWidth,
-            excerptLength,
-            excerptEllipsis,
-            moduleOption,
-            postData,
-            metaDateType,
-            metaDateFormat,
-            metaDateFormatCustom,
-            postBulk,
-            overlay
-        }} />);
-    }, [
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
-        postBulk,
-        overlay,
-    ]);
 
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
+        <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${isLoaded ? 'loaded' : 'loading'} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
-                    {block && isLoaded ? block : 'loading'}
+                    <div className="gvnews_block_container">
+                        {block}
+                        {overlay && <ModuleOverlay />}
+                    </div>
                     <PaginationModule {...paginationData} />
                 </div>
             </div>

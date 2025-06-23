@@ -1,10 +1,12 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3 } from '../../part/meta';
 import { PostTitle, PostExcerpt } from '../../part/post';
-import {ModuleSkeleton, ModuleOverlay} from '../../part/placeholder';
 
 const Block23Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
+
     const RenderBlock1 = props=>{
         const {post, attr} = props;
         return (
@@ -35,7 +37,7 @@ const Block23Columns = props => {
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
                 rows.push(
-                    <article key={postData[i].id} className={`gvnews_post ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`}>
+                    <article key={postData[i].id} className={`gvnews_post ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`}>
                         <RenderBlock1 attr={attr} post={postData[i]}/>
                     </article>
                 );
@@ -49,10 +51,7 @@ const Block23Columns = props => {
         );
     };
 
-    return  <div className="gvnews_block_container">
-        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/>}
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <BuildColumn1/>;
 };
 
 export default Block23Columns;

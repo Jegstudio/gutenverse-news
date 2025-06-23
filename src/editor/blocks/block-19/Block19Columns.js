@@ -1,12 +1,13 @@
 import { MetaModule2} from '../../part/meta';
 import ThumbModule from '../../part/thumbnail';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block19Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
-        const {attr, post} = props;
+        const {attr, post, index = 'x'} = props;
 
         let PostMeta = () => (
             <>
@@ -22,7 +23,7 @@ const Block19Columns = props => {
 
         if (1==props.type){
             return (
-                <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
+                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
                     <div className="box_wrap">
                         <PostMeta/>
                     </div>
@@ -30,7 +31,7 @@ const Block19Columns = props => {
             );
         }else{
             return (
-                <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
+                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
                     <PostMeta/>
                 </article>
             );
@@ -51,13 +52,13 @@ const Block19Columns = props => {
         const rows = [];
         if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
+                rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
             }
         }
 
         return(
             <div className="gvnews_posts">
-                {postData.length > 0 ? <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} type={1}/> : null}
+                {postData.length > 0 ? <RenderBlock1 index={0} key={postData[0].id} attr={attr} post={postData[0]} type={1}/> : null}
                 <div className="gvnews_postsmall">
                     {rows}
                 </div>
@@ -82,9 +83,9 @@ const Block19Columns = props => {
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
                 if (i < limit){
-                    rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={1}/>);
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1}/>);
                 }else{
-                    rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
                 }
             }
         }
@@ -100,10 +101,7 @@ const Block19Columns = props => {
         return blockWidth == 4 ? <BuildColumn1/> : <BuildColumn2/>;
     };
 
-    return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <RenderColumn/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <RenderColumn/>;
 };
 
 export default Block19Columns;

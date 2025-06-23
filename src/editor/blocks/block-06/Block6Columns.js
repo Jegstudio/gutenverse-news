@@ -1,15 +1,15 @@
-
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block6Columns = props => {
-    const {postData, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
+        const { index = 'x' } = props;
         return (
-            <article className="gvnews_post gvnews_pl_lg_3">
+            <article className={`gvnews_post gvnews_pl_lg_3 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <ThumbModule size={715} cat={true} post={props.post}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
             </article>
@@ -31,7 +31,7 @@ const Block6Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                rows.push(<RenderBlock1 key={postData[i].id} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]}/>);
             }
         }
 
@@ -43,10 +43,7 @@ const Block6Columns = props => {
     };
 
 
-    return  <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <BuildColumn1/> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return  <BuildColumn1/>;
 };
 
 export default Block6Columns;

@@ -1,11 +1,9 @@
-
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
+import { createChunks } from '../../utils/helper';
 
 const Block1Columns = props => {
-    const {postData, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, postBulk, overlay} = props;
+    const {postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
 
     const RenderBlock1 = props=>{
         return (
@@ -17,8 +15,9 @@ const Block1Columns = props => {
     };
 
     const RenderBlock2 = props=>{
+        const { index = 'x', isLoadMoreAnimation = false } = props;
         return (
-            <article className={`gvnews_post gvnews_pl_sm ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+            <article className={`gvnews_post gvnews_pl_sm ${isLoadMoreAnimation  ? `gvnews_ajax_loaded anim_${index}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <ThumbModule size={715} cat={false} post={props.post}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
@@ -26,14 +25,30 @@ const Block1Columns = props => {
     };
 
     const RenderBlock3 = props=>{
+        const { index = 'x', isLoadMoreAnimation = false } = props;
         return(
-            <article className="gvnews_post gvnews_pl_xs_2">
+            <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
                 <i className="fas fa-caret-right"></i>
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
                 </div>
             </article>
         );
+    };
+
+    const CreateRows = ({RenderColumn}) => {
+        if (postData.length === 0) return [];
+        const chunks = createChunks(postData.slice(numberPost), paginationPost);
+        const rows = [
+            <RenderColumn key="0" datas={postData.slice(0, numberPost)} />,
+            ...chunks.map(
+                (chunk, index) => <RenderColumn isLoadMoreAnimation={isLoadMore && index === chunks.length - 1} key={index + 1} datas={chunk} />
+            )
+        ];
+
+        return <>
+            {rows}
+        </>;
     };
 
     const BuildColumn1 = ()=>{
@@ -47,24 +62,25 @@ const Block1Columns = props => {
                 custom : metaDateFormatCustom,
             }
         };
-        const rows = [];
 
-        if (postData) {
-            for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
+        const RenderColumn = ({datas = [], isLoadMoreAnimation = false}) => {
+            const rows = [];
+            if (datas) {
+                for (let i = 1; i < datas.length; i++) {
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
+                }
             }
-        }
-
-        return(
-            <div className="gvnews_posts">
-                <article className="gvnews_post gvnews_pl_lg_1">
-                    {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+            return <div className="gvnews_posts">
+                <article className={`gvnews_post gvnews_pl_lg_1 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className="gvnews_postsmall">
                     {rows}
                 </div>
-            </div>
-        );
+            </div>;
+        };
+
+        return <CreateRows RenderColumn={RenderColumn} />;
     };
 
     const BuildColumn2 = ()=>{
@@ -78,23 +94,25 @@ const Block1Columns = props => {
                 custom: metaDateFormatCustom,
             }
         };
-        const rows = [];
-        if (postData) {
-            for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i]} attr={attr} post={postData[i]}/>);
-            }
-        }
 
-        return(
-            <div className={'gvnews_posts gvnews-posts-row'}>
-                <article className={'gvnews_post gvnews_pl_lg_1 col-sm-6'}>
-                    {postData && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+        const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {
+            const rows = [];
+            if (datas.length > 0) {
+                for (let i = 1; i < datas.length; i++) {
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1}  key={datas[i]} attr={attr} post={datas[i]}/>);
+                }
+            }
+            return <div className={'gvnews_posts gvnews-posts-row'}>
+                <article className={`gvnews_post gvnews_pl_lg_1 col-sm-6 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className={'gvnews_postsmall col-sm-6'}>
                     {rows}
                 </div>
-            </div>
-        );
+            </div>;
+        };
+
+        return <CreateRows RenderColumn={RenderColumn} />;
     };
 
     const BuildColumn3 = ()=>{
@@ -109,22 +127,22 @@ const Block1Columns = props => {
             }
         };
 
-        const rows = [];
-        const rows2 = [];
+        const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {
+            const rows = [];
+            const rows2 = [];
+            if (datas.length > 0) {
+                let limit =  Math.ceil( ( datas.length - 1 ) * 2 / 5) + 1;
+                for (let i = 1; i < limit; i++) {
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
+                }
+                for (let i = limit; i < datas.length; i++) {
+                    rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
+                }
+            }
 
-        if (postData) {
-            let limit =  Math.ceil( ( postData.length - 1 ) * 2 / 5) + 1;
-            for (let i = 1; i < limit; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} attr={attr} post={postData[i]}/>);
-            }
-            for (let i = limit; i < postData.length; i++) {
-                rows2.push(<RenderBlock3 key={postData[i].id} attr={attr} post={postData[i]}/>);
-            }
-        }
-        return(
-            <div className="gvnews_posts gvnews-posts-row">
-                <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
-                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+            return <div className="gvnews_posts gvnews-posts-row">
+                <article className={`gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className="gvnews_postsmall col-sm-4">
                     {rows}
@@ -132,8 +150,11 @@ const Block1Columns = props => {
                 <div className="gvnews_postsmall col-sm-4">
                     {rows2}
                 </div>
-            </div>
-        );
+            </div>;
+        };
+
+
+        return <CreateRows RenderColumn={RenderColumn} />;
     };
 
     const RenderColumn = ()=>{
@@ -146,10 +167,7 @@ const Block1Columns = props => {
         }
     };
 
-    return   <div className="gvnews_block_container gvnews_load_more_flag">
-        { postData.length > 0 ? <RenderColumn />: postBulk ? <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div> : <ModuleSkeleton/> }
-        { overlay && <ModuleOverlay/> }
-    </div>;
+    return <RenderColumn />;
 };
 
 export default Block1Columns;
