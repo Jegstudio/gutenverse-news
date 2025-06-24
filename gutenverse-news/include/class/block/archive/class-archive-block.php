@@ -17,34 +17,27 @@ namespace GUTENVERSE\NEWS\Block\Archive;
  */
 class Archive_Block extends Archive_View_Abstract {
 
-
 	/**
-	 * Method render_module_front
+	 * Method render_module
 	 *
 	 * @param array  $attr         attribute.
-	 * @param string $column_class column class.
+	 * @param string $column_class column class..
 	 *
 	 * @return string
 	 */
-	public function render_module_front( $attr, $column_class ) {
-		return $this->build_block_module( $attr );
-	}
-
-	/**
-	 * Method build_block_module
-	 *
-	 * @param array $attr attribute.
-	 *
-	 * @return string
-	 */
-	public function build_block_module( $attr ) {
+	public function render_module( $attr, $column_class ) {
 
 		if ( $attr['first_page'] && gvnews_get_post_current_page() > 1 ) {
 			return false;
 		}
-		$name     = 'GUTENVERSE\NEWS\Block\Module\Module_' . $attr['block_type'];
-		$instance = null;
+		$name = 'GUTENVERSE\NEWS\Block\Module\Module_' . $attr['block_type'];
+
 		if ( method_exists( $name, 'get_instance' ) ) {
+			/**
+			 * Call get_instance from object with parent: Block_View_Abstract, ex: Module_3.
+			 *
+			 * @var  \GUTENVERSE\NEWS\Block\Block_View_Abstract
+			 */
 			$instance = call_user_func( array( $name, 'get_instance' ) );
 			$instance->set_attribute( $attr );
 		}

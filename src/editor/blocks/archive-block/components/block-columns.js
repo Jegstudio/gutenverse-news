@@ -45,7 +45,7 @@ const BlockColumns = (props) => {
     const {
         blockType,
         blockWidth,
-        excerpLength,
+        excerptLength,
         excerptEllipsis,
         moduleOption,
         postData,
@@ -299,7 +299,7 @@ const BlockColumns = (props) => {
             if (blockType === id) {
                 content = component({
                     blockWidth,
-                    excerpLength,
+                    excerptLength,
                     excerptEllipsis,
                     moduleOption,
                     postData,
@@ -317,7 +317,7 @@ const BlockColumns = (props) => {
             if (blockType === id) {
                 content = component({
                     blockWidth,
-                    excerpLength,
+                    excerptLength,
                     excerptEllipsis,
                     moduleOption,
                     postData,

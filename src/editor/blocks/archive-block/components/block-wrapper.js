@@ -4,7 +4,7 @@ import PaginationModule from '../../../part/pagination';
 import HeaderModule from '../../../part/header';
 
 const BlockWrapper = (props) => {
-    const { elementId, blockType, headerData = false, paginationData = false, block, blockWidth, enableBoxed, enableBoxShadow } = props;
+    const { elementId, blockType, headerData = false, paginationData = false, block, blockWidth, boxed, boxedShadow } = props;
     const wrapperClasses = classnames(
         `gvnews_postblock_${blockType}`,
         'gvnews_postblock',
@@ -13,8 +13,8 @@ const BlockWrapper = (props) => {
         {
             ['gvnews_postblock_blog_2']: '27' === blockType,
             ['gvnews_pagination_disable']: !paginationData,
-            ['gvnews_pb_boxed']: enableBoxed,
-            ['gvnews_pb_boxed_shadow']: enableBoxed && enableBoxShadow,
+            ['gvnews_pb_boxed']: boxed,
+            ['gvnews_pb_boxed_shadow']: boxed && boxedShadow,
         }
     );
     if (['32'].includes(blockType)) {

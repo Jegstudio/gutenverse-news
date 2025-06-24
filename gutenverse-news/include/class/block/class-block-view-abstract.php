@@ -359,7 +359,7 @@ abstract class Block_View_Abstract {
 	 *
 	 * @return string
 	 */
-	public function except_more() {
+	public function excerpt_more() {
 		return isset( $this->attribute['excerpt_ellipsis'] ) ? $this->attribute['excerpt_ellipsis'] : ' ...';
 	}
 
@@ -418,9 +418,9 @@ abstract class Block_View_Abstract {
 		}
 
 		$excerpt = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
-		$excerpt = wp_trim_words( $excerpt, $this->excerpt_length(), $this->except_more() );
+		$excerpt = wp_trim_words( $excerpt, $this->excerpt_length(), $this->excerpt_more() );
 
-		return apply_filters( 'gvnews_module_excerpt', $excerpt, $post->ID, $this->excerpt_length(), $this->except_more() );
+		return apply_filters( 'gvnews_module_excerpt', $excerpt, $post->ID, $this->excerpt_length(), $this->excerpt_more() );
 	}
 
 	/**

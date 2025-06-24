@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.7
 Requires PHP: 7.4.30
-Stable tag: 1.0.4
+Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -156,13 +156,28 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
-= 1.0.5 - DEV =
+
+= 2.0.1 [DEV] =
 ##### Bug Fixes
-* Fix missing blocks issue
+* Fix missing Submit Comment button on the Post Comment block
+* Fix block error when the Custom Format option is left empty
+
+= 2.0.0 =
+##### Bug Fixes
+* Fix Blocks Module (1–9) not working
+* Fix Blocks Hero (1–9) not working
 * Fix Title Typography in News Module not working
 * Fix Undefined Offset warning when post not have a thumbnail
-* Fix Archive Block not showing posts in the Editor
+* Fix auto column width detection not working on Block Module
+* Fix display option not working
+* Fix thumbnails not showing on RSS Block
+* Fix Gutenverse News Archive blocks not working properly
+* Fix some options not working on Gutenverse News Single Post blocks
+* Fix vulnerability issue in elementId parameter
 * Fix PHP Deprecated warnings
+
+##### Improvements
+* Improve blocks loading inside editor
 
 = 1.0.4 =
 ##### Bug Fixes

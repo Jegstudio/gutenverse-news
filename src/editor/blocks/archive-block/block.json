@@ -22,10 +22,12 @@
             "default": 8
         },
         "boxed": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "boxedShadow": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
         },
         "excerptLength": {
             "type": "string",
@@ -46,10 +48,6 @@
         "firstPage": {
             "type": "boolean",
             "default": false
-        },
-        "scheme": {
-            "type": "string",
-            "default": ""
         },
         "elClass": {
             "type": "string",
@@ -73,13 +71,20 @@
             "default": []
         },
         "background": {
-            "type": "object",
-            "default": []
-        },
-        "backgroundHover": {
-            "type": "object",
-            "default": []
-        },
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+		"backgroundHover": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		},
+        "backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },

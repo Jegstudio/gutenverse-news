@@ -26,8 +26,8 @@ export const panelList = () => {
                 styleId: 'archive-breadcrumb-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
-                normalSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}`,
-                hoverSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}:hover`
+                normalSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}.gvnews-archive-breadcrumb`,
+                hoverSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}.gvnews-archive-breadcrumb:hover`
             }),
             tabRole: TabStyle
         },

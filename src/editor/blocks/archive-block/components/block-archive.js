@@ -3,7 +3,10 @@ import BlockWrapper from './block-wrapper';
 import BlockColumns from './block-columns';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { getModuleOptions } from '../../../utils/helper';
+import { getModuleOptions, getParentColumnWidth } from '../../../utils/helper';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { useSelect } from '@wordpress/data';
+
 
 const BlockArchive = (props) => {
     const {
@@ -11,7 +14,7 @@ const BlockArchive = (props) => {
         postOffset = 0,
         numberPost,
         columnWidth,
-        excerpLength,
+        excerptLength,
         excerptEllipsis,
         metaDateType,
         metaDateFormat,
@@ -46,14 +49,32 @@ const BlockArchive = (props) => {
         }
     }, [blockType, numberPost, postBulk, postOffset]);
 
+    const deviceType = getDeviceType();
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
+
+
     useEffect(() => {
         if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(12);
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
         } else {
             getWidth(columnWidth);
         }
-    }, [columnWidth]);
+    }, [
+        columnWidth,
+        deviceType
+    ]);
 
     useEffect(() => {
 
@@ -89,7 +110,7 @@ const BlockArchive = (props) => {
                 {...{
                     blockType,
                     blockWidth,
-                    excerpLength,
+                    excerptLength,
                     excerptEllipsis,
                     moduleOption: moduleOption.current,
                     postData,
@@ -104,7 +125,7 @@ const BlockArchive = (props) => {
     }, [
         blockType,
         blockWidth,
-        excerpLength,
+        excerptLength,
         excerptEllipsis,
         moduleOption,
         postData,
@@ -115,7 +136,7 @@ const BlockArchive = (props) => {
         overlay,
     ]);
 
-    return <BlockWrapper {...{ ...props, block, blockWidth   }} />;
+    return <BlockWrapper {...{ ...props, block, blockWidth }} />;
 };
 
 export default BlockArchive;

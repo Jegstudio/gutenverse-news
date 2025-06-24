@@ -39,15 +39,39 @@ class Archive extends StyleAbstract {
 		$this->name = $name;
 		parent::__construct( $attrs, $name );
 
-		$this->set_feature(
-			array(
-				'background'  => null,
-				'border'      => null,
-				'positioning' => null,
-				'animation'   => null,
-				'advance'     => null,
-			)
-		);
+		if ( ( 'gutenverse/news-archive-block' === $this->name ) ) {
+			$this->set_feature(
+				array(
+					'background' => array(
+						'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+						'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
+					),
+					'border'     => array(
+						'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
+						'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
+					),
+					'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+
+				)
+			);
+		} else {
+			$this->set_feature(
+				array(
+					'background'  => array(
+						'normal' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}",
+						'hover'  => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}:hover",
+					),
+					'border'      => array(
+						'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+						'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper:hover",
+					),
+					'advance'     => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+					'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+					'animation'   => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
+				)
+			);
+
+		}
 	}
 
 	/**
@@ -111,26 +135,26 @@ class Archive extends StyleAbstract {
 	 */
 	private function archive_title() {
 		if ( 'gutenverse/news-archive-title' === $this->name ) {
-			if ( isset( $this->attrs['titleColor'] ) ) {
-				$this->inject_style(
+
+			if ( isset( $this->attrs['titleTypography'] ) ) {
+				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_title",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['titleColor'],
+						'selector'       => ".{$this->element_id} .gvnews-archive-title h1",
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
+
+			if ( isset( $this->attrs['titleColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_title",
+						'selector'       => ".{$this->element_id} .gvnews-archive-title h1",
 						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
+							return $this->handle_color( $value, 'color' );
 						},
-						'value'          => $this->attrs['fontSize'],
+						'value'          => $this->attrs['titleColor'],
 						'device_control' => false,
 					)
 				);
@@ -146,7 +170,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb span a",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -158,7 +182,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['textColorHover'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a:hover",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb span a:hover",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -170,7 +194,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['arrowColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs i",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb i",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},
@@ -179,25 +203,12 @@ class Archive extends StyleAbstract {
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a, .{$this->element_id} .gvnews_breadcrumbs i",
-						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
-						},
-						'value'          => $this->attrs['fontSize'],
-						'device_control' => false,
-					)
-				);
-			}
 
 			if ( isset( $this->attrs['breadcrumbTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_breadcrumbs span a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id}.gvnews-archive-breadcrumb",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['breadcrumbTypography'],
 						'device_control' => false,
 					)
@@ -231,26 +242,26 @@ class Archive extends StyleAbstract {
 	 */
 	private function archive_description() {
 		if ( 'gutenverse/news-archive-description' === $this->name ) {
-			if ( isset( $this->attrs['textColor'] ) ) {
-				$this->inject_style(
+
+			if ( isset( $this->attrs['descTypography'] ) ) {
+				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_description",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['textColor'],
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs['descTypography'],
 						'device_control' => false,
 					)
 				);
 			}
-			if ( isset( $this->attrs['fontSize'] ) ) {
+
+			if ( isset( $this->attrs['textColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_archive_description",
+						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
 						'property'       => function ( $value ) {
-							return 'font-size: ' . $value;
+							return $this->handle_color( $value, 'color' );
 						},
-						'value'          => $this->attrs['fontSize'],
+						'value'          => $this->attrs['textColor'],
 						'device_control' => false,
 					)
 				);
@@ -263,6 +274,28 @@ class Archive extends StyleAbstract {
 	 */
 	private function archive_hero() {
 		if ( 'gutenverse/news-archive-hero' === $this->name ) {
+			if ( isset( $this->attrs['heroMargin'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper",
+						'property'       => function ( $value ) {
+							return "margin: 0 0 -{$value}px -{$value}px;";
+						},
+						'value'          => $this->attrs['heroMargin'],
+						'device_control' => false,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} article.gvnews_post",
+						'property'       => function ( $value ) {
+							return "padding: 0 0 {$value}px {$value}px;";
+						},
+						'value'          => $this->attrs['heroMargin'],
+						'device_control' => false,
+					)
+				);
+			}
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
@@ -281,6 +314,78 @@ class Archive extends StyleAbstract {
 						'property'       => function ( $value ) {
 						},
 						'value'          => $this->attrs['metaTypography'],
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeightDesktop'] ) ) {
+				$height = $this->attrs['heroHeightDesktop'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (min-width: 1025px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight1024'] ) ) {
+				$height = $this->attrs['heroHeight1024'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 1024px) and (min-width: 769px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight768'] ) ) {
+				$height = $this->attrs['heroHeight768'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 768px) and (min-width: 668px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight667'] ) ) {
+				$height = $this->attrs['heroHeight667'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 667px) and (min-width: 569px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight568'] ) ) {
+				$height = $this->attrs['heroHeight568'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 568px) and (min-width: 481px)',
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( ! empty( $this->attrs['heroHeight480'] ) ) {
+				$height = $this->attrs['heroHeight480'];
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
+						'value'          => "height: {$height}px; ",
+						'custom'         => '@media only screen and (max-width: 480px)',
 						'device_control' => false,
 					)
 				);
@@ -304,9 +409,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_title > a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post .gvnews_post_title > a",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,
 					)
@@ -315,9 +419,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['metaTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_meta, .{$this->element_id} .gvnews_post_meta .fa, .{$this->element_id} .gvnews_postblock .jeg_subcat_list > li > a:hover, .{$this->element_id} .gvnews_pl_md_card .gvnews_post_category a, .{$this->element_id} .gvnews_postblock .jeg_subcat_list > li > a.current, .{$this->element_id} .gvnews_pl_md_5 .gvnews_post_meta, .{$this->element_id} .gvnews_pl_md_5 .gvnews_post_meta .fa, .{$this->element_id} .gvnews_post_category a",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post > .gvnews_post_meta",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['metaTypography'],
 						'device_control' => false,
 					)
@@ -326,9 +429,8 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['contentTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post_excerpt, .{$this->element_id} .gvnews_readmore",
-						'property'       => function ( $value ) {
-						},
+						'selector'       => ".{$this->element_id} .gvnews_post > .gvnews_post_excerpt",
+						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['contentTypography'],
 						'device_control' => false,
 					)

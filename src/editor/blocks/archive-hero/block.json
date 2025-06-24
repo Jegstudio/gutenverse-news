@@ -69,17 +69,9 @@
             "type": "object",
             "default": {}
         },
-        "scheme": {
-            "type": "string",
-            "default": ""
-        },
         "elClass": {
             "type": "string",
             "default": ""
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": "auto"
         },
         "titleTypography": {
             "type": "object"
@@ -93,12 +85,17 @@
         },
         "background": {
             "type": "object",
-            "default": []
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": []
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },

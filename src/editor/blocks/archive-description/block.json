@@ -16,9 +16,6 @@
         "textColor": {
             "type": "object"
         },
-        "fontSize": {
-            "type": "string"
-        },
         "scheme": {
             "type": "string",
             "default": ""
@@ -35,14 +32,23 @@
             "type": "string",
             "default": 12
         },
+        "descTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },

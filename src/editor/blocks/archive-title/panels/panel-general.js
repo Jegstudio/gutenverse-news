@@ -1,39 +1,24 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, ColorControl } from 'gutenverse-core/controls';
-import { handleColor } from 'gutenverse-core/styling';
+import { TextControl, ColorControl, TypographyControl } from 'gutenverse-core/controls';
 
-export const generalPanel = (props) => {
-    const {
-        elementId,
-    } = props;
+export const generalPanel = () => {
 
     return [
         {
             id: 'title',
-            label: __('Title', 'gutenverse-news'),
+            description: __('Add text that appears before the archive title.', 'gutenverse-news'),
+            label: __('Text Before Title', 'gutenverse-news'),
             component: TextControl
+        },
+        {
+            id: 'titleTypography',
+            label: __('Title Typography', 'gutenverse-news'),
+            component: TypographyControl,
         },
         {
             id: 'titleColor',
             label: __('Title Color', 'gutenverse-news'),
             component: ColorControl,
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_title`],
-                    render: value => handleColor(value, 'color')
-                }
-            ],
-        },
-        {
-            id: 'fontSize',
-            label: __('Font Size', 'gutenverse-news'),
-            component: TextControl,
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_archive_title`],
-                    render: value => `font-size: ${value}`
-                }
-            ],
         },
     ];
 };

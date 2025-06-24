@@ -56,8 +56,8 @@ const ArchiveDescription = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
-            <div className="gvnews_archive_description_wrapper">
-                <h2 className="gvnews_archive_description">{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
+            <div className="gvnews-archive-desc">
+                <h2>{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
             </div>
         </div>
     </>;

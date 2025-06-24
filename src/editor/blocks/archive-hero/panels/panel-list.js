@@ -5,6 +5,7 @@ import { generalPanel } from './panel-general';
 import { heroDesignPanel } from './panel-hero-design';
 import { heroStylePanel } from './panel-hero-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { typePanel } from './panel-type';
 
 export const panelList = () => {
     return [
@@ -12,6 +13,12 @@ export const panelList = () => {
             title: __('General', 'gutenverse-news'),
             initialOpen: false,
             panelArray: generalPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Hero Type', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: typePanel,
             tabRole: TabSetting
         },
         {
@@ -37,11 +44,11 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
                 ...props,
-                styleId: 'archive-pagination-background',
+                styleId: 'archive-hero-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
-                normalSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}`,
-                hoverSelector: `.gvnews-block.gvnews-block-wrapper.${props.elementId}:hover`
+                normalSelector: `.${props.elementId} .gvnews_heroblock`,
+                hoverSelector: `.${props.elementId} .gvnews_heroblock:hover`
             }),
             tabRole: TabStyle
         },

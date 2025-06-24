@@ -33,6 +33,50 @@ class Archive extends Grab {
 	protected $name;
 
 	/**
+	 * Build element with wrapper (override from parent)
+	 *
+	 * @param string $element_name  Element name.
+	 * @param string $inner         Inner element.
+	 * @param array  $array_classes Classes.
+	 * @param array  $array_data    Data attribute.
+	 * @param array  $id            Element ID.
+	 *
+	 * @return string
+	 */
+	protected function render_wrapper( $element_name, $inner, $array_classes = array(), $array_data = array(), $id = null ) {
+		$classes    = '';
+		$data       = '';
+		$parts      = preg_split( '/[\\\\\/]/', $element_name );
+		$block_type = end( $parts );
+
+		foreach ( $array_classes as $class ) {
+			$classes = $classes . ' ' . $class;
+		}
+
+		if ( isset( $this->attributes['boxed'] ) && $this->attributes['boxed'] ) {
+			$classes .= ' gvnews_pb_boxed';
+
+			if ( isset( $this->attributes['boxedShadow'] ) && $this->attributes['boxedShadow'] ) {
+				$classes .= ' gvnews_pb_boxed_shadow';
+			}
+		}
+
+		foreach ( $array_data as $key => $value ) {
+			$data = $data . ' data-' . $key . '="' . $value . '"';
+		}
+
+		if ( $id ) {
+			$id = 'id="' . $id . '"';
+		}
+
+		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
+
+		return '<div ' . $id . ' class="' . $classes . ' ' . esc_attr( $this->attributes['elClass'] ) . '" ' . $data . '>'
+					. $inner .
+				'</div>';
+	}
+
+	/**
 	 * Get Content
 	 *
 	 * @return string
@@ -42,12 +86,10 @@ class Archive extends Grab {
 		$this->name = strtolower( $name );
 		$attr       = array(
 			'short_code' => $this->attributes['gvnewsModule'],
-			'scheme'     => $this->attributes['scheme'],
 			'el_class'   => $this->attributes['elClass'],
 		);
 
 		$attr = $this->archive_title( $attr );
-		$attr = $this->archive_breadcrumb( $attr );
 		$attr = $this->archive_pagination( $attr );
 		$attr = $this->archive_description( $attr );
 		$attr = $this->archive_hero( $attr );
@@ -68,19 +110,6 @@ class Archive extends Grab {
 	private function archive_title( $attr ) {
 		if ( 'gutenverse/news-archive-title' === $this->name ) {
 			$attr['title'] = $this->attributes['title'];
-		}
-		return $attr;
-	}
-	/**
-	 * Archive Breadcrumb Handler
-	 *
-	 * @param array $attr Attribute Element.
-	 *
-	 * @return array
-	 */
-	private function archive_breadcrumb( $attr ) {
-		if ( 'gutenverse/news-archive-breadcrumb' === $this->name ) {
-			$attr['scheme'] = $this->attributes['scheme'];
 		}
 		return $attr;
 	}
@@ -134,8 +163,6 @@ class Archive extends Grab {
 			$attr['hero_height_667']     = $this->attributes['heroHeight667'];
 			$attr['hero_height_568']     = $this->attributes['heroHeight568'];
 			$attr['hero_height_480']     = $this->attributes['heroHeight480'];
-			$attr['scheme']              = $this->attributes['scheme'];
-			$attr['column_width']        = $this->attributes['columnWidth'];
 			$hero_type                   = array( 1, 2, 3, 4, 5, 6, 7 );
 			foreach ( $hero_type as $value ) {
 				$attr[ "hero_item_{$value}_enable" ] = $this->attributes[ "heroItem{$value}Enable" ];

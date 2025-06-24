@@ -17,27 +17,15 @@ namespace GUTENVERSE\NEWS\Block\Archive;
  */
 class Archive_Hero extends Archive_View_Abstract {
 
-
 	/**
-	 * Method render_module_front
+	 * Method render_module
 	 *
 	 * @param array  $attr         attribute.
-	 * @param string $column_class column class.
+	 * @param string $column_class column class..
 	 *
 	 * @return string
 	 */
-	public function render_module_front( $attr, $column_class ) {
-		return $this->build_hero_module( $attr );
-	}
-
-	/**
-	 * Method build_hero_module
-	 *
-	 * @param array $attr attribute.
-	 *
-	 * @return string
-	 */
-	public function build_hero_module( $attr ) {
+	public function render_module( $attr, $column_class ) {
 
 		if ( $attr['first_page'] && gvnews_get_post_current_page() > 1 ) {
 			return false;

@@ -6,7 +6,6 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import QueryTitle from '../../query/query-title';
 import { useRef, useEffect } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -18,19 +17,20 @@ const ArchiveTitle = compose(
 )((props) => {
     const {
         attributes,
-        setAttributes,
         clientId,
         setBlockRef
     } = props;
 
     const {
         elementId,
+        title,
     } = attributes;
 
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const titleRichTextRef = useRef();
+    const elementRef = useRef(null);
+
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -41,9 +41,8 @@ const ArchiveTitle = compose(
             animationClass,
             displayClass,
         ),
+        ref: elementRef
     });
-
-    const elementRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -57,15 +56,10 @@ const ArchiveTitle = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div ref={elementRef}>
-            <QueryTitle {
-                ...{
-                    blockProps,
-                    setAttributes,
-                    type: 'archive',
-                    titleRef: titleRichTextRef
-                }
-            } />
+        <div {...blockProps}>
+            <div className={'gvnews-archive-title'}>
+                <h1>{title + 'Archive Title'}</h1>
+            </div>
         </div>
     </>;
 });

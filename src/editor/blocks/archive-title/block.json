@@ -15,7 +15,10 @@
         },
         "title": {
             "type": "string",
-            "default": "Archive type: "
+            "default": ""
+        },
+        "titleTypography": {
+            "type": "object"
         },
         "titleColor": {
             "type": "object"
@@ -28,9 +31,6 @@
             "type": "string",
             "default": ""
         },
-        "fontSize": {
-            "type": "string"
-        },
         "column": {
             "type": "object",
             "default": {}
@@ -41,12 +41,17 @@
         },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },

@@ -541,6 +541,19 @@ abstract class StyleInterface {
 		if ( isset( $this->attrs['backgroundHover'] ) ) {
 			$this->handle_background( $selector['hover'], $this->attrs['backgroundHover'] );
 		}
+
+		if ( isset( $this->attrs['backgroundTransition'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector['normal'],
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'transition' );
+					},
+					'value'          => $this->attrs['backgroundTransition'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 
 	/**

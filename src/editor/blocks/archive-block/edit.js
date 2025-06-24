@@ -69,7 +69,7 @@ const ArchiveBlock = compose(
         numberPost,
         boxed,
         boxedShadow,
-        excerpLength: excerptLength,
+        excerptLength,
         excerptEllipsis,
         metaDateType: dateType,
         metaDateFormat: dateFormat,
