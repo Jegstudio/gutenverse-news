@@ -33,8 +33,8 @@ class Post_Related extends Post_Guten {
 	public function get_content() {
 		$match    = $this->attributes['match'];
 		$category = array();
-		$tag = array();
-		$result = array();
+		$tag      = array();
+		$result   = array();
 		if ( 'category' === $match ) {
 			Single_Post::get_instance()->recursive_category( get_the_category(), $result );
 
@@ -61,6 +61,7 @@ class Post_Related extends Post_Guten {
 			'excerpt_length'          => $this->attributes['excerptLength'],
 			'pagination_number_post'  => $this->attributes['paginationPost'],
 			'number_post'             => $this->attributes['numberPost'],
+			'column_width'            => $this->attributes['columnWidth'],
 			'include_category'        => implode( ',', $category ),
 			'include_tag'             => implode( ',', $tag ),
 			'exclude_post'            => get_the_ID(),
@@ -79,7 +80,7 @@ class Post_Related extends Post_Guten {
 		/**
 		* Call module instance
 		*
-		* @var ModuleViewAbstract $instance
+		* @var \GUTENVERSE\NEWS\Block\Module\Module_View_Abstract $instance
 		*/
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 

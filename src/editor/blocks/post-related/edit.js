@@ -39,12 +39,13 @@ import Block24Columns from '../block-24/Block24Columns';
 import Block25Columns from '../block-25/Block25Columns';
 import Block26Columns from '../block-26/Block26Columns';
 import Block27Columns from '../block-27/Block27Columns';
-import { select, subscribe } from '@wordpress/data';
+import { select, subscribe, useSelect } from '@wordpress/data';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -84,7 +85,8 @@ const PostRelated = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        showNavText
+        showNavText,
+        columnWidth
     } = attributes;
 
     const elementRef = useRef(null);
@@ -106,9 +108,18 @@ const PostRelated = compose(
     const [content, setContent] = useState('');
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
-    const [blockWidth, setBlocktWidth] = useState(12);
+    const [blockWidth, getWidth] = useState(12);
     const [overlay, setOverlay] = useState(false);
     const [currentPostId, setCurrentPostid] = useState(false);
+
+    const deviceType = getDeviceType();
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
 
     const headerData = {
         icon,
@@ -166,6 +177,7 @@ const PostRelated = compose(
 
 
     useEffect(() => {
+        postBulk ? setOverlay(true) : null;
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
             method: 'POST',
@@ -183,12 +195,30 @@ const PostRelated = compose(
         }).catch((e) => {
             console.error(e.message);
         }).finally(() => {
+            setOverlay(false);
         });
     }, [
         numberPost,
         categories,
         tags,
         match
+    ]);
+
+    useEffect(() => {
+        if (columnWidth == 'auto') {
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
+        } else {
+            getWidth(columnWidth);
+        }
+    }, [
+        columnWidth,
+        deviceType
     ]);
 
     const blockProps = useBlockProps({
@@ -347,7 +377,8 @@ const PostRelated = compose(
         metaDateFormat,
         metaDateFormatCustom,
         paginationMode,
-        showNavText
+        showNavText,
+        blockWidth,
     ]);
 
     return <>
