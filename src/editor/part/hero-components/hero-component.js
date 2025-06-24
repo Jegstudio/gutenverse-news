@@ -129,9 +129,6 @@ const HeroComponent = (props) => {
             .then((data) => {
                 getPost(JSON.parse(data));
             })
-            .catch((e) => {
-                console.error(e.message);
-            })
             .finally(() => {
                 setOverlay(false);
             });
