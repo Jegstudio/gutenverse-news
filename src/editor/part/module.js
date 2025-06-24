@@ -178,7 +178,6 @@ const BlockModule = compose(
             advancedResponse: true,
         };
         if (activeFilter['value'] != -100) {
-            let incldOnly = true;
             switch (activeType) {
                 case 'category':
                     attr.includeCategory = [activeFilter];
@@ -189,11 +188,7 @@ const BlockModule = compose(
                 case 'author':
                     attr.includeAuthor = [activeFilter];
                     break;
-                default:
-                    incldOnly = attr.includeOnly;
-                    break;
             }
-            attr.includeOnly = incldOnly;
         }
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),

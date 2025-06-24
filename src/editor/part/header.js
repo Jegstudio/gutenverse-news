@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef }  from '@wordpress/element';
+import { useState, useEffect }  from '@wordpress/element';
 
 function Valid(value) {
     if ( value && value.length ) {
@@ -26,6 +26,11 @@ function SubCat(props) {
         setActive(val);
         onSubCatChange(val, type, label);
     };
+
+    useEffect(() => {
+        setActive(-100);
+        catOnClickHandler('all', -100, 'all');
+    },[props.headerCategory, props.headerAuthor, props.headerTag]);
 
     if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
         return null;

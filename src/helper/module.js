@@ -13,11 +13,15 @@
             base.lock_action = false;
 
             base.unique = base.element.data('unique');
+            let attr = window[base.unique] || {};
+            if (!attr.included_only) {
+                attr.included_only = '';
+            }
             base.data = {
                 filter: 0,
                 filter_type: 'all',
                 current_page: 1,
-                attribute: window[base.unique] || {},
+                attribute: attr,
             };
             base.ajax_mode = base.data.attribute.pagination_mode;
 
