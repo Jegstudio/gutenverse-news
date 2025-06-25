@@ -25,6 +25,17 @@
             "type": "string",
             "default": 2000
         },
+        "hasOverlay": {
+            "type": "boolean",
+            "default": true
+        },
+        "isOverrideOverlay": {
+            "type": "boolean",
+            "default": false
+        },
+        "normalOverlay": {
+            "type":"object"
+        },
         "overrideOverlay": {
             "type": "object"
         },
