@@ -57,7 +57,7 @@ const PostTitle = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className="title-wrapper">
-                <h1>
+                <h1 className="the-title">
                     {__('This is dummy title and will be replaced with real title of your post', 'gutenverse-news')}
                 </h1>
             </div>

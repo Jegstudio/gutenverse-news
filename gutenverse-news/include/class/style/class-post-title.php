@@ -64,8 +64,20 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['titleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector' => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector' => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
 					'value'    => $this->attrs['titleTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['titleColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector' => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
+					'property' => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'    => $this->attrs['titleColor'],
 				)
 			);
 		}
@@ -136,10 +148,11 @@ class Post_Title extends Style_Abstract {
 			);
 		}
 
+		// Panel Layout.
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -152,7 +165,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -165,7 +178,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -178,7 +191,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['height'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'height' );
 					},

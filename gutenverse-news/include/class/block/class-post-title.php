@@ -40,7 +40,7 @@ class Post_Title extends Post_Guten {
 	public function get_content() {
 
 		return '<div class="title-wrapper">
-					<h1>' . esc_attr( get_the_title() ) . '</h1>
+					<h1 class="the-title">' . esc_attr( get_the_title() ) . '</h1>
 				</div>';
 	}
 }

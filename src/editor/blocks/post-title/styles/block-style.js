@@ -7,7 +7,7 @@ const getBlockStyle = (elementId, attributes) => {
     data = layoutStye({
         attributes,
         data,
-        selector: `.gvnews-block.guten-element.${elementId}.gvnews-post-title .title-wrapper`,
+        selector: `.gvnews-block.guten-element.${elementId}.gvnews-post-title`,
     });
     data = backgroundStyle({
         elementId,
