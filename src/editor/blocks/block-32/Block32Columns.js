@@ -1,7 +1,5 @@
-import { __ } from '@wordpress/i18n';
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { MetaCategory, MetaModule1 } from '../../part/meta';
 
 const Block32Columns = (props) => {
@@ -14,14 +12,19 @@ const Block32Columns = (props) => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        postBulk,
-        overlay,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
     } = props;
 
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
+
     const RenderBlock1 = (props) => {
-        const { post, attr } = props;
+        const { post, attr, index='x' } = props;
         return (
-            <article className={'gvnews_post'}>
+            <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
                     <header className="gvnews_postblock_heading">
                         {<MetaCategory {...props} />}
@@ -53,9 +56,9 @@ const Block32Columns = (props) => {
 
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                rows.push(<RenderBlock1 key={i} attr={attr} post={postData[i]} width={blockWidth} />);
+                rows.push(<RenderBlock1 index={i} key={i} attr={attr} post={postData[i]} width={blockWidth} />);
             }
         }
 
@@ -66,18 +69,7 @@ const Block32Columns = (props) => {
         );
     };
 
-    return (
-        <div className="gvnews_block_container">
-            {postData ? (
-                <BuildColumn1 />
-            ) : postBulk ? (
-                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
-            ) : (
-                <ModuleSkeleton />
-            )}
-            {overlay && <ModuleOverlay />}
-        </div>
-    );
+    return <BuildColumn1 />;
 };
 
 export default Block32Columns;

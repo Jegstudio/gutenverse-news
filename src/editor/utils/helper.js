@@ -2,6 +2,14 @@ import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 
+const createChunks = (datas, chunkSize) => {
+    const result = [];
+    for (let i = 0; i < datas.length; i += chunkSize) {
+        result.push(datas.slice(i, i + chunkSize));
+    }
+    return result;
+};
+
 const searchPosts = input => new Promise(resolve => {
     apiFetch({
         path: addQueryArgs('/wp/v2/posts', {
@@ -185,4 +193,4 @@ const getModuleOptions = () => {
     };
 };
 
-export { searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
+export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
