@@ -556,7 +556,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						'include_author'               => isset( $_REQUEST['data']['attribute']['include_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_author'] ) ) : '',
 						'include_tag'                  => isset( $_REQUEST['data']['attribute']['include_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_tag'] ) ) : '',
 						'exclude_tag'                  => isset( $_REQUEST['data']['attribute']['exclude_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_tag'] ) ) : '',
-						'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : '',
+						'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : 'latest',
 						'date_format'                  => isset( $_REQUEST['data']['attribute']['date_format'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format'] ) ) : '',
 						'date_format_custom'           => isset( $_REQUEST['data']['attribute']['date_format_custom'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format_custom'] ) ) : '',
 						'excerpt_length'               => isset( $_REQUEST['data']['attribute']['excerpt_length'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_length'] ) ) : '',
@@ -634,9 +634,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						$args['include_tag'] = $attr['filter'];
 					break;
 			}
-
-			$args['sort_by'] = 'latest';
-			$args['paged']   = $attr['current_page'];
+			$args['paged'] = $attr['current_page'];
 		}
 
 		$args['number_post'] = $attr['attribute']['number_post'];
