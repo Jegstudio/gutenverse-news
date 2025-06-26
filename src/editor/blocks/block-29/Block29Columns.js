@@ -1,7 +1,4 @@
-import { __ } from '@wordpress/i18n';
-import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 
 const Block29Columns = (props) => {
     const {
@@ -13,18 +10,23 @@ const Block29Columns = (props) => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        postBulk,
-        overlay,
         showBorder,
         showDate,
         showDateFormat,
         showDateFormatCustom,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
     } = props;
 
+    const postDataLen = postData.length;
+    const loadValidAnim = postDataLen - paginationPost;
+
     const RenderBlock1 = (props) => {
-        const { post, attr } = props;
+        const { post, attr, index = 'x' } = props;
         return (
-            <article className={'gvnews_post gvnews_pl_xs'}>
+            <article className={`gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <ContentModule meta={showDate ? 2 : false} title={true} post={post} attr={attr} />
             </article>
         );
@@ -53,9 +55,9 @@ const Block29Columns = (props) => {
 
         const rows = [];
 
-        if (postData) {
+        if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                rows.push(<RenderBlock1 key={i} attr={attr} post={postData[i]} width={blockWidth} />);
+                rows.push(<RenderBlock1 index={i} key={i} attr={attr} post={postData[i]} width={blockWidth} />);
             }
         }
         const border = showBorder ? 'show_border' : '';
@@ -66,18 +68,7 @@ const Block29Columns = (props) => {
         );
     };
 
-    return (
-        <div className="gvnews_block_container">
-            {postData ? (
-                <BuildColumn1 />
-            ) : postBulk ? (
-                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
-            ) : (
-                <ModuleSkeleton />
-            )}
-            {overlay && <ModuleOverlay />}
-        </div>
-    );
+    return <BuildColumn1 />;
 };
 
 export default Block29Columns;
