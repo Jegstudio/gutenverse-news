@@ -1,11 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { TypographyControl, SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
-import { handleTypography } from 'gutenverse-core/styling';
+import { SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
 
-export const generalPanel = (props) => {
-    const {
-        elementId,
-    } = props;
+export const generalPanel = () => {
 
     const searchMeta = input => new Promise(resolve => {
         return resolve([
@@ -60,11 +56,6 @@ export const generalPanel = (props) => {
                     value: 'published'
                 },
             ],
-        },
-        {
-            id: 'metaTypography',
-            label: __('Typography', 'gutenverse-news'),
-            component: TypographyControl,
         },
     ];
 };

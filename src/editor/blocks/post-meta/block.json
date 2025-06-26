@@ -89,6 +89,42 @@
         },
         "hideMobile": {
             "type": "boolean"
+        },
+        "authorTypography": {
+            "type":"object"
+        },
+        "authorColor": {
+            "type":"object"
+        },
+        "authorColorHover": {
+            "type":"object"
+        },
+        "dateTypography": {
+            "type":"object"
+        },
+        "dateColor": {
+            "type":"object"
+        },
+        "dateColorHover": {
+            "type":"object"
+        },
+        "categoryTypography": {
+            "type":"object"
+        },
+        "categoryColor": {
+            "type":"object"
+        },
+        "categoryColorHover": {
+            "type":"object"
+        },
+        "commentTypography": {
+            "type":"object"
+        },
+        "commentColor": {
+            "type":"object"
+        },
+        "commentColorHover": {
+            "type":"object"
         }
     },
     "supports": {

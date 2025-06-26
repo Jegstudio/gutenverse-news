@@ -1,29 +1,24 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
-import layoutStye from './panelStyle/layoutStyle';
+import layoutStye from './panelStyle/style-layout';
+import authorStyle from './panelStyle/style-author';
+import categoryStyle from './panelStyle/style-category';
+import commentStyle from './panelStyle/style-comment';
+import dateStyle from './panelStyle/style-date';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
     data = layoutStye({attributes, data, selector: `.gvnews-block.${elementId}.gvnews-post-meta`});
+    data = authorStyle({attributes, data, elementId});
+    data = categoryStyle({attributes, data, elementId});
+    data = commentStyle({attributes, data, elementId});
+    data = dateStyle({attributes, data, elementId});
     data = backgroundStyle({
         data,
         attributes,
         elementId,
         backgroundSelector: `.${elementId}.gvnews-post-meta.gvnews-block`,
         backgroundHoverSelector: `.${elementId}.gvnews-post-meta.gvnews-block:hover`,
-    });
-
-    /**
-     * Panel General
-     */
-    isNotEmpty(attributes['metaTypography']) && data.push({
-        'type': 'typography',
-        'id': 'metaTypography',
-        'selector': `
-                    .${elementId}.gvnews-post-meta span,
-                    .${elementId}.gvnews-post-meta > div .meta-items a,
-                    .${elementId}.gvnews-post-meta > div .meta-items fa
-                    `,
     });
 
     /**

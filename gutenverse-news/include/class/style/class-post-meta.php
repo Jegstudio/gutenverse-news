@@ -62,13 +62,153 @@ class Post_Meta extends Style_Abstract {
 	 */
 	public function generate() {
 
-		// General Panel.
-		if ( isset( $this->attrs['metaTypography'] ) ) {
+		// Author Style Panel.
+		if ( isset( $this->attrs['authorTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta span a",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-author",
 					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['metaTypography'],
+					'value'          => $this->attrs['authorTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['authorColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-author a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['authorColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['authorColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-author a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['authorColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		// Date Style.
+		if ( isset( $this->attrs['dateTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-date",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['dateTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dateColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-date a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dateColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dateColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-date a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dateColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		// Category Style.
+		if ( isset( $this->attrs['categoryTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-categoy",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['categoryTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-category a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-category a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		// Comment Style.
+		if ( isset( $this->attrs['commentTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-comment a",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['commentTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['commentColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-comment a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['commentColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['commentColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-meta-comment a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['commentColorHover'],
 					'device_control' => false,
 				)
 			);
