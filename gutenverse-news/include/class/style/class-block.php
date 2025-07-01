@@ -312,5 +312,105 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['categoryButtonTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
+					'value'    => $this->attrs['categoryButtonTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['categoryButtonBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['categoryButtonBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryButtonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryButtonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBorder'] ) ) {
+			$this->handle_border(
+				'categoryButtonBorder',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a"
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBorderHover'] ) ) {
+			$this->handle_border(
+				'categoryButtonBorderHover',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['categoryButtonBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBoxShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['categoryButtonBoxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 }
