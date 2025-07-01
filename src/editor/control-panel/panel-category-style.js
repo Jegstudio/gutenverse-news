@@ -38,7 +38,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonBackground',
                     'type': 'color',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
                     'properties': [
                         {
                             'name': 'background-color',
@@ -57,7 +57,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonBackgroundHover',
                     'type': 'color',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
                     'properties': [
                         {
                             'name': 'background-color',
@@ -76,7 +76,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonColor',
                     'type': 'color',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
                     'properties': [
                         {
                             'name': 'color',
@@ -95,7 +95,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonColorHover',
                     'type': 'color',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
                     'properties': [
                         {
                             'name': 'color',
@@ -114,7 +114,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonBorder',
                     'type': 'border',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
                 }
             ],
         },
@@ -127,7 +127,7 @@ export const categoryStylePanel = (props) => {
                 {
                     'id': 'categoryButtonBorderHover',
                     'type': 'border',
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
                 }
             ],
         },
@@ -146,7 +146,7 @@ export const categoryStylePanel = (props) => {
                             'valueType': 'direct'
                         }
                     ],
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
                 }
             ]
         },
@@ -165,7 +165,7 @@ export const categoryStylePanel = (props) => {
                             'valueType': 'direct'
                         }
                     ],
-                    'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
                 }
             ]
         },

@@ -302,13 +302,13 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonTypography']) && data.push({
         'type': 'typography',
         'id': 'categoryButtonTypography',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
     });
 
     isNotEmpty(attributes['categoryButtonBackground']) && data.push({
         'type': 'color',
         'id': 'categoryButtonBackground',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
         'properties': [
             {
                 'name': 'background-color',
@@ -320,7 +320,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonBackgroundHover']) && data.push({
         'type': 'color',
         'id': 'categoryButtonBackgroundHover',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
         'properties': [
             {
                 'name': 'background-color',
@@ -332,7 +332,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonColor']) && data.push({
         'type': 'color',
         'id': 'categoryButtonColor',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
         'properties': [
             {
                 'name': 'color',
@@ -344,7 +344,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'categoryButtonColorHover',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
         'properties': [
             {
                 'name': 'color',
@@ -356,19 +356,19 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonBorder']) && data.push({
         'type': 'border',
         'id': 'categoryButtonBorder',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
     });
 
     isNotEmpty(attributes['categoryButtonBorderHover']) && data.push({
         'type': 'border',
         'id': 'categoryButtonBorderHover',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
     });
 
     isNotEmpty(attributes['categoryButtonBoxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'categoryButtonBoxShadow',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -380,7 +380,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['categoryButtonBoxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'categoryButtonBoxShadowHover',
-        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
