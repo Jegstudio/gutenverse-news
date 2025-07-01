@@ -295,6 +295,100 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_postblock`,
     });
 
+    /**
+    * Panel Category Style
+    */
+
+    isNotEmpty(attributes['categoryButtonTypography']) && data.push({
+        'type': 'typography',
+        'id': 'categoryButtonTypography',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+    });
+
+    isNotEmpty(attributes['categoryButtonBackground']) && data.push({
+        'type': 'color',
+        'id': 'categoryButtonBackground',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryButtonBackgroundHover']) && data.push({
+        'type': 'color',
+        'id': 'categoryButtonBackgroundHover',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryButtonColor']) && data.push({
+        'type': 'color',
+        'id': 'categoryButtonColor',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryButtonColorHover']) && data.push({
+        'type': 'color',
+        'id': 'categoryButtonColorHover',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryButtonBorder']) && data.push({
+        'type': 'border',
+        'id': 'categoryButtonBorder',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+    });
+
+    isNotEmpty(attributes['categoryButtonBorderHover']) && data.push({
+        'type': 'border',
+        'id': 'categoryButtonBorderHover',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+    });
+
+    isNotEmpty(attributes['categoryButtonBoxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'categoryButtonBoxShadow',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryButtonBoxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'categoryButtonBoxShadowHover',
+        'selector': `.editor-styles-wrapper .${elementId} .gvnews_post .gvnews_thumb .gvnews_post_category a:hover`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     return data;
 };
 
