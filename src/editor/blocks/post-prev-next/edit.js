@@ -68,9 +68,6 @@ const PostPrevNext = compose(
             },
         }).then((data) => {
             setPrevNextData(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
         });
     }, [
         currentId,
@@ -79,11 +76,11 @@ const PostPrevNext = compose(
     useEffect(() => {
         if (prevNextData.previous || prevNextData.next) {
             setContent(<>
-                {prevNextData.previous && <a className="post prev-post">
+                {prevNextData.previous && <a href="#"  className="post prev-post">
                     <span className="caption">{__('Previous Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.previous.title}</h3>
                 </a>}
-                {prevNextData.next && <a className="post next-post">
+                {prevNextData.next && <a href="#"  className="post next-post">
                     <span className="caption">{__('Next Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.next.title}</h3>
                 </a>}
