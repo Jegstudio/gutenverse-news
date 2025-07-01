@@ -3,6 +3,7 @@ import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/cont
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from './panel-herosetting';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 
 export const panelList = () => {
     return [
@@ -17,6 +18,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: filterHero,
             tabRole: TabSetting
+        },
+        {
+            title: __('Read More Button', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: readmoreStylePanel,
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),

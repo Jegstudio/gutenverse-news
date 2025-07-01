@@ -296,31 +296,31 @@
             "type": "boolean",
             "default": true
         },
-        "categoryButtonTypography": {
+        "readmoreButtonTypography": {
             "type": "object"
         },
-        "categoryButtonBackground": {
+        "readmoreButtonBackground": {
             "type": "object"
         },
-        "categoryButtonBackgroundHover": {
+        "readmoreButtonBackgroundHover": {
             "type": "object"
         },
-        "categoryButtonColor": {
+        "readmoreButtonColor": {
             "type": "object"
         },
-        "categoryButtonColorHover": {
+        "readmoreButtonColorHover": {
             "type": "object"
         },
-        "categoryButtonBorder": {
+        "readmoreButtonBorder": {
             "type": "object"
         },
-        "categoryButtonBorderHover": {
+        "readmoreButtonBorderHover": {
             "type": "object"
         },
-        "categoryButtonBoxShadow": {
+        "readmoreButtonBoxShadow": {
             "type": "object"
         },
-        "categoryButtonBoxShadowHover": {
+        "readmoreButtonBoxShadowHover": {
             "type": "object"
         }
     },
