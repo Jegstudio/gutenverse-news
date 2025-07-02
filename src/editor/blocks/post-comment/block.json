@@ -102,7 +102,328 @@
         },
         "positioningBottom": {
             "type": "object"
-        }
+        },
+
+		"typographyText": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorText": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginText": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"typographyTextCommentList": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorTextCommentList": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginTextCommentList": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"avatarMargin": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"avatarBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"avatarBorderResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+        "typographyButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"paddingButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"bgcolorButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"bggradientButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"borderButton": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"borderButtonResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"bgcolorButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"bggradientButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"borderButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"borderButtonHoverResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"paddingButtonHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"inputBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBorderResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBorderHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBorderHoverResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBorderFocus": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBorderFocusResponsive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputColorNormal": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputColorHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputColorFocus": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBgColorNormal": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBgColorHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputBgColorFocus": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputAreaBoxShadow": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputAreaBoxShadowHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputTypography": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputMargin": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"inputPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"typographyLink": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorLink": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginLink": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"userNameTypography": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"userNameColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"dateTypography": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"dateColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"replyLinkTypography": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"replyLinkColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"replyBgColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"replyMargin": {
+			"type": "object",
+			"copyStyle": true,
+			"default" : {}
+		},
+		"replyPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"replyBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"typographyHeading": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorHeading": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginHeading": {
+			"type": "object",
+			"copyStyle": true
+		},
+
+		"typographyCommentTitle": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "colorCommentTitle": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "marginCommentTitle": {
+            "type": "object",
+            "copyStyle": true
+        },
+        
+		"commentCountTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "commentCountColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "commentCountBackgroundColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+
+		"typographyLabel": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorLabel": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"marginLabel": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"colorRequired": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {
+				"a" : 1,
+				"r" : 247,
+				"g" : 13,
+				"b" : 40
+			}
+		},
+
+		"mainBgColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainMargin": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainContainerBgColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainContainerMargin": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainContainerPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"mainContainerBorder": {
+			"type": "object",
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false

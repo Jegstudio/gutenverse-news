@@ -1,5 +1,16 @@
 .gvnews-post-comment {
 
+    label {
+        font: inherit;
+        display: block;
+        font-weight: 700;
+        margin-bottom: .5em;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        vertical-align: baseline;
+    }
+
     ol, ul {
         list-style-type: none;
     }
@@ -27,12 +38,6 @@
                 clear: both;
             }
         }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.5em;
-            }
             
         a {
             color: var(--wp--preset--color--accent, #f70d28);
@@ -47,8 +52,6 @@
             background: var(--wp--preset--color--accent, #f70d28);
             color: #fff;
             padding: 0 20px;
-            line-height: 40px;
-            height: 40px;
             display: inline-block;
             cursor: pointer;
             text-transform: uppercase;
@@ -59,30 +62,29 @@
             -webkit-appearance: none;
             -webkit-transition: .3s ease;
             transition: .3s ease;
+            padding: 10px 20px;
 
             &:hover {
                 box-shadow: rgba(0,0,0,0.15) 0px 0px 0px 100px inset;
             }
         }
 
-        input:not([type="submit"]) { // untuk input lainnya
+        input:not([type="submit"]), textarea { // untuk input lainnya
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 0;
             box-shadow: none;
             display: inline-block;
             font-size: 14px;
             font-weight: 300;
             height: 40px;
+            margin: 0;
             max-width: 100%;
-            width: auto;
-            background: rgb(255, 255, 255);
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgb(224, 224, 224);
-            border-image: initial;
-            border-radius: 0px;
-            margin: 0px;
             outline: none;
             padding: 7px 14px;
-            transition: 0.25s;
+            -webkit-transition: all .2s ease;
+            transition: .25s ease;
+            width: 100%
         }
 
         input[type="checkbox"] {
@@ -97,6 +99,23 @@
             height: auto;
             width: 100%;
             resize: vertical;
+            font: inherit;
+        }
+
+        .comment-form-cookies-consent {
+            clear: both;
+            position: relative;
+
+            label {
+                display: inline-block;
+                padding-left: 20px;
+            }
+
+            input {
+                left: 0;
+                position: absolute;
+                top: .35em;
+            }
         }
     }
 

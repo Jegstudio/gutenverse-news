@@ -41,6 +41,7 @@ const PostMeta = compose(
         }
     }, [elementRef]);
 
+    const { imgDir } = window['GVNewsConfig'];
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const blockProps = useBlockProps({
@@ -112,7 +113,7 @@ const PostMeta = compose(
         return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
             <img
                 alt="admin"
-                srcSet="https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=96&amp;d=mm&amp;r=g"
+                src={`${imgDir}/author.png`}
                 className="avatar avatar-80 photo"
                 height="80"
                 width="80"
