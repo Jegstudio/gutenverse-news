@@ -30,30 +30,30 @@ export const contentPanel = props => {
                 },
             ],
         },
-        {
-            id: 'pagination',
-            label: __('Related Pagination Style', 'gutenverse-news'),
-            description: __('Adjust how related post will shown.', 'gutenverse-news'),
-            component: SelectControl,
-            options: [
-                {
-                    label: __('No Pagination', 'gutenverse-news'),
-                    value: 'disable'
-                },
-                {
-                    label: __('Next Prev', 'gutenverse-news'),
-                    value: 'nextprev'
-                },
-                {
-                    label: __('Load More', 'gutenverse-news'),
-                    value: 'loadmore'
-                },
-                {
-                    label: __('Auto Load on Scroll', 'gutenverse-news'),
-                    value: 'scrollload'
-                },
-            ],
-        },
+        // {
+        //     id: 'pagination',
+        //     label: __('Related Pagination Style', 'gutenverse-news'),
+        //     description: __('Adjust how related post will shown.', 'gutenverse-news'),
+        //     component: SelectControl,
+        //     options: [
+        //         {
+        //             label: __('No Pagination', 'gutenverse-news'),
+        //             value: 'disable'
+        //         },
+        //         {
+        //             label: __('Next Prev', 'gutenverse-news'),
+        //             value: 'nextprev'
+        //         },
+        //         {
+        //             label: __('Load More', 'gutenverse-news'),
+        //             value: 'loadmore'
+        //         },
+        //         {
+        //             label: __('Auto Load on Scroll', 'gutenverse-news'),
+        //             value: 'scrollload'
+        //         },
+        //     ],
+        // },
         {
             id: 'numberPost',
             label: __('Number of Post', 'gutenverse-news'),
