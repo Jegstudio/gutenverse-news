@@ -52,9 +52,26 @@ class Frontend_Assets {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99999 );
 		add_filter( 'gutenverse_include_frontend', array( $this, 'enqueue_frontend_style' ) );
+		add_filter( 'gutenverse_include_frontend', array( $this, 'include_dummy_gutenverse_frontend' ), 29 );
 		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
 		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
 		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
+	}
+
+	/**
+	 * Include dummy gutenverse-frontend.
+	 */
+	public function include_dummy_gutenverse_frontend() {
+		global $wp_styles;
+		if ( ! isset( $wp_styles->registered['gutenverse-frontend'] ) ) {
+			wp_register_style(
+				'gutenverse-frontend',
+				false,
+				array(),
+				GUTENVERSE_NEWS_VERSION
+			);
+			wp_enqueue_style( 'gutenverse-frontend' );
+		}
 	}
 
 	/**
