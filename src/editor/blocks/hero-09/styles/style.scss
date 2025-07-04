@@ -1,0 +1,94 @@
+.gvnews_heroblock_9 {
+    .gvnews_post_title {
+        font-size: 26px;
+        margin-bottom: 5px;
+    }
+    .gvnews_heroblock_wrapper {
+        height: 430px;
+    }
+
+    .gvnews_post {
+        width: 50%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .gvnews_hero_item_2 {
+        left: 50%;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        &.gvnews_hero_style_7 {
+            .gvnews_post_title {
+                font-size: 20px;
+            }
+        }
+        .gvnews_heroblock_wrapper {
+            height: 355px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        &.gvnews_hero_style_7 {
+            .gvnews_post_title {
+                font-size: 18px;
+            }
+        }
+        .gvnews_heroblock_wrapper {
+            height: 300px;
+        }
+        .gvnews_post_title {
+            font-size: 22px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) and (min-width: 736px) {
+        .gvnews_post_title {
+            font-size: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 667px) {
+        .gvnews_post_title {
+            font-size: 18px !important;
+            line-height: 1.2;
+        }
+    }
+
+    @media only screen and (max-width: 568px) {
+        .gvnews_heroblock_wrapper {
+            height: 260px;
+        }
+        .gvnews_post_title {
+            font-size: 16px !important;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .gvnews_heroblock_wrapper {
+            height: 360px;
+            margin: 0 !important;
+        }
+        .gvnews_post {
+            position: relative;
+            width: 100%;
+            height: 50%;
+            left: auto;
+            right: auto;
+            padding-left: 0 !important;
+        }
+        .gvnews_post_title {
+            font-size: 16px !important;
+            max-width: 90%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    @media only screen and (max-width: 320px) {
+        .gvnews_heroblock_wrapper {
+            height: 320px;
+        }
+    }
+}
