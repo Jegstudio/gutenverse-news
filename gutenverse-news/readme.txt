@@ -163,6 +163,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix block error when the Custom Format option is left empty
 * Fix pagination not working on all Module Blocks
 * Fix Header Filter option not working on all Module Blocks
+* Fix error when Excerpt Ellipsis is empty on Slider 7 block
 
 
 = 2.0.0 =
