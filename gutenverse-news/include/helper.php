@@ -355,6 +355,50 @@ if ( ! function_exists( 'gvnews_get_primary_category' ) ) {
 	}
 }
 
+if ( ! function_exists( 'gvnews_get_all_categories' ) ) {
+	/**
+	 * Get all post categories
+	 *
+	 * @param string $post_id post id.
+	 *
+	 * @return mixed|void
+	 */
+	function gvnews_get_all_categories( $post_id ) {
+		$categories = [];
+
+		if ( 'post' === get_post_type( $post_id ) ) {
+			$raw = get_the_category( $post_id );
+			$categories = array_map( function ($val) {
+				return isset($val->term_id) ? $val->term_id : '';
+			}, $raw );
+		}
+
+		return apply_filters( 'gvnews_post_all_categories', $categories );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_all_tags' ) ) {
+	/**
+	 * Get all post tags
+	 *
+	 * @param string $post_id post id.
+	 *
+	 * @return mixed|void
+	 */
+	function gvnews_get_all_tags( $post_id ) {
+		$tags = [];
+
+		if ( 'post' === get_post_type( $post_id ) ) {
+			$raw = get_the_tags( $post_id );
+			$tags = array_map( function ($val) {
+				return isset($val->term_id) ? $val->term_id : '';
+			}, $raw );
+		}
+
+		return apply_filters( 'gvnews_post_all_tags', $tags );
+	}
+}
+
 /**
  * Generate header unique style
  */

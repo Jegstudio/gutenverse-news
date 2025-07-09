@@ -157,6 +157,14 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 2.0.1 [DEV] =
+##### Bug Fixes
+* Fix missing Submit Comment button on the Post Comment block
+* Fix block error when the Custom Format option is left empty
+* Fix pagination not working on all Module Blocks
+* Fix Header Filter option not working on all Module Blocks
+
+
 = 2.0.0 =
 ##### Bug Fixes
 * Fix Blocks Module (1–9) not working

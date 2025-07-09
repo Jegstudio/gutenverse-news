@@ -53,22 +53,23 @@ class Post_Related extends Post_Guten {
 		}
 
 		$attribute = array(
-			'first_title'             => $this->attributes['title'],
-			'second_title'            => $this->attributes['second_title'],
-			'header_type'             => $this->attributes['headerType'],
-			'date_format'             => $this->attributes['metaDateFormat'],
-			'date_format_custom'      => $this->attributes['metaDateFormatCustom'],
-			'excerpt_length'          => $this->attributes['excerptLength'],
-			'pagination_number_post'  => $this->attributes['paginationPost'],
-			'number_post'             => $this->attributes['numberPost'],
-			'include_category'        => implode( ',', $category ),
-			'include_tag'             => implode( ',', $tag ),
-			'exclude_post'            => get_the_ID(),
-			'sort_by'                 => $this->attributes['sortBy'],
-			'pagination_mode'         => $this->attributes['paginationMode'],
-			'pagination_scroll_limit' => $this->attributes['autoLoad'],
-			'paged'                   => 1,
-			'post_offset'             => 0,
+			'first_title'                  => $this->attributes['title'],
+			'second_title'                 => $this->attributes['second_title'],
+			'header_type'                  => $this->attributes['headerType'],
+			'date_format'                  => $this->attributes['metaDateFormat'],
+			'date_format_custom'           => $this->attributes['metaDateFormatCustom'],
+			'excerpt_length'               => $this->attributes['excerptLength'],
+			'pagination_number_post'       => $this->attributes['paginationPost'],
+			'number_post'                  => $this->attributes['numberPost'],
+			'include_category'             => implode( ',', $category ),
+			'include_tag'                  => implode( ',', $tag ),
+			'exclude_post'                 => get_the_ID(),
+			'sort_by'                      => $this->attributes['sortBy'],
+			'pagination_mode'              => $this->attributes['paginationMode'],
+			'pagination_scroll_limit'      => $this->attributes['autoLoad'],
+			'paged'                        => 1,
+			'post_offset'                  => 0,
+			'pagination_nextprev_showtext' => $this->attributes['showNavText'],
 		);
 
 		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );
@@ -84,7 +85,6 @@ class Post_Related extends Post_Guten {
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$content = $instance->build_module( $attribute );
-
 		return $content;
 	}
 }

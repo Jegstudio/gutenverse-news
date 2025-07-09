@@ -145,7 +145,7 @@ class Module_1 extends Module_View_Abstract {
 	/**
 	 * Method build_column_2
 	 *
-	 * @param arary $results results.
+	 * @param array $results results.
 	 *
 	 * @return string
 	 */
@@ -171,7 +171,7 @@ class Module_1 extends Module_View_Abstract {
 	/**
 	 * Method build_column_3
 	 *
-	 * @param arary $results results.
+	 * @param array $results results.
 	 *
 	 * @return string
 	 */
