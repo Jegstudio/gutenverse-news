@@ -10,7 +10,7 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { ModuleOverlay } from '../../part/placeholder';
+import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import HeaderModule from '../../part/header';
 import Block1Columns from '../block-01/Block1Columns';
 import Block2Columns from '../block-02/Block2Columns';
@@ -45,9 +45,10 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import PaginationModule from '../../part/pagination';
+
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const PostRelated = compose(
     withPartialRender,
@@ -66,7 +67,6 @@ const PostRelated = compose(
         postOffset,
         excerptEllipsis,
         paginationMode,
-        //header
         icon,
         title,
         second_title,
@@ -75,18 +75,37 @@ const PostRelated = compose(
         headerAuthor,
         headerTag,
         headerDefault,
-        //general
         match,
-        pagination,
         numberPost,
         templateType,
         excerptLength,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        showNavText
+        showNavText,
+        paginationPost,
+        sortBy,
     } = attributes;
 
+    const animationClass = useAnimationEditor(attributes);
+    const displayClass = useDisplayEditor(attributes);
+    const [postData, getTrim] = useState([]);
+    const [content, setContent] = useState(<ModuleSkeleton />);
+    const [categories, setCategories] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [blockWidth, setBlocktWidth] = useState(12);
+    const [overlay, setOverlay] = useState(false);
+    const [currentPostId, setCurrentPostid] = useState(false);
+    const [page, setPage] = useState(1);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [loadClass, setLoadClass] = useState('');
+    const [nextPrevTotalPagination, setNextPrevTotalPagination] = useState({
+        next: false,
+        prev: false,
+        totalPage: 1,
+    });
+    const [forceReload, setForceReload] = useState(false);
+    const firstRender = useRef(true);
     const elementRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
@@ -98,50 +117,22 @@ const PostRelated = compose(
         }
     }, [elementRef]);
 
-    const [postBulk, getPost] = useState(false);
-    const [loadPost, loadMore] = useState(15);
-    const animationClass = useAnimationEditor(attributes);
-    const displayClass = useDisplayEditor(attributes);
-    const [postData, getTrim] = useState(false);
-    const [content, setContent] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [tags, setTags] = useState([]);
-    const [blockWidth, setBlocktWidth] = useState(12);
-    const [overlay, setOverlay] = useState(false);
-    const [currentPostId, setCurrentPostid] = useState(false);
-
-    const headerData = {
-        icon,
-        title,
-        second_title,
-        headerType,
-        headerCategory,
-        headerAuthor,
-        headerTag,
-        headerDefault,
-    };
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
+        if(firstRender.current) {
+            return;
         }
+        getTrim([]);
+        setPage(1);
+        setForceReload(!forceReload);
     }, [
+        paginationMode,
+        paginationPost,
+        contentType,
+        postType,
         numberPost,
-        postBulk,
-        postOffset
+        postOffset,
+        sortBy,
     ]);
 
     useEffect(() => {
@@ -158,7 +149,7 @@ const PostRelated = compose(
             const updatedTags = select('core/editor').getEditedPostAttribute('tags');
             setTags(updatedTags);
         });
-
+        setForceReload(!forceReload);
         return () => {
             unsubscribe();
         };
@@ -166,6 +157,9 @@ const PostRelated = compose(
 
 
     useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
             method: 'POST',
@@ -175,20 +169,29 @@ const PostRelated = compose(
                     contentType: contentType,
                     includeTag: 'tag' === match && tags && tags.length ? tags.map((tag) => { return { value: tag }; }) : [],
                     includeCategory: 'category' === match && categories && categories.length ? categories.map((cat) => { return { value: cat }; }) : [],
-                    numberPost: numberPost
+                    numberPost,
+                    page,
+                    paginationPost: paginationPost || numberPost,
+                    paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
+                    advancedResponse: true,
+                    sortBy
                 }
             },
         }).then((data) => {
-            getPost(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
+            const { result = [], ...pagination } = JSON.parse(data);
+            setNextPrevTotalPagination(pagination);
+            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+                result.length > 0 ? getTrim([...postData, ...result]) : null;
+                return;
+            }
+            getTrim(result);
         }).finally(() => {
+            setOverlay(false);
+            setIsLoaded(true);
         });
     }, [
-        numberPost,
-        categories,
-        tags,
-        match
+        page,
+        forceReload
     ]);
 
     const blockProps = useBlockProps({
@@ -207,124 +210,132 @@ const PostRelated = compose(
 
     useEffect(() => {
         if (templateType) {
-            let template;
-
-            const columnData = {
-                //header
-                icon,
-                title,
-                second_title,
-                headerType,
-                headerCategory,
-                headerAuthor,
-                headerTag,
-                headerDefault,
-                //module data
-                postData: postData ? postData.filter(item => {
-                    //exclue current post
-                    return currentPostId !== item.id;
-                }) : postData,
-                moduleOption,
-                blockWidth,
-                excerptLength,
-                excerptEllipsis,
-                metaDateType,
-                metaDateFormat,
-                metaDateFormatCustom,
-                postBulk,
-                overlay,
-                //pagination data
-                paginationMode,
-                showNavText,
-            };
-
-            switch (templateType) {
-                case 'template_1':
-                    template = <Block1Columns {...columnData} />;
-                    break;
-                case 'template_2':
-                    template = <Block2Columns {...columnData} />;
-                    break;
-                case 'template_3':
-                    template = <Block3Columns {...columnData} />;
-                    break;
-                case 'template_4':
-                    template = <Block4Columns {...columnData} />;
-                    break;
-                case 'template_5':
-                    template = <Block5Columns {...columnData} />;
-                    break;
-                case 'template_6':
-                    template = <Block6Columns {...columnData} />;
-                    break;
-                case 'template_7':
-                    template = <Block7Columns {...columnData} />;
-                    break;
-                case 'template_8':
-                    template = <Block8Columns {...columnData} />;
-                    break;
-                case 'template_9':
-                    template = <Block9Columns {...columnData} />;
-                    break;
-                case 'template_10':
-                    template = <Block10Columns {...columnData} />;
-                    break;
-                case 'template_11':
-                    template = <Block11Columns {...columnData} />;
-                    break;
-                case 'template_12':
-                    template = <Block12Columns {...columnData} />;
-                    break;
-                case 'template_13':
-                    template = <Block13Columns {...columnData} />;
-                    break;
-                case 'template_14':
-                    template = <Block14Columns {...columnData} />;
-                    break;
-                case 'template_15':
-                    template = <Block15Columns {...columnData} />;
-                    break;
-                case 'template_16':
-                    template = <Block16Columns {...columnData} />;
-                    break;
-                case 'template_17':
-                    template = <Block17Columns {...columnData} />;
-                    break;
-                case 'template_18':
-                    template = <Block18Columns {...columnData} />;
-                    break;
-                case 'template_19':
-                    template = <Block19Columns {...columnData} />;
-                    break;
-                case 'template_20':
-                    template = <Block20Columns {...columnData} />;
-                    break;
-                case 'template_21':
-                    template = <Block21Columns {...columnData} />;
-                    break;
-                case 'template_22':
-                    template = <Block22Columns {...columnData} />;
-                    break;
-                case 'template_23':
-                    template = <Block23Columns {...columnData} />;
-                    break;
-                case 'template_24':
-                    template = <Block24Columns {...columnData} />;
-                    break;
-                case 'template_25':
-                    template = <Block25Columns {...columnData} />;
-                    break;
-                case 'template_26':
-                    template = <Block26Columns {...columnData} />;
-                    break;
-                case 'template_27':
-                    template = <Block27Columns {...columnData} />;
-                    break;
+            if(firstRender.current) {
+                firstRender.current = false;
+                return;
             }
+            if (postData.length > 0) {
+                let template;
 
-            setContent(template);
+                const columnData = {
+                    blockWidth,
+                    excerptLength,
+                    excerptEllipsis,
+                    moduleOption,
+                    metaDateType,
+                    metaDateFormat,
+                    metaDateFormatCustom,
+                    postData: postData.length > 0 ? postData.filter(item => {
+                        return currentPostId !== item.id;
+                    }) : postData,
+                    isLoadMore: (paginationMode === 'loadmore' || paginationMode === 'scrollload'),
+                    numberPost,
+                    paginationPost,
+                    page,
+                };
+
+                switch (templateType) {
+                    case 'template_1':
+                        template = <Block1Columns {...columnData} />;
+                        break;
+                    case 'template_2':
+                        template = <Block2Columns {...columnData} />;
+                        break;
+                    case 'template_3':
+                        template = <Block3Columns {...columnData} />;
+                        break;
+                    case 'template_4':
+                        template = <Block4Columns {...columnData} />;
+                        break;
+                    case 'template_5':
+                        template = <Block5Columns {...columnData} />;
+                        break;
+                    case 'template_6':
+                        template = <Block6Columns {...columnData} />;
+                        break;
+                    case 'template_7':
+                        template = <Block7Columns {...columnData} />;
+                        break;
+                    case 'template_8':
+                        template = <Block8Columns {...columnData} />;
+                        break;
+                    case 'template_9':
+                        template = <Block9Columns {...columnData} />;
+                        break;
+                    case 'template_10':
+                        template = <Block10Columns {...columnData} />;
+                        break;
+                    case 'template_11':
+                        template = <Block11Columns {...columnData} />;
+                        break;
+                    case 'template_12':
+                        template = <Block12Columns {...columnData} />;
+                        break;
+                    case 'template_13':
+                        template = <Block13Columns {...columnData} />;
+                        break;
+                    case 'template_14':
+                        template = <Block14Columns {...columnData} />;
+                        break;
+                    case 'template_15':
+                        template = <Block15Columns {...columnData} />;
+                        break;
+                    case 'template_16':
+                        template = <Block16Columns {...columnData} />;
+                        break;
+                    case 'template_17':
+                        template = <Block17Columns {...columnData} />;
+                        break;
+                    case 'template_18':
+                        template = <Block18Columns {...columnData} />;
+                        break;
+                    case 'template_19':
+                        template = <Block19Columns {...columnData} />;
+                        break;
+                    case 'template_20':
+                        template = <Block20Columns {...columnData} />;
+                        break;
+                    case 'template_21':
+                        template = <Block21Columns {...columnData} />;
+                        break;
+                    case 'template_22':
+                        template = <Block22Columns {...columnData} />;
+                        break;
+                    case 'template_23':
+                        template = <Block23Columns {...columnData} />;
+                        break;
+                    case 'template_24':
+                        template = <Block24Columns {...columnData} />;
+                        break;
+                    case 'template_25':
+                        template = <Block25Columns {...columnData} />;
+                        break;
+                    case 'template_26':
+                        template = <Block26Columns {...columnData} />;
+                        break;
+                    case 'template_27':
+                        template = <Block27Columns {...columnData} />;
+                        break;
+                }
+                setContent(template);
+            } else {
+                setContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            }
+            return () => setContent(<ModuleSkeleton />);
         }
     }, [
+        blockWidth,
+        excerptLength,
+        excerptEllipsis,
+        moduleOption,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        postData,
+        templateType
+    ]);
+
+    const headerData = {
         icon,
         title,
         second_title,
@@ -333,30 +344,34 @@ const PostRelated = compose(
         headerAuthor,
         headerTag,
         headerDefault,
-        postData,
-        postBulk,
-        overlay,
-        //general
-        match,
-        pagination,
-        numberPost,
-        templateType,
-        excerptEllipsis,
-        excerptLength,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
+    };
+
+    const paginationData = {
         paginationMode,
-        showNavText
-    ]);
+        showNavText,
+        nextPrevTotalPagination,
+        onPageChange: (amount, loadClass) => {
+            const final = Math.max(page + amount, 1);
+            setIsLoaded(false);
+            setPage(final);
+            setLoadClass(loadClass);
+            if (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') {
+                setOverlay(true);
+            }
+        }
+    };
 
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className={`${templateType.replace('template_', 'gvnews_postblock_')} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+            <div className={`${templateType.replace('template_', 'gvnews_postblock_')} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
                 <HeaderModule {...headerData} />
-                {content ? content : <ModuleOverlay />}
+                <div className="gvnews_block_container">
+                    {content}
+                    {overlay && <ModuleOverlay />}
+                </div>
+                <PaginationModule {...paginationData} />
             </div>
         </div>
     </>;
