@@ -95,7 +95,7 @@ const PostRelated = compose(
     const [content, setContent] = useState(<ModuleSkeleton />);
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
-    const [blockWidth, setBlocktWidth] = useState(12);
+    const [blockWidth, getWidth] = useState(12);
     const [overlay, setOverlay] = useState(false);
     const [currentPostId, setCurrentPostid] = useState(false);
     const [page, setPage] = useState(1);
@@ -119,17 +119,6 @@ const PostRelated = compose(
         }
     }, [elementRef]);
 
-    const [postBulk, getPost] = useState(false);
-    const [loadPost, loadMore] = useState(15);
-    const animationClass = useAnimationEditor(attributes);
-    const displayClass = useDisplayEditor(attributes);
-    const [postData, getTrim] = useState(false);
-    const [content, setContent] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [tags, setTags] = useState([]);
-    const [blockWidth, getWidth] = useState(12);
-    const [overlay, setOverlay] = useState(false);
-    const [currentPostId, setCurrentPostid] = useState(false);
 
     const deviceType = getDeviceType();
     const {
@@ -140,16 +129,6 @@ const PostRelated = compose(
         []
     );
 
-    const headerData = {
-        icon,
-        title,
-        second_title,
-        headerType,
-        headerCategory,
-        headerAuthor,
-        headerTag,
-        headerDefault,
-    };
 
     useEffect(() => {
         if(firstRender.current) {
@@ -193,7 +172,6 @@ const PostRelated = compose(
         if(firstRender.current) {
             return;
         }
-        postBulk ? setOverlay(true) : null;
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
             method: 'POST',
