@@ -164,5 +164,106 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['readmoreButtonTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'value'    => $this->attrs['readmoreButtonTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['readmoreButtonBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['readmoreButtonBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readmoreButtonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readmoreButtonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBorder'] ) ) {
+			$this->handle_border(
+				'readmoreButtonBorder',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore"
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBorderHover'] ) ) {
+			$this->handle_border(
+				'readmoreButtonBorderHover',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['readmoreButtonBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBoxShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 }

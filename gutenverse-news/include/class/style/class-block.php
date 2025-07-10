@@ -416,7 +416,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
 					'value'    => $this->attrs['readmoreButtonTypography'],
 				)
 			);
@@ -425,7 +425,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonBackground'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -438,7 +438,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonBackgroundHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -451,7 +451,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -464,7 +464,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -477,21 +477,21 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonBorder'] ) ) {
 			$this->handle_border(
 				'readmoreButtonBorder',
-				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore"
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore"
 			);
 		}
 
 		if ( isset( $this->attrs['readmoreButtonBorderHover'] ) ) {
 			$this->handle_border(
 				'readmoreButtonBorderHover',
-				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore:hover"
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover"
 			);
 		}
 
 		if ( isset( $this->attrs['readmoreButtonBoxShadow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -504,7 +504,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonBoxShadowHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
