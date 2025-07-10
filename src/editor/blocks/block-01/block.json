@@ -322,6 +322,33 @@
         },
         "readmoreButtonBoxShadowHover": {
             "type": "object"
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {
