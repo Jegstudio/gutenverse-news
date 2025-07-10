@@ -11,7 +11,7 @@ function SubCatItem(props) {
     const { active, title, onClick } = props;
     return (
         <li>
-            <a className={`subclass-filter ${active ? 'current' : ''}`} onClick={onClick} href="#">
+            <a className={`subclass-filter ${active ? 'current' : ''}`} onClick={onClick} href="javascript:void(0);">
                 {title}
             </a>
         </li>
@@ -40,7 +40,7 @@ function SubCat(props) {
         <div className="gvnews_subcat okayNav loaded">
             <ul className="gvnews_subcat_list">
                 <li>
-                    <a className={`subclass-filter ${active === -100 ? 'current' : ''}`} onClick={() => catOnClickHandler('all', -100, 'all')} href="#">{props.headerDefault}</a>
+                    <a className={`subclass-filter ${active === -100 ? 'current' : ''}`} onClick={() => catOnClickHandler('all', -100, 'all')} href="javascript:void(0);">{props.headerDefault}</a>
                 </li>
                 {Valid(props.headerCategory) && props.headerCategory.map( (d, index) => {
                     return(<SubCatItem key={index} active={active === d.value} onClick={() => catOnClickHandler('category', d.value, d.label)} title={d.label}/>);
