@@ -245,6 +245,18 @@ const getSliderStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['readmoreButtonColor']) && data.push({
+        'type': 'color',
+        'id': 'readmoreButtonColor',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-slider-7 .gvnews_slider_type_7 .gvnews_readmore:before`,
+        'properties': [
+            {
+                'name': 'background',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
     isNotEmpty(attributes['readmoreButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'readmoreButtonColorHover',
@@ -252,6 +264,18 @@ const getSliderStyle = (elementId, attributes) => {
         'properties': [
             {
                 'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['readmoreButtonColorHover']) && data.push({
+        'type': 'color',
+        'id': 'readmoreButtonColorHover',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-slider-7 .gvnews_slider_type_7 .gvnews_readmore:hover:before`,
+        'properties': [
+            {
+                'name': 'background',
                 'valueType': 'direct',
             }
         ],

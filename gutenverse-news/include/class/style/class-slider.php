@@ -213,12 +213,38 @@ class Slider extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['readmoreButtonColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_readmore:before",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['readmoreButtonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readmoreButtonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_readmore:hover:before",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
 					},
 					'value'          => $this->attrs['readmoreButtonColorHover'],
 					'device_control' => false,
