@@ -10,6 +10,7 @@ import typographyHeadingStyle from './panelStyles/style-typography-heading';
 import typographyLabelStyle from './panelStyles/style-typography-label';
 import typographyLlinkStyle from './panelStyles/style-typography-link';
 import typographyTextStyle from './panelStyles/style-typography-text';
+import separatorStyle from './panelStyles/style-separator';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -33,6 +34,8 @@ const getBlockStyle = (elementId, attributes) => {
     data = typographyTextStyle(elementId, attributes, data);
     //panel layout
     data = layoutStye({attributes, data, selector: `.guten-element.${elementId}.gvnews-post-comment`});
+    //panel separator
+    data = separatorStyle(elementId, attributes, data);
     //panel background
     data = backgroundStyle({
         elementId,

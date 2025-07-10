@@ -119,9 +119,15 @@
         }
     }
 
-    .comment-respond {
+    hr.separator {
+        border: none;
         border-top: 3px solid #eee;
         margin-top: 30px;
+    }
+
+    .comment-respond {
+        border: none;
+        margin: 0;
 
         .comment-reply-title {
             font-weight: bold;

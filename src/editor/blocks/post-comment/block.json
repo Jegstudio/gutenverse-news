@@ -423,6 +423,21 @@
 		"mainContainerBorder": {
 			"type": "object",
 			"copyStyle": true
+		},
+		"separatorStyle": {
+			"type": "string"
+		},
+		"separatorWidth": {
+			"type":"object"
+		},
+		"separatorHeight": {
+			"type":"object"
+		},
+		"separatorColor": {
+			"type":"object"
+		},
+		"separatorMargin": {
+			"type":"object"
 		}
     },
     "supports": {

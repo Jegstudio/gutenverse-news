@@ -148,7 +148,7 @@ const FormLogin = (props) => {
                     <textarea id="comment" name="comment" cols="45" rows="8" maxLength="65525" required="required"></textarea>
                 </p>
                 <p className="form-submit">
-                    <input name="submit" type="submit" id="submit" className="submit" value="Post Comment" />
+                    <input name="submit" type="submit" id="submit" className="submit" value="Post Comment" onClick={e => e.preventDefault()}/>
                 </p>
             </form>
         </div>
@@ -210,7 +210,7 @@ const FormNotLogin = () => {
                 </p>
 
                 <p className="form-submit">
-                    <input name="submit" type="submit" id="submit" className="submit" value="Post Comment" />
+                    <input name="submit" type="submit" id="submit" className="submit" value="Post Comment" onClick={e => e.preventDefault()} />
                 </p>
             </form>
         </div>
@@ -229,6 +229,7 @@ const PostComment = compose(
 
     const {
         elementId,
+        separatorStyle,
         __isLogin,
     } = attributes;
 
@@ -274,6 +275,7 @@ const PostComment = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <ExampleComments />
+            { separatorStyle !== 'none' && <hr className={'separator'}></hr>}
             <Form/>
         </div>
     </>;

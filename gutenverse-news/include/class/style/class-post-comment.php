@@ -73,6 +73,7 @@ class Post_Comment extends Style_Abstract {
 		$this->typography_label_style();
 		$this->typography_link_style();
 		$this->typography_text_style();
+		$this->separator_stye();
 	}
 
 	/**
@@ -1117,6 +1118,80 @@ class Post_Comment extends Style_Abstract {
 						return $this->handle_dimension( $value, 'margin' );
 					},
 					'value'          => $this->attrs['marginTextCommentList'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Style for separator.
+	 *
+	 * @return void
+	 */
+	private function separator_stye() {
+		$selector = ".{$this->element_id}.gvnews-post-comment hr.separator";
+
+		if ( isset( $this->attrs['separatorStyle'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return "border-top-style: {$value};";
+					},
+					'value'          => $this->attrs['separatorStyle'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-top-color' );
+					},
+					'value'          => $this->attrs['separatorColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['separatorWidth'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'border-top-width' );
+					},
+					'value'          => $this->attrs['separatorHeight'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['separatorMargin'],
 					'device_control' => true,
 				)
 			);

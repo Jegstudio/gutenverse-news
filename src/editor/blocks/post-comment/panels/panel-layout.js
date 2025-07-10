@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-import { AlignLeft, AlignCenter, AlignRight } from 'gutenverse-core/components';
 import { DimensionControl, NumberControl, SizeControl } from 'gutenverse-core/controls';
 
 const layoutPanel = () => {

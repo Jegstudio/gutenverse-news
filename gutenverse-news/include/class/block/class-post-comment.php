@@ -97,6 +97,7 @@ class Post_Comment extends Post_Guten {
 						</div>
 						<?php endif; ?>
 					</div>
+					<hr class="separator"></hr>
 					<?php
 				}
 
