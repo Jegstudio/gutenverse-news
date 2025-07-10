@@ -5,8 +5,10 @@ const layoutStye = (props) => {
     const {
         attributes,
         data,
-        selector,
+        elementId,
     } = props;
+
+    const selector = `.editor-styles-wrapper .is-root-container .gvnews-block.guten-element.${elementId}.gvnews-post-title`;
 
     isNotEmpty(attributes['margin']) && data.push({
         'type': 'dimension',
@@ -44,7 +46,7 @@ const layoutStye = (props) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': selector,
+        'selector': `${selector} .title-wrapper h1.the-title`,
     });
 
     isNotEmpty(attributes['height']) && data.push({

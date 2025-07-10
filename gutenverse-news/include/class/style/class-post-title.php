@@ -46,12 +46,12 @@ class Post_Title extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title > .title-wrapper",
-					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title > .title-wrapper:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 				),
 				'border'     => array(
-					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title > .title-wrapper",
-					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title > .title-wrapper:hover",
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 				),
 			)
 		);
@@ -83,13 +83,13 @@ class Post_Title extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['border'] ) ) {
-			$this->handle_border( 'border', ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper" );
+			$this->handle_border( 'border', ".guten-element.{$this->element_id}.gvnews-post-title" );
 		}
 
 		if ( isset( $this->attrs['borderResponsive'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -103,13 +103,13 @@ class Post_Title extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['borderHover'] ) ) {
-			$this->handle_border( 'borderHover', ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper:hover" );
+			$this->handle_border( 'borderHover', ".guten-element.{$this->element_id}.gvnews-post-title:hover" );
 		}
 
 		if ( isset( $this->attrs['borderHoverResponsive'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper:hover",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -125,7 +125,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['boxShadow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -138,7 +138,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['boxShadowHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper:hover",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -178,7 +178,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
