@@ -16,6 +16,7 @@ use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Meta;
+use GUTENVERSE\NEWS\Style\Post_Next_Prev;
 use GUTENVERSE\NEWS\Style\Post_Related;
 use GUTENVERSE\NEWS\Style\Slider;
 use GUTENVERSE\NEWS\Style\User_List;
@@ -103,6 +104,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-post-meta' ):
 					$instance = new Post_Meta( $attrs, $name );
+					break;
+				case stristr( $name, 'gutenverse/news-post-prev-next' ):
+					$instance = new Post_Next_Prev( $attrs, $name );
 					break;
 			}
 		}

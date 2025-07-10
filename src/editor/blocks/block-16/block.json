@@ -134,7 +134,7 @@
             "default": 4
         },
         "loadLimit": {
-            "type": "string",
+            "type": "number",
             "default": 0
         },
         "enableBoxed": {

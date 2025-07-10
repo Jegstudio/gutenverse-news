@@ -250,7 +250,7 @@ const Slider7Block = compose(
         setBlock(false);
         setTimeout(function () {
             resetblock();
-        });
+        }, 100);
     }, [
         blockWidth,
         excerptLength,
