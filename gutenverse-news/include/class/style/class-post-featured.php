@@ -46,13 +46,11 @@ class Post_Featured extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".guten-element.{$this->element_id} .gvnews_featured.featured_image",
-					'hover'  => ".guten-element.{$this->element_id} .gvnews_featured.featured_image:hover",
+					'normal' => ".guten-element.{$this->element_id}",
+					'hover'  => ".guten-element.{$this->element_id}:hover",
 				),
-				'border'     => array(
-					'normal' => ".guten-element.{$this->element_id} .gvnews_featured.featured_image",
-					'hover'  => ".guten-element.{$this->element_id} .gvnews_featured.featured_image:hover",
-				),
+				'border'     => null,
+				'advance'    => null,
 			)
 		);
 	}
