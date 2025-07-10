@@ -165,6 +165,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix Header Filter option not working on all Module Blocks
 * Fix error when Excerpt Ellipsis is empty on Slider 7 block
 * Fix Post Next Prev not renderd on frontend
+* Fix auto column width detection not working on Post Related block
 
 
 = 2.0.0 =
