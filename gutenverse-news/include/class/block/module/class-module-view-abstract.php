@@ -303,7 +303,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$page_links[] = '<a class="page_nav prev" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['prev_text'] ) . '</span></a>';
 		endif;
 		for ( $n = 1; $n <= $total; $n++ ) :
-			if ( $n == $current ) :
+			if ( $n === $current ) :
 				$page_links[] = "<span class='page_number active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</span>';
 				$dots         = true;
 		elseif ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
@@ -407,7 +407,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		// Heading.
-		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>{$attr['second_title']}</strong>" : '';
+		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
 		$header_class  = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
 		$heading_title = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
 
@@ -434,7 +434,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $categories as $category ) {
 					$cat = get_category( trim( $category ) );
 					if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
-						$sub_cat .= '<li><a class="subclass-filter" href="' . get_category_link( $cat->term_id ) . "\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
+						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
 					}
 				}
 			}
@@ -451,7 +451,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					$author_id   = trim( $author );
 					$author_url  = get_author_posts_url( $author_id );
 					$author_name = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"{$author_url}\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
@@ -469,7 +469,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $tags as $tag ) {
 					$tag_object = get_tag( trim( $tag ) );
 					if ( $tag_object ) {
-						$sub_cat .= '<li><a class="subclass-filter" href="' . get_tag_link( $tag_object->term_id ) . "\" data-type='tag' data-id='{$tag_object->term_id}'>{$tag_object->name}</a></li>";
+						$sub_cat .= '<li><a class="subclass-filter" href="#" data-type="tag" data-id="' . $tag_object->term_id . '">' . $tag_object->name . '</a></li>';
 					}
 				}
 			}
@@ -478,7 +478,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( ! empty( $sub_cat ) ) {
 			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
 			$sub_cat =
-			"<div class=\"gvnews_subcat\">
+			"<div class=\"gvnews_subcat okayNav loaded\">
                     <ul class=\"gvnews_subcat_list\">
                         {$sub_cat}
                     </ul>
@@ -556,7 +556,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						'include_author'               => isset( $_REQUEST['data']['attribute']['include_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_author'] ) ) : '',
 						'include_tag'                  => isset( $_REQUEST['data']['attribute']['include_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_tag'] ) ) : '',
 						'exclude_tag'                  => isset( $_REQUEST['data']['attribute']['exclude_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_tag'] ) ) : '',
-						'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : '',
+						'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : 'latest',
 						'date_format'                  => isset( $_REQUEST['data']['attribute']['date_format'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format'] ) ) : '',
 						'date_format_custom'           => isset( $_REQUEST['data']['attribute']['date_format_custom'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format_custom'] ) ) : '',
 						'excerpt_length'               => isset( $_REQUEST['data']['attribute']['excerpt_length'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_length'] ) ) : '',
@@ -634,9 +634,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						$args['include_tag'] = $attr['filter'];
 					break;
 			}
-
-			$args['sort_by'] = 'latest';
-			$args['paged']   = $attr['current_page'];
+			$args['paged'] = $attr['current_page'];
 		}
 
 		$args['number_post'] = $attr['attribute']['number_post'];
