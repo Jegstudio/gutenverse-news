@@ -167,6 +167,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix Post Next Prev not renderd on frontend
 * Fix auto column width detection not working on Post Related block
 
+##### Improvements
+* Added style options for "Read More" button and "Category Label" on Blocks
+
 
 = 2.0.0 =
 ##### Bug Fixes
