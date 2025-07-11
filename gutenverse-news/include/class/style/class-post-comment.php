@@ -1130,12 +1130,14 @@ class Post_Comment extends Style_Abstract {
 	 * @return void
 	 */
 	private function separator_stye() {
-		$selector = ".{$this->element_id}.gvnews-post-comment hr.separator";
+		$separator_form_selector = ".{$this->element_id}.gvnews-post-comment hr.separator";
+		$separator_reply_selector = ".{$this->element_id}.gvnews-post-comment .gvnews-comments .commentlist .children > li:first-child > article.comment-body";
 
+		// Form Separator.
 		if ( isset( $this->attrs['separatorStyle'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $separator_form_selector,
 					'property'       => function ( $value ) {
 						return "border-top-style: {$value};";
 					},
@@ -1148,7 +1150,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['separatorColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $separator_form_selector,
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'border-top-color' );
 					},
@@ -1161,7 +1163,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['separatorWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $separator_form_selector,
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -1174,7 +1176,7 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['separatorHeight'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $separator_form_selector,
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'border-top-width' );
 					},
@@ -1187,11 +1189,64 @@ class Post_Comment extends Style_Abstract {
 		if ( isset( $this->attrs['separatorMargin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $separator_form_selector,
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
 					'value'          => $this->attrs['separatorMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		// Reply Separator.
+		if ( isset( $this->attrs['separatorReplyStyle'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_reply_selector,
+					'property'       => function ( $value ) {
+						return "border-top-style: {$value};";
+					},
+					'value'          => $this->attrs['separatorReplyStyle'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorReplyColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_reply_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-top-color' );
+					},
+					'value'          => $this->attrs['separatorReplyColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorReplyWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_reply_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['separatorReplyWidth'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['separatorReplyHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_reply_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'border-top-width' );
+					},
+					'value'          => $this->attrs['separatorReplyHeight'],
 					'device_control' => true,
 				)
 			);

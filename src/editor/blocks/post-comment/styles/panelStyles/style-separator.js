@@ -2,8 +2,12 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 
 const separatorStyle = (elementId, attributes, data) => {
 
-    const selector = `.${elementId}.gvnews-post-comment hr.separator`;
+    const separatorFormSelector = `.${elementId}.gvnews-post-comment hr.separator`;
+    const separatorReplySelector = `.${elementId}.gvnews-post-comment .gvnews-comments .commentlist .children > li:first-child > article.comment-body`;
 
+    /**
+     * Form Separator
+     */
     isNotEmpty(attributes['separatorStyle']) && data.push({
         'id': 'separatorStyle',
         'type': 'plain',
@@ -13,7 +17,7 @@ const separatorStyle = (elementId, attributes, data) => {
                 'valueType': 'direct',
             }
         ],
-        selector
+        'selector': separatorFormSelector
     });
 
     isNotEmpty(attributes['separatorColor']) && data.push({
@@ -25,7 +29,7 @@ const separatorStyle = (elementId, attributes, data) => {
                 'valueType': 'direct',
             }
         ],
-        selector
+        'selector': separatorFormSelector
     });
 
     isNotEmpty(attributes['separatorWidth']) && data.push({
@@ -38,7 +42,7 @@ const separatorStyle = (elementId, attributes, data) => {
                 'valueType': 'direct',
             }
         ],
-        selector
+        'selector': separatorFormSelector
     });
 
     isNotEmpty(attributes['separatorHeight']) && data.push({
@@ -51,7 +55,7 @@ const separatorStyle = (elementId, attributes, data) => {
                 'valueType': 'direct',
             }
         ],
-        selector
+        'selector': separatorFormSelector
     });
 
     isNotEmpty(attributes['separatorMargin']) && data.push({
@@ -64,7 +68,60 @@ const separatorStyle = (elementId, attributes, data) => {
                 'valueType': 'direct',
             }
         ],
-        selector
+        'selector': separatorFormSelector
+    });
+
+    /**
+     * Reply Separator
+     */
+    isNotEmpty(attributes['separatorReplyStyle']) && data.push({
+        'id': 'separatorReplyStyle',
+        'type': 'plain',
+        'properties': [
+            {
+                'name': 'border-top-style',
+                'valueType': 'direct',
+            }
+        ],
+        'selector': separatorReplySelector
+    });
+
+    isNotEmpty(attributes['separatorReplyColor']) && data.push({
+        'id': 'separatorReplyColor',
+        'type': 'color',
+        'properties': [
+            {
+                'name': 'border-top-color',
+                'valueType': 'direct',
+            }
+        ],
+        'selector': separatorReplySelector
+    });
+
+    isNotEmpty(attributes['separatorReplyWidth']) && data.push({
+        'id': 'separatorReplyWidth',
+        'type': 'unitPoint',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'direct',
+            }
+        ],
+        'selector': separatorReplySelector
+    });
+
+    isNotEmpty(attributes['separatorReplyHeight']) && data.push({
+        'id': 'separatorReplyHeight',
+        'type': 'unitPoint',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'border-top-width',
+                'valueType': 'direct',
+            }
+        ],
+        'selector': separatorReplySelector
     });
 
     return data;
