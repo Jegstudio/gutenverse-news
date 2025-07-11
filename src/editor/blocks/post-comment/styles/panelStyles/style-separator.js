@@ -3,7 +3,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 const separatorStyle = (elementId, attributes, data) => {
 
     const separatorFormSelector = `.${elementId}.gvnews-post-comment hr.separator`;
-    const separatorReplySelector = `.${elementId}.gvnews-post-comment .gvnews-comments .commentlist .children > li:first-child > article.comment-body`;
+    const separatorReplySelector = `.${elementId}.gvnews-post-comment .gvnews-comments .commentlist article.comment-body`;
 
     /**
      * Form Separator

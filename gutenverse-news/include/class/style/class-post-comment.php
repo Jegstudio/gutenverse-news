@@ -1130,8 +1130,8 @@ class Post_Comment extends Style_Abstract {
 	 * @return void
 	 */
 	private function separator_stye() {
-		$separator_form_selector = ".{$this->element_id}.gvnews-post-comment hr.separator";
-		$separator_reply_selector = ".{$this->element_id}.gvnews-post-comment .gvnews-comments .commentlist .children > li:first-child > article.comment-body";
+		$separator_form_selector  = ".{$this->element_id}.gvnews-post-comment hr.separator";
+		$separator_reply_selector = ".{$this->element_id}.gvnews-post-comment .gvnews-comments .commentlist article.comment-body";
 
 		// Form Separator.
 		if ( isset( $this->attrs['separatorStyle'] ) ) {
