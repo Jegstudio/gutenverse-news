@@ -2,7 +2,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 
 export const imageBorderStyle = (elementId, attributes, data) => {
 
-    const selector = `.guten-element.${elementId} .gvnews_featured .thumbnail-container > *`;
+    const selector = `.guten-element.${elementId} .gvnews_featured .thumbnail-container`;
 
     isNotEmpty(attributes['imageBorder']) && data.push({
         'id': 'imageBorder',

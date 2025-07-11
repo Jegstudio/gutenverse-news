@@ -3,7 +3,7 @@ import { imageBorderStyle } from './panelStyles/style-image-border';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
-    const thumbnailSelector = `.guten-element.${elementId} .gvnews_featured .thumbnail-container`;
+    const selector = `.guten-element.${elementId} .gvnews_featured`;
 
     data = imageBorderStyle(elementId, attributes, data);
 
@@ -13,31 +13,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': thumbnailSelector,
+        'selector': selector,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': thumbnailSelector,
+        'selector': selector,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `${thumbnailSelector}:hover`,
+        'selector': `${selector}:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `${thumbnailSelector}:hover`,
+        'selector': `${selector}:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': thumbnailSelector,
+        'selector': selector,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -49,7 +49,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `${thumbnailSelector}:hover`,
+        'selector': `${selector}:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -71,7 +71,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': thumbnailSelector,
+        'selector': selector,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -84,7 +84,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': thumbnailSelector,
+        'selector': selector,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -97,7 +97,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': thumbnailSelector,
+        'selector': selector,
     });
 
     return data;

@@ -49,7 +49,7 @@ class Post_Featured extends Style_Abstract {
 	 */
 	public function __construct( $attrs, $name = false ) {
 		parent::__construct( $attrs, $name );
-		$this->base_selector = ".guten-element.{$this->element_id} .gvnews_featured .thumbnail-container";
+		$this->base_selector = ".guten-element.{$this->element_id} .gvnews_featured";
 
 		$this->set_feature(
 			array(
@@ -81,7 +81,7 @@ class Post_Featured extends Style_Abstract {
 	 * @return void
 	 */
 	private function image_border_style() {
-		$selector = "{$this->base_selector} > *";
+		$selector = "{$this->base_selector}  .thumbnail-container";
 
 		if ( isset( $this->attrs['imageBorder'] ) ) {
 			$this->handle_border( 'imageBorder', $selector );

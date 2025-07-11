@@ -10,7 +10,7 @@ export const containerBorderPanel = (props) => {
         setSwitcher,
     } = props;
 
-    const selector = `.guten-element.${elementId} .gvnews_featured .thumbnail-container`;
+    const selector = `.guten-element.${elementId} .gvnews_featured`;
     const device = getDeviceType();
 
     return [
