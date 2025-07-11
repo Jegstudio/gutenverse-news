@@ -144,9 +144,8 @@ margin-bottom: 20px;
       margin: 10px 0;
       transition: 0.3s ease;
     }
-  }
-  
-  .gvnews_prevnext_post a:hover h3 {
-    border-color: var(--wp--preset--color--primary);
+    a:hover h3 {
+      border-color: var(--wp--preset--color--accent, #f70d28);
+    }
   }
   
