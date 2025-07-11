@@ -1,10 +1,12 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import designStyle from './panel-style/style-design';
+import readmoreStyle from './panel-style/style-readmore';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
     data = designStyle({elementId, attributes, data});
+    data = readmoreStyle({elementId, attributes, data});
     data = backgroundStyle({
         attributes,
         data,

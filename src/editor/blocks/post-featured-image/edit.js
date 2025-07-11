@@ -113,11 +113,13 @@ const PostFeaturedImage = compose(
         let size;
         switch (imageSize) {
             case '1140x570':
+            case 'featured-1140':
             case '750x375':
                 size = '500';
                 break;
             case '1140x815':
             case '750x536':
+            case 'featured-750':
                 size = '715';
                 break;
             default:

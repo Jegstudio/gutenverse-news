@@ -298,6 +298,60 @@
         "enableExcerpt": {
             "type": "boolean",
             "default": true
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
+        },
+        "readmoreButtonTypography": {
+            "type": "object"
+        },
+        "readmoreButtonBackground": {
+            "type": "object"
+        },
+        "readmoreButtonBackgroundHover": {
+            "type": "object"
+        },
+        "readmoreButtonColor": {
+            "type": "object"
+        },
+        "readmoreButtonColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonBorder": {
+            "type": "object"
+        },
+        "readmoreButtonBorderHover": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadow": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {
