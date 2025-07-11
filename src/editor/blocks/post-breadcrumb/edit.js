@@ -10,7 +10,6 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { ModuleOverlay } from '../../part/placeholder';
 import { RawHTML } from '@wordpress/element';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
@@ -64,9 +63,6 @@ const PostBreadcrumb = compose(
                 },
             }).then((data) => {
                 setBreadcrumbData(data);
-            }).catch((e) => {
-                console.error(e.message);
-            }).finally(() => {
             });
         }
     }, [

@@ -601,7 +601,7 @@ class Api {
 			$advanced_response = isset( $attributes['advancedResponse'] );
 		}
 
-		$data   = $advanced_response ? array(
+		$data = $advanced_response ? array(
 			'result'     => array(),
 			'next'       => $result['next'] ?? false,
 			'prev'       => $result['prev'] ?? false,
@@ -655,7 +655,7 @@ class Api {
 				'comment'   => get_comments_number( $post->ID ),
 			);
 
-			if($advanced_response) {
+			if ( $advanced_response ) {
 				$data['result'][] = $final_data;
 			} else {
 				$data[] = $final_data;

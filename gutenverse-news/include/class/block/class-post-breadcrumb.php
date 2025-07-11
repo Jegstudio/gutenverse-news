@@ -190,13 +190,13 @@ class Post_Breadcrumb extends Grab {
 	 *
 	 * @param string $url   url.
 	 * @param string $title title.
-	 * @param string $class class.
+	 * @param string $classes classes.
 	 *
 	 * @return string
 	 */
-	public function breadcrumb_text( $url, $title, $class = null ) {
+	public function breadcrumb_text( $url, $title, $classes = null ) {
 		$this->add_schema( $url, $title );
-		return "<span class=\"{$class}\">
+		return "<span class=\"{$classes}\">
                 <a href=\"{$url}\">{$title}</a>
             </span>";
 	}
@@ -241,7 +241,8 @@ class Post_Breadcrumb extends Grab {
 		$category = apply_filters( 'gvnews_get_primary_category_filter', '', $id );
 
 		if ( null !== $category ) {
-			$this->recursive_category( get_the_category(), $breadcrumb, true );
+			$categories = get_the_category( $id ? $id : null );
+			$this->recursive_category( count( $categories ) > 0 ? $categories[0] : 'Uncategorized', $breadcrumb, true );
 
 			$direction  = 'fa-chevron-right';
 			$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
@@ -257,7 +258,7 @@ class Post_Breadcrumb extends Grab {
 	 * Method recursive_category
 	 *
 	 * @param string  $category   category.
-	 * @param string  $breadcrumb breadcrumb.
+	 * @param array   $breadcrumb breadcrumb.
 	 * @param boolean $islast     is last.
 	 *
 	 * @return void
@@ -287,6 +288,6 @@ class Post_Breadcrumb extends Grab {
 				'short_code' => $this->attributes['gvnewsModule'],
 			)
 		);
-		return $this->call_breadcrumb( isset( get_queried_object()->term_id ) ? get_queried_object()->term_id : null );
+		return '<div class="gvnews_breadcrumbs">' . $this->call_breadcrumb( isset( get_queried_object()->term_id ) ? get_queried_object()->term_id : null ) . '</div>';
 	}
 }
