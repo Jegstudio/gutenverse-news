@@ -74,7 +74,27 @@ const PostFeaturedImage = compose(
     const mediaUrl = media?.source_url;
 
     useEffect(() => {
-        setContent(mediaUrl ? <img src={mediaUrl} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" /> : <img src={imagePlaceholder} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />);
+        setContent(mediaUrl ?
+            <img
+                src={mediaUrl}
+                style={{
+                    objectFit: 'cover',
+                    verticalAlign: 'middle',
+                    maxHeight: '100%',
+                    maxWidth: '100%'
+                }}
+                className="lazyloaded"
+            /> :
+            <img
+                src={imagePlaceholder}
+                style={{
+                    objectFit: 'cover',
+                    verticalAlign: 'middle',
+                    maxHeight: '100%',
+                    maxWidth: '100%'
+                }}
+                className="lazyloaded"
+            />);
     }, [mediaUrl]);
 
     const blockProps = useBlockProps({

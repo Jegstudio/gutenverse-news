@@ -1,7 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { imageBorderPanel } from './panel-image-border';
+import { containerBorderPanel } from './pane-container-border';
 
 export const panelList = () => {
     return [
@@ -12,9 +14,15 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Border', 'gutenverse-news'),
+            title: __('Image Border', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: borderPanel,
+            panelArray: imageBorderPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Container Border', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: containerBorderPanel,
             tabRole: TabStyle
         },
         {
@@ -31,6 +39,6 @@ export const panelList = () => {
                 styleId: 'post-featured-advanced',
             }),
             tabRole: TabStyle
-        }
+        },
     ];
 };
