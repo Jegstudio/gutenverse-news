@@ -38,7 +38,7 @@ const ExampleComments = () => {
                                         width="55"
                                     />
                                     <b className="fn">
-                                        <a href="#" onClick="event.preventDefault();" className="url" rel="ugc" >admin</a>
+                                        <a href="javascript:void(0);" className="url" rel="ugc" >admin</a>
                                     </b>{' '}
                                     <span className="says">says:</span>
                                 </div>
@@ -49,7 +49,7 @@ const ExampleComments = () => {
                                         </time>
                                     </a>{' '}
                                     <span className="edit-link">
-                                        <a className="comment-edit-link" href="#" onClick="event.preventDefault();">
+                                        <a className="comment-edit-link" href="javascript:void(0);">
                                             Edit
                                         </a>
                                     </span>
@@ -84,7 +84,7 @@ const ExampleComments = () => {
                                                 width="55"
                                             />
                                             <b className="fn">
-                                                <a href="#" className="url" onClick="event.preventDefault();">admin</a>
+                                                <a href="javascript:void(0);" className="url">admin</a>
                                             </b>{' '}
                                             <span className="says">says:</span>
                                         </div>
@@ -95,7 +95,7 @@ const ExampleComments = () => {
                                                 </time>
                                             </a>{' '}
                                             <span className="edit-link">
-                                                <a className="comment-edit-link" href="#" onClick="event.preventDefault();">Edit</a>
+                                                <a className="comment-edit-link" href="javascript:void(0);">Edit</a>
                                             </span>
                                         </div>
                                     </footer>
@@ -126,15 +126,15 @@ const FormLogin = (props) => {
             <h3 id="reply-title" className="comment-reply-title">
                 {__('Leave a Reply', 'gutenverse-news')}
                 <small>
-                    <a rel="nofollow" id="cancel-comment-reply-link" href="#" style={{ display: 'none' }} >{__('Cancel reply', 'gutenverse-news')}</a>
+                    <a rel="nofollow" id="cancel-comment-reply-link" href="javascript:void(0);" style={{ display: 'none' }} >{__('Cancel reply', 'gutenverse-news')}</a>
                 </small>
             </h3>
             <form onSubmit="event.preventDefault();" id="commentform" className="comment-form">
                 <p className="logged-in-as">
                     {__('Logged in as ', 'gutenverse-news')}
                     {`${currentUser.name}. `}
-                    <a href="#" onClick="event.preventDefault();">{__('Edit your profile ', 'gutenverse-news')}</a>.
-                    <a href="#" onClick="event.preventDefault();">{__('Log out? ', 'gutenverse-news')}</a>
+                    <a href="javascript:void(0);">{__('Edit your profile ', 'gutenverse-news')}</a>.
+                    <a href="javascript:void(0);">{__('Log out? ', 'gutenverse-news')}</a>
                     <span className="required-field-message">
                         {__(' Required fields are marked', 'gutenverse-news')}
                         <span className="required"> *</span>
@@ -161,7 +161,7 @@ const FormNotLogin = () => {
             <h3 id="reply-title" className="comment-reply-title">
                 Leave a Reply{' '}
                 <small>
-                    <a rel="nofollow" id="cancel-comment-reply-link" href="#" style={{ display: 'none' }} onClick="event.preventDefault();">
+                    <a rel="nofollow" id="cancel-comment-reply-link" href="javascript:void(0);" style={{ display: 'none' }}>
                         Cancel reply
                     </a>
                 </small>
