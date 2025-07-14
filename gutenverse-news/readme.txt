@@ -169,6 +169,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Improvements
 * Added style options for "Read More" button and "Category Label" on Blocks
+* Added more style options for all Post Blocks
+* Improved default styles for all Post Blocks
 
 
 = 2.0.0 =
