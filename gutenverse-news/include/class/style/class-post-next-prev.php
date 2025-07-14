@@ -54,11 +54,17 @@ class Post_Next_Prev extends Style_Abstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
-				'border'      => null,
+				'background'  => array(
+					'normal' => $this->base_selector,
+					'hover'  => "{$this->base_selector}:hover",
+				),
+				'border'      => array(
+					'normal' => $this->base_selector,
+					'hover'  => "{$this->base_selector}:hover",
+				),
 				'positioning' => null,
 				'animation'   => null,
-				'advance'     => null,
+				'advance'     => $this->base_selector,
 				'mask'        => null,
 			)
 		);
@@ -79,7 +85,7 @@ class Post_Next_Prev extends Style_Abstract {
 		if ( isset( $this->attrs['navTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector' => "{$this->base_selector} .gvnews_prevnext_post .caption",
+					'selector' => "{$this->base_selector} .caption",
 					'value'    => $this->attrs['navTypography'],
 				)
 			);

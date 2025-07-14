@@ -3,7 +3,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
-    const baseSelector = `.gvnews-block.gvnews-block-wrapper.${elementId}`;
+    const baseSelector = `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post`;
     data = backgroundStyle({
         elementId,
         data,
@@ -23,7 +23,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTypography']) && data.push({
         'type': 'typography',
         'id': 'navTypography',
-        'selector': `${baseSelector} .gvnews_prevnext_post .caption`,
+        'selector': `${baseSelector} .caption`,
     });
 
     isNotEmpty(attributes['titleColor']) && data.push({
@@ -52,7 +52,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTextColor']) && data.push({
         'type': 'color',
         'id': 'navTextColor',
-        'selector': `${baseSelector} .gvnews_prevnext_post .caption`,
+        'selector': `${baseSelector} .caption`,
         'properties': [
             {
                 'name': 'color',
@@ -63,7 +63,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTextColorHover']) && data.push({
         'type': 'color',
         'id': 'navTextColorHover',
-        'selector': `${baseSelector} .gvnews_prevnext_post a:hover .caption`,
+        'selector': `${baseSelector} a:hover .caption`,
         'properties': [
             {
                 'name': 'color',

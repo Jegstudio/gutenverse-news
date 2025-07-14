@@ -5,6 +5,7 @@ import { stylePanel } from './panel-style';
 
 export const panelList = () => {
     const domain = 'gutenverse-news';
+    const selector = (props) => `.gvnews-block.gvnews-block-wrapper.${props.elementId} .gvnews_prevnext_post`;
     return [
         {
             title: __('Display', domain),
@@ -18,6 +19,7 @@ export const panelList = () => {
             panelArray: (props) => advancePanel({
                 ...props,
                 styleId: 'post-prev-next-advance',
+                selector: selector(props),
             }),
             tabRole: TabSetting
         },
@@ -31,7 +33,10 @@ export const panelList = () => {
         {
             title: __('Border', domain),
             initialOpen: false,
-            panelArray: borderPanel,
+            panelArray: (props) => borderPanel({
+                ...props,
+                selector: selector(props),
+            }),
             tabRole: TabStyle
         },
         {
@@ -42,6 +47,8 @@ export const panelList = () => {
                 styleId: 'post-prev-next-background',
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
+                normalSelector:  selector(props),
+                hoverSelector: `${selector(props)}:hover`
             }),
             tabRole: TabStyle
         }
