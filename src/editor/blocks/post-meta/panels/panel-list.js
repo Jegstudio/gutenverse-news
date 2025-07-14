@@ -23,6 +23,12 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: layoutPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Author Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: styleAuthorPanel,
@@ -45,12 +51,6 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: styleCommentPanel,
             tabRole: TabStyle,
-        },
-        {
-            title: __('Layout', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: layoutPanel,
-            tabRole: TabStyle
         },
         {
             title: __('Background', 'gutenverse-news'),

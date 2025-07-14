@@ -26,6 +26,18 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Display', domain),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', domain),
+            initialOpen: false,
+            panelArray: layoutPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Heading Typography', domain),
             panelArray: headingTypographyPanel,
             tabRole: TabStyle
@@ -76,12 +88,6 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Layout', domain),
-            initialOpen: false,
-            panelArray: layoutPanel,
-            tabRole: TabStyle
-        },
-        {
             title: __('Background', domain),
             initialOpen: false,
             panelArray: props => backgroundPanel({
@@ -98,12 +104,6 @@ export const panelList = () => {
             title: __('Border', domain),
             initialOpen: false,
             panelArray: borderPanel,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Display', domain),
-            initialOpen: false,
-            panelArray: responsivePanel,
             tabRole: TabStyle
         },
     ];

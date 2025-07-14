@@ -13,6 +13,18 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: layoutPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Background', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
@@ -24,21 +36,9 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
-            title: __('Layout', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: layoutPanel,
-            tabRole: TabStyle
-        },
-        {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: borderPanel,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Display', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: responsivePanel,
             tabRole: TabStyle
         },
     ];

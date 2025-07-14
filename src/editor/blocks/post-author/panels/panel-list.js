@@ -19,10 +19,10 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Layout', 'gutenverse-news'),
+            title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
             panelArray: layoutPanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Background', 'gutenverse-news'),

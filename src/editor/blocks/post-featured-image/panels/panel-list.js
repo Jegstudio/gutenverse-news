@@ -14,6 +14,21 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => advancePanel({
+                ...props,
+                styleId: 'post-featured-advanced',
+            }),
+            tabRole: TabSetting
+        },
+        {
             title: __('Image Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: imageBorderPanel,
@@ -23,21 +38,6 @@ export const panelList = () => {
             title: __('Container Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: containerBorderPanel,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Display', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: responsivePanel,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Spacing', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => advancePanel({
-                ...props,
-                styleId: 'post-featured-advanced',
-            }),
             tabRole: TabStyle
         },
     ];
