@@ -134,7 +134,7 @@
             "default": 3
         },
         "loadLimit": {
-            "type": "string",
+            "type": "number",
             "default": 0
         },
         "enableBoxed": {
@@ -295,6 +295,33 @@
         "enableExcerpt": {
             "type": "boolean",
             "default": false
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {

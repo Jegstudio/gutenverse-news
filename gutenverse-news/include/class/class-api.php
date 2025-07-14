@@ -578,8 +578,36 @@ class Api {
 			'share'            => isset( $attributes['share'] ) ? sanitize_text_field( $attributes['share'] ) : 'block',
 		);
 
+		if ( isset( $attributes['paginationPost'] ) ) {
+			$attr['pagination_number_post'] = sanitize_text_field( $attributes['paginationPost'] );
+		}
+
+		if ( isset( $attributes['page'] ) ) {
+			$attr['paged'] = sanitize_text_field( $attributes['page'] );
+		}
+
+		if ( isset( $attributes['paginationMode'] ) ) {
+			$attr['pagination_mode'] = sanitize_text_field( $attributes['paginationMode'] );
+		}
+
+		if ( isset( $attributes['postOffset'] ) ) {
+			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
+		}
+
 		$result = Module_Query::do_query( $attr );
-		$data   = array();
+
+		$advanced_response = false;
+		if ( isset( $attributes['advancedResponse'] ) ) {
+			$advanced_response = isset( $attributes['advancedResponse'] );
+		}
+
+		$data   = $advanced_response ? array(
+			'result'     => array(),
+			'next'       => $result['next'] ?? false,
+			'prev'       => $result['prev'] ?? false,
+			'total_page' => $result['total_page'] ?? 1,
+		) : array();
+
 		foreach ( $result['result'] as $post ) {
 			$cat_id   = gvnews_get_primary_category( $post->ID );
 			$category = '';
@@ -602,7 +630,7 @@ class Api {
 			$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
 			$excerpt           = wp_trim_words( $excerpt, 200, null );
 
-			$data[] = array(
+			$final_data = array(
 				'id'        => $post->ID,
 				'title'     => html_entity_decode( get_the_title( $post->ID ) ),
 				'thumbnail' => array(
@@ -625,8 +653,13 @@ class Api {
 					'avatar' => get_avatar_url( $post->post_author, array( 'size' => 75 ) ),
 				),
 				'comment'   => get_comments_number( $post->ID ),
-
 			);
+
+			if($advanced_response) {
+				$data['result'][] = $final_data;
+			} else {
+				$data[] = $final_data;
+			}
 		}
 
 		return wp_json_encode( $data );

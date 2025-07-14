@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-import { addFilter } from '@wordpress/hooks';
 import { SelectControl, CheckboxControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
@@ -8,7 +7,7 @@ export const designPanel = (props) => {
         enableBoxed,
         elementId,
         enableExcerpt,
-        extendedOption = props => { return []; }
+        extendedOption = props => { return []; },
     } = props;
 
     return [
