@@ -1,8 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
-import layoutPanel from './panel-layout';
 import { headingTypographyPanel } from './panel-typography-heading';
 import { textTypographyPanel } from './panel-typography-text';
 import { linkTypographyPanel } from './panel-typography-link';
@@ -34,7 +33,10 @@ export const panelList = () => {
         {
             title: __('Spacing', domain),
             initialOpen: false,
-            panelArray: layoutPanel,
+            panelArray: (props) => advancePanel({
+                ...props,
+                styleId: 'post-comment-advanced',
+            }),
             tabRole: TabSetting
         },
         {

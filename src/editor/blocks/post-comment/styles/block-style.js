@@ -1,6 +1,5 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
-import layoutStye from './panelStyles/layoutStyle';
 import replyStyle from './panelStyles/style-reply';
 import avatarStyle from './panelStyles/style-avatar';
 import buttonStyle from './panelStyles/style-button';
@@ -32,8 +31,6 @@ const getBlockStyle = (elementId, attributes) => {
     data = typographyLlinkStyle(elementId, attributes, data);
     //panel typography text
     data = typographyTextStyle(elementId, attributes, data);
-    //panel layout
-    data = layoutStye({attributes, data, selector: `.guten-element.${elementId}.gvnews-post-comment`});
     //panel separator
     data = separatorStyle(elementId, attributes, data);
     //panel background

@@ -55,14 +55,6 @@
         "padding": {
             "type": "object"
         },
-        "width": {
-            "type":"object",
-            "default": {}
-        },
-        "height": {
-            "type":"object",
-            "default": {}
-        },
         "zIndex": {
             "type": "object"
         },

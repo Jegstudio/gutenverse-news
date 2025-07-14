@@ -108,32 +108,6 @@ class Post_Comment extends Style_Abstract {
 			);
 		}
 
-		if ( isset( $this->attrs['width'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
-					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
-					},
-					'value'          => $this->attrs['width'],
-					'device_control' => true,
-				)
-			);
-		}
-
-		if ( isset( $this->attrs['height'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-comment",
-					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'height' );
-					},
-					'value'          => $this->attrs['height'],
-					'device_control' => true,
-				)
-			);
-		}
-
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
