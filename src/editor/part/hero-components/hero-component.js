@@ -125,13 +125,11 @@ const HeroComponent = (props) => {
                     sortBy,
                 },
             },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .finally(() => {
-                setOverlay(false);
-            });
+        }).then((data) => {
+            getPost(JSON.parse(data));
+        }).finally(() => {
+            setOverlay(false);
+        });
     }, [
         contentType,
         includeOnly,

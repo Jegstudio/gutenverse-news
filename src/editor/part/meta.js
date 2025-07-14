@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { formatDateString } from '../utils/date-util';
 import { timeDifference } from '../utils/date-util';
-import { RawHTML } from '@wordpress/element';
 
 const MetaAuthor = props => {
     if (props.post.author) {
@@ -46,7 +45,7 @@ const MetaCategory = props => {
 };
 
 const MetaModule1 = (props) => {
-    const { post, attr } = props;
+    const { attr } = props;
     const { option } = attr.option;
     if (option && !option.meta_show) {
         return null;
@@ -62,7 +61,7 @@ const MetaModule1 = (props) => {
 };
 
 const MetaModule2 = (props) => {
-    const { post, attr } = props;
+    const { attr } = props;
     const { option } = attr.option;
     if (option && !option.meta_show) {
         return null;
@@ -76,7 +75,7 @@ const MetaModule2 = (props) => {
 };
 
 const MetaModule3 = (props) => {
-    const { post, attr } = props;
+    const { attr } = props;
     const { option } = attr.option;
     if (option && !option.meta_show) {
         return null;
