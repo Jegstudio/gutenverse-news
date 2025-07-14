@@ -100,7 +100,7 @@ class Post_Next_Prev extends Style_Abstract {
 		if ( isset( $this->attrs['titleColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$this->base_selector} .post-title:hover",
+					'selector'       => "{$this->base_selector} a:hover .post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -125,7 +125,7 @@ class Post_Next_Prev extends Style_Abstract {
 		if ( isset( $this->attrs['navTextColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$this->base_selector} .caption:hover",
+					'selector'       => "{$this->base_selector} a:hover .caption",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

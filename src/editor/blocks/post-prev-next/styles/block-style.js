@@ -31,7 +31,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleColorHover']) && data.push({
         'type': 'color',
         'id': 'titleColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .post-title:hover`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} a:hover .post-title`,
         'properties': [
             {
                 'name': 'color',
@@ -54,7 +54,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTextColorHover']) && data.push({
         'type': 'color',
         'id': 'navTextColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post .caption:hover`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post a:hover .caption`,
         'properties': [
             {
                 'name': 'color',
