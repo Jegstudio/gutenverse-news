@@ -52,6 +52,7 @@ const PostPrevNext = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-prev-next',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,
