@@ -1,7 +1,16 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    const baseSelector = `.gvnews-block.gvnews-block-wrapper.${elementId}`;
+    data = backgroundStyle({
+        elementId,
+        data,
+        attributes,
+        backgroundSelector: baseSelector,
+        backgroundHoverSelector: `${baseSelector}:hover`
+    });
 
     /**
      * Panel Style
@@ -9,18 +18,18 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleTypography']) && data.push({
         'type': 'typography',
         'id': 'titleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .post-title`,
+        'selector': `${baseSelector} .post-title`,
     });
     isNotEmpty(attributes['navTypography']) && data.push({
         'type': 'typography',
         'id': 'navTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post .caption`,
+        'selector': `${baseSelector} .gvnews_prevnext_post .caption`,
     });
 
     isNotEmpty(attributes['titleColor']) && data.push({
         'type': 'color',
         'id': 'titleColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .post-title`,
+        'selector': `${baseSelector} .post-title`,
         'properties': [
             {
                 'name': 'color',
@@ -31,7 +40,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleColorHover']) && data.push({
         'type': 'color',
         'id': 'titleColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} a:hover .post-title`,
+        'selector': `${baseSelector} a:hover .post-title`,
         'properties': [
             {
                 'name': 'color',
@@ -43,7 +52,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTextColor']) && data.push({
         'type': 'color',
         'id': 'navTextColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post .caption`,
+        'selector': `${baseSelector} .gvnews_prevnext_post .caption`,
         'properties': [
             {
                 'name': 'color',
@@ -54,7 +63,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navTextColorHover']) && data.push({
         'type': 'color',
         'id': 'navTextColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post a:hover .caption`,
+        'selector': `${baseSelector} .gvnews_prevnext_post a:hover .caption`,
         'properties': [
             {
                 'name': 'color',
@@ -66,7 +75,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['accentColor']) && data.push({
         'type': 'color',
         'id': 'accentColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} a .post-title`,
+        'selector': `${baseSelector} a .post-title`,
         'properties': [
             {
                 'name': 'border-left-color',
@@ -76,7 +85,7 @@ const getBlockStyle = (elementId, attributes) => {
     });isNotEmpty(attributes['accentColorHover']) && data.push({
         'type': 'color',
         'id': 'accentColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} a:hover .post-title`,
+        'selector': `${baseSelector} a:hover .post-title`,
         'properties': [
             {
                 'name': 'border-left-color',
@@ -91,31 +100,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId} .gvnews_prevnext_post:hover`,
+        'selector': `${baseSelector}:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId} .gvnews_prevnext_post:hover`,
+        'selector': `${baseSelector}:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -127,7 +136,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId} .gvnews_prevnext_post:hover`,
+        'selector': `${baseSelector}:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -149,7 +158,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -162,7 +171,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -175,7 +184,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_prevnext_post`,
+        'selector': baseSelector,
     });
 
     return data;

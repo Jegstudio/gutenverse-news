@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
 import { TabStyle, TabSetting } from 'gutenverse-core/controls';
 import { stylePanel } from './panel-style';
 
@@ -17,10 +17,11 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => advancePanel({
                 ...props,
-                styleId: 'block-1-advance',
+                styleId: 'post-prev-next-advance',
             }),
             tabRole: TabSetting
         },
+        // Style
         {
             title: __('Style', domain),
             initialOpen: false,
@@ -33,5 +34,16 @@ export const panelList = () => {
             panelArray: borderPanel,
             tabRole: TabStyle
         },
+        {
+            title: __('Background', domain),
+            initialOpen: false,
+            panelArray: (props) => backgroundPanel({
+                ...props,
+                styleId: 'post-prev-next-background',
+                normalOptions: ['default', 'gradient'],
+                hoverOptions: ['default', 'gradient'],
+            }),
+            tabRole: TabStyle
+        }
     ];
 };
