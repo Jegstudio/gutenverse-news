@@ -1,4 +1,5 @@
 import { compose } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
@@ -59,15 +60,15 @@ const PostBreadcrumb = compose(
         <div  {...blockProps}>
             <div className="breadcrumbs">
                 <span className="">
-                    <a href="#" onClick={(e) => e.preventDefault()} >Home</a>
+                    <a href="javascript:void(0);" >{__('Home', 'gutenverse-news')}</a>
                 </span>
                 <i className="fas fa-angle-right"></i>
                 <span className="">
-                    <a href="#" onClick={(e) => e.preventDefault()} >Category</a>
+                    <a href="javascript:void(0);" >{__('Category', 'gutenverse-news')}</a>
                 </span>
                 <i className="fas fa-angle-right"></i>
                 <span className="breadcrumb_last_link">
-                    <a href="#" onClick={(e) => e.preventDefault()} >Child Category</a>
+                    <a href="javascript:void(0);" >{__('Child Category', 'gutenverse-news')}</a>
                 </span>
             </div>
         </div>
