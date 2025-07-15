@@ -297,6 +297,6 @@ class Post_Breadcrumb extends Post_Guten {
 				'short_code' => $this->attributes['gvnewsModule'],
 			)
 		);
-		return '<div class="gvnews_breadcrumbs">' . $this->call_breadcrumb( isset( get_queried_object()->term_id ) ? get_queried_object()->term_id : null ) . '</div>';
+		return $this->call_breadcrumb( isset( get_queried_object()->term_id ) ? get_queried_object()->term_id : null );
 	}
 }
