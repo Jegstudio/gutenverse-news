@@ -166,6 +166,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix error when Excerpt Ellipsis is empty on Slider 7 block
 * Fix Post Next Prev not renderd on frontend
 * Fix auto column width detection not working on Post Related block
+* Fix incorrect category displayed on the Post Breadcrumb block
 
 ##### Improvements
 * Added style options for "Read More" button and "Category Label" on Blocks
