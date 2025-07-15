@@ -1,24 +1,4 @@
 @import 'single-post-block';
-@import '../../editor/blocks/post-comment/styles/style';
-
-/* Display condiditon style */
-@media only screen and (min-width: 781px) {
-  .hide-desktop {
-    display: none !important;
-  }
-}
-
-@media (max-width: 780px) and (min-width: 426px) {
-  .hide-tablet {
-    display: none !important;
-  }
-}
-
-@media (max-width: 425px) {
-  .hide-mobile {
-    display: none !important;
-  }
-}
 
 /* Clearfix */
 
@@ -22886,7 +22866,6 @@ input:checked+.slider {
 
 .comment-body {
   padding: 20px 0 0 70px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .commentlist {

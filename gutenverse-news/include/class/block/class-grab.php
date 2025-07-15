@@ -93,8 +93,8 @@ class Grab {
 	/**
 	 * Method render
 	 *
-	 * @param $attributes $attributes attributes.
-	 * @param $content    $content content.
+	 * @param mixed  $attributes $attributes attributes.
+	 * @param string $content    $content content.
 	 *
 	 * @return string
 	 */

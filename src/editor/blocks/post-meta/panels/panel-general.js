@@ -1,11 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { TypographyControl, SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
-import { handleTypography } from 'gutenverse-core/styling';
+import { SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
 
-export const generalPanel = (props) => {
-    const {
-        elementId,
-    } = props;
+export const generalPanel = () => {
 
     const searchMeta = input => new Promise(resolve => {
         return resolve([
@@ -25,7 +21,7 @@ export const generalPanel = (props) => {
                 label: __('Comment', 'gutenverse-news'),
                 value: 'comment'
             },
-        ])
+        ]);
     });
 
     return [
@@ -57,21 +53,9 @@ export const generalPanel = (props) => {
                 },
                 {
                     label: __('Published Date', 'gutenverse-news'),
-                    value: 'publish'
+                    value: 'published'
                 },
             ],
-        },
-        {
-            id: 'metaTypography',
-            label: __('Typography', 'gutenverse-news'),
-            component: TypographyControl,
-            style: [
-                {
-                    selector: `.wp-block.${elementId} .gvnews_post_meta, .wp-block.${elementId} .gvnews_post_meta .fa, .wp-block.${elementId} .gvnews_postblock .gvnews_subcat_list > li > a:hover, .wp-block.${elementId} .gvnews_pl_md_card .gvnews_post_category a, .wp-block.${elementId} .gvnews_subcat_list > li > a.current, .wp-block.${elementId} .gvnews_pl_md_5 .gvnews_post_meta, .wp-block.${elementId} .gvnews_pl_md_5 .gvnews_post_meta .fa, .wp-block.${elementId} .gvnews_post_category a`,
-                    hasChild: true,
-                    render: (value,id) => handleTypography(value, props, id)
-                }
-            ]
         },
     ];
 };

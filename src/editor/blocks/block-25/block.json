@@ -295,6 +295,33 @@
         "enableExcerpt": {
             "type": "boolean",
             "default": true
+        },
+        "readmoreButtonTypography": {
+            "type": "object"
+        },
+        "readmoreButtonBackground": {
+            "type": "object"
+        },
+        "readmoreButtonBackgroundHover": {
+            "type": "object"
+        },
+        "readmoreButtonColor": {
+            "type": "object"
+        },
+        "readmoreButtonColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonBorder": {
+            "type": "object"
+        },
+        "readmoreButtonBorderHover": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadow": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {

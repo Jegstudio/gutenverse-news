@@ -52,6 +52,7 @@ const PostPrevNext = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-prev-next',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,
@@ -68,9 +69,6 @@ const PostPrevNext = compose(
             },
         }).then((data) => {
             setPrevNextData(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
         });
     }, [
         currentId,
@@ -79,22 +77,22 @@ const PostPrevNext = compose(
     useEffect(() => {
         if (prevNextData.previous || prevNextData.next) {
             setContent(<>
-                {prevNextData.previous && <a className="post prev-post">
+                {prevNextData.previous && <a href="javascript:void(0);"  className="post prev-post">
                     <span className="caption">{__('Previous Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.previous.title}</h3>
                 </a>}
-                {prevNextData.next && <a className="post next-post">
+                {prevNextData.next && <a href="javascript:void(0);"  className="post next-post">
                     <span className="caption">{__('Next Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.next.title}</h3>
                 </a>}
             </>);
         } else {
             setContent(<>
-                <a href="#" className="post prev-post">
+                <a href="javascript:void(0);" className="post prev-post">
                     <span className="caption">Previous Post</span>
                     <h3 className="post-title">Lorem ipsum dolor sit amet consectetur adipiscing elit conubia nostra</h3>
                 </a>
-                <a href="#" className="post next-post">
+                <a href="javascript:void(0);" className="post next-post">
                     <span className="caption">Next Post</span>
                     <h3 className="post-title">Nunc eu iaculis mi nulla facilisi aenean a risus sed luctus arcu </h3>
                 </a>

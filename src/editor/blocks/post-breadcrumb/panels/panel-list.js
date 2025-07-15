@@ -1,29 +1,47 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
-import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, responsivePanel, TabSetting } from 'gutenverse-core/controls';
+import { TabStyle } from 'gutenverse-core/controls';
+import layoutPanel from './panel-layout';
+import { stylingPanel } from './panel-styling';
 
 export const panelList = () => {
     return [
+        {
+            title: __('Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: stylingPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: layoutPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Background', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => backgroundPanel({
+                ...props,
+                styleId: 'post-breadcumb-background',
+                normalOptions: ['default', 'gradient'],
+                hoverOptions: ['default', 'gradient'],
+                normalSelector: `.${props.elementId}.gvnews-post-breadcrumb`,
+                hoverSelector: `.${props.elementId}.gvnews-post-breadcrumb:hover`
+            }),
+            tabRole: TabStyle,
+        },
         {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: borderPanel,
             tabRole: TabStyle
         },
-        {
-            title: __('Display', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: responsivePanel,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Spacing', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => advancePanel({
-                ...props,
-                styleId: 'block-1-advance',
-            }),
-            tabRole: TabStyle
-        }
     ];
 };

@@ -42,7 +42,6 @@ class Module_35 extends Module_View_Abstract {
 			$class           = $additional_class;
 			$postformat_icon = '<span class=\"gvnews_postformat_icon\"></span>';
 			$edit_position   = 'right';
-			$readmore        = '';
 		}
 
 		return '<article ' . gvnews_post_class( 'gvnews_post' . $pl . $class, $post_id ) . ">

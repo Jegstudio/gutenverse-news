@@ -21,7 +21,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Title extends Grab {
+class Post_Title extends Post_Guten {
+
+	/**
+	 * Method get_custom_classes;
+	 *
+	 * @return string
+	 */
+	public function get_custom_classes() {
+		return 'gvnews-post-title';
+	}
 
 	/**
 	 * Method get_content
@@ -30,15 +39,8 @@ class Post_Title extends Grab {
 	 */
 	public function get_content() {
 
-		$wrapper_classes = gvnews_build_html_classes(
-			array(
-				'gvnews_custom_title_wrapper',
-				esc_attr( $this->get_vc_class_name() ),
-			)
-		);
-
-		return "<div  class='{$wrapper_classes}'>
-                <h1 class=\"gvnews_post_title\">" . esc_attr( get_the_title() ) . '</h1>
-            </div>';
+		return '<div class="title-wrapper">
+					<h1 class="the-title">' . esc_attr( get_the_title() ) . '</h1>
+				</div>';
 	}
 }

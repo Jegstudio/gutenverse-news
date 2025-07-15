@@ -31,24 +31,36 @@
         },
         "background": {
             "type": "object",
+            "copyStyle": true,
             "default": {}
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
-        "boxShadow": {
+        "borderResponsive": {
             "type": "object"
         },
         "borderHover": {
             "type": "object"
         },
+        "borderHoverResponsive": {
+            "type": "object"
+        },
+        "boxShadow": {
+            "type": "object"
+        },
         "boxShadowHover": {
             "type": "object"
-        }, 
+        },
         "margin": {
             "type": "number",
             "default": 20
@@ -102,7 +114,32 @@
             "type": "object"
         },
         "positioningBottom": {
-            "type": "object"
+            "type": "object",
+            "default": {}
+        },
+        "imageBorder": {
+            "type": "object",
+            "default": {}
+        },
+        "imageBorderResponsive": {
+            "type": "object",
+            "default": {}
+        },
+        "imageBorderHover": {
+            "type": "object",
+            "default": {}
+        },
+        "imageBorderHoverResponsive": {
+            "type": "object",
+            "default": {}
+        },
+        "imageBoxShadow": {
+            "type": "object",
+            "default": {}
+        },
+        "imageBoxShadowHover": {
+            "type": "object",
+            "default": {}
         }
     },
     "usesContext": [ "postId", "postType", "queryId" ],

@@ -4,6 +4,7 @@ import { designPanel } from './panel-design';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { panelType } from './panel-type';
+import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 
 export const panelList = () => {
     return [
@@ -23,6 +24,12 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Read More Button', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: readmoreStylePanel,
             tabRole: TabStyle
         },
         {

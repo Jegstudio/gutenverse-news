@@ -2,6 +2,7 @@ import { MetaModule1, MetaModule2, MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
 const SliderCaption = (props) => {
+    const { withElipsis = true, withMeta = true, withReadmore = false} = props;
     return (
         <div className="gvnews_slide_caption">
             <div className="gvnews_caption_container">
@@ -13,8 +14,11 @@ const SliderCaption = (props) => {
                     .replace('&hellip;', '')
                     .split(' ')
                     .splice(0, props.attr.length)
-                    .join(' ') + props.attr.elipsis}</p>}
-                {props.post && <SliderMeta {...props} />}
+                    .join(' ') + (withElipsis ? props.attr.elipsis : '')}</p>}
+                {props.post && withMeta && <SliderMeta {...props} />}
+                {withReadmore && <a href="javascript:void(0);" className="gvnews_readmore">
+                    Read more
+                </a>}
             </div>
             {props.navigation && <div className="gvnews_block_nav">
                 <a className="prev">

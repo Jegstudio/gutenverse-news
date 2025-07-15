@@ -1,0 +1,81 @@
+import { isNotEmpty } from 'gutenverse-core/helper';
+
+const layoutStye = (props) => {
+
+    const {
+        attributes,
+        data,
+        elementId,
+    } = props;
+
+    const selector = `.editor-styles-wrapper .is-root-container .gvnews-block.guten-element.${elementId}.gvnews-post-title`;
+
+    isNotEmpty(attributes['margin']) && data.push({
+        'type': 'dimension',
+        'id': 'margin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    isNotEmpty(attributes['padding']) && data.push({
+        'type': 'dimension',
+        'id': 'padding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    isNotEmpty(attributes['width']) && data.push({
+        'id': 'width',
+        'type': 'unitPoint',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `${selector} .title-wrapper h1.the-title`,
+    });
+
+    isNotEmpty(attributes['height']) && data.push({
+        'id': 'height',
+        'type': 'unitPoint',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    isNotEmpty(attributes['zIndex']) && data.push({
+        'type': 'plain',
+        'id': 'zIndex',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'z-index',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    return data;
+};
+
+export default layoutStye;
