@@ -20,7 +20,7 @@ class Single_Post {
 	/**
 	 * Instance
 	 *
-	 * @var SinglePost
+	 * @var self
 	 */
 	private static $instance;
 
@@ -34,7 +34,7 @@ class Single_Post {
 	/**
 	 * Single post
 	 *
-	 * @return SinglePost
+	 * @return self
 	 */
 	public static function get_instance() {
 		if ( null === static::$instance ) {

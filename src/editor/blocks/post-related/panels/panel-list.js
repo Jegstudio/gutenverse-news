@@ -44,7 +44,8 @@ export const panelList = () => {
         {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: responsivePanel
+            panelArray: responsivePanel,
+            tabRole: TabSetting
         },
         {
             title: __('Positioning', 'gutenverse'),

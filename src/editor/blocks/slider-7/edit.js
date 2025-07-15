@@ -206,7 +206,7 @@ const Slider7Block = compose(
             <div className="gvnews_slide_item" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
                 <div className="gvnews_slide_image" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}></div>
-                <SliderCaption {...props} excerpt navigation />
+                <SliderCaption {...props} excerpt navigation withElipsis={false} withMeta={false} withReadmore={true} />
             </div>
         );
     }
@@ -250,7 +250,7 @@ const Slider7Block = compose(
         setBlock(false);
         setTimeout(function () {
             resetblock();
-        });
+        }, 100);
     }, [
         blockWidth,
         excerptLength,

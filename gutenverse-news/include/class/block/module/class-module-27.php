@@ -36,6 +36,7 @@ class Module_27 extends Module_View_Abstract {
 		$excerpt   = 1 === $type ? null :
 		'<div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
+							<a href="' . $permalink . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
                         </div>';
 
 		$post_meta = "<div class=\"gvnews_post_meta\">

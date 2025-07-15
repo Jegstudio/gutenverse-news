@@ -6,7 +6,7 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import QueryTitle from '../../query/query-title';
+import { __ } from '@wordpress/i18n';
 import { useRef, useEffect } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -43,8 +43,8 @@ const PostTitle = compose(
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
-            'gvnews-block-wrapper',
             'gvnews-post-title',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,
@@ -55,13 +55,13 @@ const PostTitle = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <QueryTitle {
-            ...{
-                blockProps,
-                type: 'post',
-                titleRef: elementRef
-            }
-        } />
+        <div {...blockProps}>
+            <div className="title-wrapper">
+                <h1 className="the-title">
+                    {__('This is dummy title and will be replaced with real title of your post', 'gutenverse-news')}
+                </h1>
+            </div>
+        </div>
     </>;
 });
 

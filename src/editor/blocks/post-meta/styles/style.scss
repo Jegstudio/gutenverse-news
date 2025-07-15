@@ -1,0 +1,74 @@
+.gvnews-post-meta {
+    display: block;
+    font-size: 13px;
+    width: 100%;
+    text-transform: none;
+
+    > div { // meta right and left
+        display: inline-block;
+        // width: 100%;
+        box-sizing: border-box;
+
+        a {
+            color: inherit;
+
+            :visited {
+                color: inherit;
+            }
+        }
+
+        .meta-items {
+            display: inline-block;
+            margin-right: 5px;
+
+            &:not(.is-last-item) {
+                margin-right: 10px;
+            }
+        }
+
+        .gvnews-meta-author {
+            img {
+                border-radius: 100%;
+                margin-right: 5px;
+                width: 35px;
+            }
+            
+            a {
+                color: var(--wp--preset--color--accent, #f70d28);
+            }
+        }
+
+        .gvnews-meta-date {
+            a {
+                font-weight: 400;
+            }
+        }
+
+        .gvnews-meta-category {
+            a {
+                color: inherit;
+                font-weight: 700;
+            }
+        }
+
+        .gvnews-meta-comment {
+            a {
+                color: #53585c;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            .fa {
+                color: inherit;
+            }
+        }
+    }
+
+    .meta-left {
+        margin-right: 1em;
+    }
+
+    .meta-right {
+        float: right;
+    }
+}

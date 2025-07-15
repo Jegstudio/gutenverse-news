@@ -1,136 +1,186 @@
-.gvnews_comment_container {
+.gvnews-post-comment {
+	label {
+		font: inherit;
+		display: block;
+		font-weight: 700;
+		margin-bottom: 0.5em;
+		border: 0;
+		margin: 0;
+		padding: 0;
+		vertical-align: baseline;
+	}
 
-    .comment-form {
-        p {
-            margin: 0 0 20px;
+	ol,
+	ul {
+		list-style-type: none;
+	}
 
-            &.form-submit {
-                clear: both;
-            }
-        }
+	.commentlist {
+		.comment-meta {
+			.comment-author {
+				.fn a {
+					color: var(--wp--preset--color--accent, #f70d28);
+				}
+			}
+		}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.5em;
-            }
-            
-        a {
-            color: #c91212;
-            text-decoration: none;
-        }
-        .required {
-            color: #c91212;
-        }
-        input[type="submit"] { // untuk button
-            border: none;
-            border-radius: 0;
-            background: var(--wp--preset--color--accent, #f70d28);
-            color: #fff;
-            padding: 0 20px;
-            line-height: 40px;
-            height: 40px;
-            display: inline-block;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            outline: 0;
-            -webkit-appearance: none;
-            -webkit-transition: .3s ease;
-            transition: .3s ease;
+		article.comment-body {
+			border-top: 1px solid rgba(255, 255, 255, 0.3);
+		}
 
-            &:hover {
-                box-shadow: rgba(0,0,0,0.15) 0px 0px 0px 100px inset;
-            }
-        }
+		.children {
+			margin-left: 0;
+		}
+	}
 
-        input:not([type="submit"]) { // untuk input lainnya
-            box-shadow: none;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 300;
-            height: 40px;
-            max-width: 100%;
-            width: auto;
-            background: rgb(255, 255, 255);
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgb(224, 224, 224);
-            border-image: initial;
-            border-radius: 0px;
-            margin: 0px;
-            outline: none;
-            padding: 7px 14px;
-            transition: 0.25s;
-        }
+	.comment-form {
+		p {
+			margin: 0 0 20px;
 
-        input[type="checkbox"] {
-            display: inline;
-            height: auto;
-            line-height: inherit;
-            width: auto;
-        }
+			&.form-submit {
+				clear: both;
+			}
+		}
 
-        textarea {
-            min-height: 60px;
-            height: auto;
-            width: 100%;
-            resize: vertical;
-        }
-    }
+		a {
+			color: var(--wp--preset--color--accent, #f70d28);
+			text-decoration: none;
+		}
+		.required {
+			color: var(--wp--preset--color--accent, #f70d28);
+		}
+		input[type="submit"] {
+			// untuk button
+			border: none;
+			border-radius: 0;
+			background: var(--wp--preset--color--accent, #f70d28);
+			color: #fff;
+			padding: 0 20px;
+			display: inline-block;
+			cursor: pointer;
+			text-transform: uppercase;
+			font-size: 13px;
+			font-weight: bold;
+			letter-spacing: 1px;
+			outline: 0;
+			-webkit-appearance: none;
+			-webkit-transition: 0.3s ease;
+			transition: 0.3s ease;
+			padding: 10px 20px;
 
-    .comment-respond {
-        border-top: 3px solid #eee;
-        margin-top: 30px;
+			&:hover {
+				box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 100px inset;
+			}
+		}
 
-        .comment-reply-title {
-            font-weight: bold;
-            font-size: 24px;
-            margin: 20px 0 10px;
-            letter-spacing: -0.02em;
-            position: relative;
-        }
-    }
+		input:not([type="submit"]),
+		textarea {
+			// untuk input lainnya
+			background: #fff;
+			border: 1px solid #e0e0e0;
+			border-radius: 0;
+			box-shadow: none;
+			display: inline-block;
+			font-size: 14px;
+			font-weight: 300;
+			height: 40px;
+			margin: 0;
+			max-width: 100%;
+			outline: none;
+			padding: 7px 14px;
+			-webkit-transition: all 0.2s ease;
+			transition: 0.25s ease;
+			width: 100%;
+		}
 
-    .comment-reply-title small a {
-        position: absolute;
-        top: 4px;
-        right: 15px;
-        width: 24px;
-        height: 24px;
-        text-indent: -9999em;
+		input[type="checkbox"] {
+			display: inline;
+			height: auto;
+			line-height: inherit;
+			width: auto;
+		}
 
-        &:before,
-        &:after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 100%;
-            top: 0;
-            left: 50%;
-            background: var(--wp--preset--color--primary);
-            -webkit-transition: background 0.2s linear;
-            -o-transition: background 0.2s linear;
-            transition: background 0.2s linear;
-        }
+		textarea {
+			min-height: 60px;
+			height: auto;
+			width: 100%;
+			resize: vertical;
+			font: inherit;
+		}
 
-        &:hover {
-            &:before,
-            &:after {
-                background: #212121;
-            }
-        }
+		.comment-form-cookies-consent {
+			clear: both;
+			position: relative;
 
-        &:before {
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
+			label {
+				display: inline-block;
+				padding-left: 20px;
+			}
 
-        &:after {
-            -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-        }
-    }
+			input {
+				left: 0;
+				position: absolute;
+				top: 0.35em;
+			}
+		}
+	}
+
+	hr.separator {
+		border: none;
+		border-top: 3px solid #eee;
+		margin-top: 30px;
+	}
+
+	.comment-respond {
+		border: none;
+		margin: 0;
+
+		.comment-reply-title {
+			font-weight: bold;
+			font-size: 24px;
+			margin: 20px 0 10px;
+			letter-spacing: -0.02em;
+			position: relative;
+		}
+	}
+
+	.comment-reply-title small a {
+		position: absolute;
+		top: 4px;
+		right: 15px;
+		width: 24px;
+		height: 24px;
+		text-indent: -9999em;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			width: 2px;
+			height: 100%;
+			top: 0;
+			left: 50%;
+			background: var(--wp--preset--color--primary);
+			-webkit-transition: background 0.2s linear;
+			-o-transition: background 0.2s linear;
+			transition: background 0.2s linear;
+		}
+
+		&:hover {
+			&:before,
+			&:after {
+				background: #212121;
+			}
+		}
+
+		&:before {
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+	}
 }

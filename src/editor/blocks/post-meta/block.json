@@ -11,11 +11,21 @@
         },
         "metaLeft": {
             "type": "array",
-            "default": []
+            "default": [
+                {
+                    "label": "Author",
+                    "value": "author"
+                }
+            ]
         },
         "metaRight": {
             "type": "array",
-            "default": []
+            "default": [
+                {
+                    "label": "Date",
+                    "value": "date"
+                }
+            ]
         },
         "showAvatar": {
             "type": "boolean",
@@ -23,28 +33,25 @@
         },
         "postDate": {
             "type": "string",
-            "default": "modified"
+            "default":"published"
         },
         "gvnewsModule": {
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Single\\Post\\Post_Meta"
         },
-        "column": {            
-            "type": "object",
-            "default": {}
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
-        },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
@@ -58,25 +65,21 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "object"
-        },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
+            "type": "number"
         },
         "padding": {
             "type": "object"
         },
+        "width": {
+            "type":"object",
+            "default": {}
+        },
+        "height": {
+            "type":"object",
+            "default": {}
+        },
         "zIndex": {
             "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
         },
         "hideDesktop": {
             "type": "boolean"
@@ -87,29 +90,41 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "positioningType": {
-            "type": "object"
+        "authorTypography": {
+            "type":"object"
         },
-        "positioningWidth": {
-            "type": "object"
+        "authorColor": {
+            "type":"object"
         },
-        "positioningAlign": {
-            "type": "object"
+        "authorColorHover": {
+            "type":"object"
         },
-        "positioningLocation": {
-            "type": "string"
+        "dateTypography": {
+            "type":"object"
         },
-        "positioningLeft": {
-            "type": "object"
+        "dateColor": {
+            "type":"object"
         },
-        "positioningRight": {
-            "type": "object"
+        "dateColorHover": {
+            "type":"object"
         },
-        "positioningTop": {
-            "type": "object"
+        "categoryTypography": {
+            "type":"object"
         },
-        "positioningBottom": {
-            "type": "object"
+        "categoryColor": {
+            "type":"object"
+        },
+        "categoryColorHover": {
+            "type":"object"
+        },
+        "commentTypography": {
+            "type":"object"
+        },
+        "commentColor": {
+            "type":"object"
+        },
+        "commentColorHover": {
+            "type":"object"
         }
     },
     "supports": {
