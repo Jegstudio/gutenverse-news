@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Featured extends Grab {
+class Post_Featured extends Post_Guten {
 
 	/**
 	 * Method get_content

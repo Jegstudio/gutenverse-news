@@ -97,6 +97,24 @@
         },
         "positioningBottom": {
             "type": "object"
+        },
+        "titleColor": {
+            "type":"object"
+        },
+        "titleColorHover": {
+            "type":"object"
+        },
+        "navTextColor": {
+            "type":"object"
+        },
+        "navTextColorHover": {
+            "type":"object"
+        },
+        "accentColor": {
+            "type":"object"
+        },
+        "accentColorHover": {
+            "type":"object"
         }
     },
     "supports": {

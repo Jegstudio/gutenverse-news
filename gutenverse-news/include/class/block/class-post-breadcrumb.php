@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package gutenverse-news
  * @author Jegstudio
  */
-class Post_Breadcrumb extends Grab {
+class Post_Breadcrumb extends Post_Guten {
 
 	/**
 	 * Last link class
@@ -78,7 +78,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_page', $breadcrumb );
 	}
@@ -105,7 +105,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_page', $breadcrumb );
 	}
@@ -122,7 +122,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_page', $breadcrumb );
 	}
@@ -139,7 +139,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_search', $breadcrumb );
 	}
@@ -156,7 +156,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_search', $breadcrumb );
 	}
@@ -222,7 +222,7 @@ class Post_Breadcrumb extends Grab {
 
 		$direction  = 'fa-chevron-right';
 		$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+		$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_category', $breadcrumb, $id );
 	}
@@ -246,7 +246,7 @@ class Post_Breadcrumb extends Grab {
 
 			$direction  = 'fa-chevron-right';
 			$breadcrumb = implode( '<i class="fas ' . esc_attr( $direction ) . '"></i>', $breadcrumb );
-			$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
+			$breadcrumb = "<div class=\"breadcrumbs\">$breadcrumb</div>";
 
 			return apply_filters( 'gvnews_native_breadcrumb', $breadcrumb, $id );
 		}
@@ -274,6 +274,15 @@ class Post_Breadcrumb extends Grab {
 			$class        = $islast ? $this->last_link_class : '';
 			$breadcrumb[] = $this->breadcrumb_text( get_category_link( $cat->term_id ), $cat->name, $class );
 		}
+	}
+
+	/**
+	 * Method get_custom_classes;
+	 *
+	 * @return string
+	 */
+	public function get_custom_classes() {
+		return 'gvnews-post-breadcrumb';
 	}
 
 	/**

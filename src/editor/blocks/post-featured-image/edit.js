@@ -74,14 +74,34 @@ const PostFeaturedImage = compose(
     const mediaUrl = media?.source_url;
 
     useEffect(() => {
-        setContent(mediaUrl ? <img src={mediaUrl} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" /> : <img src={imagePlaceholder} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />);
+        setContent(mediaUrl ?
+            <img
+                src={mediaUrl}
+                style={{
+                    objectFit: 'cover',
+                    verticalAlign: 'middle',
+                    maxHeight: '100%',
+                    maxWidth: '100%'
+                }}
+                className="lazyloaded"
+            /> :
+            <img
+                src={imagePlaceholder}
+                style={{
+                    objectFit: 'cover',
+                    verticalAlign: 'middle',
+                    maxHeight: '100%',
+                    maxWidth: '100%'
+                }}
+                className="lazyloaded"
+            />);
     }, [mediaUrl]);
 
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
             'gvnews-block-wrapper',
-            'gvnews-featured-image',
+            'guten-element',
             elementId,
             animationClass,
             displayClass,
@@ -111,11 +131,9 @@ const PostFeaturedImage = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews_custom_featured_wrapper">
-                <div className="gvnews_featured featured_image custom_post">
-                    <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
-                        {content ? content : <ModuleOverlay />}
-                    </div>
+            <div className="gvnews_featured featured_image custom_post">
+                <div className={`thumbnail-container animate-lazy size-${thumbnailSize()}`}>
+                    {content ? content : <ModuleOverlay />}
                 </div>
             </div>
         </div>

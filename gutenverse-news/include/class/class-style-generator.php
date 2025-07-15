@@ -15,6 +15,10 @@ use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\News_Ticker;
+use GUTENVERSE\NEWS\Style\Post_Author;
+use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
+use GUTENVERSE\NEWS\Style\Post_Comment;
+use GUTENVERSE\NEWS\Style\Post_Featured;
 use GUTENVERSE\NEWS\Style\Post_Meta;
 use GUTENVERSE\NEWS\Style\Post_Next_Prev;
 use GUTENVERSE\NEWS\Style\Post_Related;
@@ -93,20 +97,32 @@ class Style_Generator {
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-title' ):
+				case 'gutenverse/news-post-title' === $name:
 					$instance = new Post_Title( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-tag' ):
+				case 'gutenverse/news-post-tag' === $name:
 					$instance = new Post_Tag( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-related' ):
+				case 'gutenverse/news-post-related' === $name:
 					$instance = new Post_Related( $attrs, $name );
 					break;
-				case stristr( $name, 'gutenverse/news-post-meta' ):
+				case 'gutenverse/news-post-meta' === $name:
 					$instance = new Post_Meta( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-post-prev-next' ):
 					$instance = new Post_Next_Prev( $attrs, $name );
+					break;
+				case 'gutenverse/news-post-breadcrumb' === $name:
+					$instance = new Post_Breadcrumb( $attrs, $name );
+					break;
+				case 'gutenverse/news-post-comment' === $name:
+					$instance = new Post_Comment( $attrs, $name );
+					break;
+				case 'gutenverse/news-post-author' === $name:
+					$instance = new Post_Author( $attrs, $name );
+					break;
+				case 'gutenverse/news-post-featured' === $name:
+					$instance = new Post_Featured( $attrs, $name );
 					break;
 			}
 		}
