@@ -125,6 +125,55 @@
         },
         "commentColorHover": {
             "type":"object"
+        },
+        "showType": {
+            "type": "string",
+            "default": "both"
+        },
+        "likeIconTypography": {
+            "type":"object"
+        },
+        "likeIconColor": {
+            "type": "object"
+        },
+        "likeCountTypography": {
+            "type": "object"
+        },
+        "likeCountColor": {
+            "type": "object"
+        },
+        "likeBackground": {
+            "type":"object",
+            "default": {}
+        },
+        "likeMargin": {
+            "type": "object"
+        },
+        "likePadding": {
+            "type": "object"
+        },
+
+        "dislikeIconTypography": {
+            "type":"object"
+        },
+        "dislikeIconColor": {
+            "type": "object"
+        },
+        "dislikeCountTypography": {
+            "type": "object"
+        },
+        "dislikeCountColor": {
+            "type": "object"
+        },
+        "dislikeMargin": {
+            "type": "object"
+        },
+        "dislikePadding": {
+            "type": "object"
+        },
+        "dislikeBackground": {
+            "type":"object",
+            "default": {}
         }
     },
     "supports": {

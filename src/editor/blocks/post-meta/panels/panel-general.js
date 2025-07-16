@@ -1,30 +1,37 @@
 import { __ } from '@wordpress/i18n';
 import { SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
+import { applyFilters } from '@wordpress/hooks';
 
-export const generalPanel = () => {
+export const generalPanel = (props) => {
+
+    const listSearch = [
+        {
+            label: __('Author', 'gutenverse-news'),
+            value: 'author'
+        },
+        {
+            label: __('Date', 'gutenverse-news'),
+            value: 'date'
+        },
+        {
+            label: __('Category', 'gutenverse-news'),
+            value: 'category'
+        },
+        {
+            label: __('Comment', 'gutenverse-news'),
+            value: 'comment'
+        },
+    ];
 
     const searchMeta = input => new Promise(resolve => {
-        return resolve([
-            {
-                label: __('Author', 'gutenverse-news'),
-                value: 'author'
-            },
-            {
-                label: __('Date', 'gutenverse-news'),
-                value: 'date'
-            },
-            {
-                label: __('Category', 'gutenverse-news'),
-                value: 'category'
-            },
-            {
-                label: __('Comment', 'gutenverse-news'),
-                value: 'comment'
-            },
-        ]);
+        return resolve(applyFilters(
+            'gvnews.post-meta.panel.general.searchOption',
+            listSearch
+        ));
     });
 
-    return [
+
+    const controls = [
         {
             id: 'metaLeft',
             label: __('Left Meta Element', 'gutenverse'),
@@ -58,4 +65,10 @@ export const generalPanel = () => {
             ],
         },
     ];
+
+    return applyFilters(
+        'gvnews.post-meta.panel.general',
+        controls,
+        props
+    );
 };

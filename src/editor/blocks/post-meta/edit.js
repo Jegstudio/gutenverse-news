@@ -4,6 +4,7 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
@@ -28,6 +29,7 @@ const PostMeta = compose(
         metaLeft = [],
         metaRight = [],
         elementId,
+        showType,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -85,14 +87,14 @@ const PostMeta = compose(
     }
 
 
-    const MetaDate = ({isLastItem}) => {
+    const MetaDate = ({ isLastItem }) => {
 
         return <div className={`gvnews-meta-date meta-items ${isLastItem}`}>
             <a href="#">{convertDateFormat(getCurrentDateTimeFormatted())}</a>
         </div>;
     };
 
-    const MetaCategory = ({isLastItem}) => {
+    const MetaCategory = ({ isLastItem }) => {
         return <div className={`gvnews-meta-category meta-items ${isLastItem}`}>
             <span>
                 <span className="meta-text">{__('in', 'gutenverse-news')} </span>
@@ -103,13 +105,20 @@ const PostMeta = compose(
         </div>;
     };
 
-    const MetaComment = ({isLastItem}) => {
+    const MetaComment = ({ isLastItem }) => {
         return <div className={`gvnews-meta-comment meta-items ${isLastItem}`}>
             <a href="/#respond"><i className="far fa-comment"></i> 100</a>
         </div>;
     };
 
-    const MetaAuthor = ({isLastItem}) => {
+    const LikeDislike = ({ isLastItem }) => {
+        return <div className={`gvnews-meta-like-dislike meta-items gvnews-like-dislike-button ${isLastItem}`}>
+            {applyFilters('gvnews.post-meta.components.like')}
+            {showType === 'both' && applyFilters('gvnews.post-meta.components.dislike')}
+        </div>;
+    };
+
+    const MetaAuthor = ({ isLastItem }) => {
         return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
             <img
                 alt="admin"
@@ -127,7 +136,7 @@ const PostMeta = compose(
 
     const RenderMeta = (props) => {
         return props.metas.map((meta, index) => {
-            const isLastItem = index === props.metas.length - 1? 'is-last-item' : '';
+            const isLastItem = index === props.metas.length - 1 ? 'is-last-item' : '';
             let output;
 
             switch (meta.value) {
@@ -142,6 +151,9 @@ const PostMeta = compose(
                     break;
                 case 'comment':
                     output = <MetaComment key={index} isLastItem={isLastItem} />;
+                    break;
+                case 'likeDislike':
+                    output = <LikeDislike key={index} isLastItem={isLastItem} />;
                     break;
                 default:
                     output = null;

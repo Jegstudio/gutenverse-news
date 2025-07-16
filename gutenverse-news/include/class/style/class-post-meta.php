@@ -61,6 +61,7 @@ class Post_Meta extends Style_Abstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
+		$this->like_dislike_button();
 
 		// Author Style Panel.
 		if ( isset( $this->attrs['authorTypography'] ) ) {
@@ -275,6 +276,197 @@ class Post_Meta extends Style_Abstract {
 						return "z-index: {$value};";
 					},
 					'value'          => $this->attrs['zIndex'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Like Disklike Button
+	 *
+	 * @return void
+	 */
+	public function like_dislike_button() {
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-like-dislike-button";
+
+		// Like Panel.
+		if ( isset( $this->attrs['likeIconTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => "{$base_selector} .thumb.like i",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['likeIconTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['likeIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeCountTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => "{$base_selector} .thumb.like span",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['likeCountTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeCountColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['likeCountColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) use ( $base_selector ) {
+						return $this->handle_background(
+							"{$base_selector} .thumb.like",
+							$value,
+						);
+					},
+					'value'          => $this->attrs['likeBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['likeMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likePadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['likePadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		// Dislike Panel.
+		if ( isset( $this->attrs['dislikeIconTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => "{$base_selector} .thumb.like i",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['dislikeIconTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dislikeIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeCountTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => "{$base_selector} .thumb.like span",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['dislikeCountTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeCountColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dislikeCountColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) use ( $base_selector ) {
+						return $this->handle_background(
+							"{$base_selector} .thumb.like",
+							$value,
+						);
+					},
+					'value'          => $this->attrs['dislikeBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['dislikeMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikePadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['dislikePadding'],
 					'device_control' => true,
 				)
 			);
