@@ -58,12 +58,12 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 	/**
 	 * Method remove_px
 	 *
-	 * @param string $string string.
+	 * @param string $str string.
 	 *
 	 * @return string
 	 */
-	public function remove_px( $string ) {
-		return str_replace( 'px', '', $string );
+	public function remove_px( $str ) {
+		return str_replace( 'px', '', $str );
 	}
 
 	/**
@@ -106,18 +106,63 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 		$html_classes = gvnews_build_html_classes(
 			array(
 				'gvnews_heroblock',
+				'guten-element',
 				'gvnews_heroblock_' . esc_attr( $name ),
 				esc_attr( $column_class ),
 				esc_attr( $attr['hero_style'] ),
 				esc_attr( $this->unique_id ),
 				esc_attr( $this->get_vc_class_name() ),
 				esc_attr( $attr['el_class'] ),
+				$this->set_animation_classes( $attr ),
 			)
 		);
 
 		return "<div {$this->element_id($attr)} class=\"" . $html_classes . '" data-margin="' . esc_attr( $this->margin ) . "\" {$data_attr}>
                 {$content}
             </div>";
+	}
+
+	/**
+	 * Set animation classes
+	 *
+	 * @param array $attr attributes.
+	 *
+	 * @return string
+	 */
+	protected function set_animation_classes( $attr ) {
+		$animation_classes = ' ';
+
+		if ( ! isset( $attr ['animation'] ) ) {
+			return '';
+		}
+
+		$is_animation = false;
+
+		if ( isset( $attr ['animation']['type'] ) ) {
+			$is_animation = ( ! empty( $attr ['animation']['type']['Desktop'] ) && 'none' !== $attr ['animation']['type']['Desktop'] ) || ( ! empty( $attr ['animation']['type']['Tablet'] ) && 'none' !== $attr ['animation']['type']['Tablet'] ) || ( ! empty( $attr ['animation']['type']['Mobile'] ) && 'none' !== $attr ['animation']['type']['Mobile'] );
+		}
+
+		if ( $is_animation ) {
+			$animation_classes .= 'animated guten-element-hide ';
+		}
+
+		if ( isset( $attr ['animation']['duration'] ) && 'normal' !== $attr ['animation']['duration'] ) {
+			$animation_classes .= "{$attr ['animation']['duration']} ";
+		}
+
+		if ( ! empty( $attr ['animation']['type']['Desktop'] ) && 'none' !== $attr ['animation']['type']['Desktop'] ) {
+			$animation_classes .= "desktop-{$attr ['animation']['type']['Desktop']} ";
+		}
+
+		if ( ! empty( $attr ['animation']['type']['Tablet'] ) && 'none' !== $attr ['animation']['type']['Tablet'] ) {
+			$animation_classes .= "desktop-{$attr ['animation']['type']['Tablet']} ";
+		}
+
+		if ( ! empty( $attr ['animation']['type']['Mobile'] ) && 'none' !== $attr ['animation']['type']['Mobile'] ) {
+			$animation_classes .= "desktop-{$attr ['animation']['type']['Mobile']} ";
+		}
+
+		return esc_attr( $animation_classes );
 	}
 
 	/**

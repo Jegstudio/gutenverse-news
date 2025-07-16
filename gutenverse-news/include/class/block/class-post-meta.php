@@ -64,7 +64,6 @@ class Post_Meta extends Post_Guten {
 					return $this->render_category();
 				case 'comment':
 					return $this->render_comment();
-					break;
 			}
 		}
 	}

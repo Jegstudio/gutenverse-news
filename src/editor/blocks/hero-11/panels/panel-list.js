@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, animationPanel, borderPanel, maskPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from '../../../control-panel/panel-herosetting';
 import { designHero } from '../../../control-panel/panel-herodesign';
@@ -38,7 +38,7 @@ export const panelList = () => {
             title: __('Hero Slider', 'gutenverse-news'),
             initialOpen: false,
             panelArray: sliderHero,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Category Label', 'gutenverse-news'),
@@ -59,7 +59,7 @@ export const panelList = () => {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
             panelArray: responsivePanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Spacing', 'gutenverse-news'),
@@ -68,7 +68,22 @@ export const panelList = () => {
                 ...props,
                 styleId: 'block-1-advance',
             }),
+            tabRole: TabSetting
+        },
+        {
+            title: __('Animation Effects', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => animationPanel({
+                ...props,
+                styleId: 'hero-11-animation'
+            }),
+            tabRole: TabSetting
+        },
+        {
+            title: __('Masking', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: maskPanel,
             tabRole: TabStyle
-        }
+        },
     ];
 };

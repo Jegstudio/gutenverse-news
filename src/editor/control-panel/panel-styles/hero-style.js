@@ -51,6 +51,33 @@ const getHeroStyle = (elementId, attributes) => {
         });
     }
 
+    isNotEmpty(attributes['mask']) && data.push({
+        'type': 'mask',
+        'id': 'mask',
+        'responsive': true,
+        'selector': `.${elementId}`,
+    });
+
+    isNotEmpty(attributes['animation']) && isNotEmpty(attributes['animation']['delay']) && data.push({
+        'type': 'plain',
+        'id': 'animation',
+        'properties': [
+            {
+                'name': 'animation-delay',
+                'valueType': 'pattern',
+                'pattern': '{value}ms',
+                'patternValues': {
+                    'value': {
+                        'type': 'attribute',
+                        'key': 'delay',
+                    },
+
+                }
+            }
+        ],
+        'selector': `.${elementId}`,
+    });
+
     /**
      * Panel Setting
      */

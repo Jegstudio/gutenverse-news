@@ -115,7 +115,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Method compatible_column
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private function compatible_column() {
 		return $this->option_class->compatible_column();
@@ -573,7 +573,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Method element_id
 	 *
-	 * @param $attr $attr attribute.
+	 * @param array $attr attribute.
 	 *
 	 * @return string|null
 	 */

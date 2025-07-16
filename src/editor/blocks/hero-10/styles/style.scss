@@ -2,12 +2,27 @@
     .gvnews_heroblock_wrapper {
         height: 540px;
     }
-
+    &.gvnews_hero_style_3 {
+        .gvnews_post .gvnews_block_container .gvnews_postblock_content {
+            padding: 0;
+        }
+    }
     .gvnews_post {
         width: 33.333333333%;
         height: 33.333333333%;
     }
-
+    &.gvnews_hero_style_7 {
+        .gvnews_postblock_content .gvnews_post_meta {
+            color: #a0a0a0;
+        }
+    }
+    &:not(.gvnews_hero_style_6) {
+        .gvnews_postblock_content {
+            .gvnews_post_meta {
+                text-transform: uppercase;
+            }
+        }
+    }
     .gvnews_hero_item_1,
     .gvnews_hero_item_5 {
         height: 66.666666666%;
@@ -142,14 +157,15 @@
     @media only screen and (max-width: 667px) {
         &.tiny-slider {
             .gvnews_heroblock_wrapper {
-                height: auto;
+                height: auto !important;
             }
             .gvnews_post {
                 position: relative;
                 top: auto;
                 left: auto;
-                width: 100%;
-                height: 200px;
+                width: 100% !important;
+                height: 130px !important;
+                display: block !important;
             }
             .gvnews_post_title {
                 font-size: 18px;
@@ -336,6 +352,7 @@
                 font-size: 18px;
             }
             .gvnews_heroblock_scroller {
+                height: auto !important;
                 .gvnews_post_title {
                     font-size: 14px;
                 }
@@ -423,7 +440,7 @@
             .gvnews_heroblock_scroller {
                 height: 45%;
                 .gvnews_post {
-                    width: 80% !important;
+                    width: 80%;
                 }
                 .gvnews_post_title {
                     font-size: 15px !important;
@@ -435,6 +452,13 @@
         }
         .gvnews_post_meta {
             display: none;
+        }
+        &.gvnews_hero_style_6 {
+            .gvnews_hero_item_1 {
+                .gvnews_post_meta {
+                    display: none;
+                }
+            }
         }
     }
 }

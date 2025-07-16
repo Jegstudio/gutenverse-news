@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, animationPanel, borderPanel, maskPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from '../../../control-panel/panel-herosetting';
 import { designHero } from '../../../control-panel/panel-herodesign';
@@ -23,6 +23,36 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Hero Slider', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: sliderHero,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => advancePanel({
+                ...props,
+                styleId: 'block-1-advance',
+            }),
+            tabRole: TabSetting
+        },
+        {
+            title: __('Animation Effects', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => animationPanel({
+                ...props,
+                styleId: 'hero-7-animation'
+            }),
+            tabRole: TabSetting
+        },
+        {
             title: __('Hero Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designHero,
@@ -32,12 +62,6 @@ export const panelList = () => {
             title: __('Hero Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: styleHero,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Hero Slider', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: sliderHero,
             tabRole: TabStyle
         },
         {
@@ -56,19 +80,10 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Display', 'gutenverse-news'),
+            title: __('Masking', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: responsivePanel,
+            panelArray: maskPanel,
             tabRole: TabStyle
         },
-        {
-            title: __('Spacing', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => advancePanel({
-                ...props,
-                styleId: 'block-1-advance',
-            }),
-            tabRole: TabStyle
-        }
     ];
 };

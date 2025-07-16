@@ -7,6 +7,18 @@
             padding: 0;
         }
     }
+    &.gvnews_hero_style_7 {
+        .gvnews_postblock_content .gvnews_post_meta {
+            color: #a0a0a0;
+        }
+    }
+    &:not(.gvnews_hero_style_6) {
+        .gvnews_postblock_content {
+            .gvnews_post_meta {
+                text-transform: uppercase;
+            }
+        }
+    }
     .gvnews_hero_item_1 {
         width: 50%;
         height: 100%;
@@ -448,6 +460,13 @@
         }
         .gvnews_post_meta {
             display: none;
+        }
+        &.gvnews_hero_style_6 {
+            .gvnews_hero_item_1 {
+                .gvnews_post_meta {
+                    display: none;
+                }
+            }
         }
     }
 }

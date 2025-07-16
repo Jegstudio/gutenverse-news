@@ -280,7 +280,16 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
-        }
+        },
+        "mask": {
+			"type": "object",
+			"copyStyle": true
+		},
+        "animation": {
+			"type": "object",
+			"default": {},
+			"copyStyle": true
+		}
     },
     "supports": {
         "className": false

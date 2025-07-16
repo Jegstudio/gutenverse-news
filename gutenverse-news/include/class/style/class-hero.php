@@ -30,11 +30,13 @@ class Hero extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'border'  => array(
+				'border'    => array(
 					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock:hover",
 				),
-				'advance' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+				'advance'   => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+				'mask'      => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+				'animation' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 			)
 		);
 	}

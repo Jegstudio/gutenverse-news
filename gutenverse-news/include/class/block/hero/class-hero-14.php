@@ -30,7 +30,7 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_1
 	 *
-	 * @param array $post post.
+	 * @param object $post post.
 	 *
 	 * @return string
 	 */

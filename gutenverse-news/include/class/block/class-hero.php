@@ -60,6 +60,7 @@ class Hero extends Grab {
 			'hero_slider_delay'        => $this->attributes['autoplayDelay'],
 			'hero_slider_auto_play'    => $this->attributes['autoplay'],
 			'short_code'               => $this->attributes['gvnewsModule'],
+			'animation'                => $this->attributes['animation'],
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {

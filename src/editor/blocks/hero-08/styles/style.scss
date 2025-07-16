@@ -5,7 +5,18 @@
     .gvnews_heroblock_wrapper {
         height: 500px;
     }
-
+    &.gvnews_hero_style_7 {
+        .gvnews_postblock_content .gvnews_post_meta {
+            color: #a0a0a0;
+        }
+    }
+    &:not(.gvnews_hero_style_6) {
+        .gvnews_postblock_content {
+            .gvnews_post_meta {
+                text-transform: uppercase;
+            }
+        }
+    }
     .gvnews_post {
         width: 33.33333333333333%;
         height: 100%;
@@ -120,6 +131,13 @@
         .gvnews_post_title {
             font-size: 16px;
             line-height: 20px;
+        }
+        &.gvnews_hero_style_6 {
+            .gvnews_hero_item_1 {
+                .gvnews_post_meta {
+                    display: none;
+                }
+            }
         }
     }
 }

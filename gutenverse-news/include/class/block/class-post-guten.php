@@ -37,6 +37,12 @@ class Post_Guten extends Block_Abstract {
 	 */
 	protected $class_name = 'gvnews-custom-block';
 	/**
+	 * Hold Post block additional attributes
+	 *
+	 * @var string
+	 */
+	protected $additional_attributes = '';
+	/**
 	 * Block attributes
 	 *
 	 * @param array $attributes .
@@ -114,7 +120,6 @@ class Post_Guten extends Block_Abstract {
 			$this->set_animation_classes(),
 			$this->set_display_classes(),
 		);
-
 		return trim( implode( ' ', $class_list ) );
 	}
 
@@ -122,7 +127,7 @@ class Post_Guten extends Block_Abstract {
 	 * Render view in frontend
 	 */
 	public function render_frontend() {
-		return '<div class="' . $this->generate_container_class() . '">' .
+		return '<div class="' . $this->generate_container_class() . '"' . $this->additional_attributes . '>' .
 				$this->render_content() .
 			'</div>';
 	}
