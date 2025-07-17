@@ -167,6 +167,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix Post Next Prev not renderd on frontend
 * Fix auto column width detection not working on Post Related block
 * Fix incorrect category displayed on the Post Breadcrumb block
+* Fix deprecated warning on the strpost function passing a null value
 
 ##### Improvements
 * Added style options for "Read More" button and "Category Label" on Blocks

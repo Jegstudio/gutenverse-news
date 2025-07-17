@@ -89,7 +89,7 @@ class Frontend_Assets {
 	 *  @param array $block Block Array.
 	 */
 	public function get_news_block_data( $block ) {
-		if ( strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
+		if ( ! empty( $block['blockName'] ) && strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
 			$this->news_block_data[] = $block['blockName'];
 		}
 	}
