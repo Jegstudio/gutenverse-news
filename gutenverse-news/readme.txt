@@ -157,6 +157,13 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 2.0.2 [DEV] =
+##### Bug Fixes
+* Fix deprecated warning on the strpost function passing a null value
+
+##### Improvements
+* -
+
 = 2.0.1 =
 ##### Bug Fixes
 * Fix missing Submit Comment button on the Post Comment block
@@ -167,13 +174,11 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix Post Next Prev not renderd on frontend
 * Fix auto column width detection not working on Post Related block
 * Fix incorrect category displayed on the Post Breadcrumb block
-* Fix deprecated warning on the strpost function passing a null value
 
 ##### Improvements
 * Added style options for "Read More" button and "Category Label" on Blocks
 * Added more style options for all Post Blocks
 * Improved default styles for all Post Blocks
-
 
 = 2.0.0 =
 ##### Bug Fixes
