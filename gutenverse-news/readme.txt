@@ -1,9 +1,9 @@
 === Gutenverse News –  Advanced News Magazine Blog Gutenberg Blocks Addons ===
 Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
-Tested up to: 6.7
+Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 2.0.0
+Stable tag: 2.0.2-a.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
