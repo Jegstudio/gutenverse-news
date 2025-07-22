@@ -158,7 +158,11 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 2.0.2 [DEV] =
+##### Bug Fixes
 * Fix deprecated warning on the strpost function passing a null value
+
+##### Improvements
+* -
 
 = 2.0.1 =
 ##### Bug Fixes
@@ -175,7 +179,6 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Added style options for "Read More" button and "Category Label" on Blocks
 * Added more style options for all Post Blocks
 * Improved default styles for all Post Blocks
-
 
 = 2.0.0 =
 ##### Bug Fixes
