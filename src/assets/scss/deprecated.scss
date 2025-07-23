@@ -1,0 +1,29 @@
+.gvnews-deprecated-block {
+    position: relative;
+    .deprecated-block-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        letter-spacing: 0;
+        right: 0;
+        top: 0;
+        z-index: 9998;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 0, 0.3);
+        pointer-events: none;
+        text-align: center;
+
+    }
+}
+
+.gutenverse-panel-wrapper {
+    .deprecared-blocks-panel {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 0, 0.3);
+    }
+
+}

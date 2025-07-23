@@ -32,6 +32,13 @@ class Grab {
 	protected $content;
 
 	/**
+	 * Content.
+	 *
+	 * @var string
+	 */
+	protected $is_deprecated = false;
+
+	/**
 	 * Method get_content
 	 *
 	 * @return string
@@ -86,7 +93,6 @@ class Grab {
 		if ( isset( $this->attributes['widthClass'] ) && $this->attributes['widthClass'] ) {
 			$extra_classes .= $this->attributes['widthClass'];
 		}
-
 		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper">' . $this->render_content() . '</div>';
 	}
 
@@ -101,7 +107,7 @@ class Grab {
 	public function render( $attributes, $content ) {
 		$this->set_attributes( $attributes );
 		$this->set_content( $content );
-
+		$this->is_deprecated = $this->check_deprecated( $attributes );
 		if ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || gutenverse_is_block_editor() ) {
 			return $this->render_gutenberg();
 		} else {
@@ -178,8 +184,11 @@ class Grab {
 		}
 
 		$classes = 'gutenverse gvnews-' . $element_name . $classes . ' ' . $this->get_element_id();
+		if ( $this->is_deprecated ) {
+			$classes .= ' gvnews-deprecated-block';
+		}
 
-		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . '</div>';
+		return '<div ' . $id . ' class="' . $classes . '" ' . $data . '>' . $inner . $this->render_deprecated() . '</div>';
 	}
 
 	/**
@@ -227,5 +236,24 @@ class Grab {
 		}
 
 		return $display_classes;
+	}
+
+	protected function check_deprecated( $attributes ) {
+		if ( isset( $attributes['gvnewsModule'] ) ) {
+			$deprecated_blocks = array(
+				'GUTENVERSE\NEWS\Block\Carousel\Carousel_1',
+				'GUTENVERSE\NEWS\Block\Carousel\Carousel_2',
+				'GUTENVERSE\NEWS\Block\Carousel\Carousel_3',
+			);
+			return in_array( $attributes['gvnewsModule'], $deprecated_blocks ) && current_user_can( 'edit_pages' );
+
+		}
+		return false;
+	}
+
+	protected function render_deprecated() {
+		if ( $this->is_deprecated ) {
+			return '<div class="deprecated-block-content">	<p> This block has been deprecated and will be removed in the next Gutenverse News plugin update. Please replace it with another Gutenverse News block that is not deprecated.</p> </div>';
+		}
 	}
 }
