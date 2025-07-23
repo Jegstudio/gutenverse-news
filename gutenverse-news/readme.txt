@@ -1,9 +1,9 @@
 === Gutenverse News –  Advanced News Magazine Blog Gutenberg Blocks Addons ===
 Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
-Tested up to: 6.7
+Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 2.0.0
+Stable tag: 2.0.2-a.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -157,6 +157,13 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 2.0.2 [DEV] =
+##### Bug Fixes
+* Fix deprecated warning on the strpost function passing a null value
+
+##### Improvements
+* -
+
 = 2.0.1 =
 ##### Bug Fixes
 * Fix missing Submit Comment button on the Post Comment block
@@ -172,7 +179,6 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Added style options for "Read More" button and "Category Label" on Blocks
 * Added more style options for all Post Blocks
 * Improved default styles for all Post Blocks
-
 
 = 2.0.0 =
 ##### Bug Fixes
