@@ -91,6 +91,15 @@ class Init {
 	 */
 	public $ajax;
 
+	/**
+	 * Hold instance of Meta Option
+	 *
+	 * @var Meta_Option
+	 */
+	public $meta_option;
+
+
+
 
 
 	/**
@@ -227,6 +236,7 @@ class Init {
 		$this->ajax            = new Ajax();
 		$this->dashboard       = new Dashboard();
 		$this->image           = Image::get_instance();
+		$this->meta_option     = new Meta_Option();
 	}
 
 	/**
