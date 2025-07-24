@@ -62,6 +62,7 @@ class Post_Meta extends Style_Abstract {
 	 */
 	public function generate() {
 		$this->like_dislike_button();
+		$this->bookmark_style();
 
 		// Author Style Panel.
 		if ( isset( $this->attrs['authorTypography'] ) ) {
@@ -287,7 +288,7 @@ class Post_Meta extends Style_Abstract {
 	 *
 	 * @return void
 	 */
-	public function like_dislike_button() {
+	private function like_dislike_button() {
 		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-like-dislike-button";
 
 		// Like Panel.
@@ -468,6 +469,41 @@ class Post_Meta extends Style_Abstract {
 					},
 					'value'          => $this->attrs['dislikePadding'],
 					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Bookmark Style.
+	 *
+	 * @return void
+	 */
+	private function bookmark_style() {
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container i";
+
+		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['bookmarkIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bookmarkIconColor'],
+					'device_control' => false,
 				)
 			);
 		}

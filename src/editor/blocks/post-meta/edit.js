@@ -118,6 +118,12 @@ const PostMeta = compose(
         </div>;
     };
 
+    const Bookmark = ({ isLastItem }) => {
+        return <div className={`gvnews-meta-bookmark meta-items gvnews-bookmark ${isLastItem}`}>
+            {applyFilters('gvnews.post-meta.components.bookmark')}
+        </div>;
+    };
+
     const MetaAuthor = ({ isLastItem }) => {
         return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
             <img
@@ -154,6 +160,9 @@ const PostMeta = compose(
                     break;
                 case 'likeDislike':
                     output = <LikeDislike key={index} isLastItem={isLastItem} />;
+                    break;
+                case 'bookmark':
+                    output = <Bookmark key={index} isLastItem={isLastItem} />;
                     break;
                 default:
                     output = null;

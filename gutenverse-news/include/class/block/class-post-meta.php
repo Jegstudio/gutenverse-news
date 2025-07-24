@@ -73,6 +73,8 @@ class Post_Meta extends Post_Guten {
 					return $this->render_date( $is_last_item );
 				case 'likeDislike':
 					return $this->render_like_dislike( $is_last_item );
+				case 'bookmark':
+					return $this->render_bookmark( $is_last_item );
 			}
 		}
 	}
@@ -158,6 +160,24 @@ class Post_Meta extends Post_Guten {
 						'gvnews_like_dislike_element',
 						'',
 						$this->attributes,
+						$post->ID,
+					) .
+				'</div>';
+	}
+
+	/**
+	 * Method render_author
+	 *
+	 * @param string $is_last_item class is-last-item.
+	 *
+	 * @return string
+	 */
+	public function render_bookmark( $is_last_item ) {
+		global $post;
+		return '<div class="gvnews-meta-bookmark meta-items gvnews-bookmark ' . $is_last_item . '">' .
+					apply_filters(
+						'gvnews_bookmark_element',
+						'',
 						$post->ID,
 					) .
 				'</div>';
