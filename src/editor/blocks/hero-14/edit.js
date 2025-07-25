@@ -16,6 +16,8 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const Hero14Block = compose(
     withPartialRender,
@@ -264,14 +266,14 @@ const Hero14Block = compose(
 
     return (
         <>
-            <CopyElementToolbar {...props} />
-            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            <PanelDeprecated title="Hero 14" />
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
                         <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                         {block ? block : 'loading'}
                     </div>
+                    <DeprecatedOverlay />
                 </div>
             </div>
         </>

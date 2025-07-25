@@ -10,8 +10,6 @@
             document.getElementById('gvnews-popup-ok')?.addEventListener('click', () => {
                 document.body.classList.remove('gvnews-deprecated-popup');
             });
-
-
         }
     }
 
@@ -34,6 +32,20 @@
         document.body.classList.add('gvnews-deprecated-popup');
     }
 
+    // 🔁 Recursive function to get all blocks (including inner blocks)
+    function getAllBlocksRecursive(blocks) {
+        const all = [];
+
+        blocks.forEach(block => {
+            all.push(block);
+            if (block.innerBlocks && block.innerBlocks.length > 0) {
+                all.push(...getAllBlocksRecursive(block.innerBlocks));
+            }
+        });
+
+        return all;
+    }
+
     const isBlockEditor =
         typeof wp !== 'undefined' &&
         wp.data?.select('core/editor') &&
@@ -53,21 +65,34 @@
                     alreadyRun = true;
                     unsubscribe();
                     setDeprecatedPopupEvent();
-                    // ✅ Get all blocks
-                    const allBlocks = select('core/block-editor').getBlocks();
+
+                    // ✅ Get all blocks recursively
+                    const topLevelBlocks = select('core/block-editor').getBlocks();
+                    const allBlocks = getAllBlocksRecursive(topLevelBlocks);
                     const blockNames = allBlocks.map(block => block.name);
+
                     const deprecatedBlockNames = [
                         'gutenverse/news-carousel-1',
                         'gutenverse/news-carousel-2',
                         'gutenverse/news-carousel-3',
+                        'gutenverse/news-hero-6',
+                        'gutenverse/news-hero-7',
+                        'gutenverse/news-hero-8',
+                        'gutenverse/news-hero-9',
+                        'gutenverse/news-hero-10',
+                        'gutenverse/news-hero-11',
+                        'gutenverse/news-hero-12',
+                        'gutenverse/news-hero-13',
+                        'gutenverse/news-hero-14',
+                        'gutenverse/news-hero-skew',
                     ];
-                    // ✅ Cek apakah ada block yang deprecated
-                    const hasDeprecated = blockNames.some(name => deprecatedBlockNames.includes(name));
+                    const hasDeprecated = blockNames.some(name =>
+                        deprecatedBlockNames.includes(name)
+                    );
 
                     if (hasDeprecated) {
                         setTimeout(showPopup, 3000);
                     }
-
                 }
             });
         });

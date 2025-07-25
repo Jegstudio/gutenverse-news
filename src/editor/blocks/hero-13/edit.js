@@ -1,17 +1,15 @@
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { compose } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
-
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const Hero13Block = compose(
     withPartialRender,
@@ -75,10 +73,9 @@ const Hero13Block = compose(
 
     return (
         <>
-            <CopyElementToolbar {...props} />
-            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            <PanelDeprecated title="Hero 6" />
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -111,6 +108,7 @@ const Hero13Block = compose(
                             heightDesktop,
                         }}
                     />
+                    <DeprecatedOverlay />
                 </div>
             </div>
         </>
