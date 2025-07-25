@@ -155,24 +155,6 @@ class Post_Meta extends Post_Guten {
 	}
 
 	/**
-	 * Method render_author
-	 *
-	 * @param string $is_last_item class is-last-item.
-	 *
-	 * @return string
-	 */
-	private function render_bookmark( $is_last_item ) {
-		global $post;
-		return '<div class="gvnews-meta-bookmark meta-items gvnews-bookmark ' . $is_last_item . '">' .
-					apply_filters(
-						'gvnews_bookmark_element',
-						'',
-						$post->ID,
-					) .
-				'</div>';
-	}
-
-	/**
 	 * Method is_last_item
 	 *
 	 * @param integer $index index.
