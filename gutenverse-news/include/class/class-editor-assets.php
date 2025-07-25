@@ -66,6 +66,8 @@ class Editor_Assets {
 			'gutenverse-news',
 			GUTENVERSE_NEWS_LANG_DIR
 		);
+
+		wp_enqueue_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', array( 'gutenverse-news-blocks' ), GUTENVERSE_NEWS_VERSION, true );
 	}
 
 	/**

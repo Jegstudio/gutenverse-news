@@ -1,5 +1,6 @@
 .gvnews-deprecated-block {
     position: relative;
+
     .deprecated-block-content {
         position: absolute;
         bottom: 0;
@@ -11,19 +12,155 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(255, 255, 0, 0.3);
-        pointer-events: none;
         text-align: center;
+        background: #000000A6;
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-family: "Roboto";
+        font-weight: 400;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 16px;
 
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            svg {
+                width: 18px;
+            }
+        }
+
+        a {
+            font-weight: 500;
+            font-style: Medium;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration-style: solid;
+            text-decoration-thickness: 0%;
+            text-decoration-skip-ink: auto;
+
+        }
     }
 }
 
 .gutenverse-panel-wrapper {
-    .deprecared-blocks-panel {
-        margin: 20px;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: rgba(255, 255, 0, 0.3);
+    .deprecated-blocks-panel {
+        margin: 16px;
+        padding: 16px;
+        border: 1px solid #EEBC0D;
+        background: #FFFBEF;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+
+        .deprecated-desc {
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h5 {
+                font-weight: 700;
+            }
+
+            h5,
+            p {
+                font-size: 12px;
+                margin: 0;
+            }
+        }
     }
 
+}
+
+.gvnews-deprecated-modal {
+    display: none;
+
+    body.gvnews-deprecated-popup & {
+        display: block;
+    }
+
+    .gvnews-deprecated-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+
+        .gvnews-deprecated-box {
+            background: #fff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 48px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+            .gvnews-popup-close {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                border: none;
+                background: none;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .gvnews-deprecated-text {
+                font-family: "Roboto";
+                font-weight: 400;
+                letter-spacing: 0px;
+                color: #53585C;
+
+                h2 {
+                    margin: 16px 0;
+                    font-weight: 700;
+                    font-size: 22px;
+                }
+
+                p {
+                    margin-bottom: 20px;
+                    font-size: 16px;
+                }
+
+                .gvnews-deprecated-actions {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 40px;
+                    font-size: 13px;
+                    font-weight: 500;
+
+                    .gvnews-replace-btn {
+                        background-color: #F70D28;
+                        color: white;
+                        border: none;
+                        padding: 6px 12px;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+
+                    .gvnews-ok-btn {
+                        background-color: transparent;
+                        color: #000;
+                        border: none;
+                        padding: 10px 16px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
 }

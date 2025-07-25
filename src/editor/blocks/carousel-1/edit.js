@@ -19,6 +19,7 @@ import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
 import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -340,15 +341,12 @@ const Carousel1Block = compose(
     }, [device]);
 
     return <>
-        <CopyElementToolbar {...props} />
-        <PanelDeprecated />
+        <PanelDeprecated title="Carousel 1" />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 {block ? block : 'loading'}
-                <div className="deprecated-block-content">
-                    <p> This block has been deprecated and will be removed in the next Gutenverse News plugin update. Please replace it with another Gutenverse News block that is not deprecated.</p>
-                </div>
+                <DeprecatedOverlay />
             </div>
         </div>
     </>;

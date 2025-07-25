@@ -99,6 +99,8 @@ import PostTitle from './svg/post-title.svg';
 import SearchHeader from './svg/search-header.svg';
 import SocialIcon from './svg/social-icon.svg';
 /* reserved line for script, don't delete */
+/* Additional Icons */
+import WarningIcon from './svg/warning-icon.svg';
 
 export const Block1BlockSvg = () => {
     return <Block1Block/>;
@@ -398,5 +400,9 @@ export const SliderOverlaySvg = () => {
 
 export const CategoryIcon = () => {
     return <CategoryIconSvg/>;
+};
+
+export const WarningIconSVG = () => {
+    return <WarningIcon/>;
 };
 

@@ -1,12 +1,20 @@
 import { InspectorControls } from '@wordpress/block-editor';
+import { WarningIconSVG } from '../../assets/block-icons';
 
-const PanelDeprecated = () => {
+const PanelDeprecated = ({ title }) => {
 
     return (
         <InspectorControls>
             <div className="gutenverse-panel-wrapper" >
-                <div className="deprecared-blocks-panel">
-                    <p> This block has been deprecated and will be removed in the next Gutenverse News plugin update. Please replace it with another Gutenverse News block that is not deprecated.</p>
+                <div className="deprecated-blocks-panel">
+                    <div className="deprecated-icon">
+                        <WarningIconSVG />
+                    </div>
+                    <div className="deprecated-desc">
+                        <h5>{title} Is Deprecated</h5>
+                        <p> This block is no longer supported and will be removed in the next update.</p>
+                        <p>Please replace it with a supported Gutenverse News block to ensure your layout working properly.</p>
+                    </div>
                 </div>
             </div>
 

@@ -30,7 +30,10 @@ const helper = {
 			import: path.resolve( __dirname, "../../src/helper/block-carousel.js" ),
 		},
 		hero: {
-			import: path.resolve( __dirname, "../../src/helper/gvnewshero.js" ),
+			import: path.resolve(__dirname, "../../src/helper/gvnewshero.js"),
+		},
+		"deprecated-block": {
+			import: path.resolve(__dirname, "../../src/helper/deprecated-block.js"),
 		},
 	},
 	externals: {
@@ -113,6 +116,10 @@ const helper = {
 							},
 							{
 								source: "./src/helper/isotope.js",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/deprecated-block.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
 						],
