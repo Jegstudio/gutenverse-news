@@ -1,8 +1,7 @@
 import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { panelList } from './panels/panel-list';
 import Block20Columns from './Block20Columns';
-import BlockModule from '../../part/module';
+import DeprecatedBlockModule from '../../part/deprecated-module';
 
 const Block20Block = compose(
     withPartialRender,
@@ -13,7 +12,7 @@ const Block20Block = compose(
         blockWidth  : 12,
     };
     const moduleName = '20';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <DeprecatedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
 });
 
 export default Block20Block;

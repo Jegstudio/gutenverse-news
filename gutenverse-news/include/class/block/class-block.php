@@ -171,4 +171,48 @@ class Block extends Grab {
 
 		return $this->get_module( $attr, $sccontent );
 	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		$deprecated = array(
+			'GUTENVERSE\NEWS\Block\Module\Module_10',
+			'GUTENVERSE\NEWS\Block\Module\Module_11',
+			'GUTENVERSE\NEWS\Block\Module\Module_12',
+			'GUTENVERSE\NEWS\Block\Module\Module_13',
+			'GUTENVERSE\NEWS\Block\Module\Module_14',
+			'GUTENVERSE\NEWS\Block\Module\Module_15',
+			'GUTENVERSE\NEWS\Block\Module\Module_16',
+			'GUTENVERSE\NEWS\Block\Module\Module_17',
+			'GUTENVERSE\NEWS\Block\Module\Module_18',
+			'GUTENVERSE\NEWS\Block\Module\Module_19',
+			'GUTENVERSE\NEWS\Block\Module\Module_20',
+			'GUTENVERSE\NEWS\Block\Module\Module_21',
+			'GUTENVERSE\NEWS\Block\Module\Module_22',
+			'GUTENVERSE\NEWS\Block\Module\Module_23',
+			'GUTENVERSE\NEWS\Block\Module\Module_24',
+			'GUTENVERSE\NEWS\Block\Module\Module_25',
+			'GUTENVERSE\NEWS\Block\Module\Module_26',
+			'GUTENVERSE\NEWS\Block\Module\Module_27',
+			'GUTENVERSE\NEWS\Block\Module\Module_28',
+			'GUTENVERSE\NEWS\Block\Module\Module_29',
+			'GUTENVERSE\NEWS\Block\Module\Module_30',
+			'GUTENVERSE\NEWS\Block\Module\Module_31',
+			'GUTENVERSE\NEWS\Block\Module\Module_32',
+			'GUTENVERSE\NEWS\Block\Module\Module_33',
+			'GUTENVERSE\NEWS\Block\Module\Module_34',
+			'GUTENVERSE\NEWS\Block\Module\Module_35',
+			'GUTENVERSE\NEWS\Block\Module\Module_36',
+			'GUTENVERSE\NEWS\Block\Module\Module_37',
+			'GUTENVERSE\NEWS\Block\Module\Module_38',
+			'GUTENVERSE\NEWS\Block\Module\Module_39',
+		);
+		if ( current_user_can( 'edit_pages' ) && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
+			return true;
+		}
+		return false;
+	}
 }
