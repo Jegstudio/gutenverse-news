@@ -71,13 +71,21 @@ class Post_Meta extends Post_Guten {
 					return $this->render_comment( $is_last_item );
 				case 'date':
 					return $this->render_date( $is_last_item );
-				case 'likeDislike':
-					return $this->render_like_dislike( $is_last_item );
-				case 'bookmark':
-					return $this->render_bookmark( $is_last_item );
 			}
 		}
+
+		$meta_hook = apply_filters( 'gvnews_post_meta_components', array(), $this->attributes );
+		if ( isset( $meta_hook[ $meta ] ) ) {
+			$element          = isset( $meta_hook[ $meta ]['element'] ) ? $meta_hook[ $meta ]['element'] : '';
+			$additional_class = isset( $meta_hook[ $meta ]['additional_class'] ) ? $meta_hook[ $meta ]['additional_class'] : '';
+
+			return '<div class="meta-items ' . $is_last_item . ' ' . $additional_class . '">'
+				. $element .
+			'</div>';
+		}
 	}
+
+	// === PRIVATE ===
 
 	/**
 	 * Method render_category
@@ -86,7 +94,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	public function render_category( $is_last_item ) {
+	private function render_category( $is_last_item ) {
 		return '<div class="gvnews-meta-category meta-items ' . $is_last_item . '">
                 <span>
                     <span class="meta-text">' . esc_html__( 'in', 'gutenverse-news' ) . '</span>
@@ -102,7 +110,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	public function render_comment( $is_last_item ) {
+	private function render_comment( $is_last_item ) {
 		return '<div class="gvnews-meta-comment meta-items ' . $is_last_item . '">
 					<a href="' . esc_url( gvnews_get_respond_link() ) . '">
 						<i class="far fa-comment"></i> '
@@ -118,7 +126,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	public function render_author( $is_last_item ) {
+	private function render_author( $is_last_item ) {
 		global $post;
 		return '<div class="gvnews-meta-author meta-items ' . $is_last_item . '">' .
 					get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) .
@@ -136,7 +144,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	public function render_date( $is_last_item ) {
+	private function render_date( $is_last_item ) {
 		global $post;
 
 		$date = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
@@ -153,26 +161,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	public function render_like_dislike( $is_last_item ) {
-		global $post;
-		return '<div class="gvnews-meta-like-dislike meta-items gvnews-like-dislike-button ' . $is_last_item . '">' .
-					apply_filters(
-						'gvnews_like_dislike_element',
-						'',
-						$this->attributes,
-						$post->ID,
-					) .
-				'</div>';
-	}
-
-	/**
-	 * Method render_author
-	 *
-	 * @param string $is_last_item class is-last-item.
-	 *
-	 * @return string
-	 */
-	public function render_bookmark( $is_last_item ) {
+	private function render_bookmark( $is_last_item ) {
 		global $post;
 		return '<div class="gvnews-meta-bookmark meta-items gvnews-bookmark ' . $is_last_item . '">' .
 					apply_filters(
@@ -184,6 +173,20 @@ class Post_Meta extends Post_Guten {
 	}
 
 	/**
+	 * Get meta list.
+	 *
+	 * @return array
+	 */
+	private function meta_list() {
+		return array(
+			'author'   => fn ( $is_last_item ) => $this->render_author( $is_last_item ),
+			'category' => fn ( $is_last_item ) => $this->render_category( $is_last_item ),
+			'comment'  => fn ( $is_last_item ) => $this->render_comment( $is_last_item ),
+			'date'     => fn ( $is_last_item ) => $this->render_date( $is_last_item ),
+		);
+	}
+
+	/**
 	 * Method is_last_item
 	 *
 	 * @param integer $index index.
@@ -191,7 +194,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	protected function is_last_item( $index, $array_length ) {
+	private function is_last_item( $index, $array_length ) {
 		if ( $index === $array_length - 1 ) {
 			return 'is-last-item';
 		}

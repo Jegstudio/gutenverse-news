@@ -13,6 +13,7 @@ import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
 const PostMeta = compose(
     withPartialRender,
@@ -29,7 +30,6 @@ const PostMeta = compose(
         metaLeft = [],
         metaRight = [],
         elementId,
-        showType,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -111,19 +111,6 @@ const PostMeta = compose(
         </div>;
     };
 
-    const LikeDislike = ({ isLastItem }) => {
-        return <div className={`gvnews-meta-like-dislike meta-items gvnews-like-dislike-button ${isLastItem}`}>
-            {applyFilters('gvnews.post-meta.components.like')}
-            {showType === 'both' && applyFilters('gvnews.post-meta.components.dislike')}
-        </div>;
-    };
-
-    const Bookmark = ({ isLastItem }) => {
-        return <div className={`gvnews-meta-bookmark meta-items gvnews-bookmark ${isLastItem}`}>
-            {applyFilters('gvnews.post-meta.components.bookmark')}
-        </div>;
-    };
-
     const MetaAuthor = ({ isLastItem }) => {
         return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
             <img
@@ -143,32 +130,26 @@ const PostMeta = compose(
     const RenderMeta = (props) => {
         return props.metas.map((meta, index) => {
             const isLastItem = index === props.metas.length - 1 ? 'is-last-item' : '';
-            let output;
 
             switch (meta.value) {
                 case 'author':
-                    output = <MetaAuthor key={index} isLastItem={isLastItem} />;
-                    break;
+                    return <MetaAuthor key={index} isLastItem={isLastItem} />;
                 case 'date':
-                    output = <MetaDate key={index} isLastItem={isLastItem} />;
-                    break;
+                    return <MetaDate key={index} isLastItem={isLastItem} />;
                 case 'category':
-                    output = <MetaCategory key={index} isLastItem={isLastItem} />;
-                    break;
+                    return<MetaCategory key={index} isLastItem={isLastItem} />;
                 case 'comment':
-                    output = <MetaComment key={index} isLastItem={isLastItem} />;
-                    break;
-                case 'likeDislike':
-                    output = <LikeDislike key={index} isLastItem={isLastItem} />;
-                    break;
-                case 'bookmark':
-                    output = <Bookmark key={index} isLastItem={isLastItem} />;
-                    break;
-                default:
-                    output = null;
+                    return <MetaComment key={index} isLastItem={isLastItem} />;
             }
 
-            return output;
+            const hookComponents = applyFilters('gvnews.post-meta.components', [], attributes);
+
+            if (isNotEmpty(hookComponents[meta.value])) {
+                const Component = hookComponents[meta.value];
+                return <Component key={index} isLastItem={isLastItem} />;
+            }
+
+            return '';
         });
     };
 
