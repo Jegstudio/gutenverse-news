@@ -173,20 +173,6 @@ class Post_Meta extends Post_Guten {
 	}
 
 	/**
-	 * Get meta list.
-	 *
-	 * @return array
-	 */
-	private function meta_list() {
-		return array(
-			'author'   => fn ( $is_last_item ) => $this->render_author( $is_last_item ),
-			'category' => fn ( $is_last_item ) => $this->render_category( $is_last_item ),
-			'comment'  => fn ( $is_last_item ) => $this->render_comment( $is_last_item ),
-			'date'     => fn ( $is_last_item ) => $this->render_date( $is_last_item ),
-		);
-	}
-
-	/**
 	 * Method is_last_item
 	 *
 	 * @param integer $index index.
