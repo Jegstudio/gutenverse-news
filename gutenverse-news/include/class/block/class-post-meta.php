@@ -74,6 +74,7 @@ class Post_Meta extends Post_Guten {
 			}
 		}
 
+		gutenverse_rlog( $this->attributes );
 		$meta_hook = apply_filters( 'gvnews_post_meta_components', array(), $this->attributes );
 		if ( isset( $meta_hook[ $meta ] ) ) {
 			$element          = isset( $meta_hook[ $meta ]['element'] ) ? $meta_hook[ $meta ]['element'] : '';

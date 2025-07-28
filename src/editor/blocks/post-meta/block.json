@@ -180,6 +180,22 @@
         },
         "bookmarkIconColor": {
             "type":"object"
+        },
+        "wordsPerMinute": {
+            "type":"number",
+            "default": 300
+        },
+        "calculationMethod": {
+            "type":"string",
+            "default":"str_word_count"
+        },
+        "readingTimeTextColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "readingTimeTextTypography": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

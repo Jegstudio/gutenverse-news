@@ -63,6 +63,7 @@ class Post_Meta extends Style_Abstract {
 	public function generate() {
 		$this->like_dislike_button();
 		$this->bookmark_style();
+		$this->reading_time();
 
 		// Author Style Panel.
 		if ( isset( $this->attrs['authorTypography'] ) ) {
@@ -503,6 +504,40 @@ class Post_Meta extends Style_Abstract {
 						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['bookmarkIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Reading Time Style
+	 *
+	 * @return void
+	 */
+	private function reading_time() {
+		$selector = '.' . $this->element_id . '.gvnews-reading-time.gvnews-block';
+
+		if ( isset( $this->attrs['readingTimeTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readingTimeTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readingTimeTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['readingTimeTextTypography'],
 					'device_control' => false,
 				)
 			);
