@@ -1,5 +1,7 @@
 .gvnews-deprecated-block {
     position: relative;
+    min-height: 72px;
+    margin: 10px 0;
 
     .deprecated-block-content {
         position: absolute;
@@ -21,6 +23,7 @@
         flex-direction: column;
         gap: 16px;
         font-size: 16px;
+        min-height: 72px;
 
         span {
             display: inline-flex;
@@ -39,10 +42,11 @@
             letter-spacing: 0.5px;
             text-decoration: underline;
             text-transform: uppercase;
-            color: #fff;
+            color: #fff !important;
             text-decoration-style: solid;
             text-decoration-thickness: 0%;
             text-decoration-skip-ink: auto;
+            background: none;
 
         }
     }
