@@ -295,6 +295,12 @@
         "enableExcerpt": {
             "type": "boolean",
             "default": true
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
         }
     },
     "supports": {

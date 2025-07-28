@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { applyFilters } from '@wordpress/hooks';
 
 const getHeroStyle = (elementId, attributes) => {
     let data = [];
@@ -281,7 +282,17 @@ const getHeroStyle = (elementId, attributes) => {
         ],
     });
 
-    return data;
+    return [
+        ...data,
+        ...applyFilters(
+            'gvnews.style.heroStyle',
+            [],
+            {
+                elementId,
+                attributes,
+            }
+        )
+    ];
 };
 
 

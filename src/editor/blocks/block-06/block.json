@@ -349,6 +349,12 @@
         },
         "readmoreButtonBoxShadowHover": {
             "type": "object"
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
         }
     },
     "supports": {

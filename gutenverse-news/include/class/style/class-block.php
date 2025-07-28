@@ -513,5 +513,7 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+
+		do_action( 'gvnews_module_style', $this );
 	}
 }

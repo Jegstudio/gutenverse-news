@@ -655,6 +655,8 @@ class Api {
 				'comment'   => get_comments_number( $post->ID ),
 			);
 
+			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', [], $post ) );
+
 			if ( $advanced_response ) {
 				$data['result'][] = $final_data;
 			} else {
