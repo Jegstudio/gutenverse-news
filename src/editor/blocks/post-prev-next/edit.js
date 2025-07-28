@@ -4,8 +4,6 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -13,8 +11,9 @@ import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const PostPrevNext = compose(
     withPartialRender,
@@ -101,13 +100,13 @@ const PostPrevNext = compose(
     }, [prevNextData]);
 
     return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <PanelDeprecated title="Post Next Prev" />
         <div  {...blockProps}>
-            <div className="gvnews_custom_prev_next_wrapper gvnews_prev_next_container">
+            <div className="gvnews_custom_prev_next_wrapper gvnews_prev_next_container gvnews-deprecated-block">
                 <div className="gvnews_prevnext_post">
                     {content ? content : <ModuleOverlay />}
                 </div>
+                <DeprecatedOverlay />
             </div>
         </div>
     </>;

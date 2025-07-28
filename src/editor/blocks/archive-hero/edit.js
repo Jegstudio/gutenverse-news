@@ -2,16 +2,14 @@ import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-// import getBlockStyle from '../../control-panel/hero-style';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -57,10 +55,9 @@ const ArchiveHero = compose(
 
     return (
         <>
-            <CopyElementToolbar {...props} />
-            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            <PanelDeprecated title="Archive Hero" />
             <div {...blockProps}>
-                <div className="guten-raw-wrapper gvnews-editor">
+                <div className="guten-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -81,6 +78,7 @@ const ArchiveHero = compose(
                             heightDesktop: heroHeightDesktop,
                         }}
                     />
+                    <DeprecatedOverlay />
                 </div>
             </div>
         </>

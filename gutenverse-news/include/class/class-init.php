@@ -320,8 +320,7 @@ class Init {
 	 * @return void
 	 */
 	public function add_admin_deprecated_popup() {
-		$screen = get_current_screen();
-		if ( ! ( 'post' === $screen->base && $screen && $screen->is_block_editor ) ) {
+		if ( ! gutenverse_is_block_editor() ) {
 			return;
 		}
 

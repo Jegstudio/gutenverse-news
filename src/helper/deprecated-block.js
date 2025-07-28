@@ -123,6 +123,12 @@
                         'gutenverse/news-slider-7',
                         'gutenverse/news-slider-8',
                         'gutenverse/news-slider-9',
+                        'gutenverse/news-post-title',
+                        'gutenverse/news-rss',
+                        'gutenverse/news-post-tag',
+                        'gutenverse/news-post-prev-next',
+                        'gutenverse/news-archive-hero',
+                        'gutenverse/news-post-comment',
                     ];
                     const hasDeprecated = blockNames.some(name =>
                         deprecatedBlockNames.includes(name)
