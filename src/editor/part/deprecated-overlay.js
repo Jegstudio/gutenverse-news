@@ -1,7 +1,7 @@
 const DeprecatedOverlay = () => {
     const handleLearnMoreClick = (e) => {
         e.preventDefault();
-        document.body.classList.add('gvnews-deprecated-popup');
+        document.body.classList.add('gvnews-deprecated-popup', 'gvnews-deprecated-blocks');
     };
     return (
         <div className="deprecated-block-content">

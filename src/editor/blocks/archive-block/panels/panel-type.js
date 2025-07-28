@@ -38,79 +38,98 @@ export const panelType = () => {
                 },
                 {
                     value: '10',
-                    image: <img src={`${imgDir}/content-10.png`} />
+                    image: <img src={`${imgDir}/content-10.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '11',
-                    image: <img src={`${imgDir}/content-11.png`} />
+                    image: <img src={`${imgDir}/content-11.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '12',
-                    image: <img src={`${imgDir}/content-12.png`} />
+                    image: <img src={`${imgDir}/content-12.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '14',
-                    image: <img src={`${imgDir}/content-14.png`} />
+                    image: <img src={`${imgDir}/content-14.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '15',
-                    image: <img src={`${imgDir}/content-15.png`} />
+                    image: <img src={`${imgDir}/content-15.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '18',
-                    image: <img src={`${imgDir}/content-18.png`} />
+                    image: <img src={`${imgDir}/content-18.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '22',
-                    image: <img src={`${imgDir}/content-22.png`} />
+                    image: <img src={`${imgDir}/content-22.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '23',
-                    image: <img src={`${imgDir}/content-23.png`} />
+                    image: <img src={`${imgDir}/content-23.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '25',
-                    image: <img src={`${imgDir}/content-25.png`} />
+                    image: <img src={`${imgDir}/content-25.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '26',
-                    image: <img src={`${imgDir}/content-26.png`} />
+                    image: <img src={`${imgDir}/content-26.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '27',
-                    image: <img src={`${imgDir}/content-27.png`} />
+                    image: <img src={`${imgDir}/content-27.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '32',
-                    image: <img src={`${imgDir}/content-32.png`} />
+                    image: <img src={`${imgDir}/content-32.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '33',
-                    image: <img src={`${imgDir}/content-33.png`} />
+                    image: <img src={`${imgDir}/content-33.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '34',
-                    image: <img src={`${imgDir}/content-34.png`} />
+                    image: <img src={`${imgDir}/content-34.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '35',
-                    image: <img src={`${imgDir}/content-35.png`} />
+                    image: <img src={`${imgDir}/content-35.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '36',
-                    image: <img src={`${imgDir}/content-36.png`} />
+                    image: <img src={`${imgDir}/content-36.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '37',
-                    image: <img src={`${imgDir}/content-37.png`} />
+                    image: <img src={`${imgDir}/content-37.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '38',
-                    image: <img src={`${imgDir}/content-38.png`} />
+                    image: <img src={`${imgDir}/content-38.png`} />,
+                    deprecated: true,
                 },
                 {
                     value: '39',
-                    image: <img src={`${imgDir}/content-39.png`} />
+                    image: <img src={`${imgDir}/content-39.png`} />,
+                    deprecated: true,
                 },
             ],
         },

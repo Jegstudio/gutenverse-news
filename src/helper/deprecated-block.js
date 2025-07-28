@@ -4,11 +4,11 @@
 
         if (popup) {
             document.getElementById('gvnews-popup-close')?.addEventListener('click', () => {
-                document.body.classList.remove('gvnews-deprecated-popup');
+                document.body.classList.remove('gvnews-deprecated-popup', 'gvnews-deprecated-options', 'gvnews-deprecated-blocks');
             });
 
             document.getElementById('gvnews-popup-ok')?.addEventListener('click', () => {
-                document.body.classList.remove('gvnews-deprecated-popup');
+                document.body.classList.remove('gvnews-deprecated-popup', 'gvnews-deprecated-options', 'gvnews-deprecated-blocks');
             });
         }
     }
@@ -21,7 +21,7 @@
             deprecatedBlocks.forEach(block => {
                 block.querySelectorAll('a').forEach(anchor => {
                     anchor.addEventListener('click', () => {
-                        document.body.classList.add('gvnews-deprecated-popup');
+                        document.body.classList.add('gvnews-deprecated-popup', 'gvnews-deprecated-blocks');
                     });
                 });
             });
@@ -29,7 +29,7 @@
     }
 
     function showPopup() {
-        document.body.classList.add('gvnews-deprecated-popup');
+        document.body.classList.add('gvnews-deprecated-popup', 'gvnews-deprecated-blocks');
     }
 
     // 🔁 Recursive function to get all blocks (including inner blocks)

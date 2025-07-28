@@ -149,75 +149,93 @@ export const contentPanel = props => {
                 },
                 {
                     image: <img src={`${imgDir}/content-10.png`}/>,
-                    value: 'template_10'
+                    value: 'template_10',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-11.png`}/>,
-                    value: 'template_11'
+                    value: 'template_11',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-12.png`}/>,
-                    value: 'template_12'
+                    value: 'template_12',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-13.png`}/>,
-                    value: 'template_13'
+                    value: 'template_13',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-14.png`}/>,
-                    value: 'template_14'
+                    value: 'template_14',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-15.png`}/>,
-                    value: 'template_15'
+                    value: 'template_15',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-16.png`}/>,
-                    value: 'template_16'
+                    value: 'template_16',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-17.png`}/>,
-                    value: 'template_17'
+                    value: 'template_17',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-18.png`}/>,
-                    value: 'template_18'
+                    value: 'template_18',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-19.png`}/>,
-                    value: 'template_19'
+                    value: 'template_19',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-20.png`}/>,
-                    value: 'template_20'
+                    value: 'template_20',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-21.png`}/>,
-                    value: 'template_21'
+                    value: 'template_21',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-22.png`}/>,
-                    value: 'template_22'
+                    value: 'template_22',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-23.png`}/>,
-                    value: 'template_23'
+                    value: 'template_23',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-24.png`}/>,
-                    value: 'template_24'
+                    value: 'template_24',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-25.png`}/>,
-                    value: 'template_25'
+                    value: 'template_25',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-26.png`}/>,
-                    value: 'template_26'
+                    value: 'template_26',
+                    deprecated: true,
                 },
                 {
                     image: <img src={`${imgDir}/content-27.png`}/>,
-                    value: 'template_27'
+                    value: 'template_27',
+                    deprecated: true,
                 },
             ],
         },
