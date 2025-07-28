@@ -115,6 +115,14 @@
                         'gutenverse/news-block-37',
                         'gutenverse/news-block-38',
                         'gutenverse/news-block-39',
+                        'gutenverse/news-slider-2',
+                        'gutenverse/news-slider-3',
+                        'gutenverse/news-slider-4',
+                        'gutenverse/news-slider-5',
+                        'gutenverse/news-slider-6',
+                        'gutenverse/news-slider-7',
+                        'gutenverse/news-slider-8',
+                        'gutenverse/news-slider-9',
                     ];
                     const hasDeprecated = blockNames.some(name =>
                         deprecatedBlockNames.includes(name)

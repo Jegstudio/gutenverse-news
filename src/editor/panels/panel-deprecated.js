@@ -13,7 +13,7 @@ const PanelDeprecated = ({ title }) => {
                     <div className="deprecated-desc">
                         <h5>{title} Is Deprecated</h5>
                         <p> This block is no longer supported and will be removed in the next update.</p>
-                        <p>Please replace it with a supported Gutenverse News block to ensure your layout working properly.</p>
+                        <p>Please replace it with a supported <b>Gutenverse</b> block to ensure your layout working properly.</p>
                     </div>
                 </div>
             </div>
