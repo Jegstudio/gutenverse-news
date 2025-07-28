@@ -128,24 +128,20 @@ const PostMeta = compose(
 
 
     const RenderMeta = (props) => {
+        let components = {
+            author: MetaAuthor,
+            date: MetaDate,
+            category: MetaCategory,
+            comment: MetaComment,
+        };
+
+        components = applyFilters('gvnews.post-meta.components', components, attributes);
+
         return props.metas.map((meta, index) => {
             const isLastItem = index === props.metas.length - 1 ? 'is-last-item' : '';
 
-            switch (meta.value) {
-                case 'author':
-                    return <MetaAuthor key={index} isLastItem={isLastItem} />;
-                case 'date':
-                    return <MetaDate key={index} isLastItem={isLastItem} />;
-                case 'category':
-                    return<MetaCategory key={index} isLastItem={isLastItem} />;
-                case 'comment':
-                    return <MetaComment key={index} isLastItem={isLastItem} />;
-            }
-
-            const hookComponents = applyFilters('gvnews.post-meta.components', [], attributes);
-
-            if (isNotEmpty(hookComponents[meta.value])) {
-                const Component = hookComponents[meta.value];
+            if (isNotEmpty(components[meta.value])) {
+                const Component = components[meta.value];
                 return <Component key={index} isLastItem={isLastItem} />;
             }
 
