@@ -129,6 +129,7 @@
                         'gutenverse/news-post-prev-next',
                         'gutenverse/news-archive-hero',
                         'gutenverse/news-post-comment',
+                        'gutenverse/news-archive-title',
                     ];
                     const hasDeprecated = blockNames.some(name =>
                         deprecatedBlockNames.includes(name)
