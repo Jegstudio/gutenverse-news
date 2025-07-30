@@ -8,7 +8,7 @@ const registerBlocks = () => {
     r.keys().forEach(key => {
         const { settings, metadata, name } = r(key);
 
-        name && updateBlockList({ name, settings, metadata });
+        name && !isDeprecated(metadata) && updateBlockList({ name, settings, metadata });
 
         if (window?.GutenverseConfig && name && !getBlockType(name) && isBlockActive(name)) {
             registerBlockType(name, {
@@ -18,6 +18,13 @@ const registerBlocks = () => {
         }
     });
 };
+
+const isDeprecated = (metadata) => {
+    if (metadata?.supports?.inserter === false) {
+        return true;
+    }
+    return false;
+}
 
 (() => {
     registerBlocks();
