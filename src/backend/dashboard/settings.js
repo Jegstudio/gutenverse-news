@@ -36,8 +36,9 @@ const settings = (nav) => {
                     title: 'Global Block Settings'
                 },
                 {
-                    id: 'manage_features',
-                    title: 'Manage Features'
+                    id: 'additional_features',
+                    title: 'Addiitonal Features',
+                    pro: true
                 }
             ]
         },
