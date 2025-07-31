@@ -10,7 +10,6 @@ const registerBlocks = () => {
         const { settings, name, metadata } = r(key);
         const data = getData(metadata);
         name && !isDeprecated(data) && updateBlockList({ name, settings, data });
-
         if (window?.GutenverseConfig && name && !getBlockType(name) && isBlockActive(name)) {
             registerBlockType(name, {
                 ...settings,
@@ -23,7 +22,7 @@ const registerBlocks = () => {
 const getData = (metadata) => {
     if (metadata?.supports?.inserter === false) {
         if (gutenverseProActive) {
-            return metadata.supports.inserter = true;
+            metadata.supports.inserter = true;
         }
     }
     return metadata;

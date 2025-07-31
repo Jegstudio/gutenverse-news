@@ -10,6 +10,10 @@ import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const HeroSkewBlock = compose(
     withPartialRender,
@@ -71,12 +75,22 @@ const HeroSkewBlock = compose(
             'gvnews-block-wrapper', 'gvnews-hero-skew', elementId, animationClass, displayClass),
         ref: elementRef,
     });
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     return (
         <>
-            <PanelDeprecated title="Hero Skew" />
+            {isDeprecated ? (
+                <PanelDeprecated title="Hero Skew" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
+                <div className={wrapperClass}>
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -109,7 +123,7 @@ const HeroSkewBlock = compose(
                             heightDesktop,
                         }}
                     />
-                    <DeprecatedOverlay />
+                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>
