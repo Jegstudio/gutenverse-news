@@ -14,6 +14,10 @@ export const NewsSettings = (props) => {
             [id]: value
         });
     }
+    const updateGVNewsFeatures = (value) => {
+        updateSettingValues('gvnews_settings', 'features', value);
+    }
+
     switch (subSettings) {
         case 'block_settings':
             return <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
@@ -21,7 +25,7 @@ export const NewsSettings = (props) => {
             return applyFilters(
                 'gutenverse.news.settings-pro-features',
                 '',
-                { ...props, settingValues: gvnews_settings, updateSettingValues: updateGVNewsSettings },
+                { ...props, settingValues: gvnews_settings, updateSettingValues: updateGVNewsFeatures },
             );
         default:
             break;
