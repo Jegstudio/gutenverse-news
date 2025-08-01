@@ -1,4 +1,4 @@
-.gutenverse-panel.panel-header-filter.pro>h2>button:after {
+.gutenverse-panel.deprecated>h2>button:after {
     align-items: center;
     background: #FFFBEF;
     border: 1px solid #EEBC0D;
@@ -8,6 +8,11 @@
     font-weight: 600;
     font-size: 11px;
     content: "DEPRECATED";
+    padding: 4px 6px;
+    margin-left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gvnews-deprecated-block {
