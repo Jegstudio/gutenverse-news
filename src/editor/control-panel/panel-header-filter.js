@@ -1,4 +1,4 @@
-import { LockedProPanel } from 'gutenverse-core/controls';
+import { LockedHeaderFilterControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { WarningIconSVG } from '../../assets/block-icons';
 import { gutenverseProActive } from '../utils/helper';
@@ -8,7 +8,7 @@ export const headerFilterPanel = (props) => {
         return applyFilters(
             'gutenverse.news.header-filter',
             [{
-                component: LockedProPanel,
+                component: LockedHeaderFilterControl,
             }],
             props
         );

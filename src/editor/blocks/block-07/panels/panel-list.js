@@ -8,6 +8,7 @@ import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
+import { gutenverseProActive } from '../../../utils/helper';
 
 export const panelList = () => {
     return [
@@ -20,12 +21,15 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            id: 'header-filter',
             title: __('Header Filter', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => headerFilterPanel({
-                ...props,
-            }),
-            tabRole: TabSetting
+            panelArray: (props) => {
+                return headerFilterPanel(props);
+            },
+            tabRole: TabSetting,
+            deprecated: !gutenverseProActive,
+            pro: gutenverseProActive,
         },
         {
             title: __('Content Filter', 'gutenverse-news'),
