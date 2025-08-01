@@ -5,15 +5,16 @@ import { gutenverseProActive } from './utils/helper';
 
 const registerBlocks = () => {
     const r = require.context('./blocks', true, /index\.js$/);
-
     r.keys().forEach(key => {
-        const { settings, name, metadata } = r(key);
-        const data = getData(metadata);
-        name && !isDeprecated(data) && updateBlockList({ name, settings, data });
+        const { settings, name } = r(key);
+        let { metadata } = r(key);
+        metadata = getData(metadata);
+
+        name && !isDeprecated(metadata) && updateBlockList({ name, settings, metadata }, (metadata?.gutenversePro === true));
         if (window?.GutenverseConfig && name && !getBlockType(name) && isBlockActive(name)) {
             registerBlockType(name, {
                 ...settings,
-                ...data
+                ...metadata
             });
         }
     });
@@ -23,6 +24,7 @@ const getData = (metadata) => {
     if (metadata?.supports?.inserter === false && !metadata.gvnewsRemoved) {
         if (gutenverseProActive) {
             metadata.supports.inserter = true;
+            metadata.gutenversePro = true;
         }
     }
     return metadata;
