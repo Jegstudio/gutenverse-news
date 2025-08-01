@@ -20,7 +20,7 @@ const registerBlocks = () => {
 };
 
 const getData = (metadata) => {
-    if (metadata?.supports?.inserter === false) {
+    if (metadata?.supports?.inserter === false && !metadata.gvnewsRemoved) {
         if (gutenverseProActive) {
             metadata.supports.inserter = true;
         }
