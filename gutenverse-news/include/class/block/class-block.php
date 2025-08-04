@@ -210,7 +210,7 @@ class Block extends Grab {
 			'GUTENVERSE\NEWS\Block\Module\Module_38',
 			'GUTENVERSE\NEWS\Block\Module\Module_39',
 		);
-		if ( current_user_can( 'edit_pages' ) && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
+		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
 			return true;
 		}
 		return false;

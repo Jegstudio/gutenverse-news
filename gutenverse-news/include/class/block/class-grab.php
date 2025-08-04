@@ -253,7 +253,7 @@ class Grab {
 	 * @return string
 	 */
 	protected function render_deprecated() {
-		if ( $this->is_deprecated && ! gutenverse_pro_active() ) {
+		if ( $this->is_deprecated ) {
 			wp_enqueue_script( 'gvnews-deprecated-blocks' );
 			wp_enqueue_style( 'gvnews-deprecated-blocks' );
 			add_filter( 'gvnews_print_deprecated_popup', '__return_true' );
