@@ -100,6 +100,14 @@ class Init {
 
 
 
+	/**
+	 * Hold instance of Meta Option
+	 *
+	 * @var Downgrade_Plugin
+	 */
+	public $downgrade_plugin;
+
+
 
 
 	/**
@@ -228,15 +236,16 @@ class Init {
 	 */
 	public function init_instance() {
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		$this->frontend_assets = new Frontend_Assets();
-		$this->editor_assets   = new Editor_Assets();
-		$this->style_generator = new Style_Generator();
-		$this->util            = new Util();
-		$this->blocks          = new Blocks();
-		$this->ajax            = new Ajax();
-		$this->dashboard       = new Dashboard();
-		$this->image           = Image::get_instance();
-		$this->meta_option     = new Meta_Option();
+		$this->frontend_assets  = new Frontend_Assets();
+		$this->editor_assets    = new Editor_Assets();
+		$this->style_generator  = new Style_Generator();
+		$this->util             = new Util();
+		$this->blocks           = new Blocks();
+		$this->ajax             = new Ajax();
+		$this->dashboard        = new Dashboard();
+		$this->image            = Image::get_instance();
+		$this->meta_option      = new Meta_Option();
+		$this->downgrade_plugin = new Downgrade_Plugin();
 	}
 
 	/**

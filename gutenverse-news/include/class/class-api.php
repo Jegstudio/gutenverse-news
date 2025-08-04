@@ -146,6 +146,74 @@ class Api {
 				'permission_callback' => 'gutenverse_permission_check_author',
 			)
 		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'downgradePlugin',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'downgrade_plugin' ),
+				'permission_callback' => array( $this, 'permission_install_plugin' ),
+			)
+		);
+	}
+	/**
+	 * Method get_rss_data
+	 *
+	 * @param object $request request.
+	 *
+	 * @return JSON
+	 */
+	public function downgrade_plugin( $request ) {
+		$nonce       = $request->get_param( 'nonce' );
+		$slug        = sanitize_text_field( $request['slug'] );
+		$plugin_slug = 'wpdiscuz';
+		$file_url    = 'https://downloads.wordpress.org/plugin/wpdiscuz.7.6.30.zip';
+		include_once ABSPATH . 'wp-admin/includes/file.php';
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+		$plugin_dir = WP_PLUGIN_DIR . '/' . $plugin_slug;
+
+		// 1. Nonaktifkan plugin
+		$active_plugins = get_option( 'active_plugins' );
+		foreach ( $active_plugins as $plugin ) {
+			if ( strpos( $plugin, $slug . '/' ) === 0 ) {
+				deactivate_plugins( $plugin );
+				break;
+			}
+		}
+
+		// 2. Hapus plugin lama
+		if ( is_dir( $plugin_dir ) ) {
+			global $wp_filesystem;
+			WP_Filesystem();
+			$wp_filesystem->delete( $plugin_dir, true );
+		}
+
+		// 3. Download ZIP
+		$tmp_file = download_url( $file_url );
+		if ( is_wp_error( $tmp_file ) ) {
+			// return new \WP_Error( 'download_failed', 'Gagal mengunduh file zip.', array( 'status' => 500 ) );
+			$this->response_error( 'Faild to download plugin file' );
+		}
+
+		// 4. Ekstrak ZIP
+		$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
+		@unlink( $tmp_file );
+
+		if ( is_wp_error( $result ) ) {
+			// return new \WP_Error( 'unzip_failed', 'Gagal mengekstrak file zip.', array( 'status' => 500 ) );
+			$this->response_error( 'Faild to extract plugin file' );
+
+		}
+
+		return rest_ensure_response(
+			array(
+				'success' => true,
+				'message' => 'Plugin berhasil di-downgrade.',
+			)
+		);
 	}
 
 
@@ -785,5 +853,41 @@ class Api {
 	 * @return void
 	 */
 	public function php_function_caller( $attributes ) {
+	}
+
+		/**
+		 * Check user permissions
+		 *
+		 * @return boolean
+		 */
+	public function permission_install_plugin() {
+		return current_user_can( 'install_plugins' );
+	}
+
+	/**
+	 * Return error response
+	 *
+	 * @param string $message Error message.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_error( $message ) {
+		return new \WP_REST_Response(
+			array(
+				'message' => $message,
+			),
+			500
+		);
+	}
+
+	/**
+	 * Return success response
+	 *
+	 * @param array $args args.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_success( $args ) {
+		return new \WP_REST_Response( $args, 200 );
 	}
 }

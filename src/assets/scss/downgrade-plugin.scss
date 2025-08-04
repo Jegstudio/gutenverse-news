@@ -1,0 +1,59 @@
+.gvnews-wizard-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    width: 100%;
+    background-color: #f0f0f1;
+    overflow: scroll;
+
+    .gvnews-wizard {
+        min-height: 1000px;
+        background-color: #f0f0f1;
+        padding: 30px;
+        max-width: 1180px;
+        margin: 0 auto;
+
+        >* {
+            box-sizing: border-box;
+        }
+
+        .wizard-body {
+            background-color: #fff;
+            border: 1px solid #e3e4e6;
+            border-radius: 20px;
+            display: flex;
+            margin-top: 56px;
+            max-width: 1200px;
+            min-height: 300px;
+            overflow: hidden;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+
+            .downgrade-button {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 9px;
+                padding: 12px 32px;
+                border-radius: 5px;
+                background-color: #3B57F7;
+                font-family: "Inter", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                text-align: center;
+                color: #fff;
+                margin-top: 24px;
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+                &:hover {
+                    background-color: #3B57F7;
+                }
+            }
+        }
+    }
+}
