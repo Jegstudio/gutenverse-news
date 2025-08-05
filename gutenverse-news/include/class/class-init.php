@@ -332,7 +332,7 @@ class Init {
 								<p>We recommend updating your blocks for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
 									<a href="<?php echo $edit_url; ?>" class="gvnews-btn gvnews-replace-btn">Replace Blocks</a>
-									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Replace Blocks</a>
+									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
 								</div>
 							</div>
 					</div>
@@ -351,6 +351,14 @@ class Init {
 			return;
 		}
 
+		$downgrade_url = add_query_arg(
+			array(
+				'action' => 'gutenverse-news-downgrade-wizard',
+				'nonce'  => wp_create_nonce( 'gutenverse-news-downgrade-wizard' ),
+			),
+			admin_url( 'admin.php' )
+		);
+
 		?>
 			<div id="gvnews-deprecated-popup" class="gvnews-deprecated-modal">
 				<div class="gvnews-deprecated-backdrop">
@@ -366,18 +374,16 @@ class Init {
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M23.413 21.5761L12.7246 1.61772C12.6512 1.49036 12.5456 1.38457 12.4184 1.31102C12.2911 1.23746 12.1468 1.19873 11.9998 1.19873C11.8528 1.19873 11.7084 1.23746 11.5812 1.31102C11.454 1.38457 11.3483 1.49036 11.275 1.61772L0.587794 21.5761C0.517085 21.7007 0.480414 21.8417 0.481467 21.9849C0.482521 22.1282 0.521261 22.2686 0.593794 22.3921C0.743794 22.6453 1.01619 22.8001 1.31139 22.8001H22.6882C22.8328 22.7996 22.9748 22.7618 23.1006 22.6903C23.2263 22.6189 23.3314 22.5161 23.4058 22.3921C23.4785 22.2687 23.5175 22.1283 23.5187 21.9851C23.52 21.8418 23.4835 21.7008 23.413 21.5761ZM13.1998 20.4001H10.7998V18.0001H13.1998V20.4001ZM13.1998 16.2001H10.7998V8.40012H13.1998V16.2001Z" fill="#EEBC0D"/>
 									</svg>
-								<div class="blocks-deprecated-text">
-									<h2>Some blocks in this page are deprecated.</h2>
-									<p>One or more <b>Gutenverse News</b> blocks used in this page are deprecated and will be removed in the next plugin update.</p>
-									<p>To avoid layout issues or content loss, we recommend replacing them with current supported blocks.</p>
-								</div>
-
-								<div class="options-deprecated-text">
-									<h2>This option is already deprecated.</h2>
-									<p>If you're still using a deprecated option in the block settings, we recommend replacing it with another option that is not deprecated.</p>
-								</div>
+								<h2>Some blocks in this page are deprecated.</h2>
+								<p>We’ve detected one or more blocks on this page that are no longer supported in the latest version of <b>Gutenverse News.</b></p>
+								<p>To keep your page working properly, you have two options:</p>
+								<ul>
+									<li>Replace deprecated blocks with supported ones.</li>
+									<li>Or switch back to version 2.0.0 to continue using them.</li>
+								</ul>
+								<p>We recommend updating your blocks for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
-									<button id="gvnews-popup-ok" class="gvnews-ok-btn">OKAY</button>
+									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
 								</div>
 							</div>
 					</div>

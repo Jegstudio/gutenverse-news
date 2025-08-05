@@ -55,16 +55,12 @@
         a {
             font-weight: 500;
             font-style: Medium;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            text-decoration: underline;
-            text-transform: uppercase;
+            font-size: 14px;
             color: #fff !important;
-            text-decoration-style: solid;
-            text-decoration-thickness: 0%;
-            text-decoration-skip-ink: auto;
-            background: none;
-
+            border: 1px solid #FFFFFFBF;
+            padding: 12px 24px;
+            border-radius: 5px;
+            background: #FFFFFF14;
         }
     }
 }
@@ -204,6 +200,11 @@
                 color: #53585C;
                 font-size: 16px;
 
+                ul {
+                    list-style-type: disc;
+                    margin-left: 40px;
+                }
+
                 .blocks-deprecated-text {
                     display: none;
                 }
@@ -226,6 +227,7 @@
 
                 li {
                     font-weight: 500;
+                    color: #212121;
                 }
 
                 .gvnews-deprecated-actions {
@@ -240,7 +242,7 @@
                         font-weight: 500;
                         cursor: pointer;
                         text-decoration: none;
-
+                        transition: background-color .5s ease
                     }
 
                     .gvnews-replace-btn {
@@ -248,12 +250,26 @@
                         color: #fff;
                         border: none;
 
+
+
+                        &:hover {
+                            background: #2435EC;
+                            box-shadow: 0px 8px 44px 0px #FFFFFF1F;
+                        }
+
                     }
 
                     .gvnews-dwongrade-btn {
                         background-color: #fff;
                         border: 1px solid #3B57F7;
                         color: #3B57F7;
+
+                        &:hover {
+                            background: #3B57F7;
+                            color: #fff;
+                        }
+
+
                     }
                 }
             }

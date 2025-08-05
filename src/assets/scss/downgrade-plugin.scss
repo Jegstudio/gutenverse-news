@@ -317,7 +317,7 @@
             font-size: 14px;
             text-align: center;
             vertical-align: middle;
-
+            transition: background-color .5s ease;
             &.primary {
                 background: #3B57F7;
                 color: #fff;
