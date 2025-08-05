@@ -130,7 +130,7 @@ class Downgrade_Plugin {
 		wp_localize_script(
 			'gvnews-downgrade-plugin',
 			'GVNewsDowngrade',
-			array( 'nonce' => wp_create_nonce( 'gvnews_downgrade' ) )
+			array( 'nonceAPI' => wp_create_nonce( 'gvnews_downgrade' ) )
 		);
 	}
 

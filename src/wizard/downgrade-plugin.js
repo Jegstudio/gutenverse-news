@@ -13,10 +13,11 @@ const loadWizard = () => {
 const DowngradeWizard = () => {
 
     const [isDisable, setIsDisable] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const doDowngrade = () => {
-
-        managePlugin()
+        setLoading(true);
+        managePlugin(isDisable)
             .then((result) => {
                 pluginStore('setProgressBar', 80);
                 if (result) {
@@ -24,6 +25,7 @@ const DowngradeWizard = () => {
                 } else {
                     console.log('ERROR');
                 }
+                setLoading(false);
             })
             .catch((error) => {
                 let message = false;
@@ -31,13 +33,9 @@ const DowngradeWizard = () => {
                     message = error.message;
                 }
                 console.log(error);
+                setLoading(false);
 
             });
-
-        console.log('DO DOWNGRADE');
-        console.log(isDisable)
-        console.log('END OF DO DOWNGRADE');
-
     }
     return <div className='gvnews-wizard-wrapper'>
         <div className='gvnews-wizard'>
@@ -51,6 +49,7 @@ const DowngradeWizard = () => {
                     </label>
                 </div>
                 <div className="content-action">
+                    {loading && <span>Loading ..... </span>}
                     <div class="downgrade-button" onClick={() => doDowngrade()}>Downgrade</div>
                 </div>
 
@@ -60,13 +59,15 @@ const DowngradeWizard = () => {
     </div>
 }
 
-export const managePlugin = () => {
+export const managePlugin = (autoUpdate) => {
+    const { nonceAPI = '' } = GVNewsDowngrade || {}
     return new Promise((resolve, reject) => {
         apiFetch({
             path: 'gvnews-client/v1/downgradePlugin',
             method: 'POST',
             data: {
-                nonce: 'nonceAPI',
+                nonce: nonceAPI,
+                autoUpdate: autoUpdate
             },
         })
             .then((response) => {

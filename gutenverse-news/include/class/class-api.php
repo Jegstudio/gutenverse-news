@@ -166,14 +166,15 @@ class Api {
 	 */
 	public function downgrade_plugin( $request ) {
 		$nonce       = $request->get_param( 'nonce' );
-		$slug        = sanitize_text_field( $request['slug'] );
-		$plugin_slug = 'wpdiscuz';
-		$file_url    = 'https://downloads.wordpress.org/plugin/wpdiscuz.7.6.30.zip';
+		$auto_update = $request->get_param( 'autoUpdate' );
+
+		$slug     = 'wpdiscuz';
+		$file_url = 'https://downloads.wordpress.org/plugin/wpdiscuz.7.6.30.zip';
 		include_once ABSPATH . 'wp-admin/includes/file.php';
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
-		$plugin_dir = WP_PLUGIN_DIR . '/' . $plugin_slug;
+		$plugin_dir = WP_PLUGIN_DIR . '/' . $slug;
 
 		// 1. Nonaktifkan plugin
 		$active_plugins = get_option( 'active_plugins' );
@@ -200,7 +201,7 @@ class Api {
 
 		// 4. Ekstrak ZIP
 		$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
-		@unlink( $tmp_file );
+		wp_delete_file( $tmp_file );
 
 		if ( is_wp_error( $result ) ) {
 			// return new \WP_Error( 'unzip_failed', 'Gagal mengekstrak file zip.', array( 'status' => 500 ) );
