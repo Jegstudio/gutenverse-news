@@ -201,8 +201,8 @@
             .gvnews-deprecated-text {
                 font-family: "Roboto";
                 font-weight: 400;
-                letter-spacing: 0px;
                 color: #53585C;
+                font-size: 16px;
 
                 .blocks-deprecated-text {
                     display: none;
@@ -218,35 +218,42 @@
                     font-size: 22px;
                 }
 
-                p {
-                    margin-bottom: 20px;
+                p,
+                ul {
+                    margin-bottom: 16px;
                     font-size: 16px;
+                }
+
+                li {
+                    font-weight: 500;
                 }
 
                 .gvnews-deprecated-actions {
                     display: flex;
                     gap: 10px;
                     margin-top: 40px;
-                    font-size: 13px;
-                    font-weight: 500;
 
-                    .gvnews-replace-btn {
-                        background-color: #F70D28;
-                        color: white;
-                        border: none;
+                    .gvnews-btn {
+                        font-size: 14px;
                         padding: 6px 12px;
-                        text-transform: uppercase;
+                        border-radius: 5px;
+                        font-weight: 500;
                         cursor: pointer;
                         text-decoration: none;
+
                     }
 
-                    .gvnews-ok-btn {
-                        background-color: transparent;
-                        color: #000;
+                    .gvnews-replace-btn {
+                        background-color: #3B57F7;
+                        color: #fff;
                         border: none;
-                        padding: 10px 16px;
-                        cursor: pointer;
-                        font-family: "Roboto";
+
+                    }
+
+                    .gvnews-dwongrade-btn {
+                        background-color: #fff;
+                        border: 1px solid #3B57F7;
+                        color: #3B57F7;
                     }
                 }
             }

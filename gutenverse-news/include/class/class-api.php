@@ -172,7 +172,7 @@ class Api {
 		$disable_auto_update = $request->get_param( 'disableAutoUpdate' );
 		try {
 			if ( ! wp_verify_nonce( $nonce, 'gvnews_downgrade' ) ) {
-				throw new \Exception( esc_html__( 'You are not allowed to perform this action.', 'jnews' ) );
+				throw new \Exception( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
 			}
 
 			$slug     = 'wp-reset';

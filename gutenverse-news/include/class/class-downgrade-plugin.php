@@ -43,8 +43,8 @@ class Downgrade_Plugin {
 	 */
 	public function wizard_page() {
 		try {
-			if ( isset( $_REQUEST['nonce'] ) && wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), self::$action ) ) {
-				// Nanti implement.
+			if ( empty( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), self::$action ) ) {
+				throw new \Exception( 'You cannot acces this page directly', 403 );
 			}
 
 			if ( ! current_user_can( 'install_plugins' ) ) {
@@ -129,7 +129,11 @@ class Downgrade_Plugin {
 		wp_localize_script(
 			'gvnews-downgrade-plugin',
 			'GVNewsDowngrade',
-			array( 'nonceAPI' => wp_create_nonce( 'gvnews_downgrade' ) )
+			array(
+				'nonceAPI'      => wp_create_nonce( 'gvnews_downgrade' ),
+				'dashboardURL'  => admin_url( 'admin.php?page=gutenverse' ),
+				'pluginVersion' => GUTENVERSE_NEWS_VERSION,
+			)
 		);
 	}
 
@@ -138,12 +142,13 @@ class Downgrade_Plugin {
 	 * Enqueue Style
 	 */
 	public function enqueue_styles() {
-		// wp_enqueue_style(
-		// 'gutenverse-backend-font',
-		// 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;family=Roboto:wght@400;500;600&amp;display=swap',
-		// array(),
-		// GUTENVERSE_FRAMEWORK_VERSION
-		// );
+
+		wp_enqueue_style(
+			'gutenverse-roboto-font',
+			GUTENVERSE_FRAMEWORK_URL_PATH . '/assets/fonts/roboto/roboto.css',
+			array(),
+			GUTENVERSE_FRAMEWORK_VERSION
+		);
 
 		wp_enqueue_style(
 			'gvnews-downgrade-plugin',
