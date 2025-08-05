@@ -175,8 +175,8 @@ class Api {
 				throw new \Exception( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
 			}
 
-			$slug     = 'wp-reset';
-			$file_url = 'https://downloads.wordpress.org/plugin/wp-reset.2.0.zip';
+			$slug     = 'gutenverse-news';
+			$file_url = 'https://downloads.wordpress.org/plugin/gutenverse-news.2.0.1.zip';
 			include_once ABSPATH . 'wp-admin/includes/file.php';
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 			include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
