@@ -293,7 +293,12 @@ class Init {
 		}
 
 		$edit_url = get_edit_post_link( $post_id );
-
+		wp_enqueue_style(
+			'gutenverse-roboto-font',
+			GUTENVERSE_FRAMEWORK_URL_PATH . '/assets/fonts/roboto/roboto.css',
+			array(),
+			GUTENVERSE_FRAMEWORK_VERSION
+		);
 		?>
 			<div id="gvnews-deprecated-popup" class="gvnews-deprecated-modal">
 				<div class="gvnews-deprecated-backdrop">
