@@ -59,7 +59,7 @@ const DowngradeWizard = () => {
     </div>
 }
 
-export const managePlugin = (autoUpdate) => {
+export const managePlugin = (disableAutoUpdate) => {
     const { nonceAPI = '' } = GVNewsDowngrade || {}
     return new Promise((resolve, reject) => {
         apiFetch({
@@ -67,7 +67,7 @@ export const managePlugin = (autoUpdate) => {
             method: 'POST',
             data: {
                 nonce: nonceAPI,
-                autoUpdate: autoUpdate
+                disableAutoUpdate: disableAutoUpdate
             },
         })
             .then((response) => {

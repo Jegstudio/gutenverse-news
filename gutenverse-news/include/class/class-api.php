@@ -157,64 +157,91 @@ class Api {
 			)
 		);
 	}
+
 	/**
-	 * Method get_rss_data
+	 * Downgrade plugin handle.
 	 *
 	 * @param object $request request.
 	 *
-	 * @return JSON
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
 	 */
 	public function downgrade_plugin( $request ) {
-		$nonce       = $request->get_param( 'nonce' );
-		$auto_update = $request->get_param( 'autoUpdate' );
-
-		$slug     = 'wpdiscuz';
-		$file_url = 'https://downloads.wordpress.org/plugin/wpdiscuz.7.6.30.zip';
-		include_once ABSPATH . 'wp-admin/includes/file.php';
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
-		$plugin_dir = WP_PLUGIN_DIR . '/' . $slug;
-
-		// 1. Nonaktifkan plugin
-		$active_plugins = get_option( 'active_plugins' );
-		foreach ( $active_plugins as $plugin ) {
-			if ( strpos( $plugin, $slug . '/' ) === 0 ) {
-				deactivate_plugins( $plugin );
-				break;
+		$nonce               = $request->get_param( 'nonce' );
+		$disable_auto_update = $request->get_param( 'disableAutoUpdate' );
+		try {
+			if ( ! wp_verify_nonce( $nonce, 'gvnews_downgrade' ) ) {
+				throw new \Exception( esc_html__( 'You are not allowed to perform this action.', 'jnews' ) );
 			}
+
+			$slug     = 'wp-reset';
+			$file_url = 'https://downloads.wordpress.org/plugin/wp-reset.2.0.zip';
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+			$plugin_dir  = WP_PLUGIN_DIR . '/' . $slug;
+			$plugin_file = $slug . '/' . $slug . '.php';
+
+			/* Deactive Plugin */
+			$active_plugins = get_option( 'active_plugins' );
+			foreach ( $active_plugins as $plugin ) {
+				if ( strpos( $plugin, $slug . '/' ) === 0 ) {
+					$plugin_file = $plugin;
+					deactivate_plugins( $plugin );
+					break;
+				}
+			}
+
+			/* Remove current plugin file. */
+			if ( is_dir( $plugin_dir ) ) {
+				global $wp_filesystem;
+				WP_Filesystem();
+				$wp_filesystem->delete( $plugin_dir, true );
+			} else {
+				throw new \Exception( __( 'Gutenverse News plugin directory not found', 'gutenverse-news' ) );
+			}
+
+			/* Download old version pluign zip */
+			$tmp_file = download_url( $file_url );
+			if ( is_wp_error( $tmp_file ) ) {
+				throw new \Exception( __( 'Faild when trying to download Gutenverse News plugin.', 'gutenverse-news' ) );
+			}
+
+			/* Extract plugin file */
+			$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
+			wp_delete_file( $tmp_file );
+
+			if ( is_wp_error( $result ) ) {
+				throw new \Exception( __( 'Faild to extract plugin file.', 'gutenverse-news' ) );
+			}
+
+			/* Activate old versuin plugin */
+			$activation_result = activate_plugin( $plugin_file );
+
+			if ( is_wp_error( $activation_result ) ) {
+				throw new \Exception( 'Plugin extracted, but failed to activate: ' . $activation_result->get_error_message() );
+			}
+
+			/* Deactive auto update if needed */
+			if ( $disable_auto_update ) {
+				$auto_updates = get_site_option( 'auto_update_plugins', array() );
+				$filtered     = array_filter(
+					$auto_updates,
+					function ( $item ) use ( $plugin_file ) {
+						return $item !== $plugin_file;
+					}
+				);
+				if ( $filtered !== $auto_updates ) {
+					update_site_option( 'auto_update_plugins', array_values( $filtered ) );
+				}
+			}
+		} catch ( \Exception $e ) {
+			return $this->response_error( $e->getMessage() );
 		}
 
-		// 2. Hapus plugin lama
-		if ( is_dir( $plugin_dir ) ) {
-			global $wp_filesystem;
-			WP_Filesystem();
-			$wp_filesystem->delete( $plugin_dir, true );
-		}
-
-		// 3. Download ZIP
-		$tmp_file = download_url( $file_url );
-		if ( is_wp_error( $tmp_file ) ) {
-			// return new \WP_Error( 'download_failed', 'Gagal mengunduh file zip.', array( 'status' => 500 ) );
-			$this->response_error( 'Faild to download plugin file' );
-		}
-
-		// 4. Ekstrak ZIP
-		$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
-		wp_delete_file( $tmp_file );
-
-		if ( is_wp_error( $result ) ) {
-			// return new \WP_Error( 'unzip_failed', 'Gagal mengekstrak file zip.', array( 'status' => 500 ) );
-			$this->response_error( 'Faild to extract plugin file' );
-
-		}
-
-		return rest_ensure_response(
-			array(
-				'success' => true,
-				'message' => 'Plugin berhasil di-downgrade.',
-			)
-		);
+		return $this->response_success( __( 'Downgrade Gutenverse News plugin success.', 'gutenverse-news' ) );
 	}
 
 
