@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, responsivePanel, LockedProPanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
@@ -9,6 +9,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { applyFilters } from '@wordpress/hooks';
+import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 
 export const panelList = () => {
     return applyFilters(
@@ -26,13 +27,11 @@ export const panelList = () => {
                 id: 'header-filter',
                 title: __('Header Filter', 'gutenverse-news'),
                 initialOpen: false,
-                pro: true,
-                panelArray: () => {
-                    return [{
-                        component: LockedProPanel,
-                    }];
+                panelArray: (props) => {
+                    return headerFilterPanel(props);
                 },
-                tabRole: TabSetting
+                tabRole: TabSetting,
+
             },
             {
                 title: __('Content Filter', 'gutenverse-news'),
@@ -114,6 +113,12 @@ export const panelList = () => {
                     styleId: 'block-1-advance',
                 }),
                 tabRole: TabStyle
+            },
+            {
+                title: __('Condition', 'gutenverse'),
+                panelArray: conditionPanel,
+                initialOpen: false,
+                pro: true
             },
         ]
     );

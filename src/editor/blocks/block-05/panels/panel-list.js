@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
@@ -9,7 +9,6 @@ import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
-import { gutenverseProActive } from '../../../utils/helper';
 
 export const panelList = () => {
     return [
@@ -29,8 +28,7 @@ export const panelList = () => {
                 return headerFilterPanel(props);
             },
             tabRole: TabSetting,
-            deprecated: !gutenverseProActive,
-            pro: gutenverseProActive,
+
         },
         {
             title: __('Content Filter', 'gutenverse-news'),
@@ -112,6 +110,12 @@ export const panelList = () => {
                 styleId: 'block-1-advance',
             }),
             tabRole: TabStyle
+        },
+        {
+            title: __('Condition', 'gutenverse'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         },
     ];
 };

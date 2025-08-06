@@ -1,35 +1,39 @@
-import { LockedHeaderFilterControl } from 'gutenverse-core/controls';
-import { applyFilters } from '@wordpress/hooks';
-import { WarningIconSVG } from '../../assets/block-icons';
-import { gutenverseProActive } from '../utils/helper';
+import { __ } from '@wordpress/i18n';
+import { SelectSearchControl, TextControl } from 'gutenverse-core/controls';
+import { searchCategory, searchAuthor, searchTag } from '../utils/helper';
 
 export const headerFilterPanel = (props) => {
-    if (gutenverseProActive) {
-        return applyFilters(
-            'gutenverse.news.header-filter',
-            [{
-                component: LockedHeaderFilterControl,
-            }],
-            props
-        );
-    }
-    return [{
-        component: LockedConditionControl,
-    }];
-};
 
-const LockedConditionControl = ({ isOpen }) => {
-    if (isOpen) {
-        return <div className="deprecated-blocks-panel">
-            <div className="deprecated-icon">
-                <WarningIconSVG />
-            </div>
-            <div className="deprecated-desc">
-                <h5>Header Filter Option is Deprecated</h5>
-                <p> This option is no longer supported and will be removed in the next update.</p>
-            </div>
-        </div>;
-    }
-
-    return '';
+    return [
+        {
+            id: 'headerCategory',
+            label: __('Header Category', 'gutenverse-news'),
+            description: __('Add category filter for heading module.', 'gutenverse-news'),
+            component: SelectSearchControl,
+            isMulti: true,
+            onSearch: searchCategory
+        },
+        {
+            id: 'headerAuthor',
+            label: __('Header Author', 'gutenverse-news'),
+            description: __('Add author filter for heading module.', 'gutenverse-news'),
+            component: SelectSearchControl,
+            isMulti: true,
+            onSearch: searchAuthor
+        },
+        {
+            id: 'headerTag',
+            label: __('Header Tag', 'gutenverse-news'),
+            description: __('Add tag filter for heading module.', 'gutenverse-news'),
+            component: SelectSearchControl,
+            isMulti: true,
+            onSearch: searchTag
+        },
+        {
+            id: 'headerDefault',
+            label: __('Default Text', 'gutenverse-news'),
+            description: __('First item text on heading filter.', 'gutenverse-news'),
+            component: TextControl,
+        },
+    ];
 };
