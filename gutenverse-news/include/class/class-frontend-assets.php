@@ -217,6 +217,7 @@ class Frontend_Assets {
 			$depen = array_merge( array_merge( $depen, $helper['dependencies'] ), array( 'gvnews-newsticker' ) );
 		}
 
+		wp_register_script( 'gvnews-tinyslider', GUTENVERSE_NEWS_URL . '/assets/js/tinyslider.js', array(), GUTENVERSE_NEWS_VERSION, true );
 		if ( $this->load_block_script(
 			$block_script_data,
 			array(
@@ -250,7 +251,6 @@ class Frontend_Assets {
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/tinyslider.asset.php';
-			wp_register_script( 'gvnews-tinyslider', GUTENVERSE_NEWS_URL . '/assets/js/tinyslider.js', array(), GUTENVERSE_NEWS_VERSION, true );
 			wp_enqueue_script( 'gvnews-tinyslider' );
 			$depen = array_merge( array_merge( $depen, $helper['dependencies'] ), array( 'gvnews-tinyslider' ) );
 		}
