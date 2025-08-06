@@ -327,7 +327,7 @@ class Init {
 								<p>To keep your page working properly, you have two options:</p>
 								<ul>
 									<li>Replace deprecated blocks with supported ones.</li>
-									<li>Or switch back to version 2.0.0 to continue using them.</li>
+									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
 								<p>We recommend updating your blocks for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
@@ -381,20 +381,15 @@ class Init {
 								<p>To keep your page working properly, you have two options:</p>
 								<ul>
 									<li>Replace deprecated blocks with supported ones.</li>
-									<li>Or switch back to version 2.0.0 to continue using them.</li>
+									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
 								<p>We recommend updating your blocks for future compatibility.</p>
 								</div>
 
 								<div class="options-deprecated-text">
 									<h2>This option is already deprecated.</h2>
-									<p>If you're still using a deprecated option in the block settings, we recommend replacing it with another option that is not deprecated.</p>
-									<p>To keep your page working properly, you have two options:</p>
-									<ul>
-										<li>Replace deprecated option with supported ones.</li>
-										<li>Or switch back to version 2.0.0 to continue using them.</li>
-									</ul>
-									<p>We recommend updating your option for future compatibility.</p>
+									<p>Please use other option that not dperecated, or switch back to version 2.0.1 to continue using them.</p>
+									<p>We recommend you to only use the supported option.</p>
 								</div>
 								
 								<div class="gvnews-deprecated-actions">

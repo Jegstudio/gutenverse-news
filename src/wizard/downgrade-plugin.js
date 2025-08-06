@@ -42,7 +42,7 @@ const DowngradeWizard = () => {
                     setLoading(false);
                     showSuccess();
                 } else {
-                    showError("We’re sorry — the attempt to switch back to Gutenverse News version 2.0.0 was unsuccessful.");
+                    showError("We’re sorry — the attempt to switch back to Gutenverse News version 2.0.1 was unsuccessful.");
                     setLoading(false);
                 }
             })
