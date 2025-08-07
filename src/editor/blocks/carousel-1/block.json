@@ -257,6 +257,10 @@
         "itemAmount": {
             "type": "string",
             "default": 4
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
