@@ -315,6 +315,7 @@ class Frontend_Assets {
 		wp_enqueue_script( 'imagesloaded' );
 		wp_enqueue_script( 'gvnews-helper-script' );
 		wp_register_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', null, GUTENVERSE_NEWS_VERSION, true );
+		wp_localize_script( 'gvnews-deprecated-blocks', 'GVNwsDeprecatedIsPro', gutenverse_pro_active() );
 	}
 
 	/**

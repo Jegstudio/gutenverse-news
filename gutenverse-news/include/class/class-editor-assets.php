@@ -66,9 +66,8 @@ class Editor_Assets {
 			'gutenverse-news',
 			GUTENVERSE_NEWS_LANG_DIR
 		);
-		if ( ! gutenverse_pro_active() ) {
-			wp_enqueue_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', array( 'gutenverse-news-blocks' ), GUTENVERSE_NEWS_VERSION, true );
-		}
+		wp_enqueue_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', array( 'gutenverse-news-blocks' ), GUTENVERSE_NEWS_VERSION, true );
+		wp_localize_script( 'gvnews-deprecated-blocks', 'GVNwsDeprecatedIsPro', gutenverse_pro_active() );
 	}
 
 	/**

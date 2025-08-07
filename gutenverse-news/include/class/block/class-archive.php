@@ -220,7 +220,7 @@ class Archive extends Grab {
 	 * @return boolean
 	 */
 	public function check_deprecated() {
-		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] || 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] ) ) {
+		if ( current_user_can( 'edit_pages' ) && ( ( ! gutenverse_pro_active() && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] ) ) || ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] ) ) ) {
 			return true;
 		}
 		return false;
