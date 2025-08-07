@@ -108,7 +108,7 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
-                title: __('Condition', 'gutenverse'),
+                title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,
                 initialOpen: false,
                 pro: true
