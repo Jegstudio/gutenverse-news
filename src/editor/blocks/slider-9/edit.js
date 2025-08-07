@@ -333,6 +333,7 @@ const Slider9Block = compose(
                 <div className={wrapperClass}>
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block ? block : 'loading'}
+                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>
