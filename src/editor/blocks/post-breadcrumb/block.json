@@ -85,7 +85,11 @@
             "type":"object"
         },
         "arrowColor": {
-            "type":"object"
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

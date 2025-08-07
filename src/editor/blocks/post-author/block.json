@@ -98,6 +98,10 @@
         },
         "positioningBottom": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

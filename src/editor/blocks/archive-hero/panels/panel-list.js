@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, animationPanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, animationPanel, backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { designPanel } from './panel-design';
 import { generalPanel } from './panel-general';
 import { heroDesignPanel } from './panel-hero-design';
@@ -100,6 +100,11 @@ export const panelList = () => {
                     styleId: 'archive-pagination-advance',
                 }),
                 tabRole: TabStyle
+            }, {
+                title: __('Condition', 'gutenverse-news'),
+                panelArray: conditionPanel,
+                initialOpen: false,
+                pro: true
             }
         ]
     );

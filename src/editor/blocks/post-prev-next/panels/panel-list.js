@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { TabStyle, TabSetting } from 'gutenverse-core/controls';
 import { stylePanel } from './panel-style';
 import { applyFilters } from '@wordpress/hooks';
@@ -54,7 +54,12 @@ export const panelList = () => {
                     hoverSelector: `${selector(props)}:hover`
                 }),
                 tabRole: TabStyle
-            }
+            }, {
+                title: __('Condition', 'gutenverse-news'),
+                panelArray: conditionPanel,
+                initialOpen: false,
+                pro: true
+            },
         ]
     );
 };
