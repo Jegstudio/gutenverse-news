@@ -1397,3 +1397,21 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 		return $allowedtags;
 	}
 }
+
+if ( ! function_exists( 'gvnews_get_option' ) ) {
+	/**
+	 * Get Gutenverse News options.
+	 *
+	 * @param string                   $key option key.
+	 * @param string|array|object|bool $def default option value.
+	 * @return string|array|object|bool option value.
+	 */
+	function gvnews_get_option( $key, $def = false ) {
+		$options = get_option( 'gvnews_settings', array() );
+		if ( isset( $options[ $key ] ) ) {
+			return $options[ $key ];
+		}
+
+		return $def;
+	}
+}
