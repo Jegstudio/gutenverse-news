@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from './panel-herosetting';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -57,7 +57,13 @@ export const panelList = () => {
                     styleId: 'block-1-advance',
                 }),
                 tabRole: TabStyle
-            }
+            },
+            {
+                title: __('Condition', 'gutenverse'),
+                panelArray: conditionPanel,
+                initialOpen: false,
+                pro: true
+            },
         ]
     );
 };
