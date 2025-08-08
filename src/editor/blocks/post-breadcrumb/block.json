@@ -93,11 +93,13 @@
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": [
         "single",
         "post",
         "breadcrumb"
-    ]
+    ],
+    "gvnewsRemoved": true
 }

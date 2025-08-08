@@ -106,11 +106,13 @@
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": [
         "single",
         "archive",
         "breadcrumb"
-    ]
+    ],
+    "gvnewsRemoved": true
 }
