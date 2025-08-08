@@ -21,7 +21,7 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
     const additionalMenu = [];
 
     return <div>
-        <div className="template-tab-body" style={{ paddingTop: '30px' }}>
+        <div className="template-tab-body" style={{ paddingTop: '10px' }}>
             <ControlCheckbox
                 id={'show_block_meta'}
                 title={__('Show Block Meta', '--gctd--')}
