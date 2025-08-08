@@ -5,12 +5,6 @@ import { NewsSettings } from './settings/news-settings';
 
 export const loadSettings = () => {
     addFilter(
-        'gutenverse.dashboard.plugin-settings.navigation',
-        'gutenverse/news/dashboard/plugin-settings/navigation',
-        settings
-    );
-
-    addFilter(
         'gutenverse.dashboard.settings.news',
         'gutenverse/dashboard/settings/news',
         (body, settings, props) => {
@@ -22,25 +16,3 @@ export const loadSettings = () => {
         }
     );
 };
-
-const settings = (nav) => {
-
-    return {
-        ...nav,
-        news: {
-            title: __('Gutenverse News', 'gutenverse-news'),
-            pro: false,
-            subMenu: [
-                {
-                    id: 'block_settings',
-                    title: 'Global Block Settings'
-                },
-                {
-                    id: 'additional_features',
-                    title: 'Addiitonal Features',
-                    pro: true
-                }
-            ]
-        },
-    };
-}
