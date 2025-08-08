@@ -1,7 +1,7 @@
 {
     "apiVersion": 2,
     "name": "gutenverse/news-post-featured",
-    "title": "Post Featured Image",
+    "title": "Advanced Post Featured Image",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Featured",
     "description": "Your Block description.",
     "category": "gvnews-single-post",

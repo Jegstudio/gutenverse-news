@@ -1,7 +1,7 @@
 {
     "apiVersion": 2,
     "name": "gutenverse/news-post-author",
-    "title": "Post Author",
+    "title": "Post Author Box",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_author",
     "description": "Your Block description.",
     "category": "gvnews-single-post",
@@ -110,6 +110,7 @@
     "keywords": [
         "single",
         "post",
-        "author"
+        "author",
+        "author box"
     ]
 }
