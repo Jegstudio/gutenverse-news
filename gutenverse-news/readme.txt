@@ -161,8 +161,17 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Bug Fixes
 * Fix deprecated warning on the strpost function passing a null value
 
-##### Improvements
-* -
+##### Block Name Changes
+* Post Author → Post Autho Box
+* Post Featured Image → Advanced Post Featured Image
+
+##### Deprecated blocks
+RSS Block, Module 10, Module 11, Module 12, Module 13, Module 14, Module 15, Module 16, Module 17, Module 18, Module 19, Module 20, Module 21, Module 22, Module 23, Module 24, Module 25, Module 26, Module 27, Module 28, Module 29, Module 30, Module 31, Module 32, Module 33, Module 34, Module 35, Module 36, Module 37, Module 38, Module 39, Carousel 1, Carousel 2, Carousel 3, Slider 2, Slider 3, Slider 4, Slider 5, Slider 6, Slider 7, Slider 8, Slider 9, Hero 6, Hero 7, Hero 8, Hero 9, Hero 10, Hero 11, Hero 12, Hero 13, Hero 14, Hero Skew, Hero Archive, Archive Title, Post Title, Archive Breadcrumb Post Tag, Post Comment, Post Next Prev, Post Breadcrumb
+
+##### Deprecated options
+* Some Block Type choices in the Archive Block option
+* Some Related Post Template choices in Post Related option
+
 
 = 2.0.1 =
 ##### Bug Fixes

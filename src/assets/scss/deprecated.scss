@@ -1,0 +1,307 @@
+.gutenverse-panel.deprecated>h2>button:after {
+    align-items: center;
+    background: #FFFBEF;
+    border: 1px solid #EEBC0D;
+    border-radius: 2px;
+    color: #1E1E1E;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 11px;
+    content: "DEPRECATED";
+    padding: 4px 6px;
+    margin-left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gvnews-deprecated-block {
+    position: relative;
+    min-height: 150px;
+    margin: 10px 0;
+
+    .deprecated-block-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        letter-spacing: 0;
+        right: 0;
+        top: 0;
+        z-index: 9998;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: #000000A6;
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-family: "Roboto";
+        font-weight: 400;
+        flex-direction: column;
+        font-size: 16px;
+        min-height: 150px;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            svg {
+                width: 18px;
+            }
+        }
+
+        a {
+            font-weight: 500;
+            font-style: Medium;
+            font-size: 14px;
+            color: #fff !important;
+            border: 1px solid #FFFFFFBF;
+            padding: 12px 24px;
+            border-radius: 5px;
+            background: #FFFFFF14;
+            transition: background-color .5s ease, border-color .5s ease;
+            margin-top: 25px;
+            line-height: 1;
+
+            &:hover {
+                color: #011627 !important;
+                background: #FFFFFF;
+                border-color: #FFFFFF;
+            }
+        }
+
+        .note {
+            margin-top: 6px;
+            font-weight: 400;
+            font-size: 12px;
+        }
+    }
+}
+
+.gutenverse-panel-wrapper {
+    .deprecated-blocks-panel {
+        margin: 16px;
+        padding: 16px;
+        border: 1px solid #EEBC0D;
+        background: #FFFBEF;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        border-radius: 5px;
+
+        .deprecated-desc {
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h5 {
+                font-weight: 700;
+            }
+
+            h5,
+            p {
+                font-size: 12px;
+                margin: 0;
+            }
+
+            a {
+                font-weight: 500;
+                color: #3B57F7;
+            }
+        }
+    }
+
+}
+
+.gutenverse-control-wrapper {
+
+    &.gutenverse-control-image-radio {
+        .control-body {
+            label {
+                &.locked {
+                    position: relative;
+
+                    img {
+                        filter: grayscale(80%);
+                    }
+
+                    .locked-overlay {
+                        position: absolute;
+                        position: absolute;
+                        bottom: 2px;
+                        left: 2px;
+                        letter-spacing: 0;
+                        right: 2px;
+                        top: 2px;
+                        z-index: 9998;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        background: #0000001A;
+
+                        .deprecated-warning {
+                            border: 1px solid #EEBC0D;
+                            padding: 5px;
+                            background: #FFFBEF;
+                            border-radius: 2px;
+                            box-shadow: 0px 2px 18px 0px #00000052;
+                        }
+
+                        .pro-warning {
+                            line-height: 1;
+                            color: #E32D64;
+                            background: #FFDBDE;
+                            padding: 2px 5px;
+                            font-family: "Heebo";
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 100%;
+                            letter-spacing: 7%;
+                            border-radius: 2px;
+                            border: 1px solid #E32D64;
+                            box-shadow: 0px 2px 18px 0px #00000052;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+.gvnews-deprecated-modal {
+    display: none;
+
+    body.gvnews-deprecated-popup & {
+        display: block;
+    }
+
+    .gvnews-deprecated-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+
+        .gvnews-deprecated-box {
+            background: #fff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 48px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+            .gvnews-popup-close {
+                padding: 0;
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                border: none;
+                background: none;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .gvnews-deprecated-text {
+                font-family: "Roboto";
+                font-weight: 400;
+                color: #53585C;
+                font-size: 16px;
+
+                ul {
+                    list-style-type: disc;
+                    margin-left: 40px;
+                }
+
+                .blocks-deprecated-text {
+                    display: none;
+                }
+
+                .options-deprecated-text {
+                    display: none;
+                }
+
+                h2 {
+                    margin: 16px 0;
+                    font-weight: 700;
+                    font-size: 22px;
+                }
+
+                p,
+                ul {
+                    margin-bottom: 16px;
+                    font-size: 16px;
+                }
+
+                li {
+                    font-weight: 500;
+                    color: #212121;
+                }
+
+                .gvnews-deprecated-actions {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 40px;
+
+                    .gvnews-btn {
+                        font-size: 14px;
+                        padding: 6px 12px;
+                        border-radius: 5px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        text-decoration: none;
+                        transition: background-color .5s ease
+                    }
+
+                    .gvnews-replace-btn {
+                        background-color: #3B57F7;
+                        color: #fff;
+                        border: none;
+
+
+
+                        &:hover {
+                            background: #2435EC;
+                            box-shadow: 0px 8px 44px 0px #FFFFFF1F;
+                        }
+
+                    }
+
+                    .gvnews-dwongrade-btn {
+                        background-color: #fff;
+                        border: 1px solid #3B57F7;
+                        color: #3B57F7;
+
+                        &:hover {
+                            background: #3B57F7;
+                            color: #fff;
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.gvnews-deprecated-options .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .options-deprecated-text {
+    display: block;
+}
+
+body.gvnews-deprecated-blocks .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .blocks-deprecated-text {
+    display: block;
+}

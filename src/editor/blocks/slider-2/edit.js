@@ -3,23 +3,24 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { MetaCategory, MetaModule1 } from '../../part/meta';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { SliderCaption } from '../../part/slider';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -288,16 +289,29 @@ const Slider2Block = compose(
         }, 1000);
     }
 
-    return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : 'loading'}
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelDeprecated title="Slider 2" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    {block ? block : 'loading'}
+                    {isDeprecated && <DeprecatedOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Slider2Block;
