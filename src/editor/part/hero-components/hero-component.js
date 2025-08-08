@@ -42,10 +42,8 @@ const HeroComponent = (props) => {
         heightDesktop,
     } = props;
 
-    const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(16);
     const [overlay, setOverlay] = useState(false);
     const [block, setBlock] = useState(false);
     const moduleOption = useRef(null);
@@ -61,80 +59,41 @@ const HeroComponent = (props) => {
     }, [columnWidth]);
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(sliderItem * numberPostShow);
-        let count = parseInt(postCount.current);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost * sliderItem);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                if (count > off) {
-                    loadMore(loadPost * sliderItem);
-                } else {
-                    if (count != postCount.current) {
-                        loadMore(count);
-                    }
-                }
-                getTrim(false);
+        const timeOutId = setTimeout(() => {
+            if (moduleOption.current == null) {
+                moduleOption.current = getModuleOptions();
+                postCount.current = moduleOption.current.option.post_count.publish;
             }
-        } else {
-            getTrim(false);
-        }
-    }, [numberPost, postBulk, postOffset, sliderItem]);
 
-    // useEffect(() => {
-    //     apiFetch({
-    //         path: addQueryArgs('/gvnews-client/v1/module-option'),
-    //     }).then((data) => {
-    //         const parsedData = JSON.parse(data);
-    //         setModuleOption(parsedData);
-    //         if (parsedData.option.post_count) {
-    //             setPostCount(parsedData.option.post_count.publish);
-    //         }
-    //     });
-    // }, []);
-
-    useEffect(() => {
-
-        if (moduleOption.current == null) {
-            moduleOption.current = getModuleOptions();
-            postCount.current = moduleOption.current.option.post_count.publish;
-        }
-
-        postBulk ? setOverlay(true) : null;
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: {
-                    contentType,
-                    uniqueContent,
-                    includeOnly,
-                    postType,
-                    numberPost: loadPost,
-                    includePost,
-                    excludePost,
-                    includeCategory,
-                    excludeCategory,
-                    includeAuthor,
-                    includeTag,
-                    excludeTag,
-                    sortBy,
+            setOverlay(true);
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: {
+                        contentType,
+                        uniqueContent,
+                        includeOnly,
+                        postType,
+                        numberPost: sliderItem ? sliderItem * numberPost : numberPost,
+                        includePost,
+                        excludePost,
+                        includeCategory,
+                        excludeCategory,
+                        includeAuthor,
+                        includeTag,
+                        excludeTag,
+                        sortBy,
+                        postOffset
+                    },
                 },
-            },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .catch((e) => {
-                console.error(e.message);
-            })
-            .finally(() => {
+            }).then((data) => {
+                getTrim(JSON.parse(data));
+            }).finally(() => {
                 setOverlay(false);
             });
+        }, 150);
+        return () => clearTimeout( timeOutId );
     }, [
         contentType,
         includeOnly,
@@ -147,7 +106,8 @@ const HeroComponent = (props) => {
         includeTag,
         excludeTag,
         sortBy,
-        loadPost,
+        postOffset,
+        sliderItem,
     ]);
 
     const resetBlock = () => {
@@ -190,28 +150,38 @@ const HeroComponent = (props) => {
                     }}
                 />
             );
-        } else if (postBulk && moduleOption.current) {
+        } else if (moduleOption.current) {
             setBlock(<div className="gvnews_empty_module">{moduleOption.current.string.no_content}</div>);
         }
     };
-
-    useEffect(() => {
-        resetBlock();
-    }, [blockWidth, moduleOption, dateType, dateFormat, dateFormatCustom, heroStyle]);
 
     useEffect(() => {
         setBlock(false);
         setTimeout(function () {
             resetBlock();
         });
-    }, [postData, enableslider, autoplay, autoplayDelay, sliderItem, heroMargin, heightDesktop]);
+    },[
+        postData,
+        enableslider,
+        autoplay,
+        autoplayDelay,
+        sliderItem,
+        heroMargin,
+        heightDesktop,
+        blockWidth,
+        moduleOption,
+        dateType,
+        dateFormat,
+        dateFormatCustom,
+        heroStyle
+    ]);
 
     return (
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {enableslider && elementRef.current && gvnews.hero.init(elementRef.current)}
-            {enableslider && elementRef.current && gvnews.hero.heroSlider(elementRef.current)}
+            {enableslider && elementRef.current && window.gvnews.hero.init(elementRef.current)}
+            {enableslider && elementRef.current && window.gvnews.hero.heroSlider(elementRef.current)}
         </>
     );
 };
