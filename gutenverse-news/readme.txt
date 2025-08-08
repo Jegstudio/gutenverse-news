@@ -160,6 +160,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 2.0.2 [DEV] =
 ##### Bug Fixes
 * Fix deprecated warning on the strpost function passing a null value
+* Fix: 'Include Post' filter not working properly when adding more than one post
 
 ##### Block Name Changes
 * Post Author → Post Autho Box
