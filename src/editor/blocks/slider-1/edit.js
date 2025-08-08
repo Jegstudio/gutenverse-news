@@ -173,36 +173,39 @@ const Slider1Block = compose(
     }
 
     useEffect(() => {
-        setOverlay(true);
+        const timeoutID = setTimeout(() => {
+            setOverlay(true);
 
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-            postOffset,
-        };
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr
-            }
-        }).then((data) => {
-            const parsed = JSON.parse(data);
-            getTrim(parsed);
-        }).finally(() => {
-            setOverlay(false);
-        });
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                postOffset,
+            };
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr
+                }
+            }).then((data) => {
+                const parsed = JSON.parse(data);
+                getTrim(parsed);
+            }).finally(() => {
+                setOverlay(false);
+            });
+        }, 150);
+        return () => clearTimeout(timeoutID);
     }, [
         contentType,
         includeOnly,
