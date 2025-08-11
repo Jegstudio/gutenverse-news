@@ -10,6 +10,10 @@ import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const Hero9Block = compose(
     withPartialRender,
@@ -77,46 +81,58 @@ const Hero9Block = compose(
         ref: elementRef
     });
 
-    return <>
-        <PanelDeprecated title="Hero 9" />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                <HeroHandler
-                    {...{
-                        heroType: '9',
-                        elementRef,
-                        columnWidth,
-                        sliderItem,
-                        numberPost,
-                        postOffset,
-                        contentType,
-                        uniqueContent,
-                        includeOnly,
-                        postType,
-                        includePost,
-                        excludePost,
-                        includeCategory,
-                        excludeCategory,
-                        includeAuthor,
-                        includeTag,
-                        excludeTag,
-                        sortBy,
-                        dateType: metaDateType,
-                        dateFormat: metaDateFormat,
-                        dateFormatCustom: metaDateFormatCustom,
-                        heroStyle,
-                        enableslider,
-                        autoplay,
-                        autoplayDelay,
-                        heroMargin,
-                        heightDesktop,
-                    }}
-                />
-                <DeprecatedOverlay />
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelDeprecated title="Hero 9" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    <HeroHandler
+                        {...{
+                            heroType: '9',
+                            elementRef,
+                            columnWidth,
+                            sliderItem,
+                            numberPost,
+                            postOffset,
+                            contentType,
+                            uniqueContent,
+                            includeOnly,
+                            postType,
+                            includePost,
+                            excludePost,
+                            includeCategory,
+                            excludeCategory,
+                            includeAuthor,
+                            includeTag,
+                            excludeTag,
+                            sortBy,
+                            dateType: metaDateType,
+                            dateFormat: metaDateFormat,
+                            dateFormatCustom: metaDateFormatCustom,
+                            heroStyle,
+                            enableslider,
+                            autoplay,
+                            autoplayDelay,
+                            heroMargin,
+                            heightDesktop,
+                        }}
+                    />
+                    {isDeprecated && <DeprecatedOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Hero9Block;

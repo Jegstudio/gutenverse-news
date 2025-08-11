@@ -91,11 +91,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -176,11 +176,19 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": ["single", "archive", "hero"]
+    "keywords": [
+        "single",
+        "archive",
+        "hero"
+    ]
 }

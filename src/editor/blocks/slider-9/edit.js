@@ -22,6 +22,7 @@ import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { gutenverseProActive } from '../../utils/helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -313,16 +314,30 @@ const Slider9Block = compose(
         }, 1000);
     }
 
-    return <>
-        <PanelDeprecated title="Slider 9" />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : 'loading'}
-                <DeprecatedOverlay />
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelDeprecated title="Slider 9" />
+
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    {block ? block : 'loading'}
+                    {isDeprecated && <DeprecatedOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Slider9Block;

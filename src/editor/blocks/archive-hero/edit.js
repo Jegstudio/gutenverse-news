@@ -10,6 +10,10 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -53,11 +57,21 @@ const ArchiveHero = compose(
         ref: elementRef
     });
 
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
     return (
         <>
-            <PanelDeprecated title="Archive Hero" />
+            {isDeprecated ? (
+                <PanelDeprecated title="Archive Hero" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
             <div {...blockProps}>
-                <div className="guten-raw-wrapper gvnews-editor gvnews-deprecated-block">
+                <div className={wrapperClass}>
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -78,7 +92,7 @@ const ArchiveHero = compose(
                             heightDesktop: heroHeightDesktop,
                         }}
                     />
-                    <DeprecatedOverlay />
+                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>

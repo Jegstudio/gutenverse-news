@@ -143,7 +143,7 @@ class Hero extends Grab {
 			'GUTENVERSE\NEWS\Block\Hero\Hero_14',
 			'GUTENVERSE\NEWS\Block\Hero\Hero_Skew',
 		);
-		if ( current_user_can( 'edit_pages' ) && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
+		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
 			return true;
 		}
 		return false;
