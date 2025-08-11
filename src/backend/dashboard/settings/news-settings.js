@@ -1,5 +1,5 @@
+import AdditionalFeatures from "./additional-features";
 import BlockSettings from './block-settings';
-import { applyFilters } from '@wordpress/hooks';
 
 export const NewsSettings = (props) => {
     const { subSettings = 'block_settings', settingValues = {}, updateSettingValues } = props;
@@ -22,11 +22,7 @@ export const NewsSettings = (props) => {
         case 'block_settings':
             return <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
         case 'additional_features':
-            return applyFilters(
-                'gutenverse.news.settings-pro-features',
-                '',
-                { ...props, settingValues: gvnews_settings, updateSettingValues: updateGVNewsFeatures },
-            );
+            return <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />
         default:
             break;
     }
