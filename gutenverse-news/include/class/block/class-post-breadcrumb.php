@@ -299,4 +299,13 @@ class Post_Breadcrumb extends Post_Guten {
 		);
 		return $this->call_breadcrumb( isset( get_queried_object()->term_id ) ? get_queried_object()->term_id : null );
 	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		return current_user_can( 'edit_pages' );
+	}
 }

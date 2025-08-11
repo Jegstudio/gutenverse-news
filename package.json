@@ -53,6 +53,7 @@
   "dependencies": {
     "@svgr/webpack": "^7.0.0",
     "classnames": "^2.5.1",
-    "gutenverse-core": "file:gutenverse-core"
+    "gutenverse-core": "file:gutenverse-core",
+    "react-feather": "^2.0.10"
   }
 }

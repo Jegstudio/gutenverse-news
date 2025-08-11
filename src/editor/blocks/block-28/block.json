@@ -307,6 +307,10 @@
         "showDateFormatCustom": {
             "type": "string",
             "default": "d M Y"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

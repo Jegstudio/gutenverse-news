@@ -38,7 +38,20 @@ class Dashboard {
 			GUTENVERSE_NEWS_VERSION,
 			true
 		);
+
+		wp_localize_script( 'gutenverse-news-blocks', 'GVNewsConfig', $this->gvnews_config() );
 	}
+
+	/**
+	 * Config
+	 *
+	 * @return array
+	 */
+	public function gvnews_config() {
+		$config['gutenversePro'] = gutenverse_pro_active();
+		return $config;
+	}
+
 
 	/**
 	 * Editor config
