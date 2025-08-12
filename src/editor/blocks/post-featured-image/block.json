@@ -19,7 +19,7 @@
        },
        "gallerySize": {
             "type": "string",
-            "default": ""
+            "default": "featured-1140"
         },
         "column": {            
             "type": "object",

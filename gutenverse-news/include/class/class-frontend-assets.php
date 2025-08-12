@@ -247,6 +247,7 @@ class Frontend_Assets {
 				'gutenverse/news-hero-13',
 				'gutenverse/news-hero-14',
 				'gutenverse/news-hero-skew',
+				'gutenverse/news-post-featured',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/tinyslider.asset.php';
@@ -267,6 +268,7 @@ class Frontend_Assets {
 				'gutenverse/news-slider-7',
 				'gutenverse/news-slider-8',
 				'gutenverse/news-slider-9',
+				'gutenverse/news-post-featured',
 			)
 		) ) {
 			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/slider.asset.php';

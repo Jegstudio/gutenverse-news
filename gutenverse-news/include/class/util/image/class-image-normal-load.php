@@ -27,7 +27,7 @@ class Image_Normal_Load implements Image_Interface {
 	/**
 	 * Get instance
 	 *
-	 * @return ImageNormalLoad
+	 * @return Image_Normal_Load
 	 */
 	public static function get_instance() {
 		if ( null === static::$instance ) {

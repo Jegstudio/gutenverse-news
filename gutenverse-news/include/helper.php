@@ -1397,3 +1397,75 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 		return $allowedtags;
 	}
 }
+
+if ( ! function_exists( 'gvnews_get_image_dimension_by_name' ) ) {
+	/**
+	 * Get Image Dimension by Name
+	 *
+	 * @param string $name name.
+	 *
+	 * @return float
+	 */
+	function gvnews_get_image_dimension_by_name( $name ) {
+		$size = explode( '-', $name );
+		$size = explode( 'x', $size[1] );
+		return gvnews_get_image_dimension_by_size( $size[0], $size[1] );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_image_dimension_by_size' ) ) {
+	/**
+	 * Get Image Dimension by Size
+	 *
+	 * @param int $width width.
+	 * @param int $height height.
+	 *
+	 * @return float
+	 */
+	function gvnews_get_image_dimension_by_size( $width, $height ) {
+		return round( $height / $width * 1000 );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_image_src' ) ) {
+	/**
+	 * Get Image Src
+	 *
+	 * @param int    $id id.
+	 * @param string $size size.
+	 *
+	 * @return bool
+	 */
+	function gvnews_get_image_src( $id, $size = 'full' ) {
+		if ( ! empty( $id ) && ( ctype_digit( strval( $id ) ) || is_int( $id ) ) ) {
+			$image = wp_get_attachment_image_src( $id, $size );
+
+			return $image[0];
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'gvnews_check_video_type' ) ) {
+	/**
+	 * Check youtube URL
+	 *
+	 * @param string $url url.
+	 *
+	 * @return string
+	 */
+	function gvnews_check_video_type( $url ) {
+		if ( strpos( $url, 'iframe' ) > 0 ) {
+			return 'iframe';
+		} elseif ( strpos( $url, 'youtube' ) > 0 || strpos( $url, 'youtu.be' ) > 0 ) {
+			return 'youtube';
+		} elseif ( strpos( $url, 'vimeo' ) > 0 ) {
+			return 'vimeo';
+		} elseif ( strpos( $url, 'dailymotion' ) > 0 || strpos( $url, 'dai.ly' ) > 0 ) {
+			return 'dailymotion';
+		} else {
+			return 'unknown';
+		}
+	}
+}

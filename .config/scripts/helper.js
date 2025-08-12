@@ -32,6 +32,12 @@ const helper = {
 		hero: {
 			import: path.resolve( __dirname, "../../src/helper/gvnewshero.js" ),
 		},
+		'featured-gallery': {
+			import: path.resolve( __dirname, "../../src/helper/featured-gallery.js" )
+		},
+		'featured-video': {
+			import: path.resolve( __dirname, "../../src/helper/featured-video.js" )
+		},
 	},
 	externals: {
 		...externals,
@@ -114,6 +120,22 @@ const helper = {
 							{
 								source: "./src/helper/isotope.js",
 								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/featured-gallery.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/featured-gallery.asset.php*",
+								destination: "./gutenverse-news/lib/dependencies/",
+							},
+							{
+								source: "./build/featured-video.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/featured-video.asset.php*",
+								destination: "./gutenverse-news/lib/dependencies/",
 							},
 						],
 					},
