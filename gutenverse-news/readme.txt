@@ -92,24 +92,16 @@ Create dynamic news presentations with **3 available news carousel blocks**, all
 ## News Single Post Blocks
 
 *   **Post Author:** Display the author’s name prominently to give credit to the writer.
-*   **Post Breadcrumb:** Guide readers with a breadcrumb trail for easy navigation back to previous sections.
-*   **Post Comment:** Engage your audience by allowing them to leave comments and feedback on news articles.
 *   **Post Featured Image:** Highlight the main image of your news post, making the content more look good.
 *   **Post Meta:** Display essential post information such as the publish date, categories, and tags.
-*   **Post Next Prev:** Allow readers to easily navigate between previous and next articles with buttons.
 *   **Post Related:** Suggest related articles to keep your audience engaged and on your site longer.
-*   **Post Tag:** Show tags associated with the post to help readers find related content.
-*   **Post Title:** Display the title of your news post in a bold and attention-grabbing way.
 
 
 ## News Archive Blocks
 
 *   **Archive Block:** Design and organize blocks of archived news content for easy browsing.
-*   **Archive Breadcrumb:** Provide a navigation path for users to track their location within the archive.
 *   **Archive Description:** Offer a brief overview or description of the archived content to give context to readers.
-*   **Archive Hero:** Feature a key image or headline from your archive to draw attention to important past stories.
 *   **Archive Pagination:** Allow readers to navigate through multiple pages of archived content smoothly.
-*   **Archive Title:** Clearly display the title of the archive section to orient your readers.
 
 
 ## News Element Blocks
@@ -157,7 +149,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 2.0.2 [DEV] =
+= 3.0.0 =
 ##### Bug Fixes
 * Fix deprecated warning on the strpost function passing a null value
 * Fix: 'Include Post' filter not working properly when adding more than one post
