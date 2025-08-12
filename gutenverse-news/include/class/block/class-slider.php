@@ -137,4 +137,16 @@ class Slider extends Grab {
 
 		return $content;
 	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && 'GUTENVERSE\NEWS\Block\Slider\Slider_1' !== $this->attributes['gvnewsModule'] ) {
+			return true;
+		}
+		return false;
+	}
 }

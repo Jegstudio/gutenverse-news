@@ -10,6 +10,8 @@ import { useRef, useEffect } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const ArchiveTitle = compose(
     withPartialRender,
@@ -37,6 +39,7 @@ const ArchiveTitle = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-archive-title',
+            'gvnews-deprecated-block',
             elementId,
             animationClass,
             displayClass,
@@ -54,12 +57,12 @@ const ArchiveTitle = compose(
     }, [elementRef]);
 
     return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <PanelDeprecated title="Archive Title" />
         <div {...blockProps}>
             <div className={'gvnews-archive-title'}>
                 <h1>{title + 'Archive Title'}</h1>
             </div>
+            <DeprecatedOverlay />
         </div>
     </>;
 });

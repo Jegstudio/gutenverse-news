@@ -1398,6 +1398,17 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 	}
 }
 
+if ( ! function_exists( 'gutenverse_pro_active' ) ) {
+	/**
+	 * Check if Gutenverse Pro plugin is Active.
+	 *
+	 * @return boolean
+	 */
+	function gutenverse_pro_active() {
+		return defined( 'GUTENVERSE_PRO_VERSION' );
+	}
+}
+
 if ( ! function_exists( 'gvnews_get_option' ) ) {
 	/**
 	 * Get Gutenverse News options.
