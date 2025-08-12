@@ -3,11 +3,11 @@ import { ControlCheckbox } from 'gutenverse-core/backend';
 import { IconPaywallSVG } from '../../../assets/dashboard-icons';
 import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
-
+import { useState } from '@wordpress/element';
 
 const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveData, setPopupActive, setInstallPopup }) => {
-    const { features = [] } = settingValues;
 
+    const [features, setFeatures] = useState(settingValues.features || [])
     const updateValue = (id, value) => {
         let newFeatures = [...features];
         if (!value) {
@@ -20,7 +20,7 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
                 newFeatures.push(id);
             }
         }
-        updateSettingValues(newFeatures)
+        setFeatures(newFeatures);
     };
 
     const updateFeatures = () => {
@@ -31,7 +31,7 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
                 features: features
             }
         }).then((response) => {
-            saveData('gvnews_settings')
+            updateSettingValues(features);
         }).catch((err) => {
             console.log(err);
         });
