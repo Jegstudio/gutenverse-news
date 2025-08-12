@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, maskPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, conditionPanel, maskPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { contentPanel } from './panel-content';
 import { designPanel } from './panel-design';
 import { headerPanel } from '../../../control-panel/panel-header';
@@ -90,6 +90,11 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: maskPanel,
             tabRole: TabStyle
+        }, {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         }
     ];
 };

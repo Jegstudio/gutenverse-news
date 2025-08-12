@@ -257,10 +257,15 @@
         "itemAmount": {
             "type": "string",
             "default": 4
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }
