@@ -1,5 +1,6 @@
-import AdditionalFeatures from "./additional-features";
+import AdditionalFeatures from './additional-features';
 import BlockSettings from './block-settings';
+import { applyFilters } from '@wordpress/hooks';
 
 export const NewsSettings = (props) => {
     const { subSettings = 'block_settings', settingValues = {}, updateSettingValues } = props;
@@ -13,18 +14,30 @@ export const NewsSettings = (props) => {
             ...gvnews_settings[setting],
             [id]: value
         });
-    }
-    const updateGVNewsFeatures = (value) => {
-        updateSettingValues('gvnews_settings', 'features', value);
-    }
+    };
 
+    let content = '';
     switch (subSettings) {
         case 'block_settings':
-            return <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
+            content = <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
+            break;
         case 'additional_features':
-            return <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />
+            const updateGVNewsFeatures = (value) => {
+                updateSettingValues('gvnews_settings', 'features', value);
+            }
+            content = <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />;
+            break;
         default:
             break;
     }
-    return '';
-}
+    return applyFilters(
+        'gutenverse.news.settings.content',
+        content,
+        subSettings,
+        {
+            ...props,
+            settingValues: gvnews_settings,
+            updateSettingValues: updateGVNewsSettings
+        }
+    );
+};
