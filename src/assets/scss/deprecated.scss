@@ -198,8 +198,7 @@
         .gvnews-deprecated-box {
             background: #fff;
             border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
+            max-width: 523px;
             padding: 40px 48px;
             position: relative;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -223,7 +222,6 @@
 
                 ul {
                     list-style-type: disc;
-                    margin-left: 40px;
                 }
 
                 .blocks-deprecated-text {
@@ -244,11 +242,13 @@
                 ul {
                     margin-bottom: 16px;
                     font-size: 16px;
+                    line-height: 1;
                 }
 
                 li {
                     font-weight: 500;
                     color: #212121;
+                    line-height: 1.4;
                 }
 
                 .gvnews-deprecated-actions {
@@ -296,6 +296,10 @@
             }
         }
     }
+}
+
+.block-editor-page .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text ul {
+    margin-left: 40px;
 }
 
 body.gvnews-deprecated-options .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .options-deprecated-text {
