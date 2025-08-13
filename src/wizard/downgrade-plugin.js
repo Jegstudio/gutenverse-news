@@ -65,8 +65,8 @@ const DowngradeWizard = () => {
 
                     <div className="content-notice">
                         <h2>⚠️ Why are some blocks and features being removed?</h2>
-                        <p>We restructure every block and features we release back than because we need to ensure our survivablity. as you may already know, we are doing this full time and there is cost we need to pay for every development.</p>
-                        <p>The block is not deleted, you can still access it. or you can also stick with our previous version (2.0.1). but if you think that the plugin worthy, you can support us to buy the pro version of the plugin.</p>
+                        <p>We’ve restructured every block and feature we released back then to ensure our long-term sustainability. As you may know, this is our full-time work, and each development comes with costs that we need to cover.</p>
+                        <p>The block hasn’t been deleted—you can still access it, or continue using our previous version (2.0.1). But if you believe the plugin is worth it, we’d greatly appreciate your support by upgrading to the Pro version.</p>
                     </div>
                     <div className="content-input">
                         <h5>Optional: Disable Automatic Updates</h5>
