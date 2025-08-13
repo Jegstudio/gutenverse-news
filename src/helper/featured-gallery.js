@@ -8,7 +8,6 @@
         let base = this;
         base.container = $container && $container.length ? $container : $('body');
 
-        // Cari semua featured_gallery di dalam container
         let featuredGallery = base.container.find('.featured_gallery');
 
         if (featuredGallery.length) {

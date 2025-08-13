@@ -282,7 +282,7 @@ class Single_Post {
 	 * @param mixed $size size.
 	 * @param mixed $id id.
 	 * @param mixed $additional_class class.
-	 * @return mized
+	 * @return mixed
 	 */
 	public function featured_gallery( $size, $id = null, $additional_class = null ) {
 		$dimension = gvnews_get_image_dimension_by_name( $size );
