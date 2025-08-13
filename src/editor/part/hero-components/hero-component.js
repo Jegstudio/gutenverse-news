@@ -40,14 +40,21 @@ const HeroComponent = (props) => {
         autoplayDelay,
         heroMargin,
         heightDesktop,
+        attributes,
+        setAttributes
     } = props;
 
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [overlay, setOverlay] = useState(false);
-    const [block, setBlock] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
+    const [sliderCount, setSliderCount] = useState(0);
+
     const moduleOption = useRef(null);
     const postCount = useRef(0);
+    const firstRender = useRef(true);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -57,6 +64,40 @@ const HeroComponent = (props) => {
             getWidth(columnWidth);
         }
     }, [columnWidth]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 3000
+            });
+        }
+    }, [autoplayDelay]);
+
+    useEffect(() => {
+        if (sliderItem >= 1) {
+            setSliderCount(parseInt(sliderItem));
+        } else {
+            setAttributes({
+                ...attributes,
+                sliderItem: 2
+            });
+        }
+    }, [sliderItem]);
+
 
     useEffect(() => {
         const timeOutId = setTimeout(() => {
@@ -75,7 +116,7 @@ const HeroComponent = (props) => {
                         uniqueContent,
                         includeOnly,
                         postType,
-                        numberPost: sliderItem ? sliderItem * numberPost : numberPost,
+                        numberPost: sliderCount ? sliderCount * numberPost : numberPost,
                         includePost,
                         excludePost,
                         includeCategory,
@@ -84,15 +125,18 @@ const HeroComponent = (props) => {
                         includeTag,
                         excludeTag,
                         sortBy,
-                        postOffset
+                        postOffset: postStart
                     },
                 },
             }).then((data) => {
                 getTrim(JSON.parse(data));
             }).finally(() => {
                 setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
             });
-        }, 150);
+        }, 300);
         return () => clearTimeout( timeOutId );
     }, [
         contentType,
@@ -106,8 +150,8 @@ const HeroComponent = (props) => {
         includeTag,
         excludeTag,
         sortBy,
-        postOffset,
-        sliderItem,
+        postStart,
+        sliderCount,
     ]);
 
     const resetBlock = () => {
@@ -122,7 +166,7 @@ const HeroComponent = (props) => {
             };
             const rows = [];
             const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
-            for (let i = 0; i < Math.min(sliderItem, maxSliderItem); i++) {
+            for (let i = 0; i < Math.min(sliderCount, maxSliderItem); i++) {
                 rows.push(
                     <HeroContentWrapperComponent
                         {...{
@@ -139,6 +183,7 @@ const HeroComponent = (props) => {
             }
             setBlock(
                 <HeroViewComponent
+                    key={Math.random().toString(36).substring(2)}
                     {...{
                         rows,
                         heroType,
@@ -146,7 +191,7 @@ const HeroComponent = (props) => {
                         enableslider,
                         blockWidth,
                         autoplay,
-                        autoplayDelay,
+                        autoplayDelay: sliderDelay,
                     }}
                 />
             );
@@ -156,16 +201,16 @@ const HeroComponent = (props) => {
     };
 
     useEffect(() => {
-        setBlock(false);
-        setTimeout(function () {
-            resetBlock();
-        });
+        if(firstRender.current) {
+            return;
+        }
+        resetBlock();
     },[
         postData,
         enableslider,
         autoplay,
-        autoplayDelay,
-        sliderItem,
+        sliderDelay,
+        sliderCount,
         heroMargin,
         heightDesktop,
         blockWidth,
@@ -176,12 +221,18 @@ const HeroComponent = (props) => {
         heroStyle
     ]);
 
+    useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
+        enableslider && elementRef.current && window.gvnews.hero.init(elementRef.current);
+        enableslider && elementRef.current && window.gvnews.hero.heroSlider(elementRef.current);
+    }, [block]);
+
     return (
         <>
-            {block ? block : <ModuleSkeleton />}
-            {overlay && <ModuleOverlay />}
-            {enableslider && elementRef.current && window.gvnews.hero.init(elementRef.current)}
-            {enableslider && elementRef.current && window.gvnews.hero.heroSlider(elementRef.current)}
+            {block}
+            {(overlay && !firstRender.current) && <ModuleOverlay />}
         </>
     );
 };
