@@ -22,6 +22,7 @@ const DeprecatedOverlay = () => {
                     <b>Deprecated</b>: This block is no longer supported.
                 </p>
             </span>
+            <p className="note">*This notice is not visible to general users on the frontend.</p>
             <a href="javascript:void(0);" onClick={handleLearnMoreClick}>Learn More</a>
         </div>
     );

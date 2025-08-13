@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { NumberControl, RangeControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
+import { applyFilters } from '@wordpress/hooks';
 
-export const filterPanel = ({postType}) => {
+export const filterPanel = ({ postType }) => {
 
     return [
         {
@@ -58,7 +59,7 @@ export const filterPanel = ({postType}) => {
             label: __('Include into Unique Content Group', 'gutenverse-news'),
             description: __('Choose unique content option, and this module will be included into unique content group. It won\'t duplicate content across the group. Ajax loaded content won\'t affect this unique content feature.', 'gutenverse-news'),
             component: SelectControl,
-            options: [
+            options: applyFilters('gutenverse.news.unique-content-group', [
                 {
                     value: 'disable',
                     label: __('Disable', 'gutenverse-news')
@@ -69,21 +70,25 @@ export const filterPanel = ({postType}) => {
                 },
                 {
                     value: 'unique2',
-                    label: __('Unique Content - Group 2', 'gutenverse-news')
+                    label: __('Unique Content - Group 2', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique3',
-                    label: __('Unique Content - Group 3', 'gutenverse-news')
+                    label: __('Unique Content - Group 3', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique4',
-                    label: __('Unique Content - Group 4', 'gutenverse-news')
+                    label: __('Unique Content - Group 4', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique5',
-                    label: __('Unique Content - Group 5', 'gutenverse-news')
-                },
-            ]
+                    label: __('Unique Content - Group 5', 'gutenverse-news'),
+                    pro: true
+                }
+            ])
         },
         {
             id: 'includePost',

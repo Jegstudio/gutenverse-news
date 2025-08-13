@@ -114,7 +114,11 @@
             "type":"object"
         },
         "accentColorHover": {
-            "type":"object"
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

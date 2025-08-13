@@ -166,6 +166,7 @@ class Post_Guten extends Block_Abstract {
 							</svg> 
 							<p><b>Deprecated</b>: This block is no longer supported.</p>
 						</span> 
+						<p class="note">*This notice is not visible to general users on the frontend.</p>
 						<a href="javascript:void(0);">Learn More </a>
 					</div>';
 		}

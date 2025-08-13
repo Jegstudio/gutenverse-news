@@ -125,6 +125,8 @@ const searchCustomPostTemplate = input => new Promise(resolve => {
     });
 });
 
+const gutenverseProActive = (window.GVNewsConfig && window.GVNewsConfig.gutenversePro);
+
 // const phpFunctionCaller = input => new Promise(resolve => {
 //     apiFetch({
 //         path: addQueryArgs('/gvnews-client/v1/php-function-caller'),
@@ -193,4 +195,4 @@ const getModuleOptions = () => {
     };
 };
 
-export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
+export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions, gutenverseProActive };

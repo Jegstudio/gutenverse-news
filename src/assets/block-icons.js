@@ -72,7 +72,7 @@ import Slider7 from './svg/slider-7.svg';
 import Slider8 from './svg/slider-8.svg';
 import Slider9 from './svg/slider-9.svg';
 import SliderOverlay from './svg/slider-overlay.svg';
-import  CategoryIconSvg from './svg/icon-placeholder.svg';
+import CategoryIconSvg from './svg/icon-placeholder.svg';
 import NewsTickerBlock from './svg/news-ticker.svg';
 import AdsBlock from './svg/ads-block.svg';
 import UserlistBlock from './svg/user-list.svg';
@@ -102,307 +102,367 @@ import SocialIcon from './svg/social-icon.svg';
 /* Additional Icons */
 import WarningIcon from './svg/warning-icon.svg';
 
+/* Pro version icons */
+import Block10BlockPro from './svg/pro/module-10.svg';
+import Block11BlockPro from './svg/pro/module-11.svg';
+import Block12BlockPro from './svg/pro/module-12.svg';
+import Block13BlockPro from './svg/pro/module-13.svg';
+import Block14BlockPro from './svg/pro/module-14.svg';
+import Block15BlockPro from './svg/pro/module-15.svg';
+import Block16BlockPro from './svg/pro/module-16.svg';
+import Block17BlockPro from './svg/pro/module-17.svg';
+import Block18BlockPro from './svg/pro/module-18.svg';
+import Block19BlockPro from './svg/pro/module-19.svg';
+import Block20BlockPro from './svg/pro/module-20.svg';
+import Block21BlockPro from './svg/pro/module-21.svg';
+import Block22BlockPro from './svg/pro/module-22.svg';
+import Block23BlockPro from './svg/pro/module-23.svg';
+import Block24BlockPro from './svg/pro/module-24.svg';
+import Block25BlockPro from './svg/pro/module-25.svg';
+import Block26BlockPro from './svg/pro/module-26.svg';
+import Block27BlockPro from './svg/pro/module-27.svg';
+import Block28BlockPro from './svg/pro/module-28.svg';
+import Block29BlockPro from './svg/pro/module-29.svg';
+import Block30BlockPro from './svg/pro/module-30.svg';
+import Block31BlockPro from './svg/pro/module-31.svg';
+import Block32BlockPro from './svg/pro/module-32.svg';
+import Block33BlockPro from './svg/pro/module-33.svg';
+import Block34BlockPro from './svg/pro/module-34.svg';
+import Block35BlockPro from './svg/pro/module-35.svg';
+import Block36BlockPro from './svg/pro/module-36.svg';
+import Block37BlockPro from './svg/pro/module-37.svg';
+import Block38BlockPro from './svg/pro/module-38.svg';
+import Block39BlockPro from './svg/pro/module-39.svg';
+import ArchiveHeroPro from './svg/pro/archive-hero.svg';
+import Carousel1Pro from './svg/pro/carousel-1.svg';
+import Carousel2Pro from './svg/pro/carousel-2.svg';
+import Carousel3Pro from './svg/pro/carousel-3.svg';
+import Hero6Pro from './svg/pro/hero-6.svg';
+import Hero7Pro from './svg/pro/hero-7.svg';
+import Hero8Pro from './svg/pro/hero-8.svg';
+import Hero9Pro from './svg/pro/hero-9.svg';
+import Hero10Pro from './svg/pro/hero-10.svg';
+import Hero11Pro from './svg/pro/hero-11.svg';
+import Hero12Pro from './svg/pro/hero-12.svg';
+import Hero13Pro from './svg/pro/hero-13.svg';
+import Hero14Pro from './svg/pro/hero-14.svg';
+import HeroSkewPro from './svg/pro/hero-skew.svg';
+import Slider2Pro from './svg/pro/slider-2.svg';
+import Slider3Pro from './svg/pro/slider-3.svg';
+import Slider4Pro from './svg/pro/slider-4.svg';
+import Slider5Pro from './svg/pro/slider-5.svg';
+import Slider6Pro from './svg/pro/slider-6.svg';
+import Slider7Pro from './svg/pro/slider-7.svg';
+import Slider8Pro from './svg/pro/slider-8.svg';
+import Slider9Pro from './svg/pro/slider-9.svg';
+import RssPro from './svg/pro/rss-block.svg';
+import PostNextPrevPro from './svg/pro/post-next-prev.svg';
+import { gutenverseProActive } from '../editor/utils/helper';
+
 export const Block1BlockSvg = () => {
-    return <Block1Block/>;
+    return <Block1Block />;
 };
 export const Block2BlockSvg = () => {
-    return <Block2Block/>;
+    return <Block2Block />;
 };
 export const Block3BlockSvg = () => {
-    return <Block3Block/>;
+    return <Block3Block />;
 };
 export const Block4BlockSvg = () => {
-    return <Block4Block/>;
+    return <Block4Block />;
 };
 export const Block5BlockSvg = () => {
-    return <Block5Block/>;
+    return <Block5Block />;
 };
 export const Block6BlockSvg = () => {
-    return <Block6Block/>;
+    return <Block6Block />;
 };
 export const Block7BlockSvg = () => {
-    return <Block7Block/>;
+    return <Block7Block />;
 };
 export const Block8BlockSvg = () => {
-    return <Block8Block/>;
+    return <Block8Block />;
 };
 export const Block9BlockSvg = () => {
-    return <Block9Block/>;
+    return <Block9Block />;
 };
+
 export const Block10BlockSvg = () => {
-    return <Block10Block/>;
+    return gutenverseProActive ? <Block10BlockPro /> : <Block10Block />;
 };
 export const Block11BlockSvg = () => {
-    return <Block11Block/>;
+    return gutenverseProActive ? <Block11BlockPro /> : <Block11Block />;
 };
 export const Block12BlockSvg = () => {
-    return <Block12Block/>;
+    return gutenverseProActive ? <Block12BlockPro /> : <Block12Block />;
 };
 export const Block13BlockSvg = () => {
-    return <Block13Block/>;
+    return gutenverseProActive ? <Block13BlockPro /> : <Block13Block />;
 };
 export const Block14BlockSvg = () => {
-    return <Block14Block/>;
+    return gutenverseProActive ? <Block14BlockPro /> : <Block14Block />;
 };
 export const Block15BlockSvg = () => {
-    return <Block15Block/>;
+    return gutenverseProActive ? <Block15BlockPro /> : <Block15Block />;
 };
 export const Block16BlockSvg = () => {
-    return <Block16Block/>;
+    return gutenverseProActive ? <Block16BlockPro /> : <Block16Block />;
 };
 export const Block17BlockSvg = () => {
-    return <Block17Block/>;
+    return gutenverseProActive ? <Block17BlockPro /> : <Block17Block />;
 };
 export const Block18BlockSvg = () => {
-    return <Block18Block/>;
+    return gutenverseProActive ? <Block18BlockPro /> : <Block18Block />;
 };
 export const Block19BlockSvg = () => {
-    return <Block19Block/>;
+    return gutenverseProActive ? <Block19BlockPro /> : <Block19Block />;
 };
 export const Block20BlockSvg = () => {
-    return <Block20Block/>;
+    return gutenverseProActive ? <Block20BlockPro /> : <Block20Block />;
 };
 export const Block21BlockSvg = () => {
-    return <Block21Block/>;
+    return gutenverseProActive ? <Block21BlockPro /> : <Block21Block />;
 };
 export const Block22BlockSvg = () => {
-    return <Block22Block/>;
+    return gutenverseProActive ? <Block22BlockPro /> : <Block22Block />;
 };
 export const Block23BlockSvg = () => {
-    return <Block23Block/>;
+    return gutenverseProActive ? <Block23BlockPro /> : <Block23Block />;
 };
 export const Block24BlockSvg = () => {
-    return <Block24Block/>;
+    return gutenverseProActive ? <Block24BlockPro /> : <Block24Block />;
 };
 export const Block25BlockSvg = () => {
-    return <Block25Block/>;
+    return gutenverseProActive ? <Block25BlockPro /> : <Block25Block />;
 };
 export const Block26BlockSvg = () => {
-    return <Block26Block/>;
+    return gutenverseProActive ? <Block26BlockPro /> : <Block26Block />;
 };
 export const Block27BlockSvg = () => {
-    return <Block27Block/>;
+    return gutenverseProActive ? <Block27BlockPro /> : <Block27Block />;
 };
 export const Block28BlockSvg = () => {
-    return <Block28Block/>;
+    return gutenverseProActive ? <Block28BlockPro /> : <Block28Block />;
 };
 export const Block29BlockSvg = () => {
-    return <Block29Block/>;
+    return gutenverseProActive ? <Block29BlockPro /> : <Block29Block />;
 };
 export const Block30BlockSvg = () => {
-    return <Block30Block/>;
+    return gutenverseProActive ? <Block30BlockPro /> : <Block30Block />;
 };
 export const Block31BlockSvg = () => {
-    return <Block31Block/>;
+    return gutenverseProActive ? <Block31BlockPro /> : <Block31Block />;
 };
 export const Block32BlockSvg = () => {
-    return <Block32Block/>;
+    return gutenverseProActive ? <Block32BlockPro /> : <Block32Block />;
 };
 export const Block33BlockSvg = () => {
-    return <Block33Block/>;
+    return gutenverseProActive ? <Block33BlockPro /> : <Block33Block />;
 };
 export const Block34BlockSvg = () => {
-    return <Block34Block/>;
+    return gutenverseProActive ? <Block34BlockPro /> : <Block34Block />;
 };
 export const Block35BlockSvg = () => {
-    return <Block35Block/>;
+    return gutenverseProActive ? <Block35BlockPro /> : <Block35Block />;
 };
 export const Block36BlockSvg = () => {
-    return <Block36Block/>;
+    return gutenverseProActive ? <Block36BlockPro /> : <Block36Block />;
 };
 export const Block37BlockSvg = () => {
-    return <Block37Block/>;
+    return gutenverseProActive ? <Block37BlockPro /> : <Block37Block />;
 };
 export const Block38BlockSvg = () => {
-    return <Block38Block/>;
+    return gutenverseProActive ? <Block38BlockPro /> : <Block38Block />;
 };
 export const Block39BlockSvg = () => {
-    return <Block39Block/>;
+    return gutenverseProActive ? <Block39BlockPro /> : <Block39Block />;
 };
+
 export const ArchiveDescriptionSvg = () => {
-    return <ArchiveDescription/>;
+    return <ArchiveDescription />;
 };
 export const ArchiveTitleSvg = () => {
-    return <ArchiveTitle/>;
+    return <ArchiveTitle />;
 };
 export const ArchivePaginationSvg = () => {
-    return <ArchivePagination/>;
+    return <ArchivePagination />;
 };
 export const ArchiveHeroSvg = () => {
-    return <ArchiveHero/>;
+    return gutenverseProActive ? <ArchiveHeroPro /> : <ArchiveHero />;
 };
 export const ArchiveBlockSvg = () => {
-    return <ArchiveBlock/>;
+    return <ArchiveBlock />;
 };
 export const ArchiveBreadcrumbSvg = () => {
-    return <ArchiveBreadcrumb/>;
+    return <ArchiveBreadcrumb />;
 };
 export const Carousel1Svg = () => {
-    return <Carousel1/>;
+    return gutenverseProActive ? <Carousel1Pro /> : <Carousel1 />;
 };
 export const Carousel2Svg = () => {
-    return <Carousel2/>;
+    return gutenverseProActive ? <Carousel2Pro /> : <Carousel2 />;
 };
 export const Carousel3Svg = () => {
-    return <Carousel3/>;
+    return gutenverseProActive ? <Carousel3Pro /> : <Carousel3 />;
 };
 export const IconLinkSvg = () => {
-    return <IconLink/>;
+    return <IconLink />;
 };
 export const UserlistBlockSvg = () => {
-    return <UserlistBlock/>;
+    return <UserlistBlock />;
 };
 export const SocialIconSvg = () => {
-    return <SocialIcon/>;
+    return <SocialIcon />;
 };
 export const RssSvg = () => {
-    return <Rss/>;
+    return gutenverseProActive ? <RssPro /> : <Rss />;
 };
 export const SplitNavSvg = () => {
-    return <SplitNav/>;
+    return <SplitNav />;
 };
 export const NewsTickerBlockSvg = () => {
-    return <NewsTickerBlock/>;
+    return <NewsTickerBlock />;
 };
 export const HeaderBlockSvg = () => {
-    return <HeaderBlock/>;
+    return <HeaderBlock />;
 };
 export const CategoryCarouselSvg = () => {
-    return <CategoryCarousel/>;
+    return <CategoryCarousel />;
 };
 export const AdsBlockSvg = () => {
-    return <AdsBlock/>;
+    return <AdsBlock />;
 };
 export const AboutWidgetSvg = () => {
-    return <AboutWidget/>;
+    return <AboutWidget />;
 };
 export const LogoHeaderSvg = () => {
-    return <LogoHeader/>;
+    return <LogoHeader />;
 };
 export const SearchHeaderSvg = () => {
-    return <SearchHeader/>;
+    return <SearchHeader />;
 };
 export const DateHeaderSvg = () => {
-    return <DateHeader/>;
+    return <DateHeader />;
 };
 export const AccountHeaderSvg = () => {
-    return <AccountHeader/>;
+    return <AccountHeader />;
 };
 export const Hero1Svg = () => {
-    return <Hero1/>;
+    return <Hero1 />;
 };
 export const Hero2Svg = () => {
-    return <Hero2/>;
+    return <Hero2 />;
 };
 export const Hero3Svg = () => {
-    return <Hero3/>;
+    return <Hero3 />;
 };
 export const Hero4Svg = () => {
-    return <Hero4/>;
+    return <Hero4 />;
 };
 export const Hero5Svg = () => {
-    return <Hero5/>;
+    return <Hero5 />;
 };
 export const Hero6Svg = () => {
-    return <Hero6/>;
+    return gutenverseProActive ? <Hero6Pro /> : <Hero6 />;
 };
 export const Hero7Svg = () => {
-    return <Hero7/>;
+    return gutenverseProActive ? <Hero7Pro /> : <Hero7 />;
 };
 export const Hero8Svg = () => {
-    return <Hero8/>;
+    return gutenverseProActive ? <Hero8Pro /> : <Hero8 />;
 };
 export const Hero9Svg = () => {
-    return <Hero9/>;
+    return gutenverseProActive ? <Hero9Pro /> : <Hero9 />;
 };
 export const Hero10Svg = () => {
-    return <Hero10/>;
+    return gutenverseProActive ? <Hero10Pro /> : <Hero10 />;
 };
 export const Hero11Svg = () => {
-    return <Hero11/>;
+    return gutenverseProActive ? <Hero11Pro /> : <Hero11 />;
 };
 export const Hero12Svg = () => {
-    return <Hero12/>;
+    return gutenverseProActive ? <Hero12Pro /> : <Hero12 />;
 };
 export const Hero13Svg = () => {
-    return <Hero13/>;
+    return gutenverseProActive ? <Hero13Pro /> : <Hero13 />;
 };
 export const Hero14Svg = () => {
-    return <Hero14/>;
+    return gutenverseProActive ? <Hero14Pro /> : <Hero14 />;
 };
 export const HeroSkewSvg = () => {
-    return <HeroSkew/>;
+    return gutenverseProActive ? <HeroSkewPro /> : <HeroSkew />;
 };
 export const PostTitleSvg = () => {
-    return <PostTitle/>;
+    return <PostTitle />;
 };
 export const PostTagSvg = () => {
-    return <PostTag/>;
+    return <PostTag />;
 };
 export const PostSubtitleSvg = () => {
-    return <PostSubtitle/>;
+    return <PostSubtitle />;
 };
 export const PostShareSvg = () => {
-    return <PostShare/>;
+    return <PostShare />;
 };
 export const PostRelatedSvg = () => {
-    return <PostRelated/>;
+    return <PostRelated />;
 };
+
 export const PostNextPrevSvg = () => {
-    return <PostNextPrev/>;
+    return gutenverseProActive ? <PostNextPrevPro /> : <PostNextPrev />;
 };
 export const PostMetaSvg = () => {
-    return <PostMeta/>;
+    return <PostMeta />;
 };
 export const PostFeaturedImageSvg = () => {
-    return <PostFeaturedImage/>;
+    return <PostFeaturedImage />;
 };
 export const PostCommentSvg = () => {
-    return <PostComment/>;
+    return <PostComment />;
 };
 export const PostBreadcrumbSvg = () => {
-    return <PostBreadcrumb/>;
+    return <PostBreadcrumb />;
 };
 export const PostAuthorSvg = () => {
-    return <PostAuthor/>;
+    return <PostAuthor />;
 };
 export const Slider1Svg = () => {
-    return <Slider1/>;
+    return <Slider1 />;
 };
 export const Slider2Svg = () => {
-    return <Slider2/>;
+    return gutenverseProActive ? <Slider2Pro /> : <Slider2 />;
 };
 export const Slider3Svg = () => {
-    return <Slider3/>;
+    return gutenverseProActive ? <Slider3Pro /> : <Slider3 />;
 };
 export const Slider4Svg = () => {
-    return <Slider4/>;
+    return gutenverseProActive ? <Slider4Pro /> : <Slider4 />;
 };
 export const Slider5Svg = () => {
-    return <Slider5/>;
+    return gutenverseProActive ? <Slider5Pro /> : <Slider5 />;
 };
 export const Slider6Svg = () => {
-    return <Slider6/>;
+    return gutenverseProActive ? <Slider6Pro /> : <Slider6 />;
 };
 export const Slider7Svg = () => {
-    return <Slider7/>;
+    return gutenverseProActive ? <Slider7Pro /> : <Slider7 />;
 };
 export const Slider8Svg = () => {
-    return <Slider8/>;
+    return gutenverseProActive ? <Slider8Pro /> : <Slider8 />;
 };
 export const Slider9Svg = () => {
-    return <Slider9/>;
+    return gutenverseProActive ? <Slider9Pro /> : <Slider9 />;
 };
 export const SliderOverlaySvg = () => {
-    return <SliderOverlay/>;
+    return <SliderOverlay />;
 };
 
 
 export const CategoryIcon = () => {
-    return <CategoryIconSvg/>;
+    return <CategoryIconSvg />;
 };
 
 export const WarningIconSVG = () => {
-    return <WarningIcon/>;
+    return <WarningIcon />;
 };
 
