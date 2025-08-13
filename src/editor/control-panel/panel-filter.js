@@ -45,14 +45,17 @@ export const filterPanel = ({ postType }) => {
             component: RangeControl,
             min: 2,
             max: 10,
-            step: 1
+            step: 1,
+            isParseFloat: false
         },
         {
             id: 'postOffset',
             label: __('Post Offset', 'gutenverse-news'),
             description: __('Number of post offset (start of content).', 'gutenverse-news'),
-            component: NumberControl,
-            forceType: 'string'
+            component: RangeControl,
+            min: 0,
+            step: 1,
+            isParseFloat: false
         },
         {
             id: 'uniqueContent',

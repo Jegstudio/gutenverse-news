@@ -71,7 +71,7 @@ class Slider_3 extends Slider_View_Abstract {
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
 			$content        = $this->content( $result );
-			$column_class   = $this->get_module_column_class( $attr );
+			$column_class   = ( isset( $attr['column_width'] ) && 'auto' !== $attr['column_width'] ) ? $this->get_module_column_class( $attr ) : '';
 			$autoplay_delay = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
 			$number_item    = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
 

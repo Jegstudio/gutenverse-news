@@ -25,6 +25,7 @@ const Slider1Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         isSelected,
         clientId,
         setBlockRef
@@ -67,6 +68,8 @@ const Slider1Block = compose(
         }
     }, [elementRef]);
 
+    const animationClass = useAnimationEditor(attributes);
+    const displayClass = useDisplayEditor(attributes);
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -79,12 +82,13 @@ const Slider1Block = compose(
         ),
         ref: elementRef
     });
-    const animationClass = useAnimationEditor(attributes);
-    const displayClass = useDisplayEditor(attributes);
 
     const [postData, getTrim] = useState([]);
     const [overlay, setOverlay] = useState(false);
-    const [block, setBlock] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postLoaded, setPostLoaded] = useState(5);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
 
     const firstRender = useRef(true);
 
@@ -136,7 +140,7 @@ const Slider1Block = compose(
         }
         return (
             <>
-                <div className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay} data-hover-action={hoverEffect ? true : ''}>
+                <div className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''}>
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">
@@ -160,9 +164,8 @@ const Slider1Block = compose(
                 metaDateFormatCustom,
             };
             setBlock(
-                <div className={'gvnews_slider_wrapper gvnews_slider_type_1_wrapper'}>
+                <div key={Math.random().toString(36).substring(2)} className={'gvnews_slider_wrapper gvnews_slider_type_1_wrapper'}>
                     <RenderColumn {...moduleData} />
-                    {(overlay && !firstRender.current) && <ModuleOverlay />}
                 </div>
             );
         } else {
@@ -173,6 +176,39 @@ const Slider1Block = compose(
     }
 
     useEffect(() => {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 2000
+            });
+        }
+    }, [autoplayDelay]);
+
+    useEffect(() => {
         const timeoutID = setTimeout(() => {
             setOverlay(true);
 
@@ -181,7 +217,7 @@ const Slider1Block = compose(
                 uniqueContent,
                 includeOnly,
                 postType,
-                numberPost,
+                numberPost: postLoaded,
                 includePost,
                 excludePost,
                 includeCategory,
@@ -190,7 +226,7 @@ const Slider1Block = compose(
                 includeTag,
                 excludeTag,
                 sortBy,
-                postOffset,
+                postOffset: postStart,
             };
             apiFetch({
                 path: addQueryArgs('/gvnews-client/v1/get-post'),
@@ -203,8 +239,11 @@ const Slider1Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
             });
-        }, 150);
+        }, 300);
         return () => clearTimeout(timeoutID);
     }, [
         contentType,
@@ -218,18 +257,15 @@ const Slider1Block = compose(
         includeTag,
         excludeTag,
         sortBy,
-        numberPost,
-        postOffset,
+        postLoaded,
+        postStart,
     ]);
 
     useEffect(() => {
         if(firstRender.current) {
             return;
         }
-        setBlock(false);
-        setTimeout(function () {
-            resetblock();
-        }, 100);
+        resetblock();
     }, [
         excerptLength,
         excerptEllipsis,
@@ -239,35 +275,37 @@ const Slider1Block = compose(
         metaDateFormat,
         metaDateFormatCustom,
         autoplay,
-        autoplayDelay,
+        sliderDelay,
         hoverEffect,
     ]);
 
     useEffect(() => {
         if(firstRender.current) {
-            firstRender.current = false;
             return;
         }
         if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
-            setTimeout(() => {
-                const gvnewsLibrary = window.gvnews.library;
-                var slider = document.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
-                if (slider.length) {
-                    gvnewsLibrary.forEach(slider, function (ele) {
-                        window.gvnews.slider({
-                            container: ele,
-                            onInit: function (info) {
-                                if ('undefined' !== typeof info.nextButton) {
-                                    gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                                }
-                                if ('undefined' !== typeof info.prevButton) {
-                                    gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                                }
-                            },
-                        });
+            const gvnewsLibrary = window.gvnews.library;
+            let target = document;
+            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+            if(iframe) {
+                target = iframe.contentDocument;
+            }
+            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
+            if (slider.length) {
+                gvnewsLibrary.forEach(slider, function (ele) {
+                    window.gvnews.slider({
+                        container: ele,
+                        onInit: function (info) {
+                            if ('undefined' !== typeof info.nextButton) {
+                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+                            }
+                            if ('undefined' !== typeof info.prevButton) {
+                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
+                            }
+                        },
                     });
-                }
-            }, 1000);
+                });
+            }
         }
     }, [block]);
 
@@ -277,7 +315,8 @@ const Slider1Block = compose(
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : <ModuleSkeleton />}
+                {block}
+                {(overlay && !firstRender.current) && <ModuleOverlay />}
             </div>
         </div>
     </>;
