@@ -121,7 +121,9 @@
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
-    "keywords": ["single", "archive", "title"]
+    "keywords": ["single", "archive", "title"],
+    "gvnewsRemoved": true
 }

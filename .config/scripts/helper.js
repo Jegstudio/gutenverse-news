@@ -1,10 +1,10 @@
-const rules                             = require( "gutenverse-core/.config/rules" );
-const path                              = require( "path" );
-const FileManagerPlugin                 = require( "filemanager-webpack-plugin" );
-const { output }                        = require( "../config.js" );
-const { stats, plugins }                = require( "gutenverse-core/.config/config" );
-const { externals, coreExternals }      = require( "gutenverse-core/.config/externals" );
-const DependencyExtractionWebpackPlugin = require( "@wordpress/dependency-extraction-webpack-plugin" );
+const rules = require("gutenverse-core/.config/rules");
+const path = require("path");
+const FileManagerPlugin = require("filemanager-webpack-plugin");
+const { output } = require("../config.js");
+const { stats, plugins } = require("gutenverse-core/.config/config");
+const { externals, coreExternals } = require("gutenverse-core/.config/externals");
+const DependencyExtractionWebpackPlugin = require("@wordpress/dependency-extraction-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helper = {
@@ -12,25 +12,31 @@ const helper = {
 	devtool: "source-map",
 	entry: {
 		helper: {
-			import: path.resolve( __dirname, "../../src/helper/index.js" ),
+			import: path.resolve(__dirname, "../../src/helper/index.js"),
 		},
 		backend: {
-			import: path.resolve( __dirname, "../../src/helper/backend.js" ),
+			import: path.resolve(__dirname, "../../src/helper/backend.js"),
 		},
 		tinyslider: {
-			import: path.resolve( __dirname, "../../src/helper/tiny-slider.js" ),
+			import: path.resolve(__dirname, "../../src/helper/tiny-slider.js"),
 		},
 		newsticker: {
-			import: path.resolve( __dirname, "../../src/helper/newsticker.js" ),
+			import: path.resolve(__dirname, "../../src/helper/newsticker.js"),
 		},
 		slider: {
-			import: path.resolve( __dirname, "../../src/helper/block-slider.js" ),
+			import: path.resolve(__dirname, "../../src/helper/block-slider.js"),
 		},
 		carousel: {
-			import: path.resolve( __dirname, "../../src/helper/block-carousel.js" ),
+			import: path.resolve(__dirname, "../../src/helper/block-carousel.js"),
 		},
 		hero: {
-			import: path.resolve( __dirname, "../../src/helper/gvnewshero.js" ),
+			import: path.resolve(__dirname, "../../src/helper/gvnewshero.js"),
+		},
+		"deprecated-block": {
+			import: path.resolve(__dirname, "../../src/helper/deprecated-block.js"),
+		},
+		"downgrade-plugin": {
+			import: path.resolve(__dirname, "../../src/wizard/downgrade-plugin.js"),
 		},
 		'featured-gallery': {
 			import: path.resolve( __dirname, "../../src/helper/featured-gallery.js" )
@@ -122,6 +128,7 @@ const helper = {
 								destination: "./gutenverse-news/assets/js/",
 							},
 							{
+<<<<<<< HEAD
 								source: "./build/featured-gallery.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
@@ -135,6 +142,17 @@ const helper = {
 							},
 							{
 								source: "./build/featured-video.asset.php*",
+=======
+								source: "./build/deprecated-block.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/downgrade-plugin.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/downgrade-plugin.asset.php*",
+>>>>>>> dev/integrate-with-essential
 								destination: "./gutenverse-news/lib/dependencies/",
 							},
 						],

@@ -44,4 +44,13 @@ class Post_Title extends Post_Guten {
 					. apply_filters( 'gvnews_metabox_subtitle_component', '' ) .
 					'</div>';
 	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		return current_user_can( 'edit_pages' );
+	}
 }
