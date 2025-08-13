@@ -4,7 +4,7 @@
     border: 1px solid #EEBC0D;
     border-radius: 2px;
     color: #1E1E1E;
-    font-family: "Roboto";
+    font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 11px;
     content: "DEPRECATED";
@@ -35,7 +35,7 @@
         background: #000000A6;
         backdrop-filter: blur(10px);
         color: #fff;
-        font-family: "Roboto";
+        font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
         font-weight: 400;
         flex-direction: column;
         font-size: 16px;
@@ -91,7 +91,7 @@
         border-radius: 5px;
 
         .deprecated-desc {
-            font-family: "Roboto";
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
             font-weight: 400;
             font-size: 12px;
             display: flex;
@@ -198,8 +198,7 @@
         .gvnews-deprecated-box {
             background: #fff;
             border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
+            max-width: 523px;
             padding: 40px 48px;
             position: relative;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -216,14 +215,13 @@
             }
 
             .gvnews-deprecated-text {
-                font-family: "Roboto";
+                font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
                 font-weight: 400;
                 color: #53585C;
                 font-size: 16px;
 
                 ul {
                     list-style-type: disc;
-                    margin-left: 40px;
                 }
 
                 .blocks-deprecated-text {
@@ -249,6 +247,7 @@
                 li {
                     font-weight: 500;
                     color: #212121;
+                    margin-bottom: 0;
                 }
 
                 .gvnews-deprecated-actions {
@@ -296,6 +295,10 @@
             }
         }
     }
+}
+
+.block-editor-page .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text ul {
+    margin-left: 40px;
 }
 
 body.gvnews-deprecated-options .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .options-deprecated-text {

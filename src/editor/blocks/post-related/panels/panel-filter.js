@@ -1,11 +1,34 @@
-import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
-import { NumberControl, RangeControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
-import { addQueryArgs } from '@wordpress/url';
+import { RangeControl, SelectControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
 export const filterPanel = ({postType}) => {
     return [
+        {
+            id: 'match',
+            label: __('Related Post Filter', 'gutenverse-news'),
+            description: __('Select how related post will filter article.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('Category', 'gutenverse-news'),
+                    value: 'category'
+                },
+                {
+                    label: __('Tag', 'gutenverse-news'),
+                    value: 'tag'
+                },
+            ],
+        },
+        {
+            id: 'numberPost',
+            label: __('Number of Post', 'gutenverse-news'),
+            description: __('Set the number of post each related post load.', 'gutenverse-news'),
+            component: RangeControl,
+            min: 2,
+            max: 10,
+            step: 1,
+        },
         {
             id: 'uniqueContent',
             label: __('Include into Unique Content Group', 'gutenverse-news'),

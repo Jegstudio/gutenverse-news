@@ -329,7 +329,7 @@ class Init {
 									<li>Replace deprecated blocks with supported ones.</li>
 									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
-								<p>We recommend updating your blocks for future compatibility.</p>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
 									<a href="<?php echo $edit_url; ?>" class="gvnews-btn gvnews-replace-btn">Replace Blocks</a>
 									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
@@ -383,7 +383,7 @@ class Init {
 									<li>Replace deprecated blocks with supported ones.</li>
 									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
-								<p>We recommend updating your blocks for future compatibility.</p>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								</div>
 
 								<div class="options-deprecated-text">
