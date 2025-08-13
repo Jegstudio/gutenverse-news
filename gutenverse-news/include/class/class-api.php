@@ -156,6 +156,16 @@ class Api {
 				'permission_callback' => array( $this, 'permission_install_plugin' ),
 			)
 		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'dismissNotice',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'dismiss_notice' ),
+				'permission_callback' => array( $this, 'edit_pages' ),
+			)
+		);
 	}
 
 	/**
@@ -242,6 +252,28 @@ class Api {
 		}
 
 		return $this->response_success( __( 'Downgrade Gutenverse News plugin success.', 'gutenverse-news' ) );
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function dismiss_notice( $request ) {
+		$nonce = sanitize_text_field( $request->get_param( 'nonce' ) );
+		if ( ! wp_verify_nonce( $nonce, 'gvnews_dismiss_notice' ) ) {
+			return $this->response_error( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
+		}
+		$notice = sanitize_text_field( $request->get_param( 'notice' ) );
+
+		if ( 'deprecated_gutenverse_news' === $notice ) {
+			set_transient( 'deprecated_gutenverse_news_dismissed', 'dismissed', DAY_IN_SECONDS );
+		}
+		return $this->response_success( 'sucess' );
 	}
 
 
@@ -883,13 +915,22 @@ class Api {
 	public function php_function_caller( $attributes ) {
 	}
 
-		/**
-		 * Check user permissions
-		 *
-		 * @return boolean
-		 */
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
 	public function permission_install_plugin() {
 		return current_user_can( 'install_plugins' );
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
+	public function edit_pages() {
+		return current_user_can( 'edit_pages' );
 	}
 
 	/**
