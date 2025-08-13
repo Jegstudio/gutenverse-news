@@ -128,7 +128,6 @@ const helper = {
 								destination: "./gutenverse-news/assets/js/",
 							},
 							{
-<<<<<<< HEAD
 								source: "./build/featured-gallery.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
@@ -142,7 +141,6 @@ const helper = {
 							},
 							{
 								source: "./build/featured-video.asset.php*",
-=======
 								source: "./build/deprecated-block.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
@@ -152,7 +150,6 @@ const helper = {
 							},
 							{
 								source: "./build/downgrade-plugin.asset.php*",
->>>>>>> dev/integrate-with-essential
 								destination: "./gutenverse-news/lib/dependencies/",
 							},
 						],

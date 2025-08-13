@@ -1398,7 +1398,6 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 	}
 }
 
-<<<<<<< HEAD
 if ( ! function_exists( 'gvnews_get_image_dimension_by_name' ) ) {
 	/**
 	 * Get Image Dimension by Name
@@ -1468,7 +1467,8 @@ if ( ! function_exists( 'gvnews_check_video_type' ) ) {
 		} else {
 			return 'unknown';
 		}
-=======
+	}
+}
 if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 	/**
 	 * Check if Gutenverse Pro plugin is Active.
@@ -1477,6 +1477,5 @@ if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 	 */
 	function gutenverse_pro_active() {
 		return defined( 'GUTENVERSE_PRO_VERSION' );
->>>>>>> dev/integrate-with-essential
 	}
 }
