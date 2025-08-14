@@ -32,7 +32,7 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
             </>
         );
     } else {
-        for (let i = parentIndex; i < limit; i++) {
+        for (let i = parentIndex; i < (limit + parentIndex); i++) {
             let off = pagination * numberPostShow - numberPostShow + index;
             secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />);
             index++;
