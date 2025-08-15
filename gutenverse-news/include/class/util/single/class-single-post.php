@@ -288,9 +288,8 @@ class Single_Post {
 		$dimension = gvnews_get_image_dimension_by_name( $size );
 		$output    = '';
 		$images    = apply_filters( 'gvnews_metabox_value', false, 'gallery', $id );
-
+		$content   = '';
 		if ( $images ) {
-			$content = '';
 			foreach ( $images as $key => $item ) {
 				if ( 0 === count( $item['image'] ) ) {
 					continue;

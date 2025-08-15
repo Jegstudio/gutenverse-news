@@ -1012,6 +1012,10 @@
   }
 }
 
+.gvnews_featured_video_wrapper > .gvnews_video_container {
+  display: none;
+}
+
 .gvnews_post.format-video .gvnews_thumb:after {
     -webkit-backface-visibility: hidden;
     border: 2px solid #fff;
