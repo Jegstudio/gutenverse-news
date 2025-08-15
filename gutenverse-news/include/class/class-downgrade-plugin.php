@@ -48,7 +48,7 @@ class Downgrade_Plugin {
 			}
 
 			if ( ! current_user_can( 'install_plugins' ) ) {
-				throw new \Exception( 'Access denied', 403 );
+				throw new \Exception( 'You don’t have permission to downgrade the plugin. Please contact your administrator to proceed with the downgrade process.', 403 );
 			}
 
 			header( 'Content-Type: ' . get_option( 'html_type' ) . '; charset=' . get_option( 'blog_charset' ) );

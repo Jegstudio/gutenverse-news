@@ -257,6 +257,7 @@ class Init {
 		add_action( 'rest_api_init', array( $this, 'init_api' ) );
 		add_action( 'wp_footer', array( $this, 'add_deprecated_popup' ) );
 		add_action( 'admin_footer', array( $this, 'add_admin_deprecated_popup' ) );
+		add_filter( 'body_class', array( $this, 'show_notice' ) );
 	}
 
 	/**
@@ -329,7 +330,7 @@ class Init {
 									<li>Replace deprecated blocks with supported ones.</li>
 									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
-								<p>We recommend updating your blocks for future compatibility.</p>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
 									<a href="<?php echo $edit_url; ?>" class="gvnews-btn gvnews-replace-btn">Replace Blocks</a>
 									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
@@ -338,7 +339,49 @@ class Init {
 					</div>
 				</div>
 			</div>
+			<?php if ( 'dismissed' !== get_transient( 'deprecated_gutenverse_news_dismissed' ) ) : ?>
+				<div id="gvnews-deprecated-notice">
+					<div class="notice-wrapper">
+						<button id="gvnews-notice-close" class="gvnews-notice-close">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+								<path d="M9.0607 7.99997L15.5307 1.52997L14.4707 0.469971L8.0007 6.93997L1.5307 0.469971L0.470703 1.52997L6.9407 7.99997L0.470703 14.47L1.5307 15.53L8.0007 9.05997L14.4707 15.53L15.5307 14.47L9.0607 7.99997Z" fill="#757575"/>
+							</svg>
+						</button>	
+					<div class="notice-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+							<g clip-path="url(#clip0_23789_2156)">
+							<path d="M15.608 14.384L8.48241 1.0784C8.43351 0.993491 8.3631 0.922966 8.27827 0.873929C8.19345 0.824891 8.09719 0.799072 7.99921 0.799072C7.90123 0.799072 7.80498 0.824891 7.72015 0.873929C7.63532 0.922966 7.56491 0.993491 7.51601 1.0784L0.391212 14.384C0.344072 14.467 0.319625 14.561 0.320327 14.6565C0.321029 14.752 0.346856 14.8457 0.395212 14.928C0.495212 15.0968 0.676812 15.2 0.873612 15.2H15.1248C15.2212 15.1997 15.3159 15.1745 15.3997 15.1268C15.4835 15.0792 15.5536 15.0107 15.6032 14.928C15.6517 14.8457 15.6777 14.7521 15.6785 14.6566C15.6793 14.5612 15.655 14.4671 15.608 14.384ZM8.79921 13.6H7.19921V12H8.79921V13.6ZM8.79921 10.8H7.19921V5.6H8.79921V10.8Z" fill="#EEBC0D"/>
+							</g>
+							<defs>
+							<clipPath id="clip0_23789_2156">
+							<rect width="16" height="16" fill="white"/>
+							</clipPath>
+							</defs>
+						</svg>
+					</div>
+					<div class="notice-content">
+						<p><b>This page contains deprecated blocks</b></p>
+						<p>One or more Gutenverse News blocks in this page are deprecated and will be removed in the next plugin update. Please replace them to ensure your layout remains functional.</p>
+						<a id="gvnews-notice-learn-more" href="javascript:void(0);">Learn More </a>
+					</div>
+					</div>
+			
+				</div>
+			<?php endif; ?>
+
 		<?php
+	}
+	/**
+	 * Add deprecated notice class.
+	 *
+	 * @param array $classes Body classes.
+	 * @return array
+	 */
+	public function show_notice( $classes ) {
+		if ( apply_filters( 'gvnews_print_deprecated_popup', false ) && 'dismissed' !== get_transient( 'deprecated_gutenverse_news_dismissed' ) ) {
+			$classes[] = 'gvnews-deprecated-notice';
+		}
+		return $classes;
 	}
 
 	/**
@@ -383,7 +426,7 @@ class Init {
 									<li>Replace deprecated blocks with supported ones.</li>
 									<li>Or switch back to version 2.0.1 to continue using them.</li>
 								</ul>
-								<p>We recommend updating your blocks for future compatibility.</p>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								</div>
 
 								<div class="options-deprecated-text">
