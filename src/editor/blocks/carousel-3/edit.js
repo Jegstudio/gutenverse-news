@@ -21,7 +21,6 @@ import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const Carousel3Block = compose(
     withPartialRender,
@@ -29,6 +28,7 @@ const Carousel3Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         isSelected,
         clientId,
         setBlockRef
@@ -67,116 +67,6 @@ const Carousel3Block = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
-
-    const [postBulk, getPost] = useState(false);
-    const [blockWidth, getWidth] = useState(8);
-    const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
-    const [overlay, setOverlay] = useState(false);
-    const elementRef = useRef(null);
-
-    const {
-        getBlock,
-        getBlockRootClientId
-    } = useSelect(
-        (select) => select('core/block-editor'),
-        []
-    );
-
-    useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
-
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
-        }
-    }, [
-        numberPost,
-        postBulk,
-        postOffset
-    ]);
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            if (deviceType === 'Desktop') {
-                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
-            }
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [
-        columnWidth,
-        deviceType
-    ]);
-
-    useEffect(() => {
-        if (elementRef) {
-            setBlockRef(elementRef);
-        }
-    }, [elementRef]);
-
-    useEffect(() => {
-        postBulk ? setOverlay(true) : null;
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost: loadPost,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-        };
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr
-            }
-        }).then((data) => {
-            getPost(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
-            setOverlay(false);
-        });
-    }, [
-        contentType,
-        includeOnly,
-        postType,
-        includePost,
-        excludePost,
-        includeCategory,
-        excludeCategory,
-        includeAuthor,
-        includeTag,
-        excludeTag,
-        sortBy,
-        loadPost
-    ]);
-
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -190,15 +80,62 @@ const Carousel3Block = compose(
         ref: elementRef
     });
 
-    const moduleData = {
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
+    const [blockWidth, getWidth] = useState(8);
+    const [postData, getTrim] = useState(false);
+    const [overlay, setOverlay] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
+    const [sliderColumn, setSliderColumn] = useState(0);
+
+    const firstRender = useRef(true);
+    const elementRef = useRef(null);
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
+
+    const {
+        getBlock,
+        getBlockRootClientId
+    } = useSelect(
+        (select) => select('core/block-editor'),
+        []
+    );
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
+
+    const initSlider = () => {
+        if ('function' === typeof window.gvnews.carousel && postData.length > 0 && block) {
+            let gvnewsLibrary = window.gvnews;
+            gvnewsLibrary = window.gvnews.library;
+            let target = document;
+            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+            if(iframe) {
+                target = iframe.contentDocument;
+            }
+            var blockCarousel = target.querySelectorAll(`.${elementId} .gvnews_postblock_carousel`);
+
+            if (blockCarousel.length) {
+                gvnewsLibrary.forEach(blockCarousel, function (ele) {
+                    window.gvnews.carousel({
+                        container: ele,
+                        textDirection: 'ltr',
+                        onInit: function (info) {
+                            if ('undefined' !== typeof info.nextButton) {
+                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+                            }
+                            if ('undefined' !== typeof info.prevButton) {
+                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
+                            }
+                        },
+                    });
+                });
+            }
+        }
     };
 
     function RenderContent(props) {
@@ -243,27 +180,156 @@ const Carousel3Block = compose(
                 content.push(<RenderContent attr={attr} index={i} post={props.postData[i]} />);
             }
         }
-        return (<div className="gvnews_carousel_post" data-nav={showNav ? true : ''} data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay} data-items={ncolumn} data-margin={iMargin}>
+        return (<div className="gvnews_carousel_post" data-nav={showNav ? true : ''} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-items={sliderColumn} data-margin={iMargin}>
             {content}
         </div>
         );
     };
 
-    const [block, setBlock] = useState(false);
     function resetblock() {
-        setBlock(
-            <div className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_12 ${showNav ? 'shownav' : ''}`}>
-                {postData ? <RenderColumn {...moduleData} /> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string.no_content}</div> : <ModuleSkeleton />}
-                {overlay && <ModuleOverlay />}
-            </div>
-        );
+        const moduleData = {
+            blockWidth,
+            excerptLength,
+            excerptEllipsis,
+            moduleOption,
+            postData,
+            metaDateType,
+            metaDateFormat,
+            metaDateFormatCustom,
+        };
+        if(postData.length > 0) {
+            setBlock(
+                <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_12 ${showNav ? 'shownav' : ''}`}>
+                    <RenderColumn {...moduleData} />
+                </div>
+            );
+        }else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        }
     }
 
     useEffect(() => {
-        setBlock(false);
-        setTimeout(function () {
-            resetblock();
-        });
+        if (columnWidth == 'auto') {
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
+        } else {
+            getWidth(columnWidth);
+        }
+    }, [
+        columnWidth,
+        deviceType
+    ]);
+
+    useEffect(() => {
+        if (numberPost > 1) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 8
+            });
+        }
+
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (ncolumn >= 1) {
+            setSliderColumn(parseInt(ncolumn));
+        } else {
+            setAttributes({
+                ...attributes,
+                ncolumn: 3
+            });
+        }
+
+    }, [ncolumn]);
+
+    useEffect(() => {
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 2000
+            });
+        }
+
+    }, [autoplayDelay]);
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setOverlay(true);
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost: postLoaded,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                postOffset: postStart
+            };
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr
+                }
+            }).then((data) => {
+                const parsed = JSON.parse(data);
+                getTrim(parsed);
+            }).finally(() => {
+                setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+        return () => clearTimeout(timeoutID);
+    }, [
+        contentType,
+        includeOnly,
+        postType,
+        includePost,
+        excludePost,
+        includeCategory,
+        excludeCategory,
+        includeAuthor,
+        includeTag,
+        excludeTag,
+        sortBy,
+        postStart,
+        postLoaded
+    ]);
+
+    useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
+        resetblock();
     }, [
         blockWidth,
         excerptLength,
@@ -276,77 +342,26 @@ const Carousel3Block = compose(
         overlay,
         showNav,
         autoplay,
-        autoplayDelay,
+        sliderDelay,
         hoverEffect,
-        ncolumn,
+        sliderColumn,
         iMargin
     ]);
 
-    const device = useSelect((select) => {
-        return select('core/editor').getDeviceType();
-    }, []);
-
-    const initSlider = () => {
-        if ('function' === typeof gvnews.carousel && postData && !overlay) {
-            setTimeout(function () {
-                let gvnewsLibrary = window.gvnews;
-                gvnewsLibrary = gvnews.library;
-                var blockCarousel = elementRef?.current?.getElementsByClassName('gvnews_postblock_carousel');
-                if (blockCarousel.length) {
-                    gvnewsLibrary.forEach(blockCarousel, function (ele, i) {
-                        const carousel = gvnews.carousel({
-                            container: ele,
-                            textDirection: 'ltr',
-                            onInit: function (info) {
-                                if ('undefined' !== typeof info.nextButton) {
-                                    gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                                }
-                                if ('undefined' !== typeof info.prevButton) {
-                                    gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                                }
-                            },
-                        });
-
-                        if (carousel) {
-                            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-
-                            if (iframe) {
-                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                                const sourceSheet = carousel.getInfo().sheet;
-
-                                const newStyle = iframeDoc.createElement('style');
-                                newStyle.setAttribute('data-source', 'injected-by-script');
-                                iframeDoc.head.appendChild(newStyle);
-
-                                const targetSheet = newStyle.sheet;
-
-                                try {
-                                    for (let rule of sourceSheet.cssRules) {
-                                        targetSheet.insertRule(rule.cssText, targetSheet.cssRules.length);
-                                    }
-                                } catch (e) {
-                                    console.warn('There\'s an issue while generating Style for Carousel', e);
-                                }
-                            }
-                        }
-                    });
-                }
-            }, 1000);
-        }
-    };
-
-    initSlider();
-
     useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
         initSlider();
-    }, [device]);
+    }, [block]);
+
     if (!gutenverseProActive) {
         return <>
             <PanelDeprecated title="Carousel 3" />
             <div  {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                    {block ? block : 'loading'}
+                    {block}
                     <DeprecatedOverlay />
                 </div>
             </div>
@@ -358,7 +373,8 @@ const Carousel3Block = compose(
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : 'loading'}
+                {block}
+                {(overlay && !firstRender.current) && <ModuleOverlay />}
             </div>
         </div>
     </>;
