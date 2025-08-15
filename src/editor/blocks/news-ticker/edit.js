@@ -17,6 +17,7 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -77,7 +78,7 @@ const NewsTickerBlock = compose(
     const [ticker, initTicker] = useState(false);
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
+        let off = postOffset === 'NaN' ? 0 : parseInt(postOffset);
         let num = parseInt(numberPost);
         let count = parseInt(postCount);
         if (postBulk && postBulk.length) {
