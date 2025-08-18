@@ -100,6 +100,14 @@ class Init {
 
 
 
+	/**
+	 * Hold instance of Meta Option
+	 *
+	 * @var Downgrade_Plugin
+	 */
+	public $downgrade_plugin;
+
+
 
 
 	/**
@@ -228,15 +236,16 @@ class Init {
 	 */
 	public function init_instance() {
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		$this->frontend_assets = new Frontend_Assets();
-		$this->editor_assets   = new Editor_Assets();
-		$this->style_generator = new Style_Generator();
-		$this->util            = new Util();
-		$this->blocks          = new Blocks();
-		$this->ajax            = new Ajax();
-		$this->dashboard       = new Dashboard();
-		$this->image           = Image::get_instance();
-		$this->meta_option     = new Meta_Option();
+		$this->frontend_assets  = new Frontend_Assets();
+		$this->editor_assets    = new Editor_Assets();
+		$this->style_generator  = new Style_Generator();
+		$this->util             = new Util();
+		$this->blocks           = new Blocks();
+		$this->ajax             = new Ajax();
+		$this->dashboard        = new Dashboard();
+		$this->image            = Image::get_instance();
+		$this->meta_option      = new Meta_Option();
+		$this->downgrade_plugin = new Downgrade_Plugin();
 	}
 
 	/**
@@ -248,6 +257,7 @@ class Init {
 		add_action( 'rest_api_init', array( $this, 'init_api' ) );
 		add_action( 'wp_footer', array( $this, 'add_deprecated_popup' ) );
 		add_action( 'admin_footer', array( $this, 'add_admin_deprecated_popup' ) );
+		add_filter( 'body_class', array( $this, 'show_notice' ) );
 	}
 
 	/**
@@ -283,8 +293,21 @@ class Init {
 			return;
 		}
 
-		$edit_url = get_edit_post_link( $post_id );
+		$edit_url      = get_edit_post_link( $post_id );
+		$downgrade_url = add_query_arg(
+			array(
+				'action' => 'gutenverse-news-downgrade-wizard',
+				'nonce'  => wp_create_nonce( 'gutenverse-news-downgrade-wizard' ),
+			),
+			admin_url( 'admin.php' )
+		);
 
+		wp_enqueue_style(
+			'gutenverse-roboto-font',
+			GUTENVERSE_FRAMEWORK_URL_PATH . '/assets/fonts/roboto/roboto.css',
+			array(),
+			GUTENVERSE_FRAMEWORK_VERSION
+		);
 		?>
 			<div id="gvnews-deprecated-popup" class="gvnews-deprecated-modal">
 				<div class="gvnews-deprecated-backdrop">
@@ -301,17 +324,64 @@ class Init {
 									<path d="M23.413 21.5761L12.7246 1.61772C12.6512 1.49036 12.5456 1.38457 12.4184 1.31102C12.2911 1.23746 12.1468 1.19873 11.9998 1.19873C11.8528 1.19873 11.7084 1.23746 11.5812 1.31102C11.454 1.38457 11.3483 1.49036 11.275 1.61772L0.587794 21.5761C0.517085 21.7007 0.480414 21.8417 0.481467 21.9849C0.482521 22.1282 0.521261 22.2686 0.593794 22.3921C0.743794 22.6453 1.01619 22.8001 1.31139 22.8001H22.6882C22.8328 22.7996 22.9748 22.7618 23.1006 22.6903C23.2263 22.6189 23.3314 22.5161 23.4058 22.3921C23.4785 22.2687 23.5175 22.1283 23.5187 21.9851C23.52 21.8418 23.4835 21.7008 23.413 21.5761ZM13.1998 20.4001H10.7998V18.0001H13.1998V20.4001ZM13.1998 16.2001H10.7998V8.40012H13.1998V16.2001Z" fill="#EEBC0D"/>
 									</svg>
 								<h2>Some blocks in this page are deprecated.</h2>
-								<p>One or more <b>Gutenverse News</b> blocks used in this page are deprecated and will be removed in the next plugin update.</p>
-								<p>To avoid layout issues or content loss, we recommend replacing them with current supported blocks.</p>
+								<p>We’ve detected one or more blocks on this page that are no longer supported in the latest version of <b>Gutenverse News.</b></p>
+								<p>To keep your page working properly, you have two options:</p>
+								<ul>
+									<li>Replace deprecated blocks with supported ones.</li>
+									<li>Or switch back to version 2.0.1 to continue using them.</li>
+								</ul>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								<div class="gvnews-deprecated-actions">
-									<a href="<?php echo $edit_url; ?>" class="gvnews-replace-btn">REPLACE NOW</a>
-									<button id="gvnews-popup-ok" class="gvnews-ok-btn">OKAY</button>
+									<a href="<?php echo $edit_url; ?>" class="gvnews-btn gvnews-replace-btn">Replace Blocks</a>
+									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
 								</div>
 							</div>
 					</div>
 				</div>
 			</div>
+			<?php if ( 'dismissed' !== get_transient( 'deprecated_gutenverse_news_dismissed' ) ) : ?>
+				<div id="gvnews-deprecated-notice">
+					<div class="notice-wrapper">
+						<button id="gvnews-notice-close" class="gvnews-notice-close">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+								<path d="M9.0607 7.99997L15.5307 1.52997L14.4707 0.469971L8.0007 6.93997L1.5307 0.469971L0.470703 1.52997L6.9407 7.99997L0.470703 14.47L1.5307 15.53L8.0007 9.05997L14.4707 15.53L15.5307 14.47L9.0607 7.99997Z" fill="#757575"/>
+							</svg>
+						</button>	
+					<div class="notice-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+							<g clip-path="url(#clip0_23789_2156)">
+							<path d="M15.608 14.384L8.48241 1.0784C8.43351 0.993491 8.3631 0.922966 8.27827 0.873929C8.19345 0.824891 8.09719 0.799072 7.99921 0.799072C7.90123 0.799072 7.80498 0.824891 7.72015 0.873929C7.63532 0.922966 7.56491 0.993491 7.51601 1.0784L0.391212 14.384C0.344072 14.467 0.319625 14.561 0.320327 14.6565C0.321029 14.752 0.346856 14.8457 0.395212 14.928C0.495212 15.0968 0.676812 15.2 0.873612 15.2H15.1248C15.2212 15.1997 15.3159 15.1745 15.3997 15.1268C15.4835 15.0792 15.5536 15.0107 15.6032 14.928C15.6517 14.8457 15.6777 14.7521 15.6785 14.6566C15.6793 14.5612 15.655 14.4671 15.608 14.384ZM8.79921 13.6H7.19921V12H8.79921V13.6ZM8.79921 10.8H7.19921V5.6H8.79921V10.8Z" fill="#EEBC0D"/>
+							</g>
+							<defs>
+							<clipPath id="clip0_23789_2156">
+							<rect width="16" height="16" fill="white"/>
+							</clipPath>
+							</defs>
+						</svg>
+					</div>
+					<div class="notice-content">
+						<p><b>This page contains deprecated blocks</b></p>
+						<p>One or more Gutenverse News blocks in this page are deprecated and will be removed in the next plugin update. Please replace them to ensure your layout remains functional.</p>
+						<a id="gvnews-notice-learn-more" href="javascript:void(0);">Learn More </a>
+					</div>
+					</div>
+			
+				</div>
+			<?php endif; ?>
+
 		<?php
+	}
+	/**
+	 * Add deprecated notice class.
+	 *
+	 * @param array $classes Body classes.
+	 * @return array
+	 */
+	public function show_notice( $classes ) {
+		if ( apply_filters( 'gvnews_print_deprecated_popup', false ) && 'dismissed' !== get_transient( 'deprecated_gutenverse_news_dismissed' ) ) {
+			$classes[] = 'gvnews-deprecated-notice';
+		}
+		return $classes;
 	}
 
 	/**
@@ -323,6 +393,14 @@ class Init {
 		if ( ! gutenverse_is_block_editor() ) {
 			return;
 		}
+
+		$downgrade_url = add_query_arg(
+			array(
+				'action' => 'gutenverse-news-downgrade-wizard',
+				'nonce'  => wp_create_nonce( 'gutenverse-news-downgrade-wizard' ),
+			),
+			admin_url( 'admin.php' )
+		);
 
 		?>
 			<div id="gvnews-deprecated-popup" class="gvnews-deprecated-modal">
@@ -339,18 +417,26 @@ class Init {
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M23.413 21.5761L12.7246 1.61772C12.6512 1.49036 12.5456 1.38457 12.4184 1.31102C12.2911 1.23746 12.1468 1.19873 11.9998 1.19873C11.8528 1.19873 11.7084 1.23746 11.5812 1.31102C11.454 1.38457 11.3483 1.49036 11.275 1.61772L0.587794 21.5761C0.517085 21.7007 0.480414 21.8417 0.481467 21.9849C0.482521 22.1282 0.521261 22.2686 0.593794 22.3921C0.743794 22.6453 1.01619 22.8001 1.31139 22.8001H22.6882C22.8328 22.7996 22.9748 22.7618 23.1006 22.6903C23.2263 22.6189 23.3314 22.5161 23.4058 22.3921C23.4785 22.2687 23.5175 22.1283 23.5187 21.9851C23.52 21.8418 23.4835 21.7008 23.413 21.5761ZM13.1998 20.4001H10.7998V18.0001H13.1998V20.4001ZM13.1998 16.2001H10.7998V8.40012H13.1998V16.2001Z" fill="#EEBC0D"/>
 									</svg>
+
 								<div class="blocks-deprecated-text">
 									<h2>Some blocks in this page are deprecated.</h2>
-									<p>One or more <b>Gutenverse News</b> blocks used in this page are deprecated and will be removed in the next plugin update.</p>
-									<p>To avoid layout issues or content loss, we recommend replacing them with current supported blocks.</p>
+								<p>We’ve detected one or more blocks on this page that are no longer supported in the latest version of <b>Gutenverse News.</b></p>
+								<p>To keep your page working properly, you have two options:</p>
+								<ul>
+									<li>Replace deprecated blocks with supported ones.</li>
+									<li>Or switch back to version 2.0.1 to continue using them.</li>
+								</ul>
+								<p>We recommend replacing your blocks to available block for future compatibility.</p>
 								</div>
 
 								<div class="options-deprecated-text">
 									<h2>This option is already deprecated.</h2>
-									<p>If you're still using a deprecated option in the block settings, we recommend replacing it with another option that is not deprecated.</p>
+									<p>Please use other option that not dperecated, or switch back to version 2.0.1 to continue using them.</p>
+									<p>We recommend you to only use the supported option.</p>
 								</div>
+								
 								<div class="gvnews-deprecated-actions">
-									<button id="gvnews-popup-ok" class="gvnews-ok-btn">OKAY</button>
+									<a href="<?php echo $downgrade_url; ?>" class="gvnews-btn gvnews-dwongrade-btn">Switch to Version 2.0.1</a>
 								</div>
 							</div>
 					</div>

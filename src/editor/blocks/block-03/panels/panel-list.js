@@ -1,12 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
-import { headerFilterPanelDeprecated } from '../../../control-panel/panel-hedaer-filter-deprecated';
+import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+
 
 export const panelList = () => {
     return [
@@ -22,9 +23,11 @@ export const panelList = () => {
             id: 'header-filter',
             title: __('Header Filter', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: headerFilterPanelDeprecated,
+            panelArray: (props) => {
+                return headerFilterPanel(props);
+            },
             tabRole: TabSetting,
-            pro: true
+
         },
         {
             title: __('Content Filter', 'gutenverse-news'),
@@ -94,6 +97,12 @@ export const panelList = () => {
                 styleId: 'block-1-advance',
             }),
             tabRole: TabStyle
+        },
+        {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         },
     ];
 };

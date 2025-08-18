@@ -135,5 +135,6 @@
         "single",
         "post",
         "tag"
-    ]
+    ],
+    "gvnewsRemoved": true
 }

@@ -452,5 +452,6 @@
         "single",
         "post",
         "comment"
-    ]
+    ],
+    "gvnewsRemoved": true
 }

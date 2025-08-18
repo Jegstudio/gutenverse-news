@@ -80,6 +80,6 @@ class Post_Prev_Next extends Post_Guten {
 	 * @return boolean
 	 */
 	public function check_deprecated() {
-		return current_user_can( 'edit_pages' );
+		return ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() );
 	}
 }

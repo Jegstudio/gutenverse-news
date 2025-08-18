@@ -18,6 +18,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { gutenverseProActive } from '../../utils/helper';
 
 const Hero14Block = compose(
     withPartialRender,
@@ -264,16 +265,28 @@ const Hero14Block = compose(
         );
     }, [blockWidth, moduleOption, postData, metaDateType, metaDateFormat, metaDateFormatCustom, overlay]);
 
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
     return (
         <>
-            <PanelDeprecated title="Hero 14" />
+            {isDeprecated ? (
+                <PanelDeprecated title="Hero 14" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
                         <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                         {block ? block : 'loading'}
                     </div>
-                    <DeprecatedOverlay />
+                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>
