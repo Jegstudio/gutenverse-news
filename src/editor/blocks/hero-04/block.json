@@ -288,6 +288,10 @@
         },
         "postReviewMetaStarSize": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

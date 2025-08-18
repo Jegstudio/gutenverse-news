@@ -124,7 +124,11 @@
             "type":"object"
         },
         "commentColorHover": {
-            "type":"object"
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

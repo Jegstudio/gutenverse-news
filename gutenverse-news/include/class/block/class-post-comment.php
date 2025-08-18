@@ -107,4 +107,13 @@ class Post_Comment extends Post_Guten {
 
 		return ob_get_clean();
 	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		return current_user_can( 'edit_pages' );
+	}
 }

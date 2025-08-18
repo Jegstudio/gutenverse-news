@@ -24,7 +24,7 @@
             "type": "string",
             "default": ""
         },
-        "column": {            
+        "column": {
             "type": "object",
             "default": {}
         },
@@ -44,11 +44,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -60,7 +60,7 @@
         },
         "boxShadowHover": {
             "type": "object"
-        }, 
+        },
         "margin": {
             "type": "number",
             "default": 20
@@ -115,6 +115,10 @@
         },
         "positioningBottom": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

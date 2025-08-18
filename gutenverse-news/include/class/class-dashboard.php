@@ -38,7 +38,27 @@ class Dashboard {
 			GUTENVERSE_NEWS_VERSION,
 			true
 		);
+
+		wp_localize_script( 'gutenverse-news-blocks', 'GVNewsConfig', $this->gvnews_config() );
+
+		wp_enqueue_style(
+			'gutenverse-news-dashboard',
+			GUTENVERSE_NEWS_URL . '/assets/css/update-notice.css',
+			array(),
+			GUTENVERSE_NEWS_VERSION
+		);
 	}
+
+	/**
+	 * Config
+	 *
+	 * @return array
+	 */
+	public function gvnews_config() {
+		$config['gutenversePro'] = gutenverse_pro_active();
+		return $config;
+	}
+
 
 	/**
 	 * Editor config
@@ -51,7 +71,7 @@ class Dashboard {
 			'name'           => GUTENVERSE_NEWS_NAME,
 			'version'        => GUTENVERSE_NEWS_VERSION,
 			'currentNotice'  => GUTENVERSE_NEWS_NOTICE_VERSION,
-			'noticeVersions' => array( '1.0.0' ),
+			'noticeVersions' => array( '3.0.0' ),
 		);
 
 		return $config;
