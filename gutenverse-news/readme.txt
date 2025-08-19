@@ -143,6 +143,13 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 3.0.1 [DEV] =
+##### Bug Fixes
+* Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
+
+##### Improvements
+* Changed the Post Offset option to an Input Range control
+
 = 3.0.0 =
 ##### Bug Fixes
 * Fix deprecated warning on the strpost function passing a null value
