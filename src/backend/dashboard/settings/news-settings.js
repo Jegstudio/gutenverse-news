@@ -19,14 +19,12 @@ export const NewsSettings = (props) => {
     let content = '';
     switch (subSettings) {
         case 'block_settings':
-            content = <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
-            break;
+            return <BlockSettings {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsSettings} />;
         case 'additional_features':
             const updateGVNewsFeatures = (value) => {
                 updateSettingValues('gvnews_settings', 'features', value);
             }
-            content = <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />;
-            break;
+            return <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />;
         default:
             break;
     }
