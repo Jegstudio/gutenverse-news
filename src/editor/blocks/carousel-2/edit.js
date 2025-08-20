@@ -10,11 +10,9 @@ import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { MetaCategory } from '../../part/meta';
-import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
-import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
+import { getModuleOptions, gutenverseProActive } from '../../utils/helper';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
 import { panelList } from './panels/panel-list';
@@ -52,7 +50,6 @@ const Carousel2Block = compose(
         includeTag,
         excludeTag,
         sortBy,
-        columnWidth,
         excerptLength,
         excerptEllipsis,
         metaDateType,
@@ -68,7 +65,6 @@ const Carousel2Block = compose(
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const deviceType = getDeviceType();
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -82,7 +78,6 @@ const Carousel2Block = compose(
         ref: elementRef
     });
 
-    const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [overlay, setOverlay] = useState(false);
     const [block, setBlock] = useState(<ModuleSkeleton />);
@@ -99,14 +94,6 @@ const Carousel2Block = compose(
             setBlockRef(elementRef);
         }
     }, [elementRef]);
-
-    const {
-        getBlock,
-        getBlockRootClientId
-    } = useSelect(
-        (select) => select('core/block-editor'),
-        []
-    );
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
@@ -162,7 +149,6 @@ const Carousel2Block = compose(
 
     function resetblock() {
         const moduleData = {
-            blockWidth,
             excerptLength,
             excerptEllipsis,
             moduleOption,
@@ -173,7 +159,7 @@ const Carousel2Block = compose(
         };
         if(postData.length > 0) {
             setBlock(
-                <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_2 gvnews_postblock  gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+                <div key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_2 gvnews_postblock  gvnews_col_12">
                     <RenderColumn {...moduleData} />
                 </div>
             );
@@ -211,23 +197,6 @@ const Carousel2Block = compose(
             }
         }
     };
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            if (deviceType === 'Desktop') {
-                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
-            }
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [
-        columnWidth,
-        deviceType
-    ]);
 
     useEffect(() => {
         if (numberPost > 1) {
@@ -335,7 +304,6 @@ const Carousel2Block = compose(
         }
         resetblock();
     }, [
-        blockWidth,
         excerptLength,
         excerptEllipsis,
         moduleOption,

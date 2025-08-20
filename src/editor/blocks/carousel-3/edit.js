@@ -11,14 +11,14 @@ import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
-import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
-import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
 import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { useSelect } from '@wordpress/data';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 const moduleOption = getModuleOptions();
 
@@ -50,7 +50,6 @@ const Carousel3Block = compose(
         includeTag,
         excludeTag,
         sortBy,
-        columnWidth,
         excerptLength,
         excerptEllipsis,
         metaDateType,
@@ -62,11 +61,11 @@ const Carousel3Block = compose(
         autoplayDelay,
         ncolumn,
         iMargin,
+        columnWidth,
     } = attributes;
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-    const deviceType = getDeviceType();
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -97,6 +96,9 @@ const Carousel3Block = compose(
         }
     }, [elementRef]);
 
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
+    const deviceType = getDeviceType();
     const {
         getBlock,
         getBlockRootClientId
@@ -104,9 +106,6 @@ const Carousel3Block = compose(
         (select) => select('core/block-editor'),
         []
     );
-
-    useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     const initSlider = () => {
         if ('function' === typeof window.gvnews.carousel && postData.length > 0 && block) {
@@ -188,7 +187,6 @@ const Carousel3Block = compose(
 
     function resetblock() {
         const moduleData = {
-            blockWidth,
             excerptLength,
             excerptEllipsis,
             moduleOption,
@@ -199,7 +197,7 @@ const Carousel3Block = compose(
         };
         if(postData.length > 0) {
             setBlock(
-                <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_12 ${showNav ? 'shownav' : ''}`}>
+                <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '6' : '12'} ${showNav ? 'shownav' : ''}`}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
@@ -331,7 +329,6 @@ const Carousel3Block = compose(
         }
         resetblock();
     }, [
-        blockWidth,
         excerptLength,
         excerptEllipsis,
         moduleOption,
@@ -345,7 +342,8 @@ const Carousel3Block = compose(
         sliderDelay,
         hoverEffect,
         sliderColumn,
-        iMargin
+        iMargin,
+        blockWidth
     ]);
 
     useEffect(() => {
