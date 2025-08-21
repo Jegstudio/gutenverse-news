@@ -2,6 +2,7 @@ import { getBlockType, registerBlockType } from '@wordpress/blocks';
 import { isBlockActive } from 'gutenverse-core/helper';
 import { updateBlockList } from 'gutenverse-core/editor-helper';
 import { gutenverseProActive } from './utils/helper';
+import { loadUpgradeNotice } from './upgrade-notice/notice';
 
 const registerBlocks = () => {
     const r = require.context('./blocks', true, /index\.js$/);
@@ -39,4 +40,7 @@ const isDeprecated = (metadata) => {
 
 (() => {
     registerBlocks();
+    loadUpgradeNotice();
 })();
+
+
