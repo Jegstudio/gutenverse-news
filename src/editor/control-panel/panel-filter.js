@@ -43,7 +43,7 @@ export const filterPanel = ({ postType }) => {
             label: __('Number of Post initially showed', 'gutenverse-news'),
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: RangeControl,
-            min: 2,
+            min: 1,
             max: 10,
             step: 1,
             isParseFloat: false
