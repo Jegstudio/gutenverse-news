@@ -128,11 +128,13 @@
 		}
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": [
         "single",
         "post",
         "tag"
-    ]
+    ],
+    "gvnewsRemoved": true
 }

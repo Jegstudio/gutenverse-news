@@ -134,7 +134,7 @@
             "default": 8
         },
         "loadLimit": {
-            "type": "string",
+            "type": "number",
             "default": 0
         },
         "enableBoxed": {
@@ -295,10 +295,15 @@
         "enableExcerpt": {
             "type": "boolean",
             "default": false
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }

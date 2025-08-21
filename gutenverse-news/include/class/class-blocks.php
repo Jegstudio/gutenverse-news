@@ -63,13 +63,15 @@ class Blocks {
 	 */
 	public function block_category( $categories ) {
 
-		$categories['gvnews-module'] = __( 'Gutenverse News Module', 'gutenverse-news' );
-		$categories['gvnews-hero'] = __( 'Gutenverse News Hero', 'gutenverse-news' );
-		$categories['gvnews-slider'] = __( 'Gutenverse News Slider', 'gutenverse-news' );
-		$categories['gvnews-carousel'] = __( 'Gutenverse News Carousel', 'gutenverse-news' );
+		$categories['gvnews-module']      = __( 'Gutenverse News Module', 'gutenverse-news' );
+		$categories['gvnews-hero']        = __( 'Gutenverse News Hero', 'gutenverse-news' );
+		$categories['gvnews-slider']      = __( 'Gutenverse News Slider', 'gutenverse-news' );
 		$categories['gvnews-single-post'] = __( 'Gutenverse News Single Post', 'gutenverse-news' );
-		$categories['gvnews-archive'] = __( 'Gutenverse News Archive', 'gutenverse-news' );
-		$categories['gvnews-element'] = __( 'Gutenverse News Element', 'gutenverse-news' );
+		$categories['gvnews-archive']     = __( 'Gutenverse News Archive', 'gutenverse-news' );
+		$categories['gvnews-element']     = __( 'Gutenverse News Element', 'gutenverse-news' );
+		if ( gutenverse_pro_active() ) {
+			$categories['gvnews-carousel'] = __( 'Gutenverse News Carousel', 'gutenverse-news' );
+		}
 
 		return $categories;
 	}

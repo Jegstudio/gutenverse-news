@@ -1,7 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { imageBorderPanel } from './panel-image-border';
+import { containerBorderPanel } from './pane-container-border';
 
 export const panelList = () => {
     return [
@@ -12,25 +14,37 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Border', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: borderPanel,
-            tabRole: TabStyle
-        },
-        {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
             panelArray: responsivePanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => advancePanel({
                 ...props,
-                styleId: 'block-1-advance',
+                styleId: 'post-featured-advanced',
             }),
+            tabRole: TabSetting
+        },
+        {
+            title: __('Image Border', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: imageBorderPanel,
             tabRole: TabStyle
-        }
+        },
+        {
+            title: __('Container Border', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: containerBorderPanel,
+            tabRole: TabStyle
+        }, {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
+        },
+
     ];
 };

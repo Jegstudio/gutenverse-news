@@ -20,7 +20,7 @@ class Module_Query {
 	/**
 	 * Cache thumbnail
 	 *
-	 * @var $cache_thumbnail
+	 * @var array $cache_thumbnail
 	 */
 	private static $cache_thumbnail = array();
 
@@ -160,6 +160,7 @@ class Module_Query {
 		$result           = array();
 		$args             = array();
 		$included_only    = false;
+		$included_posts   = array();
 
 		$attr['number_post']            = isset( $attr['number_post'] ) ? $attr['number_post'] : get_option( 'posts_per_page' );
 		$attr['pagination_number_post'] = isset( $attr['pagination_number_post'] ) ? $attr['pagination_number_post'] : $attr['number_post'];
@@ -168,19 +169,35 @@ class Module_Query {
 		$args['post_type']           = isset( $attr['post_type'] ) ? $attr['post_type'] : 'post';
 		$args['paged']               = isset( $attr['paged'] ) ? $attr['paged'] : 1;
 		$args['offset']              = self::calculate_offset( $args['paged'], $attr['post_offset'], $attr['number_post'], $attr['pagination_number_post'] );
-		$args['posts_per_page']      = ( $args['paged'] > 1 ) ? $attr['pagination_number_post'] : $attr['number_post'];
+		$args['posts_per_page']      = ( $args['paged'] > 1 && $attr['pagination_number_post'] ) ? $attr['pagination_number_post'] : $attr['number_post'];
 		$args['no_found_rows']       = ! isset( $attr['pagination_mode'] ) || 'disable' === $attr['pagination_mode'];
 		$args['ignore_sticky_posts'] = 1;
-
-		if ( ! empty( $attr['exclude_post'] ) ) {
-			$args['post__not_in'] = explode( ',', $attr['exclude_post'] );
-		}
 
 		if ( ! empty( $attr['include_post'] ) ) {
 			if ( isset( $attr['included_only'] ) && $attr['included_only'] ) {
 				$included_only    = true;
 				$args['post__in'] = explode( ',', $attr['include_post'] );
+			} else {
+				$inc_args             = $args;
+				$inc_args['post__in'] = array_unique( explode( ',', $attr['include_post'] ) );
+				if ( ! empty( $attr['exclude_post'] ) ) {
+					$attr['exclude_post'] = $attr['exclude_post'] . ',' . $attr['include_post'];
+				} else {
+					$attr['exclude_post'] = $attr['include_post'];
+				}
+
+				if ( self::stil_has_post( count( $inc_args['post__in'] ), $args['paged'], $args['offset'] ) ) {
+					$included_posts         = new \WP_Query( $inc_args );
+					$args['posts_per_page'] = $args['posts_per_page'] - count( $included_posts->posts );
+					$args['offset']         = 0;
+				} else {
+					$args['offset'] = (int) $args['offset'] - count( $inc_args['post__in'] );
+				}
 			}
+		}
+
+		if ( ! empty( $attr['exclude_post'] ) ) {
+			$args['post__not_in'] = explode( ',', $attr['exclude_post'] );
 		}
 
 		if ( ! empty( $attr['include_category'] ) ) {
@@ -317,37 +334,19 @@ class Module_Query {
 		// Query.
 		$query = new \WP_Query( $args );
 
-		if ( ! empty( $attr['include_post'] ) && ! $included_only ) {
-			$args['orderby']  = 'post__in';
-			$args['post__in'] = explode( ',', $attr['include_post'] );
-			$unset            = array(
-				'category__not_in',
-				'tag__not_in',
-				'date_query',
-				'tax_query',
-				'meta_query',
-				'lang',
-			);
-
-			if ( ! wp_doing_ajax() ) {
-				$unset[] = 'category__in';
-				$unset[] = 'author__in';
-				$unset[] = 'tag__in';
+		if ( ! empty( $attr['include_post'] ) && ! $included_only && $included_posts ) {
+			foreach ( $included_posts->posts as $post ) {
+				$result[] = $post;
 			}
-
+			if ( (int) $args['posts_per_page'] === count( $query->posts ) ) {
+				foreach ( $query->posts as $post ) {
+					$result[] = $post;
+				}
+			}
+		} else {
 			foreach ( $query->posts as $post ) {
-				$args['post__in'][] = $post->ID;
+				$result[] = $post;
 			}
-
-			foreach ( $unset as $remove ) {
-				unset( $args[ $remove ] );
-			}
-
-			$query = new \WP_Query( $args );
-		}
-
-		foreach ( $query->posts as $post ) {
-			$result[] = $post;
 		}
 
 		wp_reset_postdata();
@@ -356,7 +355,6 @@ class Module_Query {
 			gvnews_remove_filters( 'posts_join', array( __CLASS__, 'join_only_post' ) );
 			gvnews_remove_filters( 'posts_where', array( __CLASS__, 'where_only_post' ) );
 		}
-
 		return array(
 			'result'     => $result,
 			'next'       => self::has_next_page( $query->found_posts, $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
@@ -433,8 +431,8 @@ class Module_Query {
 	/**
 	 * Method recursive_category
 	 *
-	 * @param $categories $categories array.
-	 * @param result     $result array.
+	 * @param array $categories array.
+	 * @param array $result array.
 	 *
 	 * @return void
 	 */
@@ -473,7 +471,7 @@ class Module_Query {
 		if ( 1 === $paged || '1' === $paged ) {
 			$new_offset = $offset;
 		}
-		if ( 2 == $paged || '2' == $paged ) {
+		if ( 2 === $paged || '2' === $paged ) {
 			$new_offset = $number_post + $offset;
 		}
 		if ( $paged >= 3 ) {
@@ -533,11 +531,32 @@ class Module_Query {
 
 		if ( $remain > 0 ) {
 			while ( $remain > 0 ) {
-				$remain  -= $perpage_ajax;
+				$remain -= $perpage_ajax;
 				++$curpage;
 			}
 		}
 
 		return $curpage;
+	}
+
+	/**
+	 * Calculate whether there are still included posts
+	 *
+	 * @param int $total total included post.
+	 * @param int $curpage current page.
+	 * @param int $offset post offset.
+	 *
+	 * @return bool
+	 */
+	private static function stil_has_post( $total, $curpage = 1, $offset = 0 ) {
+		if ( 1 === $curpage ) {
+			return (int) $total > 0;
+		}
+
+		if ( $curpage > 1 ) {
+			return ( (int) $total - (int) $offset ) > 0;
+		}
+
+		return false;
 	}
 }

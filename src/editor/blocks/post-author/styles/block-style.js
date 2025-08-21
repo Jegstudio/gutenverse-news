@@ -1,7 +1,17 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import layoutStye from './panelStyle/layoutStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    data = layoutStye({data, attributes, selector: `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`});
+    data = backgroundStyle({
+        elementId,
+        attributes,
+        data,
+        backgroundSelector: `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
+        backgroundHoverSelector: `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox:hover`,
+    });
 
     /**
      * Panel General
@@ -9,7 +19,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['authorTypography']) && data.push({
         'type': 'typography',
         'id': 'authorTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_authorbox *`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     /**
@@ -18,31 +28,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId} .gvnews_authorbox:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId} .gvnews_authorbox:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -54,7 +64,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId} .gvnews_authorbox:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -76,7 +86,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     isNotEmpty(attributes['padding']) && data.push({
@@ -89,7 +99,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     isNotEmpty(attributes['zIndex']) && data.push({
@@ -102,7 +112,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_authorbox`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-authorbox`,
     });
 
     return data;

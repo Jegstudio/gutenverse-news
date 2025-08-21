@@ -258,10 +258,42 @@
         "itemAmount": {
             "type": "string",
             "default": 4
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }

@@ -1,9 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, animationPanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, animationPanel, backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { designPanel } from './panel-design';
 import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { panelType } from './panel-type';
+import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 
 export const panelList = () => {
     return [
@@ -23,6 +24,12 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Read More Button', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: readmoreStylePanel,
             tabRole: TabStyle
         },
         {
@@ -79,6 +86,11 @@ export const panelList = () => {
                 styleId: 'archive-pagination-advance',
             }),
             tabRole: TabStyle
+        }, {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         }
     ];
 };

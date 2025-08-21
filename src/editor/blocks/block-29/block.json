@@ -134,7 +134,7 @@
             "default": 5
         },
         "loadLimit": {
-            "type": "string",
+            "type": "number",
             "default": 0
         },
         "enableBoxed": {
@@ -311,10 +311,15 @@
         "showBorder": {
             "type": "boolean",
             "default": false
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }

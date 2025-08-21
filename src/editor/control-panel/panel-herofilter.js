@@ -1,8 +1,7 @@
-import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
-import { NumberControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
-import { addQueryArgs } from '@wordpress/url';
+import { SelectSearchControl, SelectControl, CheckboxControl, RangeControl } from 'gutenverse-core/controls';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
+import { applyFilters } from '@wordpress/hooks';
 
 export const filterHero = ({postType}) => {
 
@@ -43,15 +42,18 @@ export const filterHero = ({postType}) => {
             id: 'postOffset',
             label: __('Post Offset', 'gutenverse-news'),
             description: __('Number of post offset (start of content).', 'gutenverse-news'),
-            component: NumberControl,
-            forceType: 'string'
+            component: RangeControl,
+            min: 0,
+            step: 1,
+            isParseFloat: false
+
         },
         {
             id: 'uniqueContent',
             label: __('Include into Unique Content Group', 'gutenverse-news'),
             description: __('Choose unique content option, and this module will be included into unique content group. It won\'t duplicate content across the group. Ajax loaded content won\'t affect this unique content feature.', 'gutenverse-news'),
             component: SelectControl,
-            options: [
+            options: applyFilters('gutenverse.news.unique-content-group', [
                 {
                     value: 'disable',
                     label: __('Disable', 'gutenverse-news')
@@ -62,21 +64,25 @@ export const filterHero = ({postType}) => {
                 },
                 {
                     value: 'unique2',
-                    label: __('Unique Content - Group 2', 'gutenverse-news')
+                    label: __('Unique Content - Group 2', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique3',
-                    label: __('Unique Content - Group 3', 'gutenverse-news')
+                    label: __('Unique Content - Group 3', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique4',
-                    label: __('Unique Content - Group 4', 'gutenverse-news')
+                    label: __('Unique Content - Group 4', 'gutenverse-news'),
+                    pro: true
                 },
                 {
                     value: 'unique5',
-                    label: __('Unique Content - Group 5', 'gutenverse-news')
-                },
-            ]
+                    label: __('Unique Content - Group 5', 'gutenverse-news'),
+                    pro: true
+                }
+            ])
         },
         {
             id: 'includePost',

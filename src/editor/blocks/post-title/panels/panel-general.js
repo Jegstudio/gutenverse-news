@@ -1,17 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { TypographyControl } from 'gutenverse-core/controls';
-import { handleTypography } from 'gutenverse-core/styling';
+import { ColorControl, TypographyControl } from 'gutenverse-core/controls';
 
-export const generalPanel = (props) => {
-    const {
-        elementId,
-    } = props;
-
+export const generalPanel = () => {
     return [
         {
             id: 'titleTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Color', 'gutenverse-news'),
+            component: ColorControl,
         },
     ];
 };

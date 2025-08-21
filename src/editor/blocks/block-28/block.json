@@ -134,7 +134,7 @@
             "default": 5
         },
         "loadLimit": {
-            "type": "string",
+            "type": "number",
             "default": 0
         },
         "enableBoxed": {
@@ -307,10 +307,15 @@
         "showDateFormatCustom": {
             "type": "string",
             "default": "d M Y"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }
