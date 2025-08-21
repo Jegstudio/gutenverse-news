@@ -290,19 +290,13 @@ class Single_Post {
 		$images    = apply_filters( 'gvnews_metabox_value', false, 'gallery', $id );
 		$content   = '';
 		if ( $images ) {
-			foreach ( $images as $key => $item ) {
-				if ( 0 === count( $item['image'] ) ) {
-					continue;
-				}
-				$image    = $item['image'];
+			foreach ( $images as $key => $image ) {
 				$image_id = $image['id'];
 				$image    = wp_get_attachment_image_src( $image_id, 'full' );
-
 				$content .= '<a>' .
 								apply_filters( 'gvnews_single_image_lazy_owl', $image_id, $size ) .
 							'</a>';
 			}
-
 			$output = '<div class="gvnews_featured thumbnail-container gvnews_owlslider size-' . $dimension . ' ' . $additional_class . '">
 							<div class="featured_gallery">'
 							. $content .
@@ -312,7 +306,6 @@ class Single_Post {
 		if ( ! is_admin() && '' !== $content ) {
 			wp_enqueue_script( 'gvnews-featured-gallery', GUTENVERSE_NEWS_URL . '/assets/js/featured-gallery.js', array(), GUTENVERSE_NEWS_VERSION, true );
 		}
-
 		return apply_filters( 'gvnews_featured_gallery', $output, $this->post_id );
 	}
 
