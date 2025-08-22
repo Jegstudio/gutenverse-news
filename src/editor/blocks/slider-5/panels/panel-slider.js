@@ -80,7 +80,7 @@ export const sliderPanel = (props) => {
             id: 'isOverrideOverlay', // just for gradient type
             show: overlayOption === 'gradient',
             component: CheckboxControl,
-            label: __('Override Gradient Overlay')
+            label: __('Override Overlay Color', 'gutenverse-news'),
         },
         {
             id: 'overrideOverlay',

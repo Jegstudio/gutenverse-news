@@ -18653,14 +18653,10 @@ span.gvnews-category {
 
     &:before {
       content: '';
-      opacity: 0.6;
       position: absolute;
       width: 100%;
       height: 100%;
       z-index: 1;
-      background: -o-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);
-      background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.65)), color-stop(50%, rgba(0, 0, 0, 0.45)), to(rgba(0, 0, 0, 0)));
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=1);
     }
   }
@@ -19193,14 +19189,10 @@ span.gvnews-category {
 
     &:before {
       content: '';
-      opacity: 0.6;
       position: absolute;
       width: 100%;
       height: 100%;
       z-index: 1;
-      background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
-      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.7)));
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a000000', endColorstr='#b3000000', GradientType=0);
     }
   }
@@ -19342,8 +19334,6 @@ span.gvnews-category {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: #000;
-    opacity: 0.6;
   }
 
   .gvnews_caption_container {
