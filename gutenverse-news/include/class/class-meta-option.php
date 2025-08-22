@@ -63,6 +63,7 @@ class Meta_Option {
 
 		if ( version_compare( $version, GUTENVERSE_NEWS_VERSION, '<' ) ) {
 			$meta->upgrade_plugin( $version, GUTENVERSE_NEWS_VERSION, GUTENVERSE_NEWS );
+			/* wp_safe_redirect( admin_url( 'admin.php?page=gutenverse&path=settings' ) );  TODO: Redirect upgraded user to Gutenverse News Essentials Wizard */
 		}
 	}
 

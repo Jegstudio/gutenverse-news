@@ -124,6 +124,7 @@
             "type":"object"
         },
         "commentColorHover": {
+<<<<<<< HEAD
             "type":"object"
         },
         "showType": {
@@ -180,6 +181,13 @@
         },
         "bookmarkIconColor": {
             "type":"object"
+=======
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
+>>>>>>> dev/integrate-with-essential
         }
     },
     "supports": {
