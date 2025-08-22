@@ -40,16 +40,21 @@ const HeroComponent = (props) => {
         autoplayDelay,
         heroMargin,
         heightDesktop,
+        attributes,
+        setAttributes
     } = props;
 
-    const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(16);
     const [overlay, setOverlay] = useState(false);
-    const [block, setBlock] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
+    const [sliderCount, setSliderCount] = useState(0);
+
     const moduleOption = useRef(null);
     const postCount = useRef(0);
+    const firstRender = useRef(true);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -61,80 +66,78 @@ const HeroComponent = (props) => {
     }, [columnWidth]);
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(sliderItem * numberPostShow);
-        let count = parseInt(postCount.current);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost * sliderItem);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                if (count > off) {
-                    loadMore(loadPost * sliderItem);
-                } else {
-                    if (count != postCount.current) {
-                        loadMore(count);
-                    }
-                }
-                getTrim(false);
-            }
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
         } else {
-            getTrim(false);
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
         }
-    }, [numberPost, postBulk, postOffset, sliderItem]);
-
-    // useEffect(() => {
-    //     apiFetch({
-    //         path: addQueryArgs('/gvnews-client/v1/module-option'),
-    //     }).then((data) => {
-    //         const parsedData = JSON.parse(data);
-    //         setModuleOption(parsedData);
-    //         if (parsedData.option.post_count) {
-    //             setPostCount(parsedData.option.post_count.publish);
-    //         }
-    //     });
-    // }, []);
+    }, [postOffset]);
 
     useEffect(() => {
-
-        if (moduleOption.current == null) {
-            moduleOption.current = getModuleOptions();
-            postCount.current = moduleOption.current.option.post_count.publish;
-        }
-
-        postBulk ? setOverlay(true) : null;
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: {
-                    contentType,
-                    uniqueContent,
-                    includeOnly,
-                    postType,
-                    numberPost: loadPost,
-                    includePost,
-                    excludePost,
-                    includeCategory,
-                    excludeCategory,
-                    includeAuthor,
-                    includeTag,
-                    excludeTag,
-                    sortBy,
-                },
-            },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .catch((e) => {
-                console.error(e.message);
-            })
-            .finally(() => {
-                setOverlay(false);
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 3000
             });
+        }
+    }, [autoplayDelay]);
+
+    useEffect(() => {
+        if (sliderItem >= 1) {
+            setSliderCount(parseInt(sliderItem));
+        } else {
+            setAttributes({
+                ...attributes,
+                sliderItem: 2
+            });
+        }
+    }, [sliderItem]);
+
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => {
+            if (moduleOption.current == null) {
+                moduleOption.current = getModuleOptions();
+                postCount.current = moduleOption.current.option.post_count.publish;
+            }
+
+            setOverlay(true);
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: {
+                        contentType,
+                        uniqueContent,
+                        includeOnly,
+                        postType,
+                        numberPost: sliderCount ? sliderCount * numberPost : numberPost,
+                        includePost,
+                        excludePost,
+                        includeCategory,
+                        excludeCategory,
+                        includeAuthor,
+                        includeTag,
+                        excludeTag,
+                        sortBy,
+                        postOffset: postStart
+                    },
+                },
+            }).then((data) => {
+                getTrim(JSON.parse(data));
+            }).finally(() => {
+                setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+        return () => clearTimeout( timeOutId );
     }, [
         contentType,
         includeOnly,
@@ -147,7 +150,8 @@ const HeroComponent = (props) => {
         includeTag,
         excludeTag,
         sortBy,
-        loadPost,
+        postStart,
+        sliderCount,
     ]);
 
     const resetBlock = () => {
@@ -162,7 +166,7 @@ const HeroComponent = (props) => {
             };
             const rows = [];
             const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
-            for (let i = 0; i < Math.min(sliderItem, maxSliderItem); i++) {
+            for (let i = 0; i < Math.min(sliderCount, maxSliderItem); i++) {
                 rows.push(
                     <HeroContentWrapperComponent
                         {...{
@@ -179,6 +183,7 @@ const HeroComponent = (props) => {
             }
             setBlock(
                 <HeroViewComponent
+                    key={Math.random().toString(36).substring(2)}
                     {...{
                         rows,
                         heroType,
@@ -186,32 +191,48 @@ const HeroComponent = (props) => {
                         enableslider,
                         blockWidth,
                         autoplay,
-                        autoplayDelay,
+                        autoplayDelay: sliderDelay,
                     }}
                 />
             );
-        } else if (postBulk && moduleOption.current) {
+        } else if (moduleOption.current) {
             setBlock(<div className="gvnews_empty_module">{moduleOption.current.string.no_content}</div>);
         }
     };
 
     useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
         resetBlock();
-    }, [blockWidth, moduleOption, dateType, dateFormat, dateFormatCustom, heroStyle]);
+    },[
+        postData,
+        enableslider,
+        autoplay,
+        sliderDelay,
+        sliderCount,
+        heroMargin,
+        heightDesktop,
+        blockWidth,
+        moduleOption,
+        dateType,
+        dateFormat,
+        dateFormatCustom,
+        heroStyle
+    ]);
 
     useEffect(() => {
-        setBlock(false);
-        setTimeout(function () {
-            resetBlock();
-        });
-    }, [postData, enableslider, autoplay, autoplayDelay, sliderItem, heroMargin, heightDesktop]);
+        if(firstRender.current) {
+            return;
+        }
+        enableslider && elementRef.current && window.gvnews.hero.init(elementRef.current);
+        enableslider && elementRef.current && window.gvnews.hero.heroSlider(elementRef.current);
+    }, [block]);
 
     return (
         <>
-            {block ? block : <ModuleSkeleton />}
-            {overlay && <ModuleOverlay />}
-            {enableslider && elementRef.current && gvnews.hero.init(elementRef.current)}
-            {enableslider && elementRef.current && gvnews.hero.heroSlider(elementRef.current)}
+            {block}
+            {(overlay && !firstRender.current) && <ModuleOverlay />}
         </>
     );
 };

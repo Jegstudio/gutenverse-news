@@ -4,6 +4,7 @@
     "title": "Slider 9",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
     "description": "Your Block description.",
+    "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
         "elementId": {

@@ -27,6 +27,7 @@ const BlockModule = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         clientId,
         setBlockRef,
         moduleName,
@@ -102,6 +103,9 @@ const BlockModule = compose(
     });
     const [forceReload, setForceReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [postStart, setPostStart] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(0);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
     const firstRender = useRef(true);
@@ -113,6 +117,39 @@ const BlockModule = compose(
     }, [elementRef]);
 
     useEffect(() => {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (paginationPost > 0) {
+            setPostPaginationLoaded(parseInt(paginationPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                paginationPost: 5
+            });
+        }
+    }, [paginationPost]);
+
+    useEffect(() => {
         if(firstRender.current) {
             return;
         }
@@ -121,7 +158,7 @@ const BlockModule = compose(
         setForceReload(!forceReload);
     }, [
         paginationMode,
-        paginationPost,
+        postPaginationLoaded,
         activeFilter,
         contentType,
         includeOnly,
@@ -134,8 +171,8 @@ const BlockModule = compose(
         includeTag,
         excludeTag,
         sortBy,
-        numberPost,
-        postOffset,
+        postLoaded,
+        postStart,
     ]);
 
 
@@ -162,7 +199,7 @@ const BlockModule = compose(
             uniqueContent,
             includeOnly,
             postType,
-            numberPost,
+            numberPost: postLoaded,
             includePost,
             excludePost,
             includeCategory,
@@ -172,9 +209,9 @@ const BlockModule = compose(
             excludeTag,
             sortBy,
             page,
-            paginationPost: paginationPost || numberPost,
+            paginationPost: postPaginationLoaded || postLoaded,
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
-            postOffset,
+            postOffset: postStart,
             advancedResponse: true,
         };
         if (activeFilter['value'] != -100) {
@@ -226,8 +263,8 @@ const BlockModule = compose(
                 metaDateFormatCustom,
                 postData,
                 isLoadMore: (paginationMode === 'loadmore' || paginationMode === 'scrollload'),
-                numberPost,
-                paginationPost,
+                numberPost: postLoaded,
+                paginationPost: postPaginationLoaded,
                 page,
             }} />;
             setBlock(allColumns);

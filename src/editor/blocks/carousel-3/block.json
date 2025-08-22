@@ -15,7 +15,7 @@
         },
         "columnWidth": {
             "type": "string",
-            "default": 12
+            "default": "auto"
         },
         "contentType": {
             "type": "string",
