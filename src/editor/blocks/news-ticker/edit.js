@@ -29,7 +29,8 @@ const NewsTickerBlock = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes
     } = props;
 
     const {
@@ -72,14 +73,35 @@ const NewsTickerBlock = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
 
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [offsetLoaded, setOffsetLoaded] = useState(0);
     const [postBulk, getPost] = useState(false);
     const [postData, getTrim] = useState(false);
     const [loadPost, loadMore] = useState(15);
     const [ticker, initTicker] = useState(false);
 
     useEffect(() => {
-        let off = postOffset === 'NaN' ? 0 : parseInt(postOffset);
-        let num = parseInt(numberPost);
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: '1'
+            });
+        }
+        if (postOffset > 0) {
+            setOffsetLoaded(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: '1'
+            });
+        }
+    }, [numberPost, postOffset]);
+
+    useEffect(() => {
+        let off = offsetLoaded;
+        let num = postLoaded;
         let count = parseInt(postCount);
         if (postBulk && postBulk.length) {
             if (postBulk.slice(off, num + off).length) {
@@ -95,7 +117,7 @@ const NewsTickerBlock = compose(
             getTrim(false);
         }
     }, [
-        numberPost,
+        postLoaded,
         postBulk,
         postOffset
     ]);
