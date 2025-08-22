@@ -29,7 +29,7 @@ class Carousel_2 extends Carousel_View_Abstract {
 		foreach ( $results as $key => $post ) {
 			$image            = $this->get_thumbnail( $post->ID, 'gvnews-350x250' );
 			$primary_category = $this->get_primary_category( $post->ID );
-			$additional_class = ( ! has_post_thumbnail( $post->ID ) ) ? ' no_thumbnail' : '';
+			$additional_class = '';
 
 			$content .=
 			'<div class="gvnews_post_wrapper">

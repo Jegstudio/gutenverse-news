@@ -12,7 +12,7 @@ Create professional news, blog, or magazine layouts with the best Gutenberg bloc
 ## Description
 
 
-**GUTENVERSE NEWS – NEWS MAGAZINE BLOG LAYOUTS BUILDER FOR GUTENBERG BLOCK EDITOR AND FULL SITE EDITOR, 80+ FREE USER-FRIENDLY NEWS BLOCKS ADDONS**
+**GUTENVERSE NEWS – NEWS MAGAZINE BLOG LAYOUTS BUILDER FOR GUTENBERG BLOCK EDITOR AND FULL SITE EDITOR, 26+ FREE USER-FRIENDLY NEWS BLOCKS ADDONS**
 
 
 Gutenverse News empowers you to easily create professional news, blog, or magazine layouts for any publishing need on your WordPress site. As part of the Gutenverse ecosystem, it provides seamless flexibility and control, enabling you to build and customize news content that perfectly fits your site’s design. Whether you’re building news layouts from scratch or enhancing existing pages, Gutenverse News ensures your publishing website is always up-to-date, keeping your audience informed and engaged.
@@ -72,27 +72,22 @@ Edit breakpoints for tablets and mobile devices to optimize the responsiveness o
 
 ## News Module Blocks
 
-Effortlessly create structured news sections with **39 brand-new Gutenberg news blocks**, fully customizable to highlight key stories and articles. Each block is designed to emphasize important content, ensuring your news is displayed in a visually appealing and engaging way.
+Effortlessly create structured news sections with **9 brand-new Gutenberg news blocks**, fully customizable to highlight key stories and articles. Each block is designed to emphasize important content, ensuring your news is displayed in a visually appealing and engaging way.
 
 ## News Hero Blocks
 
-Make your headlines stand out with **15 captivating news hero blocks**, designed to grab attention and showcase your most important news stories. Each section is crafted to highlight top content, ensuring your key messages make a lasting impact.
+Make your headlines stand out with **5 captivating news hero blocks**, designed to grab attention and showcase your most important news stories. Each section is crafted to highlight top content, ensuring your key messages make a lasting impact.
 
 
 ## News Slider Blocks
 
-Showcase your latest or featured news with an interactive slider, offering readers an engaging way to browse through top articles. Choose from **9 different news slider blocks** to match your site's style and enhance the browsing experience.
-
-
-## News Carousel Blocks
-
-Create dynamic news presentations with **3 available news carousel blocks**, allowing your audience to quickly glance through multiple stories. Each carousel is designed to effectively showcase a range of content, keeping your readers engaged and informed.
+Showcase your latest or featured news with an interactive slider, offering readers an engaging way to browse through top articles.
 
 
 ## News Single Post Blocks
 
-*   **Post Author:** Display the author’s name prominently to give credit to the writer.
-*   **Post Featured Image:** Highlight the main image of your news post, making the content more look good.
+*   **Post Author Box:** Display the author’s name prominently to give credit to the writer.
+*   **Advanced Post Featured Image:** Highlight the main image of your news post, making the content more look good.
 *   **Post Meta:** Display essential post information such as the publish date, categories, and tags.
 *   **Post Related:** Suggest related articles to keep your audience engaged and on your site longer.
 
@@ -108,7 +103,6 @@ Create dynamic news presentations with **3 available news carousel blocks**, all
 
 *   **Header:** Create a consistent, professional header for your news site that guides your audience through your content.
 *   **News Ticker:** Display breaking news or important updates with a scrolling ticker for real-time information.
-*   **RSS Block:** Integrate an RSS feed to allow users to subscribe and stay updated with the latest news.
 *   **User List:** Showcase a list of authors, contributors, or users associated with your news site for better community engagement.
 
 
@@ -148,6 +142,16 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 3.0.1 [DEV] =
+##### Bug Fixes
+* Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
+* Fix auto column width detection not working on Carousel 3
+* Fix Hero Slider icon missing on responsive view editor
+* Fix Hero Slider style on mobile device
+
+##### Improvements
+* Changed the Post Offset option to an Input Range control
 
 = 3.0.0 =
 ##### Bug Fixes
