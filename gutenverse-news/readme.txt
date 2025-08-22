@@ -152,6 +152,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Improvements
 * Changed the Post Offset option to an Input Range control
+* Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
 
 = 3.0.0 =
 ##### Bug Fixes
