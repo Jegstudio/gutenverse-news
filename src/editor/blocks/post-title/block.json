@@ -26,12 +26,17 @@
         },
         "background": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
         "backgroundHover": {
             "type": "object",
-            "default": {}
+            "copyStyle": true
         },
+		"backgroundTransition": {
+			"type": "object",
+			"copyStyle": true,
+			"default": {}
+		},
         "border": {
             "type": "object"
         },
@@ -48,23 +53,17 @@
             "type": "number",
             "default": 20
         },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
-        },
         "padding": {
+            "type": "object"
+        },
+        "width": {
+            "type": "object"
+        },
+        "height": {
             "type": "object"
         },
         "zIndex": {
             "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
         },
         "hideDesktop": {
             "type": "boolean"
@@ -75,41 +74,23 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "positioningType": {
-            "type": "object"
-        },
-        "positioningWidth": {
-            "type": "object"
-        },
-        "positioningAlign": {
-            "type": "object"
-        },
-        "positioningLocation": {
-            "type": "string"
-        },
-        "positioningLeft": {
-            "type": "object"
-        },
-        "positioningRight": {
-            "type": "object"
-        },
-        "positioningTop": {
-            "type": "object"
-        },
-        "positioningBottom": {
-            "type": "object"
-        },
         "titleTypography": {
+			"type": "object",
+			"copyStyle": true
+		},
+        "titleColor": {
 			"type": "object",
 			"copyStyle": true
 		}
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": [
         "single",
         "post",
         "title"
-    ]
+    ],
+    "gvnewsRemoved": true
 }

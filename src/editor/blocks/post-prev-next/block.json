@@ -97,10 +97,33 @@
         },
         "positioningBottom": {
             "type": "object"
+        },
+        "titleColor": {
+            "type":"object"
+        },
+        "titleColorHover": {
+            "type":"object"
+        },
+        "navTextColor": {
+            "type":"object"
+        },
+        "navTextColorHover": {
+            "type":"object"
+        },
+        "accentColor": {
+            "type":"object"
+        },
+        "accentColorHover": {
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": [
         "single",

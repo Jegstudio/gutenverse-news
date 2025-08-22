@@ -45,11 +45,14 @@ class Post_Title extends Style_Abstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
-				'border'      => null,
-				'positioning' => null,
-				'animation'   => null,
-				'advance'     => null,
+				'background' => array(
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
+				),
+				'border'     => array(
+					'normal' => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
+				),
 			)
 		);
 	}
@@ -61,20 +64,32 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['titleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector' => ".{$this->element_id} .gvnews_post_title",
+					'selector' => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
 					'value'    => $this->attrs['titleTypography'],
 				)
 			);
 		}
 
+		if ( isset( $this->attrs['titleColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector' => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
+					'property' => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'    => $this->attrs['titleColor'],
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['border'] ) ) {
-			$this->handle_border( 'border', ".{$this->element_id} .gvnews_post_title" );
+			$this->handle_border( 'border', ".guten-element.{$this->element_id}.gvnews-post-title" );
 		}
 
 		if ( isset( $this->attrs['borderResponsive'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -88,13 +103,13 @@ class Post_Title extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['borderHover'] ) ) {
-			$this->handle_border( 'borderHover', ".{$this->element_id} .gvnews_post_title:hover" );
+			$this->handle_border( 'borderHover', ".guten-element.{$this->element_id}.gvnews-post-title:hover" );
 		}
 
 		if ( isset( $this->attrs['borderHoverResponsive'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title:hover",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -110,7 +125,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['boxShadow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -123,7 +138,7 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['boxShadowHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title:hover",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -133,10 +148,11 @@ class Post_Title extends Style_Abstract {
 			);
 		}
 
+		// Panel Layout.
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -149,11 +165,50 @@ class Post_Title extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
 					'value'          => $this->attrs['padding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['width'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title .title-wrapper h1.the-title",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['width'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['height'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['height'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['zIndex'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-title",
+					'property'       => function ( $value ) {
+						return "z-index: {$value};";
+					},
+					'value'          => $this->attrs['zIndex'],
 					'device_control' => true,
 				)
 			);

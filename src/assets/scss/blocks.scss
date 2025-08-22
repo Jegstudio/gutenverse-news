@@ -1,24 +1,5 @@
 @import 'single-post-block';
-@import '../../editor/blocks/post-comment/styles/style';
-
-/* Display condiditon style */
-@media only screen and (min-width: 781px) {
-  .hide-desktop {
-    display: none !important;
-  }
-}
-
-@media (max-width: 780px) and (min-width: 426px) {
-  .hide-tablet {
-    display: none !important;
-  }
-}
-
-@media (max-width: 425px) {
-  .hide-mobile {
-    display: none !important;
-  }
-}
+@import 'deprecated';
 
 /* Clearfix */
 
@@ -1379,6 +1360,10 @@
     display: inline-block;
     vertical-align: top;
     margin: 0 !important;
+
+    >a:focus {
+      outline-style: none !important;
+    }
   }
 }
 
@@ -1400,12 +1385,12 @@
 
   a:hover,
   button:hover {
-    color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--accent, #f70d28) !important;
   }
 }
 
 .gvnews-block.gvnews-block-wrapper .gvnews_subcat_list li a.current {
-  color: #212121;
+  color: #212121 !important;
 }
 
 .gvnews_block_heading:not(.gvnews_subcat_right) .okayNav__menu-toggle {
@@ -2730,8 +2715,8 @@
     &:hover,
     &.active {
       color: #fff;
-      background: var(--wp--preset--color--primary);
-      border-color: var(--wp--preset--color--primary);
+      background: var(--wp--preset--color--accent, #f70d28);
+      border-color: var(--wp--preset--color--accent, #f70d28);
     }
 
     &.disabled {
@@ -18586,7 +18571,7 @@ span.gvnews-category {
 
     &.tns-next {
       bottom: 40px;
-      background: var(--wp--preset--color--primary);
+      background: var(--wp--preset--color--accent, #f70d28);
       color: #fff;
     }
   }
@@ -20268,15 +20253,12 @@ span.gvnews-category {
 .gvnews_slider_type_9_inner_wrapper {
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 1200px;
+  right: 0;
+  width: 37%;
   z-index: 2;
   margin: 0 auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
 
 .gvnews_slider_type_9_thumb {
@@ -20285,7 +20267,7 @@ span.gvnews-category {
     padding: 25px 20px 20px;
     background: rgba(0, 0, 0, 0.5);
     height: 555px;
-    overflow: scroll;
+    overflow-y: auto;
     display: block;
     position: absolute;
     top: 0;
@@ -22884,7 +22866,6 @@ input:checked+.slider {
 
 .comment-body {
   padding: 20px 0 0 70px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .commentlist {

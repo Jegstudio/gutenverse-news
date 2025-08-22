@@ -63,7 +63,7 @@ class Module_3 extends Module_View_Abstract {
 	 */
 	public function build_column_1( $results ) {
 		$first_block = '';
-		$size = count( $results );
+		$size        = count( $results );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-120x86' );
 		}
@@ -79,13 +79,13 @@ class Module_3 extends Module_View_Abstract {
 	/**
 	 * Method build_column_2
 	 *
-	 * @param arary $results results.
+	 * @param array $results results.
 	 *
 	 * @return string
 	 */
 	public function build_column_2( $results ) {
 		$first_block = '';
-		$count = count( $results );
+		$count       = count( $results );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-350x250' );
 		}
@@ -107,7 +107,7 @@ class Module_3 extends Module_View_Abstract {
 	 */
 	public function build_column_1_alt( $results ) {
 		$first_block = '';
-		$count = count( $results );
+		$count       = count( $results );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-120x86' );
 		}
@@ -126,7 +126,7 @@ class Module_3 extends Module_View_Abstract {
 	 */
 	public function build_column_2_alt( $results ) {
 		$first_block = '';
-		$count = count( $results );
+		$count       = count( $results );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-350x250' );
 		}

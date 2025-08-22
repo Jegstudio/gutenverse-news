@@ -16,6 +16,9 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { gutenverseProActive } from '../../utils/helper';
 
 const Hero14Block = compose(
     withPartialRender,
@@ -23,6 +26,7 @@ const Hero14Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         isSelected,
         clientId,
         setBlockRef
@@ -44,8 +48,6 @@ const Hero14Block = compose(
         includeTag,
         excludeTag,
         sortBy,
-        enableBoxed,
-        enableBoxShadow,
         columnWidth,
         excerptLength,
         excerptEllipsis,
@@ -67,119 +69,22 @@ const Hero14Block = compose(
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
-
-    const [moduleOption, setModuleOption] = useState(false);
-    const [postBulk, getPost] = useState(false);
-    const [blockWidth, getWidth] = useState(8);
-    const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
-    const [postCount, setPostCount] = useState(0);
-    const [overlay, setOverlay] = useState(false);
-
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(8);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
-        }
-    }, [numberPost, postBulk, postOffset]);
-
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-            if (parsedData.option.post_count) {
-                setPostCount(parsedData.option.post_count.publish);
-            }
-        });
-    }, []);
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(12);
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [columnWidth]);
-
-    useEffect(() => {
-        postBulk ? setOverlay(true) : null;
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost: loadPost,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-        };
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr,
-            },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .catch((e) => {
-                console.error(e.message);
-            })
-            .finally(() => {
-                setOverlay(false);
-            });
-    }, [
-        contentType,
-        includeOnly,
-        postType,
-        includePost,
-        excludePost,
-        includeCategory,
-        excludeCategory,
-        includeAuthor,
-        includeTag,
-        excludeTag,
-        sortBy,
-        loadPost,
-    ]);
-
     const blockProps = useBlockProps({
         className: classnames('gvnews-block',
             'gvnews-block-wrapper', 'gvnews-hero-14', elementId, animationClass, displayClass),
         ref: elementRef
     });
 
-    const moduleData = {
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
-    };
+    const [moduleOption, setModuleOption] = useState(false);
+    const [blockWidth, getWidth] = useState(8);
+    const [postData, getTrim] = useState(false);
+    const [overlay, setOverlay] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postStart, setPostStart] = useState(0);
+
+    const firstRender = useRef(true);
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     function RenderBlock1(props) {
         return (
@@ -246,32 +151,139 @@ const Hero14Block = compose(
         return <BuildColumn3 {...props} />;
     }
 
-    const [block, setBlock] = useState(false);
     useEffect(() => {
-        setBlock(
-            <>
-                {postData ? (
-                    <RenderColumn {...moduleData} />
-                ) : postBulk ? (
-                    <div className="gvnews_empty_module">{moduleOption.string.no_content}</div>
-                ) : (
-                    <ModuleSkeleton />
-                )}
-                {overlay && <ModuleOverlay />}
-            </>
-        );
-    }, [blockWidth, moduleOption, postData, metaDateType, metaDateFormat, metaDateFormatCustom, overlay]);
+        apiFetch({
+            path: addQueryArgs('/gvnews-client/v1/module-option'),
+        }).then((data) => {
+            const parsedData = JSON.parse(data);
+            setModuleOption(parsedData);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (columnWidth == 'auto') {
+            // todo add auto width detection?
+            getWidth(12);
+        } else {
+            getWidth(columnWidth);
+        }
+    }, [columnWidth]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setOverlay(true);
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                postOffset: postStart,
+            };
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr,
+                },
+            }).then((data) => {
+                const parsed = JSON.parse(data);
+                getTrim(parsed);
+            }).finally(() => {
+                setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+
+        return () => clearTimeout(timeoutID);
+    }, [
+        contentType,
+        includeOnly,
+        postType,
+        includePost,
+        excludePost,
+        includeCategory,
+        excludeCategory,
+        includeAuthor,
+        includeTag,
+        excludeTag,
+        sortBy,
+        postStart,
+        numberPost
+    ]);
+
+    useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
+        const moduleData = {
+            blockWidth,
+            excerptLength,
+            excerptEllipsis,
+            moduleOption,
+            postData,
+            metaDateType,
+            metaDateFormat,
+            metaDateFormatCustom,
+        };
+        if(postData.length > 0) {
+            setBlock(
+                <RenderColumn {...moduleData} />
+            );
+        } else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        }
+    }, [
+        blockWidth,
+        moduleOption,
+        postData,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        overlay
+    ]);
 
     return (
         <>
-            <CopyElementToolbar {...props} />
-            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            {isDeprecated ? (
+                <PanelDeprecated title="Hero 14" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
                         <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
-                        {block ? block : 'loading'}
+                        {block}
+                        {(overlay && !firstRender.current) && <ModuleOverlay />}
                     </div>
+                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>

@@ -3,9 +3,6 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -15,13 +12,17 @@ import { SliderCaption } from '../../part/slider';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const Slider7Block = compose(
     withPartialRender,
@@ -29,6 +30,7 @@ const Slider7Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         isSelected,
         clientId,
         setBlockRef
@@ -85,98 +87,6 @@ const Slider7Block = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
-
-    const [postBulk, getPost] = useState(false);
-    const [blockWidth, getWidth] = useState(8);
-    const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
-    const [overlay, setOverlay] = useState(false);
-
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
-        }
-    }, [
-        numberPost,
-        postBulk,
-        postOffset
-    ]);
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            if (deviceType === 'Desktop') {
-                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
-            }
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [
-        columnWidth,
-        deviceType
-    ]);
-
-    useEffect(() => {
-        postBulk ? setOverlay(true) : null;
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost: loadPost,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-        };
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr
-            }
-        }).then((data) => {
-            getPost(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
-            setOverlay(false);
-        });
-    }, [
-        contentType,
-        includeOnly,
-        postType,
-        includePost,
-        excludePost,
-        includeCategory,
-        excludeCategory,
-        includeAuthor,
-        includeTag,
-        excludeTag,
-        sortBy,
-        loadPost
-    ]);
-
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -190,23 +100,24 @@ const Slider7Block = compose(
         ref: elementRef
     });
 
-    const moduleData = {
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
-    };
+    const [blockWidth, getWidth] = useState(8);
+    const [postData, getTrim] = useState(false);
+    const [overlay, setOverlay] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postLoaded, setPostLoaded] = useState(5);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
+
+    const firstRender = useRef(true);
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     function RenderContent(props) {
         return (
-            <div className="gvnews_slide_item" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}>
+            <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
-                <div className="gvnews_slide_image" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}></div>
-                <SliderCaption {...props} excerpt navigation />
+                <div className="gvnews_slide_image" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}></div>
+                <SliderCaption {...props} excerpt navigation withElipsis={true} withMeta={false} withReadmore={true} />
             </div>
         );
     }
@@ -230,27 +141,141 @@ const Slider7Block = compose(
         }
 
         return (
-            <div className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`} data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay} data-nav-prev={'PREV'} data-nav-next={'NEXT'}>
+            <div className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-nav-prev={'PREV'} data-nav-next={'NEXT'}>
                 {content}
             </div>
         );
     }
 
-    const [block, setBlock] = useState(false);
     function resetblock() {
-        setBlock(
-            <div className={`gvnews_slider_wrapper gvnews_slider_type_7_wrapper ${overlayOption == 'no' ? 'no-overlay' : ''}`}>
-                {postData ? <RenderColumn {...moduleData} /> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string.no_content}</div> : <ModuleSkeleton />}
-                {overlay && <ModuleOverlay />}
-            </div>
-        );
+        const moduleData = {
+            excerptLength,
+            excerptEllipsis,
+            moduleOption,
+            postData,
+            metaDateType,
+            metaDateFormat,
+            metaDateFormatCustom,
+        };
+        if(postData.length > 0){
+            setBlock(
+                <div key={Math.random().toString(36).substring(2)} className={`gvnews_slider_wrapper gvnews_slider_type_7_wrapper ${overlayOption == 'no' ? 'no-overlay' : ''}`}>
+                    <RenderColumn {...moduleData} />
+                </div>
+            );
+        }else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        }
     }
 
     useEffect(() => {
-        setBlock(false);
-        setTimeout(function () {
-            resetblock();
-        });
+        if (columnWidth == 'auto') {
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
+        } else {
+            getWidth(columnWidth);
+        }
+    }, [
+        columnWidth,
+        deviceType
+    ]);
+
+    useEffect(() => {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 2000
+            });
+        }
+    }, [autoplayDelay]);
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setOverlay(true);
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost: postLoaded,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                postOffset: postStart,
+            };
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr
+                }
+            }).then((data) => {
+                const parsed = JSON.parse(data);
+                getTrim(parsed);
+            }).finally(() => {
+                setOverlay(false);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+
+        return () => clearTimeout(timeoutID);
+    }, [
+        contentType,
+        includeOnly,
+        postType,
+        includePost,
+        excludePost,
+        includeCategory,
+        excludeCategory,
+        includeAuthor,
+        includeTag,
+        excludeTag,
+        sortBy,
+        postLoaded,
+        postStart,
+    ]);
+
+    useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
+        resetblock();
     }, [
         blockWidth,
         excerptLength,
@@ -263,19 +288,26 @@ const Slider7Block = compose(
         overlay,
         showNav,
         autoplay,
-        autoplayDelay,
+        sliderDelay,
         overlayOption,
         fimagePosition,
     ]);
 
-    if ('function' === typeof gvnews.slider && postData && !overlay) {
-        setTimeout(function () {
-            let gvnewsLibrary = window.gvnews;
-            gvnewsLibrary = gvnews.library;
-            var slider = document.querySelectorAll('.gvnews_slider_wrapper .gvnews_slider');
+    useEffect(() => {
+        if(firstRender.current) {
+            return;
+        }
+        if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
+            const gvnewsLibrary = window.gvnews.library;
+            let target = document;
+            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+            if(iframe) {
+                target = iframe.contentDocument;
+            }
+            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
             if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele, i) {
-                    gvnews.slider({
+                gvnewsLibrary.forEach(slider, function (ele) {
+                    window.gvnews.slider({
                         container: ele,
                         onInit: function (info) {
                             if ('undefined' !== typeof info.nextButton) {
@@ -288,19 +320,30 @@ const Slider7Block = compose(
                     });
                 });
             }
-        }, 1000);
-    }
+        }
+    }, [block]);
 
-    return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : 'loading'}
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelDeprecated title="Slider 7" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    {block}
+                    {(overlay && !firstRender.current) && <ModuleOverlay />}
+                    {isDeprecated && <DeprecatedOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Slider7Block;

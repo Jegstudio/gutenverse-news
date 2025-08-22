@@ -1,11 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from '../../../control-panel/panel-herosetting';
 import { designHero } from '../../../control-panel/panel-herodesign';
 import { styleHero } from '../../../control-panel/panel-herostyle';
 import { sliderHero } from '../../../control-panel/panel-heroslider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 
 export const panelList = () => {
     return [
@@ -40,6 +41,12 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('Category Label', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: categoryStylePanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => borderPanel({
@@ -62,6 +69,12 @@ export const panelList = () => {
                 styleId: 'block-1-advance',
             }),
             tabRole: TabStyle
-        }
+        },
+        {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
+        },
     ];
 };

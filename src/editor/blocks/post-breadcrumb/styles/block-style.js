@@ -1,7 +1,20 @@
+import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import layoutStye from './panelStyle/layoutStyle';
+import stylingStyle from './panelStyle/stylingStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+
+    data = layoutStye({attributes, elementId, data, selector: `.guten-element.${elementId}.gvnews-post-breadcrumb`});
+    data = stylingStyle({attributes, elementId, data});
+    data = backgroundStyle({
+        elementId,
+        attributes,
+        data,
+        backgroundSelector: `.guten-element.${elementId}.gvnews-post-breadcrumb`,
+        backgroundHoverSelector: `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
+    });
 
     /**
      * Panel Border
@@ -9,31 +22,31 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',
         'id': 'border',
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsive',
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
     });
 
     isNotEmpty(attributes['borderHover']) && data.push({
         'type': 'border',
         'id': 'borderHover',
-        'selector': `.${elementId} .gvnews_breadcrumbs:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['borderHoverResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderHoverResponsive',
-        'selector': `.${elementId} .gvnews_breadcrumbs:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
     });
 
     isNotEmpty(attributes['boxShadow']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadow',
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb`,
         'properties': [
             {
                 'name': 'box-shadow',
@@ -45,55 +58,13 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['boxShadowHover']) && data.push({
         'type': 'boxShadow',
         'id': 'boxShadowHover',
-        'selector': `.${elementId} .gvnews_breadcrumbs:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-breadcrumb:hover`,
         'properties': [
             {
                 'name': 'box-shadow',
                 'valueType': 'direct'
             }
         ],
-    });
-
-    /**
-     * Panel Spacing
-     */
-    isNotEmpty(attributes['margin']) && data.push({
-        'type': 'dimension',
-        'id': 'margin',
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'margin',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
-    });
-
-    isNotEmpty(attributes['padding']) && data.push({
-        'type': 'dimension',
-        'id': 'padding',
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'padding',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
-    });
-
-    isNotEmpty(attributes['zIndex']) && data.push({
-        'type': 'plain',
-        'id': 'zIndex',
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'z-index',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.${elementId} .gvnews_breadcrumbs`,
     });
 
     return data;

@@ -71,20 +71,20 @@
             "default": []
         },
         "background": {
-			"type": "object",
-			"default": {},
-			"copyStyle": true
-		},
-		"backgroundHover": {
-			"type": "object",
-			"default": {},
-			"copyStyle": true
-		},
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
         "backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -138,10 +138,45 @@
         },
         "zIndex": {
             "type": "object"
+        },
+        "readmoreButtonTypography": {
+            "type": "object"
+        },
+        "readmoreButtonBackground": {
+            "type": "object"
+        },
+        "readmoreButtonBackgroundHover": {
+            "type": "object"
+        },
+        "readmoreButtonColor": {
+            "type": "object"
+        },
+        "readmoreButtonColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonBorder": {
+            "type": "object"
+        },
+        "readmoreButtonBorderHover": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadow": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadowHover": {
+            "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
         "className": false
     },
-    "keywords": ["single", "archive", "block"]
+    "keywords": [
+        "single",
+        "archive",
+        "block"
+    ]
 }
