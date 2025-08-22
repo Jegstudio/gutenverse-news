@@ -75,9 +75,7 @@ const NewsTickerBlock = compose(
 
     const [postLoaded, setPostLoaded] = useState(0);
     const [offsetLoaded, setOffsetLoaded] = useState(0);
-    const [postBulk, getPost] = useState(false);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
     const [ticker, initTicker] = useState(false);
 
     useEffect(() => {
@@ -89,38 +87,15 @@ const NewsTickerBlock = compose(
                 numberPost: '1'
             });
         }
-        if (postOffset > 0) {
+        if (postOffset > -1) {
             setOffsetLoaded(parseInt(postOffset));
         } else {
             setAttributes({
                 ...attributes,
-                postOffset: '1'
+                postOffset: '0'
             });
         }
     }, [numberPost, postOffset]);
-
-    useEffect(() => {
-        let off = offsetLoaded;
-        let num = postLoaded;
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
-        }
-    }, [
-        postLoaded,
-        postBulk,
-        postOffset
-    ]);
 
     useEffect(() => {
         let attr = {
@@ -128,7 +103,6 @@ const NewsTickerBlock = compose(
             uniqueContent,
             includeOnly,
             postType,
-            numberPost: loadPost,
             includePost,
             excludePost,
             includeCategory,
@@ -137,6 +111,8 @@ const NewsTickerBlock = compose(
             includeTag,
             excludeTag,
             sortBy,
+            postOffset: offsetLoaded,
+            numberPost: postLoaded,
         };
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
@@ -145,7 +121,7 @@ const NewsTickerBlock = compose(
                 attr: attr
             }
         }).then((data) => {
-            getPost(JSON.parse(data));
+            getTrim(JSON.parse(data));
         }).catch((e) => {
             console.error(e.message);
         }).finally(() => {
@@ -162,7 +138,8 @@ const NewsTickerBlock = compose(
         includeTag,
         excludeTag,
         sortBy,
-        loadPost
+        postLoaded,
+        offsetLoaded,
     ]);
 
     function newsTickerInit() {
@@ -397,7 +374,7 @@ const NewsTickerBlock = compose(
     useEffect(() => {
         setBlock(
             <div className="gvnews_item_container">
-                {postData ? <RenderColumn {...moduleData} /> : postBulk ? <div className="gvnews_news_ticker_item gvnews_news_ticker_active"><span>{moduleOption.string.no_content}</span></div> : <ModuleSkeleton />}
+                {postData ? <RenderColumn {...moduleData} /> : postData ? <div className="gvnews_news_ticker_item gvnews_news_ticker_active"><span>{moduleOption.string.no_content}</span></div> : <ModuleSkeleton />}
             </div>
         );
     }, [
