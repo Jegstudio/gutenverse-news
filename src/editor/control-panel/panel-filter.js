@@ -162,43 +162,92 @@ export const filterPanel = ({ postType }) => {
             component: SelectControl,
             options: applyFilters(
                 'gvnews.panel.options.sortBy',
-                sortByOption,
+                [
+                    {
+                        value: 'latest',
+                        label: __('Latest', 'gutenverse-news')
+                    },
+                    {
+                        value: 'oldest',
+                        label: __('Oldest', 'gutenverse-news')
+                    },
+                    {
+                        value: 'alphabet_asc',
+                        label: __('Alphabet Asc', 'gutenverse-news')
+                    },
+                    {
+                        value: 'alphabet_desc',
+                        label: __('Alphabet Desc', 'gutenverse-news')
+                    },
+                    {
+                        value: 'random',
+                        label: __('Random', 'gutenverse-news')
+                    },
+                    {
+                        value: 'random_week',
+                        label: __('Random Week', 'gutenverse-news')
+                    },
+                    {
+                        value: 'random_month',
+                        label: __('Random Month', 'gutenverse-news')
+                    },
+                    {
+                        value: 'most_comment',
+                        label: __('Most Comment', 'gutenverse-news')
+                    },
+                    {
+                        value: '',
+                        label: __('Most Comment (1 Day)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Most Comment (7 Days)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Most Comment (30 Days)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Popular Post (1 Day)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Popular Post (7 Days)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Popular Post (30 Days)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Popular Post (All Time)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Highest Rate - Review', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Most Like (Thumb up)', 'gutenverse-news'),
+                        pro: true
+                    },
+                    {
+                        value: '',
+                        label: __('Most Share', 'gutenverse-news'),
+                        pro: true
+                    }
+                ],
                 postType
             )
         },
     ];
 };
-export const sortByOption = [
-    {
-        value: 'latest',
-        label: __('Latest', 'gutenverse-news')
-    },
-    {
-        value: 'oldest',
-        label: __('Oldest', 'gutenverse-news')
-    },
-    {
-        value: 'alphabet_asc',
-        label: __('Alphabet Asc', 'gutenverse-news')
-    },
-    {
-        value: 'alphabet_desc',
-        label: __('Alphabet Desc', 'gutenverse-news')
-    },
-    {
-        value: 'random',
-        label: __('Random', 'gutenverse-news')
-    },
-    {
-        value: 'random_week',
-        label: __('Random Week', 'gutenverse-news')
-    },
-    {
-        value: 'random_month',
-        label: __('Random Month', 'gutenverse-news')
-    },
-    {
-        value: 'most_comment',
-        label: __('Most Comment', 'gutenverse-news')
-    },
-];
