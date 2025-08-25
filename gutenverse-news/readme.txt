@@ -149,6 +149,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix auto column width detection not working on Carousel 3
 * Fix Hero Slider icon missing on responsive view editor
 * Fix Hero Slider style on mobile device
+* Fix filter by Role option not working on User List block
 
 ##### Improvements
 * Changed the Post Offset option to an Input Range control
