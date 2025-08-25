@@ -103,9 +103,9 @@ const BlockModule = compose(
     });
     const [forceReload, setForceReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
-    const [postLoaded, setPostLoaded] = useState(0);
+    const [postLoaded, setPostLoaded] = useState(numberPost);
     const [postStart, setPostStart] = useState(0);
-    const [postPaginationLoaded, setPostPaginationLoaded] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(paginationPost);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
     const firstRender = useRef(true);
@@ -194,62 +194,68 @@ const BlockModule = compose(
     ]);
 
     useEffect(() => {
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost: postLoaded,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-            page,
-            paginationPost: postPaginationLoaded || postLoaded,
-            paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
-            postOffset: postStart,
-            advancedResponse: true,
-        };
-        if (activeFilter['value'] != -100) {
-            switch (activeType) {
-                case 'category':
-                    attr.includeCategory = [activeFilter];
-                    break;
-                case 'tag':
-                    attr.includeTag = [activeFilter];
-                    break;
-                case 'author':
-                    attr.includeAuthor = [activeFilter];
-                    break;
+        const timeoutID = setTimeout(() => {
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost: postLoaded,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                page,
+                paginationPost: postPaginationLoaded || postLoaded,
+                paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
+                postOffset: postStart,
+                advancedResponse: true,
+            };
+            if (activeFilter['value'] != -100) {
+                switch (activeType) {
+                    case 'category':
+                        attr.includeCategory = [activeFilter];
+                        break;
+                    case 'tag':
+                        attr.includeTag = [activeFilter];
+                        break;
+                    case 'author':
+                        attr.includeAuthor = [activeFilter];
+                        break;
+                }
             }
-        }
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr
-            }
-        }).then((data) => {
-            const { result = [], ...pagination } = JSON.parse(data);
-            setNextPrevTotalPagination(pagination);
-            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
-                result.length > 0 ? getTrim([...postData, ...result]) : null;
-                return;
-            }
-            getTrim(result);
-        }).finally(() => {
-            setOverlay(false);
-            setIsLoaded(true);
-        });
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr
+                }
+            }).then((data) => {
+                const { result = [], ...pagination } = JSON.parse(data);
+                setNextPrevTotalPagination(pagination);
+                if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+                    result.length > 0 ? getTrim([...postData, ...result]) : null;
+                    return;
+                }
+                getTrim(result);
+            }).finally(() => {
+                setOverlay(false);
+                setIsLoaded(true);
+                if(firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+
+        return () => clearTimeout(timeoutID);
     }, [ page, forceReload ]);
 
     useEffect(() => {
         if(firstRender.current) {
-            firstRender.current = false;
             return;
         }
         if (postData.length > 0) {
@@ -333,7 +339,7 @@ const BlockModule = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}

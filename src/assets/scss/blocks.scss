@@ -2559,34 +2559,35 @@
 .gvnews_block_nav {
   position: relative;
   text-align: center;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: visible;
+  display: flex;
+  align-items: center;
 
   &:before {
     content: '';
-    width: 50%;
+    width: 100%;
     height: 1px;
-    position: absolute;
     border-bottom: 1px solid #eee;
-    left: -40px;
-    top: 50%;
+    flex: 1;
+    margin-right: 10px;
   }
 
   &:after {
     content: '';
-    width: 50%;
+    width: 100%;
     height: 1px;
-    position: absolute;
     border-bottom: 1px solid #eee;
-    left: -40px;
-    top: 50%;
-    right: -40px;
-    left: auto;
+    flex: 1;
+    margin-left: 10px;
   }
 }
 
 .gvnews-block.gvnews-block-wrapper .gvnews_block_nav a {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
   font-size: 16px;
   line-height: 26px;
@@ -2662,14 +2663,43 @@
 .gvnews_block_loadmore {
   text-align: center;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-y: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before,
+  &:after {
+    content: '';
+    height: 1px;
+    background: #eee;
+    width: 100%;
+    flex: 1;
+    margin: auto;
+    display: block;
+    cursor: none;
+    pointer-events: none;
+  }
+
+  &:before {
+    margin-right: 20px;
+  }
+
+  &:after {
+    margin-left: 20px;
+  }
 
   a {
+    max-width: 100%;
     min-width: 30%;
     height: 30px;
+    width: 30%;
     line-height: 28px;
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     white-space: nowrap;
     font-size: 11px;
     letter-spacing: 1px;
@@ -2686,31 +2716,6 @@
     text-rendering: auto;
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
-
-    &:before,
-    &:after {
-      content: '';
-      height: 1px;
-      background: #eee;
-      width: 1000px;
-      margin: auto;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      display: block;
-      cursor: none;
-      pointer-events: none;
-    }
-
-    &:before {
-      right: 100%;
-      margin-right: 20px;
-    }
-
-    &:after {
-      left: 100%;
-      margin-left: 20px;
-    }
 
     &:hover,
     &.active {

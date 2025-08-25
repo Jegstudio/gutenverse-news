@@ -483,6 +483,290 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    // pagination styling
+    isNotEmpty(attributes['paginationWrapperMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'paginationWrapperMargin',
+        'selector': `.${elementId} .gvnews_block_navigation`,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        responsive:true,
+    });
+    isNotEmpty(attributes['paginationWrapperPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'paginationWrapperPadding',
+        'selector': `.${elementId} .gvnews_block_navigation`,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        responsive:true,
+    });
+    isNotEmpty(attributes['paginationWrapperAlign']) && data.push(
+        {
+            'type': 'plain',
+            'id': 'paginationWrapperAlign',
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore`,
+            'properties': [
+                {
+                    'name': 'justify-content',
+                    'valueType': 'direct'
+                }
+            ],
+            'responsive': true,
+        },
+        {
+            'type': 'plain',
+            'id': 'paginationWrapperAlign',
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:before, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:before`,
+            'properties': [
+                {
+                    'name': 'display',
+                    'valueType': 'function',
+                    'functionName': 'modulePaginationAlign',
+                    'functionProps': {
+                        'selectTarget' : 'before',
+                    }
+                }
+            ],
+            'responsive': true,
+        },
+        {
+            'type': 'plain',
+            'id': 'paginationWrapperAlign',
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:after, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:after`,
+            'properties': [
+                {
+                    'name': 'display',
+                    'valueType': 'function',
+                    'functionName': 'modulePaginationAlign',
+                    'functionProps': {
+                        'selectTarget' : 'after',
+                    }
+                }
+            ],
+            'responsive': true,
+        },
+    );
+    isNotEmpty(attributes['paginationDisableSeparator']) && attributes['paginationDisableSeparator'] && data.push({
+        'type': 'plain',
+        'id': 'paginationDisableSeparator',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:before, .${elementId} .gvnews_block_navigation .gvnews_block_nav:after, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:before, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:after`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'static',
+                'staticValue': 'none !important',
+            }
+        ],
+        'responsive': true,
+    });
+    isNotEmpty(attributes['paginationBtnTypography']) && data.push({
+        'type': 'typography',
+        'id': 'paginationBtnTypography',
+        'selector': `.${elementId}.gvnews-block.gvnews-block-wrapper .gvnews_block_navigation a`,
+    });
+    isNotEmpty(attributes['paginationBtnWidth']) && data.push({
+        'type': 'unitPoint',
+        'id': 'paginationBtnWidth',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'direct',
+            }
+        ],
+        'responsive': true,
+    });
+    isNotEmpty(attributes['paginationBtnHeight']) && data.push({
+        'type': 'unitPoint',
+        'id': 'paginationBtnHeight',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'direct',
+            }
+        ],
+        'responsive': true,
+    });
+    isNotEmpty(attributes['paginationBtnColor']) && data.push({
+        'type': 'color',
+        'id': 'paginationBtnColor',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+    isNotEmpty(attributes['paginationBtnHoverColor']) && data.push({
+        'type': 'color',
+        'id': 'paginationBtnHoverColor',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+    isNotEmpty(attributes['paginationBtnDisableColor']) && data.push({
+        'type': 'color',
+        'id': 'paginationBtnDisableColor',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+    isNotEmpty(attributes['paginationBtnBackground']) && data.push({
+        'type': 'background',
+        'id': 'paginationBtnBackground',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
+    });
+    isNotEmpty(attributes['paginationBtnHoverBackground']) && data.push({
+        'type': 'background',
+        'id': 'paginationBtnHoverBackground',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+    });
+    isNotEmpty(attributes['paginationBtnDisableBackground']) && data.push({
+        'type': 'background',
+        'id': 'paginationBtnDisableBackground',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+    });
+    isNotEmpty(attributes['paginationBtnBorder']) && data.push({
+        'type': 'border',
+        'id': 'paginationBtnBorder',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
+    });
+    isNotEmpty(attributes['paginationBtnBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'paginationBtnBorderResponsive',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
+    });
+    isNotEmpty(attributes['paginationBtnHoverBorder']) && data.push({
+        'type': 'border',
+        'id': 'paginationBtnHoverBorder',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+    });
+    isNotEmpty(attributes['paginationBtnHoverBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'paginationBtnHoverBorderResponsive',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+    });
+    isNotEmpty(attributes['paginationBtnDisableBorder']) && data.push({
+        'type': 'border',
+        'id': 'paginationBtnDisableBorder',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+    });
+    isNotEmpty(attributes['paginationBtnDisableBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'paginationBtnDisableBorderResponsive',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+    });
+    isNotEmpty(attributes['paginationBtnBoxShadow']) && data.push({
+        'type': 'boxShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'id': 'paginationBtnBoxShadow',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
+    });
+    isNotEmpty(attributes['paginationBtnHoverBoxShadow']) && data.push({
+        'type': 'boxShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'id': 'paginationBtnHoverBoxShadow',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+    });
+    isNotEmpty(attributes['paginationBtnDisableBoxShadow']) && data.push({
+        'type': 'boxShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'id': 'paginationBtnDisableBoxShadow',
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+    });
+    isNotEmpty(attributes['paginationSeparatorStyle']) && data.push({
+        'type': 'plain',
+        'id': 'paginationSeparatorStyle',
+        'properties': [
+            {
+                'name': 'border-bottom-style',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:before, .${elementId} .gvnews_block_navigation .gvnews_block_nav:after, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:before, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:after`,
+    });
+    isNotEmpty(attributes['paginationSeparatorColor']) && data.push({
+        'type': 'color',
+        'id': 'paginationSeparatorColor',
+        'properties': [
+            {
+                'name': 'border-bottom-color',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:before, .${elementId} .gvnews_block_navigation .gvnews_block_nav:after, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:before, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:after`,
+    });
+    isNotEmpty(attributes['paginationSeparatorWidth']) && data.push({
+        'type': 'unitPoint',
+        'id': 'paginationSeparatorWidth',
+        'properties': [
+            {
+                'name': 'border-bottom-width',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav:before, .${elementId} .gvnews_block_navigation .gvnews_block_nav:after, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:before, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore:after`,
+    });
+    isNotEmpty(attributes['paginationBtnGap']) && data.push({
+        'type': 'unitPoint',
+        'id': 'paginationBtnGap',
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav, .${elementId} .gvnews_block_navigation .gvnews_block_loadmore`,
+    });
+    isNotEmpty(attributes['paginationBtnDisableOpacity']) && data.push({
+        'type': 'plain',
+        'id': 'paginationBtnDisableOpacity',
+        'properties': [
+            {
+                'name': 'opacity',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+    });
+
     return data;
 };
 
