@@ -50,7 +50,7 @@ export const settingPanel = ({ postType }) => {
             id: 'postOffset',
             label: __('Post Offset', 'gutenverse-news'),
             component: RangeControl,
-            min: 1,
+            min: 0,
             max: 30,
             step: 1,
             isParseFloat: false
@@ -96,7 +96,7 @@ export const settingPanel = ({ postType }) => {
             label: __('Include Post', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch:  'post' === postType ? searchPosts : searchPages
+            onSearch: 'post' === postType ? searchPosts : searchPages
         },
         {
             id: 'includeOnly',
@@ -109,7 +109,7 @@ export const settingPanel = ({ postType }) => {
             label: __('Exclude Post', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch:  'post' === postType ? searchPosts : searchPages
+            onSearch: 'post' === postType ? searchPosts : searchPages
         },
         {
             id: 'includeCategory',
