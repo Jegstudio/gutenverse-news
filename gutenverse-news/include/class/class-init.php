@@ -142,8 +142,10 @@ class Init {
 	 */
 	private function __construct() {
 		$this->init_hook();
-		$this->register_framework();
-		add_action( 'plugins_loaded', array( $this, 'plugin_loaded' ) );
+		$flag = $this->register_framework();
+		if ( $flag ) {
+			add_action( 'plugins_loaded', array( $this, 'plugin_loaded' ) );
+		}
 		add_action( 'plugins_loaded', array( $this, 'framework_loaded' ), 99 );
 		add_filter( 'gutenverse_companion_plugin_list', array( $this, 'plugin_name' ) );
 		register_activation_hook( GUTENVERSE_NEWS_FILE, array( $this, 'set_activation_transient' ) );
@@ -178,15 +180,66 @@ class Init {
 	/**
 	 * Method register_framework
 	 *
-	 * @return void
+	 * @return boolean
 	 */
 	public function register_framework() {
 		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
 		$init = \Gutenverse_Initialize_Framework::instance();
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$bootstrap_path         = '/lib/framework/bootstrap.php';
+		$self_bootstrap_path    = WP_PLUGIN_DIR . '/gutenverse-news' . $bootstrap_path;
+		$self_framework_version = $this->get_framework_version_from_file( $self_bootstrap_path );
+		if ( ! $self_framework_version ) {
+			$self_framework_version = '1.0.0';
+		}
+		$plugins = get_plugins();
+		$checks  = array(
+			'gutenverse'      => array(
+				'plugin' => 'gutenverse/gutenverse.php',
+			),
+			'gutenverse-form' => array(
+				'plugin' => 'gutenverse-news/gutenverse-form.php',
+			),
+		);
 
+		$is_using_other_framework = false;
+		$arr_equal_ver            = array();
+		foreach ( $checks as $key => $plugin ) {
+			if ( isset( $plugins[ $plugin['plugin'] ] ) ) {
+				if ( is_plugin_active( $plugin['plugin'] ) ) {
+					$plugin_bootstrap_path     = WP_PLUGIN_DIR . '/' . $key . '/' . $bootstrap_path;
+					$plugin_framework_version  = $this->get_framework_version_from_file( $plugin_bootstrap_path );
+					$compare_framework_version = version_compare( $self_framework_version, $plugin_framework_version, '<' );
+					if ( $compare_framework_version ) {
+						$is_using_other_framework = true;
+						break;
+					}
+
+					$compare_equal_framework_version = version_compare( $self_framework_version, $plugin_framework_version, '=' );
+					if ( $compare_equal_framework_version ) {
+						array_push( $arr_equal_ver, $key );
+					}
+				}
+			}
+		}
+		if ( ! $is_using_other_framework && ! empty( $arr_equal_ver ) ) {
+			$arr_equal_ver[] = 'gutenverse-form';
+			sort( $arr_equal_ver );
+			if ( GUTENVERSE_NEWS !== $arr_equal_ver[0] ) {
+				$is_using_other_framework = true;
+			}
+		}
+
+		if ( $is_using_other_framework ) {
+			return true;
+		}
 		$framework_file    = GUTENVERSE_NEWS_DIR . 'lib/framework/bootstrap.php';
 		$framework_version = $init->get_framework_version( $framework_file );
 		$init->register_version( GUTENVERSE_NEWS, $framework_version );
+		$init->register_pro_version( GUTENVERSE_NEWS, GUTENVERSE_REQUIRED_PRO_VERSION );
+		return true;
 	}
 
 	/**
@@ -443,5 +496,26 @@ class Init {
 				</div>
 			</div>
 		<?php
+	}
+
+	/**
+	 * Get Framework version from file.
+	 *
+	 * @param string $file file path of the file that has the data framework.
+	 */
+	public function get_framework_version_from_file( $file ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		if ( $wp_filesystem->exists( $file ) ) {
+
+			$content = $wp_filesystem->get_contents( $file );
+			if ( preg_match( "/define\(\s*'GUTENVERSE_FRAMEWORK_VERSION'\s*,\s*'([^']+)'\s*\)/", $content, $matches ) ) {
+				$version = $matches[1];
+				return $version;
+			}
+		}
+		return false;
 	}
 }
