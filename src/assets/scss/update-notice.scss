@@ -1,0 +1,49 @@
+#gutenverse-dashboard {
+    .gutenverse {
+
+        &[class*="news"] {
+            .upgrade-notice-head>div {
+                border-radius: 20px;
+            }
+
+            .upgrade-notice-head>div>.upgrade-notice-title {
+                color: #011627;
+                text-align: center;
+                font-family: "Roboto", serif;
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                letter-spacing: -0.64px;
+                z-index: 1;
+                position: relative;
+
+                svg {
+                    position: absolute;
+                    top: -14px;
+                    right: -20px;
+
+                }
+            }
+
+            .upgrade-notice-head>div>.upgrade-notice-title>span {
+                background: linear-gradient(88.62deg, #FE6252 57.85%, #FFE080 98.58%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .custom-notice-header {
+                position: relative;
+
+                img {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}

@@ -344,7 +344,7 @@ class Module_Query {
 			foreach ( $included_posts->posts as $post ) {
 				$result[] = $post;
 			}
-			if ( count( $included_posts->posts ) < $args['posts_per_page'] ) {
+			if ( (int) $args['posts_per_page'] === count( $query->posts ) ) {
 				foreach ( $query->posts as $post ) {
 					$result[] = $post;
 				}

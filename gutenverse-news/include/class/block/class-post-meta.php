@@ -49,7 +49,9 @@ class Post_Meta extends Post_Guten {
 		}
 		$right_html = "<div class='meta-right'>{$right_html}</div>";
 
-		return $left_html . $right_html;
+		return '<div class="gvnews-post-meta-inner">'
+					. $left_html . $right_html .
+				'</div>';
 	}
 
 	/**

@@ -43,12 +43,32 @@ gulp.task('blocks', function () {
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
 
-gulp.task('build-process', gulp.parallel('blocks'));
+gulp.task('downgrade-plugin', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/assets/scss/downgrade-plugin.scss')])
+        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(concat('downgrade-plugin.css'))
+        .pipe(postcss(postCSSOptions))
+        .pipe(gulp.dest('gutenverse-news/assets/css/'));
+});
+
+gulp.task('update-notice', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/assets/scss/update-notice.scss')])
+        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(concat('update-notice.css'))
+        .pipe(postcss(postCSSOptions))
+        .pipe(gulp.dest('gutenverse-news/assets/css/'));
+});
+
+gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice'));
 
 gulp.task('build', gulp.series('build-process'));
 
 const watchProcess = (basePath = '.') => {
-    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['blocks']));
+    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice']));
 };
 
 gulp.task(
@@ -67,7 +87,7 @@ gulp.task('clean', function () {
         './gutenverse-news/assets/css/**',
         './gutenverse-news/languages/**',
         './gutenverse-news/lib/dependencies/**'
-    ], {force:true});
+    ], { force: true });
 });
 
 /**

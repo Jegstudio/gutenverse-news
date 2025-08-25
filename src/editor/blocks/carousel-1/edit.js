@@ -3,9 +3,6 @@ import { useState, useEffect, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -14,10 +11,15 @@ import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -337,6 +339,19 @@ const Carousel1Block = compose(
     useEffect(() => {
         initSlider();
     }, [device]);
+
+    if (!gutenverseProActive) {
+        return <>
+            <PanelDeprecated title="Carousel 1" />
+            <div  {...blockProps}>
+                <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    {block ? block : 'loading'}
+                    <DeprecatedOverlay />
+                </div>
+            </div>
+        </>;
+    }
 
     return <>
         <CopyElementToolbar {...props} />

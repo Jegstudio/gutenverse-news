@@ -282,10 +282,15 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
     "keywords": []
 }
