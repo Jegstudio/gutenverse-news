@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useIsFirstRender } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -108,7 +108,7 @@ const BlockModule = compose(
     const [postPaginationLoaded, setPostPaginationLoaded] = useState(0);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
-    const firstRender = useRef(true);
+    const firstRender = useIsFirstRender();
 
     useEffect(() => {
         if (elementRef) {
@@ -150,7 +150,7 @@ const BlockModule = compose(
     }, [paginationPost]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if(firstRender) {
             return;
         }
         getTrim([]);
@@ -194,6 +194,9 @@ const BlockModule = compose(
     ]);
 
     useEffect(() => {
+        if (firstRender) {
+            return;
+        }
         let attr = {
             contentType,
             uniqueContent,
@@ -248,8 +251,7 @@ const BlockModule = compose(
     }, [ page, forceReload ]);
 
     useEffect(() => {
-        if(firstRender.current) {
-            firstRender.current = false;
+        if(firstRender) {
             return;
         }
         if (postData.length > 0) {
