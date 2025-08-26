@@ -6,12 +6,12 @@ import { addQueryArgs } from '@wordpress/url';
 import { getModuleOptions, getParentColumnWidth } from '../../../utils/helper';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
-
+import { ModuleSkeleton } from '../../../part/placeholder';
+import { useIsFirstRender } from 'gutenverse-core/hooks';
 
 const BlockArchive = (props) => {
     const {
         blockType,
-        postOffset = 0,
         numberPost,
         columnWidth,
         excerptLength,
@@ -19,35 +19,19 @@ const BlockArchive = (props) => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        setAttributes,
+        attributes,
     } = props;
 
     const moduleOption = useRef(null);
     const postCount = useRef(0);
-    const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(12);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
     const [overlay, setOverlay] = useState(false);
-    const [block, setBlock] = useState(false);
-
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount.current);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount.current ? loadMore(count) : null;
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
-        }
-    }, [blockType, numberPost, postBulk, postOffset]);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [postExcerptLength, setPostExcerptLength] = useState(0);
+    const firstRender = useIsFirstRender();
 
     const deviceType = getDeviceType();
     const {
@@ -77,69 +61,90 @@ const BlockArchive = (props) => {
     ]);
 
     useEffect(() => {
-
         if (moduleOption.current == null) {
             moduleOption.current = getModuleOptions();
             postCount.current = moduleOption.current.option.post_count.publish;
         }
-
-        postBulk ? setOverlay(true) : null;
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-posts-archive'),
-            method: 'POST',
-            data: {
-                attr: {
-                    numberPost: loadPost,
-                },
-            },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .catch((e) => {
-                console.error(e.message);
-            })
-            .finally(() => {
-                setOverlay(false);
-            });
-    }, [loadPost]);
+    }, []);
 
     useEffect(() => {
-        if(!postData) {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (excerptLength >= 0) {
+            setPostExcerptLength(parseInt(excerptLength));
+        } else {
+            setAttributes({
+                ...attributes,
+                excerptLength: 20
+            });
+        }
+    }, [excerptLength]);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setOverlay(true);
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-posts-archive'),
+                method: 'POST',
+                data: {
+                    attr: {
+                        numberPost: postLoaded,
+                    },
+                },
+            }).then((data) => {
+                getTrim(JSON.parse(data));
+            }).finally(() => {
+                setOverlay(false);
+            });
+        }, 300);
+        return () => clearTimeout(timeoutId);
+    }, [postLoaded]);
+
+    useEffect(() => {
+        if(firstRender) {
             return;
         }
-        setBlock(
-            <BlockColumns
-                {...{
-                    blockType,
-                    blockWidth,
-                    excerptLength,
-                    excerptEllipsis,
-                    moduleOption: moduleOption.current,
-                    postData,
-                    metaDateType,
-                    metaDateFormat,
-                    metaDateFormatCustom,
-                    postBulk,
-                    overlay,
-                }}
-            />
-        );
+        if(postData.length > 0) {
+            setBlock(
+                <BlockColumns
+                    {...{
+                        blockType,
+                        blockWidth,
+                        excerptLength: postExcerptLength,
+                        excerptEllipsis,
+                        moduleOption: moduleOption.current,
+                        postData,
+                        metaDateType,
+                        metaDateFormat,
+                        metaDateFormatCustom,
+                    }}
+                />
+            );
+        } else if(moduleOption.current) {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.current.string && moduleOption.current.string.no_content}</div>);
+        }
     }, [
         blockType,
         blockWidth,
-        excerptLength,
+        postExcerptLength,
         excerptEllipsis,
         moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        postBulk,
-        overlay,
     ]);
 
-    return <BlockWrapper {...{ ...props, block, blockWidth }} />;
+    return <BlockWrapper {...{ ...props, block, overlay, blockWidth }} />;
 };
 
 export default BlockArchive;

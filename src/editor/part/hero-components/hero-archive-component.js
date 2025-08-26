@@ -66,18 +66,6 @@ const HeroArchiveComponent = (props) => {
         }
     }, [numberPost, postBulk, postOffset, sliderItem]);
 
-    // useEffect(() => {
-    //     apiFetch({
-    //         path: addQueryArgs('/gvnews-client/v1/module-option'),
-    //     }).then((data) => {
-    //         const parsedData = JSON.parse(data);
-    //         setModuleOption(parsedData);
-    //         if (parsedData.option.post_count) {
-    //             setPostCount(parsedData.option.post_count.publish);
-    //         }
-    //     });
-    // }, []);
-
     useEffect(() => {
 
         if (moduleOption.current == null) {
@@ -94,16 +82,11 @@ const HeroArchiveComponent = (props) => {
                     numberPost: loadPost,
                 },
             },
-        })
-            .then((data) => {
-                getPost(JSON.parse(data));
-            })
-            .catch((e) => {
-                console.error(e.message);
-            })
-            .finally(() => {
-                setOverlay(false);
-            });
+        }).then((data) => {
+            getPost(JSON.parse(data));
+        }).finally(() => {
+            setOverlay(false);
+        });
     }, [loadPost]);
 
     const resetBlock = () => {
@@ -164,8 +147,8 @@ const HeroArchiveComponent = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
+            {slider && window.gvnews.hero.init(heroSliderRef.current)}
+            {slider && window.gvnews.hero.heroSlider(heroSliderRef.current)}
             {slider && initSlider(false)}
         </>
     );

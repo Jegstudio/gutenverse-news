@@ -52,8 +52,6 @@ const BlockColumns = (props) => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        overlay,
-        postBulk,
         adsData = false,
     } = props;
     const columns = [
@@ -306,8 +304,6 @@ const BlockColumns = (props) => {
                     metaDateType,
                     metaDateFormat,
                     metaDateFormatCustom,
-                    overlay,
-                    postBulk,
                 });
             }
         });
@@ -324,8 +320,6 @@ const BlockColumns = (props) => {
                     metaDateType,
                     metaDateFormat,
                     metaDateFormatCustom,
-                    overlay,
-                    postBulk,
                     adsData: adsData,
                 });
             }

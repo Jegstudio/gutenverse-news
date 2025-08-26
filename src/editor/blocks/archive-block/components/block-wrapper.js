@@ -2,9 +2,12 @@ import classnames from 'classnames';
 import { useRef } from '@wordpress/element';
 import PaginationModule from '../../../part/pagination';
 import HeaderModule from '../../../part/header';
+import { ModuleOverlay } from '../../../part/placeholder';
+import { useIsFirstRender } from 'gutenverse-core/hooks';
 
 const BlockWrapper = (props) => {
-    const { elementId, blockType, headerData = false, paginationData = false, block, blockWidth, boxed, boxedShadow } = props;
+    const firstRender = useIsFirstRender();
+    const { elementId, blockType, headerData = false, paginationData = false, block, overlay, blockWidth, boxed, boxedShadow } = props;
     const wrapperClasses = classnames(
         `gvnews_postblock_${blockType}`,
         'gvnews_postblock',
@@ -20,9 +23,11 @@ const BlockWrapper = (props) => {
     if (['32'].includes(blockType)) {
         const isotope = useRef();
         return (
+            // eslint-disable-next-line react/no-unknown-property
             <div ref={isotope} isotope-selector={`gvnews_postblock_32_${elementId}`} className={wrapperClasses}>
                 {headerData && <HeaderModule {...headerData} />}
-                {block ? block : 'loading'}
+                {block}
+                {overlay && !firstRender ? <ModuleOverlay /> : ''}
                 {paginationData && <PaginationModule {...paginationData} />}
             </div>
         );
@@ -30,7 +35,8 @@ const BlockWrapper = (props) => {
         return (
             <div className={wrapperClasses}>
                 {headerData && <HeaderModule {...headerData} />}
-                {block ? block : 'loading'}
+                {block}
+                {overlay && !firstRender ? <ModuleOverlay /> : ''}
                 {paginationData && <PaginationModule {...paginationData} />}
             </div>
         );

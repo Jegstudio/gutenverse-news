@@ -819,6 +819,9 @@ class Api {
 		$attr['post_offset']            = 0;
 		$attr['pagination_number_post'] = sanitize_text_field( $post_per_page );
 		$attr['paged']                  = sanitize_text_field( gvnews_get_post_current_page() );
+		if ( isset( $attr['numberPost'] ) ) {
+			$attr['number_post'] = sanitize_text_field( $attr['numberPost'] );
+		}
 
 		$result_query = Module_Query::do_query( $attr );
 
