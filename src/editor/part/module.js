@@ -150,10 +150,11 @@ const BlockModule = compose(
     }, [paginationPost]);
 
     useEffect(() => {
-        if(firstRender) {
+        if (firstRender) {
             return;
         }
         getTrim([]);
+        setIsLoaded(false)
         setPage(1);
         setForceReload(!forceReload);
     }, [
@@ -239,7 +240,7 @@ const BlockModule = compose(
         }).then((data) => {
             const { result = [], ...pagination } = JSON.parse(data);
             setNextPrevTotalPagination(pagination);
-            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+            if (paginationMode === 'loadmore' || paginationMode === 'scrollload') {
                 result.length > 0 ? getTrim([...postData, ...result]) : null;
                 return;
             }
@@ -248,10 +249,10 @@ const BlockModule = compose(
             setOverlay(false);
             setIsLoaded(true);
         });
-    }, [ page, forceReload ]);
+    }, [page, forceReload]);
 
     useEffect(() => {
-        if(firstRender) {
+        if (firstRender) {
             return;
         }
         if (postData.length > 0) {
@@ -270,7 +271,7 @@ const BlockModule = compose(
                 page,
             }} />;
             setBlock(allColumns);
-        } else {
+        } else if (isLoaded) {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
         return () => setBlock(<ModuleSkeleton />);
@@ -308,7 +309,7 @@ const BlockModule = compose(
         headerDefault,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
-            setActiveFilter({value, label});
+            setActiveFilter({ value, label });
             setActiveType(type);
             setLoadClass('');
             setOverlay(true);
