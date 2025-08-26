@@ -4,6 +4,8 @@ import { generalPanel } from './panel-general';
 import { headerPanel } from './panel-header';
 import { filterPanel } from './panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { designPanel } from './panel-design';
+import { headerStylePanel } from './panel-header-style';
 
 export const panelList = () => {
     return [
@@ -26,6 +28,18 @@ export const panelList = () => {
                 ...props,
             }),
             tabRole: TabSetting
+        },
+        {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Header', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: headerStylePanel,
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),

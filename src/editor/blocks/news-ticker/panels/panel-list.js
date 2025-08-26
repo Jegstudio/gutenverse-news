@@ -28,7 +28,7 @@ export const panelList = () => {
                 styleId: 'news-ticker-background',
                 normalOptions: [ 'default', 'gradient' ],
             }),
-            tabRole: TabSetting
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),

@@ -32,11 +32,17 @@ class User_List extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background'  => null,
-				'border'      => null,
+				'background'  => array(
+					'normal' => ".{$this->element_id} .gvnews_userlist",
+					'hover'  => ".{$this->element_id} .gvnews_userlist:hover",
+				),
+				'border'      => array(
+					'normal' => ".{$this->element_id} .gvnews_userlist",
+					'hover'  => ".{$this->element_id} .gvnews_userlist:hover",
+				),
 				'positioning' => null,
 				'animation'   => null,
-				'advance'     => null,
+				'advance'     => ".{$this->element_id} .gvnews_userlist",
 			)
 		);
 	}
