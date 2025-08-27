@@ -554,6 +554,8 @@ class Api {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
 			$roles = new \WP_Roles();
+		} else {
+			$roles = $wp_roles;
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
