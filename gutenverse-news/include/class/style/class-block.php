@@ -514,6 +514,16 @@ class Block extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['paginationMode'] ) ) {
+			if ( 'disable' !== $this->attrs['paginationMode'] && '' !== $this->attrs['paginationMode'] ) {
+				$this->generate_pagination_style();
+			}
+		}
+	}
+	/**
+	 * Generate style block pagination style.
+	 */
+	public function generate_pagination_style() {
 		if ( isset( $this->attrs['paginationWrapperMargin'] ) ) {
 			$this->inject_style(
 				array(
@@ -601,7 +611,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext a",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
