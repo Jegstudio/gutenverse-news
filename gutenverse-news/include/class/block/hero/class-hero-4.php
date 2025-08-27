@@ -90,7 +90,7 @@ class Hero_4 extends Hero_View_Abstract {
 		$second_block = '';
 		$number_post  = $this->get_number_post();
 
-		for ( $i = 1; $i <= $number_post; $i++ ) {
+		for ( $i = 1; $i < $number_post; $i++ ) {
 			$item          = isset( $result[ $i ] ) ? $result[ $i ] : '';
 			$second_block .= $this->render_block_type( $item, $i, 2 );
 		}

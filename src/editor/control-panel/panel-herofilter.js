@@ -1,7 +1,5 @@
-import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
-import { NumberControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
-import { addQueryArgs } from '@wordpress/url';
+import { SelectSearchControl, SelectControl, CheckboxControl, RangeControl } from 'gutenverse-core/controls';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -44,8 +42,11 @@ export const filterHero = ({postType}) => {
             id: 'postOffset',
             label: __('Post Offset', 'gutenverse-news'),
             description: __('Number of post offset (start of content).', 'gutenverse-news'),
-            component: NumberControl,
-            forceType: 'string'
+            component: RangeControl,
+            min: 0,
+            step: 1,
+            isParseFloat: false
+
         },
         {
             id: 'uniqueContent',
