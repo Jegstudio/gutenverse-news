@@ -7,7 +7,9 @@ export const paginationStylePanel = (props) => {
     const {
         elementId,
         paginationMode,
+        showNavText,
         paginationDisableSeparator,
+        paginationWrapperAlign,
         switcher,
         setSwitcher,
     } = props;
@@ -98,32 +100,6 @@ export const paginationStylePanel = (props) => {
             show: paginationMode !== 'disable' && paginationMode !== '',
         },
         {
-            id: 'paginationWrapperPadding',
-            label: __('Padding', '--gctd--'),
-            component: DimensionControl,
-            allowDeviceControl: true,
-            position: ['top', 'right', 'bottom', 'left'],
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                ['%']: {
-                    text: '%',
-                    unit: '%'
-                },
-                rem: {
-                    text: 'rem',
-                    unit: 'rem'
-                },
-            },
-            show: paginationMode !== 'disable' && paginationMode !== '',
-        },
-        {
             id: 'paginationWrapperAlign',
             label: __('Alignment', 'gutenverse-news'),
             component: IconRadioControl,
@@ -135,6 +111,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnGap',
             label: __('Gap', 'gutenverse-news'),
             component: SizeControl,
+            show: ( paginationWrapperAlign?.[device] !== 'space-between' ),
             units: {
                 px: {
                     text: 'px',
@@ -164,14 +141,13 @@ export const paginationStylePanel = (props) => {
             id: 'paginationDisableSeparator',
             label: __('Disable Separator', 'gutenverse-news'),
             component: CheckboxControl,
-            show: paginationMode !== 'disable' && paginationMode !== '',
-            allowDeviceControl: true,
+            show: (paginationMode !== 'disable' && paginationMode !== '') && ( paginationWrapperAlign?.[device] !== 'space-between' ),
         },
         {
             id: 'paginationSeparatorStyle',
             label: __('Separator Style', 'gutenverse-news'),
             component: SelectControl,
-            show: !paginationDisableSeparator,
+            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             options: [
                 {
                     label: __( 'Default', 'gutenverse-news' ),
@@ -198,7 +174,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationSeparatorColor',
             component: ColorControl,
-            show: !paginationDisableSeparator,
+            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             label: __('Separator Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -227,7 +203,7 @@ export const paginationStylePanel = (props) => {
                     unit: 'px',
                 },
             },
-            show: !paginationDisableSeparator,
+            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             liveStyle: [
                 {
                     'type': 'unitPoint',
@@ -253,12 +229,41 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
-            show: paginationMode !== 'disable' && paginationMode !== '',
+            show: (paginationMode === 'loadmore' || paginationMode === 'scrollload') || (paginationMode === 'nextprev' && showNavText),
             liveStyle: [
                 {
                     'type': 'typography',
                     'id': 'paginationBtnTypography',
                     'selector': `.${elementId}.gvnews-block.gvnews-block-wrapper .gvnews_block_navigation a`,
+                }
+            ]
+        },
+        {
+            id: 'paginationBtnIconSize',
+            label: __('Icon Size', 'gutenverse-news'),
+            component: SizeControl,
+            show: paginationMode === 'nextprev',
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'px',
+                },
+            },
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'paginationBtnIconSize',
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
                 }
             ]
         },
@@ -346,7 +351,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnColor',
             component: ColorControl,
-            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal'),
+            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -365,7 +370,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnBackground',
             component: BackgroundControl,
-            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal'),
+            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && (paginationMode !== 'disable' && paginationMode !== ''),
             options: ['default','gradient'],
             liveStyle: [
                 {
@@ -378,7 +383,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnBorder',
             label: __('Border', '--gctd--'),
-            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && device === 'Desktop',
+            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && device === 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BorderControl,
             liveStyle: [
                 {
@@ -390,7 +395,7 @@ export const paginationStylePanel = (props) => {
         },
         {
             id: 'paginationBtnBorderResponsive',
-            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && device !== 'Desktop',
+            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && device !== 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Border', 'gutenverse'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
@@ -406,7 +411,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnBoxShadow',
             label: __('Box Shadow', '--gctd--'),
-            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal'),
+            show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BoxShadowControl,
             liveStyle: [
                 {
@@ -425,7 +430,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnHoverColor',
             component: ColorControl,
-            show: switcher.__paginationBtnHover === 'hover',
+            show: switcher.__paginationBtnHover === 'hover' && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -444,7 +449,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnHoverBackground',
             component: BackgroundControl,
-            show: switcher.__paginationBtnHover === 'hover',
+            show: switcher.__paginationBtnHover === 'hover' && (paginationMode !== 'disable' && paginationMode !== ''),
             options: ['default','gradient'],
             liveStyle: [
                 {
@@ -457,7 +462,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnHoverBorder',
             label: __('Border', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'hover' && device === 'Desktop',
+            show: switcher.__paginationBtnHover === 'hover' && device === 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BorderControl,
             liveStyle: [
                 {
@@ -469,7 +474,7 @@ export const paginationStylePanel = (props) => {
         },
         {
             id: 'paginationBtnHoverBorderResponsive',
-            show: switcher.__paginationBtnHover === 'hover' && device !== 'Desktop',
+            show: switcher.__paginationBtnHover === 'hover' && device !== 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Border', '--gctd--'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
@@ -485,7 +490,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnHoverBoxShadow',
             label: __('Box Shadow', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'hover',
+            show: switcher.__paginationBtnHover === 'hover' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BoxShadowControl,
             liveStyle: [
                 {
@@ -504,7 +509,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnDisableColor',
             component: ColorControl,
-            show: switcher.__paginationBtnHover === 'disable',
+            show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -523,7 +528,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnDisableBackground',
             component: BackgroundControl,
-            show: switcher.__paginationBtnHover === 'disable',
+            show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
             options: ['default','gradient'],
             liveStyle: [
                 {
@@ -536,7 +541,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnDisableBorder',
             label: __('Border', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'disable' && device === 'Desktop',
+            show: switcher.__paginationBtnHover === 'disable' && device === 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BorderControl,
             liveStyle: [
                 {
@@ -548,7 +553,7 @@ export const paginationStylePanel = (props) => {
         },
         {
             id: 'paginationBtnDisableBorderResponsive',
-            show: switcher.__paginationBtnHover === 'disable' && device !== 'Desktop',
+            show: switcher.__paginationBtnHover === 'disable' && device !== 'Desktop' && (paginationMode !== 'disable' && paginationMode !== ''),
             label: __('Border', '--gctd--'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
@@ -564,7 +569,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnDisableBoxShadow',
             label: __('Box Shadow', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'disable',
+            show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: BoxShadowControl,
             liveStyle: [
                 {
@@ -583,7 +588,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationBtnDisableOpacity',
             label: __('Opacity', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'disable',
+            show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
             component: RangeControl,
             min: 0,
             max: 1,

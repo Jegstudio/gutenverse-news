@@ -326,19 +326,19 @@
         "paginationWrapperMargin": {
             "type": "object"
         },
-        "paginationWrapperPadding": {
-            "type": "object"
-        },
         "paginationWrapperAlign": {
             "type": "object"
         },
         "paginationDisableSeparator": {
-            "type": "object"
+            "type": "boolean"
         },
         "paginationBtnTypography": {
             "type": "object"
         },
         "paginationBtnWidth": {
+            "type": "object"
+        },
+        "paginationBtnIconSize": {
             "type": "object"
         },
         "paginationBtnHeight": {
