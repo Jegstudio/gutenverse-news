@@ -59,36 +59,6 @@ export const sliderPanel = (props) => {
             component: CheckboxControl
         },
         {
-            id: 'overlayOption',
-            label: __('Overlay Option', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            component: SelectControl,
-            options: [
-                {
-                    label: __('Gradient Overlay', 'gutenverse-news'),
-                    value: 'gradient'
-                },
-                {
-                    label: __('No Overlay', 'gutenverse-news'),
-                    value: 'no'
-                },
-            ],
-        },
-        {
-            id: 'overrideOverlay',
-            show: overlayOption == 'gradient',
-            allowDeviceControl: true,
-            options: ['gradient'],
-            component: BackgroundControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_6_wrapper:not(.no-overlay) .gvnews_slider_type_6 .gvnews_slide_item:before`,
-                    hasChild: true,
-                    render: value => handleBackground(value)
-                }
-            ]
-        },
-        {
             id: 'excerptLength',
             label: __('Excerpt Length', 'gutenverse-news'),
             description: __('Set word length of excerpt on post block.', 'gutenverse-news'),

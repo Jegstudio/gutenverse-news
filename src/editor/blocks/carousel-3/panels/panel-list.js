@@ -3,6 +3,7 @@ import { advancePanel, LockedProPanel, responsivePanel, borderPanel, conditionPa
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
+import { designPanel } from './panel-design';
 
 export const panelList = () => {
 
@@ -26,6 +27,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: filterPanel,
                 tabRole: TabSetting
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
             },
             {
                 title: __('Border', 'gutenverse-news'),

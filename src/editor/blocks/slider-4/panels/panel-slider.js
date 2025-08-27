@@ -3,7 +3,6 @@ import { SelectControl, CheckboxControl, RangeControl, TextControl } from 'guten
 
 export const sliderPanel = (props) => {
     const {
-        elementId,
         autoplay,
         metaDateFormat,
     } = props;
