@@ -1436,6 +1436,8 @@ if ( ! function_exists( 'gvnews_get_option' ) ) {
 		}
 
 		return $def;
+	}
+}
 if ( ! function_exists( 'gvnews_block_query' ) ) {
 	/**
 	 * Return class Block_Query.
