@@ -554,6 +554,8 @@ class Api {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
 			$roles = new \WP_Roles();
+		} else {
+			$roles = $wp_roles;
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
@@ -720,6 +722,10 @@ class Api {
 
 		if ( isset( $attributes['postOffset'] ) ) {
 			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
+		}
+
+		if ( isset( $attributes['dateQuery'] ) ) {
+			$attr['date_query'] = $attributes['dateQuery'];
 		}
 
 		$result = Module_Query::do_query( $attr );

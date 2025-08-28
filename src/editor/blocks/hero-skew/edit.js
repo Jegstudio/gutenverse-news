@@ -21,6 +21,7 @@ const HeroSkewBlock = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         setBlockRef,
         clientId,
         isSelected
@@ -121,6 +122,8 @@ const HeroSkewBlock = compose(
                             autoplayDelay,
                             heroMargin,
                             heightDesktop,
+                            attributes,
+                            setAttributes,
                         }}
                     />
                     {isDeprecated && <DeprecatedOverlay />}

@@ -26,7 +26,7 @@ class Slider_9 extends Slider_View_Abstract {
 	 */
 	public function content( $results ) {
 		$content = '';
-		$thumb = '';
+		$thumb   = '';
 		$index   = 0;
 
 		foreach ( $results as $key => $post ) {
@@ -41,7 +41,7 @@ class Slider_9 extends Slider_View_Abstract {
 
 			$content .=
 			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . " style=\"background-image: url({$image})\">
-					' . $hidden_image . '
+					{$hidden_image}
                     " . gvnews_edit_post( $post->ID ) . "
                     <div class=\"gvnews_slide_wrapper\">
                         <div class=\"gvnews_slide_caption\">

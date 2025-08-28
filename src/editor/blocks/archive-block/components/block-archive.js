@@ -105,6 +105,9 @@ const BlockArchive = (props) => {
     }, [loadPost]);
 
     useEffect(() => {
+        if(!postData) {
+            return;
+        }
         setBlock(
             <BlockColumns
                 {...{
