@@ -123,7 +123,7 @@ class Image_Normal_Load implements Image_Interface {
 
 		$additional_class = '';
 		if ( ! has_post_thumbnail( $id ) ) {
-			$additional_class = '';
+			$additional_class = 'no_thumbnail';
 		}
 
 		$thumbnail  = '<div class="thumbnail-container ' . esc_attr( $additional_class ) . ' size-' . esc_attr( $image_size['dimension'] ) . ' ">';
