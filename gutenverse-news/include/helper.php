@@ -8,6 +8,7 @@
  */
 
 use GUTENVERSE\NEWS\Util\Options;
+use GUTENVERSE\NEWS\Block\Block_Query;
 
 if ( ! function_exists( 'gvnews_get_view_class_from_shortcode' ) ) {
 	/**
@@ -1435,5 +1436,13 @@ if ( ! function_exists( 'gvnews_get_option' ) ) {
 		}
 
 		return $def;
+if ( ! function_exists( 'gvnews_block_query' ) ) {
+	/**
+	 * Return class Block_Query.
+	 *
+	 * @return string
+	 */
+	function gvnews_block_query() {
+		return Block_Query::class;
 	}
 }

@@ -724,6 +724,10 @@ class Api {
 			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
 		}
 
+		if ( isset( $attributes['dateQuery'] ) ) {
+			$attr['date_query'] = $attributes['dateQuery'];
+		}
+
 		$result = Module_Query::do_query( $attr );
 
 		$advanced_response = false;
