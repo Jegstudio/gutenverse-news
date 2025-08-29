@@ -111,7 +111,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnGap',
             label: __('Gap', 'gutenverse-news'),
             component: SizeControl,
-            show: ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             units: {
                 px: {
                     text: 'px',
@@ -147,7 +147,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationSeparatorStyle',
             label: __('Separator Style', 'gutenverse-news'),
             component: SelectControl,
-            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             options: [
                 {
                     label: __( 'Default', 'gutenverse-news' ),
@@ -174,7 +174,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationSeparatorColor',
             component: ColorControl,
-            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             label: __('Separator Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -203,7 +203,7 @@ export const paginationStylePanel = (props) => {
                     unit: 'px',
                 },
             },
-            show: !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
             liveStyle: [
                 {
                     'type': 'unitPoint',
@@ -265,6 +265,48 @@ export const paginationStylePanel = (props) => {
                     'responsive': true,
                     'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
                 }
+            ]
+        },
+        {
+            id: 'paginationBtnIconSpacing',
+            label: __('Icon Spacing', 'gutenverse-news'),
+            component: SizeControl,
+            allowDeviceControl: true,
+            show: paginationMode === 'nextprev' && showNavText,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'px',
+                },
+            },
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'paginationBtnIconSpacing',
+                    'properties': [
+                        {
+                            'name': 'margin-left',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i`,
+                },
+                {
+                    'type': 'unitPoint',
+                    'id': 'paginationBtnIconSpacing',
+                    'properties': [
+                        {
+                            'name': 'margin-right',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
+                },
             ]
         },
         {

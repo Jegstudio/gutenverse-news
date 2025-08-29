@@ -70,9 +70,12 @@ const BlockModule = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        paginationWrapperAlign,
+        paginationDisableSeparator
     } = attributes;
 
     const elementRef = useRef(null);
+    const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -139,6 +142,18 @@ const BlockModule = compose(
     }, [postOffset]);
 
     useEffect(() => {
+        if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
+            let ovr = {
+                ...attributes,
+                paginationWrapperAlign: {...paginationWrapperAlign},
+                paginationDisableSeparator: true
+            };
+            ovr['paginationWrapperAlign'][device] = 'start';
+            setAttributes(ovr);
+        }
+    }, [showNavText]);
+
+    useEffect(() => {
         if (paginationPost > 0) {
             setPostPaginationLoaded(parseInt(paginationPost));
         } else {
@@ -154,7 +169,7 @@ const BlockModule = compose(
             return;
         }
         getTrim([]);
-        setIsLoaded(false)
+        setIsLoaded(false);
         setPage(1);
         setForceReload(!forceReload);
     }, [

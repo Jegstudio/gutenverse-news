@@ -446,6 +446,9 @@
         "paginationBtnDisableOpacity": {
             "type": "string"
         },
+        "paginationBtnIconSpacing": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}

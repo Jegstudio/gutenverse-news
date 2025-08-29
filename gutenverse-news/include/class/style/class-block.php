@@ -699,15 +699,15 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['paginationBtnBorder'] ) ) {
-			$this->handle_border( 'paginationBtnBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)" );
+			$this->handle_border( 'paginationBtnBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnHoverBorder'] ) ) {
-			$this->handle_border( 'paginationBtnHoverBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover" );
+			$this->handle_border( 'paginationBtnHoverBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a:hover" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnDisableBorder'] ) ) {
-			$this->handle_border( 'paginationBtnDisableBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.disabled" );
+			$this->handle_border( 'paginationBtnDisableBorder', ".{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnBoxShadow'] ) ) {
@@ -811,6 +811,30 @@ class Block extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
+		}
+		if ( isset( $this->attrs['paginationBtnIconSpacing'] ) && isset( $this->attrs['paginationMode'] ) && isset( $this->attrs['showNavText'] ) ) {
+			if ( 'nextprev' === $this->attrs['paginationMode'] && $this->attrs['showNavText'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next i",
+						'property'       => function ( $value ) {
+							return $this->handle_unit_point( $value, 'margin-left' );
+						},
+						'value'          => $this->attrs['paginationBtnIconSpacing'],
+						'device_control' => true,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i",
+						'property'       => function ( $value ) {
+							return $this->handle_unit_point( $value, 'margin-right' );
+						},
+						'value'          => $this->attrs['paginationBtnIconSpacing'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
 	}
 }
