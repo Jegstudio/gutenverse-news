@@ -216,7 +216,7 @@ class Single_Post {
 				break;
 		}
 
-		echo wp_kses( $output, wp_kses_allowed_html() );
+		echo gvnews_sanitize_output( $output );
 	}
 
 	/**
@@ -383,6 +383,12 @@ class Single_Post {
 			wp_enqueue_script( 'gvnews-featured-video', GUTENVERSE_NEWS_URL . '/assets/js/featured-video.js', array(), GUTENVERSE_NEWS_VERSION, true );
 		}
 
-		return apply_filters( 'gvnews_featured_video', $output, $this->post_id );
+		$result = apply_filters( 'gvnews_featured_video', $output, $this->post_id );
+		gutenverse_rlog(
+			array(
+				'dari abstract' => $result,
+			)
+		);
+		return $result;
 	}
 }
