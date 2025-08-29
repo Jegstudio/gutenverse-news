@@ -383,12 +383,6 @@ class Single_Post {
 			wp_enqueue_script( 'gvnews-featured-video', GUTENVERSE_NEWS_URL . '/assets/js/featured-video.js', array(), GUTENVERSE_NEWS_VERSION, true );
 		}
 
-		$result = apply_filters( 'gvnews_featured_video', $output, $this->post_id );
-		gutenverse_rlog(
-			array(
-				'dari abstract' => $result,
-			)
-		);
-		return $result;
+		return apply_filters( 'gvnews_featured_video', $output, $this->post_id );
 	}
 }
