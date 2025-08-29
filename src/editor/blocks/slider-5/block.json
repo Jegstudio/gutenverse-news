@@ -4,6 +4,7 @@
     "title": "Slider 5",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
     "description": "Your Block description.",
+    "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
         "elementId": {
@@ -24,6 +25,17 @@
         "autoplayDelay": {
             "type": "string",
             "default": 2000
+        },
+        "hasOverlay": {
+            "type": "boolean",
+            "default": true
+        },
+        "isOverrideOverlay": {
+            "type": "boolean",
+            "default": false
+        },
+        "normalOverlay": {
+            "type":"object"
         },
         "overrideOverlay": {
             "type": "object"

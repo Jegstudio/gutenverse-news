@@ -7,6 +7,9 @@
  * @package gutenverse-news
  */
 
+use GUTENVERSE\NEWS\Util\Options;
+use GUTENVERSE\NEWS\Block\Block_Query;
+
 if ( ! function_exists( 'gvnews_get_view_class_from_shortcode' ) ) {
 	/**
 	 * Method gvnews_get_view_class_from_shortcode
@@ -147,10 +150,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 		// Merge additional query vars found in the original URL into 'add_args' array.
 		if ( isset( $url_parts[1] ) ) {
 			// Find the format argument.
-			$format_args  = array();
+			$format_args    = array();
 			$url_query_args = array();
-			$format       = explode( '?', str_replace( '%_%', $args['format'], $args['base'] ) );
-			$format_query = isset( $format[1] ) ? $format[1] : '';
+			$format         = explode( '?', str_replace( '%_%', $args['format'], $args['base'] ) );
+			$format_query   = isset( $format[1] ) ? $format[1] : '';
 			wp_parse_str( $format_query, $format_args );
 
 			// Find the query args of the requested URL.
@@ -364,13 +367,16 @@ if ( ! function_exists( 'gvnews_get_all_categories' ) ) {
 	 * @return mixed|void
 	 */
 	function gvnews_get_all_categories( $post_id ) {
-		$categories = [];
+		$categories = array();
 
 		if ( 'post' === get_post_type( $post_id ) ) {
-			$raw = get_the_category( $post_id );
-			$categories = array_map( function ($val) {
-				return isset($val->term_id) ? $val->term_id : '';
-			}, $raw );
+			$raw        = get_the_category( $post_id );
+			$categories = array_map(
+				function ( $val ) {
+					return isset( $val->term_id ) ? $val->term_id : '';
+				},
+				$raw
+			);
 		}
 
 		return apply_filters( 'gvnews_post_all_categories', $categories );
@@ -386,13 +392,16 @@ if ( ! function_exists( 'gvnews_get_all_tags' ) ) {
 	 * @return mixed|void
 	 */
 	function gvnews_get_all_tags( $post_id ) {
-		$tags = [];
+		$tags = array();
 
 		if ( 'post' === get_post_type( $post_id ) ) {
-			$raw = get_the_tags( $post_id );
-			$tags = array_map( function ($val) {
-				return isset($val->term_id) ? $val->term_id : '';
-			}, $raw );
+			$raw  = get_the_tags( $post_id );
+			$tags = array_map(
+				function ( $val ) {
+					return isset( $val->term_id ) ? $val->term_id : '';
+				},
+				$raw
+			);
 		}
 
 		return apply_filters( 'gvnews_post_all_tags', $tags );
@@ -883,12 +892,15 @@ if ( ! function_exists( 'gvnews_get_post_date' ) ) {
 	 * @return string
 	 */
 	function gvnews_get_post_date( $format = '', $post = null ) {
-		$publish_date                = isset( $post->publish_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->publish_date ) : get_the_date( $format, $post );
-		$modified_date               = isset( $post->update_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->update_date ) : get_the_modified_date( $format, $post );
-		$publish_date_number_format  = isset( $post->publish_date ) ? gmdate( 'Y-m-d', $post->publish_date ) : get_the_date( 'Y-m-d', $post );
-		$modified_date_number_format = isset( $post->update_date ) ? gmdate( 'Y-m-d', $post->update_date ) : get_the_modified_date( 'Y-m-d', $post );
 
-		return $publish_date;
+		$type = Options::get_instance()->get_module_options( 'date_type', 'published' );
+		if ( 'published' === $type ) {
+			return isset( $post->publish_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->publish_date ) : get_the_date( $format, $post );
+		} elseif ( 'modified' === $type ) {
+			return isset( $post->update_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->update_date ) : get_the_modified_date( $format, $post );
+
+		}
+		return isset( $post->publish_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->publish_date ) : get_the_date( $format, $post );
 	}
 }
 
@@ -1406,5 +1418,33 @@ if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 	 */
 	function gutenverse_pro_active() {
 		return defined( 'GUTENVERSE_PRO_VERSION' );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_option' ) ) {
+	/**
+	 * Get Gutenverse News options.
+	 *
+	 * @param string                   $key option key.
+	 * @param string|array|object|bool $def default option value.
+	 * @return string|array|object|bool option value.
+	 */
+	function gvnews_get_option( $key, $def = false ) {
+		$options = get_option( 'gvnews_settings', array() );
+		if ( isset( $options[ $key ] ) ) {
+			return $options[ $key ];
+		}
+
+		return $def;
+	}
+}
+if ( ! function_exists( 'gvnews_block_query' ) ) {
+	/**
+	 * Return class Block_Query.
+	 *
+	 * @return string
+	 */
+	function gvnews_block_query() {
+		return Block_Query::class;
 	}
 }

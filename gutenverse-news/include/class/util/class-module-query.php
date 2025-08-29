@@ -35,9 +35,13 @@ class Module_Query {
 		$attr = self::unset_unnecessary( $attr );
 
 		if ( isset( $attr['sort_by'] ) ) {
-			if ( 'most_comment_day' === $attr['sort_by']
-				|| 'most_comment_week' === $attr['sort_by']
-				|| 'most_comment_month' === $attr['sort_by']
+			if ( 'most_comment_day' === $attr['sort_by'] ||
+					'most_comment_week' === $attr['sort_by'] ||
+					'most_comment_month' === $attr['sort_by'] ||
+					'popular_post_day' === $attr['sort_by'] ||
+					'popular_post' === $attr['sort_by'] ||
+					'popular_post_week' === $attr['sort_by'] ||
+					'popular_post_month' === $attr['sort_by']
 			) {
 				$result = self::custom_query( $attr );
 			} else {
@@ -422,6 +426,113 @@ class Module_Query {
 	 * @return array
 	 */
 	private static function custom_query( $attr ) {
+		if ( function_exists( 'gvnews_view_counter_query' ) ) {
+			$exclude_category = array();
+			$include_category = array();
+			$args             = array();
+
+			$args['post_type']     = isset( $attr['post_type'] ) ? $attr['post_type'] : 'post';
+			$args['paged']         = isset( $attr['paged'] ) ? $attr['paged'] : 1;
+			$args['offset']        = self::calculate_offset( $args['paged'], $attr['post_offset'], $attr['number_post'], $attr['pagination_number_post'] );
+			$args['limit']         = ( $args['paged'] > 1 ) ? $attr['pagination_number_post'] : $attr['number_post'];
+			$args['no_found_rows'] = ! isset( $attr['pagination_mode'] ) || 'disable' === $attr['pagination_mode'];
+
+			if ( ! empty( $attr['include_post'] ) ) {
+				$args['include_post'] = $attr['include_post'];
+			}
+
+			if ( ! empty( $attr['exclude_post'] ) ) {
+				$args['exclude_post'] = $attr['exclude_post'];
+			}
+
+			if ( ! empty( $attr['include_category'] ) ) {
+				$categories = explode( ',', $attr['include_category'] );
+				self::recursive_category( $categories, $include_category );
+				$args['include_category'] = implode( ',', $include_category );
+			}
+
+			if ( ! empty( $attr['exclude_category'] ) ) {
+				$categories = explode( ',', $attr['exclude_category'] );
+				self::recursive_category( $categories, $exclude_category );
+				$args['exclude_category'] = implode( ',', $exclude_category );
+			}
+
+			if ( ! empty( $attr['include_author'] ) ) {
+				$args['author'] = $attr['include_author'];
+			}
+
+			if ( ! empty( $attr['include_tag'] ) ) {
+				$args['include_tag'] = $attr['include_tag'];
+			}
+
+			if ( ! empty( $attr['exclude_tag'] ) ) {
+				$args['exclude_tag'] = $attr['exclude_tag'];
+			}
+
+			if (
+			'most_comment_day' === $attr['sort_by'] ||
+			'most_comment_week' === $attr['sort_by'] ||
+			'most_comment_month' === $attr['sort_by']
+			) {
+				$args['order_by'] = 'comments';
+			} else {
+				$args['order_by'] = 'views';
+			}
+
+			if (
+			'most_comment_day' === $attr['sort_by'] ||
+			'popular_post_day' === $attr['sort_by']
+			) {
+				$args['range'] = 'daily';
+			}
+
+			if (
+			'most_comment_week' === $attr['sort_by'] ||
+			'popular_post_week' === $attr['sort_by']
+			) {
+				$args['range'] = 'weekly';
+			}
+
+			if (
+			'most_comment_month' === $attr['sort_by'] ||
+			'popular_post_month' === $attr['sort_by']
+			) {
+				$args['range'] = 'monthly';
+			}
+
+			if ( 'popular_post' === $attr['sort_by'] ) {
+				$args['range'] = 'all';
+			}
+
+			if (
+			( isset( $attr['video_only'] ) && $attr['video_only'] ) ||
+			( isset( $attr['content_type'] ) && 'video' === $attr['content_type'] )
+			) {
+				$args['post_format'] = 'post-format-video';
+			}
+
+			if ( isset( $attr['content_type'] ) ) {
+				if ( 'review' === $attr['content_type'] || 'post' === $attr['content_type'] ) {
+					$args['content_type'] = $attr['content_type'];
+				}
+			}
+
+			if (
+			isset( $attr['included_only'] ) &&
+			( 'yes' === $attr['included_only'] || 'true' === $attr['included_only'] )
+			) {
+				$args['included_only'] = true;
+			}
+
+			$query_result = gvnews_view_counter_query( $args );
+			return array(
+				'result'     => $query_result['result'],
+				'next'       => self::has_next_page( $query_result['total'], $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
+				'prev'       => self::has_prev_page( $args['paged'] ),
+				'total_page' => self::count_total_page( $query_result['total'], $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
+			);
+
+		}
 		return array(
 			'result'     => array(),
 			'next'       => false,
