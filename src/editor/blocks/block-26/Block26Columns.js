@@ -2,6 +2,7 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { RawHTML } from '@wordpress/element';
 import { MetaModule3, MetaCategory, MetaAuthor, MetaComments} from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block26Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
@@ -10,8 +11,12 @@ const Block26Columns = props => {
 
     const RenderBlock1 = props=>{
         const {attr, post, index='x'} = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_lg_9 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_lg_9 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <div className="gvnews_postblock_heading">
                     {<MetaCategory {...props} />}
                     {post.title && <h3 property="headline" className="gvnews_post_title">

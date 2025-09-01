@@ -1,6 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3 } from '../../part/meta';
 import { PostTitle, PostExcerpt } from '../../part/post';
+import { withFormatName } from '../../utils/helper';
 
 const Block23Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -36,8 +37,12 @@ const Block23Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
+                const className = withFormatName(
+                    `gvnews_post ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`,
+                    postData[i]
+                );
                 rows.push(
-                    <article key={postData[i].id} className={`gvnews_post ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`}>
+                    <article key={postData[i].id} className={className}>
                         <RenderBlock1 attr={attr} post={postData[i]}/>
                     </article>
                 );

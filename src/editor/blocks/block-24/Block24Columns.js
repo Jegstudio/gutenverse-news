@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule, PostTitle } from '../../part/post';
+import { withFormatName } from '../../utils/helper';
 
 const Block24Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
@@ -8,8 +9,9 @@ const Block24Columns = props => {
 
     const RenderBlock1 = props=>{
         const {post} = props;
+        const className = withFormatName(`gvnews_post gvnews_pl_md_box ${!post.thumbnail.url && 'no_thumbnail'}`, post);
         return (
-            <article className={`gvnews_post gvnews_pl_md_box ${!post.thumbnail.url && 'no_thumbnail'}`}>
+            <article className={className}>
                 <div className="box_wrap">
                     <ThumbModule size={715} cat={false} post={post}/>
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={props.attr}/>
@@ -19,12 +21,16 @@ const Block24Columns = props => {
     };
 
     const RenderBlock2 = props=>{
-        const {index='x'} = props;
+        const {index='x', post} = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <div className="gvnews_postblock_content">
                     <i className="fas fa-caret-right"></i>
-                    {props.post.title && <PostTitle post={props.post} />}
+                    {post.title && <PostTitle post={post} />}
                 </div>
             </article>
         );

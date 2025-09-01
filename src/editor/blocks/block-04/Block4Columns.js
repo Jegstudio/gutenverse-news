@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
+import { withFormatName } from '../../utils/helper';
 
 
 const Block4Columns = props => {
@@ -9,8 +10,12 @@ const Block4Columns = props => {
 
     const RenderBlock1 = props=>{
         const {post, index = 'x'} = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_md_3 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_md_3 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <ThumbModule size={715} cat={false} post={post}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={props.attr}/>
             </article>

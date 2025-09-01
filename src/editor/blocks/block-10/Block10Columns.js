@@ -1,6 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block10Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -8,9 +9,13 @@ const Block10Columns = props => {
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
-        const { index = 'x' } = props;
+        const { index = 'x', post } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_lg_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_lg_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <header className="gvnews_postblock_heading">
                     <h3 className="gvnews_post_title">
                         <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
@@ -18,7 +23,7 @@ const Block10Columns = props => {
                     {props.attr.option && !props.attr.option.meta_show && <MetaModule1 {...props}/>}
                 </header>
                 <ThumbModule size={500} cat={true} post={props.post}/>
-                <ContentModule title={false} meta={false} excerpt={true} read={true} post={props.post} attr={props.attr}/>
+                <ContentModule title={false} meta={false} excerpt={true} read={true} post={post} attr={props.attr}/>
             </article>
         );
     };

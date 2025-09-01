@@ -1,5 +1,6 @@
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
+import { withFormatName } from '../../utils/helper';
 
 const Block15Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormatCustom, metaDateFormat} = props;
@@ -8,8 +9,12 @@ const Block15Columns = props => {
 
     const RenderBlock1 = props=>{
         const {post, attr, index = 'x'} = props;
+        const className = withFormatName(
+            `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!post?.thumbnail?.url ? 'no_thumbnail' : '' } gvnews_pl_md_box`,
+            post
+        );
         return (
-            <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!post?.thumbnail?.url ? 'no_thumbnail' : '' } gvnews_pl_md_box`}>
+            <article className={className}>
                 <div className="box_wrap">
                     <ThumbModule size={715} cat={true} post={post}/>
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={attr}/>

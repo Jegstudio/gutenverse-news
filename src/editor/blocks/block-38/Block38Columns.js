@@ -1,5 +1,6 @@
 import { PostExcerpt, PostTitle } from '../../part/post';
 import { MetaCategory, MetaModule3 } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block38Columns = (props) => {
     const {
@@ -22,8 +23,12 @@ const Block38Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
+        const className = withFormatName(
+            `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <div className="gvnews_thumb" style={{ backgroundImage: `url(${post.thumbnail.url})` }}></div>
                 <div className="box_wrap">
                     <MetaCategory {...props} />

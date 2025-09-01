@@ -1,5 +1,6 @@
 import { PostTitle } from '../../part/post';
 import { MetaModule2 } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block28Columns = (props) => {
     const {
@@ -24,9 +25,13 @@ const Block28Columns = (props) => {
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = (props) => {
-        const { index = 'x' } = props;
+        const { index = 'x', post } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <div className="gvnews_postblock_content">
                     <i className="fas fa-caret-right"></i>
                     <PostTitle {...props} />

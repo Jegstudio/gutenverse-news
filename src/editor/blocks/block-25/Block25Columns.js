@@ -1,6 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block25Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -9,8 +10,12 @@ const Block25Columns = props => {
 
     const RenderBlock1 = props=>{
         const {post, attr, index = 'x'} = props;
+        const className = withFormatName(
+            `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <div className="gvnews_postblock_heading">
                     {post.title && <h3 property="headline" className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>

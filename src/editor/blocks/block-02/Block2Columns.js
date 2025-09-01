@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
+import { withFormatName } from '../../utils/helper';
 
 const Block2Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -17,8 +18,10 @@ const Block2Columns = props => {
 
     const RenderBlock2 = props=>{
         const { index = 'x' } = props;
+        let className = `gvnews_post gvnews_pl_sm ${isLoadMore && index > loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
+        className = withFormatName(className, props.post);
         return (
-            <article className={`gvnews_post gvnews_pl_sm ${isLoadMore && index > loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+            <article className={className}>
                 <ThumbModule size={715} cat={false} post={props.post}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
@@ -43,10 +46,10 @@ const Block2Columns = props => {
                 rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_1', postData[0]);
         return(
             <>
-                <article className="gvnews_post gvnews_pl_lg_1">
+                <article className={className}>
                     {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className="gvnews_postsmall">
@@ -76,10 +79,10 @@ const Block2Columns = props => {
                 rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_2', postData[0]);
         return(
             <>
-                <article className="gvnews_post gvnews_pl_lg_2">
+                <article className={className}>
                     {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
                 </article>
                 <div className="gvnews_posts_wrap">

@@ -2,6 +2,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3, MetaCategory } from '../../part/meta';
 import { Fragment } from '@wordpress/element';
+import { withFormatName } from '../../utils/helper';
 
 const Block14Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -25,8 +26,12 @@ const Block14Columns = props => {
                 </Fragment>
             );
         } else {
+            const className = withFormatName(
+                `gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+                post
+            );
             block.push(
-                <article key={post.id} className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                <article key={post.id} className={className}>
                     <ThumbModule size={500} cat={false} post={post}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
@@ -59,11 +64,11 @@ const Block14Columns = props => {
                 rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_box', postData[0]);
         return(
             <div className="gvnews_posts_wrap">
                 <div className="gvnews_postbig">
-                    <article className="gvnews_post gvnews_pl_lg_box">
+                    <article className={className}>
                         <div className="box_wrap">
                             <RenderBlock1 key={postData[0].id} attr={attr} type={postData[0].id} post={postData[0]}/>
                         </div>

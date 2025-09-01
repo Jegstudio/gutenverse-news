@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule1, MetaModule2 } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block17Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
@@ -23,6 +24,7 @@ const Block17Columns = props => {
         }else{
             aclass = `gvnews_post gvnews_pl_sm ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
         }
+        aclass = withFormatName(aclass, post);
 
         return (
             <article className={aclass}>

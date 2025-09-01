@@ -1,6 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { createChunks } from '../../utils/helper';
+import { createChunks, withFormatName } from '../../utils/helper';
 
 const Block1Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -16,8 +16,12 @@ const Block1Columns = props => {
 
     const RenderBlock2 = props=>{
         const { index = 'x', isLoadMoreAnimation = false } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_sm ${isLoadMoreAnimation  ? `gvnews_ajax_loaded anim_${index}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`,
+            props.post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_sm ${isLoadMoreAnimation  ? `gvnews_ajax_loaded anim_${index}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+            <article className={className}>
                 <ThumbModule size={715} cat={false} post={props.post}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
@@ -26,8 +30,12 @@ const Block1Columns = props => {
 
     const RenderBlock3 = props=>{
         const { index = 'x', isLoadMoreAnimation = false } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`,
+            props.post,
+        );
         return(
-            <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
+            <article className={className}>
                 <i className="fas fa-caret-right"></i>
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
@@ -70,8 +78,12 @@ const Block1Columns = props => {
                     rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
                 }
             }
+            const className = withFormatName(
+                `gvnews_post gvnews_pl_lg_1 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`,
+                datas[0]
+            );
             return <div className="gvnews_posts">
-                <article className={`gvnews_post gvnews_pl_lg_1 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                <article className={className}>
                     {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className="gvnews_postsmall">
@@ -102,8 +114,12 @@ const Block1Columns = props => {
                     rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1}  key={datas[i]} attr={attr} post={datas[i]}/>);
                 }
             }
+            const className = withFormatName(
+                `gvnews_post gvnews_pl_lg_1 col-sm-6 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`,
+                datas[0]
+            );
             return <div className={'gvnews_posts gvnews-posts-row'}>
-                <article className={`gvnews_post gvnews_pl_lg_1 col-sm-6 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                <article className={className}>
                     {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className={'gvnews_postsmall col-sm-6'}>
@@ -139,9 +155,12 @@ const Block1Columns = props => {
                     rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
                 }
             }
-
+            const className = withFormatName(
+                `gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`,
+                datas[0]
+            );
             return <div className="gvnews_posts gvnews-posts-row">
-                <article className={`gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
+                <article className={className}>
                     {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
                 </article>
                 <div className="gvnews_postsmall col-sm-4">

@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3, MetaCategory } from '../../part/meta';
+import { withFormatName } from '../../utils/helper';
 
 const Block11Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
@@ -7,15 +8,19 @@ const Block11Columns = props => {
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
-        const { index = 'x' } = props;
+        const { index = 'x', post } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_md_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_md_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+            <article className={className}>
                 <div className="gvnews_inner_post">
-                    <ThumbModule size={715} cat={false} post={props.post}/>
+                    <ThumbModule size={715} cat={false} post={post}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <h3 className="gvnews_post_title">
-                            <a>{props.post.title && props.post.title.replace(/&#8217;/g, '\'')}</a>
+                            <a>{post.title && post.title.replace(/&#8217;/g, '\'')}</a>
                         </h3>
                         {props.attr.option && !props.attr.option.meta_show && <MetaModule3 {...props}/>}
                     </div>

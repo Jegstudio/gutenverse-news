@@ -1,5 +1,6 @@
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
+import { withFormatName } from '../../utils/helper';
 
 const Block13Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
@@ -17,8 +18,12 @@ const Block13Columns = props => {
                 </>
             );
         } else {
+            const className = withFormatName(
+                `gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`,
+                post
+            );
             block.push(
-                <div className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
+                <div className={className}>
                     <ThumbModule size={715} cat={true} post={post}/>
                     <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={attr}/>
                 </div>
@@ -45,10 +50,10 @@ const Block13Columns = props => {
                 rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_1', postData[0]);
         return(
             <>
-                <article className="gvnews_post gvnews_pl_lg_1">
+                <article className={className}>
                     <RenderBlock1 key={postData[0].id} attr={attr} type={1} post={postData[0]}/>
                 </article>
                 <div className="gvnews_posts_wrap">
@@ -83,11 +88,11 @@ const Block13Columns = props => {
                 }
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_1 col-sm-6', postData[0]);
         return(
             <>
                 <div className="gvnews_posts gvnews-posts-row">
-                    <article className="gvnews_post gvnews_pl_lg_1 col-sm-6">
+                    <article className={className}>
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
                         <ContentModule title={true} meta={1} excerpt={true} read={true} post={postData[0]} attr={attr}/>
                     </article>
@@ -128,11 +133,11 @@ const Block13Columns = props => {
                 }
             }
         }
-
+        const className = withFormatName('gvnews_post gvnews_pl_lg_1 col-sm-4', postData[0]);
         return(
             <>
                 <div className="gvnews_posts gvnews-posts-row">
-                    <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
+                    <article className={className}>
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
                         <ContentModule title={true} meta={1} excerpt={true} read={true} post={postData[0]} attr={attr}/>
                     </article>

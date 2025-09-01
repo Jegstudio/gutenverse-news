@@ -1,5 +1,6 @@
 import { MetaModule2} from '../../part/meta';
 import ThumbModule from '../../part/thumbnail';
+import { withFormatName } from '../../utils/helper';
 
 const Block19Columns = props => {
     const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
@@ -22,16 +23,24 @@ const Block19Columns = props => {
         );
 
         if (1==props.type){
+            const className = withFormatName(
+                `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`,
+                post,
+            );
             return (
-                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
+                <article className={className}>
                     <div className="box_wrap">
                         <PostMeta/>
                     </div>
                 </article>
             );
         }else{
+            const className = withFormatName(
+                `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`,
+                post
+            );
             return (
-                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
+                <article className={className}>
                     <PostMeta/>
                 </article>
             );

@@ -1,4 +1,5 @@
 import { ContentModule } from '../../part/post';
+import { withFormatName } from '../../utils/helper';
 
 const Block29Columns = (props) => {
     const {
@@ -25,8 +26,12 @@ const Block29Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
+        const className = withFormatName(
+            `gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
+            post
+        );
         return (
-            <article className={`gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={className}>
                 <ContentModule meta={showDate ? 2 : false} title={true} post={post} attr={attr} />
             </article>
         );
