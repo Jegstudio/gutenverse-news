@@ -1003,14 +1003,12 @@
   background: #fafafa;
 }
 
-.gvnews_pl_sm {
-  .format-gallery,
-  .format-gallery{
+.gvnews_pl_sm.format-video,
+.gvnews_pl_sm.format-gallery{
     .gvnews_thumb:after {
       transform: scale(0.7);
     }
   }
-}
 
 .gvnews_post.format-video .gvnews_thumb:after {
     -webkit-backface-visibility: hidden;
@@ -1036,7 +1034,7 @@
 .gvnews_post.format-gallery .gvnews_thumb:after {
   content: "\F03E";
   font-size: 32px;
-  margin: -10px 0 0 -16px;
+  margin: -15px 0 0 -16px;
   color: #fff;
   font-family: FontAwesome;
   left: 50%;
