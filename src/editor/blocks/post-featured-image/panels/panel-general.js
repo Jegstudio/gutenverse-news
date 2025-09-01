@@ -60,10 +60,6 @@ export const generalPanel = (props) => {
                     label: __('750x536', 'gutenverse-news'),
                     value: '750x536'
                 },
-                {
-                    label: __('Width 1140', 'gutenverse-news'),
-                    value: 'featured-1140'
-                },
             ],
         },
     ];
