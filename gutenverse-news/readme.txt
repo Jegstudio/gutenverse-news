@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 2.0.2-a.1
+Stable tag: 3.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,7 +12,7 @@ Create professional news, blog, or magazine layouts with the best Gutenberg bloc
 ## Description
 
 
-**GUTENVERSE NEWS – NEWS MAGAZINE BLOG LAYOUTS BUILDER FOR GUTENBERG BLOCK EDITOR AND FULL SITE EDITOR, 80+ FREE USER-FRIENDLY NEWS BLOCKS ADDONS**
+**GUTENVERSE NEWS – NEWS MAGAZINE BLOG LAYOUTS BUILDER FOR GUTENBERG BLOCK EDITOR AND FULL SITE EDITOR, 26+ FREE USER-FRIENDLY NEWS BLOCKS ADDONS**
 
 
 Gutenverse News empowers you to easily create professional news, blog, or magazine layouts for any publishing need on your WordPress site. As part of the Gutenverse ecosystem, it provides seamless flexibility and control, enabling you to build and customize news content that perfectly fits your site’s design. Whether you’re building news layouts from scratch or enhancing existing pages, Gutenverse News ensures your publishing website is always up-to-date, keeping your audience informed and engaged.
@@ -72,51 +72,37 @@ Edit breakpoints for tablets and mobile devices to optimize the responsiveness o
 
 ## News Module Blocks
 
-Effortlessly create structured news sections with **39 brand-new Gutenberg news blocks**, fully customizable to highlight key stories and articles. Each block is designed to emphasize important content, ensuring your news is displayed in a visually appealing and engaging way.
+Effortlessly create structured news sections with **9 brand-new Gutenberg news blocks**, fully customizable to highlight key stories and articles. Each block is designed to emphasize important content, ensuring your news is displayed in a visually appealing and engaging way.
 
 ## News Hero Blocks
 
-Make your headlines stand out with **15 captivating news hero blocks**, designed to grab attention and showcase your most important news stories. Each section is crafted to highlight top content, ensuring your key messages make a lasting impact.
+Make your headlines stand out with **5 captivating news hero blocks**, designed to grab attention and showcase your most important news stories. Each section is crafted to highlight top content, ensuring your key messages make a lasting impact.
 
 
 ## News Slider Blocks
 
-Showcase your latest or featured news with an interactive slider, offering readers an engaging way to browse through top articles. Choose from **9 different news slider blocks** to match your site's style and enhance the browsing experience.
-
-
-## News Carousel Blocks
-
-Create dynamic news presentations with **3 available news carousel blocks**, allowing your audience to quickly glance through multiple stories. Each carousel is designed to effectively showcase a range of content, keeping your readers engaged and informed.
+Showcase your latest or featured news with an interactive slider, offering readers an engaging way to browse through top articles.
 
 
 ## News Single Post Blocks
 
-*   **Post Author:** Display the author’s name prominently to give credit to the writer.
-*   **Post Breadcrumb:** Guide readers with a breadcrumb trail for easy navigation back to previous sections.
-*   **Post Comment:** Engage your audience by allowing them to leave comments and feedback on news articles.
-*   **Post Featured Image:** Highlight the main image of your news post, making the content more look good.
+*   **Post Author Box:** Display the author’s name prominently to give credit to the writer.
+*   **Advanced Post Featured Image:** Highlight the main image of your news post, making the content more look good.
 *   **Post Meta:** Display essential post information such as the publish date, categories, and tags.
-*   **Post Next Prev:** Allow readers to easily navigate between previous and next articles with buttons.
 *   **Post Related:** Suggest related articles to keep your audience engaged and on your site longer.
-*   **Post Tag:** Show tags associated with the post to help readers find related content.
-*   **Post Title:** Display the title of your news post in a bold and attention-grabbing way.
 
 
 ## News Archive Blocks
 
 *   **Archive Block:** Design and organize blocks of archived news content for easy browsing.
-*   **Archive Breadcrumb:** Provide a navigation path for users to track their location within the archive.
 *   **Archive Description:** Offer a brief overview or description of the archived content to give context to readers.
-*   **Archive Hero:** Feature a key image or headline from your archive to draw attention to important past stories.
 *   **Archive Pagination:** Allow readers to navigate through multiple pages of archived content smoothly.
-*   **Archive Title:** Clearly display the title of the archive section to orient your readers.
 
 
 ## News Element Blocks
 
 *   **Header:** Create a consistent, professional header for your news site that guides your audience through your content.
 *   **News Ticker:** Display breaking news or important updates with a scrolling ticker for real-time information.
-*   **RSS Block:** Integrate an RSS feed to allow users to subscribe and stay updated with the latest news.
 *   **User List:** Showcase a list of authors, contributors, or users associated with your news site for better community engagement.
 
 
@@ -157,12 +143,34 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 2.0.2 [DEV] =
+= 3.0.1 [DEV] =
 ##### Bug Fixes
-* Fix deprecated warning on the strpost function passing a null value
+* Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
+* Fix auto column width detection not working on Carousel 3
+* Fix Hero Slider icon missing on responsive view editor
+* Fix Hero Slider style on mobile device
+* Fix filter by Role option not working on User List block
 
 ##### Improvements
-* -
+* Changed the Post Offset option to an Input Range control
+* Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
+
+= 3.0.0 =
+##### Bug Fixes
+* Fix deprecated warning on the strpost function passing a null value
+* Fix: 'Include Post' filter not working properly when adding more than one post
+
+##### Block Name Changes
+* Post Author → Post Autho Box
+* Post Featured Image → Advanced Post Featured Image
+
+##### Deprecated blocks
+RSS Block, Module 10, Module 11, Module 12, Module 13, Module 14, Module 15, Module 16, Module 17, Module 18, Module 19, Module 20, Module 21, Module 22, Module 23, Module 24, Module 25, Module 26, Module 27, Module 28, Module 29, Module 30, Module 31, Module 32, Module 33, Module 34, Module 35, Module 36, Module 37, Module 38, Module 39, Carousel 1, Carousel 2, Carousel 3, Slider 2, Slider 3, Slider 4, Slider 5, Slider 6, Slider 7, Slider 8, Slider 9, Hero 6, Hero 7, Hero 8, Hero 9, Hero 10, Hero 11, Hero 12, Hero 13, Hero 14, Hero Skew, Hero Archive, Archive Title, Post Title, Archive Breadcrumb Post Tag, Post Comment, Post Next Prev, Post Breadcrumb
+
+##### Deprecated options
+* Some Block Type choices in the Archive Block option
+* Some Related Post Template choices in Post Related option
+
 
 = 2.0.1 =
 ##### Bug Fixes

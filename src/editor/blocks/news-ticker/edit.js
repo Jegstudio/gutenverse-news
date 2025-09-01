@@ -17,6 +17,7 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
 const moduleOption = getModuleOptions();
 const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
@@ -28,7 +29,8 @@ const NewsTickerBlock = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes
     } = props;
 
     const {
@@ -71,33 +73,29 @@ const NewsTickerBlock = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
 
-    const [postBulk, getPost] = useState(false);
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [offsetLoaded, setOffsetLoaded] = useState(0);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
     const [ticker, initTicker] = useState(false);
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
-            }
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
         } else {
-            getTrim(false);
+            setAttributes({
+                ...attributes,
+                numberPost: '1'
+            });
         }
-    }, [
-        numberPost,
-        postBulk,
-        postOffset
-    ]);
+        if (postOffset > -1) {
+            setOffsetLoaded(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: '0'
+            });
+        }
+    }, [numberPost, postOffset]);
 
     useEffect(() => {
         let attr = {
@@ -105,7 +103,6 @@ const NewsTickerBlock = compose(
             uniqueContent,
             includeOnly,
             postType,
-            numberPost: loadPost,
             includePost,
             excludePost,
             includeCategory,
@@ -114,6 +111,8 @@ const NewsTickerBlock = compose(
             includeTag,
             excludeTag,
             sortBy,
+            postOffset: offsetLoaded,
+            numberPost: postLoaded,
         };
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-post'),
@@ -122,7 +121,7 @@ const NewsTickerBlock = compose(
                 attr: attr
             }
         }).then((data) => {
-            getPost(JSON.parse(data));
+            getTrim(JSON.parse(data));
         }).catch((e) => {
             console.error(e.message);
         }).finally(() => {
@@ -139,7 +138,8 @@ const NewsTickerBlock = compose(
         includeTag,
         excludeTag,
         sortBy,
-        loadPost
+        postLoaded,
+        offsetLoaded,
     ]);
 
     function newsTickerInit() {
@@ -374,7 +374,7 @@ const NewsTickerBlock = compose(
     useEffect(() => {
         setBlock(
             <div className="gvnews_item_container">
-                {postData ? <RenderColumn {...moduleData} /> : postBulk ? <div className="gvnews_news_ticker_item gvnews_news_ticker_active"><span>{moduleOption.string.no_content}</span></div> : <ModuleSkeleton />}
+                {postData ? <RenderColumn {...moduleData} /> : postData ? <div className="gvnews_news_ticker_item gvnews_news_ticker_active"><span>{moduleOption.string.no_content}</span></div> : <ModuleSkeleton />}
             </div>
         );
     }, [

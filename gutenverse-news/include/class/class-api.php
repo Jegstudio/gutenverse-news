@@ -146,6 +146,134 @@ class Api {
 				'permission_callback' => 'gutenverse_permission_check_author',
 			)
 		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'downgradePlugin',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'downgrade_plugin' ),
+				'permission_callback' => array( $this, 'permission_install_plugin' ),
+			)
+		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'dismissNotice',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'dismiss_notice' ),
+				'permission_callback' => array( $this, 'edit_pages' ),
+			)
+		);
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function downgrade_plugin( $request ) {
+		$nonce               = $request->get_param( 'nonce' );
+		$disable_auto_update = $request->get_param( 'disableAutoUpdate' );
+		try {
+			if ( ! wp_verify_nonce( $nonce, 'gvnews_downgrade' ) ) {
+				throw new \Exception( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
+			}
+
+			$slug     = 'gutenverse-news';
+			$file_url = 'https://downloads.wordpress.org/plugin/gutenverse-news.2.0.1.zip';
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+			$plugin_dir  = WP_PLUGIN_DIR . '/' . $slug;
+			$plugin_file = $slug . '/' . $slug . '.php';
+
+			/* Deactive Plugin */
+			$active_plugins = get_option( 'active_plugins' );
+			foreach ( $active_plugins as $plugin ) {
+				if ( strpos( $plugin, $slug . '/' ) === 0 ) {
+					$plugin_file = $plugin;
+					deactivate_plugins( $plugin );
+					break;
+				}
+			}
+
+			/* Remove current plugin file. */
+			if ( is_dir( $plugin_dir ) ) {
+				global $wp_filesystem;
+				WP_Filesystem();
+				$wp_filesystem->delete( $plugin_dir, true );
+			} else {
+				throw new \Exception( __( 'Gutenverse News plugin directory not found', 'gutenverse-news' ) );
+			}
+
+			/* Download old version pluign zip */
+			$tmp_file = download_url( $file_url );
+			if ( is_wp_error( $tmp_file ) ) {
+				throw new \Exception( __( 'Faild when trying to download Gutenverse News plugin.', 'gutenverse-news' ) );
+			}
+
+			/* Extract plugin file */
+			$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
+			wp_delete_file( $tmp_file );
+
+			if ( is_wp_error( $result ) ) {
+				throw new \Exception( __( 'Faild to extract plugin file.', 'gutenverse-news' ) );
+			}
+
+			/* Activate old versuin plugin */
+			$activation_result = activate_plugin( $plugin_file );
+
+			if ( is_wp_error( $activation_result ) ) {
+				throw new \Exception( 'Plugin extracted, but failed to activate: ' . $activation_result->get_error_message() );
+			}
+
+			/* Deactive auto update if needed */
+			if ( $disable_auto_update ) {
+				$auto_updates = get_site_option( 'auto_update_plugins', array() );
+				$filtered     = array_filter(
+					$auto_updates,
+					function ( $item ) use ( $plugin_file ) {
+						return $item !== $plugin_file;
+					}
+				);
+				if ( $filtered !== $auto_updates ) {
+					update_site_option( 'auto_update_plugins', array_values( $filtered ) );
+				}
+			}
+		} catch ( \Exception $e ) {
+			return $this->response_error( $e->getMessage() );
+		}
+
+		return $this->response_success( __( 'Downgrade Gutenverse News plugin success.', 'gutenverse-news' ) );
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function dismiss_notice( $request ) {
+		$nonce = sanitize_text_field( $request->get_param( 'nonce' ) );
+		if ( ! wp_verify_nonce( $nonce, 'gvnews_dismiss_notice' ) ) {
+			return $this->response_error( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
+		}
+		$notice = sanitize_text_field( $request->get_param( 'notice' ) );
+
+		if ( 'deprecated_gutenverse_news' === $notice ) {
+			set_transient( 'deprecated_gutenverse_news_dismissed', 'dismissed', DAY_IN_SECONDS );
+		}
+		return $this->response_success( 'sucess' );
 	}
 
 
@@ -426,6 +554,8 @@ class Api {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
 			$roles = new \WP_Roles();
+		} else {
+			$roles = $wp_roles;
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
@@ -592,6 +722,10 @@ class Api {
 
 		if ( isset( $attributes['postOffset'] ) ) {
 			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
+		}
+
+		if ( isset( $attributes['dateQuery'] ) ) {
+			$attr['date_query'] = $attributes['dateQuery'];
 		}
 
 		$result = Module_Query::do_query( $attr );
@@ -785,5 +919,50 @@ class Api {
 	 * @return void
 	 */
 	public function php_function_caller( $attributes ) {
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
+	public function permission_install_plugin() {
+		return current_user_can( 'install_plugins' );
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
+	public function edit_pages() {
+		return current_user_can( 'edit_pages' );
+	}
+
+	/**
+	 * Return error response
+	 *
+	 * @param string $message Error message.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_error( $message ) {
+		return new \WP_REST_Response(
+			array(
+				'message' => $message,
+			),
+			500
+		);
+	}
+
+	/**
+	 * Return success response
+	 *
+	 * @param array $args args.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_success( $args ) {
+		return new \WP_REST_Response( $args, 200 );
 	}
 }
