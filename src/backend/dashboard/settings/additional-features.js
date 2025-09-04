@@ -63,6 +63,11 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             title: 'Like & Dislike Post',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
+        }, {
+            id: 'post_split',
+            title: 'Post Split',
+            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            icon: <IconPaywallSVG />,
         }
     ]
 
