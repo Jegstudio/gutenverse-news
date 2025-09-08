@@ -18,6 +18,7 @@ const Hero5Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         setBlockRef,
         clientId,
         isSelected
@@ -108,6 +109,8 @@ const Hero5Block = compose(
                             autoplayDelay,
                             heroMargin,
                             heightDesktop,
+                            attributes,
+                            setAttributes,
                         }}
                     />
                 </div>

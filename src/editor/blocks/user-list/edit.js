@@ -213,12 +213,13 @@ const UserlistBlock = compose(
             for (let i = 0; i < authorData.length; i++) {
                 rows.push(<RenderBlockUser {...authorData[i]} />);
             }
-            setBlock(
-                <ul>
-                    {rows}
-                </ul>
-            );
+
         }
+        setBlock(
+            <ul>
+                {rows}
+            </ul>
+        );
     }, [
         authorBlockWidth,
         authorData,

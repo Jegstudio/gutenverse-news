@@ -21,6 +21,7 @@ const Hero7Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         setBlockRef,
         clientId,
         isSelected
@@ -120,6 +121,8 @@ const Hero7Block = compose(
                             autoplayDelay,
                             heroMargin,
                             heightDesktop,
+                            attributes,
+                            setAttributes,
                         }}
                     />
                     {isDeprecated && <DeprecatedOverlay />}

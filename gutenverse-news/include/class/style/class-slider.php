@@ -50,17 +50,27 @@ class Slider extends StyleAbstract {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
 				$this->handle_background( ".{$this->element_id} .gvnews_overlay_slider_wrapper:before", $this->attrs['overrideOverlay'] );
 			}
-		} elseif ( stristr( $this->attrs['gvnewsModule'], 'Slider_2' ) ) {
-			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
-				$this->handle_background( ".{$this->element_id} .gvnews_slider_type_2 .gvnews_slide_item:before", $this->attrs['overrideOverlay'] );
+		}
+
+		if ( isset( $this->attrs['hasOverlay'] ) && $this->attrs['hasOverlay'] ) {
+
+			if ( isset( $this->attrs['overrideOverlay'] ) && $this->attrs['isOverrideOverlay'] && ( 'gradient' === $this->attrs['overlayOption'] ) ) {
+				$this->handle_gradient_with_angle(
+					".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item:before",
+					$this->attrs['overrideOverlay']
+				);
 			}
-		} elseif ( stristr( $this->attrs['gvnewsModule'], 'Slider_5' ) ) {
-			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
-				$this->handle_background( ".{$this->element_id} .gvnews_slider_type_5_wrapper:not(.no-overlay) .gvnews_slider_type_5 .gvnews_slide_item:before", $this->attrs['overrideOverlay'] );
-			}
-		} elseif ( stristr( $this->attrs['gvnewsModule'], 'Slider_6' ) ) {
-			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
-				$this->handle_background( ".{$this->element_id} .gvnews_slider_type_6_wrapper:not(.no-overlay) .gvnews_slider_type_6 .gvnews_slide_item:before", $this->attrs['overrideOverlay'] );
+			if ( isset( $this->attrs['normalOverlay'] ) && ( 'normal' === $this->attrs['overlayOption'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item:before",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'background-color' );
+						},
+						'value'          => $this->attrs['normalOverlay'],
+						'device_control' => false,
+					)
+				);
 			}
 		}
 
