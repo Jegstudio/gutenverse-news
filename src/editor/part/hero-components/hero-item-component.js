@@ -8,7 +8,7 @@ import { MetaModule2, MetaModule3, MetaCategory } from '../meta';
  */
 const HeroElement = ({ index, margin, post, attr }) => {
     return (
-        <article className={`gvnews_post gvnews_hero_item_${index + 1}`}>
+        <article className={`gvnews_post format-${post.format} gvnews_hero_item_${index + 1}`}>
             <div className="gvnews_block_container">
                 <span className="gvnews_postformat_icon"></span>
                 <div className="gvnews_thumb">

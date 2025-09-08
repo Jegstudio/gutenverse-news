@@ -206,7 +206,7 @@ const Carousel2Block = compose(
     function RenderContent(props) {
         return (
             <div className="gvnews_post_wrapper">
-                <article className="gvnews_post">
+                <article className={`gvnews_post format-${props.post.format}`}>
                     <div className="gvnews_thumb">
                         <a>
                             <div className="thumbnail-container size-715">
