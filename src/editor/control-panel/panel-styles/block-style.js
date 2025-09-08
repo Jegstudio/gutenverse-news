@@ -484,6 +484,29 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
+        'type': 'color',
+        'id': 'postReviewMetaStarColor',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa, .${elementId} .gvnews_heroblock .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['postReviewMetaStarSize']) && data.push({
+        'type': 'unitPoint',
+        'id': 'postReviewMetaStarSize',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     return [
         ...data,
         ...applyFilters(

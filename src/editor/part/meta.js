@@ -54,7 +54,7 @@ const MetaModule1 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
-            { applyFilters('gvnews.part.meta', [], post) }
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_author && <MetaAuthor {...props} />}
             {option.meta_date && <MetaDate {...props} />}
             {option.meta_comment && <MetaComments {...props} />}
@@ -71,7 +71,7 @@ const MetaModule2 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
-            { applyFilters('gvnews.part.meta', [], post) }
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_date && <MetaDate {...props} />}
         </div>
     );
@@ -86,7 +86,7 @@ const MetaModule3 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
-            { applyFilters('gvnews.part.meta', [], post) }
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_author && <MetaAuthor {...props} />}
             {option.meta_date && <MetaDate {...props} />}
         </div>

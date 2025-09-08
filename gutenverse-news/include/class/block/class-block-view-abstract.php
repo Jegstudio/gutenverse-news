@@ -497,7 +497,7 @@ abstract class Block_View_Abstract {
 				</div>' : '';
 
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post );
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options, $this->block_options );
 			$output .= $this->block_options->get_module_options( 'meta_author', true ) ? '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>' : '';
 			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
 			if ( $this->block_options->get_module_options( 'meta_comment', true ) ) {
@@ -522,7 +522,7 @@ abstract class Block_View_Abstract {
 		$output = '';
 		if ( $this->block_options->get_module_options( 'meta_show', true ) ) {
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post );
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options );
 			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
 			$output .= '</div>';
 		}
@@ -547,7 +547,7 @@ abstract class Block_View_Abstract {
 			$author_name = gvnews_get_rss_post_id( $author ) ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
 
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post );
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options );
 			$output .= $this->block_options->get_module_options( 'meta_author', true ) ? '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>' : '';
 			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
 			$output .= '</div>';
