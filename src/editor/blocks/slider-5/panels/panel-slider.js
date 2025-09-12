@@ -1,13 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl, BackgroundControl } from 'gutenverse-core/controls';
-import { handleBackground } from 'gutenverse-core/styling';
+import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
-        elementId,
         autoplay,
         metaDateFormat,
         overlayOption,
+        isOverrideOverlay,
     } = props;
     return [
         {
@@ -68,24 +67,31 @@ export const sliderPanel = (props) => {
                     value: 'gradient'
                 },
                 {
+                    label: __('Normal Overlay', 'gutenverse-news'),
+                    value: 'normal'
+                },
+                {
                     label: __('No Overlay', 'gutenverse-news'),
                     value: 'no'
                 },
             ],
         },
         {
+            id: 'isOverrideOverlay', // just for gradient type
+            show: overlayOption === 'gradient',
+            component: CheckboxControl,
+            label: __('Override Overlay Color', 'gutenverse-news'),
+        },
+        {
             id: 'overrideOverlay',
-            show: overlayOption == 'gradient',
-            allowDeviceControl: true,
-            options: ['gradient'],
-            component: BackgroundControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_5_wrapper:not(.no-overlay) .gvnews_slider_type_5 .gvnews_slide_item:before`,
-                    hasChild: true,
-                    render: value => handleBackground(value)
-                }
-            ]
+            show: isOverrideOverlay && overlayOption === 'gradient',
+            component: GradientWithAngleControl,
+        },
+        {
+            id: 'normalOverlay',
+            label: __('Normal Overlay Color', 'gutenverse-news'),
+            show: overlayOption === 'normal',
+            component: ColorControl,
         },
     ];
 };

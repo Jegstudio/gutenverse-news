@@ -70,9 +70,12 @@ class Archive extends Grab {
 		}
 
 		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
+		if ( $this->is_deprecated ) {
+			$classes .= ' gvnews-deprecated-block';
+		}
 
 		return '<div ' . $id . ' class="' . $classes . ' ' . esc_attr( $this->attributes['elClass'] ) . '" ' . $data . '>'
-					. $inner .
+					. $inner . $this->render_deprecated() .
 				'</div>';
 	}
 
@@ -209,5 +212,17 @@ class Archive extends Grab {
 			$attr['column_width']       = $this->attributes['columnWidth'];
 		}
 		return $attr;
+	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		if ( current_user_can( 'edit_pages' ) && ( ( ! gutenverse_pro_active() && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] ) ) || ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] || 'GUTENVERSE\NEWS\Block\Archive\Archive_Breadcrumb' === $this->attributes['gvnewsModule'] ) ) ) {
+			return true;
+		}
+		return false;
 	}
 }

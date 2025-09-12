@@ -125,4 +125,27 @@ class Hero extends Grab {
 		}
 		return $this->get_module( $options );
 	}
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		$deprecated = array(
+			'GUTENVERSE\NEWS\Block\Hero\Hero_6',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_7',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_8',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_9',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_10',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_11',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_12',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_13',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_14',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_Skew',
+		);
+		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
+			return true;
+		}
+		return false;
+	}
 }

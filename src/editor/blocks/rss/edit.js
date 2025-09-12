@@ -3,26 +3,26 @@ import { useState, useEffect, Fragment } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { RawHTML } from '@wordpress/element';
 import HeaderModule from '../../part/header';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
 import { getParentColumnWidth } from '../../utils/helper';
-
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const RssBlock = compose(
     withPartialRender,
@@ -196,14 +196,22 @@ const RssBlock = compose(
         metaDateFormat,
         metaDateFormatCustom
     ]);
+    const isDeprecated = !gutenverseProActive;
 
     return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        {isDeprecated ? (
+            <PanelDeprecated title="RSS" />
+        ) : (
+            <>
+                <CopyElementToolbar {...props} />
+                <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            </>
+        )}
         <div  {...blockProps}>
-            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} `}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}
+                {isDeprecated && <DeprecatedOverlay />}
             </div>
         </div>
     </>;

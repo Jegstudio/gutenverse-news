@@ -5,6 +5,7 @@
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
     "description": "Your Block description.",
     "category": "gvnews-hero",
+    "editorStyle": "gvnews-gutenverse-editor-style",
     "attributes": {
         "elementId": {
             "type": "string"
@@ -286,6 +287,10 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

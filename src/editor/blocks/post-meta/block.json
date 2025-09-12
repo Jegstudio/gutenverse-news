@@ -172,7 +172,10 @@
             "type": "object"
         },
         "dislikeBackground": {
-            "type":"object",
+            "type":"object"
+        },
+        "condition": {
+            "type": "object",
             "default": {}
         }
     },
