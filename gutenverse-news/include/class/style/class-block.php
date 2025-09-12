@@ -597,6 +597,51 @@ class Block extends StyleAbstract {
 			}
 		}
 
+		if ( isset( $this->attrs['showNavText'] ) && isset( $this->attrs['paginationMode'] ) ) {
+			if ( $this->attrs['showNavText'] && 'nextprev' === $this->attrs['paginationMode'] && ! isset( $this->attrs['paginationWrapperAlign'] ) && ! isset( $this->attrs['paginationDisableSeparator'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_nav, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore",
+						'property'       => function () {
+							return 'justify-content: start;';
+						},
+						'value'          => 'start',
+						'device_control' => true,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_nav:before, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore:before",
+						'property'       => function () {
+							return 'display: none;';
+						},
+						'value'          => 'none',
+						'device_control' => true,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_nav:after, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore:after",
+						'property'       => function () {
+							return 'display: block;';
+						},
+						'value'          => 'block',
+						'device_control' => true,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav:before, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav:after, .{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore:before, .{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore:after",
+						'property'       => function () {
+							return 'display: none !important;';
+						},
+						'value'          => 'none',
+						'device_control' => false,
+					)
+				);
+			}
+		}
+
 		if ( isset( $this->attrs['paginationBtnTypography'] ) ) {
 			$this->inject_typography(
 				array(
