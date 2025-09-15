@@ -14,6 +14,7 @@ import { select } from '@wordpress/data';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import { applyFilters } from '@wordpress/hooks';
 
 const PostAuthor = compose(
     withPartialRender,
@@ -79,6 +80,8 @@ const PostAuthor = compose(
     ]);
 
     useEffect(() => {
+        const additionals = applyFilters('gvnews.post-author.components', [], attributes);
+
         if (authorData.length) {
             setContent(authorData.map((author, index) => {
                 const metas = author.meta ? author.meta.map((meta, key) => {
@@ -108,6 +111,7 @@ const PostAuthor = compose(
                             <div className="gvnews-author-socials">
                                 {metas}
                             </div>
+                            {additionals}
                         </div>
                     </div>
                 );
@@ -131,6 +135,7 @@ const PostAuthor = compose(
                                 <i className="fa fa-globe"></i>
                             </a>
                         </div>
+                        {additionals}
                     </div>
                 </div>
             );
