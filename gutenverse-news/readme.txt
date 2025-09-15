@@ -152,6 +152,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix filter by Role option not working on User List block
 
 ##### Improvements
+* Added Pagination Style options on Module blocks
 * Changed the Post Offset option to an Input Range control
 * Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
 
