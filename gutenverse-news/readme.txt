@@ -153,8 +153,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Improvements
 * Added Pagination Style options on Module blocks
-* Changed the Post Offset option to an Input Range control
 * Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
+* Changed the Post Offset option to an Input Range control
+* Changed the default color on blocks, from using wp--preset--color to a predefined color
 
 = 3.0.0 =
 ##### Bug Fixes
