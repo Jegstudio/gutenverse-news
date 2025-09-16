@@ -9,6 +9,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { applyFilters } from '@wordpress/hooks';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
+import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -68,6 +69,12 @@ export const panelList = () => {
                 title: __('Read More Button', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: readmoreStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Pagination Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: paginationStylePanel,
                 tabRole: TabStyle
             },
             {

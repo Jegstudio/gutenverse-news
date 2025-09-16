@@ -7,7 +7,7 @@ import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
-
+import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 
 export const panelList = () => {
     return [
@@ -59,6 +59,12 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Pagination Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationStylePanel,
             tabRole: TabStyle
         },
         {
