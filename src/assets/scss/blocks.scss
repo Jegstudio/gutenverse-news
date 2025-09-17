@@ -1110,7 +1110,8 @@
 
 .tns-outer .tns-controls button:before,
 .owl-carousel .owl-nav div:before {
-  font-family: FontAwesome;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
   text-rendering: auto;
   width: 100%;
   -webkit-font-smoothing: antialiased;
@@ -2407,7 +2408,8 @@
   background-size: cover;
 
   &.no_thumbnail:after {
-    font-family: "FontAwesome", serif;
+    font-family: "Font Awesome 6 Free", serif;
+    font-weight: 900;
     content: "\f03e";
     display: block;
     position: absolute;
@@ -4030,7 +4032,8 @@
 
 .gvnews_postblock_35 .gvnews_postformat_icon:after,
 .gvnews_postblock_36 .gvnews_postformat_icon:after {
-  font-family: 'FontAwesome';
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   color: #fff;
   position: absolute;
   top: 15px;
@@ -5063,8 +5066,8 @@
 
   &.prev:before,
   &.next:after {
-    font-weight: normal;
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
     display: inline-block;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -13912,7 +13915,8 @@ h2.block-editor-inserter__panel-title span.gvnews-category {
   color: #fff !important;
   font-size: 14px;
   margin-right: 0px;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
 }
 
 .gvnews_post .gvnews_meta_trending .fa {
@@ -14024,17 +14028,18 @@ span.gvnews-category {
 
 .tns-outer button.tns-prev:before,
 .owl-carousel .owl-prev:before {
-  content: '\65';
+  content: '\f104';
 }
 
 .tns-outer button.tns-next:before,
 .owl-carousel .owl-next:before {
-  content: '\66';
+  content: '\f105';
 }
 
 .tns-outer .tns-controls button:before,
 .owl-carousel .owl-nav div:before {
-  font-family: jegicon;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   text-rendering: auto;
   width: 100%;
   -webkit-font-smoothing: antialiased;
@@ -15103,7 +15108,8 @@ span.gvnews-category {
 .gvnews_heroblock {
 
   .gvnews_postformat_icon:after {
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
     color: #fff;
     position: absolute;
     top: 15px;
@@ -17923,7 +17929,8 @@ span.gvnews-category {
   }
 
   .tns-outer .tns-controls button:before {
-    font-family: 'jegicon' !important;
+    font-family: 'Font Awesome 6 Free' !important;
+    font-weight: 900;
     position: absolute;
     height: 20px;
     width: 20px;
@@ -17946,12 +17953,8 @@ span.gvnews-category {
     /* margin-top: 1px; */
   }
 
-  &.tns-next:before {
-    content: '\65';
-  }
-
   &.tns-prev:before {
-    content: '\66';
+    content: '\f104';
   }
 }
 
@@ -18298,15 +18301,15 @@ span.gvnews-category {
     }
 
     &:before {
-      font-family: 'jegicon' !important;
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900;
     }
 
     &.tns-prev:before {
-      content: '\65';
+      content: '\f104';
     }
-
     &.tns-next:before {
-      content: '\66';
+      content: '\f105';
     }
   }
 
@@ -18581,7 +18584,8 @@ span.gvnews-category {
 
   .tns-controls button {
     &:before {
-      font-family: 'jegicon' !important;
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900;
     }
 
     &.tns-next {
@@ -18593,11 +18597,10 @@ span.gvnews-category {
 
   button {
     &.tns-prev:before {
-      content: '\65' !important;
+      content: '\f104' !important;
     }
-
     &.tns-next:before {
-      content: '\66' !important;
+      content: '\f105' !important;
     }
   }
 
@@ -18904,7 +18907,7 @@ span.gvnews-category {
       display: block;
       position: absolute;
       top: 50%;
-      font: normal normal normal 30px/1 FontAwesome;
+      font: normal normal 900 30px/1 'Font Awesome 6 Free';
       font-size: inherit;
       text-rendering: auto;
       width: 100%;
@@ -18917,11 +18920,10 @@ span.gvnews-category {
     }
 
     &.tns-prev:before {
-      content: '\f053';
+      content: '\f104';
     }
-
     &.tns-next:before {
-      content: '\f054';
+      content: '\f105';
     }
   }
 
@@ -19709,6 +19711,13 @@ span.gvnews-category {
   flex: 1;
   margin: 0;
   border-bottom: 0;
+
+  &.prev i {
+    margin-right: 10px;
+  }
+  &.next i {
+    margin-left: 10px;
+  }
 }
 
 .gvnews_slider_type_7 {
@@ -21459,7 +21468,7 @@ span.gvnews-category {
     display: inline-block;
     margin-left: 5px;
     margin-right: -3px;
-    font: normal normal normal 12px/1 FontAwesome;
+    font: normal normal 900 12px/1 'Font Awesome 6 Free';
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -21578,7 +21587,7 @@ span.gvnews-category {
     display: inline-block;
     margin-left: 5px;
     margin-right: -3px;
-    font: normal normal normal 12px/1 FontAwesome;
+    font: normal normal 900 12px/1 'Font Awesome 6 Free';
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -21602,7 +21611,8 @@ span.gvnews-category {
   &:before {
     color: #666;
     background-color: #fff;
-    font-family: FontAwesome;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
     font-size: 14px !important;
     position: absolute;
     content: "\f186";
@@ -22418,15 +22428,12 @@ input:checked+.slider {
     }
 
     &:before {
-      font-family: 'jegicon' !important;
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900;
     }
 
     &.tns-prev:before {
-      content: '\65';
-    }
-
-    &.tns-next:before {
-      content: '\66';
+      content: '\f104';
     }
   }
 
@@ -22956,7 +22963,8 @@ input:checked+.slider {
   color: #a0a0a0;
   margin-right: 2px;
   content: "\f017";
-  font-family: FontAwesome;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22988,7 +22996,8 @@ input:checked+.slider {
 
   &:before {
     content: "\f075";
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
     margin-right: 5px;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -23017,7 +23026,8 @@ input:checked+.slider {
 
     &:before,
     &:after {
-      font-family: 'FontAwesome';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
     }
 
     &:hover {

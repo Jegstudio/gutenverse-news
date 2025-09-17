@@ -22,12 +22,12 @@ const SliderCaption = (props) => {
             </div>
             {props.navigation && <div className="gvnews_block_nav">
                 <a className="prev">
-                    <i className="fas ffa-chevron-left"></i>
+                    <i className="fas fa-angle-left"></i>
                     prev
                 </a>
                 <a className="next">
                     next
-                    <i className="fas ffa-chevron-right"></i>
+                    <i className="fas fa-angle-right"></i>
                 </a>
             </div>}
         </div>
