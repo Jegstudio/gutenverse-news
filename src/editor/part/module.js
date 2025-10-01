@@ -70,9 +70,12 @@ const BlockModule = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        paginationWrapperAlign,
+        paginationDisableSeparator
     } = attributes;
 
     const elementRef = useRef(null);
+    const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -105,7 +108,7 @@ const BlockModule = compose(
     const [loadClass, setLoadClass] = useState('');
     const [postLoaded, setPostLoaded] = useState(0);
     const [postStart, setPostStart] = useState(0);
-    const [postPaginationLoaded, setPostPaginationLoaded] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(paginationPost);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
     const firstRender = useIsFirstRender();
@@ -139,6 +142,18 @@ const BlockModule = compose(
     }, [postOffset]);
 
     useEffect(() => {
+        if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
+            let ovr = {
+                ...attributes,
+                paginationWrapperAlign: {...paginationWrapperAlign},
+                paginationDisableSeparator: true
+            };
+            ovr['paginationWrapperAlign'][device] = 'start';
+            setAttributes(ovr);
+        }
+    }, [showNavText]);
+
+    useEffect(() => {
         if (paginationPost > 0) {
             setPostPaginationLoaded(parseInt(paginationPost));
         } else {
@@ -154,7 +169,7 @@ const BlockModule = compose(
             return;
         }
         getTrim([]);
-        setIsLoaded(false)
+        setIsLoaded(false);
         setPage(1);
         setForceReload(!forceReload);
     }, [
@@ -336,7 +351,7 @@ const BlockModule = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}
