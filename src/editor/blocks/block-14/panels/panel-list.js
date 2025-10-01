@@ -9,6 +9,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
+import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -68,6 +69,12 @@ export const panelList = () => {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Pagination Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: paginationStylePanel,
                 tabRole: TabStyle
             },
             {
