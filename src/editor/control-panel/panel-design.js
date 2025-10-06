@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import { SelectControl, CheckboxControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
@@ -133,5 +134,6 @@ export const designPanel = (props) => {
                 }
             ],
         },
+        ...applyFilters('gvnews.panel.design', [], props)
     ];
 };

@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,7 +143,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.0.1 [DEV] =
+= 3.0.1 =
 ##### Bug Fixes
 * Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
 * Fix auto column width detection not working on Carousel 3
@@ -152,8 +152,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix filter by Role option not working on User List block
 
 ##### Improvements
-* Changed the Post Offset option to an Input Range control
+* Added Pagination Style options on Module blocks
 * Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
+* Changed the Post Offset option to an Input Range control
+* Changed the default color on blocks, from using wp--preset--color to a predefined color
 
 = 3.0.0 =
 ##### Bug Fixes

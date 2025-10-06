@@ -4,7 +4,7 @@ import { applyFilters } from '@wordpress/hooks';
 
 const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData }) => {
     /* option default value */
-    const { block_settings = {} } = settingValues;
+    const { block_settings = {}, features = [] } = settingValues;
     const {
         meta_show = true,
         meta_author = true,
@@ -52,7 +52,7 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
                     value={meta_comment}
                     updateValue={updateValue}
                 />
-                {applyFilters('gutenverse.dashboard.news.block', additionalMenu, { block_settings: block_settings, updateValue: updateValue })}
+                {applyFilters('gutenverse.dashboard.news.block', additionalMenu, { block_settings: block_settings, updateValue: updateValue, features })}
             </>}
 
             <ControlSelect

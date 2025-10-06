@@ -376,5 +376,7 @@ class Hero extends StyleAbstract {
 				)
 			);
 		}
+
+		do_action( 'gvnews_hero_style', $this );
 	}
 }

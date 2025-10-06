@@ -321,6 +321,12 @@
         "categoryButtonBoxShadowHover": {
             "type": "object"
         },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}
