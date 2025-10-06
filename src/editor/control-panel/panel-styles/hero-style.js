@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { applyFilters } from '@wordpress/hooks';
 
 const getHeroStyle = (elementId, attributes) => {
     let data = [];
@@ -281,7 +282,40 @@ const getHeroStyle = (elementId, attributes) => {
         ],
     });
 
-    return data;
+    isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
+        'type': 'color',
+        'id': 'postReviewMetaStarColor',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa, .${elementId} .gvnews_heroblock .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['postReviewMetaStarSize']) && data.push({
+        'type': 'unitPoint',
+        'id': 'postReviewMetaStarSize',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    return [
+        ...data,
+        ...applyFilters(
+            'gvnews.style.heroStyle',
+            [],
+            {
+                elementId,
+                attributes,
+            }
+        )
+    ];
 };
 
 

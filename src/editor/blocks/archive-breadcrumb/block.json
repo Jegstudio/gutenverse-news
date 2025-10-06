@@ -41,11 +41,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -99,10 +99,20 @@
         },
         "zIndex": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
-    "keywords": ["single", "archive", "breadcrumb"]
+    "keywords": [
+        "single",
+        "archive",
+        "breadcrumb"
+    ],
+    "gvnewsRemoved": true
 }

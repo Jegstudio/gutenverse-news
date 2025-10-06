@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import { SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
 
 export const settingPanel = (props) => {
@@ -59,5 +60,6 @@ export const settingPanel = (props) => {
             description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
             component: CheckboxControl
         },
+        ...applyFilters('gvnews.panel.contentSetting', [], props)
     ];
 };

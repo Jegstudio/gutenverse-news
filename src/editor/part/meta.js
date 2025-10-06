@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { formatDateString } from '../utils/date-util';
 import { timeDifference } from '../utils/date-util';
-import { RawHTML } from '@wordpress/element';
+import { applyFilters } from '@wordpress/hooks';
 
 const MetaAuthor = props => {
     if (props.post.author) {
@@ -54,6 +54,7 @@ const MetaModule1 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_author && <MetaAuthor {...props} />}
             {option.meta_date && <MetaDate {...props} />}
             {option.meta_comment && <MetaComments {...props} />}
@@ -70,6 +71,7 @@ const MetaModule2 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_date && <MetaDate {...props} />}
         </div>
     );
@@ -84,6 +86,7 @@ const MetaModule3 = (props) => {
 
     return (
         <div className="gvnews_post_meta">
+            { applyFilters('gvnews.part.meta', [], {post, option}) }
             {option.meta_author && <MetaAuthor {...props} />}
             {option.meta_date && <MetaDate {...props} />}
         </div>

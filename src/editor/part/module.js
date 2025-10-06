@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useIsFirstRender } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -27,6 +27,7 @@ const BlockModule = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         clientId,
         setBlockRef,
         moduleName,
@@ -69,9 +70,12 @@ const BlockModule = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        paginationWrapperAlign,
+        paginationDisableSeparator
     } = attributes;
 
     const elementRef = useRef(null);
+    const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -102,9 +106,12 @@ const BlockModule = compose(
     });
     const [forceReload, setForceReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [postStart, setPostStart] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(paginationPost);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
-    const firstRender = useRef(true);
+    const firstRender = useIsFirstRender();
 
     useEffect(() => {
         if (elementRef) {
@@ -113,15 +120,61 @@ const BlockModule = compose(
     }, [elementRef]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
+            let ovr = {
+                ...attributes,
+                paginationWrapperAlign: {...paginationWrapperAlign},
+                paginationDisableSeparator: true
+            };
+            ovr['paginationWrapperAlign'][device] = 'start';
+            setAttributes(ovr);
+        }
+    }, [showNavText]);
+
+    useEffect(() => {
+        if (paginationPost > 0) {
+            setPostPaginationLoaded(parseInt(paginationPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                paginationPost: 5
+            });
+        }
+    }, [paginationPost]);
+
+    useEffect(() => {
+        if (firstRender) {
             return;
         }
         getTrim([]);
+        setIsLoaded(false);
         setPage(1);
         setForceReload(!forceReload);
     }, [
         paginationMode,
-        paginationPost,
+        postPaginationLoaded,
         activeFilter,
         contentType,
         includeOnly,
@@ -134,8 +187,8 @@ const BlockModule = compose(
         includeTag,
         excludeTag,
         sortBy,
-        numberPost,
-        postOffset,
+        postLoaded,
+        postStart,
     ]);
 
 
@@ -157,12 +210,15 @@ const BlockModule = compose(
     ]);
 
     useEffect(() => {
+        if (firstRender) {
+            return;
+        }
         let attr = {
             contentType,
             uniqueContent,
             includeOnly,
             postType,
-            numberPost,
+            numberPost: postLoaded,
             includePost,
             excludePost,
             includeCategory,
@@ -172,9 +228,9 @@ const BlockModule = compose(
             excludeTag,
             sortBy,
             page,
-            paginationPost: paginationPost || numberPost,
+            paginationPost: postPaginationLoaded || postLoaded,
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
-            postOffset,
+            postOffset: postStart,
             advancedResponse: true,
         };
         if (activeFilter['value'] != -100) {
@@ -199,7 +255,7 @@ const BlockModule = compose(
         }).then((data) => {
             const { result = [], ...pagination } = JSON.parse(data);
             setNextPrevTotalPagination(pagination);
-            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+            if (paginationMode === 'loadmore' || paginationMode === 'scrollload') {
                 result.length > 0 ? getTrim([...postData, ...result]) : null;
                 return;
             }
@@ -208,11 +264,10 @@ const BlockModule = compose(
             setOverlay(false);
             setIsLoaded(true);
         });
-    }, [ page, forceReload ]);
+    }, [page, forceReload]);
 
     useEffect(() => {
-        if(firstRender.current) {
-            firstRender.current = false;
+        if (firstRender) {
             return;
         }
         if (postData.length > 0) {
@@ -226,12 +281,12 @@ const BlockModule = compose(
                 metaDateFormatCustom,
                 postData,
                 isLoadMore: (paginationMode === 'loadmore' || paginationMode === 'scrollload'),
-                numberPost,
-                paginationPost,
+                numberPost: postLoaded,
+                paginationPost: postPaginationLoaded,
                 page,
             }} />;
             setBlock(allColumns);
-        } else {
+        } else if (isLoaded) {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
         return () => setBlock(<ModuleSkeleton />);
@@ -269,7 +324,7 @@ const BlockModule = compose(
         headerDefault,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
-            setActiveFilter({value, label});
+            setActiveFilter({ value, label });
             setActiveType(type);
             setLoadClass('');
             setOverlay(true);
@@ -296,7 +351,7 @@ const BlockModule = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}

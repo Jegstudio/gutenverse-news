@@ -125,6 +125,8 @@ const searchCustomPostTemplate = input => new Promise(resolve => {
     });
 });
 
+const gutenverseProActive = (window.GVNewsConfig && window.GVNewsConfig.gutenversePro);
+
 // const phpFunctionCaller = input => new Promise(resolve => {
 //     apiFetch({
 //         path: addQueryArgs('/gvnews-client/v1/php-function-caller'),
@@ -165,10 +167,20 @@ const getParentColumnWidth = (parents, getBlock) => {
 };
 
 const getModuleOptions = () => {
-    if (window.GVNewsConfig && window.GVNewsConfig.moduleOption) {
-        return window.GVNewsConfig.moduleOption;
-    }
 
+    const { moduleOption = {} } = window.GVNewsConfig;
+    const defaultOption = {
+        meta_show: true,
+        meta_comment: true,
+        meta_author: true,
+        meta_rating: true,
+        meta_date: true,
+        meta_views: true,
+        date_format: 'F j, Y',
+        date_module: 'F j, Y',
+        date_type: 'published', /* publish |  modified | both */
+        post_count: 0,
+    };
     return {
         string: {
             read_more: __('Read more', 'gutenverse-news'),
@@ -179,18 +191,10 @@ const getModuleOptions = () => {
             no_content: __('No Content Available', 'gutenverse-news'),
         },
         option: {
-            meta_show: true,
-            meta_comment: true,
-            meta_author: true,
-            meta_rating: true,
-            meta_date: true,
-            meta_views: true,
-            date_format: 'F j, Y',
-            date_module: 'F j, Y',
-            date_type: 'published', /* publish |  modified | both */
-            post_count: 0,
+            ...defaultOption,
+            ...moduleOption,
         }
     };
 };
 
-export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions };
+export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions, gutenverseProActive };

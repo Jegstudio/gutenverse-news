@@ -66,6 +66,16 @@ class Editor_Assets {
 			'gutenverse-news',
 			GUTENVERSE_NEWS_LANG_DIR
 		);
+		wp_enqueue_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', array( 'gutenverse-news-blocks', 'wp-data', 'wp-dom-ready', 'wp-notices' ), GUTENVERSE_NEWS_VERSION, true );
+		wp_localize_script(
+			'gvnews-deprecated-blocks',
+			'GVNwsDeprecated',
+			array(
+				'isPro'     => gutenverse_pro_active(),
+				'dismissed' => get_transient( 'deprecated_gutenverse_news_dismissed' ),
+				'apiNonce'  => wp_create_nonce( 'gvnews_dismiss_notice' ),
+			)
+		);
 		do_action( 'gvnews_after_editor_assets' );
 	}
 
@@ -78,7 +88,7 @@ class Editor_Assets {
 		$config['imgDir']          = GUTENVERSE_NEWS_URL . '/assets/img';
 		$config['gvnews_ajax_url'] = esc_url_raw( add_query_arg( array( 'ajax-request' => 'gvnews' ), esc_url( gvnews_home_url_multilang( '/', 'relative' ) ) ) );
 		$config['moduleOption']    = $this->get_module_option();
-
+		$config['gutenversePro']   = gutenverse_pro_active();
 		return apply_filters( 'gvnews_editor_config', $config );
 	}
 
@@ -105,28 +115,11 @@ class Editor_Assets {
 	 * @return array
 	 */
 	public function get_module_option() {
-		$data = array(
-			'string' => array(
-				'read_more'  => esc_html__( 'Read more', 'gutenverse-news' ),
-				'next'       => esc_html__( 'Next', 'gutenverse-news' ),
-				'previous'   => esc_html__( 'Previous', 'gutenverse-news' ),
-				'load_more'  => esc_html__( 'Load More', 'gutenverse-news' ),
-				'by'         => esc_html__( 'by', 'gutenverse-news' ),
-				'no_content' => esc_html__( 'No Content Available', 'gutenverse-news' ),
-			),
-			'option' => array(
-				'meta_show'    => true,
-				'meta_comment' => true,
-				'meta_author'  => true,
-				'meta_rating'  => true,
-				'meta_date'    => true,
-				'meta_views'   => true,
-				'date_format'  => get_option( 'date_format' ),
-				'date_module'  => get_option( 'date_format' ),
-				'date_type'    => 'published', /* publish |  modified | both */
-				'post_count'   => wp_count_posts(),
-			),
-		);
+
+		$data                = gvnews_get_option( 'block_settings', array() );
+		$data['post_count']  = wp_count_posts();
+		$data['date_format'] = get_option( 'date_format' );
+		$data['date_module'] = get_option( 'date_format' );
 		return apply_filters( 'gvnews_module_options', $data );
 	}
 }

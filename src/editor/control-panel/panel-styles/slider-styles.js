@@ -6,11 +6,34 @@ const getSliderStyle = (elementId, attributes) => {
     /**
      * Panel General
      */
-    isNotEmpty(attributes['overrideOverlay']) && data.push({
-        'type': 'background',
-        'id': 'overrideOverlay',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item:before`,
-    });
+    if (isNotEmpty(attributes['overrideOverlay']) && isNotEmpty(attributes['isOverrideOverlay']) && attributes['overlayOption'] === 'gradient') {
+        data.push({
+            'type': 'plain',
+            'id': 'overrideOverlay',
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'function',
+                    'functionName': 'customHandleBackground',
+                }
+            ],
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item:before`,
+        });
+    }
+
+    if (isNotEmpty(attributes['normalOverlay']) && attributes['overlayOption'] === 'normal') {
+        data.push({
+            'type': 'color',
+            'id': 'normalOverlay',
+            'properties': [
+                {
+                    'name': 'background-color',
+                    'valueType': 'direct',
+                },
+            ],
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item:before`,
+        });
+    }
 
     /**
      * Panel Border

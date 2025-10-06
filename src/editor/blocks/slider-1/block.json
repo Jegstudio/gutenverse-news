@@ -4,6 +4,7 @@
     "title": "Slider 1",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
     "description": "Your Block description.",
+    "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
         "elementId": {
@@ -229,6 +230,10 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

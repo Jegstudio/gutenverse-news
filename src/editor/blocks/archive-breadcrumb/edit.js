@@ -2,15 +2,13 @@ import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef, useEffect } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
 
 const ArchiveBreadcrumb = compose(
     withPartialRender,
@@ -45,6 +43,7 @@ const ArchiveBreadcrumb = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-archive-breadcrumb',
+            'gvnews-deprecated-block',
             elementId,
             animationClass,
             displayClass,
@@ -53,8 +52,7 @@ const ArchiveBreadcrumb = compose(
     });
 
     return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <PanelDeprecated title="Archive Breadcrumb" />
         <div {...blockProps}>
             <div className={'gvnews-archive-breadcrumb'}>
                 <div id="breadcrumbs">
@@ -71,6 +69,7 @@ const ArchiveBreadcrumb = compose(
                     </span>
                 </div>
             </div>
+            <DeprecatedOverlay />
         </div>
     </>;
 });

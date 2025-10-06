@@ -1,17 +1,19 @@
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { compose } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
-
+import PanelDeprecated from '../../panels/panel-deprecated';
+import DeprecatedOverlay from '../../part/deprecated-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar } from 'gutenverse-core/components';
+import { gutenverseProActive } from '../../utils/helper';
 
 const Hero9Block = compose(
     withPartialRender,
@@ -19,6 +21,7 @@ const Hero9Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         setBlockRef,
         clientId,
         isSelected
@@ -79,46 +82,60 @@ const Hero9Block = compose(
         ref: elementRef
     });
 
-    return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                <HeroHandler
-                    {...{
-                        heroType: '9',
-                        elementRef,
-                        columnWidth,
-                        sliderItem,
-                        numberPost,
-                        postOffset,
-                        contentType,
-                        uniqueContent,
-                        includeOnly,
-                        postType,
-                        includePost,
-                        excludePost,
-                        includeCategory,
-                        excludeCategory,
-                        includeAuthor,
-                        includeTag,
-                        excludeTag,
-                        sortBy,
-                        dateType: metaDateType,
-                        dateFormat: metaDateFormat,
-                        dateFormatCustom: metaDateFormatCustom,
-                        heroStyle,
-                        enableslider,
-                        autoplay,
-                        autoplayDelay,
-                        heroMargin,
-                        heightDesktop,
-                    }}
-                />
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelDeprecated title="Hero 9" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                </>
+            )}
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    <HeroHandler
+                        {...{
+                            heroType: '9',
+                            elementRef,
+                            columnWidth,
+                            sliderItem,
+                            numberPost,
+                            postOffset,
+                            contentType,
+                            uniqueContent,
+                            includeOnly,
+                            postType,
+                            includePost,
+                            excludePost,
+                            includeCategory,
+                            excludeCategory,
+                            includeAuthor,
+                            includeTag,
+                            excludeTag,
+                            sortBy,
+                            dateType: metaDateType,
+                            dateFormat: metaDateFormat,
+                            dateFormatCustom: metaDateFormatCustom,
+                            heroStyle,
+                            enableslider,
+                            autoplay,
+                            autoplayDelay,
+                            heroMargin,
+                            heightDesktop,
+                            attributes,
+                            setAttributes,
+                        }}
+                    />
+                    {isDeprecated && <DeprecatedOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Hero9Block;
