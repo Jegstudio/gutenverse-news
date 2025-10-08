@@ -3,6 +3,8 @@ import { isBlockActive } from 'gutenverse-core/helper';
 import { updateBlockList } from 'gutenverse-core/editor-helper';
 import { gutenverseProActive } from './utils/helper';
 import { loadUpgradeNotice } from './upgrade-notice/notice';
+import { addFilter } from '@wordpress/hooks';
+import { plainGeneratorFunction } from './utils/styling-util';
 
 const registerBlocks = () => {
     const r = require.context('./blocks', true, /index\.js$/);
@@ -39,6 +41,11 @@ const isDeprecated = (metadata) => {
 }
 
 (() => {
+    addFilter(
+        'gutenverse-css-generator-plain-function',
+        'gutenverse/css/generator/plain/function',
+        (value, props) => plainGeneratorFunction(value, props)
+    );
     registerBlocks();
     loadUpgradeNotice();
 })();

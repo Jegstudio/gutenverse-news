@@ -8,6 +8,7 @@ import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 
 export const panelList = () => {
     return [
@@ -65,6 +66,12 @@ export const panelList = () => {
             title: __('Category Label', 'gutenverse-news'),
             initialOpen: false,
             panelArray: categoryStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Pagination Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationStylePanel,
             tabRole: TabStyle
         },
         {

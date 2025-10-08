@@ -329,6 +329,111 @@
         "categoryButtonBoxShadowHover": {
             "type": "object"
         },
+        "paginationWrapperMargin": {
+            "type": "object"
+        },
+        "paginationWrapperAlign": {
+            "type": "object"
+        },
+        "paginationDisableSeparator": {
+            "type": "boolean"
+        },
+        "paginationBtnTypography": {
+            "type": "object"
+        },
+        "paginationBtnWidth": {
+            "type": "object"
+        },
+        "paginationBtnIconSize": {
+            "type": "object"
+        },
+        "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationBtnColor": {
+            "type": "object"
+        },
+        "paginationBtnHoverColor": {
+            "type": "object"
+        },
+        "paginationBtnDisableColor": {
+            "type": "object"
+        },
+        "paginationBtnBackground": {
+            "type": "object"
+        },
+        "paginationBtnGap": {
+            "type": "object"
+        },
+        "paginationBtnHoverBackground": {
+            "type": "object"
+        },
+        "paginationBtnDisableBackground": {
+            "type": "object"
+        },
+        "paginationBtnBorder": {
+            "type": "object"
+        },
+        "paginationBtnBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnHoverBorder": {
+            "type": "object"
+        },
+        "paginationBtnHoverBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnHoverBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnDisableBorder": {
+            "type": "object"
+        },
+        "paginationBtnDisableBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnDisableBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnBoxShadow": {
+            "type": "object"
+        },
+        "paginationBtnHoverBoxShadow": {
+            "type": "object"
+        },
+        "paginationBtnDisableBoxShadow": {
+            "type": "object"
+        },
+        "paginationSeparatorStyle": {
+            "type": "string"
+        },
+        "paginationSeparatorColor": {
+            "type": "object"
+        },
+        "paginationSeparatorWidth": {
+            "type": "object"
+        },
+        "paginationBtnDisableOpacity": {
+            "type": "string"
+        },
+        "paginationBtnIconSpacing": {
+            "type": "object"
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}
