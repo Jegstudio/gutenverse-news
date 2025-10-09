@@ -35,7 +35,7 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
         }).catch((err) => {
             console.log(err);
         });
-    }
+    };
 
     const showUpgradePopup = (id, value) => {
         setPopupActive(true);
@@ -53,18 +53,20 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             title: 'View Counter',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
-        }, {
+        },
+        {
             id: 'post_review',
             title: 'Post Review',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
-        }, {
-            id: 'like',
+        },
+        {
+            id: 'like_dislike_button',
             title: 'Like & Dislike Post',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
-        }
-    ]
+        },
+    ];
 
     return (
         <div>
@@ -94,7 +96,7 @@ const SaveButton = (props) => {
             </div>
         </div>, props);
     return <SaveButton />;
-}
+};
 
 const Feature = (props) => {
 
@@ -118,7 +120,7 @@ const Feature = (props) => {
             </div>
         </div>, props);
     return <FeatureCard />;
-}
+};
 
 
 
