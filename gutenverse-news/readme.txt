@@ -144,6 +144,13 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.0.1 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+
+= 3.0.1 =
 ##### Bug Fixes
 * Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
 * Fix auto column width detection not working on Carousel 3
