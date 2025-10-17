@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-prev-next",
     "title": "Post Next Prev",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Prev_Next",

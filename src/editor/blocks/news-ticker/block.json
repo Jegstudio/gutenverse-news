@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-news-ticker",
     "title": "News Ticker",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\News_Ticker",
