@@ -149,6 +149,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Bug Fixes
 * Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
 
 = 3.0.1 =
 ##### Bug Fixes
