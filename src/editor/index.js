@@ -24,17 +24,21 @@ const registerBlocks = () => {
 };
 
 const getData = (metadata) => {
-    if (metadata?.supports?.inserter === false && !metadata.gvnewsRemoved) {
-        if (gutenverseProActive) {
-            metadata.supports.inserter = true;
+    if (metadata?.supports?.inserter === false) {
+        if (!metadata.gvnewsRemoved) {
             metadata.gutenversePro = true;
+            metadata.tier = ['professional', 'personal', 'agency', 'enterprise'];
+            metadata.min_tier = 'professional';
+            if (gutenverseProActive) {
+                metadata.supports.inserter = true;
+            }
         }
     }
     return metadata;
 }
 
 const isDeprecated = (metadata) => {
-    if (metadata?.supports?.inserter === false) {
+    if (metadata?.gvnewsRemoved === true) {
         return true;
     }
     return false;

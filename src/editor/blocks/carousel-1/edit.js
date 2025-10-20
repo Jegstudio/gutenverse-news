@@ -1,3 +1,4 @@
+import { applyFilters } from '@wordpress/hooks';
 import { compose } from '@wordpress/compose';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
@@ -16,7 +17,7 @@ import PanelDeprecated from '../../panels/panel-deprecated';
 import DeprecatedOverlay from '../../part/deprecated-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 
 const moduleOption = getModuleOptions();
 
@@ -152,13 +153,13 @@ const Carousel1Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
                 <div key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12">
                     <RenderColumn {...moduleData} />
                 </div>
             );
-        }else {
+        } else {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
         }
     }
@@ -170,7 +171,7 @@ const Carousel1Block = compose(
 
             let target = document;
             const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
+            if (iframe) {
                 target = iframe.contentDocument;
             }
 
@@ -272,7 +273,7 @@ const Carousel1Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -295,7 +296,7 @@ const Carousel1Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
@@ -317,7 +318,7 @@ const Carousel1Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         initSlider();
@@ -339,6 +340,13 @@ const Carousel1Block = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
