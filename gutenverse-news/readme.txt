@@ -146,6 +146,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 3.0.1 =
 ##### Improvements
 * Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
 
 ##### Bug Fixes
 * Fix slider navigation icon not showing on Editor
