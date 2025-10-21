@@ -4566,9 +4566,6 @@
       }
     }
 
-    .popularpost_item:last-child {
-      margin-bottom: 0;
-    }
   }
 
   .gvnews_block_heading {
@@ -7370,68 +7367,6 @@
   }
 }
 
-/*** Widget: Popular Post ***/
-
-.popularpost_item {
-  display: block;
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 60px;
-
-  .gvnews_post_title {
-    font-size: 14px;
-    line-height: 1.35em;
-    margin: 0 0 5px;
-
-    a:before {
-      content: attr(data-num);
-      position: absolute;
-      font-size: 18px;
-      text-align: center;
-      top: 0;
-      left: 0;
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      font-style: italic;
-      background: #eee;
-      padding: 10px;
-      border-radius: 100%;
-      box-sizing: content-box;
-    }
-  }
-
-  &:first-child {
-    padding-left: 0;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #eee;
-
-    .gvnews_post_title {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 15px auto 5px;
-      line-height: 1.25;
-      padding-right: 80px;
-      position: relative;
-
-      a:before {
-        right: 0;
-        left: auto;
-        text-align: center;
-        height: auto;
-        line-height: 1;
-        width: 50px;
-        font-size: 36px;
-        border-radius: 0;
-        background: none;
-        border-left: 1px solid #eee;
-        color: #d7d7d7;
-        -webkit-animation: none;
-      }
-    }
-  }
-}
-
 /* 1 Column Layout */
 
 /* ------------------------------------------------------------------------- *
@@ -9073,11 +9008,6 @@ h3.gvnews_author_name {
     display: none;
   }
 
-  /* Widgets */
-
-  .popularpost_item:first-child .gvnews_post_title {
-    font-size: 20px;
-  }
 
   .gvnews_ad_widget .ad_container {
     padding: 0;
@@ -9409,43 +9339,6 @@ h3.gvnews_author_name {
     font-size: 30px;
   }
 
-  /* Widgets */
-
-  .popularpost_item {
-    padding-left: 50px;
-    margin-bottom: 15px;
-
-    &:first-child {
-      .gvnews_post_title {
-        font-size: 15px;
-        line-height: 1.4;
-        padding-right: 40px;
-        margin-top: 10px;
-
-        a:before {
-          font-size: 26px;
-          width: 30px;
-        }
-      }
-
-      &:hover .gvnews_post_title a:before {
-        font-size: 26px;
-        width: 30px;
-      }
-    }
-
-    .gvnews_post_title {
-      font-size: 12px;
-      line-height: 1.4;
-
-      a:before {
-        font-size: 15px;
-        width: 18px;
-        height: 18px;
-        line-height: 18px;
-      }
-    }
-  }
 
   /*** Single Post ***/
 
