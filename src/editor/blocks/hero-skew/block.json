@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-skew",
     "title": "Hero Skew",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",

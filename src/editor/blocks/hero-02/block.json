@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-2",
     "title": "Hero 2",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",

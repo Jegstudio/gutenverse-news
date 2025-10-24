@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,6 +142,19 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+= 3.0.1 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
+* Bring back the Module 9 , Module 17 and Module 21
+* Changing Block title :
+    - Module 17 -> Module 10
+    - Module 21 -> Module 11
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
 
 = 3.0.1 =
 ##### Bug Fixes

@@ -29,21 +29,9 @@ class Editor_Assets {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style(
-			'gvnews-icon-webfont',
-			GUTENVERSE_NEWS_URL . '/assets/fonts/jegicon/fonts/jegicon.woff',
-			null,
-			null
-		);
-		wp_enqueue_style(
-			'gvnews-icon',
-			GUTENVERSE_NEWS_URL . '/assets/fonts/jegicon/jegicon.css',
-			null,
-			GUTENVERSE_NEWS_VERSION
-		);
-		wp_enqueue_style(
 			'gvnews-gutenverse-editor-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array( 'gvnews-icon-webfont', 'gvnews-icon' ),
+			array(),
 			GUTENVERSE_NEWS_VERSION,
 		);
 
