@@ -428,8 +428,7 @@
         }
     },
     "supports": {
-        "className": false,
-        "inserter": false
+        "className": false
     },
     "keywords": []
 }

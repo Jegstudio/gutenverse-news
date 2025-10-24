@@ -142,6 +142,7 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+* Bring back the Module 9 , Module 17 and Module 21
 
 = 3.0.1 =
 ##### Improvements
