@@ -142,6 +142,20 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+= 3.0.1 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
+* Bring back the Module 9 , Module 17 and Module 21
+* Changing Block title :
+    - Module 17 -> Module 10
+    - Module 21 -> Module 11
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
+* Fix News Ticker arrow icon not clickable (only arrow box worked)
 
 = 3.0.1 =
 ##### Bug Fixes

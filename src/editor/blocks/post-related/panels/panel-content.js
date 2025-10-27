@@ -91,73 +91,73 @@ export const contentPanel = props => {
                 },
                 {
                     image: <img src={`${imgDir}/content-10.png`} />,
-                    value: 'template_10',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-11.png`} />,
-                    value: 'template_11',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-12.png`} />,
-                    value: 'template_12',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-13.png`} />,
-                    value: 'template_13',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-14.png`} />,
-                    value: 'template_14',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-15.png`} />,
-                    value: 'template_15',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-16.png`} />,
-                    value: 'template_16',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    image: <img src={`${imgDir}/content-17.png`} />,
                     value: 'template_17',
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
+                    image: <img src={`${imgDir}/content-11.png`} />,
+                    value: 'template_21',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-12.png`} />,
+                    value: 'template_10',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-13.png`} />,
+                    value: 'template_11',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-14.png`} />,
+                    value: 'template_12',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-15.png`} />,
+                    value: 'template_13',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-16.png`} />,
+                    value: 'template_14',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    image: <img src={`${imgDir}/content-17.png`} />,
+                    value: 'template_15',
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
                     image: <img src={`${imgDir}/content-18.png`} />,
-                    value: 'template_18',
+                    value: 'template_16',
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
                     image: <img src={`${imgDir}/content-19.png`} />,
-                    value: 'template_19',
+                    value: 'template_18',
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
                     image: <img src={`${imgDir}/content-20.png`} />,
-                    value: 'template_20',
+                    value: 'template_19',
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
                     image: <img src={`${imgDir}/content-21.png`} />,
-                    value: 'template_21',
+                    value: 'template_20',
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },

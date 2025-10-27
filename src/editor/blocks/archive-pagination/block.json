@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-archive-pagination",
     "title": "Archive Pagination",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",

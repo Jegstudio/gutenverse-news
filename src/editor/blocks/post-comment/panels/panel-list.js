@@ -15,23 +15,21 @@ import { separatorPanel } from './panel-separator';
 
 
 export const panelList = () => {
-    const domain = 'gutenverse-news';
-
     return [
         {
-            title: __('General', domain),
+            title: __('General', 'gutenverse-news'),
             initialOpen: false,
             panelArray: generalPanel,
             tabRole: TabSetting
         },
         {
-            title: __('Display', domain),
+            title: __('Display', 'gutenverse-news'),
             initialOpen: false,
             panelArray: responsivePanel,
             tabRole: TabSetting
         },
         {
-            title: __('Spacing', domain),
+            title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => advancePanel({
                 ...props,
@@ -40,57 +38,57 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Heading Typography', domain),
+            title: __('Heading Typography', 'gutenverse-news'),
             panelArray: headingTypographyPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Text Typography', domain),
+            title: __('Text Typography', 'gutenverse-news'),
             panelArray: textTypographyPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Link Typography', domain),
+            title: __('Link Typography', 'gutenverse-news'),
             panelArray: linkTypographyPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Label Typography', domain),
+            title: __('Label Typography', 'gutenverse-news'),
             panelArray: labelTypographyPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Comment Inputs', domain),
+            title: __('Comment Inputs', 'gutenverse-news'),
             panelArray: inputPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Comment Main', domain),
+            title: __('Comment Main', 'gutenverse-news'),
             panelArray: mainCommentPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Comment Reply', domain),
+            title: __('Comment Reply', 'gutenverse-news'),
             panelArray: replyPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Separator', domain),
+            title: __('Separator', 'gutenverse-news'),
             panelArray: separatorPanel,
             tabRole: TabStyle,
         },
         {
-            title: __('Avatar', domain),
+            title: __('Avatar', 'gutenverse-news'),
             panelArray: avatarPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Submit Button', domain),
+            title: __('Submit Button', 'gutenverse-news'),
             panelArray: buttonPanel,
             tabRole: TabStyle
         },
         {
-            title: __('Background', domain),
+            title: __('Background', 'gutenverse-news'),
             initialOpen: false,
             panelArray: props => backgroundPanel({
                 ...props,
@@ -103,7 +101,7 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
-            title: __('Border', domain),
+            title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: borderPanel,
             tabRole: TabStyle
