@@ -146,21 +146,6 @@ class Frontend_Assets {
 			array(),
 			GUTENVERSE_NEWS_VERSION
 		);
-
-		wp_enqueue_style(
-			'gvnews-icon',
-			GUTENVERSE_NEWS_URL . '/assets/fonts/jegicon/jegicon.css',
-			array(),
-			GUTENVERSE_NEWS_VERSION
-		);
-
-		wp_enqueue_style(
-			'gvnews-icon-webfont',
-			GUTENVERSE_NEWS_URL . '/assets/fonts/jegicon/fonts/jegicon.woff',
-			array(),
-			GUTENVERSE_NEWS_VERSION
-		);
-
 		do_action( 'gvnews_after_frontend_styles' );
 	}
 

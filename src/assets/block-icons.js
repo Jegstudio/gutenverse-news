@@ -209,7 +209,7 @@ export const Block16BlockSvg = () => {
     return gutenverseProActive ? <Block16BlockPro /> : <Block16Block />;
 };
 export const Block17BlockSvg = () => {
-    return gutenverseProActive ? <Block17BlockPro /> : <Block17Block />;
+    return <Block17Block />;
 };
 export const Block18BlockSvg = () => {
     return gutenverseProActive ? <Block18BlockPro /> : <Block18Block />;
@@ -221,7 +221,7 @@ export const Block20BlockSvg = () => {
     return gutenverseProActive ? <Block20BlockPro /> : <Block20Block />;
 };
 export const Block21BlockSvg = () => {
-    return gutenverseProActive ? <Block21BlockPro /> : <Block21Block />;
+    return <Block21Block />;
 };
 export const Block22BlockSvg = () => {
     return gutenverseProActive ? <Block22BlockPro /> : <Block22Block />;

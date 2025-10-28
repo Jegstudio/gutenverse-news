@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-block-8",
     "title": "Module 8",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",

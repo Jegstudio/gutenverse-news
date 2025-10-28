@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-tag",
     "title": "Post Tag",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Tag",

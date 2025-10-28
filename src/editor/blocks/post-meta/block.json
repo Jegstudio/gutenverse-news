@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-meta",
     "title": "Post Meta",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
