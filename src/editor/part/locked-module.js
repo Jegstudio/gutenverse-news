@@ -16,12 +16,12 @@ import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
-import PanelDeprecated from '../panels/panel-deprecated';
-import DeprecatedOverlay from './deprecated-overlay';
+import PanelUpgradePro from '../panels/panel-upgrade-pro';
+import UpgradeProOverlay from './upgrade-pro-overlay';
 
 const moduleOption = getModuleOptions();
 
-const DeprecatedBlockModule = compose(
+const LockedBlockModule = compose(
     withPartialRender,
     withPassRef
 )((props) => {
@@ -291,7 +291,7 @@ const DeprecatedBlockModule = compose(
     };
 
     return <>
-        <PanelDeprecated title={`Module ${moduleName}`} />
+        <PanelUpgradePro title={`Module ${moduleName}`} />
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                 <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
@@ -302,10 +302,10 @@ const DeprecatedBlockModule = compose(
                     </div>
                     <PaginationModule {...paginationData} />
                 </div>
-                <DeprecatedOverlay />
+                <UpgradeProOverlay />
             </div>
         </div>
     </>;
 });
 
-export default DeprecatedBlockModule;
+export default LockedBlockModule;

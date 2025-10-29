@@ -173,11 +173,11 @@ class Block extends Grab {
 	}
 
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		$deprecated = array(
 			'GUTENVERSE\NEWS\Block\Module\Module_10',
 			'GUTENVERSE\NEWS\Block\Module\Module_11',
