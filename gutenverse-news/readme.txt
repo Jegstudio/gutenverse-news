@@ -150,6 +150,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Changing Block title :
     - Module 17 -> Module 10
     - Module 21 -> Module 11
+* Introduce 53 new Pro blocks
 
 ##### Bug Fixes
 * Fix slider navigation icon not showing on Editor
