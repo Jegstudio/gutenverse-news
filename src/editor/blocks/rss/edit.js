@@ -17,8 +17,8 @@ import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
 import { getParentColumnWidth } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -200,7 +200,7 @@ const RssBlock = compose(
 
     return <>
         {isDeprecated ? (
-            <PanelDeprecated title="RSS" />
+            <PanelUpgradePro title="RSS" />
         ) : (
             <>
                 <CopyElementToolbar {...props} />
@@ -211,7 +211,7 @@ const RssBlock = compose(
             <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} `}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}
-                {isDeprecated && <DeprecatedOverlay />}
+                {isDeprecated && <UpgradeProOverlay />}
             </div>
         </div>
     </>;

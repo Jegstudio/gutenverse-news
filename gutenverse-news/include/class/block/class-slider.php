@@ -139,11 +139,11 @@ class Slider extends Grab {
 	}
 
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && 'GUTENVERSE\NEWS\Block\Slider\Slider_1' !== $this->attributes['gvnewsModule'] ) {
 			return true;
 		}

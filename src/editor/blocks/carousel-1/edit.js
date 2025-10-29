@@ -12,8 +12,8 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { getModuleOptions, gutenverseProActive } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -325,12 +325,12 @@ const Carousel1Block = compose(
 
     if (!gutenverseProActive) {
         return <>
-            <PanelDeprecated title="Carousel 1" />
+            <PanelUpgradePro title="Carousel 1" />
             <div  {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
-                    <DeprecatedOverlay />
+                    <UpgradeProOverlay />
                 </div>
             </div>
         </>;

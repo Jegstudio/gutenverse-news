@@ -15,8 +15,8 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { useSelect } from '@wordpress/data';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -355,12 +355,12 @@ const Carousel3Block = compose(
 
     if (!gutenverseProActive) {
         return <>
-            <PanelDeprecated title="Carousel 3" />
+            <PanelUpgradePro title="Carousel 3" />
             <div  {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
-                    <DeprecatedOverlay />
+                    <UpgradeProOverlay />
                 </div>
             </div>
         </>;

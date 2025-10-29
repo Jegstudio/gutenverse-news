@@ -136,7 +136,7 @@ class Post_Guten extends Block_Abstract {
 	public function render_frontend() {
 		$this->is_deprecated = $this->check_deprecated();
 		return '<div class="' . $this->generate_container_class() . '">' .
-				$this->render_content() . $this->render_deprecated() .
+				$this->render_content() . $this->render_overlay() .
 			'</div>';
 	}
 
@@ -154,7 +154,7 @@ class Post_Guten extends Block_Abstract {
 	 *
 	 * @return string
 	 */
-	protected function render_deprecated() {
+	protected function render_overlay() {
 		if ( $this->is_deprecated ) {
 			wp_enqueue_script( 'gvnews-deprecated-blocks' );
 			wp_enqueue_style( 'gvnews-deprecated-blocks' );

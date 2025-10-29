@@ -39,17 +39,19 @@ const registerBlocks = () => {
 };
 
 const getData = (metadata) => {
-    if (metadata?.supports?.inserter === false && !metadata.gvnewsRemoved) {
+    if (!metadata.gvnewsRemoved) {
         if (gutenverseProActive) {
             metadata.supports.inserter = true;
-            metadata.gutenversePro = true;
+            metadata.tier = ['professional', 'personal'];
+            metadata.min_tier = 'professional';
+
         }
     }
     return metadata;
 }
 
 const isDeprecated = (metadata) => {
-    if (metadata?.supports?.inserter === false) {
+    if (metadata?.gvnewsRemoved === true) {
         return true;
     }
     return false;

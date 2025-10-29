@@ -8,8 +8,8 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -82,7 +82,7 @@ const Hero13Block = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Hero 13" />
+                <PanelUpgradePro title="Hero 13" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
@@ -126,7 +126,7 @@ const Hero13Block = compose(
                             setAttributes,
                         }}
                     />
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

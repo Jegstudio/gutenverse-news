@@ -18,8 +18,8 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
 
 const moduleOption = getModuleOptions();
@@ -316,7 +316,7 @@ const Slider9Block = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Slider 9" />
+                <PanelUpgradePro title="Slider 9" />
 
             ) : (
                 <>
@@ -330,7 +330,7 @@ const Slider9Block = compose(
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
                     {(overlay && !firstRender.current) && <ModuleOverlay />}
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

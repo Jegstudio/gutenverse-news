@@ -126,11 +126,11 @@ class Hero extends Grab {
 		return $this->get_module( $options );
 	}
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		$deprecated = array(
 			'GUTENVERSE\NEWS\Block\Hero\Hero_6',
 			'GUTENVERSE\NEWS\Block\Hero\Hero_7',

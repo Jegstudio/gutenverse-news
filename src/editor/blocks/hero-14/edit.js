@@ -16,8 +16,8 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
 
 const Hero14Block = compose(
@@ -267,7 +267,7 @@ const Hero14Block = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Hero 14" />
+                <PanelUpgradePro title="Hero 14" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
@@ -283,7 +283,7 @@ const Hero14Block = compose(
                         {block}
                         {(overlay && !firstRender.current) && <ModuleOverlay />}
                     </div>
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>
