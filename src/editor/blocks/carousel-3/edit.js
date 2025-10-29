@@ -12,14 +12,14 @@ import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { useSelect } from '@wordpress/data';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
-
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 const moduleOption = getModuleOptions();
 
 const Carousel3Block = compose(
@@ -113,7 +113,7 @@ const Carousel3Block = compose(
             gvnewsLibrary = window.gvnews.library;
             let target = document;
             const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
+            if (iframe) {
                 target = iframe.contentDocument;
             }
             var blockCarousel = target.querySelectorAll(`.${elementId} .gvnews_postblock_carousel`);
@@ -195,13 +195,13 @@ const Carousel3Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
                 <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '6' : '12'} ${showNav ? 'shownav' : ''}`}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
-        }else {
+        } else {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
         }
     }
@@ -301,7 +301,7 @@ const Carousel3Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -324,7 +324,7 @@ const Carousel3Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
@@ -347,7 +347,7 @@ const Carousel3Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         initSlider();
@@ -368,6 +368,13 @@ const Carousel3Block = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
