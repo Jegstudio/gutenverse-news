@@ -14,8 +14,8 @@ import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -304,7 +304,7 @@ const Slider3Block = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Slider 3" />
+                <PanelUpgradePro title="Slider 3" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
@@ -317,7 +317,7 @@ const Slider3Block = compose(
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
                     {(overlay && !firstRender.current) && <ModuleOverlay />}
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>
