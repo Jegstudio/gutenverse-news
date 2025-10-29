@@ -79,6 +79,12 @@
     }
 }
 
+.gvnews-deprecated-block .deprecated-block-content.upgrade-to-pro .note {
+    position: absolute;
+    bottom: 16px;
+
+}
+
 .gutenverse-panel-wrapper {
     .deprecated-blocks-panel {
         margin: 16px;
@@ -320,6 +326,7 @@
                 font-size: 13px;
                 margin: 0;
                 color: #1E1E1E;
+
                 b {
                     font-weight: 700;
                 }

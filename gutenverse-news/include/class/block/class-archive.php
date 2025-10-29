@@ -75,7 +75,7 @@ class Archive extends Grab {
 		}
 
 		return '<div ' . $id . ' class="' . $classes . ' ' . esc_attr( $this->attributes['elClass'] ) . '" ' . $data . '>'
-					. $inner . $this->render_deprecated() .
+					. $inner . $this->render_overlay() .
 				'</div>';
 	}
 
