@@ -14,8 +14,8 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
-import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
+import { getBolockStyle } from './style/block-style';
 
 const moduleOption = getModuleOptions();
 
@@ -60,7 +60,7 @@ const Slider1Block = compose(
     const elementRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+    useDynamicStyle(elementId, attributes, getBolockStyle, elementRef);
 
     useEffect(() => {
         if (elementRef) {

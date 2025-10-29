@@ -4,6 +4,7 @@ import { filterPanel } from '../../../control-panel/panel-filter';
 import { sliderPanel } from '../../../control-panel/panel-slider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { titleStylePanel } from './panel-title-style';
 
 export const panelList = () => {
     return [
@@ -18,6 +19,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: filterPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Title Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: titleStylePanel,
+            tabRole: TabStyle,
         },
         {
             title: __('Category Label', 'gutenverse-news'),

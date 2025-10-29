@@ -46,6 +46,7 @@ class Slider extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
+		$this->slider_1_style();
 		if ( stristr( $this->attrs['gvnewsModule'], 'Slider_Overlay' ) ) {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
 				$this->handle_background( ".{$this->element_id} .gvnews_overlay_slider_wrapper:before", $this->attrs['overrideOverlay'] );
@@ -297,6 +298,56 @@ class Slider extends StyleAbstract {
 						return $this->handle_box_shadow( $value );
 					},
 					'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	// === PRIVATE FUNCTIONS ===
+
+	/**
+	 * Generate Style for slider-1
+	 *
+	 * @return void
+	 */
+	private function slider_1_style() {
+		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_1' ) ) {
+			return;
+		}
+
+		if ( isset( $this->attrs['titleTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item h2.gvnews_post_title a",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['titleTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['titleColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item h2.gvnews_post_title a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['titleColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['titleColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item h2.gvnews_post_title:hover a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['titleColorHover'],
 					'device_control' => false,
 				)
 			);

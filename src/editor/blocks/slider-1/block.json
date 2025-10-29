@@ -188,9 +188,6 @@
         "typographyContent": {
             "type": "object"
         },
-        "titleColor": {
-            "type": "object"
-        },
         "aHover": {
             "type": "object"
         },
@@ -234,6 +231,18 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleTypography": {
+            "type": "object",
+			"copyStyle": true
+        },
+        "titleColor": {
+            "type":"object",
+            "copyStyle": true
+        },
+        "titleColorHover": {
+            "type":"object",
+            "copyStyle": true
         }
     },
     "supports": {
