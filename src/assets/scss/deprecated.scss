@@ -69,6 +69,10 @@
                 background: #FFFFFF;
                 border-color: #FFFFFF;
             }
+
+            &:focus {
+                outline: none;
+            }
         }
 
         .note {
@@ -95,6 +99,11 @@
         flex-direction: row;
         gap: 12px;
         border-radius: 5px;
+
+        .deprecated-icon {
+            display: flex;
+            flex-direction: column;
+        }
 
         .deprecated-desc {
             font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
