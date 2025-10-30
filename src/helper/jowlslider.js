@@ -71,6 +71,8 @@
                                     onInit: function (info) {
                                         if ('undefined' !== typeof info.nextButton) {
                                             gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+                                            // if (info.container.classList.contains('gvnews_slider_type_1')) {
+                                            // }
                                         }
                                         if ('undefined' !== typeof info.prevButton) {
                                             gvnewsLibrary.addClass(info.prevButton, 'tns-prev');

@@ -119,8 +119,17 @@ class Slider_1 extends Slider_View_Abstract {
 				)
 			);
 
+			$data_navigation_icon = esc_attr(
+				wp_json_encode(
+					array(
+						'classNext' => $attr['nextButtonIcon'],
+						'classPrev' => $attr['prevButtonIcon'],
+					),
+				)
+			);
+
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
+			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\" data-navigation-icon=\"{$data_navigation_icon}\">
                     <div class=\"gvnews_slider_type_1 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>

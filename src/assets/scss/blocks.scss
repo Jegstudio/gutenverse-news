@@ -18613,12 +18613,21 @@ span.gvnews-category {
   }
 
   button {
-    &.tns-prev:before {
-      content: '\f104' !important;
-    }
-
-    &.tns-next:before {
-      content: '\f105' !important;
+    &.tns-prev,
+    &.tns-next {
+      transition: color 0.2s;
+      &::before {
+        display: none;
+      }
+      i {
+        transition: color 0.2s;
+        &.fab {
+          font-family: 'Font Awesome 6 Brands' !important;
+        }
+        &:not(.gtn):not(.fab) {
+          font-family: 'Font Awesome 6 Free' !important;
+        }
+      }
     }
   }
 

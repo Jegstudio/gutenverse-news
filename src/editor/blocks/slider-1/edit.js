@@ -14,7 +14,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
-import { getModuleOptions } from '../../utils/helper';
+import { addIconOnSlidernavigation, getModuleOptions } from '../../utils/helper';
 import { getBolockStyle } from './style/block-style';
 
 const moduleOption = getModuleOptions();
@@ -55,6 +55,8 @@ const Slider1Block = compose(
         autoplay,
         hoverEffect,
         autoplayDelay,
+        nextButtonIcon,
+        prevButtonIcon
     } = attributes;
 
     const elementRef = useRef(null);
@@ -290,7 +292,7 @@ const Slider1Block = compose(
             if(iframe) {
                 target = iframe.contentDocument;
             }
-            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
+            let slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
             if (slider.length) {
                 gvnewsLibrary.forEach(slider, function (ele) {
                     window.gvnews.slider({
@@ -308,6 +310,10 @@ const Slider1Block = compose(
             }
         }
     }, [block]);
+
+    useEffect(() => {
+        addIconOnSlidernavigation(elementRef, nextButtonIcon, prevButtonIcon);
+    }, [nextButtonIcon, prevButtonIcon, block]);
 
     return <>
         <CopyElementToolbar {...props} />

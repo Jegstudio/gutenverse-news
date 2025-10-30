@@ -131,6 +131,8 @@ class Slider extends Grab {
 			'fullsize_image'           => isset( $this->attributes['fimage'] ) ? $this->attributes['fimage'] : '',
 			'featured_position'        => isset( $this->attributes['fimagePosition'] ) ? $this->attributes['fimagePosition'] : '',
 			'short_code'               => $this->attributes['gvnewsModule'],
+			'nextButtonIcon'           => $this->attributes['nextButtonIcon'],
+			'prevButtonIcon'           => $this->attributes['prevButtonIcon'],
 		);
 
 		$content = $this->get_module( $attr );
