@@ -13,7 +13,7 @@ const Block3Block = compose(
         blockWidth  : 12,
     };
     const moduleName = '3';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
 });
 
 export default Block3Block;
