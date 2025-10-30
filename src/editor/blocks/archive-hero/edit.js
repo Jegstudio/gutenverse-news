@@ -12,8 +12,9 @@ import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -68,6 +69,13 @@ const ArchiveHero = compose(
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
             <div {...blockProps}>
