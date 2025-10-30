@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
 import { RangeControl, SelectControl, TextControl, ImageRadioControl } from 'gutenverse-core/controls';
-import { gutenverseProActive } from '../../../utils/helper';
 
 export const contentPanel = props => {
     const {
@@ -92,110 +91,106 @@ export const contentPanel = props => {
                 {
                     image: <img src={`${imgDir}/content-10.png`} />,
                     value: 'template_17',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
                 },
                 {
                     image: <img src={`${imgDir}/content-11.png`} />,
                     value: 'template_21',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
                 },
                 {
                     image: <img src={`${imgDir}/content-12.png`} />,
                     value: 'template_10',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-13.png`} />,
                     value: 'template_11',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-14.png`} />,
                     value: 'template_12',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-15.png`} />,
                     value: 'template_13',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-16.png`} />,
                     value: 'template_14',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-17.png`} />,
                     value: 'template_15',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-18.png`} />,
                     value: 'template_16',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-19.png`} />,
                     value: 'template_18',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-20.png`} />,
                     value: 'template_19',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-21.png`} />,
                     value: 'template_20',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-22.png`} />,
                     value: 'template_22',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-23.png`} />,
                     value: 'template_23',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-24.png`} />,
                     value: 'template_24',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-25.png`} />,
                     value: 'template_25',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-26.png`} />,
                     value: 'template_26',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     image: <img src={`${imgDir}/content-27.png`} />,
                     value: 'template_27',
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
             ],
         },
