@@ -70,7 +70,7 @@ class Archive extends Grab {
 		}
 
 		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
-		if ( $this->is_deprecated ) {
+		if ( $this->is_deprecated || $this->is_pro_block ) {
 			$classes .= ' gvnews-deprecated-block';
 		}
 
@@ -220,7 +220,19 @@ class Archive extends Grab {
 	 * @return boolean
 	 */
 	public function check_deprecated() {
-		if ( current_user_can( 'edit_pages' ) && ( ( ! gutenverse_pro_active() && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] ) ) || ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] || 'GUTENVERSE\NEWS\Block\Archive\Archive_Breadcrumb' === $this->attributes['gvnewsModule'] ) ) ) {
+		if ( current_user_can( 'edit_pages' ) && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] || 'GUTENVERSE\NEWS\Block\Archive\Archive_Breadcrumb' === $this->attributes['gvnewsModule'] ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if this block is Pro.
+	 *
+	 * @return boolean
+	 */
+	public function check_pro() {
+		if ( current_user_can( 'edit_pages' ) && ( ! gutenverse_pro_active() && 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] ) ) {
 			return true;
 		}
 		return false;

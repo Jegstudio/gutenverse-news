@@ -13,12 +13,12 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
-
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 const moduleOption = getModuleOptions();
 
 const BlockModule = compose(
@@ -33,6 +33,7 @@ const BlockModule = compose(
         moduleName,
         columnAttr,
         panelList,
+        freeModule = false
     } = props;
 
     const {
@@ -145,7 +146,7 @@ const BlockModule = compose(
         if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
             let ovr = {
                 ...attributes,
-                paginationWrapperAlign: {...paginationWrapperAlign},
+                paginationWrapperAlign: { ...paginationWrapperAlign },
                 paginationDisableSeparator: true
             };
             ovr['paginationWrapperAlign'][device] = 'start';
@@ -349,6 +350,13 @@ const BlockModule = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        {!freeModule && <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>}
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>

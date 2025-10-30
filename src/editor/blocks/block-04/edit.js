@@ -13,7 +13,7 @@ const Block4Block = compose(
         blockWidth  : 8,
     };
     const moduleName = '4';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
 });
 
 export default Block4Block;

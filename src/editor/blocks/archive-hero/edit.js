@@ -8,12 +8,13 @@ import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -63,11 +64,18 @@ const ArchiveHero = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Archive Hero" />
+                <PanelUpgradePro title="Archive Hero" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
             <div {...blockProps}>
@@ -92,7 +100,7 @@ const ArchiveHero = compose(
                             heightDesktop: heroHeightDesktop,
                         }}
                     />
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

@@ -1,7 +1,6 @@
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { compose } from '@wordpress/compose';
 import { useEffect, useState } from '@wordpress/element';
@@ -19,6 +18,8 @@ import { useRef } from '@wordpress/element';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const Hero14Block = compose(
     withPartialRender,
@@ -210,7 +211,7 @@ const Hero14Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -234,7 +235,7 @@ const Hero14Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         const moduleData = {
@@ -247,7 +248,7 @@ const Hero14Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
                 <RenderColumn {...moduleData} />
             );
@@ -272,6 +273,13 @@ const Hero14Block = compose(
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
 

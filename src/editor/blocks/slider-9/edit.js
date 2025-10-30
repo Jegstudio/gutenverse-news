@@ -15,12 +15,13 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import ThumbModule from '../../part/thumbnail';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const moduleOption = getModuleOptions();
 
@@ -167,13 +168,13 @@ const Slider9Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
                 <div key={Math.random().toString(36).substring(2)} className={'gvnews_slider_wrapper gvnews_slider_type_9_wrapper'}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
-        }else {
+        } else {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
         }
     }
@@ -241,7 +242,7 @@ const Slider9Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -265,7 +266,7 @@ const Slider9Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
@@ -284,14 +285,14 @@ const Slider9Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
             const gvnewsLibrary = window.gvnews.library;
             let target = document;
             const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
+            if (iframe) {
                 target = iframe.contentDocument;
             }
             var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
@@ -322,6 +323,13 @@ const Slider9Block = compose(
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
 

@@ -13,7 +13,7 @@ const Block2Block = compose(
         blockWidth  : 12,
     };
     const moduleName = '2';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
 });
 
 export default Block2Block;
