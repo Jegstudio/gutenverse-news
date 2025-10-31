@@ -142,7 +142,7 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
-= 3.0.1 =
+= 3.0.2 =
 ##### Improvements
 * Removed the Jegicon font and replaced it with Font Awesome icons
 * Update the block API version to v3
