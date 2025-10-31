@@ -98,7 +98,7 @@ const Hero14Block = compose(
 
     function RenderBlock2(props) {
         return (
-            <article className={'gvnews_post gvnews_pl_sm_2'}>
+            <article className={`gvnews_post gvnews_pl_sm_2 gvnews_hero_item_${props.index}`}>
                 <ContentModule cat={true} meta={2} title={true} post={props.post} attr={props.attr} />
             </article>
         );
@@ -106,7 +106,7 @@ const Hero14Block = compose(
 
     function RenderBlock3(props) {
         return (
-            <article className={'gvnews_post gvnews_pl_md_box'}>
+            <article className={`gvnews_post gvnews_pl_md_box gvnews_hero_item_${props.index}`}>
                 <div className="box_wrap">
                     <ThumbModule size={715} cat={false} post={props.post} />
                     <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={props.post} attr={props.attr} />
@@ -133,9 +133,9 @@ const Hero14Block = compose(
         if (props.postData) {
             for (let i = 1; i < props.postData.length; i++) {
                 if (i < 5) {
-                    rows.push(<RenderBlock2 attr={attr} post={props.postData[i]} />);
+                    rows.push(<RenderBlock2 attr={attr} post={props.postData[i]} index={i} />);
                 } else {
-                    rows2.push(<RenderBlock3 attr={attr} post={props.postData[i]} />);
+                    rows2.push(<RenderBlock3 attr={attr} post={props.postData[i]} index={i-4} />);
                 }
             }
         }

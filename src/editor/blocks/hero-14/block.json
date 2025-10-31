@@ -40,23 +40,32 @@
         },
         "heroItemOverlay": {
             "type": "array",
-            "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            },{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }]
+            "default": [
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                }
+            ]
         },
         "postOffset": {
             "type": "string",
@@ -256,9 +265,6 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "excerptColor": {
-            "type": "object"
-        },
         "enableExcerpt": {
             "type": "boolean",
             "default": true
@@ -324,6 +330,55 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "leftContentStyle": {
+            "type": "array",
+            "default": [
+                {
+                    "index": 1
+                },
+                {
+                    "index": 2
+                },
+                {
+                    "index": 3
+                },
+                {
+                    "index": 4
+                }
+            ]
+        },
+        "rightContentStyle": {
+            "type": "array",
+            "default": [
+                {
+                    "index": 1
+                },
+                {
+                    "index": 2
+                },
+                {
+                    "index": 3
+                }
+            ]
+        },
+        "titleTypography":{
+            "type":"object"
+        },
+        "metaTypography": {
+            "type":"object"
+        },
+        "titleColor":{
+            "type":"object"
+        },
+        "titleColorHover":{
+            "type":"object"
+        },
+        "metaColor":{
+            "type":"object"
+        },
+        "excerptColor":{
+            "type":"object"
         }
     },
     "supports": {

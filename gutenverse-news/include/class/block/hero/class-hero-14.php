@@ -69,15 +69,16 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_2
 	 *
-	 * @param object $post post.
+	 * @param object  $post post.
+	 * @param integer $index index.
 	 *
 	 * @return string
 	 */
-	public function render_block_type_2( $post ) {
+	public function render_block_type_2( $post, $index ) {
 		if ( $post ) {
 			$post_id = $post->ID;
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm_2', $post_id ) . ">
+			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm_2 gvnews_hero_item_' . $index, $post_id ) . ">
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
@@ -97,16 +98,17 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_3
 	 *
-	 * @param object $post post.
+	 * @param object  $post post.
+	 * @param integer $index index.
 	 *
 	 * @return string
 	 */
-	public function render_block_type_3( $post ) {
+	public function render_block_type_3( $post, $index ) {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box', $post_id ) . '>
+			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box gvnews_hero_item_' . $index, $post_id ) . '>
                         <div class="box_wrap">
                             <div class="gvnews_thumb">
                                 ' . gvnews_edit_post( $post_id ) . "
@@ -144,9 +146,9 @@ class Hero_14 extends Hero_View_Abstract {
 			if ( $i < 1 ) {
 				$first_block .= $this->render_block_type_1( $item );
 			} elseif ( $i < 5 ) {
-				$second_block .= $this->render_block_type_2( $item );
+				$second_block .= $this->render_block_type_2( $item, $i );
 			} else {
-				$third_block .= $this->render_block_type_3( $item );
+				$third_block .= $this->render_block_type_3( $item, ( $i - 4 ) );
 			}
 		}
 

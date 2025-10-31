@@ -6,6 +6,9 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
+import { leftContentStylePanel } from './panel-left-content-style';
+import { rightContentStylePanel } from './panel-right-content-style';
+import { centerContentStylePanel } from './panel-center-content-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -27,6 +30,24 @@ export const panelList = () => {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Center Content Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: centerContentStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Right Content Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: rightContentStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Left Content Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: leftContentStylePanel,
                 tabRole: TabStyle
             },
             {
