@@ -45,10 +45,8 @@ class Hero extends StyleAbstract {
 	public function generate() {
 
 		if ( isset( $this->attrs['heroItemOverlay'] ) ) {
-			foreach ( $this->attrs['heroItemOverlay'] as $key => $overlay ) {
-				if ( $overlay['overlayEnable'] && isset( $overlay['OverlayGradient'] ) ) {
-					$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $overlay['OverlayGradient'] );
-				}
+			foreach ( $this->attrs['heroItemOverlay'] as $key => $local_attr ) {
+				$this->loop_style( $local_attr, $key );
 			}
 		}
 
@@ -376,63 +374,73 @@ class Hero extends StyleAbstract {
 				)
 			);
 		}
+	}
 
-		if ( isset( $this->attrs['titleTypography'] ) ) {
+	/**
+	 * Loop style on panel 'Hero Style'
+	 *
+	 * @param array $local_attr local_attr.
+	 * @param mixed $key key.
+	 *
+	 * @return void
+	 */
+	private function loop_style( $local_attr, $key ) {
+
+		if ( $local_attr['overlayEnable'] && isset( $local_attr['OverlayGradient'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $local_attr['OverlayGradient'] );
+		}
+		if ( isset( $local_attr['titleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper .gvnews_post_title",
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1 . ' .gvnews_post_title',
 					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['titleTypography'],
+					'value'          => $local_attr['titleTypography'],
 					'device_control' => false,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['metaTypography'] ) ) {
+		if ( isset( $local_attr['metaTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper .gvnews_post_meta",
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1 . ' .gvnews_post_meta',
 					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['metaTypography'],
+					'value'          => $local_attr['metaTypography'],
 					'device_control' => false,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['titleColor'] ) ) {
+		if ( isset( $local_attr['titleColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper .gvnews_post_title a",
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1 . ' .gvnews_post_title a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $this->attrs['titleColor'],
+					'value'          => $local_attr['titleColor'],
 					'device_control' => false,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['titleColorHover'] ) ) {
+		if ( isset( $local_attr['titleColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper .gvnews_post_title:hover a",
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1 . ' .gvnews_post_title:hover a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $this->attrs['titleColorHover'],
+					'value'          => $local_attr['titleColorHover'],
 					'device_control' => false,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['metaColor'] ) ) {
+		if ( isset( $local_attr['metaColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper .gvnews_post_meta a",
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1 . ' .gvnews_post_meta a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $this->attrs['metaColor'],
+					'value'          => $local_attr['metaColor'],
 					'device_control' => false,
 				)
 			);

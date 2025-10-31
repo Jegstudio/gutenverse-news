@@ -7,8 +7,6 @@ import { styleHero } from '../../../control-panel/panel-herostyle';
 import { sliderHero } from '../../../control-panel/panel-heroslider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
-import { heroTitleMetaStylePanel } from '../../../control-panel/panel-hero-title-meta-style';
-
 export const panelList = () => {
     return [
         {
@@ -33,12 +31,6 @@ export const panelList = () => {
             title: __('Hero Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: styleHero,
-            tabRole: TabStyle
-        },
-        {
-            title: __('Title & Meta Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: heroTitleMetaStylePanel,
             tabRole: TabStyle
         },
         {
