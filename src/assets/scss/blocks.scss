@@ -2335,18 +2335,28 @@
 .gvnews-block.gvnews-block-wrapper {
   .gvnews_post_meta a {
     color: inherit;
+    font: inherit;
+  }
+
+  .gvnews_post_meta {
     font-weight: bold;
   }
 
-  .gvnews_meta_date a,
-  .gvnews_modified_date a,
-  .gvnews_meta_views a,
-  .gvnews_meta_earning a {
+  .gvnews_meta_date,
+  .gvnews_modified_date,
+  .gvnews_meta_views,
+  .gvnews_meta_earning {
     font-weight: normal;
   }
 
-  .gvnews_meta_author a {
-    color: #f70d28;
+  .gvnews_meta_author {
+    .by {
+      font-weight: normal;
+    }
+
+    a {
+      color: #f70d28;
+    }
   }
 }
 

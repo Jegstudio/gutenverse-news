@@ -63,19 +63,6 @@ export const designPanel = (props) => {
             ]
         },
         {
-            id: 'typographyMeta',
-            show: enableExcerpt === true,
-            label: __('Meta Typography', 'gutenverse-news'),
-            component: TypographyControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div`,
-                    hasChild: true,
-                    render: (value, id) => handleTypography(value, props, id)
-                }
-            ]
-        },
-        {
             id: 'typographyContent',
             label: __('Content Typography', 'gutenverse-news'),
             description: __('This option will change your content typography.', 'gutenverse-news'),
@@ -106,17 +93,6 @@ export const designPanel = (props) => {
             style: [
                 {
                     selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a`, `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a:hover`],
-                    render: value => handleColor(value, 'color')
-                }
-            ],
-        },
-        {
-            id: 'metaColor',
-            label: __('Meta Color', 'gutenverse-news'),
-            component: ColorControl,
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta`],
                     render: value => handleColor(value, 'color')
                 }
             ],
