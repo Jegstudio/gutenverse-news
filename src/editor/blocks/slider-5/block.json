@@ -3,7 +3,7 @@
     "name": "gutenverse/news-slider-5",
     "title": "Slider 5",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {

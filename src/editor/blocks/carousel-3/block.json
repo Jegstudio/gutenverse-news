@@ -3,7 +3,7 @@
     "name": "gutenverse/news-carousel-3",
     "title": "Carousel 3",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Carousel",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed carousel block.",
     "category": "gvnews-carousel",
     "attributes": {
         "elementId": {
