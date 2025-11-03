@@ -405,22 +405,77 @@ class Hero extends StyleAbstract {
 			return;
 		}
 
-		$parent_class = ".{$this->element_id} .gvnews_postbig .gvnews_post.gvnews_pl_lg_7";
-		$this->title_meta_style( $this->attrs, $parent_class );
-
-		if ( isset( $this->attrs['leftContentStyle'] ) ) {
-			foreach ( $this->attrs['leftContentStyle'] as $key => $local_attr ) {
-				$index        = $key + 1;
-				$parent_class = ".{$this->element_id} .gvnews_postsmall.left .gvnews_hero_item_{$index}";
-				$this->title_meta_style( $local_attr, $parent_class );
+		$positions = array( 'Left', 'Center', 'Right' );
+		foreach ( $positions as $position ) {
+			$position_class = strtolower( $position );
+			$parent_class   = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .{$position_class} .gvnews_postblock_content";
+			if ( isset( $this->attrs[ 'titleTypography' . $position ] ) ) {
+				$this->inject_typography(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_title',
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs[ 'titleTypography' . $position ],
+						'device_control' => false,
+					)
+				);
 			}
-		}
-		if ( isset( $this->attrs['rightContentStyle'] ) ) {
-			gutenverse_rlog( $this->attrs['rightContentStyle'] );
-			foreach ( $this->attrs['rightContentStyle'] as $key => $local_attr ) {
-				$index        = $key + 1;
-				$parent_class = ".{$this->element_id} .gvnews_postsmall.right .gvnews_hero_item_{$index}";
-				$this->title_meta_style( $local_attr, $parent_class );
+			if ( isset( $this->attrs[ 'metaTypography' . $position ] ) ) {
+				$this->inject_typography(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_meta',
+						'property'       => function ( $value ) {},
+						'value'          => $this->attrs[ 'metaTypography' . $position ],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs[ 'titleColor' . $position ] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_title a',
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs[ 'titleColor' . $position ],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs[ 'titleColorHover' . $position ] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_title:hover a',
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs[ 'titleColorHover' . $position ],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs[ 'metaColor' . $position ] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_meta a',
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs[ 'metaColor' . $position ],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs[ 'excerptColor' . $position ] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $parent_class . ' .gvnews_post_excerpt p',
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs[ 'excerptColor' . $position ],
+						'device_control' => false,
+					)
+				);
 			}
 		}
 	}
