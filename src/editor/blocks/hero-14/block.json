@@ -331,53 +331,52 @@
             "type": "object",
             "default": {}
         },
-        "leftContentStyle": {
-            "type": "array",
-            "default": [
-                {
-                    "index": 1
-                },
-                {
-                    "index": 2
-                },
-                {
-                    "index": 3
-                },
-                {
-                    "index": 4
-                }
-            ]
-        },
-        "rightContentStyle": {
-            "type": "array",
-            "default": [
-                {
-                    "index": 1
-                },
-                {
-                    "index": 2
-                },
-                {
-                    "index": 3
-                }
-            ]
-        },
-        "titleTypography":{
+        "titleTypographyCenter":{
             "type":"object"
         },
-        "metaTypography": {
+        "metaTypographyCenter": {
             "type":"object"
         },
-        "titleColor":{
+        "titleColorCenter":{
             "type":"object"
         },
-        "titleColorHover":{
+        "titleColorHoverCenter":{
             "type":"object"
         },
-        "metaColor":{
+        "metaColorCenter":{
             "type":"object"
         },
-        "excerptColor":{
+        "excerptColorCenter":{
+            "type":"object"
+        },
+        "titleTypographyRight":{
+            "type":"object"
+        },
+        "metaTypographyRight": {
+            "type":"object"
+        },
+        "titleColorRight":{
+            "type":"object"
+        },
+        "titleColorHoverRight":{
+            "type":"object"
+        },
+        "metaColorRight":{
+            "type":"object"
+        },
+        "titleTypographyLeft":{
+            "type":"object"
+        },
+        "metaTypographyLeft": {
+            "type":"object"
+        },
+        "titleColorLeft":{
+            "type":"object"
+        },
+        "titleColorHoverLeft":{
+            "type":"object"
+        },
+        "metaColorLeft":{
             "type":"object"
         }
     },

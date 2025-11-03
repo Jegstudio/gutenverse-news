@@ -4,32 +4,32 @@ import { ColorControl, TypographyControl } from 'gutenverse-core/controls';
 export const centerContentStylePanel = () => {
     return [
         {
-            id: 'titleTypography',
+            id: 'titleTypographyCenter',
             label: __('Title Typography', 'gutenverse-news'),
             component: TypographyControl,
         },
         {
-            id: 'metaTypography',
+            id: 'metaTypographyCenter',
             label: __('Meta Typography', 'gutenverse-news'),
             component: TypographyControl,
         },
         {
-            id: 'titleColor',
+            id: 'titleColorCenter',
             label: __('Title Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'titleColorHover',
+            id: 'titleColorHoverCenter',
             label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'metaColor',
+            id: 'metaColorCenter',
             label: __('Meta Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'excerptColor',
+            id: 'excerptColorCenter',
             label: __('Excerpt Color', 'gutenverse-news'),
             component: ColorControl,
         }

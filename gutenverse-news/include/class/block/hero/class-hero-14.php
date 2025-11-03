@@ -39,7 +39,7 @@ class Hero_14 extends Hero_View_Abstract {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_7', $post_id ) . '>
+			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
                             <a href=\"{$permalink}\">" . apply_filters( 'gvnews_image_thumbnail', $post_id, 'gvnews-750x536' ) . "</a>
@@ -78,7 +78,7 @@ class Hero_14 extends Hero_View_Abstract {
 		if ( $post ) {
 			$post_id = $post->ID;
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm_2 gvnews_hero_item_' . $index, $post_id ) . ">
+			return '<article ' . gvnews_post_class( 'gvnews_post left gvnews_pl_sm_2 gvnews_hero_item_' . $index, $post_id ) . ">
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
@@ -108,7 +108,7 @@ class Hero_14 extends Hero_View_Abstract {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box gvnews_hero_item_' . $index, $post_id ) . '>
+			return '<article ' . gvnews_post_class( 'gvnews_post right gvnews_pl_md_box gvnews_hero_item_' . $index, $post_id ) . '>
                         <div class="box_wrap">
                             <div class="gvnews_thumb">
                                 ' . gvnews_edit_post( $post_id ) . "
