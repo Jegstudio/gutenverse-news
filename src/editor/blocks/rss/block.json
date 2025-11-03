@@ -3,7 +3,7 @@
     "name": "gutenverse/news-rss",
     "title": "RSS Block",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Rss",
-    "description": "Your Block description.",
+    "description": "[PRO] Display RSS Feed using the Feed URL.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {

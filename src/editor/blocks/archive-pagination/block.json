@@ -3,7 +3,7 @@
     "name": "gutenverse/news-archive-pagination",
     "title": "Archive Pagination",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "Display the post list pagination on the archive page.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {

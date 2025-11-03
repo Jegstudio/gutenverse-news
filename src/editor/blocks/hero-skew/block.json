@@ -3,7 +3,7 @@
     "name": "gutenverse/news-hero-skew",
     "title": "Hero Skew",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
-    "description": "Your Block description.",
+    "description": "[PRO] Display your posts in fancy way with Hero block.",
     "category": "gvnews-hero",
     "attributes": {
         "elementId": {
@@ -39,11 +39,14 @@
         },
         "heroItemOverlay": {
             "type": "array",
-            "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }]
+            "default": [
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                }
+            ]
         },
         "postOffset": {
             "type": "string",
