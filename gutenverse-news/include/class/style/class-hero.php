@@ -45,10 +45,13 @@ class Hero extends StyleAbstract {
 	public function generate() {
 
 		$this->hero_14_style();
+		$this->title_meta_style();
 
 		if ( isset( $this->attrs['heroItemOverlay'] ) && ( ! stristr( $this->attrs['gvnewsModule'], 'Hero_14' ) ) ) {
 			foreach ( $this->attrs['heroItemOverlay'] as $key => $local_attr ) {
-				$this->loop_style( $local_attr, $key );
+				if ( $local_attr['overlayEnable'] && isset( $local_attr['OverlayGradient'] ) ) {
+					$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $local_attr['OverlayGradient'] );
+				}
 			}
 		}
 
@@ -379,23 +382,6 @@ class Hero extends StyleAbstract {
 	}
 
 	/**
-	 * Loop style on panel 'Hero Style'
-	 *
-	 * @param array $local_attr local_attr.
-	 * @param mixed $key key.
-	 *
-	 * @return void
-	 */
-	private function loop_style( $local_attr, $key ) {
-
-		if ( $local_attr['overlayEnable'] && isset( $local_attr['OverlayGradient'] ) ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_hero_item_" . $key + 1 . ' .gvnews_thumb a > div:' . ( ( '5' === $this->attrs['heroStyle'] ) ? 'after' : 'before' ), $local_attr['OverlayGradient'] );
-		}
-		$parent_class = ".{$this->element_id} .gvnews_heroblock .gvnews_hero_item_" . $key + 1;
-		$this->title_meta_style( $local_attr, $parent_class );
-	}
-
-	/**
 	 * Additional style for hero 14
 	 *
 	 * @return void
@@ -483,76 +469,77 @@ class Hero extends StyleAbstract {
 	/**
 	 * Style for Title, meta, and excerpt.
 	 *
-	 * @param array  $attributes attributes.
-	 * @param string $parent_class parent_class.
-	 *
 	 * @return void
 	 */
-	private function title_meta_style( $attributes, $parent_class ) {
-		if ( isset( $attributes['titleTypography'] ) ) {
+	private function title_meta_style() {
+		if ( stristr( $this->attrs['gvnewsModule'], 'Hero_14' ) ) { // Not for hero 14.
+			return;
+		}
+		$parent_class = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock_wrapper";
+		if ( isset( $this->attrs['titleTypography'] ) ) {
 			$this->inject_typography(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_title',
 					'property'       => function ( $value ) {},
-					'value'          => $attributes['titleTypography'],
+					'value'          => $this->attrs['titleTypography'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $attributes['metaTypography'] ) ) {
+		if ( isset( $this->attrs['metaTypography'] ) ) {
 			$this->inject_typography(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_meta',
 					'property'       => function ( $value ) {},
-					'value'          => $attributes['metaTypography'],
+					'value'          => $this->attrs['metaTypography'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $attributes['titleColor'] ) ) {
+		if ( isset( $this->attrs['titleColor'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_title a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $attributes['titleColor'],
+					'value'          => $this->attrs['titleColor'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $attributes['titleColorHover'] ) ) {
+		if ( isset( $this->attrs['titleColorHover'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_title:hover a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $attributes['titleColorHover'],
+					'value'          => $this->attrs['titleColorHover'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $attributes['metaColor'] ) ) {
+		if ( isset( $this->attrs['metaColor'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_meta a',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $attributes['metaColor'],
+					'value'          => $this->attrs['metaColor'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $attributes['excerptColor'] ) ) {
+		if ( isset( $this->attrs['excerptColor'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $parent_class . ' .gvnews_post_excerpt p',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $attributes['excerptColor'],
+					'value'          => $this->attrs['excerptColor'],
 					'device_control' => false,
 				)
 			);

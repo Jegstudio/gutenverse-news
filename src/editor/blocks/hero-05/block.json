@@ -287,6 +287,21 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleTypography":{
+            "type":"object"
+        },
+        "metaTypography": {
+            "type":"object"
+        },
+        "titleColor":{
+            "type":"object"
+        },
+        "titleColorHover":{
+            "type":"object"
+        },
+        "metaColor":{
+            "type":"object"
         }
     },
     "supports": {

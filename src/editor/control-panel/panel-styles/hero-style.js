@@ -51,6 +51,52 @@ const getHeroStyle = (elementId, attributes) => {
         });
     }
 
+    // --- START TITLE & META STYLE PANEL ---
+
+    isNotEmpty(attributes['titleTypography']) && data.push({
+        'id': 'titleTypography',
+        'type': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper .gvnews_post_title`,
+    });
+    isNotEmpty(attributes['metaTypography']) && data.push({
+        'id': 'metaTypography',
+        'type': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper .gvnews_post_meta`,
+    });
+    isNotEmpty(attributes['titleColor']) && data.push({
+        'id': 'titleColor',
+        'type': 'color',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper .gvnews_post_title a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['titleColorHover']) && data.push({
+        'id': 'titleColorHover',
+        'type': 'color',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper .gvnews_post_title:hover a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['metaColor']) && data.push({
+        'id': 'metaColor',
+        'type': 'color',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_wrapper .gvnews_post_meta a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     /**
      * Panel Setting
      */
@@ -288,59 +334,15 @@ const getHeroStyle = (elementId, attributes) => {
 const getHeroStyleOptions = (elementId, attribute, heroStyle) => {
     let additional = (heroStyle === '5') ? 'after' : 'before';
     return attribute.map((el, index) => {
-        let arrOpt = [];
+        let data = [];
 
-        el.overlayEnable && isNotEmpty(el.OverlayGradient) && arrOpt.push({
+        el.overlayEnable && isNotEmpty(el.OverlayGradient) && data.push({
             'type': 'background',
             'id': 'OverlayGradient',
             'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_thumb a > div:${additional}`,
         });
 
-        isNotEmpty(el.titleTypography) && arrOpt.push({
-            'id': 'titleTypography',
-            'type': 'typography',
-            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_post_title`,
-        });
-        isNotEmpty(el.metaTypography) && arrOpt.push({
-            'id': 'metaTypography',
-            'type': 'typography',
-            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_post_meta`,
-        });
-        isNotEmpty(el.titleColor) && arrOpt.push({
-            'id': 'titleColor',
-            'type': 'color',
-            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_post_title a`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-        isNotEmpty(el.titleColorHover) && arrOpt.push({
-            'id': 'titleColorHover',
-            'type': 'color',
-            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_post_title:hover a`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-        isNotEmpty(el.metaColor) && arrOpt.push({
-            'id': 'metaColor',
-            'type': 'color',
-            'selector': `.${elementId} .gvnews_heroblock .gvnews_hero_item_${index + 1} .gvnews_post_meta a`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        return arrOpt;
+        return data;
     });
 };
 
