@@ -3,7 +3,7 @@
     "name": "gutenverse/news-block-4",
     "title": "Module 4",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",
-    "description": "Your Block description.",
+    "description": "A pre-designed block for displaying your post list with various features.",
     "category": "gvnews-module",
     "attributes": {
         "elementId": {
