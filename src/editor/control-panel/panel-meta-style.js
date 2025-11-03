@@ -22,7 +22,7 @@ export const metaStylePanel = (props, settings) => {
             label: __('Meta Typography', 'gutenverse-news'),
             description: __('This option will change your meta typography.', 'gutenverse-news'),
             component: TypographyControl,
-            show: showMeta
+            show: showMeta && showMetaAuthor
         },
         {
             id: 'typographyMetaAuthor',
@@ -87,5 +87,5 @@ export const metaStylePanel = (props, settings) => {
         },
     );
 
-    return applyFilters('gutenverse.news.unique-content-group', panelList, props);
+    return applyFilters('gutenverse.news.panels.meta-style', panelList, props);
 };

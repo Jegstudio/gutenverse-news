@@ -40,5 +40,5 @@ export const metaPanel = (props, settings = []) => {
             component: CheckboxControl
         },
     );
-    return applyFilters('gutenverse.news.unique-content-group', panelList, props);
+    return applyFilters('gutenverse.news.penels.meta.setting', panelList, props);
 };

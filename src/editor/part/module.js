@@ -84,10 +84,8 @@ const BlockModule = compose(
         meta_date: showMetaDate,
         meta_comment: showMetaComment,
         meta_author: showMetaAuthor
-    }
-    useEffect(() => {
-        console.log(metaSettings);
-    }, []);
+    };
+
     const moduleOption = {
         ...defaultOptions,
         option: {
