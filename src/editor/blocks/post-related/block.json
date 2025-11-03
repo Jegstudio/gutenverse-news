@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-related",
     "title": "Post Related",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Related",
-    "description": "Your Block description.",
+    "description": "Display related posts on the single post page using a Module-style block.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
