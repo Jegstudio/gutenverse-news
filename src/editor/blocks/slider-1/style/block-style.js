@@ -173,19 +173,6 @@ export const getBolockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
     });
 
-    isNotEmpty(attributes['nextButtonOffsetProperties']) && data.push({
-        'type': 'dimension',
-        'id': 'nextButtonOffsetProperties',
-        'responsive': true,
-        'properties': [
-            {
-                'name': '',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
-    });
-
     isNotEmpty(attributes['prevButtonPadding']) && data.push({
         'type': 'dimension',
         'id': 'prevButtonPadding',
@@ -197,19 +184,6 @@ export const getBolockStyle = (elementId, attributes) => {
             }
         ],
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
-    });
-
-    isNotEmpty(attributes['prevButtonOffsetProperties']) && data.push({
-        'type': 'dimension',
-        'id': 'prevButtonOffsetProperties',
-        'responsive': true,
-        'properties': [
-            {
-                'name': '',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
     });
 
     isNotEmpty(attributes['nextButtonBgColor']) && data.push({

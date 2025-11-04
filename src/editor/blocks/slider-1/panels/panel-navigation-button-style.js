@@ -117,32 +117,6 @@ export const navigationButtonStylePanel = (props) => {
                 },
             },
         },
-        {
-            id: 'nextButtonOffsetProperties',
-            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
-            label: __('Offset Properties', 'gutenverse-news'),
-            component: DimensionControl,
-            allowDeviceControl: true,
-            position: ['top', 'right', 'bottom', 'left'],
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                ['%']: {
-                    text: '%',
-                    unit: '%'
-                },
-                rem: {
-                    text: 'rem',
-                    unit: 'rem'
-                },
-            },
-        },
         // Prev
         {
             id: 'prevButtonIcon',
@@ -198,32 +172,6 @@ export const navigationButtonStylePanel = (props) => {
             id: 'prevButtonPadding',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             label: __('Padding', 'gutenverse-news'),
-            component: DimensionControl,
-            allowDeviceControl: true,
-            position: ['top', 'right', 'bottom', 'left'],
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                ['%']: {
-                    text: '%',
-                    unit: '%'
-                },
-                rem: {
-                    text: 'rem',
-                    unit: 'rem'
-                },
-            },
-        },
-        {
-            id: 'prevButtonOffsetProperties',
-            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
-            label: __('Offset Properties (Margin)', 'gutenverse-news'),
             component: DimensionControl,
             allowDeviceControl: true,
             position: ['top', 'right', 'bottom', 'left'],

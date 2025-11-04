@@ -468,19 +468,6 @@ class Slider extends StyleAbstract {
 			);
 		}
 
-		if ( isset( $this->attrs['nextButtonOffsetProperties'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
-					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, '' );
-					},
-					'value'          => $this->attrs['nextButtonOffsetProperties'],
-					'device_control' => true,
-				)
-			);
-		}
-
 		if ( isset( $this->attrs['prevButtonPadding'] ) ) {
 			$this->inject_style(
 				array(

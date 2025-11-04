@@ -300,10 +300,6 @@
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonOffsetProperties": {
-            "type": "object",
-            "default": {}
-        },
         "hideImageNavigation": {
             "type": "boolean",
             "default": false
