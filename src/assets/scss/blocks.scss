@@ -1382,19 +1382,17 @@
   -webkit-transition: .25s all ease;
   -o-transition: .25s all ease;
   transition: .25s all ease;
-}
 
-.gvnews_subcat_list li {
+  &.current {
+    color: #212121;
+  }
 
-  a:hover,
-  button:hover {
-    color: #f70d28 !important;
+  &:hover {
+    color: #f70d28;
+
   }
 }
 
-.gvnews-block.gvnews-block-wrapper .gvnews_subcat_list li a.current {
-  color: #212121 !important;
-}
 
 .gvnews_block_heading:not(.gvnews_subcat_right) .okayNav__menu-toggle {
   position: absolute;

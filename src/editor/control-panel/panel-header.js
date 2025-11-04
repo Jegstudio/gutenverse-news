@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { IconControl, TextControl, ColorControl, ImageRadioControl } from 'gutenverse-core/controls';
+import { IconControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl } from 'gutenverse-core/controls';
+import { isNotEmpty } from 'gutenverse-core/helper';
 import { handleColor } from 'gutenverse-core/styling';
 
 export const headerPanel = (props) => {
@@ -124,7 +125,7 @@ export const headerPanel = (props) => {
         },
         {
             id: 'headerTextColor',
-            label: __('Header Text Color', 'gutenverse-news'),
+            label: __('Header Title Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),
             component: ColorControl,
             style: [
@@ -133,6 +134,13 @@ export const headerPanel = (props) => {
                     render: value => handleColor(value, 'color')
                 }
             ],
+        },
+        {
+            id: 'headerSecondTextColor',
+            label: __('Second Title Color', 'gutenverse-news'),
+            description: __('Change color of your header text.', 'gutenverse-news'),
+            show: ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType),
+            component: ColorControl,
         },
         {
             id: 'headerSecondColor',
@@ -255,7 +263,18 @@ export const headerStylesPanel = (props) => {
     const {
         elementId,
         headerType,
+        title,
+        second_title,
+        switcher,
+        setSwitcher,
+        headerCategory,
+        headerAuthor,
+        headerTag,
     } = props;
+
+    const withText = isNotEmpty(title) || isNotEmpty(second_title);
+    const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType) && isNotEmpty(second_title);
+    const withHeaderFilter = isNotEmpty(headerCategory) || isNotEmpty(headerAuthor) || isNotEmpty(headerTag);
 
     const {
         imgDir
@@ -307,6 +326,29 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerTextTypography',
+            label: __('Header Title Typography', 'gutenverse-news'),
+            description: __('This option will change your header title text typography.', 'gutenverse-news'),
+            component: TypographyControl,
+            show: withText
+        },
+
+        {
+            id: 'headerSecondTextTypography',
+            label: __('Header Second Title Typography', 'gutenverse-news'),
+            description: __('This option will change your header title text typography.', 'gutenverse-news'),
+            show: withSecondText,
+            component: TypographyControl,
+        },
+        {
+            id: 'headerFilterTypography',
+            label: __('Header Filter Text Typography', 'gutenverse-news'),
+            description: __('This option will change your header title filter text typography.', 'gutenverse-news'),
+            show: withHeaderFilter,
+            component: TypographyControl,
+
+        },
+        {
             id: 'headerBackgroundColor',
             show: headerType === 'heading_1' || headerType === 'heading_2' || headerType === 'heading_4' || headerType === 'heading_5',
             label: __('Header Background Color', 'gutenverse-news'),
@@ -349,12 +391,14 @@ export const headerStylesPanel = (props) => {
             label: __('Header Text Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),
             component: ColorControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span`,
-                    render: value => handleColor(value, 'color')
-                }
-            ],
+            show: withText
+        },
+        {
+            id: 'headerSecondTextColor',
+            label: __('Second Title Color', 'gutenverse-news'),
+            description: __('Change color of your header text.', 'gutenverse-news'),
+            show: withSecondText,
+            component: ColorControl,
         },
         {
             id: 'headerSecondColor',
@@ -429,5 +473,49 @@ export const headerStylesPanel = (props) => {
                 }
             ],
         },
+        {
+            id: '__headerSwitcher',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                },
+                {
+                    value: 'active',
+                    label: 'Active'
+                }
+            ],
+            show: withHeaderFilter,
+            onChange: ({ __headerSwitcher }) => setSwitcher({ ...switcher, header: __headerSwitcher })
+        },
+
+        {
+            id: 'headerFilterColor',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in normal condition.', 'gutenverse-news'),
+            show: (withHeaderFilter && (!switcher.header || switcher.header === 'normal')),
+            component: ColorControl,
+
+        },
+        {
+            id: 'headerFilterColorHover',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in hover condition.', 'gutenverse-news'),
+            show: withHeaderFilter && switcher.header === 'hover',
+            component: ColorControl,
+        },
+        {
+            id: 'headerFilterColorActive',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in active condition.', 'gutenverse-news'),
+            show: withHeaderFilter && switcher.header === 'active',
+            component: ColorControl,
+        },
+
     ];
 };

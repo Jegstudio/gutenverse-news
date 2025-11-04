@@ -5,8 +5,12 @@ const getBlockStyle = (elementId, attributes) => {
 
     const {
         showMeta = true,
-        showMetaAuthor = true
+        showMetaAuthor = true,
+        headerType
     } = attributes;
+
+    const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
+
     /**
      * Panel Header
      */
@@ -27,6 +31,23 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['headerTextTypography']) && data.push({
+        'type': 'typography',
+        'id': 'headerTextTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span`,
+    });
+
+    isNotEmpty(attributes['headerSecondTextTypography']) && withSecondText && data.push({
+        'type': 'typography',
+        'id': 'headerSecondTextTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span strong`,
+    });
+    isNotEmpty(attributes['headerFilterTypography']) && data.push({
+        'type': 'typography',
+        'id': 'headerFilterTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_subcat_list>li>a`,
+    });
+
     isNotEmpty(attributes['headerBackgroundColor2']) && data.push({
         'type': 'color',
         'id': 'headerBackgroundColor2',
@@ -43,6 +64,18 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'color',
         'id': 'headerTextColor',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['headerSecondTextColor']) && withSecondText && data.push({
+        'type': 'color',
+        'id': 'headerSecondTextColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span strong`,
         'properties': [
             {
                 'name': 'color',
@@ -110,6 +143,41 @@ const getBlockStyle = (elementId, attributes) => {
         'properties': [
             {
                 'name': 'border-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['headerFilterColor']) && data.push({
+        'type': 'color',
+        'id': 'headerFilterColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_subcat_list>li>a:not(.current)`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['headerFilterColorActive']) && data.push({
+        'type': 'color',
+        'id': 'headerFilterColorActive',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_subcat_list>li>a.current`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['headerFilterColorHover']) && data.push({
+        'type': 'color',
+        'id': 'headerFilterColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_subcat_list>li>a:hover`,
+        'properties': [
+            {
+                'name': 'color',
                 'valueType': 'direct'
             }
         ],

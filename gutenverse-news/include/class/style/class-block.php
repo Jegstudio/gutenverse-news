@@ -48,116 +48,9 @@ class Block extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
-		if ( isset( $this->attrs['headerTextColor'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_title span",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
-					},
-					'value'          => $this->attrs['headerTextColor'],
-					'device_control' => false,
-				)
-			);
-		}
-		if ( isset( $this->attrs['headerBackgroundColor'] ) ) {
-			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_2' === $this->attrs['headerType'] || 'heading_4' === $this->attrs['headerType'] || 'heading_5' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']} .gvnews_block_title span",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background' );
-						},
-						'value'          => $this->attrs['headerBackgroundColor'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerBackgroundColor2'] ) ) {
-			if ( 'heading_3' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_heading_3",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background' );
-						},
-						'value'          => $this->attrs['headerBackgroundColor2'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerSecondColor'] ) ) {
-			if ( 'heading_2' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background' );
-						},
-						'value'          => $this->attrs['headerSecondColor'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerLineColor'] ) ) {
-			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_6' === $this->attrs['headerType'] || 'heading_9' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'border-color' );
-						},
-						'value'          => $this->attrs['headerLineColor'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerLineColor2'] ) ) {
-			if ( 'heading_5' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:before",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'border-color' );
-						},
-						'value'          => $this->attrs['headerLineColor2'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerAccentColor'] ) ) {
-			if ( 'heading_6' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:after",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background-color' );
-						},
-						'value'          => $this->attrs['headerAccentColor'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
-		if ( isset( $this->attrs['headerAccentColor2'] ) ) {
-			if ( 'heading_7' === $this->attrs['headerType'] ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']} .gvnews_block_title span",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'border-color' );
-						},
-						'value'          => $this->attrs['headerAccentColor2'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
+
+		$this->generate_header_style();
+
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
 				$selectorbx = array(
@@ -969,6 +862,199 @@ class Block extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
+		}
+	}
+
+	/**
+	 * Generate style block header style.
+	 */
+	private function generate_header_style() {
+
+		$with_second_text   = isset( $this->attrs['headerType'] ) && in_array( $this->attrs['headerType'], array( 'heading_5', 'heading_6', 'heading_7', 'heading_8' ) );
+		$with_header_filter = isset( $this->attrs['headerCategory'] ) || isset( $this->attrs['headerAuthor'] ) || isset( $this->attrs['headerTag'] );
+
+		if ( isset( $this->attrs['headerTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_title span",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['headerTextTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( $with_second_text && isset( $this->attrs['headerSecondTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_title span strong",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['headerSecondTextTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['headerFilterTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['headerFilterTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['headerTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_title span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['headerTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['headerBackgroundColor'] ) ) {
+			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_2' === $this->attrs['headerType'] || 'heading_4' === $this->attrs['headerType'] || 'heading_5' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']} .gvnews_block_title span",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'background' );
+						},
+						'value'          => $this->attrs['headerBackgroundColor'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerBackgroundColor2'] ) ) {
+			if ( 'heading_3' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_heading_3",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'background' );
+						},
+						'value'          => $this->attrs['headerBackgroundColor2'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerSecondColor'] ) ) {
+			if ( 'heading_2' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'background' );
+						},
+						'value'          => $this->attrs['headerSecondColor'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerLineColor'] ) ) {
+			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_6' === $this->attrs['headerType'] || 'heading_9' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'border-color' );
+						},
+						'value'          => $this->attrs['headerLineColor'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerLineColor2'] ) ) {
+			if ( 'heading_5' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:before",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'border-color' );
+						},
+						'value'          => $this->attrs['headerLineColor2'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerAccentColor'] ) ) {
+			if ( 'heading_6' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:after",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'background-color' );
+						},
+						'value'          => $this->attrs['headerAccentColor'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( isset( $this->attrs['headerAccentColor2'] ) ) {
+			if ( 'heading_7' === $this->attrs['headerType'] ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']} .gvnews_block_title span",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'border-color' );
+						},
+						'value'          => $this->attrs['headerAccentColor2'],
+						'device_control' => false,
+					)
+				);
+			}
+		}
+		if ( $with_header_filter ) {
+			if ( isset( $this->attrs['headerFilterColor'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a:not(.current)",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['headerFilterColor'],
+							'device_control' => false,
+						)
+					);
+			}
+			if ( isset( $this->attrs['headerFilterColorActive'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a.current",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs['headerFilterColorActive'],
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['headerFilterColorHover'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a:hover",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs['headerFilterColorHover'],
+						'device_control' => false,
+					)
+				);
+			}
 		}
 	}
 }
