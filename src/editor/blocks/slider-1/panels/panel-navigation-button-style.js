@@ -20,8 +20,9 @@ export const navigationButtonStylePanel = (props) => {
         },
         {
             id: 'tootlipColor',
+            description: __('Active slider marker in image navigation', 'gutenverse-news'),
             show: !props.hideImageNavigation,
-            label: __('Tootlip Background Color', 'gutenverse-news'),
+            label: __('Tootlip Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
@@ -137,7 +138,7 @@ export const navigationButtonStylePanel = (props) => {
             component: ColorControl,
         },
         {
-            id: 'nextButtonBgColor',
+            id: 'prevButtonBgColor',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             label: __('Background Color', 'gutenverse-news'),
             component: ColorControl,

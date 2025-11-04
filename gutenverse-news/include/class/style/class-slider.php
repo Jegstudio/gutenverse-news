@@ -560,6 +560,16 @@ class Slider extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-top-color' );
+					},
+					'value'          => $this->attrs['tootlipColor'],
+					'device_control' => false,
+				)
+			);
 		}
 
 		if ( isset( $this->attrs['nextButtonTransition'] ) ) {

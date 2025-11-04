@@ -64,17 +64,30 @@ export const getBolockStyle = (elementId, attributes) => {
         ]
     });
 
-    isNotEmpty(attributes['tootlipColor']) && data.push({
-        'type': 'color',
-        'id': 'tootlipColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
-        'properties': [
-            {
-                'name': 'background-color',
-                'valueType': 'direct'
-            }
-        ],
-    });
+    if (isNotEmpty(attributes['tootlipColor'])) {
+        data.push({
+            'type': 'color',
+            'id': 'tootlipColor',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
+            'properties': [
+                {
+                    'name': 'background-color',
+                    'valueType': 'direct'
+                },
+            ],
+        });
+        data.push({
+            'type': 'color',
+            'id': 'tootlipColor',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before`,
+            'properties': [
+                {
+                    'name': 'border-top-color',
+                    'valueType': 'direct'
+                },
+            ],
+        });
+    }
 
     isNotEmpty(attributes['nextButtonColor']) && data.push({
         'type': 'color',
