@@ -234,71 +234,88 @@
         },
         "titleTypography": {
             "type": "object",
-			"copyStyle": true
+            "copyStyle": true
         },
         "titleColor": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "titleColorHover": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "hideNavigationButton": {
-            "type":"boolean",
+            "type": "boolean",
             "default": false
         },
-		"nextButtonIcon": {
-			"type": "string",
-			"default": "fas fa-chevron-right"
-		},
-		"prevButtonIcon": {
-			"type": "string",
-			"default": "fas fa-chevron-left"
-		},
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
         "nextButtonColor": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "prevButtonColor": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "nextButtonColorHover": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "prevButtonColorHover": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "nextButtonSize": {
-            "type":"string"
+            "type": "string"
         },
         "prevButtonSize": {
-            "type":"string"
+            "type": "string"
         },
-        "nextButtonPadding":{
-            "type":"object"
+        "nextButtonPadding": {
+            "type": "object"
         },
-        "prevButtonPadding":{
-            "type":"object"
+        "prevButtonPadding": {
+            "type": "object"
         },
         "nextButtonBgColor": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "prevButtonBgColor": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "nextButtonBgColorHover": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
         },
         "prevButtonBgColorHover": {
-            "type":"object",
+            "type": "object",
             "copyStyle": true
+        },
+        "nextButtonOffsetProperties": {
+            "type": "object",
+            "default": {}
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "tootlipColor": {
+            "type": "object"
+        },
+        "nextButtonTransition":{
+            "type":"string"
+        },
+        "prevButtonTransition":{
+            "type":"string"
         }
     },
     "supports": {

@@ -46,7 +46,9 @@ class Slider extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
+
 		$this->slider_1_style();
+
 		if ( stristr( $this->attrs['gvnewsModule'], 'Slider_Overlay' ) ) {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
 				$this->handle_background( ".{$this->element_id} .gvnews_overlay_slider_wrapper:before", $this->attrs['overrideOverlay'] );
@@ -312,7 +314,8 @@ class Slider extends StyleAbstract {
 	 * @return void
 	 */
 	private function slider_1_style() {
-		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_1' ) ) {
+
+		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
 			return;
 		}
 
@@ -465,6 +468,19 @@ class Slider extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['nextButtonOffsetProperties'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, '' );
+					},
+					'value'          => $this->attrs['nextButtonOffsetProperties'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['prevButtonPadding'] ) ) {
 			$this->inject_style(
 				array(
@@ -525,6 +541,80 @@ class Slider extends StyleAbstract {
 						return $this->handle_color( $value, 'background-color' );
 					},
 					'value'          => $this->attrs['prevButtonBgColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
+			return;
+		}
+
+		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'property'       => function ( $value ) {
+						return 'display: none !important;';
+					},
+					'value'          => $this->attrs['hideImageNavigation'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['tootlipColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['tootlipColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nextButtonTransition'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'property'       => function ( $value ) {
+						return "transition: background-color {$value}ms;";
+					},
+					'value'          => $this->attrs['nextButtonTransition'],
+					'device_control' => false,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next i",
+					'property'       => function ( $value ) {
+						return "transition: color {$value}ms;";
+					},
+					'value'          => $this->attrs['nextButtonTransition'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['prevButtonTransition'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'property'       => function ( $value ) {
+						return "transition: background-color {$value}ms;";
+					},
+					'value'          => $this->attrs['prevButtonTransition'],
+					'device_control' => false,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev i",
+					'property'       => function ( $value ) {
+						return "transition: color {$value}ms;";
+					},
+					'value'          => $this->attrs['prevButtonTransition'],
 					'device_control' => false,
 				)
 			);

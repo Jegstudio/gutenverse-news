@@ -51,6 +51,31 @@ export const getBolockStyle = (elementId, attributes) => {
         ]
     });
 
+    isNotEmpty(attributes['hideImageNavigation']) && data.push({
+        'type': 'plain',
+        'id': 'hideImageNavigation',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'pattern',
+                'pattern': 'none !important',
+            }
+        ]
+    });
+
+    isNotEmpty(attributes['tootlipColor']) && data.push({
+        'type': 'color',
+        'id': 'tootlipColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     isNotEmpty(attributes['nextButtonColor']) && data.push({
         'type': 'color',
         'id': 'nextButtonColor',
@@ -148,6 +173,19 @@ export const getBolockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
     });
 
+    isNotEmpty(attributes['nextButtonOffsetProperties']) && data.push({
+        'type': 'dimension',
+        'id': 'nextButtonOffsetProperties',
+        'responsive': true,
+        'properties': [
+            {
+                'name': '',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+    });
+
     isNotEmpty(attributes['prevButtonPadding']) && data.push({
         'type': 'dimension',
         'id': 'prevButtonPadding',
@@ -159,6 +197,19 @@ export const getBolockStyle = (elementId, attributes) => {
             }
         ],
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+    });
+
+    isNotEmpty(attributes['prevButtonOffsetProperties']) && data.push({
+        'type': 'dimension',
+        'id': 'prevButtonOffsetProperties',
+        'responsive': true,
+        'properties': [
+            {
+                'name': '',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
     });
 
     isNotEmpty(attributes['nextButtonBgColor']) && data.push({
@@ -208,6 +259,80 @@ export const getBolockStyle = (elementId, attributes) => {
             }
         ],
     });
+
+    if (isNotEmpty(attributes['nextButtonTransition'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'nextButtonTransition',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+            'properties': [
+                {
+                    'name': 'transition',
+                    'valueType': 'pattern',
+                    'pattern': 'background-color {value}ms;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'nextButtonTransition',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+            'properties': [
+                {
+                    'name': 'transition',
+                    'valueType': 'pattern',
+                    'pattern': 'color {value}ms;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        });
+    }
+
+    if (isNotEmpty(attributes['prevButtonTransition'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'prevButtonTransition',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+            'properties': [
+                {
+                    'name': 'transition',
+                    'valueType': 'pattern',
+                    'pattern': 'background-color {value}ms;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'prevButtonTransition',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+            'properties': [
+                {
+                    'name': 'transition',
+                    'valueType': 'pattern',
+                    'pattern': 'color {value}ms;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        });
+    }
 
     return data;
 };
