@@ -192,6 +192,18 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
     });
 
+    isNotEmpty(attributes['secondTitleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'secondTitleTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_sm .gvnews_post_title a`,
+    });
+
+    isNotEmpty(attributes['thridTitleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'thridTitleTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_xs_2 .gvnews_post_title a`,
+    });
+
     isNotEmpty(attributes['typographyContent']) && data.push({
         'type': 'typography',
         'id': 'typographyContent',

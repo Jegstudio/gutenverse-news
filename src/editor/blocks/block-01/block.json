@@ -507,6 +507,12 @@
         },
         "headerFilterColorActive": {
             "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
         }
     },
     "supports": {

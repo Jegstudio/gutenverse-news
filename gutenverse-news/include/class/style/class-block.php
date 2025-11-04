@@ -77,6 +77,30 @@ class Block extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pl_sm .gvnews_post_title a",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['secondTitleTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['thridTitleTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pl_xs_2 .gvnews_post_title a",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['thridTitleTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['typographyContent'] ) ) {
 			$this->inject_typography(
 				array(

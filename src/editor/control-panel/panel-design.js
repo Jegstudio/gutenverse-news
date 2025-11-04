@@ -2,12 +2,13 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl, CheckboxControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
-export const designPanel = (props) => {
+export const designPanel = (props, typeCount = 1) => {
     const {
         enableBoxed,
         elementId,
         enableExcerpt,
         extendedOption = props => { return []; },
+        columnWidth,
     } = props;
 
     return [
@@ -54,26 +55,19 @@ export const designPanel = (props) => {
             label: __('Title Typography', 'gutenverse-news'),
             description: __('This option will change your title typography.', 'gutenverse-news'),
             component: TypographyControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
-                    hasChild: true,
-                    render: (value, id) => handleTypography(value, props, id)
-                }
-            ]
         },
         {
-            id: 'typographyContent',
-            label: __('Content Typography', 'gutenverse-news'),
-            description: __('This option will change your content typography.', 'gutenverse-news'),
+            id: 'secondTitleTypography',
+            label: __('Second List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
             component: TypographyControl,
-            style: [
-                {
-                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt p`, `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore`],
-                    hasChild: true,
-                    render: (value, id) => handleTypography(value, props, id)
-                }
-            ]
+        },
+        {
+            id: 'thridTitleTypography',
+            label: __('Thrid List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the thrid list.', 'gutenverse-news'),
+            show: typeCount >= 3 && (columnWidth === 'auto' || columnWidth === '12'),
+            component: TypographyControl,
         },
         {
             id: 'titleColor',
@@ -85,6 +79,19 @@ export const designPanel = (props) => {
                     render: value => handleColor(value, 'color')
                 }
             ],
+        },
+        {
+            id: 'typographyContent',
+            label: __('Content Typography', 'gutenverse-news'),
+            description: __('This option will change your post excerpt and read more button typography.', 'gutenverse-news'),
+            component: TypographyControl,
+            style: [
+                {
+                    selector: [`.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt p`, `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore`],
+                    hasChild: true,
+                    render: (value, id) => handleTypography(value, props, id)
+                }
+            ]
         },
         {
             id: 'aHover',
