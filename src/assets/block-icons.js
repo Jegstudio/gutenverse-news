@@ -79,7 +79,7 @@ import Block36BlockPro from './svg/pro/module-36.svg';
 import Block37BlockPro from './svg/pro/module-37.svg';
 import Block38BlockPro from './svg/pro/module-38.svg';
 import Block39BlockPro from './svg/pro/module-39.svg';
-import ArchiveHeroPro from './svg/pro/archive-hero.svg';
+import ArchiveHero from './svg/archive-hero.svg';
 import Carousel1Pro from './svg/pro/carousel-1.svg';
 import Carousel2Pro from './svg/pro/carousel-2.svg';
 import Carousel3Pro from './svg/pro/carousel-3.svg';
@@ -233,7 +233,7 @@ export const ArchivePaginationSvg = () => {
     return <ArchivePagination />;
 };
 export const ArchiveHeroSvg = () => {
-    return <ArchiveHeroPro />;
+    return <ArchiveHero />;
 };
 export const ArchiveBlockSvg = () => {
     return <ArchiveBlock />;
