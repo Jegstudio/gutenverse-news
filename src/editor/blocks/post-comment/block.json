@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-comment",
     "title": "Post Comment",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Comment",
-    "description": "Your Block description.",
+    "description": "This block is deprecated and will be removed in the future.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {

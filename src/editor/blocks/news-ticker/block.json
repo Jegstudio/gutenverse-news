@@ -3,7 +3,7 @@
     "name": "gutenverse/news-news-ticker",
     "title": "News Ticker",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\News_Ticker",
-    "description": "Your Block description.",
+    "description": "Display your feed with responsive sliding news ticker to highlight breaking news, trending news, etc.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {
