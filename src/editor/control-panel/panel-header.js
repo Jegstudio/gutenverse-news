@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { IconControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl } from 'gutenverse-core/controls';
+import { IconControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import { handleColor } from 'gutenverse-core/styling';
 
@@ -435,6 +435,17 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerLineThick',
+            label: __('Header Line Thick', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            show: headerType === 'heading_1' || headerType === 'heading_5' || headerType === 'heading_6' || headerType === 'heading_7' || headerType === 'heading_9',
+            unit: 'px',
+            min: 1,
+            max: 10,
+            step: 1,
+        },
+        {
             id: 'headerLineColor2',
             show: headerType === 'heading_5',
             label: __('Header Line Color', 'gutenverse-news'),
@@ -446,6 +457,17 @@ export const headerStylesPanel = (props) => {
                     render: value => handleColor(value, 'border-color')
                 }
             ],
+        },
+        {
+            id: 'headerLineThick2',
+            label: __('Header Line Thick', 'gutenverse-news'),
+            show: headerType === 'heading_9',
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 10,
+            step: 1,
         },
         {
             id: 'headerAccentColor',
@@ -514,6 +536,13 @@ export const headerStylesPanel = (props) => {
             label: __('Header Filter Text Color', 'gutenverse-news'),
             description: __('Change color of your header filter text in active condition.', 'gutenverse-news'),
             show: withHeaderFilter && switcher.header === 'active',
+            component: ColorControl,
+        },
+        {
+            id: 'headerFilterLineColor',
+            label: __('Header Filter Line Color', 'gutenverse-news'),
+            description: __('Change color of your header filter line color on active condition.', 'gutenverse-news'),
+            show: withHeaderFilter && headerType === 'heading_3' && switcher.header === 'active',
             component: ColorControl,
         },
 

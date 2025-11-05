@@ -537,6 +537,7 @@ abstract class Block_View_Abstract {
 	 */
 	public function get_attribute( $attr ) {
 		$this->attribute     = wp_parse_args( $attr, $this->options );
+		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
 		$this->meta_settings = array_merge(
 			array(
 				'show_meta'    => true,
@@ -544,7 +545,7 @@ abstract class Block_View_Abstract {
 				'meta_author'  => true,
 				'meta_comment' => true,
 			),
-			$attr['meta_settings']
+			$meta_settings
 		);
 		return $this->attribute;
 	}

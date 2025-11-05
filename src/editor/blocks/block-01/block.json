@@ -516,6 +516,17 @@
         },
         "readmoreButtonDisabled": {
             "type": "boolean"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterLineColor": {
+            "type": "object"
         }
     },
     "supports": {
