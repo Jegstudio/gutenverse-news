@@ -117,6 +117,9 @@ class Image {
 	 * @return string
 	 */
 	public function get_image_size( $size ) {
+		if ( strpos( apply_filters( 'gvnews_use_custom_image', $size ), 'gvnews-' ) !== false ) {
+			$size = apply_filters( 'gvnews_use_custom_image', $size );
+		}
 		return $this->image_size[ $size ];
 	}
 

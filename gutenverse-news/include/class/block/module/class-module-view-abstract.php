@@ -651,6 +651,28 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
+	 * Method main_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function main_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeMain'] ) && 'default' !== $this->attribute['renderedImageSizeMain'] ? $this->attribute['renderedImageSizeMain'] : $size;
+		return $size;
+	}
+
+	/**
+	 * Method second_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function second_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeSecond'] ) && 'default' !== $this->attribute['renderedImageSizeSecond'] ? $this->attribute['renderedImageSizeSecond'] : $size;
+		return $size;
+	}
+
+	/**
 	 * Method render_column
 	 *
 	 * @param string $result       result.

@@ -29,6 +29,7 @@ class Module_1 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return '<div class="gvnews_thumb">
 					' . gvnews_edit_post( $post_id ) . "
@@ -61,6 +62,7 @@ class Module_1 extends Module_View_Abstract {
 		$post_id          = $post->ID;
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post_id ) . '>
 					<div class="gvnews_thumb">
@@ -104,9 +106,11 @@ class Module_1 extends Module_View_Abstract {
 	 */
 	public function build_column_1( $results ) {
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
@@ -151,6 +155,7 @@ class Module_1 extends Module_View_Abstract {
 	 */
 	public function build_column_2( $results ) {
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
@@ -176,14 +181,15 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function build_column_3( $results ) {
-		$first_block = $this->render_block_type_1( $results[0], $this->attribute['renderedImageSizeMain'] );
+		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$size        = count( $results );
 		$first_limit = (int) ceil( ( $size - 1 ) * 2 / 5 ) + 1;
 
 		$second_block = '';
 		for ( $i = 1; $i < $first_limit; $i++ ) {
-			$second_block .= $this->render_block_type_2( $results[ $i ], $this->attribute['renderedImageSizeSecond'] );
+			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
 
 		$third_block = '';
@@ -213,7 +219,6 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_output( $attr, $column_class ) {
-		gutenverse_rlog( $column_class );
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
 		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
