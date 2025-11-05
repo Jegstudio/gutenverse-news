@@ -3,7 +3,7 @@
     "name": "gutenverse/news-archive-hero",
     "title": "Archive Hero",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "[PRO] Display your posts on the archive page with a Hero-style block.",
+    "description": "Display your posts on the archive page with a Hero-style block.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -183,13 +183,11 @@
         }
     },
     "supports": {
-        "className": false,
-        "inserter": false
+        "className": false
     },
     "keywords": [
         "single",
         "archive",
         "hero"
-    ],
-    "gutenversePro": true
+    ]
 }
