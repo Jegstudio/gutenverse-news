@@ -2,52 +2,67 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block2Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        blockWidth,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain = {},
+        renderedImageSizeSecond = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
-    const RenderBlock1 = props=>{
+    const RenderBlock1 = props => {
         return (
             <>
-                <ThumbModule size={715} cat={true} post={props.post}/>
-                <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
+                <ThumbModule size={715} cat={true} post={props.post} imageSize={props.imageSize}/>
+                <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr} />
             </>
         );
     };
 
-    const RenderBlock2 = props=>{
+    const RenderBlock2 = props => {
         const { index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_sm ${isLoadMore && index > loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
-                <ThumbModule size={715} cat={false} post={props.post}/>
-                <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
+                <ThumbModule size={715} cat={false} post={props.post} imageSize={props.imageSize} />
+                <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
             </article>
         );
     };
 
-    const BuildColumn1 = ()=>{
+    const BuildColumn1 = () => {
         const attr = {
-            option : moduleOption,
-            length : excerptLength,
-            elipsis : excerptEllipsis,
-            date : {
-                type : metaDateType,
-                format : metaDateFormat,
-                custom : metaDateFormatCustom,
+            option: moduleOption,
+            length: excerptLength,
+            elipsis: excerptEllipsis,
+            date: {
+                type: metaDateType,
+                format: metaDateFormat,
+                custom: metaDateFormatCustom,
             }
         };
         const rows = [];
 
         if (postData) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]} />);
             }
         }
 
-        return(
+        return (
             <>
                 <article className="gvnews_post gvnews_pl_lg_1">
-                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} />}
                 </article>
                 <div className="gvnews_postsmall">
                     <div className="gvnews_posts">
@@ -58,12 +73,12 @@ const Block2Columns = props => {
         );
     };
 
-    const BuildColumn2 = ()=>{
+    const BuildColumn2 = () => {
         const attr = {
-            option : moduleOption,
-            length : excerptLength,
-            elipsis : excerptEllipsis,
-            date : {
+            option: moduleOption,
+            length: excerptLength,
+            elipsis: excerptEllipsis,
+            date: {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
@@ -73,14 +88,14 @@ const Block2Columns = props => {
 
         if (postData) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]}/>);
+                rows.push(<RenderBlock2 key={postData[i].id} index={i + 1} attr={attr} post={postData[i]} imageSize={renderedImageSizeSecond} />);
             }
         }
 
-        return(
+        return (
             <>
                 <article className="gvnews_post gvnews_pl_lg_2">
-                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]}/>}
+                    {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} imageSize={renderedImageSizeMain} />}
                 </article>
                 <div className="gvnews_posts_wrap">
                     <div className="gvnews_posts">
@@ -91,17 +106,17 @@ const Block2Columns = props => {
         );
     };
 
-    const RenderColumn = ()=>{
+    const RenderColumn = () => {
         if (blockWidth == 4) {
-            return <BuildColumn1/>;
+            return <BuildColumn1 />;
         } else if (blockWidth == 12) {
-            return <BuildColumn2/>;
+            return <BuildColumn2 />;
         } else {
-            return <BuildColumn2/>;
+            return <BuildColumn2 />;
         }
     };
 
-    return <RenderColumn/>;
+    return <RenderColumn />;
 };
 
 export default Block2Columns;

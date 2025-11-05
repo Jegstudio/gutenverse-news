@@ -120,6 +120,7 @@ class Image_Normal_Load implements Image_Interface {
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
 
 		$image_size = Image::get_instance()->get_image_size( $size );
+		$size       = apply_filters( 'gvnews_use_custom_image', $size );
 
 		$additional_class = '';
 		if ( ! has_post_thumbnail( $id ) ) {
