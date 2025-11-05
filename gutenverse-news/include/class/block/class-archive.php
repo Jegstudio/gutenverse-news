@@ -225,16 +225,4 @@ class Archive extends Grab {
 		}
 		return false;
 	}
-
-	/**
-	 * Check if this block is Pro.
-	 *
-	 * @return boolean
-	 */
-	public function check_pro() {
-		if ( current_user_can( 'edit_pages' ) && ( ! gutenverse_pro_active() && 'GUTENVERSE\NEWS\Block\Archive\Archive_Hero' === $this->attributes['gvnewsModule'] ) ) {
-			return true;
-		}
-		return false;
-	}
 }
