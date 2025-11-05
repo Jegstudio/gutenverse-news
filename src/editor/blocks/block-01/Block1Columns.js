@@ -3,12 +3,26 @@ import { ContentModule } from '../../part/post';
 import { createChunks } from '../../utils/helper';
 
 const Block1Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        isLoadMore = false,
+        moduleOption,
+        blockWidth,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain = {},
+        renderedImageSizeSecond = {},
+    } = props;
 
     const RenderBlock1 = props=>{
         return (
             <>
-                <ThumbModule size={500} cat={true} post={props.post}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={props.imageSize}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
             </>
         );
@@ -18,7 +32,7 @@ const Block1Columns = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
         return (
             <article className={`gvnews_post gvnews_pl_sm ${isLoadMoreAnimation  ? `gvnews_ajax_loaded anim_${index}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
-                <ThumbModule size={715} cat={false} post={props.post}/>
+                <ThumbModule size={715} cat={false} post={props.post} imageSize={props.imageSize}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
         );
@@ -133,7 +147,7 @@ const Block1Columns = props => {
             if (datas.length > 0) {
                 let limit =  Math.ceil( ( datas.length - 1 ) * 2 / 5) + 1;
                 for (let i = 1; i < limit; i++) {
-                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} imageSize={renderedImageSizeSecond}/>);
                 }
                 for (let i = limit; i < datas.length; i++) {
                     rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
@@ -142,7 +156,7 @@ const Block1Columns = props => {
 
             return <div className="gvnews_posts gvnews-posts-row">
                 <article className={`gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
-                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]}/>}
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={renderedImageSizeMain}/>}
                 </article>
                 <div className="gvnews_postsmall col-sm-4">
                     {rows}

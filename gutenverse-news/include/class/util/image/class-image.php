@@ -121,11 +121,35 @@ class Image {
 	}
 
 	/**
+	 * Method get_image_size
+	 *
+	 * @return string
+	 */
+	public function get_image_sizes() {
+		return $this->image_size;
+	}
+
+	/**
+	 * Method add_image_size
+	 *
+	 * @return void
+	 */
+	public function add_image_size() {
+		foreach ( $this->image_size as $id => $image ) {
+			add_image_size( $id, $image['width'], $image['height'], $image['crop'] );
+		}
+	}
+
+	// ///////////////////
+	// PRIVATE FUNCTION //
+	// ///////////////////
+
+	/**
 	 * Method setup_image_size
 	 *
 	 * @return void
 	 */
-	public function setup_image_size() {
+	private function setup_image_size() {
 		$this->image_size = array(
 			// dimension : 0.5.
 			$this->prefix . '360x180'       => array(
@@ -212,25 +236,13 @@ class Image {
 	}
 
 	/**
-	 * Method add_image_size
-	 *
-	 * @return void
-	 */
-	public function add_image_size() {
-		foreach ( $this->image_size as $id => $image ) {
-			add_image_size( $id, $image['width'], $image['height'], $image['crop'] );
-		}
-	}
-
-
-	/**
 	 * Parse image size.
 	 *
 	 * @param string $string string.
 	 *
 	 * @return array
 	 */
-	public function parse_size( $string ) {
+	private function parse_size( $string ) {
 		$size = array();
 
 		if ( ! is_array( $string ) && substr( $string, 0, strlen( $this->prefix ) ) === $this->prefix ) {
@@ -259,7 +271,6 @@ class Image {
 		return $size;
 	}
 
-
 	/**
 	 * Create a new image by cropping the original image based on given size.
 	 *
@@ -271,7 +282,7 @@ class Image {
 	 * @param  boolean $crop   crop.
 	 * @return array
 	 */
-	public function make_image( $id, $width, $height = 999999, $crop = false ) {
+	private function make_image( $id, $width, $height = 999999, $crop = false ) {
 		$image  = get_attached_file( $id );
 		$editor = wp_get_image_editor( $image );
 

@@ -33,7 +33,9 @@ const BlockModule = compose(
         moduleName,
         columnAttr,
         panelList,
-        freeModule = false
+        freeModule = false,
+        renderedImageSizeMain,
+        renderedImageSizeSecond
     } = props;
 
     const {
@@ -285,6 +287,8 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
+                renderedImageSizeMain,
+                renderedImageSizeSecond,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -300,6 +304,8 @@ const BlockModule = compose(
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        renderedImageSizeMain,
+        renderedImageSizeSecond
     ]);
 
     const blockProps = useBlockProps({

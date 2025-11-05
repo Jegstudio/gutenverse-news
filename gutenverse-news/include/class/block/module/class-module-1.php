@@ -176,14 +176,14 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function build_column_3( $results ) {
-		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		$first_block = $this->render_block_type_1( $results[0], $this->attribute['renderedImageSizeMain'] );
 
 		$size        = count( $results );
 		$first_limit = (int) ceil( ( $size - 1 ) * 2 / 5 ) + 1;
 
 		$second_block = '';
 		for ( $i = 1; $i < $first_limit; $i++ ) {
-			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
+			$second_block .= $this->render_block_type_2( $results[ $i ], $this->attribute['renderedImageSizeSecond'] );
 		}
 
 		$third_block = '';
@@ -213,6 +213,7 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_output( $attr, $column_class ) {
+		gutenverse_rlog( $column_class );
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
 		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();

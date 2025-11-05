@@ -195,4 +195,21 @@ const getModuleOptions = () => {
     };
 };
 
-export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions, gutenverseProActive };
+const getImageSizeDetail = ( name, def = {} ) => {
+    const imageSizes = window.GVNewsConfig.imageSizes;
+    return imageSizes[name] ? imageSizes[name] : def;
+};
+
+export {
+    createChunks,
+    searchPosts,
+    searchPages,
+    searchCategory,
+    searchAuthor,
+    searchTag,
+    searchCustomPostTemplate,
+    getParentColumnWidth,
+    getModuleOptions,
+    gutenverseProActive,
+    getImageSizeDetail,
+};
