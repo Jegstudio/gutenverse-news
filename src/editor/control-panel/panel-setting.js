@@ -76,6 +76,7 @@ export const settingPanel = (props) => {
         {
             id: 'renderedImageSizeMain',
             label: __('Rendered Image Size in Main Thumbnail', 'gutenverse-news'),
+            description: __('Choose the image size that you want to rendered in main thumbnail in this module.', 'gutenverse-news'),
             component: SelectControl,
             options: getImageSizeOptions(),
         }
@@ -85,6 +86,7 @@ export const settingPanel = (props) => {
         result.push({
             id: 'renderedImageSizeSecond',
             label: __('Rendered Image Size in Second Thumbnail', 'gutenverse-news'),
+            description: __('Choose the image size that you want to rendered in second thumbnail in this module.', 'gutenverse-news'),
             component: SelectControl,
             options: getImageSizeOptions(),
         });

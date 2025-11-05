@@ -166,8 +166,8 @@ class Block extends Grab {
 			'compatible_column_notice'     => '',
 			'show_date'                    => $enbdate,
 			'short_code'                   => $this->attributes['gvnewsModule'],
-			'renderedImageSizeMain'        => $this->attributes['renderedImageSizeMain'],
-			'renderedImageSizeSecond'      => $this->attributes['renderedImageSizeSecond'],
+			'renderedImageSizeMain'        => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
+			'renderedImageSizeSecond'      => isset( $this->attributes['renderedImageSizeSecond'] ) ? $this->attributes['renderedImageSizeSecond'] : '',
 		);
 		$sccontent = '';
 
