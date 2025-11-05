@@ -1,14 +1,29 @@
 import { __ } from '@wordpress/i18n';
-import { SwitchControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
+import { SwitchControl, CheckboxControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
 
 export const readmoreStylePanel = (props) => {
     const {
         elementId,
         switcher,
         setSwitcher,
+        readmoreButtonDisabled = false
     } = props;
+    if (readmoreButtonDisabled) {
+        return [{
+            id: 'readmoreButtonDisabled',
+            label: __('Disable Read More Button', 'gutenverse-news'),
+            description: __('Check this option to disable the read more button on this block.', 'gutenverse-news'),
+            component: CheckboxControl
+        }];
+    }
 
     return [
+        {
+            id: 'readmoreButtonDisabled',
+            label: __('Disable Read More Button', 'gutenverse-news'),
+            description: __('Turn on this option to disable the read more button on this block.', 'gutenverse-news'),
+            component: CheckboxControl
+        },
         {
             id: 'readmoreButtonTypography',
             label: __('Typography', 'gutenverse-news'),

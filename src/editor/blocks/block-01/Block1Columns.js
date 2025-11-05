@@ -3,13 +3,13 @@ import { ContentModule } from '../../part/post';
 import { createChunks } from '../../utils/helper';
 
 const Block1Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const { postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false } = props;
 
     const RenderBlock1 = props=>{
         return (
             <>
-                <ThumbModule size={500} cat={true} post={props.post}/>
-                <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
+                <ThumbModule size={500} cat={true} post={props.post} />
+                <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </>
         );
     };
