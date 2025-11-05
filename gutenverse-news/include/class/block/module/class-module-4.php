@@ -111,10 +111,11 @@ class Module_4 extends Module_View_Abstract {
 
 		$first_block = '';
 		$size        = count( $results );
-
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], $image_size );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}
