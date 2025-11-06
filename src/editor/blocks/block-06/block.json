@@ -452,6 +452,10 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "renderedImageSizeMain":{
+            "type":"string",
+            "default":"default"
         }
     },
     "supports": {
