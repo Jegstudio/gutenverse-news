@@ -2,7 +2,20 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block7Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain,
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -13,7 +26,7 @@ const Block7Columns = props => {
                 <h3 property="headline" className="gvnews_post_title">
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </h3>
-                <ThumbModule size={500} cat={false} post={props.post}/>
+                <ThumbModule size={500} cat={false} post={props.post} imageSize={renderedImageSizeMain}/>
                 <ContentModule title={false} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
             </article>
         );
