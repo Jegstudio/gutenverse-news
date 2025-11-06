@@ -2,50 +2,75 @@ import ThumbModule from '../../part/thumbnail';
 import { MetaModule1, MetaModule2 } from '../../part/meta';
 
 const Block17Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        blockWidth,
+        renderedImageSizeMain,
+        renderedImageSizeSecond
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
-    function RenderBlock1(props){
-        const {attr, post, index = 'x'} = props;
+    function RenderBlock1(props) {
+        const { attr, post, index = 'x' } = props;
         let aclass = '';
         let PostMeta = () => (
             <>
-                {attr.option && !attr.option.meta_show && <MetaModule1 {...props}/>}
+                {attr.option && !attr.option.meta_show && <MetaModule1 {...props} />}
                 <div className="gvnews_post_excerpt">
-                    <p>{post.excerpt && post.excerpt.replace('&hellip;','').split(' ').splice(0,attr.length).join(' ') + attr.elipsis}</p>
+                    <p>{post.excerpt && post.excerpt.replace('&hellip;', '').split(' ').splice(0, attr.length).join(' ') + attr.elipsis}</p>
                 </div>
             </>
         );
 
-        if (1==props.type){
-            aclass = 'gvnews_post gvnews_pl_md_1';
-        }else{
-            aclass = `gvnews_post gvnews_pl_sm ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`;
+        if (1 === props.type) {
+            aclass = 'gvnews_post gvnews_pl_md_1'; // atas
+        } else { // bawah
+            aclass = 'gvnews_post gvnews_pl_sm';
+
+            // Load more
+            if (isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1) {
+                aclass += ' gvnews_ajax_loaded anim_' + (index - loadValidAnim);
+            }
+
+            // No thumbnail
+            if (!props || !props.post || !props.post.thumbnail || !props.post.thumbnail.url) {
+                aclass += ' no_thumbnail';
+            }
         }
 
         return (
             <article className={aclass}>
-                <ThumbModule size={715} cat={1==props.type ? true : false} post={post}/>
+                <ThumbModule size={715} cat={1 === props.type ? true : false} post={post} imageSize={props.imageSize} />
                 <div className="gvnews_postblock_content">
                     <h3 className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
                     </h3>
-                    {1==props.type ? <PostMeta/> : (attr.option && !attr.option.meta_show && <MetaModule2 {...props}/>)}
+                    {1 === props.type ? <PostMeta /> : (attr.option && !attr.option.meta_show && <MetaModule2 {...props} />)}
                 </div>
             </article>
         );
     }
 
-    const BuildColumn1 = () =>{
+    const BuildColumn1 = () => {
         const attr = {
-            option : moduleOption,
-            length : excerptLength,
-            elipsis : excerptEllipsis,
-            date : {
-                type : metaDateType,
-                format : metaDateFormat,
-                custom : metaDateFormatCustom,
+            option: moduleOption,
+            length: excerptLength,
+            elipsis: excerptEllipsis,
+            date: {
+                type: metaDateType,
+                format: metaDateFormat,
+                custom: metaDateFormatCustom,
             }
         };
         const rows = [];
@@ -53,24 +78,27 @@ const Block17Columns = props => {
         let start = 0;
         let limit = 2;
 
-        if (4==blockWidth && postData.length > 0) {
-            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1}/>);
+        if (4 === blockWidth && postData.length > 0) {
+            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1} />);
             start = 1;
-        } else if (12==blockWidth) {
+        } else if (12 === blockWidth) {
             limit = 3;
         }
 
         if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
-                if (4==blockWidth){
-                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
-                }else{
-                    rows.push(i < limit ? <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1}/> : <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2}/>);
+                if (4 === blockWidth) {
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} />);
+                } else { // block-17
+                    rows.push(i < limit ?
+                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1} imageSize={renderedImageSizeMain}/> :
+                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={renderedImageSizeSecond} />
+                    );
                 }
             }
         }
 
-        return(
+        return (
             <div className="gvnews_posts_wrap">
                 <div className="gvnews_posts">
                     {first}
@@ -80,7 +108,7 @@ const Block17Columns = props => {
         );
     };
 
-    return <BuildColumn1/>;
+    return <BuildColumn1 />;
 };
 
 export default Block17Columns;

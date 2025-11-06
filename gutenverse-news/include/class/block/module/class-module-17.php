@@ -77,8 +77,10 @@ class Module_17 extends Module_View_Abstract {
 		$limit       = 2;
 
 		if ( $is_col_1o3 ) {
+			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 			$first_block = $this->render_block_type( $results[0], 'gvnews-360x180', 1 );
-			$start       = 1;
+			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+			$start = 1;
 		} elseif ( 'gvnews_col_3o3' === $column_class ) {
 			$image_size = 'gvnews-360x180';
 			$limit      = 3;
@@ -88,9 +90,17 @@ class Module_17 extends Module_View_Abstract {
 		$size         = count( $results );
 		for ( $i = $start; $i < $size; $i++ ) {
 			if ( $is_col_1o3 ) {
+				add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 				$second_block .= $this->render_block_type( $results[ $i ], 'gvnews-120x86', 2 );
-			} else {
+				remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
+			} elseif ( $i < $limit ) {
+				add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 				$second_block .= $i < $limit ? $this->render_block_type( $results[ $i ], $image_size, 1 ) : $this->render_block_type( $results[ $i ], 'gvnews-120x86', 2 );
+				remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+			} else {
+				add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
+				$second_block .= $this->render_block_type( $results[ $i ], 'gvnews-120x86', 2 );
+				remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 			}
 		}
 
@@ -112,9 +122,11 @@ class Module_17 extends Module_View_Abstract {
 	public function build_column_1_alt( $results ) {
 		$first_block = '';
 		$size        = count( $results );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type( $results[ $i ], 'gvnews-120x86', 2 );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return $first_block;
 	}

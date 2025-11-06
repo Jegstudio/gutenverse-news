@@ -43,7 +43,10 @@ export const panelList = () => {
             {
                 title: __('Content Setting', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: settingPanel,
+                panelArray: (props) =>  settingPanel({
+                    ...props,
+                    hasSecondImageSize: true,
+                }),
                 tabRole: TabSetting
             },
             {

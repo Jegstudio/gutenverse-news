@@ -3,6 +3,7 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import Block17Columns from './Block17Columns';
 import BlockModule from '../../part/module';
 import { panelList } from './panels/panel-list';
+import { getImageSizeDetail } from '../../utils/helper';
 
 const Block17Block = compose(
     withPartialRender,
@@ -13,7 +14,17 @@ const Block17Block = compose(
         blockWidth: 12,
     };
     const moduleName = '17';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
+    const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 1140, width: 570, dimension: 500 });
+    const renderedImageSizeSecond = getImageSizeDetail(props.attributes.renderedImageSizeSecond, { height: 360, width: 180, dimension: 500 });
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        renderedImageSizeMain={renderedImageSizeMain}
+        renderedImageSizeSecond={renderedImageSizeSecond}
+    />;
 
 });
 

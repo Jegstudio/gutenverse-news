@@ -2,14 +2,27 @@ import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 
 const Block16Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         return (
             <article className="gvnews_post gvnews_pl_lg_5">
-                <ThumbModule size={500} cat={true} post={props.post}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr}/>
             </article>
         );

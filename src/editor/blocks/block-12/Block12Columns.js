@@ -2,7 +2,20 @@ import ThumbModule from '../../part/thumbnail';
 import { MetaModule1, MetaModule3, MetaCategory } from '../../part/meta';
 
 const Block12Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain,
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -11,7 +24,7 @@ const Block12Columns = props => {
         return (
             <article className={`gvnews_post gvnews_pl_lg_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <div className="gvnews_inner_post">
-                    <ThumbModule size={715} cat={false} post={post}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={renderedImageSizeMain}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <h3 className="gvnews_post_title">
