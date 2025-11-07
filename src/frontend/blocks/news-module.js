@@ -37,13 +37,13 @@ class GutenverseNewsModule {
             this.nav_prev = this.nav_block.find('.prev');
 
             // assign click
-            this.nav_next.on('click', this.click_next.bind(this));
-            this.nav_prev.on('click', this.click_prev.bind(this));
+            this.nav_next.on('click', this.click_next);
+            this.nav_prev.on('click', this.click_prev);
         }
 
         if (this.ajax_mode === 'loadmore' || this.ajax_mode === 'scrollload') {
             this.nav_next = this.load_more_block.find('a');
-            this.nav_next.on('click', this.load_more.bind(this));
+            this.nav_next.on('click', this.load_more);
         }
 
         if (this.ajax_mode === 'scrollload') {
@@ -57,23 +57,59 @@ class GutenverseNewsModule {
         this.element.trigger('gvnews_module_init', [this]);
     }
 
-    load_more() {
+    load_scroll = () => {
+        if (!this.nav_next.hasClass('disabled')) {
+            if (this.load_limit > this.data.current_page || this.load_limit == 0) {
+                window.addEventListener('scroll', this.listen_scroll);
+            }
+        }
+    };
 
+    listen_scroll = () => {
+        var windowHeight = window.innerHeight;
+        var scrollTop = window.scrollY;
+        var elementOffset = this.nav_next.size().top;
+        var offset = 0; // Adjust this value if needed
+
+        if (elementOffset - scrollTop <= windowHeight + offset) {
+            this.data.current_page = this.data.current_page + 1;
+            this.request_ajax('scroll');
+            window.removeEventListener('scroll', this.listen_scroll);
+        }
+    };
+
+    load_more = (event) => {
+        let element = this.nav_next;
+        event.preventDefault();
+
+        if (!u(element).hasClass('disabled') && !this.lock_action) {
+            this.data.current_page = this.data.current_page + 1;
+            this.request_ajax('more');
+        }
     }
 
-    click_next() {
 
+    click_next = (event) => {
+        let element = this.nav_next;
+        event.preventDefault();
+        if (!u(element).hasClass('disabled') && !this.lock_action) {
+            this.data.current_page = this.data.current_page + 1;
+            this.request_ajax('next');
+        }
     }
 
-    click_prev() {
 
+    click_prev = (event) => {
+        let element = this.nav_prev;
+        event.preventDefault();
+
+        if (!u(element).hasClass('disabled') && !this.lock_action) {
+            this.data.current_page = this.data.current_page - 1;
+            this.request_ajax('prev');
+        }
     }
 
-    init() {
-        // call subcat
-        this.subcat = this.header.find('.gvnews_subcat');
-
-        // heading subset.
+    init = () => {
         this.subcat = this.header.find('.gvnews_subcat');
         if (this.subcat.length) {
             new OkayNav(this.subcat.nodes[0], {
@@ -87,11 +123,11 @@ class GutenverseNewsModule {
         this.assign_header();
     }
 
-    assign_header() {
-        this.header.on('click', '.subclass-filter', this.subclass_click.bind(this));
+    assign_header = () => {
+        this.header.on('click', '.subclass-filter', this.subclass_click);
     }
 
-    subclass_click(event) {
+    subclass_click = (event) => {
         let target = event.target;
         event.preventDefault();
 
@@ -114,7 +150,7 @@ class GutenverseNewsModule {
         }
     }
 
-    toFormParams(obj, prefix = '') {
+    toFormParams = (obj, prefix = '') => {
         const params = [];
         for (let key in obj) {
             if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
@@ -130,23 +166,23 @@ class GutenverseNewsModule {
         return params;
     }
 
-    request_ajax(type) {
+    request_ajax = (type) => {
         this.lock_action = true;
 
-        var action = window.GVNewsConfig.module_prefix + this.data.attribute.class;
-        var parameter = {
+        let action = window.GVNewsConfig.module_prefix + this.data.attribute.class;
+        let parameter = {
             action: action,
             module: true,
             data: this.data,
         };
-        var result = this.cache_get(parameter);
+        let result = this.cache_get(parameter);
 
         if (result) {
             this.before_ajax_request(type, false);
-            // setTimeout(function () {
-            //     this.load_ajax(type, parameter, result);
-            //     this.element.trigger('gvnews_module_ajax');
-            // }, 100);
+            setTimeout(() => {
+                this.load_ajax(type, parameter, result);
+                this.element.trigger('gvnews_module_ajax');
+            }, 100);
         } else {
             this.before_ajax_request(type, true);
             const params = new URLSearchParams(this.toFormParams(parameter));
@@ -157,44 +193,146 @@ class GutenverseNewsModule {
                 body: params,
             }).then(res => res.json()).then(response => {
                 this.load_ajax(type, parameter, response);
-                // this.cache_save(parameter, response);
-                // this.element.trigger('gvnews_module_ajax', response);
-            }).catch(err => console.error('AJAX error:', err));
+                this.cache_save(parameter, response);
+                this.element.trigger('gvnews_module_ajax', response);
+            });
         }
     }
 
-    before_ajax_request(type, show_loading) {
+    cache_save = (parameter, response) => {
+        let jsonparam = JSON.stringify(parameter);
+
+        this.xhr_cache.push({
+            param: jsonparam,
+            result: response,
+        });
+    }
+
+    before_ajax_request = (type, show_loading) => {
         this.element.removeClass('loaded next prev more scroll subclass').addClass('loading');
 
         if ((type === 'next' || type === 'prev' || type === 'subclass') && show_loading) {
-            // this.module_overlay.css('display', 'block');
+            this.module_overlay.attr('style', 'display: block');
         }
 
         if (type === 'more' || type === 'scroll') {
-            // this.load_more_block.find('a').text(this.load_more_block.find('a').data('loading')).addClass('active');
+            this.load_more_block.find('a').text(this.load_more_block.find('a').data('loading')).addClass('active');
         }
     }
 
-    load_ajax(type, parameter, response) {
+    load_ajax = (type, parameter, response) => {
         this.lock_action = false;
 
-        switch (this.ajax_mode) {
-            case 'loadmore':
-                // this.load_ajax_load_more(response, type);
-                break;
-            case 'scrollload':
-                // this.load_scroll_more(response, type);
-                break;
-            case 'nextprev':
-            default:
-                this.load_ajax_next_prev(response, type);
-                break;
+        if (type === 'subclass') {
+            this.load_ajax_next_prev(response, type);
+        } else {
+            switch (this.ajax_mode) {
+                case 'loadmore':
+                    this.load_ajax_load_more(response, type);
+                    break;
+                case 'scrollload':
+                    this.load_scroll_more(response, type);
+                    break;
+                case 'nextprev':
+                default:
+                    this.load_ajax_next_prev(response, type);
+                    break;
+            }
         }
 
         // if (gvnews.share) gvnews.share.init();
     }
 
-    load_ajax_next_prev(response, load_type) {
+    load_scroll_more = (response, load_type) => {
+        var content = u(response.content);
+
+        var count = 0;
+        content.each(function () {
+            if (u(this).hasClass('gvnews_ad_module') && this.ad_code) {
+                u(this).find('.ads-wrapper').html(this.ad_code);
+            }
+
+            if (u(this).hasClass('gvnews_post')) {
+                u(this).addClass('gvnews_ajax_loaded anim_' + count);
+            } else {
+                var posts = u(this).find('.gvnews_post');
+                posts.each(function () {
+                    u(this).addClass('gvnews_ajax_loaded anim_' + count);
+                    count++;
+                });
+            }
+
+            count++;
+        });
+
+        this.container.find('.gvnews_post').removeClass('gvnews_ajax_loaded');
+        this.container.find('.gvnews_ad_module').removeClass('gvnews_ajax_loaded');
+
+        if (this.data.current_page == 1) {
+            this.container.html('').html(content);
+        } else {
+            this.element.find('.gvnews_load_more_flag').append(content);
+        }
+
+        if (response.next) {
+            this.nav_next.removeClass('disabled');
+        } else {
+            this.nav_next.addClass('disabled');
+        }
+
+        this.after_ajax_request(load_type);
+        this.masonry_load_more(content);
+        u(window).trigger('resize');
+
+        setTimeout(() => {
+            this.load_scroll();
+        }, 500);
+    };
+
+    load_ajax_load_more = (response, load_type) => {
+        let content = u(response.content);
+
+        // add ajax flag class for animation
+        let count = 0;
+        content.each(function () {
+            if (u(this).hasClass('gvnews_ad_module') && this.ad_code) {
+                u(this).find('.ads-wrapper').html(this.ad_code);
+            }
+
+            if (u(this).hasClass('gvnews_post')) {
+                u(this).addClass('gvnews_ajax_loaded anim_' + count);
+            } else {
+                let posts = u(this).find('.gvnews_post');
+                posts.each(function () {
+                    u(this).addClass('gvnews_ajax_loaded anim_' + count);
+                    count++;
+                });
+            }
+
+            count++;
+        });
+
+        this.container.find('.gvnews_post').removeClass('gvnews_ajax_loaded');
+        this.container.find('.gvnews_ad_module').removeClass('gvnews_ajax_loaded');
+
+        if (this.data.current_page == 1) {
+            this.replace_content(content);
+        } else {
+            this.element.find('.gvnews_load_more_flag').append(content);
+        }
+
+        if (response.next) {
+            this.nav_next.removeClass('disabled');
+        } else {
+            this.nav_next.addClass('disabled');
+        }
+
+        this.after_ajax_request(load_type);
+        this.masonry_load_more(content);
+        u(window).trigger('resize');
+    };
+
+    load_ajax_next_prev = (response, load_type) => {
         let content = u(response.content);
         if (content.find('.gvnews_ad_module').length && this.ad_code) {
             content.find('.ads-wrapper').html(this.ad_code);
@@ -229,17 +367,16 @@ class GutenverseNewsModule {
             }
         }
 
-        // we done :)
         this.after_ajax_request(load_type);
-        // this.masonry_init();
+        this.masonry_init();
         u(window).trigger('resize');
     }
 
-    after_ajax_request(type) {
+    after_ajax_request = (type) => {
         this.element.removeClass('loading').addClass('loaded').addClass(type);
 
         if (type === 'next' || type === 'prev' || type === 'subclass') {
-            this.module_overlay.hide();
+            this.module_overlay.attr('style', 'display: none');
         }
 
         if (type === 'more' || type === 'scroll') {
@@ -251,19 +388,17 @@ class GutenverseNewsModule {
     }
 
 
-    replace_content(content) {
+    replace_content = (content) => {
         this.container.children().each(function () {
-            if (!u(this).hasClass('module-overlay')) {
-                u(this).remove();
-            }
+            u(this).remove();
         });
         this.container.prepend(content);
     }
 
-    cache_get(parameter) {
-        var jsonparam = JSON.stringify(parameter);
+    cache_get = (parameter) => {
+        let jsonparam = JSON.stringify(parameter);
 
-        for (var i = 0; i < this.xhr_cache.length; i++) {
+        for (let i = 0; i < this.xhr_cache.length; i++) {
             if (this.xhr_cache[i].param == jsonparam) {
                 return this.cache_prepare(this.xhr_cache[i].result);
             }
@@ -272,11 +407,25 @@ class GutenverseNewsModule {
         return false;
     }
 
-    masonry_init() {
+    cache_prepare = (response) => {
+        response.content = '<div>' + response.content + '</div>';
+        let content = u(response.content);
+
+        content.find('img').each(function () {
+            let src = u(this).data('src');
+            u(this).attr('src', src).removeClass('lazyload').addClass('lazyloaded');
+        });
+
+        response.content = content.html();
+
+        return response;
+    }
+
+    masonry_init = () => {
 
     }
 
-    load_scroll() {
+    masonry_load_more = () => {
 
     }
 
