@@ -486,6 +486,41 @@
         },
         "metaAuthorColorHover": {
             "type": "object"
+        },
+        "headerTextTypography": {
+            "type": "object"
+        },
+        "headerSecondTextTypography": {
+            "type": "object"
+        },
+        "headerFilterTypography": {
+            "type": "object"
+        },
+        "headerSeondTextColor": {
+            "type": "object"
+        },
+        "headerFilterColor": {
+            "type": "object"
+        },
+        "headerFilterColorHover": {
+            "type": "object"
+        },
+        "headerFilterColorActive": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterLineColor": {
+            "type": "object"
         }
     },
     "supports": {
