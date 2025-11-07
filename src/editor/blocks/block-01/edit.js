@@ -14,8 +14,8 @@ const Block1Block = compose(
         blockWidth: 12,
     };
     const moduleName = '1';
-    const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, {height: 360, width: 180, dimension: 500});
-    const renderedImageSizeSecond = getImageSizeDetail(props.attributes.renderedImageSizeSecond, {height: 120, width: 86, dimension: 715});
+    const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 360, width: 180, dimension: 500 });
+    const renderedImageSizeSecond = getImageSizeDetail(props.attributes.renderedImageSizeSecond, { height: 120, width: 86, dimension: 715 });
     return <BlockModule
         columnAttr={columnAttr}
         moduleName={moduleName}
@@ -24,6 +24,8 @@ const Block1Block = compose(
         freeModule={true}
         renderedImageSizeMain={renderedImageSizeMain}
         renderedImageSizeSecond={renderedImageSizeSecond}
+        mainThumbnailClass={'gvnews_pl_lg_1'}
+        secondThumbnailClass={'gvnews_pl_sm'}
     />;
 });
 

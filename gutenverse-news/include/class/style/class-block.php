@@ -18,6 +18,19 @@ use GUTENVERSE\NEWS\Style\StyleAbstract;
  */
 class Block extends StyleAbstract {
 
+	/**
+	 * Undocumented variable
+	 *
+	 * @var string|null
+	 */
+	private string|null $main_thumbnail_class = null;
+
+	/**
+	 * Undocumented variable
+	 *
+	 * @var string|null
+	 */
+	private string|null $second_thumbnail_class = null;
 
 	/**
 	 * Constructor
@@ -27,6 +40,7 @@ class Block extends StyleAbstract {
 	 */
 	public function __construct( $attrs, $name = false ) {
 		parent::__construct( $attrs, $name );
+		$this->set_class_thumbnail();
 
 		$this->set_feature(
 			array(
@@ -48,6 +62,9 @@ class Block extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
+
+		$this->generate_thumbnail_style();
+
 		if ( isset( $this->attrs['headerTextColor'] ) ) {
 			$this->inject_style(
 				array(
@@ -520,10 +537,30 @@ class Block extends StyleAbstract {
 			}
 		}
 	}
+
+	// PRIVATE FUNCTION.
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	private function set_class_thumbnail() {
+		$gvnews_module = $this->attrs['gvnewsModule']::get_instance();
+
+		if ( isset( $gvnews_module->main_thumbnail_class ) ) {
+			$this->main_thumbnail_class = $gvnews_module->main_thumbnail_class;
+		}
+
+		if ( isset( $gvnews_module->second_thumbnail_class ) ) {
+			$this->second_thumbnail_class = $gvnews_module->second_thumbnail_class;
+		}
+	}
+
 	/**
 	 * Generate style block pagination style.
 	 */
-	public function generate_pagination_style() {
+	private function generate_pagination_style() {
 		if ( isset( $this->attrs['paginationWrapperMargin'] ) ) {
 			$this->inject_style(
 				array(
@@ -877,6 +914,57 @@ class Block extends StyleAbstract {
 						},
 						'value'          => $this->attrs['paginationBtnIconSpacing'],
 						'device_control' => true,
+					)
+				);
+			}
+		}
+	}
+
+	/**
+	 * Generate style block thumbnail style.
+	 *
+	 * @return void
+	 */
+	private function generate_thumbnail_style() {
+		if ( $this->main_thumbnail_class ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .thumbnail-container";
+			if ( isset( $this->attrs['borderMainThumbnail'] ) ) {
+				$this->handle_border( 'borderMainThumbnail', $selector );
+			}
+			if ( isset( $this->attrs['borderResponsiveMainThumbnail'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_border_responsive( $value );
+						},
+						'value'          => $this->attrs['borderResponsiveMainThumbnail'],
+						'device_control' => true,
+						'skip_device'    => isset( $this->attrs['border'] ) ? array(
+							'Desktop',
+						) : null,
+					)
+				);
+			}
+		}
+
+		if ( $this->second_thumbnail_class ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .thumbnail-container";
+			if ( isset( $this->attrs['borderSecondThumbnail'] ) ) {
+				$this->handle_border( 'borderSecondThumbnail', $selector );
+			}
+			if ( isset( $this->attrs['borderResponsiveSecondThumbnail'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_border_responsive( $value );
+						},
+						'value'          => $this->attrs['borderResponsiveSecondThumbnail'],
+						'device_control' => true,
+						'skip_device'    => isset( $this->attrs['border'] ) ? array(
+							'Desktop',
+						) : null,
 					)
 				);
 			}

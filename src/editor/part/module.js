@@ -35,7 +35,9 @@ const BlockModule = compose(
         panelList,
         freeModule = false,
         renderedImageSizeMain,
-        renderedImageSizeSecond
+        renderedImageSizeSecond,
+        mainThumbnailClass,
+        secondThumbnailClass
     } = props;
 
     const {
@@ -81,7 +83,17 @@ const BlockModule = compose(
     const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getBlockStyle(
+            elementId,
+            attributes,
+            mainThumbnailClass,
+            secondThumbnailClass,
+        ),
+        elementRef
+    );
 
     const {
         getBlock,

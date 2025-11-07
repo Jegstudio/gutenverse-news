@@ -10,6 +10,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 
 export const panelList = () => {
     return [
@@ -40,11 +41,17 @@ export const panelList = () => {
         {
             title: __('Content Setting', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => settingPanel({
+            panelArray: settingPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Thumbnail Setting', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => thumbnailSettingPanel({
                 ...props,
                 hasSecondImageSize: true,
             }),
-            tabRole: TabSetting
+            tabRole: TabStyle,
         },
         {
             title: __('Pagination', 'gutenverse-news'),

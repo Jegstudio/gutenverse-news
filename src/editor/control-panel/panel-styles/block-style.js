@@ -1,6 +1,11 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
 
-const getBlockStyle = (elementId, attributes) => {
+const getBlockStyle = (
+    elementId,
+    attributes,
+    mainThumbnailClass = null,
+    secondThumbnailClass = null
+) => {
     let data = [];
 
     /**
@@ -791,6 +796,33 @@ const getBlockStyle = (elementId, attributes) => {
             'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
         },
     );
+
+    // Panel Thumbnail
+    if (isNotEmpty(mainThumbnailClass)) {
+        isNotEmpty(attributes['borderMainThumbnail']) && data.push({
+            'id': 'borderMainThumbnail',
+            'type': 'border',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container`,
+        });
+        isNotEmpty(attributes['borderResponsiveMainThumbnail']) && data.push({
+            'id': 'borderResponsiveMainThumbnail',
+            'type': 'borderResponsive',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container`,
+        });
+    }
+
+    if (isNotEmpty(secondThumbnailClass)) {
+        isNotEmpty(attributes['borderSecondThumbnail']) && data.push({
+            'id': 'borderSecondThumbnail',
+            'type': 'border',
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container`,
+        });
+        isNotEmpty(attributes['borderResponsiveSecondThumbnail']) && data.push({
+            'id': 'borderResponsiveSecondThumbnail',
+            'type': 'borderResponsive',
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container`,
+        });
+    }
 
     return data;
 };

@@ -6,22 +6,9 @@ export const settingPanel = (props) => {
         metaDateFormat,
         enableExcerpt,
         enableDateFormat = true,
-        hasSecondImageSize = false,
     } = props;
 
-    const getImageSizeOptions = () => {
-        const imageSizes = window.GVNewsConfig.imageSizes;
-        const result = [
-            {label: __('Default', 'gutenverse-news'), value: 'default'},
-            {label: __('Original Image', 'gutenverse-image'), value: 'full'},
-        ];
-        for (const key in imageSizes) {
-            result.push({label: __(key, 'gutenverse-news'), value: key});
-        }
-        return result;
-    };
-
-    const result = [
+    return [
         {
             id: 'metaDateFormat',
             show: enableDateFormat === true,
@@ -73,24 +60,5 @@ export const settingPanel = (props) => {
             description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
             component: CheckboxControl
         },
-        {
-            id: 'renderedImageSizeMain',
-            label: hasSecondImageSize? __('Rendered Image Size in Main Thumbnail', 'gutenverse-news') : __('Rendered Image Size', 'gutenverse-news'),
-            description: hasSecondImageSize? __('Choose the image size that you want to rendered in main thumbnail in this module.', 'gutenverse-news') : '',
-            component: SelectControl,
-            options: getImageSizeOptions(),
-        }
     ];
-
-    if (hasSecondImageSize) {
-        result.push({
-            id: 'renderedImageSizeSecond',
-            label: __('Rendered Image Size in Second Thumbnail', 'gutenverse-news'),
-            description: __('Choose the image size that you want to rendered in second thumbnail in this module.', 'gutenverse-news'),
-            component: SelectControl,
-            options: getImageSizeOptions(),
-        });
-    }
-
-    return result;
 };

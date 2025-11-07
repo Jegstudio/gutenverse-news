@@ -1140,6 +1140,37 @@ abstract class StyleInterface {
 	}
 
 	/**
+	 * Handle Border V2
+	 *
+	 * @param array $data .
+	 *
+	 * @return string
+	 */
+	public function handle_border_responsive( $data ) {
+		$style = '';
+
+		foreach ( $data as $key => $value ) {
+			if ( 'radius' === $key ) {
+				$style .= $this->handle_border_radius( $value );
+			} elseif ( ! empty( $value ) && ! empty( $value['type'] ) ) {
+				$position = 'all' === $key ? '' : "{$key}-";
+
+				$style .= "border-{$position}style: {$value['type']};";
+
+				if ( ! gutenverse_truly_empty( $value['width'] ) ) {
+					$style .= "border-{$position}width: {$value['width']}px;";
+				}
+
+				if ( ! empty( $value['color'] ) ) {
+					$style .= $this->handle_color( $value['color'], "border-{$position}color" );
+				}
+			}
+		}
+
+		return $style;
+	}
+
+	/**
 	 * Handle Border Radius
 	 *
 	 * @param array $value Value of border radius.
