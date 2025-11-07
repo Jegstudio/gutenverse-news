@@ -147,6 +147,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Improvements
 * Bring back the Archive Hero block as Free
 
+##### Bug Fixes
+* Fix archive block not working on archive search page
+
 = 3.0.2 =
 ##### Improvements
 * Removed the Jegicon font and replaced it with Font Awesome icons
