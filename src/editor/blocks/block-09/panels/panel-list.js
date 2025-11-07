@@ -56,7 +56,7 @@ export const panelList = () => {
             panelArray: (props) => headerStylesPanel({
                 ...props,
             }),
-            tabRole: TabSetting
+            tabRole: TabStyle
         },
         {
             title: __('Pagination', 'gutenverse-news'),

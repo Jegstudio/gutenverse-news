@@ -60,6 +60,7 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
             id: 'secondTitleTypography',
             label: __('Second List Title Typography', 'gutenverse-news'),
             description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
+            show: typeCount >= 2,
             component: TypographyControl,
         },
         {
