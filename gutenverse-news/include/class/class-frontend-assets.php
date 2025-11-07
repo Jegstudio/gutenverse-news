@@ -55,7 +55,120 @@ class Frontend_Assets {
 		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
 		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
 		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
+
+		// Modular Script.
+		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_scripts' ) );
+		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_styles' ) );
 	}
+
+	/**
+	 * Load the scripts
+	 */
+	public function load_conditional_scripts() {
+		$include[] = 'gutenverse-frontend-event';
+
+		wp_register_script(
+			'gutenverse-frontend-module-script',
+			GUTENVERSE_NEWS_URL . '/assets/js/frontend/news-module.js',
+			$include,
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
+	}
+
+	/**
+	 * Load the styles
+	 */
+	public function load_conditional_styles() {
+		/** Register Block / Module */
+		wp_register_style(
+			'gutenverse-frontend-module-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/modules.css',
+			null,
+			GUTENVERSE_NEWS_VERSION
+		);
+
+		wp_register_style(
+			'gutenverse-frontend-column-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/column.css',
+			null,
+			GUTENVERSE_NEWS_VERSION
+		);
+
+		$blocks = array(
+			'block-01',
+			'block-02',
+			'block-03',
+			'block-04',
+			'block-05',
+			'block-06',
+			'block-07',
+			'block-08',
+			'block-09',
+			'block-10',
+			'block-11',
+			'block-12',
+			'block-13',
+			'block-14',
+			'block-15',
+			'block-16',
+			'block-17',
+			'block-18',
+			'block-19',
+			'block-20',
+			'block-21',
+			'block-22',
+			'block-23',
+			'block-24',
+			'block-25',
+			'block-26',
+			'block-27',
+			'block-28',
+			'block-29',
+			'block-30',
+			'block-31',
+			'block-32',
+			'block-33',
+			'block-34',
+			'block-35',
+			'block-36',
+			'block-37',
+			'block-38',
+			'block-39',
+		);
+
+		foreach ( $blocks as $block ) {
+			wp_register_style(
+				'gutenverse-frontend-' . $block . '-style',
+				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $block . '.css',
+				array( 'gutenverse-frontend-module-style', 'gutenverse-frontend-column-style' ),
+				GUTENVERSE_NEWS_VERSION
+			);
+		}
+
+		/** Register Post Block */
+		$modules = array(
+			'post-author',
+			'post-breadcrumb',
+			'post-comment',
+			'post-featured-image',
+			'post-meta',
+			'post-prev-next',
+			'post-related',
+			'post-tag',
+			'post-title',
+		);
+
+		foreach ( $modules as $module ) {
+			wp_register_style(
+				'gutenverse-frontend-' . $module . '-style',
+				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
+				null,
+				GUTENVERSE_NEWS_VERSION
+			);
+		}
+	}
+
 
 	/**
 	 * Loop Block.
@@ -142,7 +255,7 @@ class Frontend_Assets {
 	public function frontend_styles() {
 		wp_enqueue_style(
 			'gvnews-block-frontend-style',
-			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
+			GUTENVERSE_NEWS_URL . '/assets/css/blocks.css',
 			array(),
 			GUTENVERSE_NEWS_VERSION
 		);

@@ -30,9 +30,9 @@ class Editor_Assets {
 	public function enqueue_scripts() {
 		wp_enqueue_style(
 			'gvnews-gutenverse-editor-style',
-			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
+			GUTENVERSE_NEWS_URL . '/assets/css/editor.css',
 			array(),
-			GUTENVERSE_NEWS_VERSION,
+			GUTENVERSE_NEWS_VERSION
 		);
 
 		$backend = include GUTENVERSE_NEWS_DIR . '/lib/dependencies/backend.asset.php';

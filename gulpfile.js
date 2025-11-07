@@ -34,6 +34,7 @@ module.exports = {
 };
 
 
+/*
 gulp.task('blocks', function () {
     return gulp
         .src([path.resolve(__dirname, './src/assets/scss/blocks.scss')])
@@ -64,13 +65,52 @@ gulp.task('update-notice', function () {
         .pipe(postcss(postCSSOptions))
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
+*/
 
-gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice'));
+const rootDir = path.resolve(__dirname, './src/assets/scss');
+const rootStyle = rootDir + '/*.scss';
+const rootDest = path.join(__dirname, 'gutenverse-news/assets/css');
+
+gulp.task('frontend-root-block-styles', function () {
+    return gulp
+        .src([rootStyle])
+        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(postCSSOptions))
+        .on('data', function (file) {
+            const pathParts = file.relative.split(path.sep);
+            const blockName = pathParts[0];
+
+            file.path = path.join(file.base, blockName);
+        })
+        .pipe(gulp.dest(rootDest));
+});
+
+const blocksDir = path.resolve(__dirname, './src/editor/blocks');
+const blocksStyle = blocksDir + '/**/styles/style.scss';
+const finalDest = path.join(__dirname, 'gutenverse-news/assets/css/frontend');
+
+gulp.task('frontend-block-styles', function () {
+    return gulp
+        .src([blocksStyle])
+        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(postCSSOptions))
+        .on('data', function (file) {
+            const pathParts = file.relative.split(path.sep);
+            const blockName = pathParts[0];
+
+            file.path = path.join(file.base, blockName + '.css');
+        })
+        .pipe(gulp.dest(finalDest));
+});
+
+gulp.task('build-process', gulp.parallel('frontend-block-styles', 'frontend-root-block-styles'));
 
 gulp.task('build', gulp.series('build-process'));
 
 const watchProcess = (basePath = '.') => {
-    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice']));
+    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['frontend-block-styles', 'frontend-root-block-styles']));
 };
 
 gulp.task(
@@ -170,6 +210,5 @@ gulp.task('release', gulp.series(
     'clean-maps',
     'zip'
 ));
-
 
 module.exports.watchProcess = watchProcess;

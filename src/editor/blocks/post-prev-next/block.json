@@ -131,5 +131,6 @@
         "prev",
         "next"
     ],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-frontend-post-prev-next-style"]
 }

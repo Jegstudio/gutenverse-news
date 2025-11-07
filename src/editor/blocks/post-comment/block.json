@@ -453,5 +453,6 @@
         "post",
         "comment"
     ],
-    "gvnewsRemoved": true
+    "gvnewsRemoved": true,
+	"style": ["gutenverse-frontend-post-comment-style"]
 }

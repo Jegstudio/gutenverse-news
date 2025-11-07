@@ -428,7 +428,10 @@
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "html": false,
+		"anchor": true
     },
-    "keywords": []
+    "keywords": [],
+    "viewScript": ["gutenverse-frontend-module-script"]
 }
