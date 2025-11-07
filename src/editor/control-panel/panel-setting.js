@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import {IconControl , SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
+import { IconControl, SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
 
-export const settingPanel = (props) => {
+export const settingPanel = (props, withListIcon = false) => {
     const {
         metaDateFormat,
         enableExcerpt,
@@ -61,6 +61,7 @@ export const settingPanel = (props) => {
         },
         {
             id: 'listIcon',
+            show: withListIcon,
             label: __('Item List Icon', 'gutenverse-news'),
             description: __('Choose icon for post list icon.', 'gutenverse-news'),
             component: IconControl
