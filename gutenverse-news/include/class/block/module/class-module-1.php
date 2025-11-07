@@ -86,8 +86,9 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_3( $post ) {
+		$icon = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_2', $post->ID ) . '>
-					<i class="fas fa-caret-right"></i>
+					<i class="' . $icon . '"></i>
 					<div class="gvnews_postblock_content">
 						<h3 class="gvnews_post_title"><a href="' . get_permalink( $post ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
 						{$this->post_meta_2($post)}

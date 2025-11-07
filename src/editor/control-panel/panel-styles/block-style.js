@@ -253,6 +253,18 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['listIconColor']) && data.push({
+        'type': 'color',
+        'id': 'listIconColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_xs_2>i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
 
 
     switch (headerType) {

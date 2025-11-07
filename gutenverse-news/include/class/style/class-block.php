@@ -418,6 +418,19 @@ class Block extends StyleAbstract {
 		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
 			$this->generate_meta_style();
 		}
+
+		if ( isset( $this->attrs['listIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}  .gvnews_pl_xs_2>i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['listIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 	/**
 	 * Generate style block pagination style.

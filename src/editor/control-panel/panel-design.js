@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl, CheckboxControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
-export const designPanel = (props, typeCount = 1) => {
+export const designPanel = (props, typeCount = 1, listIcon = false) => {
     const {
         enableBoxed,
         elementId,
@@ -115,6 +115,13 @@ export const designPanel = (props, typeCount = 1) => {
                     render: value => handleColor(value, 'color')
                 }
             ],
+        },
+        {
+            id: 'listIconColor',
+            label: __('List Icon Color', 'gutenverse-news'),
+            description: __('This option will change the list icon color.', 'gutenverse-news'),
+            show: listIcon && (columnWidth === 'auto' || columnWidth === '12'),
+            component: ColorControl,
         },
     ];
 };

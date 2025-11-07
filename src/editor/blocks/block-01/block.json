@@ -527,6 +527,13 @@
         },
         "headerFilterLineColor": {
             "type": "object"
+        },
+        "listIcon": {
+            "type": "string",
+            "default": "fas fa-caret-right"
+        },
+        "listIconColor": {
+            "type": "object"
         }
     },
     "supports": {

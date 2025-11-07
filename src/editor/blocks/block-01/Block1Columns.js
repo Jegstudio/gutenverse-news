@@ -3,7 +3,7 @@ import { ContentModule } from '../../part/post';
 import { createChunks } from '../../utils/helper';
 
 const Block1Columns = props => {
-    const { postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false } = props;
+    const { postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false, listIcon = '' } = props;
 
     const RenderBlock1 = props=>{
         return (
@@ -24,13 +24,13 @@ const Block1Columns = props => {
         );
     };
 
-    const RenderBlock3 = props=>{
+    const RenderBlock3 = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
-        return(
+        return (
             <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
-                <i className="fas fa-caret-right"></i>
+                <i className={listIcon ? listIcon : 'fas fa-caret-right'}></i>
                 <div className="gvnews_postblock_content">
-                    <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
+                    <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
                 </div>
             </article>
         );
@@ -136,7 +136,7 @@ const Block1Columns = props => {
                     rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
                 }
                 for (let i = limit; i < datas.length; i++) {
-                    rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]}/>);
+                    rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} listIcon={listIcon} />);
                 }
             }
 

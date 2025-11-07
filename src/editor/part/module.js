@@ -77,7 +77,8 @@ const BlockModule = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         showMetaComment = true,
-        readmoreButtonDisabled = false
+        readmoreButtonDisabled = false,
+        listIcon = '',
     } = attributes;
 
     const metaSettings = {
@@ -305,7 +306,8 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
-                readmoreButtonDisabled
+                readmoreButtonDisabled,
+                listIcon
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -324,7 +326,8 @@ const BlockModule = compose(
         showMetaDate,
         showMetaAuthor,
         showMetaComment,
-        readmoreButtonDisabled
+        readmoreButtonDisabled,
+        listIcon
     ]);
 
     const blockProps = useBlockProps({
