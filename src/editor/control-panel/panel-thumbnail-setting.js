@@ -18,7 +18,7 @@ export const thumbnailSettingPanel = (props) => {
             { label: __('Original Image', 'gutenverse-image'), value: 'full' },
         ];
         for (const key in imageSizes) {
-            result.push({ label: __(key, 'gutenverse-news'), value: key });
+            result.push({ label: __(imageSizes[key].display_name, 'gutenverse-news'), value: key });
         }
         return result;
     };
