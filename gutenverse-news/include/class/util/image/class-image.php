@@ -249,21 +249,21 @@ class Image {
 			),
 
 			// Aspect Ratio.
-			$this->prefix . 'square'        => array(
+			$this->prefix . '1024x1024'     => array(
 				'width'        => 1024,
 				'height'       => 1024,
 				'crop'         => true,
 				'dimension'    => 1000,
 				'display_name' => 'Square - 1:1',
 			),
-			$this->prefix . 'landscape'     => array(
+			$this->prefix . '1200x800'      => array(
 				'width'        => 1200,
 				'height'       => 800,
 				'crop'         => true,
 				'dimension'    => 667,
 				'display_name' => 'Landscape - 3:2',
 			),
-			$this->prefix . 'potrait'       => array(
+			$this->prefix . '1200x1600'     => array(
 				'width'        => 1200,
 				'height'       => 1600,
 				'crop'         => true,

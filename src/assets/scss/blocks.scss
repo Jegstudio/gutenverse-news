@@ -2435,6 +2435,8 @@
     min-height: 100%;
     color: #a0a0a0;
     z-index: -1;
+    -o-object-fit: cover;
+    object-fit: cover;
   }
 }
 
