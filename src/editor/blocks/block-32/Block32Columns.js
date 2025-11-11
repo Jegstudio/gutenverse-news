@@ -5,17 +5,6 @@ import { useEffect, useRef } from '@wordpress/element';
 import Shuffle from 'shufflejs';
 
 const Block32Columns = (props) => {
-    const masonryRef = useRef();
-
-    useEffect(() => {
-        if (masonryRef) {
-            new Shuffle(masonryRef.current, {
-                itemSelector: '.gvnews_post',
-                gutterWidth: 30,
-                speed: 0
-            });
-        }
-    }, [masonryRef]);
 
     const {
         postData,
@@ -31,6 +20,26 @@ const Block32Columns = (props) => {
         page = 1,
         isLoadMore = false,
     } = props;
+
+    const masonryRef = useRef();
+    const shuffleInstance = useRef(null);
+
+    useEffect(() => {
+        if (shuffleInstance.current === null) {
+            shuffleInstance.current = new Shuffle(masonryRef.current, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        }
+
+        return () => {
+            shuffleInstance.current?.destroy;
+            shuffleInstance.current = null;
+        };
+    }, [
+        blockWidth,
+    ]);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;

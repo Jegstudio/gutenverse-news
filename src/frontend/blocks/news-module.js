@@ -69,10 +69,10 @@ class GutenverseNewsModule {
     };
 
     listen_scroll = () => {
-        var windowHeight = window.innerHeight;
-        var scrollTop = window.scrollY;
-        var elementOffset = this.nav_next.size().top;
-        var offset = 0; // Adjust this value if needed
+        const windowHeight = window.innerHeight;
+        const scrollTop = window.scrollY;
+        const elementOffset = this.nav_next.size().top;
+        const offset = 0; // Adjust this value if needed
 
         if (elementOffset - scrollTop <= windowHeight + offset) {
             this.data.current_page = this.data.current_page + 1;
@@ -247,9 +247,9 @@ class GutenverseNewsModule {
     }
 
     load_scroll_more = (response, load_type) => {
-        var content = u(response.content);
+        const content = u(response.content);
 
-        var count = 0;
+        let count = 0;
         content.each(function () {
             if (u(this).hasClass('gvnews_ad_module') && this.ad_code) {
                 u(this).find('.ads-wrapper').html(this.ad_code);
@@ -258,7 +258,7 @@ class GutenverseNewsModule {
             if (u(this).hasClass('gvnews_post')) {
                 u(this).addClass('gvnews_ajax_loaded anim_' + count);
             } else {
-                var posts = u(this).find('.gvnews_post');
+                const posts = u(this).find('.gvnews_post');
                 posts.each(function () {
                     u(this).addClass('gvnews_ajax_loaded anim_' + count);
                     count++;
