@@ -17,19 +17,6 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_28 extends Module_View_Abstract {
 
-
-	/**
-	 * Method set_content_setting_option
-	 *
-	 * @return void
-	 */
-	public function set_content_setting_option() {
-		$this->options['show_date']          = '';
-		$this->options['date_format']        = 'default';
-		$this->options['date_format_custom'] = 'Y/m/d';
-		$this->options['excerpt_length']     = 20;
-	}
-
 	/**
 	 * Method render_block
 	 *
@@ -39,7 +26,7 @@ class Module_28 extends Module_View_Abstract {
 	 */
 	public function render_block( $post ) {
 		$attr = $this->attribute;
-		$date = isset( $attr['show_date'] ) && $attr['show_date'] ? $this->post_meta_2( $post ) : '';
+		$date = $this->post_meta_2( $post );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post->ID ) . '>
                     <div class="gvnews_postblock_content">

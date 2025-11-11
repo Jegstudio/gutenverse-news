@@ -22,14 +22,14 @@ export const metaStylePanel = (props, settings) => {
             label: __('Meta Typography', 'gutenverse-news'),
             description: __('This option will change your meta typography.', 'gutenverse-news'),
             component: TypographyControl,
-            show: showMeta && showMetaAuthor
+            show: showMeta
         },
         {
             id: 'typographyMetaAuthor',
             label: __('Meta Author Typography', 'gutenverse-news'),
             description: __('This option will change your author name  typography on post meta.', 'gutenverse-news'),
             component: TypographyControl,
-            show: showMeta
+            show: settings.includes('author') && showMeta && showMetaAuthor
         },
         {
             id: '__metaHover',

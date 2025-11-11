@@ -449,13 +449,13 @@ const getBlockStyle = (elementId, attributes, settings) => {
         isNotEmpty(attributes['typographyMeta']) && data.push({
             'type': 'typography',
             'id': 'typographyMeta',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author .by `,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author .by `,
         });
 
         isNotEmpty(attributes['typographyMetaAuthor']) && data.push({
             'type': 'typography',
             'id': 'typographyMetaAuthor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author a`,
         });
 
         isNotEmpty(attributes['metaColor']) && data.push({
@@ -509,7 +509,7 @@ const getBlockStyle = (elementId, attributes, settings) => {
             isNotEmpty(attributes['metaAuthorColor']) && data.push({
                 'type': 'color',
                 'id': 'metaAuthorColor',
-                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a`,
+                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author a`,
                 'properties': [
                     {
                         'name': 'color',
@@ -520,7 +520,7 @@ const getBlockStyle = (elementId, attributes, settings) => {
             isNotEmpty(attributes['metaAuthorColorHover']) && data.push({
                 'type': 'color',
                 'id': 'metaAuthorColorHover',
-                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a:hover`,
+                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author a:hover`,
                 'properties': [
                     {
                         'name': 'color',

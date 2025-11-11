@@ -1,8 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl } from 'gutenverse-core/controls';
+import { CheckboxControl, SelectControl, TextControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
 export const metaPanel = (props, settings = []) => {
+    const {
+        metaDateFormat = 'default',
+        showMetaDate = true,
+    } = props;
 
     let panelList = [
         {
@@ -29,6 +33,34 @@ export const metaPanel = (props, settings = []) => {
             description: __('Enable this option to show meta date on this block.', 'gutenverse-news'),
             show: props.showMeta,
             component: CheckboxControl
+        },
+        {
+            id: 'metaDateFormat',
+            show: showMetaDate === true,
+            label: __('Date Format', 'gutenverse-news'),
+            description: __('Choose which date format you want to use.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
+                    value: 'ago'
+                },
+                {
+                    label: __('Wordpress Default Format', 'gutenverse-news'),
+                    value: 'default'
+                },
+                {
+                    label: __('Custom Format', 'gutenverse-news'),
+                    value: 'custom'
+                },
+            ],
+        },
+        {
+            id: 'metaDateFormatCustom',
+            show: metaDateFormat === 'custom',
+            label: __('Custom Format', 'gutenverse-news'),
+            description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
+            component: TextControl,
         },
     );
     settings.includes('comment') && panelList.push(

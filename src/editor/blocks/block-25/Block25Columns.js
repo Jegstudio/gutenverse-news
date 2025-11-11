@@ -3,7 +3,7 @@ import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
 
 const Block25Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom,  readmoreButtonDisabled = false} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -18,7 +18,7 @@ const Block25Columns = props => {
                     {attr.option && <MetaModule1 {...props}/>}
                 </div>
                 <ThumbModule size={500} cat={false} post={post}/>
-                <ContentModule title={false} excerpt={true} read={true} post={post} attr={attr}/>
+                <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
             </article>
         );
     };
