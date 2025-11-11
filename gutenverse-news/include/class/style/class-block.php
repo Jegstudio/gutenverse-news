@@ -826,7 +826,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['metaColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .by",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

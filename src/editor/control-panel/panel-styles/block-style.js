@@ -461,7 +461,7 @@ const getBlockStyle = (elementId, attributes, settings) => {
         isNotEmpty(attributes['metaColor']) && data.push({
             'type': 'color',
             'id': 'metaColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .by`,
             'properties': [
                 {
                     'name': 'color',
