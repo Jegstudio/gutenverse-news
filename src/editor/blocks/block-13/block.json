@@ -524,6 +524,10 @@
         },
         "headerFilterLineColor": {
             "type": "object"
+        },
+        "selectorSecondTitleTypography": {
+            "type": "string",
+            "default": ".gvnews_pl_md_1 .gvnews_post_title a"
         }
     },
     "supports": {

@@ -78,9 +78,10 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
+			$selector = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_pl_sm .gvnews_post_title a';
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_pl_sm .gvnews_post_title a",
+					'selector'       => ".{$this->element_id} {$selector}",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['secondTitleTypography'],
@@ -420,9 +421,10 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['listIconColor'] ) ) {
+			$selector = isset( $this->attrs['selectorIconList'] ) ? $this->attrs['selectorIconList'] : '.gvnews_pl_xs_2>i';
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}  .gvnews_pl_xs_2>i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper .{$this->element_id}  {$selector}",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

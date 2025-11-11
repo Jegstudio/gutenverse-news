@@ -1,6 +1,6 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
 
-const getBlockStyle = (elementId, attributes, settings) => {
+const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
     const {
@@ -195,7 +195,7 @@ const getBlockStyle = (elementId, attributes, settings) => {
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
         'type': 'typography',
         'id': 'secondTitleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${settings.secondSeelctor ? settings.secondSeelctor : '.gvnews_pl_sm .gvnews_post_title a'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_pl_sm .gvnews_post_title a'}`,
     });
 
     isNotEmpty(attributes['thridTitleTypography']) && data.push({
@@ -256,7 +256,7 @@ const getBlockStyle = (elementId, attributes, settings) => {
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${settings.iconSelector ? settings.iconSelector : '.gvnews_pl_xs_2>i'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorIconList']) ? attributes['selectorIconList'] : '.gvnews_pl_xs_2>i'}`,
         'properties': [
             {
                 'name': 'color',

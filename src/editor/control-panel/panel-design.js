@@ -121,7 +121,7 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
             id: 'listIconColor',
             label: __('List Icon Color', 'gutenverse-news'),
             description: __('This option will change the list icon color.', 'gutenverse-news'),
-            show: listIcon && (columnWidth === 'auto' || columnWidth === '12'),
+            show: listIcon ,
             component: ColorControl,
         },
     ];

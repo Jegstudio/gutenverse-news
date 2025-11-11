@@ -466,6 +466,10 @@
         },
         "listIconColor": {
             "type": "object"
+        },
+        "selectorIconList": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i"
         }
     },
     "supports": {

@@ -34,8 +34,6 @@ const BlockModule = compose(
         columnAttr,
         panelList,
         freeModule = false,
-        secondSeelctor = false,
-        iconSelector = false,
     } = props;
 
     const {
@@ -102,10 +100,7 @@ const BlockModule = compose(
     const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, (elementId, attributes) => getBlockStyle(elementId, attributes, {
-        secondSeelctor: secondSeelctor,
-        iconSelector: iconSelector
-    }), elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     const {
         getBlock,

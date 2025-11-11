@@ -16,7 +16,7 @@ const Block20Block = compose(
     };
     const moduleName = '20';
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} secondSeelctor={'.gvnews_pl_xs .gvnews_post_title a'}/>;
+        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
     }

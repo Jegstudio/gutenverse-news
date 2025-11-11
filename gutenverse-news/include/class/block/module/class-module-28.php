@@ -25,12 +25,11 @@ class Module_28 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block( $post ) {
-		$attr = $this->attribute;
 		$date = $this->post_meta_2( $post );
-
+		$icon = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post->ID ) . '>
                     <div class="gvnews_postblock_content">
-						<i class="fas fa-caret-right"></i>
+						<i class="' . $icon . '"></i>
                         <h3 class="gvnews_post_title">
                             <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                         </h3>

@@ -70,7 +70,7 @@ export const panelList = () => {
             {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: designPanel,
+                panelArray: (props) => designPanel(props, 2, true),
                 tabRole: TabStyle
             },
             {
