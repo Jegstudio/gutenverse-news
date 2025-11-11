@@ -22,6 +22,7 @@ const Block4Block = compose(
         panelList={panelList}
         freeModule={true}
         renderedImageSizeMain={renderedImageSizeMain}
+        mainThumbnailClass={'gvnews_pl_md_3'}
     />;
 });
 

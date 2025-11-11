@@ -403,6 +403,12 @@
             "type":"string",
             "default":"default"
         },
+        "borderMainThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type":"object"
+        },
         "showMeta": {
             "type": "boolean",
             "default": true

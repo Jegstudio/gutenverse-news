@@ -24,6 +24,7 @@ const Block11Block = compose(
             {...props}
             panelList={panelList}
             renderedImageSizeMain={renderedImageSizeMain}
+            mainThumbnailClass={'gvnews_pl_md_card'}
         />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;

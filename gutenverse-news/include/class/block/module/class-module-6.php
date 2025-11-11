@@ -18,6 +18,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_6 extends Module_View_Abstract {
 
 	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_3';
+	/**
 	 * Method render_block_type_1
 	 *
 	 * @param object $post       post.

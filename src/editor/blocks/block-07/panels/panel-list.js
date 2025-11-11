@@ -11,6 +11,7 @@ import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style'
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 
 export const panelList = () => {
     return [
@@ -55,6 +56,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: paginationPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Thumbnail Setting', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailSettingPanel,
+            tabRole: TabStyle,
         },
         {
             title: __('Header', 'gutenverse-news'),
