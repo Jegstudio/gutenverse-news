@@ -206,6 +206,13 @@ class Image {
 				'dimension'    => 715,
 				'display_name' => 'Landscape (7:5) - 1140x815',
 			),
+			$this->prefix . '1200x800'  => array(
+				'width'        => 1200,
+				'height'       => 800,
+				'crop'         => true,
+				'dimension'    => 667,
+				'display_name' => 'Landscape (3:2) - 1200x800',
+			),
 
 			// dimension.
 			$this->prefix . '360x504'   => array(
@@ -214,6 +221,13 @@ class Image {
 				'crop'         => true,
 				'dimension'    => 1400,
 				'display_name' => 'Potrait (5:7) - 360x504',
+			),
+			$this->prefix . '1200x1600' => array(
+				'width'        => 1200,
+				'height'       => 1600,
+				'crop'         => true,
+				'dimension'    => 1333,
+				'display_name' => 'Potrait (3:4) - 1200x1600',
 			),
 
 			// dimension 1.
@@ -231,28 +245,12 @@ class Image {
 				'dimension'    => 1000,
 				'display_name' => 'Square (1:1) - 350x350',
 			),
-
-			// Aspect Ratio.
 			$this->prefix . '1024x1024' => array(
 				'width'        => 1024,
 				'height'       => 1024,
 				'crop'         => true,
 				'dimension'    => 1000,
 				'display_name' => 'Square (1:1) - 1024x1024',
-			),
-			$this->prefix . '1200x800'  => array(
-				'width'        => 1200,
-				'height'       => 800,
-				'crop'         => true,
-				'dimension'    => 667,
-				'display_name' => 'Landscape (3:2) - 1200x800',
-			),
-			$this->prefix . '1200x1600' => array(
-				'width'        => 1200,
-				'height'       => 1600,
-				'crop'         => true,
-				'dimension'    => 1333,
-				'display_name' => 'Potrait (3:4) - 1200x1600',
 			),
 		);
 	}
