@@ -1,8 +1,22 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
+import { useEffect, useRef } from '@wordpress/element';
+import Shuffle from 'shufflejs';
 
 const Block35Columns = (props) => {
+    const masonryRef = useRef();
+
+    useEffect(() => {
+        if (masonryRef) {
+            new Shuffle(masonryRef.current, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        }
+    }, [masonryRef]);
+
     const {
         postData,
         moduleOption,
@@ -56,7 +70,7 @@ const Block35Columns = (props) => {
 
         return (
             <div className="gvnews_posts_wrap gvnews_posts_masonry">
-                <div className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
+                <div ref={masonryRef} className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
             </div>
         );
     };

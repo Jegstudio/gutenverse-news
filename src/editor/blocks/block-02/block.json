@@ -458,6 +458,6 @@
         "className": false
     },
     "keywords": [],
-    "viewScript": ["gutenverse-frontend-module-script"],
-    "style": ["gutenverse-frontend-block-02-style"]
+    "viewScript": ["gutenverse-frontend-blocks-script"],
+    "style": ["gutenverse-frontend-blocks-style"]
 }

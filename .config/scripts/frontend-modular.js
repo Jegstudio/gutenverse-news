@@ -63,12 +63,12 @@ const frontendModular = {
             events: {
                 onStart: {
                     delete: [
-                        ...deleteTasks,
+                        ...deleteTasks
                     ]
                 },
                 onEnd: {
                     copy: [
-                        ...copyTasks,
+                        ...copyTasks
                     ],
                 },
             },

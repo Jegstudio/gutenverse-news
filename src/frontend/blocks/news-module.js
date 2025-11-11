@@ -1,5 +1,6 @@
 import { u } from 'gutenverse-core-frontend';
 import OkayNav from '../okaynav/okaynav';
+import Shuffle from 'shufflejs';
 
 class GutenverseNewsModule {
     constructor(element) {
@@ -31,6 +32,8 @@ class GutenverseNewsModule {
         this.load_more_block = this.nav_block.find('.gvnews_block_loadmore');
         this.nav_next = null;
         this.nav_prev = null;
+        this.isMasonry = this.container.find('.gvnews_posts_masonry').length > 0;
+        this.shuffleInstance = null;
 
         if (this.ajax_mode === 'nextprev') {
             this.nav_next = this.nav_block.find('.next');
@@ -291,21 +294,27 @@ class GutenverseNewsModule {
 
     load_ajax_load_more = (response, load_type) => {
         let content = u(response.content);
+        let isMasonry = this.isMasonry;
 
         // add ajax flag class for animation
         let count = 0;
-        content.each(function () {
-            if (u(this).hasClass('gvnews_ad_module') && this.ad_code) {
-                u(this).find('.ads-wrapper').html(this.ad_code);
+        content.each(function (element) {
+            if (u(element).hasClass('gvnews_ad_module') && element.ad_code) {
+                u(element).find('.ads-wrapper').html(element.ad_code);
             }
 
-            if (u(this).hasClass('gvnews_post')) {
-                u(this).addClass('gvnews_ajax_loaded anim_' + count);
+            if (load_type !== 'more' && isMasonry) {
+                // TODO : Create animation for masonry and load more.
+            }
+
+            if (u(element).hasClass('gvnews_post')) {
+                u(element).addClass('gvnews_ajax_loaded anim_' + count);
             } else {
-                let posts = u(this).find('.gvnews_post');
-                posts.each(function () {
-                    u(this).addClass('gvnews_ajax_loaded anim_' + count);
-                    count++;
+                let posts = u(element).find('.gvnews_post');
+                let post_count = 0;
+                posts.each(function (element) {
+                    u(element).addClass('gvnews_ajax_loaded anim_' + post_count);
+                    post_count++;
                 });
             }
 
@@ -387,7 +396,6 @@ class GutenverseNewsModule {
         }
     }
 
-
     replace_content = (content) => {
         this.container.children().each(function () {
             u(this).remove();
@@ -422,13 +430,26 @@ class GutenverseNewsModule {
     }
 
     masonry_init = () => {
-
+        if (this.isMasonry) {
+            this.create_masonry();
+        }
     }
 
-    masonry_load_more = () => {
-
+    masonry_load_more = (content) => {
+        if (this.isMasonry) {
+            this.shuffleInstance.add(content.nodes);
+        }
     }
 
+    create_masonry = () => {
+        let posts = this.container.find('.gvnews_posts_masonry .gvnews_posts').nodes[0];
+        this.shuffleInstance = new Shuffle(posts, {
+            itemSelector: '.gvnews_post',
+            gutterWidth: 30,
+            speed: 0
+        });
+        return this.shuffleInstance;
+    };
 }
 
 const selected = u('.gvnews_module_hook');

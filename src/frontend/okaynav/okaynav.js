@@ -114,7 +114,7 @@ class OkayNav {
         if (visibleCount > 0 && navFullWidth >= wrapperWidth) {
             this._collapseNavItem();
             this._recalcNav();
-        } 
+        }
 
         if (this._getHiddenItemCount() === 0) {
             this.toggleIcon.classList.add('okay-invisible');
@@ -129,7 +129,7 @@ class OkayNav {
         this.lastVisibleChildWidth = last.offsetWidth;
         this.navInvisible.prepend(last);
         this.options.itemHidden();
-    }    
+    }
 
     _debounce(fn, delay) {
         let timeout;

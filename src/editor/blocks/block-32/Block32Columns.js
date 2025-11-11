@@ -1,8 +1,22 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaCategory, MetaModule1 } from '../../part/meta';
+import { useEffect, useRef } from '@wordpress/element';
+import Shuffle from 'shufflejs';
 
 const Block32Columns = (props) => {
+    const masonryRef = useRef();
+
+    useEffect(() => {
+        if (masonryRef) {
+            new Shuffle(masonryRef.current, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        }
+    }, [masonryRef]);
+
     const {
         postData,
         moduleOption,
@@ -22,14 +36,14 @@ const Block32Columns = (props) => {
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = (props) => {
-        const { post, attr, index='x' } = props;
+        const { post, attr, index = 'x' } = props;
         return (
             <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
                     <header className="gvnews_postblock_heading">
                         {<MetaCategory {...props} />}
                         {post.title && (
-                            <h3 property="headline" className="gvnews_post_title">
+                            <h3 className="gvnews_post_title">
                                 <a>{post.title.replace(/&#8217;/g, '\'')}</a>
                             </h3>
                         )}
@@ -64,7 +78,7 @@ const Block32Columns = (props) => {
 
         return (
             <div className="gvnews_posts_wrap gvnews_posts_masonry">
-                <div className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
+                <div ref={masonryRef} className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
             </div>
         );
     };
