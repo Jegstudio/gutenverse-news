@@ -16,6 +16,7 @@ const Block10Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         renderedImageSizeMain = {},
+        readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -31,7 +32,7 @@ const Block10Columns = props => {
                     {props.attr.option && !props.attr.option.meta_show && <MetaModule1 {...props}/>}
                 </header>
                 <ThumbModule size={500} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
-                <ContentModule title={false} meta={false} excerpt={true} read={true} post={props.post} attr={props.attr}/>
+                <ContentModule title={false} meta={false} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </article>
         );
     };

@@ -407,9 +407,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		// Heading.
-		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
-		$header_class  = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
-		$heading_title = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
+		$subtitle        = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
+		$header_class    = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
+		$heading_title   = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
+		$additional_line = ( isset( $attr['header_type'] ) && 'heading_5' === $attr['header_type'] ) ? '<span class="line"></span>' : '';
 
 		if ( ! empty( $heading_title ) ) {
 			$heading_icon  = empty( $attr['header_icon'] ) ? '' : "<i class='" . ( count( explode( ' ', $attr['header_icon'] ) ) !== 1 ? '' : 'fa ' ) . "{$attr['header_icon']}'></i>";
@@ -488,6 +489,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		return empty( $heading_title ) && empty( $sub_cat ) ? '' :
 		"<div class=\"gvnews_block_heading {$header_class} gvnews_subcat_right\">
                      {$heading_title}
+					 {$additional_line}
                      {$sub_cat}
                  </div>";
 	}

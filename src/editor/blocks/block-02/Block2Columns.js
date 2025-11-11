@@ -17,6 +17,7 @@ const Block2Columns = props => {
         metaDateFormatCustom,
         renderedImageSizeMain = {},
         renderedImageSizeSecond = {},
+        readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -25,7 +26,7 @@ const Block2Columns = props => {
         return (
             <>
                 <ThumbModule size={715} cat={true} post={props.post} imageSize={props.imageSize}/>
-                <ContentModule title={true} meta={1} excerpt={true} read={true} post={props.post} attr={props.attr} />
+                <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </>
         );
     };

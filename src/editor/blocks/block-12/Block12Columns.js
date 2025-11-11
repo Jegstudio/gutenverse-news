@@ -15,6 +15,7 @@ const Block12Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         renderedImageSizeMain,
+        readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -35,9 +36,9 @@ const Block12Columns = props => {
                             <p>
                                 {post.excerpt.replace('&hellip;','').split(' ').splice(0,attr.length).join(' ') + attr.elipsis}
                             </p>
-                            <a className="gvnews_readmore">
+                            {!readmoreButtonDisabled && <a className="gvnews_readmore">
                                 {attr.option.string && attr.option.string.read_more}
-                            </a>
+                            </a>}
                         </div>}
                     </div>
                 </div>

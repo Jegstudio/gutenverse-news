@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
-import { settingPanel } from './panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -10,6 +9,8 @@ import { CheckboxControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -40,9 +41,9 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
-                title: __('Content Setting', 'gutenverse-news'),
+                title: __('Meta Settings', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: settingPanel,
+                panelArray: (props) => metaPanel(props, ['date']),
                 tabRole: TabSetting
             },
             {
@@ -77,6 +78,12 @@ export const panelList = () => {
                         }
                     });
                 },
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date']),
                 tabRole: TabStyle
             },
             {

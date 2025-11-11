@@ -11,6 +11,9 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+
 
 export const panelList = () => {
     return [
@@ -41,7 +44,13 @@ export const panelList = () => {
         {
             title: __('Content Setting', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: settingPanel,
+            panelArray: (props) => settingPanel(props, true),
+            tabRole: TabSetting
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaPanel(props, ['author', 'date', 'comment']),
             tabRole: TabSetting
         },
         {
@@ -70,7 +79,13 @@ export const panelList = () => {
         {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: designPanel,
+            panelArray: (props) => designPanel(props, 3, true),
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaStylePanel(props, ['author', 'date', 'comment']),
             tabRole: TabStyle
         },
         {

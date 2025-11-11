@@ -11,9 +11,6 @@ const Block29Columns = (props) => {
         metaDateFormatCustom,
         blockWidth,
         showBorder,
-        showDate,
-        showDateFormat,
-        showDateFormatCustom,
         numberPost,
         paginationPost = numberPost,
         page = 1,
@@ -27,7 +24,7 @@ const Block29Columns = (props) => {
         const { post, attr, index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ContentModule meta={showDate ? 2 : false} title={true} post={post} attr={attr} />
+                <ContentModule meta={2} title={true} post={post} attr={attr} />
             </article>
         );
     };
@@ -38,8 +35,6 @@ const Block29Columns = (props) => {
                 ...moduleOption,
                 option: {
                     ...moduleOption.option,
-                    date_format: 'default' === showDateFormat ? showDateFormatCustom : moduleOption.option.date_format,
-                    meta_date: showDate,
                     meta_comment: false,
                     meta_author: false,
                 },

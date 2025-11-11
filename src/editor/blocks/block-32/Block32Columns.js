@@ -16,6 +16,7 @@ const Block32Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        readmoreButtonDisabled = false
     } = props;
 
     const postDataLen = postData.length;
@@ -35,7 +36,7 @@ const Block32Columns = (props) => {
                         )}
                     </header>
                     {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} />}
-                    <ContentModule cat={false} title={false} read={true} excerpt={true} post={post} attr={attr} />
+                    <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
             </article>
