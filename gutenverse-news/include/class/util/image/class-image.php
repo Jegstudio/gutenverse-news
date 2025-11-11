@@ -155,65 +155,65 @@ class Image {
 	private function setup_image_size() {
 		$this->image_size = array(
 			// dimension : 0.5.
-			$this->prefix . '360x180'       => array(
+			$this->prefix . '360x180'   => array(
 				'width'        => 360,
 				'height'       => 180,
 				'crop'         => true,
 				'dimension'    => 500,
-				'display_name' => $this->prefix . '360x180',
+				'display_name' => 'Landscape (2:1) - 360x180',
 			),
-			$this->prefix . '750x375'       => array(
+			$this->prefix . '750x375'   => array(
 				'width'        => 750,
 				'height'       => 375,
 				'crop'         => true,
 				'dimension'    => 500,
-				'display_name' => $this->prefix . '750x375',
+				'display_name' => 'Landscape (2:1) - 750x375',
 			),
-			$this->prefix . '1140x570'      => array(
+			$this->prefix . '1140x570'  => array(
 				'width'        => 1140,
 				'height'       => 570,
 				'crop'         => true,
 				'dimension'    => 500,
-				'display_name' => $this->prefix . '1140x570',
+				'display_name' => 'Landscape (2:1) - 1140x570',
 			),
 
 			// dimension : 0.715.
-			$this->prefix . '120x86'        => array(
+			$this->prefix . '120x86'    => array(
 				'width'        => 120,
 				'height'       => 86,
 				'crop'         => true,
 				'dimension'    => 715,
-				'display_name' => $this->prefix . '120x86',
+				'display_name' => 'Landscape (7:5) - 120x86',
 			),
-			$this->prefix . '350x250'       => array(
+			$this->prefix . '350x250'   => array(
 				'width'        => 350,
 				'height'       => 250,
 				'crop'         => true,
 				'dimension'    => 715,
-				'display_name' => $this->prefix . '350x250',
+				'display_name' => 'Landscape (7:5) - 350x250',
 			),
-			$this->prefix . '750x536'       => array(
+			$this->prefix . '750x536'   => array(
 				'width'        => 750,
 				'height'       => 536,
 				'crop'         => true,
 				'dimension'    => 715,
-				'display_name' => $this->prefix . '750x536',
+				'display_name' => 'Landscape (7:5) - 750x536',
 			),
-			$this->prefix . '1140x815'      => array(
+			$this->prefix . '1140x815'  => array(
 				'width'        => 1140,
 				'height'       => 815,
 				'crop'         => true,
 				'dimension'    => 715,
-				'display_name' => $this->prefix . '1140x815',
+				'display_name' => 'Landscape (7:5) - 1140x815',
 			),
 
 			// dimension.
-			$this->prefix . '360x504'       => array(
+			$this->prefix . '360x504'   => array(
 				'width'        => 360,
 				'height'       => 504,
 				'crop'         => true,
 				'dimension'    => 1400,
-				'display_name' => $this->prefix . '360x504',
+				'display_name' => 'Potrait (5:7) - 360x504',
 			),
 
 			// dimension 1.
@@ -222,53 +222,37 @@ class Image {
 				'height'       => 75,
 				'crop'         => true,
 				'dimension'    => 1000,
-				'display_name' => $this->prefix . '75x75',
+				'display_name' => 'Square (1:1) - 75x75',
 			),
-			$this->prefix . '350x350'       => array(
+			$this->prefix . '350x350'   => array(
 				'width'        => 350,
 				'height'       => 350,
 				'crop'         => true,
 				'dimension'    => 1000,
-				'display_name' => $this->prefix . '350x350',
-			),
-
-			// featured post.
-			$this->prefix . 'featured-750'  => array(
-				'width'        => 750,
-				'height'       => 0,
-				'crop'         => true,
-				'dimension'    => 1000,
-				'display_name' => $this->prefix . 'featured-750',
-			),
-			$this->prefix . 'featured-1140' => array(
-				'width'        => 1140,
-				'height'       => 0,
-				'crop'         => true,
-				'dimension'    => 1000,
-				'display_name' => $this->prefix . 'featured-1140',
+				'display_name' => 'Square (1:1) - 350x350',
 			),
 
 			// Aspect Ratio.
-			$this->prefix . '1024x1024'     => array(
+			$this->prefix . '1024x1024' => array(
 				'width'        => 1024,
 				'height'       => 1024,
 				'crop'         => true,
 				'dimension'    => 1000,
-				'display_name' => 'Square - 1:1',
+				'display_name' => 'Square (1:1) - 1024x1024',
 			),
-			$this->prefix . '1200x800'      => array(
+			$this->prefix . '1200x800'  => array(
 				'width'        => 1200,
 				'height'       => 800,
 				'crop'         => true,
 				'dimension'    => 667,
-				'display_name' => 'Landscape - 3:2',
+				'display_name' => 'Landscape (3:2) - 1200x800',
 			),
-			$this->prefix . '1200x1600'     => array(
+			$this->prefix . '1200x1600' => array(
 				'width'        => 1200,
 				'height'       => 1600,
 				'crop'         => true,
 				'dimension'    => 1333,
-				'display_name' => 'Potrait - 3:4',
+				'display_name' => 'Potrait (3:4) - 1200x1600',
 			),
 		);
 	}
