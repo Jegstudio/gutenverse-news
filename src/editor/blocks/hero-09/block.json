@@ -292,5 +292,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-frontend-hero-style"],
+    "viewScript": ["gutenverse-frontend-hero-slider-script"]
 }

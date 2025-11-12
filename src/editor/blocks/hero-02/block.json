@@ -296,5 +296,7 @@
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-frontend-hero-style"],
+    "viewScript": ["gutenverse-frontend-hero-slider-script"]
 }
