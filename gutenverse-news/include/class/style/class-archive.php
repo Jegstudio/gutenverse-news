@@ -681,12 +681,16 @@ class Archive extends StyleAbstract {
 			if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
 				$this->generate_meta_style();
 			}
+
+			if ( ! in_array( $this->attrs['blockType'], array( '3', '4', '7', '9', '10', '25', '35' ) ) ) {
+				$this->generate_category_label_style();
+			}
 		}
 	}
 
-		/**
-		 * Generate style block meta style.
-		 */
+	/**
+	 * Generate block meta style.
+	 */
 	private function generate_meta_style() {
 		if ( isset( $this->attrs['typographyMeta'] ) ) {
 			$this->inject_typography(
@@ -785,6 +789,112 @@ class Archive extends StyleAbstract {
 						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['metaAuthorColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate category label style.
+	 */
+	private function generate_category_label_style() {
+		if ( isset( $this->attrs['categoryButtonTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'value'    => $this->attrs['categoryButtonTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['categoryButtonBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['categoryButtonBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryButtonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['categoryButtonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBorder'] ) ) {
+			$this->handle_border(
+				'categoryButtonBorder',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a"
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBorderHover'] ) ) {
+			$this->handle_border(
+				'categoryButtonBorderHover',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['categoryButtonBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonBoxShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['categoryButtonBoxShadowHover'],
 					'device_control' => false,
 				)
 			);

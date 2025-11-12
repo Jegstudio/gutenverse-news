@@ -7,6 +7,8 @@ import { panelType } from './panel-type';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { metaPanel } from './panel-meta';
 import { metaStylePanel } from './panel-meta-style';
+import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+
 
 export const panelList = () => {
     return [
@@ -38,6 +40,12 @@ export const panelList = () => {
             title: __('Meta Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: metaStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Category Label', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: categoryStylePanel,
             tabRole: TabStyle
         },
         {
