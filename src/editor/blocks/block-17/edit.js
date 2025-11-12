@@ -24,6 +24,8 @@ const Block17Block = compose(
         freeModule={true}
         renderedImageSizeMain={renderedImageSizeMain}
         renderedImageSizeSecond={renderedImageSizeSecond}
+        mainThumbnailClass={'gvnews_pl_md_1'}
+        secondThumbnailClass={'gvnews_pl_sm'}
     />;
 
 });

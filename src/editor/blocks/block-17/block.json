@@ -434,6 +434,18 @@
             "type":"string",
             "default":"default"
         },
+        "borderMainThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type":"object"
+        },
+        "borderSecondThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveSecondThumbnail": {
+            "type":"object"
+        },
         "showMeta": {
             "type": "boolean",
             "default": true
