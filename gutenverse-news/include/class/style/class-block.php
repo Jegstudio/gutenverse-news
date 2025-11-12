@@ -962,6 +962,19 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['headerSecondTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_title span strong",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['headerSecondTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
 		if ( isset( $this->attrs['headerBackgroundColor'] ) ) {
 			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_2' === $this->attrs['headerType'] || 'heading_4' === $this->attrs['headerType'] || 'heading_5' === $this->attrs['headerType'] ) {
 				$this->inject_style(
@@ -1199,10 +1212,6 @@ class Block extends StyleAbstract {
 				break;
 
 			case 'heading_9':
-				error_log( 'HEADING 9' );
-				error_log( print_r( $this->attrs, true ) );
-				error_log( ' e o HEADING 9' );
-
 				if ( isset( $this->attrs['headerLineThick'] ) ) {
 					error_log( 'INJECT STYLe' );
 					$this->inject_style(
