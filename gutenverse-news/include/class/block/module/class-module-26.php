@@ -33,6 +33,7 @@ class Module_26 extends Module_View_Abstract {
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 
 		// author detail.
 		$author      = $post->post_author;
@@ -57,7 +58,7 @@ class Module_26 extends Module_View_Abstract {
                             <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
                         </div>
                         <div class=\"gvnews_readmore_wrap\">
-                            <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . "</a>
+                        	{$read_more}
                         </div>
                     </div>
                     <div class=\"gvnews_meta_footer clearfix\">

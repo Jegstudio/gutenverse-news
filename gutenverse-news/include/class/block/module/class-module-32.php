@@ -30,6 +30,8 @@ class Module_32 extends Module_View_Abstract {
 		$thumbnail       = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $image_size );
 		$box_shadow_flag = isset( $this->attribute['box_shadow'] ) && $this->attribute['box_shadow'] ? 'box_shadow' : '';
 		$permalink       = esc_url( get_the_permalink( $post ) );
+		$read_more       = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+
 		return '<article ' . gvnews_post_class( 'gvnews_post ' . $box_shadow_flag, $post_id ) . '>
 					<div class="box_wrap">
 						<header class="gvnews_postblock_heading">
@@ -47,7 +49,7 @@ class Module_32 extends Module_View_Abstract {
 						<div class=\"gvnews_postblock_content\">
 							<div class=\"gvnews_post_excerpt\">
 								<p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-								<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . "</a>
+		                        {$read_more}
 							</div>
 						</div>
 						{$this->post_meta_1($post)}
