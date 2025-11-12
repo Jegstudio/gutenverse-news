@@ -173,9 +173,11 @@ class Block extends StyleAbstract {
 			);
 		}
 		if ( isset( $this->attrs['aHover'] ) ) {
+			$selector = isset( $this->attrs['selectorTitleColor'] ) ? $this->attrs['selectorTitleColor'] : '.gvnews_postblock .gvnews_post_title a';
+
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_meta_author a, .{$this->element_id} .gvnews_postblock .gvnews_post_title a:hover",
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_meta_author a, .{$this->element_id} {$selector}:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -185,9 +187,11 @@ class Block extends StyleAbstract {
 			);
 		}
 		if ( isset( $this->attrs['titleColor'] ) ) {
+			$selector = isset( $this->attrs['selectorTitleColor'] ) ? $this->attrs['selectorTitleColor'] : '.gvnews_post_title a';
+
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}  .gvnews_post_title a",
+					'selector'       => ".{$this->element_id}  {$selector}",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

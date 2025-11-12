@@ -7,6 +7,7 @@ const getBlockStyle = (elementId, attributes) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
+        blockType
     } = attributes;
     let data = [];
     data = designStyle({ elementId, attributes, data });
@@ -52,7 +53,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleColor']) && data.push({
         'type': 'color',
         'id': 'titleColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'14' === blockType ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a ' : '.gvnews_postblock .gvnews_post_title a'}`,
         'properties': [
             {
                 'name': 'color',
@@ -66,7 +67,7 @@ const getBlockStyle = (elementId, attributes) => {
         'id': 'aHover',
         'selector': [
             `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_meta_author a`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a:hover`
+            `.gvnews-block.gvnews-block-wrapper.${elementId}  ${'14' === blockType ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a ' : '.gvnews_postblock .gvnews_post_title a'}:hover`
         ],
         'properties': [
             {

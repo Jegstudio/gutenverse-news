@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, SelectControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const designPanel = (props) => {
     const {
@@ -48,6 +48,21 @@ export const designPanel = (props) => {
             label: __('Post Content Typography', 'gutenverse-news'),
             description: __('This option will change your content typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'aHover',
+            label: __('Accent Color & Link Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'excerptColor',
+            label: __('Excerpt Color', 'gutenverse-news'),
+            component: ColorControl,
         },
     ];
 };

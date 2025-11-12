@@ -212,6 +212,18 @@
         },
         "readmoreButtonDisabled": {
             "type": "boolean"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
         }
     },
     "supports": {
