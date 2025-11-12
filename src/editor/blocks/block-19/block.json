@@ -450,6 +450,26 @@
         },
         "headerFilterLineColor": {
             "type": "object"
+        },
+        "renderedImageSizeMain":{
+            "type":"string",
+            "default":"default"
+        },
+        "renderedImageSizeSecond":{
+            "type":"string",
+            "default":"default"
+        },
+        "borderMainThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type":"object"
+        },
+        "borderSecondThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveSecondThumbnail": {
+            "type":"object"
         }
     },
     "supports": {

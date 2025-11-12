@@ -20,6 +20,12 @@ use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
  */
 class Module_18 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_8';
 
 	/**
 	 * Attribute
@@ -28,19 +34,19 @@ class Module_18 extends Module_View_Abstract {
 	 */
 	protected $attribute;
 
-	/**
-	 * Method get_thumbnail
-	 *
-	 * @param integer $post_id post id.
-	 * @param string  $size    size.
-	 *
-	 * @return string
-	 */
-	public function get_thumbnail( $post_id, $size ) {
-		return isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ?
-		Image_Normal_Load::get_instance()->image_thumbnail_unwrap( $post_id, $size ) :
-		apply_filters( 'gvnews_image_thumbnail_unwrap', $post_id, $size );
-	}
+	// /**
+	//  * Method get_thumbnail
+	//  *
+	//  * @param integer $post_id post id.
+	//  * @param string  $size    size.
+	//  *
+	//  * @return string
+	//  */
+	// public function get_thumbnail( $post_id, $size ) {
+	// 	return isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ?
+	// 	Image_Normal_Load::get_instance()->image_thumbnail_unwrap( $post_id, $size ) :
+	// 	apply_filters( 'gvnews_image_thumbnail_unwrap', $post_id, $size );
+	// }
 
 	/**
 	 * Method render_block_type_1
@@ -85,9 +91,11 @@ class Module_18 extends Module_View_Abstract {
 
 		$image_size = 'gvnews_col_1o3' === $column_class ? 'gvnews-350x250' : 'gvnews-featured-750';
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $is_ajax ? $this->render_block_type_1( $results[ $i ], $image_size ) : $this->render_block_type_1( $results[ $i ], $image_size );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}

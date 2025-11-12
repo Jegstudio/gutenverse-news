@@ -66,6 +66,7 @@ export const panelList = () => {
                 panelArray: (props) => {
                     return designPanel({
                         ...props,
+                        hasColumnWidth: false,
                         extendedOption: () => {
                             return [
                                 {
