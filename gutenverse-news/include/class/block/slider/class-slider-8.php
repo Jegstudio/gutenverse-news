@@ -114,12 +114,13 @@ class Slider_8 extends Slider_View_Abstract {
 	 */
 	public function render_meta( $post ) {
 		$output = '';
-
-		$time   = $this->format_date( $post );
-		$output =
-		"<div class=\"gvnews_post_meta\">
+		if ( $this->meta_settings['show_meta'] && $this->meta_settings['meta_date'] ) {
+			$time   = $this->format_date( $post );
+			$output =
+			"<div class=\"gvnews_post_meta\">
 				<span class=\"gvnews_meta_date\">{$time}</span>
 			</div>";
+		}
 
 		return $output;
 	}
