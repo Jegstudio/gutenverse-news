@@ -21,7 +21,7 @@ import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider6Block = compose(
     withPartialRender,
@@ -60,7 +60,24 @@ const Slider6Block = compose(
         autoplay,
         autoplayDelay,
         overlayOption,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -248,7 +265,6 @@ const Slider6Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -258,6 +274,9 @@ const Slider6Block = compose(
         autoplay,
         sliderDelay,
         overlayOption,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
     ]);
 
     useEffect(() => {

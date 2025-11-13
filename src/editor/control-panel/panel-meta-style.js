@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { TypographyControl, SwitchControl, ColorControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
-export const metaStylePanel = (props, settings) => {
+export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') => {
     const {
         showMeta = true,
         showMetaAuthor = true,
@@ -34,6 +34,7 @@ export const metaStylePanel = (props, settings) => {
         {
             id: '__metaHover',
             component: SwitchControl,
+            show: 'disable' !== hover,
             options: [
                 {
                     value: 'normal',
@@ -56,19 +57,19 @@ export const metaStylePanel = (props, settings) => {
             id: 'metaColorHover',
             label: __('Meta Color', 'gutenverse-news'),
             component: ColorControl,
-            show: !isNormal && showMeta
+            show: !isNormal && showMeta && 'author-only' !== hover
         },
         {
             id: 'metaIconColor',
             label: __('Meta Icon Color', 'gutenverse-news'),
             component: ColorControl,
-            show: isNormal && showMeta
+            show: withIcon && isNormal && showMeta
         },
         {
             id: 'metaIconColorHover',
             label: __('Meta Icon Color', 'gutenverse-news'),
             component: ColorControl,
-            show: !isNormal && showMeta
+            show: withIcon && !isNormal && showMeta && 'author-only' !== hover
         },
     ];
 

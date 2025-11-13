@@ -23,7 +23,7 @@ import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider7Block = compose(
     withPartialRender,
@@ -64,7 +64,25 @@ const Slider7Block = compose(
         autoplayDelay,
         overlayOption,
         fimagePosition,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        readmoreButtonDisabled = false,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -118,7 +136,7 @@ const Slider7Block = compose(
             <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
                 <div className="gvnews_slide_image" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}></div>
-                <SliderCaption {...props} excerpt navigation withElipsis={true} withMeta={false} withReadmore={true} />
+                <SliderCaption {...props} excerpt navigation withElipsis={true} withMeta={false} withReadmore={!readmoreButtonDisabled} />
             </div>
         );
     }
@@ -281,7 +299,6 @@ const Slider7Block = compose(
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -292,6 +309,10 @@ const Slider7Block = compose(
         sliderDelay,
         overlayOption,
         fimagePosition,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        readmoreButtonDisabled
     ]);
 
     useEffect(() => {
