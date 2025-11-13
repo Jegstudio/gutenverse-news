@@ -37,6 +37,12 @@ const ArchiveBlock = compose(
         dateFormat,
         dateFormatCustom,
         firstPage,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        readmoreButtonDisabled = false,
+        listIcon = '',
     } = attributes;
 
     const elementRef = useRef(null);
@@ -75,6 +81,12 @@ const ArchiveBlock = compose(
         metaDateFormat: dateFormat,
         metaDateFormatCustom: dateFormatCustom,
         firstPage,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        listIcon,
     };
 
     return (

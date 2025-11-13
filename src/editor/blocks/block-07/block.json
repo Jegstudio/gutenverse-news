@@ -504,6 +504,9 @@
         },
         "headerFilterLineColor": {
             "type": "object"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {

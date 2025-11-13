@@ -472,6 +472,13 @@
         },
         "borderResponsiveMainThumbnail": {
             "type":"object"
+        },
+        "selectorTitleColor": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_post_title a"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {

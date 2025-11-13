@@ -88,8 +88,15 @@ class Archive extends Grab {
 		$name       = str_replace( 'GUTENVERSE\NEWS\Block\Archive\Archive_', 'gutenverse/news-archive-', $this->attributes['gvnewsModule'] );
 		$this->name = strtolower( $name );
 		$attr       = array(
-			'short_code' => $this->attributes['gvnewsModule'],
-			'el_class'   => $this->attributes['elClass'],
+			'short_code'       => $this->attributes['gvnewsModule'],
+			'el_class'         => $this->attributes['elClass'],
+			'disable_readmore' => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'    => array(
+				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+			),
 		);
 
 		$attr = $this->archive_title( $attr );

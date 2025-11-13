@@ -504,6 +504,9 @@
         },
         "borderResponsiveMainThumbnail": {
             "type":"object"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {

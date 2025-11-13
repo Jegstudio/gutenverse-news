@@ -1,4 +1,4 @@
-import { MetaModule1, MetaModule2, MetaAuthor, MetaCategory } from './meta';
+import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
 const SliderCaption = (props) => {
@@ -35,6 +35,9 @@ const SliderCaption = (props) => {
 };
 
 const SliderMeta = (props) => {
+    if (!props.attr.option.option.meta_show) {
+        return <></>;
+    }
     const dateAttr = props?.attr?.date;
 
     let date = new Date(props.post.date[dateAttr.type] * 1000).toISOString();

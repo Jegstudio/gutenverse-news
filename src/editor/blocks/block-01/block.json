@@ -554,6 +554,9 @@
         },
         "listIconColor": {
             "type": "object"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {

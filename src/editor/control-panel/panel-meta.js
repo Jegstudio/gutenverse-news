@@ -6,6 +6,7 @@ export const metaPanel = (props, settings = []) => {
     const {
         metaDateFormat = 'default',
         showMetaDate = true,
+        showMeta = true
     } = props;
 
     let panelList = [
@@ -22,7 +23,7 @@ export const metaPanel = (props, settings = []) => {
             id: 'showMetaAuthor',
             label: __('Show Meta Author', 'gutenverse-news'),
             description: __('Enable this option to show meta author on this block.', 'gutenverse-news'),
-            show: props.showMeta,
+            show: showMeta,
             component: CheckboxControl
         },
     );
@@ -31,12 +32,12 @@ export const metaPanel = (props, settings = []) => {
             id: 'showMetaDate',
             label: __('Show Meta Date', 'gutenverse-news'),
             description: __('Enable this option to show meta date on this block.', 'gutenverse-news'),
-            show: props.showMeta,
+            show: showMeta,
             component: CheckboxControl
         },
         {
             id: 'metaDateFormat',
-            show: showMetaDate === true,
+            show: showMeta && showMetaDate === true,
             label: __('Date Format', 'gutenverse-news'),
             description: __('Choose which date format you want to use.', 'gutenverse-news'),
             component: SelectControl,
@@ -57,7 +58,7 @@ export const metaPanel = (props, settings = []) => {
         },
         {
             id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
+            show: showMeta && metaDateFormat === 'custom',
             label: __('Custom Format', 'gutenverse-news'),
             description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
             component: TextControl,
@@ -68,7 +69,7 @@ export const metaPanel = (props, settings = []) => {
             id: 'showMetaComment',
             label: __('Show Meta Comment', 'gutenverse-news'),
             description: __('Enable this option to show meta comment on this block.', 'gutenverse-news'),
-            show: props.showMeta,
+            show: showMeta,
             component: CheckboxControl
         },
     );
