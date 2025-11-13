@@ -126,6 +126,7 @@ class Image_Normal_Load implements Image_Interface {
 		if ( ! has_post_thumbnail( $id ) ) {
 			$additional_class = '';
 		}
+		$additional_class = apply_filters( 'gvnews_custom_thumbnail_class', '' );
 
 		$thumbnail  = '<div class="thumbnail-container ' . esc_attr( $additional_class ) . ' size-' . esc_attr( $image_size['dimension'] ) . ' ">';
 		$thumbnail .= get_the_post_thumbnail( $id, $size );

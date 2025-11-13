@@ -675,6 +675,19 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
+	 * Method thumbnail_container_class_default
+	 *
+	 * @param string $class_name class.
+	 * @return string
+	 */
+	public function thumbnail_container_class_default( $class_name ) {
+		if ( in_array( $this->attribute['renderedImageSizeMain'], array( 'default', 'full' ), true ) ) {
+			$class_name .= ' default';
+		}
+		return $class_name;
+	}
+
+	/**
 	 * Method render_column
 	 *
 	 * @param string $result       result.
