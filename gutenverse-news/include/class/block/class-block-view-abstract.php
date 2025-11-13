@@ -80,7 +80,12 @@ abstract class Block_View_Abstract {
 	 *
 	 * @var array
 	 */
-	protected $meta_settings;
+	protected $meta_settings = array(
+		'show_meta'    => true,
+		'meta_date'    => true,
+		'meta_author'  => true,
+		'meta_comment' => true,
+	);
 
 	/**
 	 * Get instance
@@ -543,12 +548,7 @@ abstract class Block_View_Abstract {
 		$this->attribute     = wp_parse_args( $attr, $this->options );
 		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
 		$this->meta_settings = array_merge(
-			array(
-				'show_meta'    => true,
-				'meta_date'    => true,
-				'meta_author'  => true,
-				'meta_comment' => true,
-			),
+			$this->meta_settings,
 			$meta_settings
 		);
 		return $this->attribute;
