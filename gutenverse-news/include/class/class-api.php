@@ -755,7 +755,7 @@ class Api {
 			}
 
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-350x350' );
+			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
 			$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
 			$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
 			$excerpt           = wp_trim_words( $excerpt, 200, null );
@@ -840,7 +840,7 @@ class Api {
 				}
 
 				$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-				$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-350x350' );
+				$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
 				$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
 				$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
 				$excerpt           = wp_trim_words( $excerpt, 200, null );

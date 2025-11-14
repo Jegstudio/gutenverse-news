@@ -149,7 +149,7 @@ class Single_Post {
 	public function get_featured_post_image_size( $size ) {
 		switch ( $size ) {
 			case 'no-crop':
-				$image_size = 'gvnews-350x350';
+				$image_size = 'gvnews-featured-750';
 				break;
 			case 'crop-500':
 				$image_size = 'gvnews-750x375';
