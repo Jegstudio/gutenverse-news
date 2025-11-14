@@ -88,8 +88,7 @@ class Module_18 extends Module_View_Abstract {
 	public function build_column( $results, $column_class, $is_ajax ) {
 		$first_block = '';
 		$size        = count( $results );
-
-		$image_size = 'gvnews_col_1o3' === $column_class ? 'gvnews-350x250' : 'gvnews-featured-750';
+		$image_size  = 'gvnews-350x250';
 
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {

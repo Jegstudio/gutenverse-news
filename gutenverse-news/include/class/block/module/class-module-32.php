@@ -30,7 +30,6 @@ class Module_32 extends Module_View_Abstract {
 	public function __construct() {
 		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
 		parent::__construct();
-		remove_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
 	}
 	/**
 	 * Method render_block_type_1
@@ -104,6 +103,7 @@ class Module_32 extends Module_View_Abstract {
 		add_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
 		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
