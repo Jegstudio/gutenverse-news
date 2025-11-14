@@ -496,6 +496,16 @@
         },
         "headerSecondTextColor": {
             "type": "object"
+        },
+        "renderedImageSizeMain":{
+            "type":"string",
+            "default":"default"
+        },
+        "borderMainThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type":"object"
         }
     },
     "supports": {

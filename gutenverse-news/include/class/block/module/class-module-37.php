@@ -18,6 +18,20 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_37 extends Module_View_Abstract {
 
 	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_5';
+
+	/**
+	 * Construct
+	 */
+	public function __construct() {
+		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
+		parent::__construct();
+	}
+	/**
 	 * Method render_block_type_1
 	 *
 	 * @param object $post       post.
@@ -60,7 +74,7 @@ class Module_37 extends Module_View_Abstract {
 		$first_block = '';
 		$size        = count( $results );
 		for ( $i = 0; $i < $size; $i++ ) {
-			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-350x250' );
+			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-1140x815' );
 		}
 
 		return $first_block;
@@ -77,7 +91,12 @@ class Module_37 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		remove_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
 
 		return "<div class=\"gvnews_block_container\">
 					{$this->get_content_before($attr)}
@@ -118,5 +137,18 @@ class Module_37 extends Module_View_Abstract {
 	 */
 	public function render_column_alt( $result, $column_class ) {
 		return $this->build_column( $result );
+	}
+
+	/**
+	 * Method custom_module_column_class
+	 *
+	 * @param string $column_class column class.
+	 * @return string
+	 */
+	public function custom_module_column_class( $column_class ) {
+		if ( 'auto' === $this->attribute['column_width'] ) {
+			$column_class = 'gvnews_col_3o3';
+		}
+		return $column_class;
 	}
 }

@@ -12,6 +12,7 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 
 export const panelList = () => {
     return applyFilters(
@@ -52,6 +53,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: (props) => metaPanel(props, ['author', 'date', 'comment']),
                 tabRole: TabSetting
+            },
+            {
+                title: __('Thumbnail Setting', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
             },
             {
                 title: __('Header', 'gutenverse-news'),
