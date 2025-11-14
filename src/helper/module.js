@@ -54,7 +54,7 @@
                 base.load_scroll();
             }
 
-            base.masonry_init();
+            // base.masonry_init();
             base.init();
 
             base.element.trigger('gvnews_module_init', [base]);
@@ -334,8 +334,8 @@
 
         // we done :)
         base.after_ajax_request(load_type);
-        base.masonry_init();
-        $(window).trigger('resize');
+        // base.masonry_init();
+        // $(window).trigger('resize');
     };
 
     Module.prototype.load_ajax_load_more = function (response, load_type) {
@@ -378,7 +378,7 @@
         }
 
         base.after_ajax_request(load_type);
-        base.masonry_load_more(content);
+        // base.masonry_load_more(content);
         $(window).trigger('resize');
     };
 
@@ -421,7 +421,7 @@
         }
 
         base.after_ajax_request(load_type);
-        base.masonry_load_more(content);
+        // base.masonry_load_more(content); TODO: Temorary fix, waiting merge from modular script.
         $(window).trigger('resize');
 
         setTimeout(function () {
