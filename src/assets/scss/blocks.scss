@@ -19870,6 +19870,10 @@ span.gvnews-category {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
+  .gvnews_meta_date i::before {
+    content: none;
+  }
 }
 
 .gvnews_slider_wrapper .gvnews_slider_type_8:not(.tns-slider) {
