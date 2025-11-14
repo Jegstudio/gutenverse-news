@@ -4,6 +4,8 @@ import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { designPanel } from './panel-design';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 
 export const panelList = () => {
 
@@ -23,6 +25,12 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: filterPanel,
@@ -32,6 +40,12 @@ export const panelList = () => {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
                 tabRole: TabStyle
             },
             {

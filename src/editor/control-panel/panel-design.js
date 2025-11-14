@@ -121,7 +121,29 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
             id: 'listIconColor',
             label: __('List Icon Color', 'gutenverse-news'),
             description: __('This option will change the list icon color.', 'gutenverse-news'),
-            show: listIcon ,
+            show: listIcon,
+            component: ColorControl,
+        },
+    ];
+};
+
+export const carouselDesignPanel = () => {
+
+    return [
+        {
+            id: 'typography',
+            label: __('Title Typography', 'gutenverse-news'),
+            description: __('This option will change your title typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'titleColorHover',
+            label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
     ];
