@@ -62,7 +62,7 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
-                title: __('Thumbnail Setting', 'gutenverse-news'),
+                title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: thumbnailSettingPanel,
                 tabRole: TabStyle,
