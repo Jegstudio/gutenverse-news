@@ -164,7 +164,7 @@ const HeroArchiveComponent = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && window.heroSlider(heroSliderRef.current)}
+            {slider && window.gvnewsHeroSlider(heroSliderRef.current)}
             {slider && initSlider(false)}
         </>
     );

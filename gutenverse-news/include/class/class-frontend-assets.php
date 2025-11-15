@@ -80,7 +80,7 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-frontend-news-tinyslider',
+			'gutenverse-tinyslider',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/tiny-slider.js',
 			array(),
 			GUTENVERSE_NEWS_VERSION,
@@ -90,7 +90,7 @@ class Frontend_Assets {
 		wp_register_script(
 			'gutenverse-frontend-hero-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/hero-slider.js',
-			array( 'gutenverse-frontend-event', 'gutenverse-frontend-news-tinyslider' ),
+			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
 			true
 		);
@@ -105,14 +105,6 @@ class Frontend_Assets {
 			'gutenverse-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
 			array(),
-			GUTENVERSE_NEWS_VERSION
-		);
-
-		/** Register Hero */
-		wp_register_style(
-			'gutenverse-frontend-hero-style',
-			GUTENVERSE_NEWS_URL . '/assets/css/hero.css',
-			array( 'gutenverse-frontend-blocks-style' ),
 			GUTENVERSE_NEWS_VERSION
 		);
 

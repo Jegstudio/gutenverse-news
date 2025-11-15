@@ -55,7 +55,7 @@ class GutenverseHeroModule {
         });
     }
 
-    window.heroSlider = (element) => {
+    window.gvnewsHeroSlider = (element) => {
         new GutenverseHeroModule(element);
     };
 })();

@@ -1,6 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { useEffect, useRef, useState }  from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { ModuleOverlay, ModuleSkeleton } from '../placeholder';
 import HeroContentWrapperComponent from './hero-content-wrapper';
 import HeroViewComponent from './hero-view-component';
@@ -132,12 +132,12 @@ const HeroComponent = (props) => {
                 getTrim(JSON.parse(data));
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
         }, 300);
-        return () => clearTimeout( timeOutId );
+        return () => clearTimeout(timeOutId);
     }, [
         contentType,
         includeOnly,
@@ -201,11 +201,11 @@ const HeroComponent = (props) => {
     };
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetBlock();
-    },[
+    }, [
         postData,
         enableslider,
         autoplay,
@@ -222,11 +222,11 @@ const HeroComponent = (props) => {
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
 
-        enableslider && elementRef.current && window.heroSlider(elementRef.current);
+        enableslider && elementRef.current && window.gvnewsHeroSlider(elementRef.current);
     }, [block]);
 
     return (

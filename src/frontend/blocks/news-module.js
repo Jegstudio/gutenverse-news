@@ -452,10 +452,18 @@ class GutenverseNewsModule {
     };
 }
 
-const selected = u('.gvnews_module_hook');
+(() => {
+    const selected = u('.gvnews_module_hook');
 
-if (selected) {
-    selected.map(element => {
+    if (selected) {
+        selected.map(element => {
+            new GutenverseNewsModule(element);
+        });
+    }
+
+    window.gvnewsNewsModule = (element) => {
         new GutenverseNewsModule(element);
-    });
-}
+    };
+})();
+
+export default GutenverseNewsModule;

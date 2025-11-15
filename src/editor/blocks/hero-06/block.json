@@ -302,6 +302,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-frontend-hero-style"],
+    "style": ["gutenverse-frontend-blocks-style"],
     "viewScript": ["gutenverse-frontend-hero-slider-script"]
 }
