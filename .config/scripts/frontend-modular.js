@@ -64,20 +64,11 @@ const frontendModular = {
                 onStart: {
                     delete: [
                         ...deleteTasks,
-                        "./gutenverse-news/assets/js/frontend/tiny-slider.js"                        
                     ]
                 },
                 onEnd: {
                     copy: [
-                        ...copyTasks,
-                        {
-                            source: "./src/frontend/tiny-slider/tiny-slider.js",
-                            destination: "./gutenverse-news/assets/js/frontend/",
-                        },
-                        {
-                            source: "./src/frontend/tiny-slider/tiny-slider.css",
-                            destination: "./gutenverse-news/assets/css/",
-                        },
+                        ...copyTasks
                     ],
                 },
             },

@@ -225,8 +225,8 @@ const HeroComponent = (props) => {
         if(firstRender.current) {
             return;
         }
-        enableslider && elementRef.current && window.gvnews.hero.init(elementRef.current);
-        enableslider && elementRef.current && window.gvnews.hero.heroSlider(elementRef.current);
+
+        enableslider && elementRef.current && window.heroSlider(elementRef.current);
     }, [block]);
 
     return (

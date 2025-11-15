@@ -34,7 +34,6 @@ module.exports = {
 };
 
 
-/*
 gulp.task('blocks', function () {
     return gulp
         .src([path.resolve(__dirname, './src/assets/scss/blocks.scss')])
@@ -65,52 +64,33 @@ gulp.task('update-notice', function () {
         .pipe(postcss(postCSSOptions))
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
-*/
 
-const rootDir = path.resolve(__dirname, './src/assets/scss');
-const rootStyle = rootDir + '/*.scss';
-const rootDest = path.join(__dirname, 'gutenverse-news/assets/css');
+const terser = require('gulp-terser');
 
-gulp.task('frontend-root-block-styles', function () {
+gulp.task('minify-okaynav', function () {
     return gulp
-        .src([rootStyle])
-        .pipe(sass({ includePaths: ['node_modules'] }))
-        .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(postcss(postCSSOptions))
-        .on('data', function (file) {
-            const pathParts = file.relative.split(path.sep);
-            const blockName = pathParts[0];
-
-            file.path = path.join(file.base, blockName);
-        })
-        .pipe(gulp.dest(rootDest));
+        .src([path.resolve(__dirname, './src/frontend/okaynav/okaynav.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
 });
 
-const blocksDir = path.resolve(__dirname, './src/editor/blocks');
-const blocksStyle = blocksDir + '/**/styles/style.scss';
-const finalDest = path.join(__dirname, 'gutenverse-news/assets/css/frontend');
-
-gulp.task('frontend-block-styles', function () {
+gulp.task('minify-tns', function () {
     return gulp
-        .src([blocksStyle])
-        .pipe(sass({ includePaths: ['node_modules'] }))
-        .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(postcss(postCSSOptions))
-        .on('data', function (file) {
-            const pathParts = file.relative.split(path.sep);
-            const blockName = pathParts[0];
-
-            file.path = path.join(file.base, blockName + '.css');
-        })
-        .pipe(gulp.dest(finalDest));
+        .src([path.resolve(__dirname, './src/frontend/tiny-slider/tiny-slider.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
 });
 
-gulp.task('build-process', gulp.parallel('frontend-block-styles', 'frontend-root-block-styles'));
+gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
 
 gulp.task('build', gulp.series('build-process'));
 
 const watchProcess = (basePath = '.') => {
-    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['frontend-block-styles', 'frontend-root-block-styles']));
+    gulp.watch([
+        `${basePath}/src/**/*.scss`,
+        `${basePath}/src/frontend/okaynav/*.js`,
+        `${basePath}/src/frontend/tiny-slider/*.js`,
+    ], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
 };
 
 gulp.task(

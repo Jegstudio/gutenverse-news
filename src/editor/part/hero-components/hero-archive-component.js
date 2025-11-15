@@ -1,6 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { useEffect, useRef, useState }  from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { ModuleOverlay, ModuleSkeleton } from '../placeholder';
 import HeroViewComponent from './hero-view-component';
 import HeroContentWrapperComponent from './hero-content-wrapper';
@@ -164,8 +164,7 @@ const HeroArchiveComponent = (props) => {
         <>
             {block ? block : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
+            {slider && window.heroSlider(heroSliderRef.current)}
             {slider && initSlider(false)}
         </>
     );

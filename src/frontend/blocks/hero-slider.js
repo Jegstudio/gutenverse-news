@@ -1,14 +1,14 @@
 import { u } from 'gutenverse-core-frontend';
 
 class GutenverseHeroModule {
-    constructor(element) {
+    constructor(element, options = {}) {
         let block = u(element).find('.gvnews_hero_wrapper:not(.gvnews_tns_active)');
         let autoplay = u(block).data('autoplay');
         let delay = u(block).data('delay');
 
         block.each((hero) => {
             if (!u(hero).hasClass('gvnews_tns_active')) {
-                let heroSlider = window.tns({
+                const defaultOptions = {
                     container: hero,
                     textDirection: 'ltr',
                     items: 1,
@@ -24,20 +24,40 @@ class GutenverseHeroModule {
                             u(info.nextButton).addClass('tns-next');
                         }
                         if ('undefined' !== typeof info.prevButton) {
-                            u(info.nextButton).addClass('tns-prev');
+                            u(info.prevButton).addClass('tns-prev');
                         }
                     },
+                };
+
+                let heroSlider = window.tns({
+                    ...defaultOptions,
+                    options
                 });
-                console.log(heroSlider);
+
+                if ('undefined' !== typeof heroSlider) {
+                    heroSlider.events.on('dragStart', function (info) {
+                        info.event.preventDefault();
+                        info.event.stopPropagation();
+                    });
+                    u(hero).addClass('gvnews_tns_active');
+                }
             }
         });
     }
 }
 
-const selected = u('.gvnews_heroblock.tiny-slider');
+(() => {
+    const selected = u('.gvnews_heroblock.tiny-slider');
 
-if (selected) {
-    selected.map(element => {
+    if (selected) {
+        selected.map(element => {
+            new GutenverseHeroModule(element);
+        });
+    }
+
+    window.heroSlider = (element) => {
         new GutenverseHeroModule(element);
-    });
-}
+    };
+})();
+
+export default GutenverseHeroModule;
