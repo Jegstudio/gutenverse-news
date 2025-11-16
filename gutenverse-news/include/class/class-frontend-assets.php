@@ -94,6 +94,14 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'gutenverse-frontend-carousel-slider-script',
+			GUTENVERSE_NEWS_URL . '/assets/js/frontend/carousel-slider.js',
+			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
 	}
 
 	/**

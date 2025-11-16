@@ -2,11 +2,15 @@ import { u } from 'gutenverse-core-frontend';
 
 class GutenverseHeroModule {
     constructor(element, options = {}) {
-        let block = u(element).find('.gvnews_hero_wrapper:not(.gvnews_tns_active)');
-        let autoplay = u(block).data('autoplay');
-        let delay = u(block).data('delay');
+        this.block = u(element).find('.gvnews_hero_wrapper:not(.gvnews_tns_active)');
+        this.autoplay = u(this.block).data('autoplay');
+        this.delay = u(this.block).data('delay');
+        this.options = options;
+        this.init();
+    }
 
-        block.each((hero) => {
+    init = () => {
+        this.block.each((hero) => {
             if (!u(hero).hasClass('gvnews_tns_active')) {
                 const defaultOptions = {
                     container: hero,
@@ -16,8 +20,8 @@ class GutenverseHeroModule {
                     controls: true,
                     nav: false,
                     loop: true,
-                    autoplay: autoplay,
-                    autoplayTimeout: delay,
+                    autoplay: this.autoplay,
+                    autoplayTimeout: this.delay,
                     mouseDrag: true,
                     onInit: function (info) {
                         if ('undefined' !== typeof info.nextButton) {
@@ -31,7 +35,7 @@ class GutenverseHeroModule {
 
                 let heroSlider = window.tns({
                     ...defaultOptions,
-                    options
+                    ...this.options
                 });
 
                 if ('undefined' !== typeof heroSlider) {
