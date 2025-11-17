@@ -22,13 +22,13 @@ class Module_13 extends Module_View_Abstract {
 	 *
 	 * @var string
 	 */
-	public $main_thumbnail_class = 'gvnews_pl_lg_1';
+	public $main_thumbnail_class = 'gvnews_pl_lg_1 .thumbnail-container';
 	/**
 	 * This variable for consume block style
 	 *
 	 * @var string
 	 */
-	public $second_thumbnail_class = 'gvnews_pl_md_1';
+	public $second_thumbnail_class = 'gvnews_pl_md_1 .gvnews_thumb';
 
 	/**
 	 * Method render_block

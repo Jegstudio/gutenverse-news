@@ -22,7 +22,7 @@ const Block8Block = compose(
         panelList={panelList}
         freeModule={true}
         renderedImageSizeMain={renderedImageSizeMain}
-        mainThumbnailClass={'gvnews_pl_md_1'}
+        mainThumbnailClass={'gvnews_pl_md_1 .thumbnail-container'}
     />;
 });
 
