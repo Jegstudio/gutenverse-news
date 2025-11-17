@@ -1288,17 +1288,14 @@ class Block extends StyleAbstract {
 	 */
 	private function generate_thumbnail_style() {
 		if ( $this->main_thumbnail_class ) {
-			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .thumbnail-container";
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}";
 			if ( isset( $this->attrs['borderMainThumbnail'] ) ) {
-				$this->handle_border(
-					'borderMainThumbnail',
-					"{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay"
-				);
+				$this->handle_border( 'borderMainThumbnail', $selector );
 			}
 			if ( isset( $this->attrs['borderResponsiveMainThumbnail'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => "{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay",
+						'selector'       => $selector,
 						'property'       => function ( $value ) {
 							return $this->handle_border_responsive( $value );
 						},
@@ -1313,17 +1310,14 @@ class Block extends StyleAbstract {
 		}
 
 		if ( $this->second_thumbnail_class ) {
-			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .thumbnail-container";
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}";
 			if ( isset( $this->attrs['borderSecondThumbnail'] ) ) {
-				$this->handle_border(
-					'borderSecondThumbnail',
-					"{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay"
-				);
+				$this->handle_border( 'borderSecondThumbnail', $selector );
 			}
 			if ( isset( $this->attrs['borderResponsiveSecondThumbnail'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => "{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay",
+						'selector'       => $selector,
 						'property'       => function ( $value ) {
 							return $this->handle_border_responsive( $value );
 						},
