@@ -84,6 +84,7 @@ class Module_1 extends Module_View_Abstract {
 						<a href=\"{$permalink}\">
 							{$this->get_thumbnail($post_id,$image_size)}
 						</a>
+						<div class=\"gvnews-thumb-overlay\" style=\"position: absolute; width: 100%; height: 100%; top: 0; z-index:2;\"></div>
 					</div>
 					<div class=\"gvnews_postblock_content\">
 						<h3 class=\"gvnews_post_title\">
