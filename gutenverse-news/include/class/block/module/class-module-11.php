@@ -43,6 +43,7 @@ class Module_11 extends Module_View_Abstract {
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
                             <a href=\"{$permalink}\">{$this->get_thumbnail($post_id, $image_size)}</a>
+							<div class=\"gvnews-thumb-overlay\"></div>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
