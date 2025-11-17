@@ -86,10 +86,19 @@ class Editor_Assets {
 			true
 		);
 
+		wp_register_script(
+			'gutenverse-frontend-newsticker-script',
+			GUTENVERSE_NEWS_URL . '/assets/js/frontend/newsticker-module.js',
+			array( 'gutenverse-frontend-event' ),
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
+
 		$block   = ( include GUTENVERSE_NEWS_DIR . '/lib/dependencies/blocks.asset.php' )['dependencies'];
 		$block[] = 'gutenverse-frontend-hero-slider-script';
 		$block[] = 'gutenverse-frontend-carousel-slider-script';
 		$block[] = 'gutenverse-frontend-slider-script';
+		$block[] = 'gutenverse-frontend-newsticker-script';
 		// $block[] = 'gvnews-backend-script';
 
 		wp_enqueue_script(

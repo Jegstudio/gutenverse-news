@@ -110,6 +110,14 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'gutenverse-frontend-newsticker-script',
+			GUTENVERSE_NEWS_URL . '/assets/js/frontend/newsticker-module.js',
+			array( 'gutenverse-frontend-event' ),
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
 	}
 
 	/**
