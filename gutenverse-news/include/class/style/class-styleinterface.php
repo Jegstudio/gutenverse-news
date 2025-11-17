@@ -787,7 +787,7 @@ abstract class StyleInterface {
 	 * @param string $selector   selector.
 	 * @param array  $background Value of Color.
 	 */
-	protected function handle_background( $selector, $background ) {
+	public function handle_background( $selector, $background ) {
 		if ( ! isset( $background['type'] ) ) {
 			return;
 		}
@@ -798,7 +798,7 @@ abstract class StyleInterface {
 					array(
 						'selector'       => $selector,
 						'property'       => function ( $value ) {
-							return $this->handle_color( $value['color'], 'background-color' );
+							return $this->handle_color( $value['color'], 'background' );
 						},
 						'value'          => $background,
 						'device_control' => false,
@@ -811,6 +811,9 @@ abstract class StyleInterface {
 					array(
 						'selector'       => $selector,
 						'property'       => function ( $value ) {
+							if ( '#gutenFeaturedImage' === $value['id'] ) {
+								return 'background-image: url(#gutenFeaturedImage);';
+							}
 							return "background-image: url({$value['image']});";
 						},
 						'value'          => $background['image'],
@@ -842,7 +845,7 @@ abstract class StyleInterface {
 								$xposition = isset( $value['xposition'] ) ? $value['xposition'] : false;
 
 								if ( 'custom' === $position && $xposition ) {
-										return "background-position-x: {$xposition['point']}{$xposition['unit']};";
+									return ! empty( $xposition['point'] ) ? "background-position-x: {$xposition['point']}{$xposition['unit']};" : null;
 								}
 
 								return null;
@@ -867,7 +870,7 @@ abstract class StyleInterface {
 								$yposition = isset( $value['yposition'] ) ? $value['yposition'] : false;
 
 								if ( 'custom' === $position && $yposition ) {
-									return "background-position-y: {$yposition['point']}{$yposition['unit']};";
+									return ! empty( $yposition['point'] ) ? "background-position-y: {$yposition['point']}{$yposition['unit']};" : null;
 								}
 
 								return null;
@@ -920,7 +923,7 @@ abstract class StyleInterface {
 								$width = isset( $value['width'] ) ? $value['width'] : null;
 
 								if ( 'custom' === $size && $width ) {
-										return "background-size: {$width['point']}{$width['unit']};";
+									return "background-size: {$width['point']}{$width['unit']};";
 								}
 
 								return null;
@@ -935,6 +938,41 @@ abstract class StyleInterface {
 						)
 					);
 				}
+			}
+
+			if ( isset( $background['blendMode'] ) && ! empty( $background['blendMode'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "background-blend-mode: {$value};";
+						},
+						'value'          => $background['blendMode'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $background['fixed'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+
+							$bg_attachment = 'background-attachment: scroll;';
+
+							if ( is_bool( $value ) || '1' === $value ) {
+								$fixed = ( $value || '1' === $value ) ? 'fixed' : 'scroll';
+								$bg_attachment = "background-attachment: {$fixed};";
+							}
+
+							return $bg_attachment;
+						},
+						'ignore_empty'   => true,
+						'value'          => $background['fixed'],
+						'device_control' => true,
+					)
+				);
 			}
 		} elseif ( 'gradient' === $background['type'] ) {
 			$this->inject_style(
@@ -957,9 +995,9 @@ abstract class StyleInterface {
 							$colors = join( ',', $colors );
 
 							if ( 'radial' === $gradient_type ) {
-								return "background-image: radial-gradient(at {$gradient_radial}, {$colors});";
+								return "background: radial-gradient(at {$gradient_radial}, {$colors});";
 							} else {
-								return "background-image: linear-gradient({$gradient_angle}deg, {$colors});";
+								return "background: linear-gradient({$gradient_angle}deg, {$colors});";
 							}
 						}
 					},
@@ -981,7 +1019,20 @@ abstract class StyleInterface {
 					array(
 						'selector'       => $selector,
 						'property'       => function ( $value ) {
-							return "background-image: url({$value['image']})";
+							return "background-image: url({$value['image']}); background-size: cover; background-position: center;";
+						},
+						'value'          => $background['videoImage'],
+						'device_control' => true,
+					)
+				);
+			}
+		} elseif ( 'slide' === $background['type'] ) {
+			if ( isset( $background['videoImage'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "background-image: url({$value['image']}); background-size: cover; background-position: center;";
 						},
 						'value'          => $background['videoImage'],
 						'device_control' => true,

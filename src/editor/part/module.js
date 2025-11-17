@@ -393,9 +393,18 @@ const BlockModule = compose(
         }
     };
 
+    const theProps = {
+        ...props,
+        attributes: {
+            ...attributes,
+            mainThumbnailClass,
+            secondThumbnailClass
+        }
+    };
+
     return <>
         <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <BlockPanelController panelList={panelList} props={theProps} elementRef={elementRef} />
         {!freeModule && <InspectorControls>
             {applyFilters(
                 'gutenverse.blocks-pro.upgrade-banner-professional',

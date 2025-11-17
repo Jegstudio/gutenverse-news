@@ -45,22 +45,23 @@ class Module_1 extends Module_View_Abstract {
 
 		$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
 		return '<div class="gvnews_thumb">
-					' . gvnews_edit_post( $post_id ) . "
-					<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
-					<div class=\"gvnews_post_category\">
-						<span>{$this->get_primary_category($post_id)}</span>
+					' . gvnews_edit_post( $post_id ) . '
+					<a href="' . $permalink . '">' . $this->get_thumbnail( $post_id, $image_size ) . '</a>
+					<div class="gvnews-thumb-overlay" style="position: absolute; width: 100%; height: 100%; top: 0; z-index:2;"></div>
+					<div class="gvnews_post_category">
+						<span>' . $this->get_primary_category( $post_id ) . '</span>
 					</div>
 				</div>
-				<div class=\"gvnews_postblock_content\">
-					<h3 property=\"headline\" class=\"gvnews_post_title\">
-						<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-					</h3>
-					{$this->post_meta_1($post)}
-					<div class=\"gvnews_post_excerpt\">
-						<p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-						{$read_more}
-					</div>
-				</div>";
+				<div class="gvnews_postblock_content">
+					<h3 property="headline" class="gvnews_post_title">
+						<a href="' . $permalink . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+					</h3>'
+					. $this->post_meta_1( $post ) .
+					'<div class="gvnews_post_excerpt">
+						<p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
+						. $read_more .
+					'</div>
+				</div>';
 	}
 
 	/**

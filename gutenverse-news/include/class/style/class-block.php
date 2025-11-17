@@ -65,6 +65,7 @@ class Block extends StyleAbstract {
 
 		$this->generate_header_style();
 		$this->generate_thumbnail_style();
+		$this->generate_thumbnail_overlay_style();
 
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
@@ -1325,6 +1326,51 @@ class Block extends StyleAbstract {
 						'skip_device'    => isset( $this->attrs['border'] ) ? array(
 							'Desktop',
 						) : null,
+					)
+				);
+			}
+		}
+	}
+
+	/**
+	 * Generate style block thumbnail style.
+	 *
+	 * @return void
+	 */
+	private function generate_thumbnail_overlay_style() {
+		if ( $this->main_thumbnail_class ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay";
+			if ( isset( $this->attrs['overlayBackgroundMain'] ) ) {
+				$this->handle_background( $selector, $this->attrs['overlayBackgroundMain'] );
+			}
+			if ( isset( $this->attrs['overlayOpacityMain'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "opacity: {$value};";
+						},
+						'value'          => $this->attrs['overlayOpacityMain'],
+						'device_control' => true,
+					)
+				);
+			}
+		}
+
+		if ( $this->second_thumbnail_class ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay";
+			if ( isset( $this->attrs['overlayBackgroundSecond'] ) ) {
+				$this->handle_background( $selector, $this->attrs['overlayBackgroundSecond'] );
+			}
+			if ( isset( $this->attrs['overlayOpacitySecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "opacity: {$value};";
+						},
+						'value'          => $this->attrs['overlayOpacitySecond'],
+						'device_control' => true,
 					)
 				);
 			}

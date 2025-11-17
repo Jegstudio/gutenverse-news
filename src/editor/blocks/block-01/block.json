@@ -557,6 +557,18 @@
         },
         "headerSecondTextColor": {
             "type": "object"
+        },
+        "overlayBackgroundMain": {
+            "type":"object"
+        },
+        "overlayOpacityMain": {
+            "type":"object"
+        },
+        "overlayBackgroundSecond": {
+            "type":"object"
+        },
+        "overlayOpacitySecond": {
+            "type":"object"
         }
     },
     "supports": {
