@@ -504,6 +504,12 @@
         },
         "headerSecondTextColor": {
             "type": "object"
+        },
+        "overlayBackgroundMain": {
+            "type":"object"
+        },
+        "overlayOpacityMain": {
+            "type":"object"
         }
     },
     "supports": {

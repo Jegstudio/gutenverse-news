@@ -13,6 +13,7 @@ import { paginationStylePanel } from '../../../control-panel/panel-pagination-st
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
 export const panelList = () => {
     return [
@@ -61,6 +62,15 @@ export const panelList = () => {
             panelArray: (props) => thumbnailSettingPanel({
                 ...props,
                 hasSecondImageSize: true,
+            }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Thumbnail Overlay', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => thumbnailOverlayPanel({
+                ...props,
+                hasSecondImageSize: true
             }),
             tabRole: TabStyle,
         },

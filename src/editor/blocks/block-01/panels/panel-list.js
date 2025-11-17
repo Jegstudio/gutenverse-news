@@ -15,7 +15,6 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
-
 export const panelList = () => {
     return [
         {
