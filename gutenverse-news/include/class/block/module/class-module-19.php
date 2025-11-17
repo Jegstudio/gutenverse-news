@@ -22,7 +22,7 @@ class Module_19 extends Module_View_Abstract {
 	 *
 	 * @var string
 	 */
-	public $main_thumbnail_class = 'gvnews_pl_md_box';
+	public $main_thumbnail_class = 'gvnews_pl_md_box .box_wrap';
 	/**
 	 * This variable for consume block style
 	 *
