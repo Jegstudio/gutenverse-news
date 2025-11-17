@@ -239,5 +239,7 @@
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-frontend-blocks-style"],
+    "viewScript": ["gutenverse-frontend-slider-script"]
 }

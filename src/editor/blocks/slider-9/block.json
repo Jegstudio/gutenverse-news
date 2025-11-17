@@ -237,5 +237,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-frontend-blocks-style"],
+    "viewScript": ["gutenverse-frontend-slider-script"]
 }

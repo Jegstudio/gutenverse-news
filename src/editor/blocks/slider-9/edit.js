@@ -64,6 +64,7 @@ const Slider9Block = compose(
     } = attributes;
 
     const elementRef = useRef(null);
+    const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
@@ -146,7 +147,7 @@ const Slider9Block = compose(
         }
         return (
             <>
-                <div className="gvnews_slider_type_9 gvnews_slider slider-carousel" data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay}>
+                <div ref={blockRef} className="gvnews_slider_type_9 gvnews_slider slider-carousel" data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay}>
                     {content}
                 </div>
                 <div className="gvnews_slider_type_9_inner_wrapper">
@@ -288,29 +289,8 @@ const Slider9Block = compose(
         if (firstRender.current) {
             return;
         }
-        if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
-            const gvnewsLibrary = window.gvnews.library;
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if (iframe) {
-                target = iframe.contentDocument;
-            }
-            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
-            if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele) {
-                    window.gvnews.slider({
-                        container: ele,
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
         }
     }, [block]);
 
