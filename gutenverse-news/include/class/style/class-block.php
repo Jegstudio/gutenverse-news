@@ -1290,12 +1290,15 @@ class Block extends StyleAbstract {
 		if ( $this->main_thumbnail_class ) {
 			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .thumbnail-container";
 			if ( isset( $this->attrs['borderMainThumbnail'] ) ) {
-				$this->handle_border( 'borderMainThumbnail', $selector );
+				$this->handle_border(
+					'borderMainThumbnail',
+					"{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay"
+				);
 			}
 			if ( isset( $this->attrs['borderResponsiveMainThumbnail'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => $selector,
+						'selector'       => "{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay",
 						'property'       => function ( $value ) {
 							return $this->handle_border_responsive( $value );
 						},
@@ -1312,12 +1315,15 @@ class Block extends StyleAbstract {
 		if ( $this->second_thumbnail_class ) {
 			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .thumbnail-container";
 			if ( isset( $this->attrs['borderSecondThumbnail'] ) ) {
-				$this->handle_border( 'borderSecondThumbnail', $selector );
+				$this->handle_border(
+					'borderSecondThumbnail',
+					"{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay"
+				);
 			}
 			if ( isset( $this->attrs['borderResponsiveSecondThumbnail'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => $selector,
+						'selector'       => "{$selector}, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay",
 						'property'       => function ( $value ) {
 							return $this->handle_border_responsive( $value );
 						},
