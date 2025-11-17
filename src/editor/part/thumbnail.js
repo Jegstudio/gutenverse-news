@@ -21,16 +21,8 @@ const ThumbModule = (props) => {
                 }
             </div>
         </a>
-        <div
-            className="gvnews-thumb-overlay"
-            style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                top: '0',
-                zIndex: 2,
-            }}
-        ></div>
+        <div className="gvnews-thumb-overlay">
+        </div>
         {props.cat && props.post.category.name && <MetaCategory {...props} />}
     </div>;
 };
