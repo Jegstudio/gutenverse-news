@@ -204,10 +204,11 @@ class GutenverseNewsModule {
 
     cache_save = (parameter, response) => {
         let jsonparam = JSON.stringify(parameter);
+        let theResponse = structuredClone(response);
 
         this.xhr_cache.push({
             param: jsonparam,
-            result: response,
+            result: theResponse,
         });
     }
 
@@ -421,7 +422,10 @@ class GutenverseNewsModule {
 
         content.find('img').each(function () {
             let src = u(this).data('src');
-            u(this).attr('src', src).removeClass('lazyload').addClass('lazyloaded');
+            if (src) {
+                u(this).attr('src', src);
+            }
+            u(this).removeClass('lazyload').addClass('lazyloaded');
         });
 
         response.content = content.html();

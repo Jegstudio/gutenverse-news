@@ -41,19 +41,6 @@ class Editor_Assets {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		/*
-		TODO: Hapus.
-		*/
-		$backend = include GUTENVERSE_NEWS_DIR . '/lib/dependencies/backend.asset.php';
-
-		wp_register_script(
-			'gvnews-backend-script',
-			GUTENVERSE_NEWS_URL . '/assets/js/backend.js',
-			$backend['dependencies'],
-			GUTENVERSE_NEWS_VERSION,
-			true
-		);
-
 		wp_register_script(
 			'gutenverse-tinyslider',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/tiny-slider.js',
@@ -99,7 +86,6 @@ class Editor_Assets {
 		$block[] = 'gutenverse-frontend-carousel-slider-script';
 		$block[] = 'gutenverse-frontend-slider-script';
 		$block[] = 'gutenverse-frontend-newsticker-script';
-		// $block[] = 'gvnews-backend-script';
 
 		wp_enqueue_script(
 			'gutenverse-news-blocks',

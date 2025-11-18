@@ -50,8 +50,6 @@ class Frontend_Assets {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		// add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ), 99999 );
-		// add_filter( 'gutenverse_include_frontend', array( $this, 'enqueue_frontend_style' ) );
 		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
 		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
 		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
@@ -117,6 +115,24 @@ class Frontend_Assets {
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
 			true
+		);
+
+		wp_register_script(
+			'gvnews-deprecated-blocks',
+			GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js',
+			array( 'wp-api-fetch' ),
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'gvnews-deprecated-blocks',
+			'GVNwsDeprecated',
+			array(
+				'isPro'     => gutenverse_pro_active(),
+				'dismissed' => get_transient( 'deprecated_gutenverse_news_dismissed' ),
+				'apiNonce'  => wp_create_nonce( 'gvnews_dismiss_notice' ),
+			)
 		);
 	}
 
@@ -217,198 +233,6 @@ class Frontend_Assets {
 		}
 
 		return $flag;
-	}
-
-	/**
-	 * Frontend Script
-	 */
-	public function enqueue_frontend_scripts() {
-		$this->frontend_scripts();
-	}
-
-	/**
-	 * Frontend Style
-	 */
-	public function enqueue_frontend_style() {
-		$this->frontend_styles();
-	}
-
-	/**
-	 * Method frontend_styles
-	 *
-	 * @return void
-	 */
-	public function frontend_styles() {
-		wp_enqueue_style(
-			'gvnews-block-frontend-style',
-			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array(),
-			GUTENVERSE_NEWS_VERSION
-		);
-	}
-
-	/**
-	 * Method frontend_scripts
-	 *
-	 * @return void
-	 */
-	public function frontend_scripts() {
-		$block_script_data = null;
-
-		if ( 'direct' === apply_filters( 'gutenverse_frontend_render_mechanism', 'direct' ) ) {
-			$block_script_data = $this->news_block_data;
-		} else {
-			$cache        = Init::instance()->style_cache;
-			$merged_datas = array();
-
-			foreach ( $this->news_file as $filename ) {
-				$merged_data = json_decode( $cache->read_cache_file( $filename ), true );
-
-				if ( is_array( $merged_data ) ) {
-					$merged_datas = array_merge( $merged_data, $merged_datas );
-				}
-			}
-
-			$merged_datas = array_unique( $merged_datas );
-
-			$block_script_data = $merged_datas;
-		}
-
-		$depen = array( 'jquery' );
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-block-32',
-				'gutenverse/news-block-33',
-				'gutenverse/news-block-34',
-			)
-		) ) {
-			wp_register_script( 'gvnews-isotope', GUTENVERSE_NEWS_URL . '/assets/js/isotope.js', array(), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-isotope' );
-			$depen = array_merge( $depen, array( 'gvnews-isotope' ) );
-		}
-
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-news-ticker',
-			)
-		) ) {
-			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/newsticker.asset.php';
-			wp_register_script( 'gvnews-newsticker', GUTENVERSE_NEWS_URL . '/assets/js/newsticker.js', array(), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-newsticker' );
-			$depen = array_merge( array_merge( $depen, $helper['dependencies'] ), array( 'gvnews-newsticker' ) );
-		}
-
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-slider-1',
-				'gutenverse/news-slider-2',
-				'gutenverse/news-slider-3',
-				'gutenverse/news-slider-4',
-				'gutenverse/news-slider-5',
-				'gutenverse/news-slider-6',
-				'gutenverse/news-slider-7',
-				'gutenverse/news-slider-8',
-				'gutenverse/news-slider-9',
-				'gutenverse/news-carousel-1',
-				'gutenverse/news-carousel-2',
-				'gutenverse/news-carousel-3',
-				'gutenverse/news-hero-1',
-				'gutenverse/news-hero-2',
-				'gutenverse/news-hero-3',
-				'gutenverse/news-hero-4',
-				'gutenverse/news-hero-5',
-				'gutenverse/news-hero-6',
-				'gutenverse/news-hero-7',
-				'gutenverse/news-hero-8',
-				'gutenverse/news-hero-9',
-				'gutenverse/news-hero-10',
-				'gutenverse/news-hero-11',
-				'gutenverse/news-hero-12',
-				'gutenverse/news-hero-13',
-				'gutenverse/news-hero-14',
-				'gutenverse/news-hero-skew',
-			)
-		) ) {
-			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/tinyslider.asset.php';
-			wp_register_script( 'gvnews-tinyslider', GUTENVERSE_NEWS_URL . '/assets/js/tinyslider.js', array(), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-tinyslider' );
-			$depen = array_merge( array_merge( $depen, $helper['dependencies'] ), array( 'gvnews-tinyslider' ) );
-		}
-
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-slider-1',
-				'gutenverse/news-slider-2',
-				'gutenverse/news-slider-3',
-				'gutenverse/news-slider-4',
-				'gutenverse/news-slider-5',
-				'gutenverse/news-slider-6',
-				'gutenverse/news-slider-7',
-				'gutenverse/news-slider-8',
-				'gutenverse/news-slider-9',
-			)
-		) ) {
-			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/slider.asset.php';
-			wp_register_script( 'gvnews-slider', GUTENVERSE_NEWS_URL . '/assets/js/slider.js', array( 'gvnews-tinyslider', 'gvnews-helper-script' ), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-slider' );
-		}
-
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-carousel-1',
-				'gutenverse/news-carousel-2',
-				'gutenverse/news-carousel-3',
-			)
-		) ) {
-			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/carousel.asset.php';
-			wp_register_script( 'gvnews-carousel', GUTENVERSE_NEWS_URL . '/assets/js/carousel.js', array( 'gvnews-tinyslider', 'gvnews-helper-script' ), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-carousel' );
-		}
-		if ( $this->load_block_script(
-			$block_script_data,
-			array(
-				'gutenverse/news-hero-1',
-				'gutenverse/news-hero-2',
-				'gutenverse/news-hero-3',
-				'gutenverse/news-hero-4',
-				'gutenverse/news-hero-5',
-				'gutenverse/news-hero-6',
-				'gutenverse/news-hero-7',
-				'gutenverse/news-hero-8',
-				'gutenverse/news-hero-9',
-				'gutenverse/news-hero-10',
-				'gutenverse/news-hero-11',
-				'gutenverse/news-hero-12',
-				'gutenverse/news-hero-13',
-				'gutenverse/news-hero-14',
-				'gutenverse/news-hero-skew',
-			)
-		) ) {
-			$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/hero.asset.php';
-			wp_register_script( 'gvnews-hero', GUTENVERSE_NEWS_URL . '/assets/js/hero.js', array( 'gvnews-tinyslider', 'gvnews-helper-script' ), GUTENVERSE_NEWS_VERSION, true );
-			wp_enqueue_script( 'gvnews-hero' );
-		}
-
-		$helper = include GUTENVERSE_NEWS_DIR . 'lib/dependencies/helper.asset.php';
-		wp_register_script( 'gvnews-helper-script', GUTENVERSE_NEWS_URL . '/assets/js/helper.js', array_merge( $helper['dependencies'], $depen ), GUTENVERSE_NEWS_VERSION, true );
-		wp_localize_script( 'gvnews-helper-script', 'GVNewsConfig', $this->gvnews_config() );
-		wp_enqueue_script( 'imagesloaded' );
-		wp_enqueue_script( 'gvnews-helper-script' );
-		wp_register_script( 'gvnews-deprecated-blocks', GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js', array( 'wp-api-fetch' ), GUTENVERSE_NEWS_VERSION, true );
-		wp_localize_script(
-			'gvnews-deprecated-blocks',
-			'GVNwsDeprecated',
-			array(
-				'isPro'     => gutenverse_pro_active(),
-				'dismissed' => get_transient( 'deprecated_gutenverse_news_dismissed' ),
-				'apiNonce'  => wp_create_nonce( 'gvnews_dismiss_notice' ),
-			)
-		);
 	}
 
 	/**
