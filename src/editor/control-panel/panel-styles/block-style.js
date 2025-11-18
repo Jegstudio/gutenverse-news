@@ -1146,12 +1146,18 @@ const getBlockStyle = (
         isNotEmpty(attributes['borderMainThumbnail']) && data.push({
             'id': 'borderMainThumbnail',
             'type': 'border',
-            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+            'selector': `
+                        .${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container,
+                        .${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay
+                        `
         });
         isNotEmpty(attributes['borderResponsiveMainThumbnail']) && data.push({
             'id': 'borderResponsiveMainThumbnail',
             'type': 'borderResponsive',
-            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+            'selector': `
+                        .${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container,
+                        .${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay
+                        `
         });
         isNotEmpty(attributes['overlayBackgroundMain']) && data.push({
             'type': 'background',
@@ -1176,12 +1182,18 @@ const getBlockStyle = (
         isNotEmpty(attributes['borderSecondThumbnail']) && data.push({
             'id': 'borderSecondThumbnail',
             'type': 'border',
-            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass}`,
+            'selector': `
+                        .${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container,
+                        .${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay
+                        `,
         });
         isNotEmpty(attributes['borderResponsiveSecondThumbnail']) && data.push({
             'id': 'borderResponsiveSecondThumbnail',
             'type': 'borderResponsive',
-            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass}`,
+            'selector': `
+                        .${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container,
+                        .${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay
+                        `,
         });
         isNotEmpty(attributes['overlayBackgroundSecond']) && data.push({
             'type': 'background',

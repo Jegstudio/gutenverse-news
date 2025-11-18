@@ -22,13 +22,13 @@ class Module_14 extends Module_View_Abstract {
 	 *
 	 * @var string
 	 */
-	public $main_thumbnail_class = 'gvnews_pl_lg_box .box_wrap';
+	public $main_thumbnail_class = 'gvnews_pl_lg_box';
 	/**
 	 * This variable for consume block style
 	 *
 	 * @var string
 	 */
-	public $second_thumbnail_class = 'gvnews_pl_md_1 .gvnews_thumb';
+	public $second_thumbnail_class = 'gvnews_pl_md_1';
 
 	/**
 	 * Method render_block_type
@@ -46,7 +46,6 @@ class Module_14 extends Module_View_Abstract {
 		$content = '<div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
                         <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
-						<div class=\"gvnews-thumb-overlay\"></div>
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_category\">
