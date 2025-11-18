@@ -21,7 +21,7 @@ class Module_21 extends Module_View_Abstract {
 	 *
 	 * @var string
 	 */
-	public $main_thumbnail_class = 'gvnews_pl_sm .thumbnail-container';
+	public $main_thumbnail_class = 'gvnews_pl_sm';
 	/**
 	 * Method render_block_type_1
 	 *
