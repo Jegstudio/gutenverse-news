@@ -24,8 +24,8 @@ const Block1Block = compose(
         freeModule={true}
         renderedImageSizeMain={renderedImageSizeMain}
         renderedImageSizeSecond={renderedImageSizeSecond}
-        mainThumbnailClass={'gvnews_pl_lg_1 .thumbnail-container'}
-        secondThumbnailClass={'gvnews_pl_sm .thumbnail-container'}
+        mainThumbnailClass={'gvnews_pl_lg_1'}
+        secondThumbnailClass={'gvnews_pl_sm'}
     />;
 });
 

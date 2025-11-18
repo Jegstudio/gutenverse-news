@@ -22,7 +22,7 @@ class Module_11 extends Module_View_Abstract {
 	 *
 	 * @var string
 	 */
-	public $main_thumbnail_class = 'gvnews_pl_md_card .thumbnail-container';
+	public $main_thumbnail_class = 'gvnews_pl_md_card';
 
 	/**
 	 * Method render_block_type_1
