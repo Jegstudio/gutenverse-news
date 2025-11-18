@@ -130,6 +130,7 @@ class Image_Normal_Load implements Image_Interface {
 
 		$thumbnail  = '<div class="thumbnail-container ' . esc_attr( $additional_class ) . ' size-' . esc_attr( $image_size['dimension'] ) . ' ">';
 		$thumbnail .= get_the_post_thumbnail( $id, $size );
+		$thumbnail .= '<div class="gvnews-thumb-overlay"></div>';
 		$thumbnail .= '</div>';
 
 		gvnews_remove_filters( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10 );

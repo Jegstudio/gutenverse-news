@@ -47,7 +47,6 @@ class Module_3 extends Module_View_Abstract {
                 <div class="gvnews_thumb">
                     ' . $edit . '
                     <a href="' . esc_url( $permalink ) . '">' . $thumbnail . '</a>
-					<div class="gvnews-thumb-overlay"></div>
                 </div>
                 <div class="gvnews_postblock_content">
                     <h3 class="gvnews_post_title">
