@@ -3973,6 +3973,7 @@
   transition: .25s ease-out;
   opacity: .18;
   pointer-events: none;
+  box-sizing: border-box;
 }
 
 .gvnews_postblock_34 .gvnews_post:hover .gvnews_thumb:before {
