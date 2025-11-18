@@ -50,6 +50,7 @@ const Block18Columns = props => {
                                     height={renderedImageSizeMain.height}
                                     width={renderedImageSizeMain.width}
                                 />
+                                <div className="gvnews-thumb-overlay"></div>
                             </div>
                         </a>
                     </div>
