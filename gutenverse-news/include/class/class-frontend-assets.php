@@ -17,43 +17,10 @@ use Gutenverse\Framework\Init;
  * @package gutenverse-news
  */
 class Frontend_Assets {
-
-	/**
-	 * News Block Data
-	 *
-	 * @var array
-	 */
-	protected $news_block_data = array();
-
-	/**
-	 * Check if Bypass
-	 *
-	 * @var boolean
-	 */
-	protected $is_bypass = false;
-
-	/**
-	 * Get file name
-	 *
-	 * @var string
-	 */
-	protected $file_name = '';
-
-	/**
-	 * News Block File Data
-	 *
-	 * @var array
-	 */
-	protected $news_file = array();
-
 	/**
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_filter( 'gutenverse_bypass_generate_style', array( $this, 'bypass_generate_css' ), 20, 2 );
-		add_action( 'gutenverse_loop_blocks', array( $this, 'loop_blocks' ), null, 2 );
-		add_action( 'gutenverse_after_style_loop_blocks', array( $this, 'get_blocks' ), null );
-
 		// Modular Script.
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_scripts' ) );
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_styles' ) );
@@ -169,81 +136,6 @@ class Frontend_Assets {
 				GUTENVERSE_NEWS_VERSION
 			);
 		}
-	}
-
-
-	/**
-	 * Loop Block.
-	 */
-	public function get_blocks() {
-		if ( $this->is_bypass ) {
-			$cache           = Init::instance()->style_cache;
-			$validation_data = $this->news_block_data;
-			if ( $this->news_block_data ) {
-				$cache->create_cache_file( $this->file_name, wp_json_encode( $validation_data, true ) );
-			}
-			$this->news_file[]     = $this->file_name;
-			$this->news_block_data = array();
-			$this->is_bypass       = false;
-		}
-	}
-
-	/**
-	 * Loop Block.
-	 *
-	 * @param array  $block Array of Blocks.
-	 * @param string $style $style content.
-	 */
-	public function loop_blocks( $block, &$style ) {
-		$this->get_news_block_data( $block );
-	}
-
-	/**
-	 * Loop Block.
-	 *
-	 *  @param array $block Block Array.
-	 */
-	public function get_news_block_data( $block ) {
-		if ( ! empty( $block['blockName'] ) && strpos( $block['blockName'], 'gutenverse/news' ) !== false ) {
-			$this->news_block_data[] = $block['blockName'];
-		}
-	}
-
-	/**
-	 * Check if we going to by pass css generation.
-	 *
-	 * @param boolean $flag Flag.
-	 * @param string  $name Name of file.
-	 *
-	 * @return bool
-	 */
-	public function bypass_generate_css( $flag, $name ) {
-		if ( 'direct' !== apply_filters( 'gutenverse_frontend_render_mechanism', 'direct' ) ) {
-			$cache    = Init::instance()->style_cache;
-			$cache_id = $cache->get_style_cache_id();
-			$filename = $name . '-news-script-' . $cache_id . '.json';
-			if ( ! $cache->is_file_exist( $filename ) ) {
-				$this->file_name       = $filename;
-				$this->is_bypass       = true;
-				$this->news_block_data = array();
-				return false;
-			} else {
-				$this->news_file[] = $filename;
-			}
-		}
-
-		return $flag;
-	}
-
-	/**
-	 * Method load_block_script
-	 *
-	 * @param array $block_script_data array block names.
-	 * @param array $block_names array block names.
-	 * @return boolean
-	 */
-	public function load_block_script( $block_script_data = array(), $block_names = array() ) {
-		return ! empty( array_intersect( $block_script_data, $block_names ) );
 	}
 
 	/**
