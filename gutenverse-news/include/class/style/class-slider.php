@@ -440,7 +440,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['metaColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => '.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_meta .gvnews_meta_date a:hover',
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_meta .gvnews_meta_date a:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

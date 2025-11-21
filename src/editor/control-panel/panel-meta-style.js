@@ -8,6 +8,7 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
         showMetaAuthor = true,
         switcher,
         setSwitcher,
+        gvnewsModule = '',
     } = props;
 
     if (!showMeta) {
@@ -15,6 +16,7 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
     }
 
     const isNormal = !switcher.meta || switcher.meta === 'normal';
+    const showThridColor = 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_14' === gvnewsModule;
 
     let panelList = [
         {
@@ -70,6 +72,35 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
             label: __('Meta Icon Color', 'gutenverse-news'),
             component: ColorControl,
             show: withIcon && !isNormal && showMeta && 'author-only' !== hover
+        },
+
+        {
+            id: 'thridMetaColor',
+            label: __('Thrid List Meta Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the meta color setting on the thrid list.', 'gutenverse-news'),
+            show: showThridColor && isNormal && showMeta
+        },
+        {
+            id: 'thridMetaColorHover',
+            label: __('Thrid List Meta Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the meta color setting on the thrid list on hover condition.', 'gutenverse-news'),
+            show: showThridColor && !isNormal && showMeta && 'author-only' !== hover
+        },
+        {
+            id: 'thridMetaIconColor',
+            label: __('Thrid List Meta Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the meta icon color setting on the thrid list.', 'gutenverse-news'),
+            show: showThridColor && isNormal && showMeta
+        },
+        {
+            id: 'thridMetaIconColorHover',
+            label: __('Thrid List Meta Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the meta icon color setting on the thrid list on hover condition.', 'gutenverse-news'),
+            show: showThridColor && !isNormal && showMeta && 'author-only' !== hover
         },
     ];
 
