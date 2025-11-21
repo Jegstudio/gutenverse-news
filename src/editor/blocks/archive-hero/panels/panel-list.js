@@ -1,12 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { advancePanel, animationPanel, backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
-import { designPanel } from './panel-design';
 import { generalPanel } from './panel-general';
 import { heroDesignPanel } from './panel-hero-design';
 import { heroStylePanel } from './panel-hero-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { typePanel } from './panel-type';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { metaPanel } from './panel-meta';
+import { metaStylePanel } from './panel-meta-style';
 
 export const panelList = () => {
     return [
@@ -23,10 +24,10 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Hero Design', 'gutenverse-news'),
+            title: __('Meta Settings', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: heroDesignPanel,
-            tabRole: TabStyle
+            panelArray: metaPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Hero Style', 'gutenverse-news'),
@@ -35,9 +36,15 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Design', 'gutenverse-news'),
+            title: __('Hero Design', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: designPanel,
+            panelArray: heroDesignPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: metaStylePanel,
             tabRole: TabStyle
         },
         {
