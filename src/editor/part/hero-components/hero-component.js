@@ -67,7 +67,6 @@ const HeroComponent = (props) => {
         }
     };
 
-    const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [overlay, setOverlay] = useState(false);
     const [block, setBlock] = useState(<ModuleSkeleton />);
@@ -75,15 +74,6 @@ const HeroComponent = (props) => {
     const [sliderDelay, setSliderDelay] = useState(0);
     const [sliderCount, setSliderCount] = useState(0);
     const firstRender = useRef(true);
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(8);
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [columnWidth]);
 
     useEffect(() => {
         if (postOffset >= 0) {
@@ -205,7 +195,6 @@ const HeroComponent = (props) => {
                         heroType,
                         heroStyle,
                         enableslider,
-                        blockWidth,
                         autoplay,
                         autoplayDelay: sliderDelay,
                     }}
@@ -229,7 +218,6 @@ const HeroComponent = (props) => {
         sliderCount,
         heroMargin,
         heightDesktop,
-        blockWidth,
         dateType,
         dateFormat,
         dateFormatCustom,
