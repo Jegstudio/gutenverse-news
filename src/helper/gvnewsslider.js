@@ -181,6 +181,7 @@
                             return jsliderDefault;
                         })(options);
                     options = gvnewsLibrary.extend(defaultOption, options || {});
+
                     if (slideType) {
                         if (1 !== slideType) {
                             if (!gvnewsLibrary.hasClass(options.container, 'gvnews_tns_active')) {

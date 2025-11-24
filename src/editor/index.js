@@ -8,19 +8,34 @@ import { plainGeneratorFunction } from './utils/styling-util';
 
 const registerBlocks = () => {
     const r = require.context('./blocks', true, /index\.js$/);
+    let blockLists = [];
     r.keys().forEach(key => {
-        const { settings, name } = r(key);
-        let { metadata } = r(key);
-        metadata = getData(metadata);
+
+        const mod = r(key);
+        const { settings, name } = mod;
+        const rawMeta = mod.metadata;
+        const metadata = getData(rawMeta);
 
         name && !isDeprecated(metadata) && updateBlockList({ name, settings, metadata }, (metadata?.gutenversePro === true));
         if (window?.GutenverseConfig && name && !getBlockType(name) && isBlockActive(name)) {
-            registerBlockType(name, {
-                ...settings,
-                ...metadata
-            });
+            blockLists.push({ name, settings, metadata, title: metadata.title });
         }
     });
+    blockLists
+        .sort((first, second) => {
+            const tFirst = first?.title ?? '';
+            const tSecond = second?.title ?? '';
+            return tFirst.localeCompare(tSecond, undefined, {
+                numeric: true,
+                sensitivity: 'base'
+            });
+        })
+        .forEach(block => {
+            registerBlockType(block.name, {
+                ...block.settings,
+                ...block.metadata
+            });
+        });
 };
 
 const getData = (metadata) => {

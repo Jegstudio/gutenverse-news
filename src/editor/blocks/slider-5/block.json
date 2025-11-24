@@ -1,5 +1,5 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-slider-5",
     "title": "Slider 5",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",

@@ -1519,3 +1519,36 @@ if ( ! function_exists( 'gvnews_block_query' ) ) {
 		return Block_Query::class;
 	}
 }
+
+if ( ! function_exists( 'get_social_share_url' ) ) {
+
+	add_filter( 'gvnews_social_share_url', 'get_social_share_url', 10, 3 );
+	function get_social_share_url( $button_url, $post_id, $social ) {
+		$title = gvnews_get_share_title( $post_id );
+		$url   = apply_filters( 'jnews_get_permalink', gvnews_encode_url( $post_id ) );
+
+		switch ( $social ) {
+			case 'facebook':
+				return 'http://www.facebook.com/sharer.php?u=' . $url;
+				break;
+			case 'twitter':
+				$button_url = 'https://twitter.com/intent/tweet?text=' . $title . '&url=' . $url;
+				break;
+			default:
+				$button_url = $url;
+				break;
+		}
+		return $button_url;
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_share_title' ) ) {
+
+	function gvnews_get_share_title( $post_id ) {
+		$title = get_the_title( $post_id );
+		$title = html_entity_decode( $title, ENT_QUOTES, 'UTF-8' );
+		$title = rawurlencode( $title );
+		$title = str_replace( '#', '%23', $title );
+		return esc_html( $title );
+	}
+}

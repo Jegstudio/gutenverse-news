@@ -39,37 +39,37 @@ export const panelType = () => {
                 },
                 {
                     value: '10',
-                    image: <img src={`${imgDir}/content-10.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    value: '11',
-                    image: <img src={`${imgDir}/content-11.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
-                },
-                {
-                    value: '12',
                     image: <img src={`${imgDir}/content-12.png`} />,
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
-                    value: '14',
+                    value: '11',
+                    image: <img src={`${imgDir}/content-13.png`} />,
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
+                    value: '12',
                     image: <img src={`${imgDir}/content-14.png`} />,
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
+                    value: '14',
+                    image: <img src={`${imgDir}/content-16.png`} />,
+                    deprecated: !gutenverseProActive,
+                    pro: gutenverseProActive
+                },
+                {
                     value: '15',
-                    image: <img src={`${imgDir}/content-15.png`} />,
+                    image: <img src={`${imgDir}/content-17.png`} />,
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
                 {
                     value: '18',
-                    image: <img src={`${imgDir}/content-18.png`} />,
+                    image: <img src={`${imgDir}/content-19.png`} />,
                     deprecated: !gutenverseProActive,
                     pro: gutenverseProActive
                 },
