@@ -356,6 +356,12 @@
         "readmoreButtonBoxShadowHover": {
             "type": "object"
         },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
+        },
         "paginationWrapperMargin": {
             "type": "object"
         },

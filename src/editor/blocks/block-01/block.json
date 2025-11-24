@@ -323,6 +323,12 @@
         "readmoreButtonBoxShadowHover": {
             "type": "object"
         },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
+        },
         "categoryButtonTypography": {
             "type": "object"
         },
@@ -453,25 +459,25 @@
             "type": "object",
             "default": {}
         },
-        "renderedImageSizeMain":{
-            "type":"string",
-            "default":"default"
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
         },
-        "renderedImageSizeSecond":{
-            "type":"string",
-            "default":"default"
+        "renderedImageSizeSecond": {
+            "type": "string",
+            "default": "default"
         },
         "borderMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "borderResponsiveMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "borderSecondThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "borderResponsiveSecondThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "showMeta": {
             "type": "boolean",
@@ -559,16 +565,16 @@
             "type": "object"
         },
         "overlayBackgroundMain": {
-            "type":"object"
+            "type": "object"
         },
         "overlayOpacityMain": {
-            "type":"object"
+            "type": "object"
         },
         "overlayBackgroundSecond": {
-            "type":"object"
+            "type": "object"
         },
         "overlayOpacitySecond": {
-            "type":"object"
+            "type": "object"
         },
         "contentAlign": {
             "type": "object",
