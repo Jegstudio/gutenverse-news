@@ -35,21 +35,6 @@ abstract class Carousel_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
-	 * Method post_meta
-	 *
-	 * @param object $post post.
-	 *
-	 * @return string
-	 */
-	public function post_meta( $post ) {
-		$output  = '<div class="gvnews_post_meta">';
-		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="fas fa-clock"></i> ' . $this->format_date( $post ) . '</a></div>';
-		$output .= '</div>';
-
-		return $output;
-	}
-
-	/**
 	 * Method render_element
 	 *
 	 * @param array $result result.

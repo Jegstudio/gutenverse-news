@@ -48,7 +48,7 @@ const SliderMeta = (props) => {
             {!props.date && props.attr.option.option.meta_author && <MetaAuthor {...props} />}
             {props.attr.option.option && props.attr.option.option.meta_date &&
                 <div className="gvnews_meta_date">
-                    {props.date && <i className="fas fa-clock">&nbsp;</i>}
+                    {props.date && <i className="far fa-clock">&nbsp;</i>}
                     <a>
                         {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
                     </a>

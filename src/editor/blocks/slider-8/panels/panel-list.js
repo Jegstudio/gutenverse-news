@@ -40,7 +40,7 @@ export const panelList = () => {
             {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
+                panelArray: (props) => metaStylePanel(props, ['date'], false, 'disable'),
                 tabRole: TabStyle
             },
             {

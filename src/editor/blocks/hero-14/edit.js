@@ -20,6 +20,10 @@ import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import { getModuleOptions } from '../../utils/helper';
+
+
+const defaultOptions = getModuleOptions();
 
 const Hero14Block = compose(
     withPartialRender,
@@ -55,7 +59,25 @@ const Hero14Block = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        readmoreButtonDisabled = false,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -76,7 +98,6 @@ const Hero14Block = compose(
         ref: elementRef
     });
 
-    const [moduleOption, setModuleOption] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
     const [overlay, setOverlay] = useState(false);
@@ -91,7 +112,7 @@ const Hero14Block = compose(
         return (
             <article className={'gvnews_post gvnews_pl_lg_7'}>
                 <ThumbModule cat={true} size={715} post={props.post} />
-                <ContentModule meta={3} title={true} excerpt={true} read={true} post={props.post} attr={props.attr} />
+                <ContentModule meta={3} title={true} excerpt={true} read={!props.readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </article>
         );
     }
@@ -141,7 +162,7 @@ const Hero14Block = compose(
         }
         return (
             <>
-                <div className="gvnews_postbig">{props.postData && <RenderBlock1 attr={attr} post={props.postData[0]} />}</div>
+                <div className="gvnews_postbig">{props.postData && <RenderBlock1 attr={attr} post={props.postData[0]} readmoreButtonDisabled={props.readmoreButtonDisabled} />}</div>
                 <div className="gvnews_postsmall left">{rows}</div>
                 <div className="gvnews_postsmall right">{rows2}</div>
             </>
@@ -152,14 +173,6 @@ const Hero14Block = compose(
         return <BuildColumn3 {...props} />;
     }
 
-    useEffect(() => {
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/module-option'),
-        }).then((data) => {
-            const parsedData = JSON.parse(data);
-            setModuleOption(parsedData);
-        });
-    }, []);
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -247,6 +260,7 @@ const Hero14Block = compose(
             metaDateType,
             metaDateFormat,
             metaDateFormatCustom,
+            readmoreButtonDisabled
         };
         if (postData.length > 0) {
             setBlock(
@@ -257,12 +271,15 @@ const Hero14Block = compose(
         }
     }, [
         blockWidth,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        overlay
+        overlay,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        readmoreButtonDisabled
     ]);
 
     return (

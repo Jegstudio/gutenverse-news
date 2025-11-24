@@ -2,25 +2,27 @@ import { __ } from '@wordpress/i18n';
 import { TypographyControl, SwitchControl, ColorControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
-export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') => {
+export const metaStylePanel = (props) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
         switcher,
         setSwitcher,
-        gvnewsModule = '',
+        heroType = '1'
     } = props;
 
     if (!showMeta) {
         return [];
     }
 
+    const withAuthor = ['1', '2', '3', '4', '5', '6', '13'].includes(heroType);
+
+
     const isNormal = !switcher.meta || switcher.meta === 'normal';
-    const showThridColor = 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_14' === gvnewsModule;
 
     let panelList = [
         {
-            id: 'typographyMeta',
+            id: 'metaTypography',
             label: __('Meta Typography', 'gutenverse-news'),
             description: __('This option will change your meta typography.', 'gutenverse-news'),
             component: TypographyControl,
@@ -31,12 +33,11 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
             label: __('Meta Author Typography', 'gutenverse-news'),
             description: __('This option will change your author name  typography on post meta.', 'gutenverse-news'),
             component: TypographyControl,
-            show: settings.includes('author') && showMeta && showMetaAuthor
+            show: withAuthor && showMeta && showMetaAuthor
         },
         {
             id: '__metaHover',
             component: SwitchControl,
-            show: 'disable' !== hover,
             options: [
                 {
                     value: 'normal',
@@ -59,52 +60,23 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
             id: 'metaColorHover',
             label: __('Meta Color', 'gutenverse-news'),
             component: ColorControl,
-            show: !isNormal && showMeta && 'author-only' !== hover
+            show: !isNormal && showMeta
         },
         {
             id: 'metaIconColor',
             label: __('Meta Icon Color', 'gutenverse-news'),
             component: ColorControl,
-            show: withIcon && isNormal && showMeta
+            show: isNormal && showMeta
         },
         {
             id: 'metaIconColorHover',
             label: __('Meta Icon Color', 'gutenverse-news'),
             component: ColorControl,
-            show: withIcon && !isNormal && showMeta && 'author-only' !== hover
-        },
-
-        {
-            id: 'thridMetaColor',
-            label: __('Thrid List Meta Color', 'gutenverse-news'),
-            component: ColorControl,
-            description: __('This option will override the meta color setting on the thrid list.', 'gutenverse-news'),
-            show: showThridColor && isNormal && showMeta
-        },
-        {
-            id: 'thridMetaColorHover',
-            label: __('Thrid List Meta Color', 'gutenverse-news'),
-            component: ColorControl,
-            description: __('This option will override the meta color setting on the thrid list on hover condition.', 'gutenverse-news'),
-            show: showThridColor && !isNormal && showMeta && 'author-only' !== hover
-        },
-        {
-            id: 'thridMetaIconColor',
-            label: __('Thrid List Meta Icon Color', 'gutenverse-news'),
-            component: ColorControl,
-            description: __('This option will override the meta icon color setting on the thrid list.', 'gutenverse-news'),
-            show: showThridColor && isNormal && showMeta
-        },
-        {
-            id: 'thridMetaIconColorHover',
-            label: __('Thrid List Meta Icon Color', 'gutenverse-news'),
-            component: ColorControl,
-            description: __('This option will override the meta icon color setting on the thrid list on hover condition.', 'gutenverse-news'),
-            show: showThridColor && !isNormal && showMeta && 'author-only' !== hover
+            show: !isNormal && showMeta
         },
     ];
 
-    settings.includes('author') && panelList.push(
+    withAuthor && panelList.push(
         {
             id: 'metaAuthorColor',
             label: __('Meta Author Color', 'gutenverse-news'),
