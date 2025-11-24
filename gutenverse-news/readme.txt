@@ -146,6 +146,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 3.0.3 [DEV] =
 ##### Improvements
 * Bring back the Archive Hero block as Free
+* Add more Meta options on all block
+* Add more Typography options on all block
 
 ##### Bug Fixes
 * Fix archive block not working on archive search page
