@@ -16,6 +16,7 @@ const Block34Columns = (props) => {
         page = 1,
         isLoadMore = false,
         renderedImageSizeMain,
+        attributes,
     } = props;
 
     const postDataLen = postData.length;
@@ -27,7 +28,7 @@ const Block34Columns = (props) => {
             <article className={`gvnews_post gvnews_pl_md_box ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
                     <ThumbModule size={1000} cat={true} post={post} imageSize={renderedImageSizeMain} />
-                    <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={post} attr={attr} />
+                    <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={post} attr={attr} panelAttr={attributes} />
                 </div>
             </article>
         );

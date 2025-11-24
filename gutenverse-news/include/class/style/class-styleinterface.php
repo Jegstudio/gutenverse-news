@@ -569,11 +569,33 @@ abstract class StyleInterface {
 		}
 	}
 
-		/**
-		 * Handle Background Feature
-		 *
-		 * @param string $selector Selector.
-		 */
+	/**
+	 * Handle Alignment Reverse
+	 *
+	 * @param array $value Value of Alignment in Text Align.
+	 *
+	 * @return string|null
+	 */
+	protected function handle_align_reverse( $value ) {
+		switch ( $value ) {
+			case 'left':
+				return 'flex-start';
+			case 'right':
+				return 'flex-end';
+			case 'center':
+				return 'center';
+			case 'justify':
+				return 'space-between';
+			default:
+				return $value;
+		}
+	}
+
+	/**
+	 * Handle Background Feature
+	 *
+	 * @param string $selector Selector.
+	 */
 	protected function feature_background( $selector ) {
 		if ( empty( $selector ) ) {
 			$selector = array(

@@ -688,6 +688,19 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
+	 * Return name class no-liear-bg or ''.
+	 *
+	 * @return string
+	 */
+	protected function postblock_content_no_linear_bg() {
+
+		if ( ! empty( $this->attribute['content_container_background']['color'] ) || ! empty( $this->attribute['content_container_background']['gradientColor'] ) ) {
+			return 'no-linear-bg';
+		}
+		return '';
+	}
+
+	/**
 	 * Method render_column
 	 *
 	 * @param string $result       result.

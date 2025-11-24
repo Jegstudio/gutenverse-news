@@ -176,6 +176,7 @@ class Block extends Grab {
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 			),
 			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : [],
 		);
 		$sccontent = '';
 

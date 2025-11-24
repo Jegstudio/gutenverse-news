@@ -324,6 +324,7 @@ const BlockModule = compose(
                 renderedImageSizeSecond,
                 readmoreButtonDisabled,
                 listIcon,
+                attributes,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {

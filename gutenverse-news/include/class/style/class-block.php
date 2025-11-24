@@ -66,6 +66,7 @@ class Block extends StyleAbstract {
 		$this->generate_header_style();
 		$this->generate_thumbnail_style();
 		$this->generate_thumbnail_overlay_style();
+		$this->generate_content_container_style();
 
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
@@ -1379,6 +1380,100 @@ class Block extends StyleAbstract {
 					)
 				);
 			}
+		}
+	}
+
+	/**
+	 * Generate content_container style.
+	 *
+	 * @return void
+	 */
+	private function generate_content_container_style() {
+		if ( isset( $this->attrs['contentAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ",
+					'property'       => function ( $value ) {
+						return "text-align: {$value};";
+					},
+					'value'          => $this->attrs['contentAlign'],
+					'device_control' => true,
+				)
+			);
+
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content   .gvnews_post_meta",
+					'property'       => function ( $value ) {
+						return "justify-content: {$this->handle_align_reverse($value)};";
+					},
+					'value'          => $this->attrs['contentAlign'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentContainerBackground'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ", $this->attrs['contentContainerBackground'] );
+		}
+
+		if ( isset( $this->attrs['contentMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['contentMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['contentPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentBorder'] ) ) {
+			$this->handle_border( 'contentBorder', ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  " );
+		}
+
+		if ( isset( $this->attrs['contentBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['contentBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentContainerShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postblock_content  ",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['contentContainerShadow'],
+					'device_control' => false,
+				)
+			);
 		}
 	}
 }

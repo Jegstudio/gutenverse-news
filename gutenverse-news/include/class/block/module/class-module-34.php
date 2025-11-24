@@ -54,7 +54,7 @@ class Module_34 extends Module_View_Abstract {
                                 <span>{$this->get_primary_category($post_id)}</span>
                             </div>
                         </div>
-                        <div class=\"gvnews_postblock_content\">
+                        <div class=\"gvnews_postblock_content {$this->postblock_content_no_linear_bg()} \">
                             <h3 class=\"gvnews_post_title\">
                                 <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
                             </h3>

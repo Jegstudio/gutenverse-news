@@ -1874,6 +1874,10 @@
   background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 70%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 70%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0);
+
+  &.no-linear-bg {
+    background: none;
+  }
 }
 
 .gvnews_pl_lg_box .gvnews_post_category,
