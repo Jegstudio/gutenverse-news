@@ -11,6 +11,8 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { applyFilters } from '@wordpress/hooks';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -47,6 +49,12 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['author', 'date', 'comment']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => headerStylesPanel({
@@ -64,6 +72,13 @@ export const panelList = () => {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
+                tabRole: TabStyle
+            },
+
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['author', 'date', 'comment']),
                 tabRole: TabStyle
             },
             {

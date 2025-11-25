@@ -28,10 +28,7 @@ class Carousel_1 extends Carousel_View_Abstract {
 
 		$content = '';
 		foreach ( $results as $key => $post ) {
-			$post_meta =
-			'<div class="gvnews_post_meta">
-                    <div class="gvnews_meta_date"><i class="fas fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</div>
-                </div>';
+			$post_meta = $this->post_meta_2( $post );
 
 			$image    = $this->get_thumbnail( $post->ID, 'gvnews-350x250' );
 			$content .=

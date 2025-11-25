@@ -6,6 +6,9 @@ import HeroContentWrapperComponent from './hero-content-wrapper';
 import HeroViewComponent from './hero-view-component';
 import { getModuleOptions } from '../../utils/helper';
 
+
+const defaultOptions = getModuleOptions();
+
 /**
  * Hero Element
  *
@@ -44,26 +47,33 @@ const HeroComponent = (props) => {
         setAttributes
     } = props;
 
-    const [blockWidth, getWidth] = useState(8);
+    const {
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13')
+    } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
     const [postData, getTrim] = useState(false);
     const [overlay, setOverlay] = useState(false);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const [postStart, setPostStart] = useState(0);
     const [sliderDelay, setSliderDelay] = useState(0);
     const [sliderCount, setSliderCount] = useState(0);
-
-    const moduleOption = useRef(null);
-    const postCount = useRef(0);
     const firstRender = useRef(true);
-
-    useEffect(() => {
-        if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(8);
-        } else {
-            getWidth(columnWidth);
-        }
-    }, [columnWidth]);
 
     useEffect(() => {
         if (postOffset >= 0) {
@@ -101,10 +111,6 @@ const HeroComponent = (props) => {
 
     useEffect(() => {
         const timeOutId = setTimeout(() => {
-            if (moduleOption.current == null) {
-                moduleOption.current = getModuleOptions();
-                postCount.current = moduleOption.current.option.post_count.publish;
-            }
 
             setOverlay(true);
             apiFetch({
@@ -155,9 +161,9 @@ const HeroComponent = (props) => {
     ]);
 
     const resetBlock = () => {
-        if (postData && postData.length && moduleOption.current) {
+        if (postData && postData.length) {
             const attr = {
-                option: moduleOption.current,
+                option: moduleOption,
                 date: {
                     type: dateType,
                     format: dateFormat,
@@ -189,14 +195,13 @@ const HeroComponent = (props) => {
                         heroType,
                         heroStyle,
                         enableslider,
-                        blockWidth,
                         autoplay,
                         autoplayDelay: sliderDelay,
                     }}
                 />
             );
-        } else if (moduleOption.current) {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.current.string.no_content}</div>);
+        } else if (moduleOption) {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
         }
     };
 
@@ -213,12 +218,13 @@ const HeroComponent = (props) => {
         sliderCount,
         heroMargin,
         heightDesktop,
-        blockWidth,
-        moduleOption,
         dateType,
         dateFormat,
         dateFormatCustom,
-        heroStyle
+        heroStyle,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
     ]);
 
     useEffect(() => {

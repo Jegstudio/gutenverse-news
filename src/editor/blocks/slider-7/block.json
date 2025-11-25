@@ -265,6 +265,12 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
         }
     },
     "supports": {

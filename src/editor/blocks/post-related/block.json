@@ -104,6 +104,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerSecondTextColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object"
         },
@@ -250,6 +253,241 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaComment": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "headerTextTypography": {
+            "type": "object"
+        },
+        "headerSecondTextTypography": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "typographyContent": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "listIcon": {
+            "type": "string",
+            "default": "fas fa-caret-right"
+        },
+        "listIconColor": {
+            "type": "object"
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
+        },
+        "paginationWrapperMargin": {
+            "type": "object"
+        },
+        "paginationWrapperAlign": {
+            "type": "object"
+        },
+        "paginationDisableSeparator": {
+            "type": "boolean"
+        },
+        "paginationBtnTypography": {
+            "type": "object"
+        },
+        "paginationBtnWidth": {
+            "type": "object"
+        },
+        "paginationBtnIconSize": {
+            "type": "object"
+        },
+        "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationBtnColor": {
+            "type": "object"
+        },
+        "paginationBtnHoverColor": {
+            "type": "object"
+        },
+        "paginationBtnDisableColor": {
+            "type": "object"
+        },
+        "paginationBtnBackground": {
+            "type": "object"
+        },
+        "paginationBtnGap": {
+            "type": "object"
+        },
+        "paginationBtnHoverBackground": {
+            "type": "object"
+        },
+        "paginationBtnDisableBackground": {
+            "type": "object"
+        },
+        "paginationBtnBorder": {
+            "type": "object"
+        },
+        "paginationBtnBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnHoverBorder": {
+            "type": "object"
+        },
+        "paginationBtnHoverBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnHoverBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnDisableBorder": {
+            "type": "object"
+        },
+        "paginationBtnDisableBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBtnDisableBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationBtnBoxShadow": {
+            "type": "object"
+        },
+        "paginationBtnHoverBoxShadow": {
+            "type": "object"
+        },
+        "paginationBtnDisableBoxShadow": {
+            "type": "object"
+        },
+        "paginationSeparatorStyle": {
+            "type": "string"
+        },
+        "paginationSeparatorColor": {
+            "type": "object"
+        },
+        "paginationSeparatorWidth": {
+            "type": "object"
+        },
+        "paginationBtnDisableOpacity": {
+            "type": "string"
+        },
+        "paginationBtnIconSpacing": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "readmoreButtonTypography": {
+            "type": "object"
+        },
+        "readmoreButtonBackground": {
+            "type": "object"
+        },
+        "readmoreButtonBackgroundHover": {
+            "type": "object"
+        },
+        "readmoreButtonColor": {
+            "type": "object"
+        },
+        "readmoreButtonColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonBorder": {
+            "type": "object"
+        },
+        "readmoreButtonBorderHover": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadow": {
+            "type": "object"
+        },
+        "readmoreButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {

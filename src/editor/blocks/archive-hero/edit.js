@@ -8,13 +8,9 @@ import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
-import PanelUpgradePro from '../../panels/panel-upgrade-pro';
-import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
-import { applyFilters } from '@wordpress/hooks';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -24,7 +20,7 @@ const ArchiveHero = compose(
         attributes,
         clientId,
         setBlockRef,
-        isSelected
+        isSelected,
     } = props;
 
     const {
@@ -85,6 +81,7 @@ const ArchiveHero = compose(
                             autoplayDelay: 1000,
                             heroMargin,
                             heightDesktop: heroHeightDesktop,
+                            attributes,
                         }}
                     />
                 </div>

@@ -20,7 +20,8 @@ import { useSelect } from '@wordpress/data';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
-const moduleOption = getModuleOptions();
+
+const defaultOptions = getModuleOptions();
 
 const Carousel3Block = compose(
     withPartialRender,
@@ -62,7 +63,34 @@ const Carousel3Block = compose(
         ncolumn,
         iMargin,
         columnWidth,
+        showMeta = true,
+        showMetaDate = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
+    const firstRender = useRef(true);
+    const blockRef = useRef(null);
+    const elementRef = useRef(null);
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -88,18 +116,6 @@ const Carousel3Block = compose(
     const [sliderDelay, setSliderDelay] = useState(0);
     const [sliderColumn, setSliderColumn] = useState(0);
 
-    const firstRender = useRef(true);
-    const blockRef = useRef(null);
-    const elementRef = useRef(null);
-
-    useEffect(() => {
-        if (elementRef) {
-            setBlockRef(elementRef);
-        }
-    }, [elementRef]);
-
-    useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
     const deviceType = getDeviceType();
     const {
         getBlock,
@@ -309,7 +325,6 @@ const Carousel3Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -321,7 +336,9 @@ const Carousel3Block = compose(
         hoverEffect,
         sliderColumn,
         iMargin,
-        blockWidth
+        blockWidth,
+        showMeta,
+        showMetaDate,
     ]);
 
     useEffect(() => {

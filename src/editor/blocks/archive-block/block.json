@@ -169,6 +169,88 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaComment": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
         }
     },
     "supports": {

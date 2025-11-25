@@ -16,7 +16,7 @@ const Block24Block = compose(
     };
     const moduleName = '24';
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList}/>;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
     }

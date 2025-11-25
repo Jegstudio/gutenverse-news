@@ -33,10 +33,11 @@ class Module_27 extends Module_View_Abstract {
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		$excerpt   = 1 === $type ? null :
 		'<div class="gvnews_post_excerpt">
-                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
-							<a href="' . $permalink . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
+							. $read_more . ' 
                         </div>';
 
 		$post_meta = "<div class=\"gvnews_post_meta\">

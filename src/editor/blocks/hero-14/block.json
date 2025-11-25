@@ -324,6 +324,87 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleColor": {
+            "type": "object"
+        },
+        "thridTitleColorHover": {
+            "type": "object"
+        },
+        "thridMetaColor": {
+            "type": "object"
+        },
+        "thridMetaIconColor": {
+            "type": "object"
+        },
+        "thridMetaColorHover": {
+            "type": "object"
+        },
+        "thridMetaIconColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "sideCategoryButtonTypography": {
+            "type": "object"
+        },
+        "sideCategoryButtonColor": {
+            "type": "object"
+        },
+        "sideCategoryButtonColorHover": {
+            "type": "object"
         }
     },
     "supports": {

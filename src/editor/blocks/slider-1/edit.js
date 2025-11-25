@@ -17,7 +17,7 @@ import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider1Block = compose(
     withPartialRender,
@@ -55,7 +55,24 @@ const Slider1Block = compose(
         autoplay,
         hoverEffect,
         autoplayDelay,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -270,7 +287,6 @@ const Slider1Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -278,6 +294,9 @@ const Slider1Block = compose(
         autoplay,
         sliderDelay,
         hoverEffect,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
     ]);
 
     useEffect(() => {

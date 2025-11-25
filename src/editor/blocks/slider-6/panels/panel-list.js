@@ -5,6 +5,9 @@ import { sliderPanel } from './panel-slider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { designPanel } from './panel-design';
 
 export const panelList = () => {
     return applyFilters(
@@ -17,10 +20,28 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['author', 'date']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: filterPanel,
                 tabRole: TabSetting
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['author', 'date'], false, 'author-only'),
+                tabRole: TabStyle
             },
             {
                 title: __('Category Label', 'gutenverse-news'),
