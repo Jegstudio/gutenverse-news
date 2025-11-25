@@ -12,8 +12,6 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
 
-
-
 const Hero1Block = compose(
     withPartialRender,
     withPassRef
@@ -54,7 +52,6 @@ const Hero1Block = compose(
         heroMargin,
         heightDesktop,
     } = attributes;
-
 
 
     const animationClass = useAnimationEditor(attributes);

@@ -585,5 +585,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": false,
+    "viewScript": ["gutenverse-frontend-blocks-script"],
+    "style": ["gutenverse-frontend-blocks-style"]
 }

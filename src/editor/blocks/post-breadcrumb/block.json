@@ -101,5 +101,6 @@
         "post",
         "breadcrumb"
     ],
-    "gvnewsRemoved": true
+    "gvnewsRemoved": true,
+    "style": ["gutenverse-frontend-post-breadcrumb-style"]
 }

@@ -145,5 +145,6 @@
         "trending",
         "reading",
         "time"
-    ]
+    ],
+    "style": ["gutenverse-frontend-post-meta-style"]
 }
