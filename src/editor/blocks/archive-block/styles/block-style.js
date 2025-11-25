@@ -35,9 +35,9 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a`,
     });
 
-    isNotEmpty(attributes['typographyMeta']) && data.push({
+    isNotEmpty(attributes['metaTypography']) && data.push({
         'type': 'typography',
-        'id': 'typographyMeta',
+        'id': 'metaTypography',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div`,
     });
 
