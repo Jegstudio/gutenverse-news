@@ -692,13 +692,13 @@ class Archive extends StyleAbstract {
 	 * Generate block meta style.
 	 */
 	private function generate_meta_style() {
-		if ( isset( $this->attrs['typographyMeta'] ) ) {
+		if ( isset( $this->attrs['metaTypography'] ) ) {
 			$this->inject_typography(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author .by",
 					'property'       => function ( $value ) {
 					},
-					'value'          => $this->attrs['typographyMeta'],
+					'value'          => $this->attrs['metaTypography'],
 					'device_control' => false,
 				)
 			);
@@ -707,7 +707,7 @@ class Archive extends StyleAbstract {
 		if ( isset( $this->attrs['typographyMetaAuthor'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a`",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMetaAuthor'],

@@ -21,7 +21,7 @@ export const metaStylePanel = (props) => {
 
     let panelList = [
         {
-            id: 'typographyMeta',
+            id: 'metaTypography',
             label: __('Meta Typography', 'gutenverse-news'),
             description: __('This option will change your meta typography.', 'gutenverse-news'),
             component: TypographyControl,
