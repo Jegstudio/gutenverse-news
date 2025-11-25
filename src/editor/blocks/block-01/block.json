@@ -544,5 +544,7 @@
     },
     "keywords": [
         "news"
-    ]
+    ],
+	"viewScript": ["gutenverse-frontend-blocks-script"],
+	"style": ["gutenverse-frontend-blocks-style"]
 }

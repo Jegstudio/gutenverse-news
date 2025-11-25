@@ -502,5 +502,7 @@
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "viewScript": ["gutenverse-frontend-blocks-script"],
+    "style": ["gutenverse-frontend-blocks-style"]
 }

@@ -498,5 +498,6 @@
         "post",
         "relate",
         "related"
-    ]
+    ],
+    "style": ["gutenverse-frontend-post-related-style"]
 }

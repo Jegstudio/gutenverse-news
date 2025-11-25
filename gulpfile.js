@@ -65,12 +65,32 @@ gulp.task('update-notice', function () {
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
 
-gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice'));
+const terser = require('gulp-terser');
+
+gulp.task('minify-okaynav', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/frontend/okaynav/okaynav.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
+});
+
+gulp.task('minify-tns', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/frontend/tiny-slider/tiny-slider.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
+});
+
+gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
 
 gulp.task('build', gulp.series('build-process'));
 
 const watchProcess = (basePath = '.') => {
-    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice']));
+    gulp.watch([
+        `${basePath}/src/**/*.scss`,
+        `${basePath}/src/frontend/okaynav/*.js`,
+        `${basePath}/src/frontend/tiny-slider/*.js`,
+    ], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
 };
 
 gulp.task(
@@ -170,6 +190,5 @@ gulp.task('release', gulp.series(
     'clean-maps',
     'zip'
 ));
-
 
 module.exports.watchProcess = watchProcess;
