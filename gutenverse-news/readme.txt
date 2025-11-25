@@ -156,6 +156,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Bug Fixes
 * Fix archive block not working on archive search page
 * Fix Post Masonry issue on "Module - 32", "Module - 33", "Module - 34" and "Module - 35"
+* Fix cannot make the Left/Right Meta Element empty on Post Meta block
 
 = 3.0.2 =
 ##### Improvements
