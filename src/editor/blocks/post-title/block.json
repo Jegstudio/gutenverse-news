@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-title",
     "title": "Post Title",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Title",
-    "description": "Your Block description.",
+    "description": "This block is deprecated and will be removed in the future.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -92,5 +92,6 @@
         "post",
         "title"
     ],
-    "gvnewsRemoved": true
+    "gvnewsRemoved": true,
+    "style": ["gutenverse-frontend-post-title-style"]
 }

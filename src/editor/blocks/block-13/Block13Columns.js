@@ -2,7 +2,7 @@ import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 
 const Block13Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth, readmoreButtonDisabled = false} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -13,14 +13,14 @@ const Block13Columns = props => {
             block.push(
                 <>
                     <ThumbModule size={715} cat={true} post={post}/>
-                    <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={attr}/>
+                    <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 </>
             );
         } else {
             block.push(
                 <div className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                     <ThumbModule size={715} cat={true} post={post}/>
-                    <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={attr}/>
+                    <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 </div>
             );
         }
@@ -89,7 +89,7 @@ const Block13Columns = props => {
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-6">
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
-                        <ContentModule title={true} meta={1} excerpt={true} read={true} post={postData[0]} attr={attr}/>
+                        <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={postData[0]} attr={attr}/>
                     </article>
                     <div className="gvnews_postsmall col-sm-6">
                         {rows}
@@ -134,7 +134,7 @@ const Block13Columns = props => {
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
                         <ThumbModule size={1400} cat={true} post={postData[0]}/>
-                        <ContentModule title={true} meta={1} excerpt={true} read={true} post={postData[0]} attr={attr}/>
+                        <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={postData[0]} attr={attr}/>
                     </article>
                     <div className="gvnews_postsmall col-sm-4">
                         {rows}

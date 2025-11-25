@@ -3,7 +3,7 @@
     "name": "gutenverse/news-slider-1",
     "title": "Slider 1",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
@@ -234,10 +234,36 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-frontend-blocks-style"],
+    "viewScript": ["gutenverse-frontend-slider-script"]
 }

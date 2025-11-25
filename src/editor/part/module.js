@@ -13,13 +13,13 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
-
-const moduleOption = getModuleOptions();
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
+const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
     withPartialRender,
@@ -33,6 +33,7 @@ const BlockModule = compose(
         moduleName,
         columnAttr,
         panelList,
+        freeModule = false,
     } = props;
 
     const {
@@ -71,8 +72,29 @@ const BlockModule = compose(
         metaDateFormat,
         metaDateFormatCustom,
         paginationWrapperAlign,
-        paginationDisableSeparator
+        paginationDisableSeparator,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        readmoreButtonDisabled = false,
+        listIcon = '',
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_comment: showMetaComment,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
     const device = getDeviceType();
@@ -145,7 +167,7 @@ const BlockModule = compose(
         if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
             let ovr = {
                 ...attributes,
-                paginationWrapperAlign: {...paginationWrapperAlign},
+                paginationWrapperAlign: { ...paginationWrapperAlign },
                 paginationDisableSeparator: true
             };
             ovr['paginationWrapperAlign'][device] = 'start';
@@ -284,6 +306,8 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
+                readmoreButtonDisabled,
+                listIcon
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -294,11 +318,16 @@ const BlockModule = compose(
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        listIcon
     ]);
 
     const blockProps = useBlockProps({
@@ -349,6 +378,13 @@ const BlockModule = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        {!freeModule && <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>}
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>

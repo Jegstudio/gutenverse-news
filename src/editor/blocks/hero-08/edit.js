@@ -8,12 +8,13 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const Hero8Block = compose(
     withPartialRender,
@@ -82,11 +83,18 @@ const Hero8Block = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Hero 8" />
+                <PanelUpgradePro title="Hero 8" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
             <div {...blockProps}>
@@ -125,7 +133,7 @@ const Hero8Block = compose(
                             setAttributes,
                         }}
                     />
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

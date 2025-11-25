@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-prev-next",
     "title": "Post Next Prev",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Prev_Next",
-    "description": "Your Block description.",
+    "description": "Display the next and previous posts on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -130,5 +130,7 @@
         "post",
         "prev",
         "next"
-    ]
+    ],
+    "gutenversePro": true,
+    "style": ["gutenverse-frontend-post-prev-next-style"]
 }

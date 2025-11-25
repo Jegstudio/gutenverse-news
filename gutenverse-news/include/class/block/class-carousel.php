@@ -130,6 +130,10 @@ class Carousel extends Grab {
 			'enable_autoplay'          => isset( $this->attributes['autoplay'] ) ? $this->attributes['autoplay'] : '',
 			'autoplay_delay'           => isset( $this->attributes['autoplayDelay'] ) ? $this->attributes['autoplayDelay'] : '',
 			'short_code'               => $this->attributes['gvnewsModule'],
+			'meta_settings'            => array(
+				'show_meta' => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date' => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+			),
 		);
 
 		$content = $this->get_module( $attr );
@@ -142,7 +146,7 @@ class Carousel extends Grab {
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		return ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() );
 	}
 }

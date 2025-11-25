@@ -1,11 +1,17 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { handleBackground } from 'gutenverse-core/styling';
-import { CheckboxControl, BackgroundControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, BackgroundControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const heroStylePanel = (props) => {
     const { elementId, heroType } = props;
     const heroTypes = [1, 2, 3, 4, 5, 6, 7];
     let itemAmount;
+    let typoCount = 1;
+    if (['1', '3', '12'].includes(heroType)) {
+        typoCount = 3;
+    } else if (['2', '4', '5', '6', '10', '11'].includes(heroType)) {
+        typoCount = 2;
+    }
 
     if (['13'].includes(heroType)) {
         itemAmount = 1;
@@ -23,7 +29,39 @@ export const heroStylePanel = (props) => {
         itemAmount = 8;
     }
 
-    let heroItemOption = [];
+    let heroItemOption = [
+        {
+            id: 'titleTypography',
+            label: __('Title Typography', 'gutenverse-news'),
+            description: __('This option will change your title typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'secondTitleTypography',
+            label: __('Second List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
+            show: typoCount >= 2,
+            component: TypographyControl,
+        },
+        {
+            id: 'thridTitleTypography',
+            label: __('Thrid List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the thrid list.', 'gutenverse-news'),
+            show: typoCount >= 3,
+            component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+
+        {
+            id: 'titleColorHover',
+            label: __('Title Color Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
+    ];
     heroTypes.map((type) => {
         heroItemOption = [
             ...heroItemOption,

@@ -3,7 +3,7 @@
     "name": "gutenverse/news-block-24",
     "title": "Module 24",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",
-    "description": "Your Block description.",
+    "description": "[PRO] A pre-designed block for displaying your post list with various features.",
     "category": "gvnews-module",
     "attributes": {
         "elementId": {
@@ -404,11 +404,85 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "headerTextTypography": {
+            "type": "object"
+        },
+        "headerSecondTextTypography": {
+            "type": "object"
+        },
+        "headerFilterTypography": {
+            "type": "object"
+        },
+        "headerSeondTextColor": {
+            "type": "object"
+        },
+        "headerFilterColor": {
+            "type": "object"
+        },
+        "headerFilterColorHover": {
+            "type": "object"
+        },
+        "headerFilterColorActive": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "listIcon": {
+            "type": "string",
+            "default": "fas fa-caret-right"
+        },
+        "listIconColor": {
+            "type": "object"
+        },
+        "selectorSecondTitleTypography": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_post_title a"
+        },
+        "selectorIconList": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i"
+        },
+        "selectorTitleColor": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_post_title a"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "viewScript": ["gutenverse-frontend-blocks-script"],
+    "style": ["gutenverse-frontend-blocks-style"]
 }

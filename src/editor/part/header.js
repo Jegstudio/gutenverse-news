@@ -78,8 +78,9 @@ const HeaderModule = (props) => {
         return null;
     }
     return <div className={`gvnews_block_heading gvnews_block_${props.headerType} gvnews_subcat_right`}>
-        <HeadTitle {...props}/>
-        <SubCat {...props}/>
+        <HeadTitle {...props} />
+        {('heading_5' === props.headerType) && <span className="line"></span>}
+        <SubCat {...props} />
     </div>;
 };
 

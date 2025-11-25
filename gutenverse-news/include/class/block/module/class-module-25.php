@@ -29,6 +29,7 @@ class Module_25 extends Module_View_Abstract {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . ">
                     <div class=\"gvnews_postblock_heading\">
@@ -44,10 +45,10 @@ class Module_25 extends Module_View_Abstract {
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_excerpt\">
                             <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                            <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                        	{$read_more}
                         </div>
                     </div>
-                </article>';
+                </article>";
 	}
 
 	/**
