@@ -19,6 +19,7 @@ const PostMeta = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         clientId,
         setBlockRef
     } = props;
@@ -34,6 +35,24 @@ const PostMeta = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useEffect(() => {
+        const updates = {};
+        if (attributes.metaLeft === undefined) {
+            updates.metaLeft = [{
+                label: __('Author', 'gutenverse-news'),
+                value: 'author'
+            }];
+        }if (attributes.metaRight === undefined) {
+            updates.metaRight = [{
+                label: __('Date', 'gutenverse-news'),
+                value: 'date'
+            }];
+        }
+        if (Object.keys(updates).length > 0) {
+            setAttributes(updates);
+        }
+    }, []);
 
     useEffect(() => {
         if (elementRef) {

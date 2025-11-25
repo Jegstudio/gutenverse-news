@@ -10,22 +10,10 @@
             "type": "string"
         },
         "metaLeft": {
-            "type": "array",
-            "default": [
-                {
-                    "label": "Author",
-                    "value": "author"
-                }
-            ]
+            "type": "array"
         },
         "metaRight": {
-            "type": "array",
-            "default": [
-                {
-                    "label": "Date",
-                    "value": "date"
-                }
-            ]
+            "type": "array"
         },
         "showAvatar": {
             "type": "boolean",
