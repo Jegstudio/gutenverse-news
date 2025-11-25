@@ -137,5 +137,5 @@
         "tag"
     ],
     "gvnewsRemoved": true,
-    "style": ["gutenverse-frontend-post-tag-style"]
+    "style": ["gvnews-frontend-post-tag-style"]
 }

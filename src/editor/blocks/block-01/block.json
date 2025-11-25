@@ -545,6 +545,6 @@
     "keywords": [
         "news"
     ],
-	"viewScript": ["gutenverse-frontend-blocks-script"],
-	"style": ["gutenverse-frontend-blocks-style"]
+	"viewScript": ["gvnews-frontend-blocks-script"],
+	"style": ["gvnews-frontend-blocks-style"]
 }

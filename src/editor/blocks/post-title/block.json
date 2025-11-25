@@ -93,5 +93,5 @@
         "title"
     ],
     "gvnewsRemoved": true,
-    "style": ["gutenverse-frontend-post-title-style"]
+    "style": ["gvnews-frontend-post-title-style"]
 }

@@ -102,5 +102,5 @@
         "breadcrumb"
     ],
     "gvnewsRemoved": true,
-    "style": ["gutenverse-frontend-post-breadcrumb-style"]
+    "style": ["gvnews-frontend-post-breadcrumb-style"]
 }

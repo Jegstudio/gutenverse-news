@@ -50,7 +50,7 @@ class Editor_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-frontend-hero-slider-script',
+			'gvnews-frontend-hero-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/hero-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -58,7 +58,7 @@ class Editor_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-frontend-carousel-slider-script',
+			'gvnews-frontend-carousel-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/carousel-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -66,7 +66,7 @@ class Editor_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-frontend-slider-script',
+			'gvnews-frontend-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/slider-module.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -74,7 +74,7 @@ class Editor_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-frontend-newsticker-script',
+			'gvnews-frontend-newsticker-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/newsticker-module.js',
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -82,10 +82,10 @@ class Editor_Assets {
 		);
 
 		$block   = ( include GUTENVERSE_NEWS_DIR . '/lib/dependencies/blocks.asset.php' )['dependencies'];
-		$block[] = 'gutenverse-frontend-hero-slider-script';
-		$block[] = 'gutenverse-frontend-carousel-slider-script';
-		$block[] = 'gutenverse-frontend-slider-script';
-		$block[] = 'gutenverse-frontend-newsticker-script';
+		$block[] = 'gvnews-frontend-hero-slider-script';
+		$block[] = 'gvnews-frontend-carousel-slider-script';
+		$block[] = 'gvnews-frontend-slider-script';
+		$block[] = 'gvnews-frontend-newsticker-script';
 
 		wp_enqueue_script(
 			'gutenverse-news-blocks',

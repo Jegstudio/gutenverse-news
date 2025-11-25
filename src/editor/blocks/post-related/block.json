@@ -499,5 +499,5 @@
         "relate",
         "related"
     ],
-    "style": ["gutenverse-frontend-post-related-style"]
+    "style": ["gvnews-frontend-post-related-style"]
 }

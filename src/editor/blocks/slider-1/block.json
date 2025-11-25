@@ -264,6 +264,6 @@
         "className": false
     },
     "keywords": [],
-    "style": ["gutenverse-frontend-blocks-style"],
-    "viewScript": ["gutenverse-frontend-slider-script"]
+    "style": ["gvnews-frontend-blocks-style"],
+    "viewScript": ["gvnews-frontend-slider-script"]
 }

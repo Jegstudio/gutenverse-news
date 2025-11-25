@@ -322,6 +322,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-frontend-carousel-slider-script"],
-    "style": ["gutenverse-frontend-blocks-style"]
+    "viewScript": ["gvnews-frontend-carousel-slider-script"],
+    "style": ["gvnews-frontend-blocks-style"]
 }
