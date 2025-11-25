@@ -38,6 +38,9 @@ const PostMeta = compose(
 
     useEffect(() => {
         const updates = {};
+        if (attributes.elementId !== undefined) {
+            return;
+        }
         if (attributes.metaLeft === undefined) {
             updates.metaLeft = [{
                 label: __('Author', 'gutenverse-news'),
