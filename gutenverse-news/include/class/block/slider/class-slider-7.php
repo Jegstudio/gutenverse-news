@@ -38,6 +38,7 @@ class Slider_7 extends Slider_View_Abstract {
 			}
 			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
 			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$read_more       = ! $this->attribute['disable_readmore'] ? '<a href="' . esc_url( get_the_permalink( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
 
 			$content .=
 			'<div ' . gvnews_post_class( 'gvnews_slide_item clearfix', $post->ID ) . '>
@@ -57,7 +58,7 @@ class Slider_7 extends Slider_View_Abstract {
 	                        <div class="gvnews_post_excerpt">
 			                    <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
 			                </div>
-                            <a href="' . esc_url( get_the_permalink( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . "</a>
+                            ' . $read_more . " 
                         </div>
                         <div class=\"gvnews_block_nav \"> 
                         	<a href=\"#\" class=\"prev\">

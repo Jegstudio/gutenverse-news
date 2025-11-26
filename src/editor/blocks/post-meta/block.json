@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-meta",
     "title": "Post Meta",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
-    "description": "Your Block description.",
+    "description": "Display a list of post meta information on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -33,7 +33,7 @@
         },
         "postDate": {
             "type": "string",
-            "default":"published"
+            "default": "published"
         },
         "gvnewsModule": {
             "type": "string",
@@ -47,11 +47,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -63,7 +63,7 @@
         },
         "boxShadowHover": {
             "type": "object"
-        }, 
+        },
         "margin": {
             "type": "number"
         },
@@ -71,11 +71,11 @@
             "type": "object"
         },
         "width": {
-            "type":"object",
+            "type": "object",
             "default": {}
         },
         "height": {
-            "type":"object",
+            "type": "object",
             "default": {}
         },
         "zIndex": {
@@ -91,37 +91,37 @@
             "type": "boolean"
         },
         "authorTypography": {
-            "type":"object"
+            "type": "object"
         },
         "authorColor": {
-            "type":"object"
+            "type": "object"
         },
         "authorColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "dateTypography": {
-            "type":"object"
+            "type": "object"
         },
         "dateColor": {
-            "type":"object"
+            "type": "object"
         },
         "dateColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "categoryTypography": {
-            "type":"object"
+            "type": "object"
         },
         "categoryColor": {
-            "type":"object"
+            "type": "object"
         },
         "categoryColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "commentTypography": {
-            "type":"object"
+            "type": "object"
         },
         "commentColor": {
-            "type":"object"
+            "type": "object"
         },
         "commentColorHover": {
             "type":"object"
@@ -193,5 +193,6 @@
         "trending",
         "reading",
         "time"
-    ]
+    ],
+    "style": ["gutenverse-frontend-post-meta-style"]
 }

@@ -3,7 +3,7 @@
     "name": "gutenverse/news-header",
     "title": "Header",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Header",
-    "description": "Your Block description.",
+    "description": "Pre-designed heading block.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {

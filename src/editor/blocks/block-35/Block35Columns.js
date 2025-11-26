@@ -1,8 +1,11 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
+import { useEffect, useRef } from '@wordpress/element';
+import Shuffle from 'shufflejs';
 
 const Block35Columns = (props) => {
+
     const {
         postData,
         moduleOption,
@@ -16,7 +19,28 @@ const Block35Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        readmoreButtonDisabled = false
     } = props;
+
+    const masonryRef = useRef();
+    const shuffleInstance = useRef(null);
+
+    useEffect(() => {
+        if (shuffleInstance.current === null) {
+            shuffleInstance.current = new Shuffle(masonryRef.current, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        }
+
+        return () => {
+            shuffleInstance.current?.destroy;
+            shuffleInstance.current = null;
+        };
+    }, [
+        blockWidth,
+    ]);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -27,7 +51,7 @@ const Block35Columns = (props) => {
             <article className={`gvnews_post gvnews_pl_md_5 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
                     <ThumbModule size={715} cat={true} post={post} />
-                    <ContentModule cat={false} title={true} read={true} excerpt={true} post={post} attr={attr} />
+                    <ContentModule cat={false} title={true} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
             </article>
@@ -56,7 +80,7 @@ const Block35Columns = (props) => {
 
         return (
             <div className="gvnews_posts_wrap gvnews_posts_masonry">
-                <div className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
+                <div ref={masonryRef} className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
             </div>
         );
     };

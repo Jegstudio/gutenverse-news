@@ -9,11 +9,11 @@ const Block6Block = compose(
     withPassRef
 )((props) => {
     const columnAttr = {
-        block       : Block6Columns,
-        blockWidth  : 12,
+        block: Block6Columns,
+        blockWidth: 12,
     };
     const moduleName = '6';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
 });
 
 export default Block6Block;

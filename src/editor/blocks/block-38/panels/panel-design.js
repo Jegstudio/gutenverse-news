@@ -57,19 +57,6 @@ export const designPanel = (props) => {
             ]
         },
         {
-            id: 'typographyMeta',
-            show: enableExcerpt === true,
-            label: __('Meta Typography', 'gutenverse-news'),
-            component: TypographyControl,
-            style: [
-                {
-                    selector: `.editor-styles-wrapper .wp-block .${elementId} .gvnews_post_meta>div`,
-                    hasChild: true,
-                    render: (value,id) => handleTypography(value, props, id)
-                }
-            ]
-        },
-        {
             id: 'typographyContent',
             label: __('Content Typography', 'gutenverse-news'),
             component: TypographyControl,
@@ -110,17 +97,6 @@ export const designPanel = (props) => {
             style: [
                 {
                     selector: [`.editor-styles-wrapper .wp-block .${elementId} .gvnews_meta_author a`, `.editor-styles-wrapper .wp-block .${elementId} .gvnews_postblock .gvnews_post_title a:hover`],
-                    render: value => handleColor(value, 'color')
-                }
-            ],
-        },
-        {
-            id: 'metaColor',
-            label: __('Meta Color', 'gutenverse-news'),
-            component: ColorControl,
-            style: [
-                {
-                    selector: [`.editor-styles-wrapper .wp-block .${elementId} .gvnews_post_meta`],
                     render: value => handleColor(value, 'color')
                 }
             ],

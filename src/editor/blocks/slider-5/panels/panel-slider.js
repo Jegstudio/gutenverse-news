@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, GradientWithAngleControl, ColorControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
         autoplay,
-        metaDateFormat,
         overlayOption,
         isOverrideOverlay,
     } = props;
@@ -22,33 +21,6 @@ export const sliderPanel = (props) => {
             min: 1000,
             max: 10000,
             step: 500,
-        },
-        {
-            id: 'metaDateFormat',
-            label: __('Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            component: SelectControl,
-            options: [
-                {
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                    value: 'ago'
-                },
-                {
-                    label: __('Wordpress Default Format', 'gutenverse-news'),
-                    value: 'default'
-                },
-                {
-                    label: __('Custom Format', 'gutenverse-news'),
-                    value: 'custom'
-                },
-            ],
-        },
-        {
-            id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
-            label: __('Custom Format', 'gutenverse-news'),
-            description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
-            component: TextControl,
         },
         {
             id: 'normalImage',

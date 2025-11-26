@@ -3,7 +3,7 @@
     "name": "gutenverse/news-archive-breadcrumb",
     "title": "Archive Breadcrumb",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "This block is deprecated and will be removed in the future.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
