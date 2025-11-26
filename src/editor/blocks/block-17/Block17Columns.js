@@ -78,17 +78,17 @@ const Block17Columns = props => {
         let start = 0;
         let limit = 2;
 
-        if (4 === blockWidth && postData.length > 0) {
-            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1} />);
+        if (4 == blockWidth && postData.length > 0) {
+            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1} imageSize={renderedImageSizeMain} />);
             start = 1;
-        } else if (12 === blockWidth) {
+        } else if (12 == blockWidth) {
             limit = 3;
         }
 
         if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
-                if (4 === blockWidth) {
-                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} />);
+                if (4 == blockWidth) {
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={renderedImageSizeSecond} />);
                 } else { // block-17
                     rows.push(i < limit ?
                         <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1} imageSize={renderedImageSizeMain}/> :

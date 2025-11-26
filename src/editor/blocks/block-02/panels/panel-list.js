@@ -94,7 +94,11 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => contentContainerPanel({
                 ...props,
-                hasSecondImageSize: true
+                hasSecondImageSize: true,
+                contentAlignVertical: {
+                    main: true,
+                    second: true,
+                },
             }),
             tabRole: TabStyle,
         },

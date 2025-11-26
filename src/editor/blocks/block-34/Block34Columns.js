@@ -35,11 +35,13 @@ const Block34Columns = (props) => {
         }
 
         return () => {
-            shuffleInstance.current?.destroy;
+            shuffleInstance.current?.destroy();
             shuffleInstance.current = null;
         };
     }, [
         blockWidth,
+        attributes,
+        postData
     ]);
 
     const postDataLen = postData.length;

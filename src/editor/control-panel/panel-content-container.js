@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { AlignCenter, AlignLeft, AlignRight } from 'gutenverse-core/components';
-import { BackgroundControl, BorderControl, BorderResponsiveControl, BoxShadowControl, DimensionControl, IconRadioControl, SwitchControl } from 'gutenverse-core/controls';
+import { BackgroundControl, BorderControl, BorderResponsiveControl, BoxShadowControl, DimensionControl, IconRadioControl, SelectControl, SwitchControl } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
 export const contentContainerPanel = ({
     elementId,
@@ -9,7 +10,11 @@ export const contentContainerPanel = ({
     setSwitcher,
     hasSecondImageSize = false,
     mainThumbnailClass,
-    secondThumbnailClass
+    secondThumbnailClass,
+    contentAlignVertical = {
+        main: false,
+        second: false
+    },
 }) => {
     const device = getDeviceType();
 
@@ -52,6 +57,27 @@ export const contentContainerPanel = ({
                     label: __('Align Right', 'gutenverse'),
                     value: 'right',
                     icon: <AlignRight />,
+                },
+            ],
+        },
+        {
+            id: 'contentAlignVertical',
+            show: (!switcher.state || switcher.state === 'main') && isNotEmpty(contentAlignVertical.main),
+            label: __('Main Vertical Alignment', 'gutenverse'),
+            component: SelectControl,
+            allowDeviceControl: true,
+            options: [
+                {
+                    label: __('Align Top', 'gutenverse'),
+                    value: 'start',
+                },
+                {
+                    label: __('Align Center', 'gutenverse'),
+                    value: 'center',
+                },
+                {
+                    label: __('Align Bottom', 'gutenverse'),
+                    value: 'end',
                 },
             ],
         },
@@ -183,6 +209,27 @@ export const contentContainerPanel = ({
                     label: __('Align Right', 'gutenverse'),
                     value: 'right',
                     icon: <AlignRight />,
+                },
+            ],
+        },
+        {
+            id: 'contentAlignVerticalSecond',
+            show: (!switcher.state || switcher.state === 'second') && isNotEmpty(contentAlignVertical.second),
+            label: __('Second Vertical Alignment', 'gutenverse'),
+            component: SelectControl,
+            allowDeviceControl: true,
+            options: [
+                {
+                    label: __('Align Top', 'gutenverse'),
+                    value: 'start',
+                },
+                {
+                    label: __('Align Center', 'gutenverse'),
+                    value: 'center',
+                },
+                {
+                    label: __('Align Bottom', 'gutenverse'),
+                    value: 'end',
                 },
             ],
         },

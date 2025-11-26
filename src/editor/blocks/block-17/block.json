@@ -566,6 +566,10 @@
             "type": "object",
             "copyStyle": true
         },
+        "contentAlignVerticalSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
         "contentContainerBackgroundSecond": {
             "type": "object",
             "copyStyle": true

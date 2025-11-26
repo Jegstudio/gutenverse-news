@@ -25,7 +25,7 @@ const Block2Columns = props => {
     const RenderBlock1 = props => {
         return (
             <>
-                <ThumbModule size={715} cat={true} post={props.post} imageSize={props.imageSize}/>
+                <ThumbModule size={715} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </>
         );
@@ -35,7 +35,7 @@ const Block2Columns = props => {
         const { index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_sm ${isLoadMore && index > loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
-                <ThumbModule size={715} cat={false} post={props.post} imageSize={props.imageSize} />
+                <ThumbModule size={715} cat={false} post={props.post} imageSize={renderedImageSizeSecond} />
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
             </article>
         );

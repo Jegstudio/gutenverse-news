@@ -1,0 +1,14 @@
+.gvnews_postblock_6 {
+	.gvnews_pl_lg_3 {
+		flex-direction: row-reverse;
+	}
+	&.gvnews_col_1o3 {
+		.gvnews_pl_lg_3 {
+			flex-direction: column;
+
+            .gvnews_thumb {
+                width: 100% !important;
+            }
+		}
+	}
+}

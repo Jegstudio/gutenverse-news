@@ -20,6 +20,7 @@ const Block33Columns = (props) => {
         isLoadMore = false,
         readmoreButtonDisabled = false,
         renderedImageSizeMain,
+        attributes,
     } = props;
 
     const masonryRef = useRef();
@@ -35,11 +36,13 @@ const Block33Columns = (props) => {
         }
 
         return () => {
-            shuffleInstance.current?.destroy;
+            shuffleInstance.current?.destroy();
             shuffleInstance.current = null;
         };
     }, [
         blockWidth,
+        attributes,
+        postData
     ]);
 
     const postDataLen = postData.length;

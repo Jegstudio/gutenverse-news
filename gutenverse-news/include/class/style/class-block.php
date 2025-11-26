@@ -1383,7 +1383,7 @@ class Block extends StyleAbstract {
 							return "opacity: {$value};";
 						},
 						'value'          => $this->attrs['overlayOpacityMain'],
-						'device_control' => true,
+						'device_control' => false,
 					)
 				);
 			}
@@ -1402,7 +1402,7 @@ class Block extends StyleAbstract {
 							return "opacity: {$value};";
 						},
 						'value'          => $this->attrs['overlayOpacitySecond'],
-						'device_control' => true,
+						'device_control' => false,
 					)
 				);
 			}
@@ -1434,6 +1434,19 @@ class Block extends StyleAbstract {
 						return "justify-content: {$this->handle_align_reverse($value)};";
 					},
 					'value'          => $this->attrs['contentAlign'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentAlignVertical'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}",
+					'property'       => function ( $value ) {
+						return "align-items: {$value};";
+					},
+					'value'          => $this->attrs['contentAlignVertical'],
 					'device_control' => true,
 				)
 			);
@@ -1522,6 +1535,19 @@ class Block extends StyleAbstract {
 						return "justify-content: {$this->handle_align_reverse($value)};";
 					},
 					'value'          => $this->attrs['contentAlignSecond'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['contentAlignVerticalSecond'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}",
+					'property'       => function ( $value ) {
+						return "align-items: {$value};";
+					},
+					'value'          => $this->attrs['contentAlignVerticalSecond'],
 					'device_control' => true,
 				)
 			);

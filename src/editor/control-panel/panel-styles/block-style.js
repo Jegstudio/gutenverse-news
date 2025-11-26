@@ -1193,7 +1193,6 @@ const getBlockStyle = (
         isNotEmpty(attributes['overlayOpacityMain']) && data.push({
             'type': 'plain',
             'id': 'overlayOpacityMain',
-            'responsive': true,
             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay`,
             'properties': [
                 {
@@ -1229,7 +1228,6 @@ const getBlockStyle = (
         isNotEmpty(attributes['overlayOpacitySecond']) && data.push({
             'type': 'plain',
             'id': 'overlayOpacitySecond',
-            'responsive': true,
             'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay`,
             'properties': [
                 {
@@ -1264,6 +1262,19 @@ const getBlockStyle = (
                 'name': 'justify-content',
                 'valueType': 'function',
                 'functionName': 'handleAlignReverse'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['contentAlignVertical']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignVertical',
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct',
             }
         ],
     });
@@ -1362,6 +1373,19 @@ const getBlockStyle = (
                 'name': 'justify-content',
                 'valueType': 'function',
                 'functionName': 'handleAlignReverse'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['contentAlignVerticalSecond']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignVerticalSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass}`,
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct',
             }
         ],
     });

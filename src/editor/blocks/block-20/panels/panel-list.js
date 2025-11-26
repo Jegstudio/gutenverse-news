@@ -84,7 +84,12 @@ export const panelList = () => {
             {
                 title: __('Content Container', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: contentContainerPanel,
+                panelArray: (props) => contentContainerPanel({
+                    ...props,
+                    contentAlignVertical: {
+                        main: true
+                    }
+                }),
                 tabRole: TabStyle,
             },
             {
