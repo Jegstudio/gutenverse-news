@@ -651,6 +651,6 @@
     "keywords": [
         "news"
     ],
-	"viewScript": ["gutenverse-frontend-blocks-script"],
-	"style": ["gutenverse-frontend-blocks-style"]
+	"viewScript": ["gutenverse-news-frontend-blocks-script"],
+	"style": ["gutenverse-news-frontend-blocks-style"]
 }

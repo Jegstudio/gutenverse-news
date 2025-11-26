@@ -260,5 +260,11 @@
         "single",
         "archive",
         "block"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

@@ -295,6 +295,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-frontend-carousel-slider-script"],
-    "style": ["gutenverse-frontend-blocks-style"]
+    "viewScript": ["gutenverse-news-frontend-carousel-slider-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

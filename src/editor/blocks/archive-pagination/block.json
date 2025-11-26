@@ -109,6 +109,58 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "paginationPrevText": {
+            "type": "string",
+            "default": "Prev"
+        },
+        "paginationNextText": {
+            "type": "string",
+            "default": "Next"
+        },
+        "paginationPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationHoverBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationHoverBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationActiveBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationActiveBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationActiveBorder",
+                "type": "border"
+            },
+            "copyStyle": true
         }
     },
     "supports": {
@@ -118,5 +170,8 @@
         "single",
         "archive",
         "pagination"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

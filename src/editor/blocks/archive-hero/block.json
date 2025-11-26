@@ -234,5 +234,11 @@
         "single",
         "archive",
         "hero"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-hero-slider-script"
     ]
 }
