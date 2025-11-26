@@ -502,6 +502,6 @@
 		"anchor": true
 	},
 	"keywords": [],
-	"viewScript": ["gvnews-frontend-blocks-script"],
-    "style": ["gvnews-frontend-blocks-style"]
+	"viewScript": ["gutenverse-news-frontend-blocks-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

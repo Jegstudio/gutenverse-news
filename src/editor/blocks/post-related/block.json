@@ -499,5 +499,10 @@
         "relate",
         "related"
     ],
-    "style": ["gvnews-frontend-post-related-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

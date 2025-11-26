@@ -31,7 +31,7 @@ class Frontend_Assets {
 	 */
 	public function load_conditional_scripts() {
 		wp_register_script(
-			'gvnews-frontend-blocks-script',
+			'gutenverse-news-frontend-blocks-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/news-module.js',
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -39,7 +39,7 @@ class Frontend_Assets {
 		);
 
 		wp_localize_script(
-			'gvnews-frontend-blocks-script',
+			'gutenverse-news-frontend-blocks-script',
 			'GVNewsConfig',
 			$this->gvnews_config()
 		);
@@ -53,7 +53,7 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gvnews-frontend-hero-slider-script',
+			'gutenverse-news-frontend-hero-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/hero-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -61,7 +61,7 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gvnews-frontend-carousel-slider-script',
+			'gutenverse-news-frontend-carousel-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/carousel-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -69,7 +69,7 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gvnews-frontend-slider-script',
+			'gutenverse-news-frontend-slider-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/slider-module.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -77,7 +77,7 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gvnews-frontend-newsticker-script',
+			'gutenverse-news-frontend-newsticker-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/newsticker-module.js',
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
@@ -109,7 +109,7 @@ class Frontend_Assets {
 	public function load_conditional_styles() {
 		/** Register Block / Module */
 		wp_register_style(
-			'gvnews-frontend-blocks-style',
+			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
 			array(),
 			GUTENVERSE_NEWS_VERSION
@@ -130,7 +130,7 @@ class Frontend_Assets {
 
 		foreach ( $modules as $module ) {
 			wp_register_style(
-				'gvnews-frontend-' . $module . '-style',
+				'gutenverse-news-frontend-' . $module . '-style',
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
 				null,
 				GUTENVERSE_NEWS_VERSION

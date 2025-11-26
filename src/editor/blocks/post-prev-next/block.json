@@ -132,5 +132,5 @@
         "next"
     ],
     "gutenversePro": true,
-    "style": ["gvnews-frontend-post-prev-next-style"]
+    "style": ["gutenverse-news-frontend-post-prev-next-style"]
 }

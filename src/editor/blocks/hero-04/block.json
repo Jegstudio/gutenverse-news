@@ -341,6 +341,6 @@
         "className": false
     },
     "keywords": [],
-    "style": ["gvnews-frontend-blocks-style"],
-    "viewScript": ["gvnews-frontend-hero-slider-script"]
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

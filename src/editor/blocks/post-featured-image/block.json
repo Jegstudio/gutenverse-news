@@ -162,5 +162,5 @@
         "image",
         "thumbnail"
     ],
-    "style": ["gvnews-frontend-post-featured-image-style"]
+    "style": ["gutenverse-news-frontend-post-featured-image-style"]
 }

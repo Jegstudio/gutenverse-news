@@ -409,6 +409,6 @@
 		"className": false
 	},
 	"keywords": ["icon", "link"],
-	"style": ["gvnews-frontend-blocks-style"],
-	"viewScript": ["gvnews-frontend-newsticker-script"]
+	"style": ["gutenverse-news-frontend-blocks-style"],
+	"viewScript": ["gutenverse-news-frontend-newsticker-script"]
 }
