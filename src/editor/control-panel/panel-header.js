@@ -436,7 +436,7 @@ export const headerStylesPanel = (props) => {
         },
         {
             id: 'headerLineThick',
-            label: __('Header Line Thick', 'gutenverse-news'),
+            label: headerType === 'heading_9' ? __('Header Line Bottom Thick', 'gutenverse-news') : __('Header Line Thick', 'gutenverse-news'),
             component: RangeControl,
             allowDeviceControl: true,
             show: headerType === 'heading_1' || headerType === 'heading_5' || headerType === 'heading_6' || headerType === 'heading_7' || headerType === 'heading_9',
@@ -460,7 +460,7 @@ export const headerStylesPanel = (props) => {
         },
         {
             id: 'headerLineThick2',
-            label: __('Header Line Thick', 'gutenverse-news'),
+            label: headerType === 'heading_9' ? __('Header Line Top Thick', 'gutenverse-news') : __('Header Line Thick', 'gutenverse-news'),
             show: headerType === 'heading_9',
             component: RangeControl,
             allowDeviceControl: true,
