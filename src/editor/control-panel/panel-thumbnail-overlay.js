@@ -34,7 +34,7 @@ export const thumbnailOverlayPanel = (props) => {
             show: !switcher.state || switcher.state === 'main',
             label: __('Overlay Background', 'gutenverse'),
             component: BackgroundControl,
-            allowDeviceControl: true,
+            allowDeviceControl: false,
             options: ['default', 'gradient'],
             liveStyle: [
                 {
@@ -52,7 +52,6 @@ export const thumbnailOverlayPanel = (props) => {
             min: 0,
             max: 1,
             step: 0.01,
-            allowDeviceControl: true,
             liveStyle: [
                 {
                     'type': 'plain',
@@ -74,7 +73,7 @@ export const thumbnailOverlayPanel = (props) => {
             show: switcher.state === 'second',
             label: __('Overlay Background', 'gutenverse'),
             component: BackgroundControl,
-            allowDeviceControl: true,
+            allowDeviceControl: false,
             options: ['default', 'gradient'],
             liveStyle: [
                 {
@@ -92,7 +91,6 @@ export const thumbnailOverlayPanel = (props) => {
             min: 0,
             max: 1,
             step: 0.01,
-            allowDeviceControl: true,
             liveStyle: [
                 {
                     'type': 'plain',
