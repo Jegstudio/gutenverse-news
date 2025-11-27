@@ -515,10 +515,6 @@ class Slider extends StyleAbstract {
 	 */
 	private function slider_1_style() {
 
-		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
-			return;
-		}
-
 		if ( isset( $this->attrs['titleTypography'] ) ) {
 			$this->inject_typography(
 				array(
@@ -732,11 +728,6 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
-			return;
-		}
-
 		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
 			$this->inject_style(
 				array(
