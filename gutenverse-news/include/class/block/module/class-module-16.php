@@ -28,6 +28,7 @@ class Module_16 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$post_id   = $post->ID;
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 
 		return '<div class="gvnews_thumb">
                     ' . gvnews_edit_post( $post_id ) . "
@@ -43,9 +44,9 @@ class Module_16 extends Module_View_Abstract {
                     {$this->post_meta_1($post)}
                     <div class=\"gvnews_post_excerpt\">
                         <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                        <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                        {$read_more}
                     </div>
-                </div>';
+                </div>";
 	}
 
 	/**
@@ -56,8 +57,9 @@ class Module_16 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_2( $post ) {
+		$icon = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_2', $post->ID ) . '>
-                    <i class="fas fa-caret-right"></i>
+                    <i class="' . $icon . '"></i>
                     <div class="gvnews_postblock_content">
                         <h3 class="gvnews_post_title">
                             <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>

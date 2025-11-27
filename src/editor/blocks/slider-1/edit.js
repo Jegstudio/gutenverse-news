@@ -17,7 +17,7 @@ import { CopyElementToolbar } from 'gutenverse-core/components';
 import { addIconOnSlidernavigation, getModuleOptions } from '../../utils/helper';
 import { getBolockStyle } from './style/block-style';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider1Block = compose(
     withPartialRender,
@@ -56,8 +56,25 @@ const Slider1Block = compose(
         hoverEffect,
         autoplayDelay,
         nextButtonIcon,
-        prevButtonIcon
+        prevButtonIcon,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -93,6 +110,7 @@ const Slider1Block = compose(
     const [sliderDelay, setSliderDelay] = useState(0);
 
     const firstRender = useRef(true);
+    const blockRef = useRef(null);
 
     function RenderContent(props) {
         return (
@@ -142,7 +160,7 @@ const Slider1Block = compose(
         }
         return (
             <>
-                <div className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''}>
+                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''}>
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">
@@ -271,7 +289,6 @@ const Slider1Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -279,6 +296,9 @@ const Slider1Block = compose(
         autoplay,
         sliderDelay,
         hoverEffect,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
     ]);
 
     useEffect(() => {
@@ -308,6 +328,9 @@ const Slider1Block = compose(
                     });
                 });
             }
+        }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
         }
     }, [block]);
 

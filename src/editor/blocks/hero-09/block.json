@@ -286,20 +286,37 @@
             "type": "object",
             "default": {}
         },
-        "titleTypography":{
-            "type":"object"
+        "showMeta": {
+            "type": "boolean",
+            "default": true
         },
-        "metaTypography": {
-            "type":"object"
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
         },
-        "titleColor":{
-            "type":"object"
+        "titleColorHover": {
+            "type": "object"
         },
-        "titleColorHover":{
-            "type":"object"
+        "typographyMeta": {
+            "type": "object"
         },
-        "metaColor":{
-            "type":"object"
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
         }
     },
     "supports": {
@@ -307,5 +324,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

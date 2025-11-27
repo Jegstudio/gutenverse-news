@@ -161,5 +161,6 @@
         "featured",
         "image",
         "thumbnail"
-    ]
+    ],
+    "style": ["gutenverse-news-frontend-post-featured-image-style"]
 }

@@ -1,7 +1,10 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
+import { useEffect, useRef } from '@wordpress/element';
+import Shuffle from 'shufflejs';
 
 const Block34Columns = (props) => {
+
     const {
         postData,
         moduleOption,
@@ -16,6 +19,26 @@ const Block34Columns = (props) => {
         page = 1,
         isLoadMore = false,
     } = props;
+
+    const masonryRef = useRef();
+    const shuffleInstance = useRef(null);
+
+    useEffect(() => {
+        if (shuffleInstance.current === null) {
+            shuffleInstance.current = new Shuffle(masonryRef.current, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        }
+
+        return () => {
+            shuffleInstance.current?.destroy;
+            shuffleInstance.current = null;
+        };
+    }, [
+        blockWidth,
+    ]);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -54,7 +77,7 @@ const Block34Columns = (props) => {
 
         return (
             <div className="gvnews_posts_wrap gvnews_posts_masonry">
-                <div className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
+                <div ref={masonryRef} className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
             </div>
         );
     };

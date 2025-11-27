@@ -6,9 +6,10 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
-import { leftContentStylePanel } from './panel-left-content-style';
-import { rightContentStylePanel } from './panel-right-content-style';
-import { centerContentStylePanel } from './panel-center-content-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { styleHero } from './panel-hero-style';
+import { mainCategoryStylePanel, sideCategoryStylePanel } from './panel-category-label';
 
 export const panelList = () => {
     return applyFilters(
@@ -21,10 +22,40 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date', 'author']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: filterHero,
                 tabRole: TabSetting
+            },
+            {
+                title: __('Hero Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => styleHero(props, 3),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date', 'author'], true),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Main Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: mainCategoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Side Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: sideCategoryStylePanel,
+                tabRole: TabStyle
             },
             {
                 title: __('Category Label', 'gutenverse-news'),

@@ -10,10 +10,12 @@
 namespace GUTENVERSE\NEWS;
 
 use GUTENVERSE\NEWS\Style\Archive;
+use GUTENVERSE\NEWS\Style\Archive_Hero;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
+use GUTENVERSE\NEWS\Style\Hero_14;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
@@ -73,6 +75,9 @@ class Style_Generator {
 				case stristr( $name, 'gutenverse/news-block' ):
 					$instance = new Block( $attrs, $name );
 					break;
+				case 'gutenverse/news-hero-14' === $name:
+					$instance = new Hero_14( $attrs, $name );
+					break;
 				case stristr( $name, 'gutenverse/news-hero' ):
 					$instance = new Hero( $attrs, $name );
 					break;
@@ -93,6 +98,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-rss' === $name:
 					$instance = new Block( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-hero' === $name:
+					$instance = new Archive_Hero( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );

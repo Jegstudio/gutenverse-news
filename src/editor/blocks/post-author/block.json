@@ -112,5 +112,6 @@
         "post",
         "author",
         "author box"
-    ]
+    ],
+    "style": ["gutenverse-news-frontend-post-author-style"]
 }

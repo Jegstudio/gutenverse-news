@@ -38,6 +38,7 @@ class Hero_14 extends Hero_View_Abstract {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
+			$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
 
 			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">
@@ -56,10 +57,10 @@ class Hero_14 extends Hero_View_Abstract {
                             </div>
                             <div class=\"gvnews_post_excerpt\">
                                 <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                                <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+								{$read_more}
                             </div>
                         </div>
-                    </article>';
+                    </article>";
 		}
 		return '<article class="gvnews_post gvnews_pl_md_box gvnews_hero_empty">
                     <div class="gvnews_block_container"></div>

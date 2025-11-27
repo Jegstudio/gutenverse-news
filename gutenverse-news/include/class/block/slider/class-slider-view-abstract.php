@@ -43,17 +43,21 @@ abstract class Slider_View_Abstract extends Block_View_Abstract {
 	 */
 	public function render_meta( $post ) {
 		$output = '';
-
-		$author      = $post->post_author;
-		$author_url  = get_author_posts_url( $author );
-		$author_name = get_the_author_meta( 'display_name', $author );
-		$author_text = '<span class="gvnews_meta_author">' . esc_html__( 'by', 'gutenverse-news' ) . " <a href=\"{$author_url}\">{$author_name}</a></span>";
-		$time        = $this->format_date( $post );
-
-		$output .= '<div class="gvnews_post_meta">';
-		$output .= $author_text;
-		$output .= "<span class=\"gvnews_meta_date\">{$time}</span>";
-		$output .= '</div>';
+		if ( $this->meta_settings['show_meta'] ) {
+			$output .= '<div class="gvnews_post_meta">';
+			if ( $this->meta_settings['meta_author'] ) {
+				$author      = $post->post_author;
+				$author_url  = get_author_posts_url( $author );
+				$author_name = get_the_author_meta( 'display_name', $author );
+				$author_text = '<span class="gvnews_meta_author">' . esc_html__( 'by', 'gutenverse-news' ) . " <a href=\"{$author_url}\">{$author_name}</a></span>";
+				$output     .= $author_text;
+			}
+			if ( $this->meta_settings['meta_date'] ) {
+				$time    = $this->format_date( $post );
+				$output .= "<span class=\"gvnews_meta_date\">{$time}</span>";
+			}
+			$output .= '</div>';
+		}
 
 		return $output;
 	}

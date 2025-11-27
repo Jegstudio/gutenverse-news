@@ -331,53 +331,86 @@
             "type": "object",
             "default": {}
         },
-        "titleTypographyCenter":{
-            "type":"object"
+        "showMeta": {
+            "type": "boolean",
+            "default": true
         },
-        "metaTypographyCenter": {
-            "type":"object"
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
         },
-        "titleColorCenter":{
-            "type":"object"
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
         },
-        "titleColorHoverCenter":{
-            "type":"object"
+        "typographyMetaAuthor": {
+            "type": "object"
         },
-        "metaColorCenter":{
-            "type":"object"
+        "metaAuthorColor": {
+            "type": "object"
         },
-        "excerptColorCenter":{
-            "type":"object"
+        "metaAuthorColorHover": {
+            "type": "object"
         },
-        "titleTypographyRight":{
-            "type":"object"
+        "titleColorHover": {
+            "type": "object"
         },
-        "metaTypographyRight": {
-            "type":"object"
+        "typographyMeta": {
+            "type": "object"
         },
-        "titleColorRight":{
-            "type":"object"
+        "metaColor": {
+            "type": "object"
         },
-        "titleColorHoverRight":{
-            "type":"object"
+        "metaColorHover": {
+            "type": "object"
         },
-        "metaColorRight":{
-            "type":"object"
+        "metaIconColorHover": {
+            "type": "object"
         },
-        "titleTypographyLeft":{
-            "type":"object"
+        "metaIconColor": {
+            "type": "object"
         },
-        "metaTypographyLeft": {
-            "type":"object"
+        "titleColor": {
+            "type": "object"
         },
-        "titleColorLeft":{
-            "type":"object"
+        "typography": {
+            "type": "object"
         },
-        "titleColorHoverLeft":{
-            "type":"object"
+        "secondTitleTypography": {
+            "type": "object"
         },
-        "metaColorLeft":{
-            "type":"object"
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleColor": {
+            "type": "object"
+        },
+        "thridTitleColorHover": {
+            "type": "object"
+        },
+        "thridMetaColor": {
+            "type": "object"
+        },
+        "thridMetaIconColor": {
+            "type": "object"
+        },
+        "thridMetaColorHover": {
+            "type": "object"
+        },
+        "thridMetaIconColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "sideCategoryButtonTypography": {
+            "type": "object"
+        },
+        "sideCategoryButtonColor": {
+            "type": "object"
+        },
+        "sideCategoryButtonColorHover": {
+            "type": "object"
         }
     },
     "supports": {
@@ -385,5 +418,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

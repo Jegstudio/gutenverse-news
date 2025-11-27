@@ -19,7 +19,7 @@ import { panelList } from './panels/panel-list';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Carousel1Block = compose(
     withPartialRender,
@@ -60,7 +60,35 @@ const Carousel1Block = compose(
         autoplayDelay,
         ncolumn,
         iMargin,
+        showMeta = true,
+        showMetaDate = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
+    const elementRef = useRef(null);
+    const blockRef = useRef(null);
+    const firstRender = useRef(true);
+
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -85,17 +113,6 @@ const Carousel1Block = compose(
     const [sliderDelay, setSliderDelay] = useState(0);
     const [sliderColumn, setSliderColumn] = useState(0);
 
-    const elementRef = useRef(null);
-    const firstRender = useRef(true);
-
-    useEffect(() => {
-        if (elementRef) {
-            setBlockRef(elementRef);
-        }
-    }, [elementRef]);
-
-    useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     function RenderContent(props) {
         return (
@@ -155,7 +172,7 @@ const Carousel1Block = compose(
         };
         if (postData.length > 0) {
             setBlock(
-                <div key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12">
+                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12">
                     <RenderColumn {...moduleData} />
                 </div>
             );
@@ -165,33 +182,8 @@ const Carousel1Block = compose(
     }
 
     const initSlider = () => {
-        if ('function' === typeof window.gvnews.carousel && postData.length > 0 && block) {
-            let gvnewsLibrary = window.gvnews;
-            gvnewsLibrary = window.gvnews.library;
-
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if (iframe) {
-                target = iframe.contentDocument;
-            }
-
-            var blockCarousel = target.querySelectorAll(`.${elementId} .gvnews_postblock_carousel`);
-            if (blockCarousel.length) {
-                gvnewsLibrary.forEach(blockCarousel, function (ele) {
-                    window.gvnews.carousel({
-                        container: ele,
-                        textDirection: 'ltr',
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsCarouselSlider(blockRef.current);
         }
     };
 
@@ -303,7 +295,6 @@ const Carousel1Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -314,7 +305,9 @@ const Carousel1Block = compose(
         sliderDelay,
         hoverEffect,
         sliderColumn,
-        iMargin
+        iMargin,
+        showMeta,
+        showMetaDate,
     ]);
 
     useEffect(() => {

@@ -428,6 +428,71 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "headerTextTypography": {
+            "type": "object"
+        },
+        "headerSecondTextTypography": {
+            "type": "object"
+        },
+        "headerFilterTypography": {
+            "type": "object"
+        },
+        "headerSeondTextColor": {
+            "type": "object"
+        },
+        "headerFilterColor": {
+            "type": "object"
+        },
+        "headerFilterColorHover": {
+            "type": "object"
+        },
+        "headerFilterColorActive": {
+            "type": "object"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterLineColor": {
+            "type": "object"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
         }
     },
     "supports": {
@@ -435,5 +500,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "viewScript": ["gutenverse-news-frontend-blocks-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

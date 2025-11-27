@@ -265,6 +265,12 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
         }
     },
     "supports": {
@@ -272,5 +278,7 @@
         "inserter": false
     },
     "keywords": [],
-    "gutenversePro": true
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

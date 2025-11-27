@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { BackgroundControl, ColorControl, TypographyControl, CheckboxControl, RepeaterControl } from 'gutenverse-core/controls';
 
-export const styleHero = (props) => {
+export const styleHero = (props, typeCount = 1) => {
     let numberItem = 0;
 
     const getNumberItem = () => {
@@ -15,6 +15,37 @@ export const styleHero = (props) => {
         return numberItem;
     };
     return [
+        {
+            id: 'typography',
+            label: __('Title Typography', 'gutenverse-news'),
+            description: __('This option will change your title typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'secondTitleTypography',
+            label: __('Second List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
+            show: typeCount >= 2,
+            component: TypographyControl,
+        },
+        {
+            id: 'thridTitleTypography',
+            label: __('Thrid List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the thrid list.', 'gutenverse-news'),
+            show: typeCount >= 3,
+            component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+
+        {
+            id: 'titleColorHover',
+            label: __('Title Color Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'heroItemOverlay',
             label: __('Hero Style', 'gutenverse-news'),
@@ -39,31 +70,6 @@ export const styleHero = (props) => {
                     allowDeviceControl: true,
                     options: ['gradient'],
                     component: BackgroundControl,
-                },
-                {
-                    id: 'titleTypography',
-                    label: __('Title Typography', 'gutenverse-news'),
-                    component: TypographyControl,
-                },
-                {
-                    id: 'metaTypography',
-                    label: __('Meta Typography', 'gutenverse-news'),
-                    component: TypographyControl,
-                },
-                {
-                    id: 'titleColor',
-                    label: __('Title Color', 'gutenverse-news'),
-                    component: ColorControl,
-                },
-                {
-                    id: 'titleColorHover',
-                    label: __('Title Color Hover', 'gutenverse-news'),
-                    component: ColorControl,
-                },
-                {
-                    id: 'metaColor',
-                    label: __('Meta Color', 'gutenverse-news'),
-                    component: ColorControl,
                 },
             ],
         },

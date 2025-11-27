@@ -37,13 +37,13 @@ class Post_Meta extends Post_Guten {
 		$left_html  = '';
 		$right_html = '';
 
-		$lefts = is_array( $this->attributes['metaLeft'] ) ? $this->attributes['metaLeft'] : explode( ',', $this->attributes['metaLeft'] );
+		$lefts = isset( $this->attributes['metaLeft'] ) ? $this->attributes['metaLeft'] : array();
 		foreach ( $lefts as $index => $left ) {
 			$left_html .= $this->render_meta( $left['value'], $this->is_last_item( $index, count( $lefts ) ) );
 		}
 		$left_html = "<div class='meta-left'>{$left_html}</div>";
 
-		$rights = is_array( $this->attributes['metaRight'] ) ? $this->attributes['metaRight'] : explode( ',', $this->attributes['metaRight'] );
+		$rights = isset( $this->attributes['metaRight'] ) ? $this->attributes['metaRight'] : array();
 		foreach ( $rights as $index => $right ) {
 			$right_html .= $this->render_meta( $right['value'], $this->is_last_item( $index, count( $rights ) ) );
 		}
@@ -61,17 +61,18 @@ class Post_Meta extends Post_Guten {
 	 * @return array
 	 */
 	public function render_meta( $meta, $is_last_item ) {
-		if ( ! empty( $meta ) ) {
-			switch ( $meta ) {
-				case 'author':
-					return $this->render_author( $is_last_item );
-				case 'category':
-					return $this->render_category( $is_last_item );
-				case 'comment':
-					return $this->render_comment( $is_last_item );
-				case 'date':
-					return $this->render_date( $is_last_item );
-			}
+		if ( empty( $meta ) ) {
+			return '';
+		}
+		switch ( $meta ) {
+			case 'author':
+				return $this->render_author( $is_last_item );
+			case 'category':
+				return $this->render_category( $is_last_item );
+			case 'comment':
+				return $this->render_comment( $is_last_item );
+			case 'date':
+				return $this->render_date( $is_last_item );
 		}
 	}
 

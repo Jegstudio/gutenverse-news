@@ -290,24 +290,62 @@
             "type": "object",
             "default": {}
         },
-        "titleTypography":{
-            "type":"object"
+        "showMeta": {
+            "type": "boolean",
+            "default": true
         },
-        "metaTypography": {
-            "type":"object"
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
         },
-        "titleColor":{
-            "type":"object"
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
         },
-        "titleColorHover":{
-            "type":"object"
+        "typographyMetaAuthor": {
+            "type": "object"
         },
-        "metaColor":{
-            "type":"object"
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

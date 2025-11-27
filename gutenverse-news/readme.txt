@@ -142,6 +142,22 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 3.0.3 [DEV] =
+##### Improvements
+* Bring back the Archive Hero block as Free
+* Add more Meta options on all block
+* Add more Typography options on all block
+* Add more syling options on Module Header
+* Add option to disable the read more button on blocks
+* Remove JQuery usage on all blocks
+* Imporve asset load mechanism on all blocks
+
+##### Bug Fixes
+* Fix archive block not working on archive search page
+* Fix Post Masonry issue on "Module - 32", "Module - 33", "Module - 34" and "Module - 35"
+* Fix cannot make the Left/Right Meta Element empty on Post Meta block
+
 = 3.0.2 =
 ##### Improvements
 * Removed the Jegicon font and replaced it with Font Awesome icons

@@ -6,6 +6,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
+import { designPanel } from './panel-design';
 
 export const panelList = () => {
     return applyFilters(
@@ -22,6 +23,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: filterPanel,
                 tabRole: TabSetting
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
             },
             {
                 title: __('Category Label', 'gutenverse-news'),

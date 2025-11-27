@@ -4,7 +4,7 @@ import { RawHTML } from '@wordpress/element';
 import { MetaModule3, MetaCategory, MetaAuthor, MetaComments} from '../../part/meta';
 
 const Block26Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth, readmoreButtonDisabled = false} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -20,7 +20,7 @@ const Block26Columns = props => {
                     {attr.option && <MetaModule3 {...props}/>}
                 </div>
                 <ThumbModule size={500} cat={false} post={post}/>
-                <ContentModule title={false} excerpt={true} read={true} post={post} attr={attr}/>
+                <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 <div className="gvnews_meta_footer clearfix">
                     {<MetaAuthor {...props} />}
                     {blockWidth != 4 && <RawHTML key="html">{post.share}</RawHTML> }

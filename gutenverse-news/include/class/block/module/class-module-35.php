@@ -36,7 +36,7 @@ class Module_35 extends Module_View_Abstract {
 		$class           = $box_shadow_flag;
 		$postformat_icon = null;
 		$edit_position   = null;
-		$readmore        = "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more       = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		if ( $this->is_thumbnail_landscape( $post_id ) ) {
 			$pl              = ' gvnews_pl_md_5 ';
 			$class           = $additional_class;
@@ -60,7 +60,7 @@ class Module_35 extends Module_View_Abstract {
                         </h3>
                         <div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                            {$readmore}
+                            {$read_more}
                         </div>
                     </div>
                     {$this->post_meta_1($post)}

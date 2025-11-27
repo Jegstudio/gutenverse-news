@@ -21,7 +21,7 @@ import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider4Block = compose(
     withPartialRender,
@@ -59,7 +59,24 @@ const Slider4Block = compose(
         showNav,
         autoplay,
         autoplayDelay,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const elementRef = useRef(null);
 
@@ -95,6 +112,7 @@ const Slider4Block = compose(
     const [sliderDelay, setSliderDelay] = useState(0);
 
     const firstRender = useRef(true);
+    const blockRef = useRef(null);
     const isDeprecated = !gutenverseProActive;
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
@@ -125,7 +143,7 @@ const Slider4Block = compose(
             }
         }
         return (
-            <div className="gvnews_slider_type_4 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div ref={blockRef} className="gvnews_slider_type_4 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
                 {content}
             </div>
         );
@@ -246,7 +264,6 @@ const Slider4Block = compose(
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -255,35 +272,17 @@ const Slider4Block = compose(
         showNav,
         autoplay,
         sliderDelay,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
     ]);
 
     useEffect(() => {
         if (firstRender.current) {
             return;
         }
-        if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
-            const gvnewsLibrary = window.gvnews.library;
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if (iframe) {
-                target = iframe.contentDocument;
-            }
-            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
-            if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele) {
-                    window.gvnews.slider({
-                        container: ele,
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
         }
     }, [block]);
 

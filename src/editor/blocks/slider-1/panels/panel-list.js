@@ -6,6 +6,9 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { titleStylePanel } from './panel-title-style';
 import { navigationButtonStylePanel } from './panel-navigation-button-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { designPanel } from './panel-design';
 
 export const panelList = () => {
     return [
@@ -13,6 +16,12 @@ export const panelList = () => {
             title: __('General', 'gutenverse-news'),
             initialOpen: false,
             panelArray: sliderPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaPanel(props, ['author', 'date']),
             tabRole: TabSetting
         },
         {
@@ -34,6 +43,18 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaStylePanel(props, ['author', 'date'], false, 'author-only'),
+            tabRole: TabStyle
+        },
+        {
             title: __('Category Label', 'gutenverse-news'),
             initialOpen: false,
             panelArray: categoryStylePanel,
@@ -44,7 +65,7 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => borderPanel({
                 ...props,
-                selector: [ `.${props.elementId} ` ],
+                selector: [`.${props.elementId} `],
             }),
             tabRole: TabStyle
         },

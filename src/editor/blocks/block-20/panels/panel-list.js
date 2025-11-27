@@ -9,6 +9,8 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -45,12 +47,18 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => headerStylesPanel({
                     ...props,
                 }),
-                tabRole: TabSetting
+                tabRole: TabStyle
             },
             {
                 title: __('Pagination', 'gutenverse-news'),
@@ -61,7 +69,13 @@ export const panelList = () => {
             {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: designPanel,
+                panelArray: (props) => designPanel(props, 2, false),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date',]),
                 tabRole: TabStyle
             },
             {

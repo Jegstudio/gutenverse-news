@@ -2,7 +2,7 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block5Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -11,7 +11,7 @@ const Block5Columns = props => {
         return (
             <article className={`gvnews_post gvnews_pl_lg_2 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <ThumbModule size={715} cat={true} post={post}/>
-                <ContentModule title={true} meta={1} excerpt={true} read={true} post={post} attr={props.attr}/>
+                <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={props.attr}/>
             </article>
         );
     };

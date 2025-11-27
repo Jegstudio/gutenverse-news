@@ -27,6 +27,7 @@ class Module_24 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
+		$icon             = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
 		$post_id          = $post->ID;
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
@@ -49,7 +50,7 @@ class Module_24 extends Module_View_Abstract {
                 </article>" :
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post_id ) . ">
                     <div class=\"gvnews_postblock_content\">
-						<i class='fas fa-caret-right'></i>
+						<i class='" . $icon . "'></i>
                         {$title}
                     </div>
                 </article>";
