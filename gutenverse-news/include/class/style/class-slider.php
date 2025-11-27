@@ -311,9 +311,11 @@ class Slider extends StyleAbstract {
 	 */
 	private function generate_design_style() {
 		if ( isset( $this->attrs['typography'] ) ) {
+
+			$selector = 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' === $this->attrs['gvnewsModule'] ? '.gvnews_slider_type_8 .gvnews_post_title' : '.gvnews_slider_wrapper .gvnews_slide_caption .gvnews_post_title';
 				$this->inject_typography(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_title a",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['typography'],
 						'device_control' => false,
@@ -324,7 +326,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_9_thumb .gvnews_post_title a",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_pl_sm .gvnews_post_title",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['secondTitleTypography'],

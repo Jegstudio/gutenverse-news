@@ -493,11 +493,11 @@
         },
         "selectorSecondTitleTypography": {
             "type": "string",
-            "default": ".gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a"
+            "default": ".gvnews_posts .gvnews_pl_md_1 .gvnews_post_title"
         },
         "selectorTitleColor": {
             "type": "string",
-            "default": ".gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a"
+            "default": ".gvnews_posts .gvnews_pl_md_1 .gvnews_post_title"
         },
         "headerSecondTextColor": {
             "type": "object"

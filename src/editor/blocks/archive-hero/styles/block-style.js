@@ -414,7 +414,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleTypography']) && data.push({
         'type': 'typography',
         'id': 'titleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_post_title`,
     });
 
 
@@ -427,7 +427,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['thridTitleTypography']) && withThridTypo && data.push({
         'type': 'typography',
         'id': 'thridTitleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_post_title a' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title a'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_post_title a' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title'}`,
     });
 
     isNotEmpty(attributes['titleColor']) && data.push({
@@ -551,13 +551,13 @@ const getBlockStyle = (elementId, attributes) => {
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
         case '10':
-            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title a';
+            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title';
         case '11':
-            return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1 .gvnews_post_title a';
+            return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1 .gvnews_post_title';
         case '12':
-            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5) .gvnews_post_title a';
+            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5) .gvnews_post_title';
     }
-    return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title a';
+    return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title';
 };
 
 export default getBlockStyle;

@@ -390,7 +390,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post_title a",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews_post_title",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['typography'],
 						'device_control' => false,
@@ -399,7 +399,7 @@ class Hero extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
-			$selector = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title a';
+			$selector = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title';
 
 			$this->inject_typography(
 				array(
@@ -413,7 +413,7 @@ class Hero extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['thridTitleTypography'] ) ) {
-			$selector = isset( $this->attrs['selectorThridTitleTypography'] ) ? $this->attrs['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title a';
+			$selector = isset( $this->attrs['selectorThridTitleTypography'] ) ? $this->attrs['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title';
 
 			$this->inject_typography(
 				array(

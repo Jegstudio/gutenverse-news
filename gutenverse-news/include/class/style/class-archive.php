@@ -509,7 +509,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['titleTypography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_post .gvnews_post_title > a",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post .gvnews_post_title",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['titleTypography'],
 						'device_control' => false,

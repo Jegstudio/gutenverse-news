@@ -104,7 +104,7 @@ const getCarouselStyle = (elementId, attributes) => {
     isNotEmpty(attributes['typography']) && data.push({
         'type': 'typography',
         'id': 'typography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_carousel_post .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_carousel_post .gvnews_post .gvnews_post_title`,
 
     });
     isNotEmpty(attributes['titleColor']) && data.push({
