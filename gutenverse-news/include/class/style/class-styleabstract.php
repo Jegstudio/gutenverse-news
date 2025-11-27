@@ -9,14 +9,14 @@
 
 namespace GUTENVERSE\NEWS\Style;
 
-use GUTENVERSE\NEWS\Style\StyleInterface;
+use Gutenverse\Framework\Style_Interface;
 
 /**
  * Class Style_Abstract
  *
  * @package Gutenverse
  */
-abstract class StyleAbstract extends StyleInterface {
+abstract class StyleAbstract extends Style_Interface {
 
 	/**
 	 * Block Element Id
