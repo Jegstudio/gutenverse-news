@@ -75,9 +75,11 @@ class Slider extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['categoryButtonTypography'] ) ) {
+			$selector = 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' === $this->attrs['gvnewsModule'] ? '.gvnews_slider_type_8 .gvnews_post_category a' : '.gvnews_slide_caption .gvnews_post_category a';
+
 			$this->inject_typography(
 				array(
-					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
 					'value'    => $this->attrs['categoryButtonTypography'],
 				)
 			);

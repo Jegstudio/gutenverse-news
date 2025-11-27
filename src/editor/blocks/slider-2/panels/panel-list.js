@@ -7,6 +7,7 @@ import { applyFilters } from '@wordpress/hooks';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
+import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -40,6 +41,12 @@ export const panelList = () => {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['author', 'date'], false, 'author-only'),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: categoryStylePanel,
                 tabRole: TabStyle
             },
             {
