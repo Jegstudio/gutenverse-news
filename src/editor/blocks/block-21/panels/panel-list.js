@@ -16,47 +16,56 @@ import { contentContainerPanel } from '../../../control-panel/panel-content-cont
 
 export const panelList = () => {
     return [
+        // Setting
         {
             title: __('Header', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => headerSettingsPanel({
-                ...props,
-            }),
-            tabRole: TabSetting
+            panelArray: (props) => headerSettingsPanel({ ...props }),
+            tabRole: TabSetting,
         },
         {
             id: 'header-filter',
             title: __('Header Filter', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => {
-                return headerFilterPanel(props);
-            },
+            panelArray: (props) => headerFilterPanel(props),
             tabRole: TabSetting,
-
         },
         {
             title: __('Content Filter', 'gutenverse-news'),
             initialOpen: false,
             panelArray: filterPanel,
-            tabRole: TabSetting
+            tabRole: TabSetting,
         },
         {
             title: __('Content Setting', 'gutenverse-news'),
             initialOpen: false,
             panelArray: settingPanel,
-            tabRole: TabSetting
+            tabRole: TabSetting,
         },
         {
             title: __('Meta Settings', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => metaPanel(props, ['date']),
-            tabRole: TabSetting
+            tabRole: TabSetting,
         },
         {
             title: __('Pagination', 'gutenverse-news'),
             initialOpen: false,
             panelArray: paginationPanel,
-            tabRole: TabSetting
+            tabRole: TabSetting,
+        },
+        // Style
+        {
+            title: __('Header', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => headerStylesPanel({ ...props }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle,
         },
         {
             title: __('Thumbnail', 'gutenverse-news'),
@@ -71,81 +80,76 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
-            title: __('Header', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => headerStylesPanel({
-                ...props,
-            }),
-            tabRole: TabStyle
-        },
-        {
             title: __('Content Container', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => contentContainerPanel({
-                ...props,
-                contentAlignVertical: {
-                    main: true
-                }
-            }),
+            panelArray: (props) =>
+                contentContainerPanel({
+                    ...props,
+                    contentAlignVertical: { main: true },
+                }),
             tabRole: TabStyle,
-        },
-        {
-            title: __('Design', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: designPanel,
-            tabRole: TabStyle
         },
         {
             title: __('Meta Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => metaStylePanel(props, ['date']),
-            tabRole: TabStyle
+            tabRole: TabStyle,
         },
         {
             title: __('Pagination Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: paginationStylePanel,
-            tabRole: TabStyle
+            tabRole: TabStyle,
         },
         {
             title: __('Background', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => backgroundPanel({
-                ...props,
-                styleId: 'block-21-background',
-                normalSelector: [`.${props.elementId} .gvnews_pb_boxed`, `.${props.elementId}`],
-                hoverSelector: [`.${props.elementId} .gvnews_pb_boxed:hover`, `.${props.elementId}:hover`],
-                normalOptions: ['default', 'gradient'],
-                hoverOptions: ['default', 'gradient'],
-            }),
-            tabRole: TabStyle
+            panelArray: (props) =>
+                backgroundPanel({
+                    ...props,
+                    styleId: 'block-21-background',
+                    normalSelector: [
+                        `.${props.elementId} .gvnews_pb_boxed`,
+                        `.${props.elementId}`,
+                    ],
+                    hoverSelector: [
+                        `.${props.elementId} .gvnews_pb_boxed:hover`,
+                        `.${props.elementId}:hover`,
+                    ],
+                    normalOptions: ['default', 'gradient'],
+                    hoverOptions: ['default', 'gradient'],
+                }),
+            tabRole: TabStyle,
         },
         {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: borderPanel,
-            tabRole: TabStyle
+            tabRole: TabStyle,
         },
         {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
             panelArray: responsivePanel,
-            tabRole: TabStyle
+            tabRole: TabStyle,
         },
         {
             title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => advancePanel({
-                ...props,
-                styleId: 'block-21-advance',
-            }),
-            tabRole: TabStyle
+            panelArray: (props) =>
+                advancePanel({
+                    ...props,
+                    styleId: 'block-21-advance',
+                }),
+            tabRole: TabStyle,
         },
+
+        // Pro
         {
             title: __('Condition', 'gutenverse-news'),
             panelArray: conditionPanel,
             initialOpen: false,
-            pro: true
+            pro: true,
         },
     ];
 };

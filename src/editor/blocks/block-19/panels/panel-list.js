@@ -56,6 +56,27 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Pagination', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: paginationPanel,
+                tabRole: TabSetting
+            },
+            // Style
+            {
+                title: __('Header', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => headerStylesPanel({
+                    ...props,
+                }),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => thumbnailSettingPanel({
@@ -74,20 +95,6 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
-                title: __('Header', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => headerStylesPanel({
-                    ...props,
-                }),
-                tabRole: TabStyle
-            },
-            {
-                title: __('Pagination', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: paginationPanel,
-                tabRole: TabSetting
-            },
-            {
                 title: __('Content Container', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => contentContainerPanel({
@@ -95,12 +102,6 @@ export const panelList = () => {
                     hasSecondImageSize: true
                 }),
                 tabRole: TabStyle,
-            },
-            {
-                title: __('Design', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: designPanel,
-                tabRole: TabStyle
             },
             {
                 title: __('Meta Style', 'gutenverse-news'),

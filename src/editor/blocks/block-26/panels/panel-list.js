@@ -21,23 +21,19 @@ export const panelList = () => {
     return applyFilters(
         'gutenverse.news.block.panels',
         [
+            // Setting
             {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => headerSettingsPanel({
-                    ...props,
-                }),
+                panelArray: (props) => headerSettingsPanel({ ...props }),
                 tabRole: TabSetting
             },
             {
                 id: 'header-filter',
                 title: __('Header Filter', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => {
-                    return headerFilterPanel(props);
-                },
+                panelArray: (props) => headerFilterPanel(props),
                 tabRole: TabSetting,
-
             },
             {
                 title: __('Content Filter', 'gutenverse-news'),
@@ -63,6 +59,7 @@ export const panelList = () => {
                 panelArray: paginationPanel,
                 tabRole: TabSetting
             },
+            // Style
             {
                 title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
@@ -78,9 +75,7 @@ export const panelList = () => {
             {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => headerStylesPanel({
-                    ...props,
-                }),
+                panelArray: (props) => headerStylesPanel({ ...props }),
                 tabRole: TabStyle
             },
             {
@@ -159,10 +154,11 @@ export const panelList = () => {
                 }),
                 tabRole: TabStyle
             },
+            // Pro
             {
                 title: __('Condition', 'gutenverse-news'),
-                panelArray: conditionPanel,
                 initialOpen: false,
+                panelArray: conditionPanel,
                 pro: true
             },
         ]
