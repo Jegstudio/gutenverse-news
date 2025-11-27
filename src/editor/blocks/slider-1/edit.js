@@ -13,7 +13,7 @@ import { SliderCaption } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
+import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import { addIconOnSlidernavigation, getModuleOptions } from '../../utils/helper';
 import { getBolockStyle } from './style/block-style';
 
@@ -259,7 +259,7 @@ const Slider1Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -282,7 +282,7 @@ const Slider1Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
@@ -302,35 +302,31 @@ const Slider1Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
-        if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
-            const gvnewsLibrary = window.gvnews.library;
+        if ('function' === typeof window.gvnewsSliderModule && postData.length > 0 && block) {
             let target = document;
             const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
+            if (iframe) {
                 target = iframe.contentDocument;
             }
             let slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
             if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele) {
-                    window.gvnews.slider({
+                u(slider).each(function (ele) {
+                    window.gvnewsSliderModule(ele, {
                         container: ele,
                         onInit: function (info) {
                             if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
+                                u(info.nextButton).addClass('tns-next');
                             }
                             if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
+                                u(info.prevButton).addClass('tns-prev');
                             }
                         },
                     });
                 });
             }
-        }
-        if (blockRef.current) {
-            window.gvnewsSliderModule(blockRef.current);
         }
     }, [block]);
 

@@ -102,7 +102,18 @@ class GutenverseFirstSlider {
     }
 
     init() {
-        this.theSlider = u(this.container).find(this.options.container)?.nodes[0];
+        let isSlider = false;
+        if (typeof this.options.container === 'string') {
+            isSlider = u(this.container).is(this.options.container);
+        } else {
+            isSlider = this.container === this.options.container;
+        }
+
+        if (isSlider) {
+            this.theSlider = this.container;
+        } else {
+            this.theSlider = u(this.container).find(this.options.container)?.nodes[0];
+        }
         this.theWrapper = u(this.theSlider).parent('.gvnews_slider_wrapper')?.nodes[0];
         this.theThumbnail = u(this.theWrapper).find(this.options.navContainer)?.nodes[0];
 
