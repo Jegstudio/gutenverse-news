@@ -819,7 +819,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['typographyMetaAuthor'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a`",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMetaAuthor'],
