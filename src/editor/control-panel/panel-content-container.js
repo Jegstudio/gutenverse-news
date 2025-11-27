@@ -63,7 +63,7 @@ export const contentContainerPanel = ({
         {
             id: 'contentAlignVertical',
             show: (!switcher.state || switcher.state === 'main') && isNotEmpty(contentAlignVertical.main),
-            label: __('Main Vertical Alignment', 'gutenverse'),
+            label: __('Vertical Alignment', 'gutenverse'),
             component: SelectControl,
             allowDeviceControl: true,
             options: [
@@ -215,7 +215,7 @@ export const contentContainerPanel = ({
         {
             id: 'contentAlignVerticalSecond',
             show: (!switcher.state || switcher.state === 'second') && isNotEmpty(contentAlignVertical.second),
-            label: __('Second Vertical Alignment', 'gutenverse'),
+            label: __('Vertical Alignment', 'gutenverse'),
             component: SelectControl,
             allowDeviceControl: true,
             options: [
