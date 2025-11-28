@@ -63,7 +63,7 @@ class Carousel extends StyleAbstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_carousel_post .gvnews_post_title a",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_carousel_post .gvnews_post .gvnews_post_title",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['typography'],
 						'device_control' => false,

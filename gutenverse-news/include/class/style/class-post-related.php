@@ -84,7 +84,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title a",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_title",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typography'],
@@ -97,7 +97,7 @@ class Post_Related extends Style_Abstract {
 			$selector = $this->get_second_typography_selector( $this->attrs['templateType'] );
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} {$selector}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['secondTitleTypography'],
@@ -106,10 +106,10 @@ class Post_Related extends Style_Abstract {
 			);
 		}
 
-		if ( isset( $this->attrs['thridTitleTypography'] ) ) {
+		if ( 'template_1' === $this->attrs['templateType'] && isset( $this->attrs['thridTitleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_pl_xs_2 .gvnews_post_title a",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pl_xs_2 .gvnews_post_title a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['thridTitleTypography'],
@@ -661,7 +661,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['typographyMeta'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author .by",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author .by",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMeta'],
@@ -673,7 +673,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['typographyMetaAuthor'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a`",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMetaAuthor'],
@@ -1161,17 +1161,17 @@ class Post_Related extends Style_Abstract {
 	private function get_second_typography_selector( $template_type ) {
 		switch ( $template_type ) {
 			case 'template_13':
-				return '.gvnews_pl_md_1 .gvnews_post_title a';
+				return '.gvnews_pl_md_1 .gvnews_post_title';
 			case 'template_14':
-				return '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a';
+				return '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title';
 			case 'template_16':
-				return '.gvnews_posts .gvnews_pl_xs_2 .gvnews_post_title a';
+				return '.gvnews_posts .gvnews_pl_xs_2 .gvnews_post_title';
 			case 'template_20':
-				return '.gvnews_pl_xs .gvnews_post_title a';
+				return '.gvnews_pl_xs .gvnews_post_title';
 			case 'template_24':
-				return '.gvnews_pl_xs_4 .gvnews_post_title a';
+				return '.gvnews_pl_xs_4 .gvnews_post_title';
 		}
 
-		return '.gvnews_pl_sm .gvnews_post_title a';
+		return '.gvnews_pl_sm .gvnews_post_title';
 	}
 }

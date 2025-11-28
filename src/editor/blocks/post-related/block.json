@@ -260,6 +260,9 @@
         "aHover": {
             "type": "object"
         },
+        "typographyMeta": {
+            "type": "object"
+        },
         "metaColor": {
             "type": "object"
         },

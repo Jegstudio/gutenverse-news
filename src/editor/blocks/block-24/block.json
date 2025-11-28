@@ -457,7 +457,7 @@
         },
         "selectorSecondTitleTypography": {
             "type": "string",
-            "default": ".gvnews_pl_xs_4 .gvnews_post_title a"
+            "default": ".gvnews_pl_xs_4 .gvnews_post_title"
         },
         "selectorIconList": {
             "type": "string",
@@ -475,7 +475,7 @@
         },
         "selectorTitleColor": {
             "type": "string",
-            "default": ".gvnews_pl_xs_4 .gvnews_post_title a"
+            "default": ".gvnews_pl_xs_4 .gvnews_post_title"
         },
         "headerSecondTextColor": {
             "type": "object"

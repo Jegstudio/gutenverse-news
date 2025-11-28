@@ -232,10 +232,6 @@ const BlockModule = compose(
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
                 getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
             }
         } else {
             getWidth(columnWidth);
