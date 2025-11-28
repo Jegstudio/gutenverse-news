@@ -253,7 +253,9 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				$r = join( "\n", $page_links );
 				$r = "<div class=\"gvnews_navigation gvnews_pagination {$column_class} {$nav_class} {$nav_align} {$nav_text} {$nav_info}\">
                     <span class=\"page_info\">{$paging_text}</span>
+					<div class=\"nav-wrapper\">
                     {$r}
+					</div>
                 </div>";
 				break;
 		}

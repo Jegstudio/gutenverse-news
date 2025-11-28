@@ -26,7 +26,8 @@ const ArchivePagination = compose(
         paginationMode,
         paginationAlign,
         paginationNavtext,
-        paginationPageinfo
+        paginationPageinfo,
+        paginationNextText
     } = attributes;
 
     const elementRef = useRef(null);
@@ -60,11 +61,16 @@ const ArchivePagination = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className={`gvnews_navigation gvnews_pagination gvnews_col_3o3 gvnews_page${paginationMode} gvnews_align${paginationAlign} ${!paginationNavtext && 'no_navtext'} ${!paginationPageinfo && 'no_pageinfo'}`}>
-                <span className="page_info">Page 1 of 3</span>
-                <span className="page_number active">1</span>
-                <a className="page_number" data-id="2" href="#">2</a>
-                <a className="page_number" data-id="3" href="#">3</a>
-                <a className="page_nav next" data-id="2" href="#"><span className="navtext">Next</span></a>
+                {'center' === paginationAlign && <span className="page_info">Page 1 of 3</span>}
+                <div className="nav-wrapper">
+                    {'left' === paginationAlign && <span className="nav-item page_info">Page 1 of 3</span>}
+                    <span className="nav-item page_number active">1</span>
+                    <a className="nav-item page_number" data-id="2" href="javascript:void(0);">2</a>
+                    <a className="nav-item page_number" data-id="3" href="javascript:void(0);">3</a>
+                    {'nav_3' !== paginationMode && <a className="nav-item page_nav next" data-id="2" href="javascript:void(0);"><span className="nav-item navtext">{paginationNextText}</span></a>}
+                </div>
+                {'nav_3' === paginationMode && <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span></a>}
+
             </div>
         </div>
     </>;
