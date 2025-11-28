@@ -661,7 +661,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['typographyMeta'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author .by",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author .by",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMeta'],
@@ -673,7 +673,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['typographyMetaAuthor'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a`",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .gvnews_meta_author a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMetaAuthor'],
