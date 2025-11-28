@@ -434,10 +434,6 @@
             "type": "boolean",
             "default": true
         },
-        "showMetaAuthor": {
-            "type": "boolean",
-            "default": true
-        },
         "showMetaComment": {
             "type": "boolean",
             "default": true

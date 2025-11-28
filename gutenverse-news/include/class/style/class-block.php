@@ -68,7 +68,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_post_title a",
+					'selector'       => $this->get_selector( 'selectorTitleTypography', '.gvnews_post .gvnews_post_title' ),
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typography'],
@@ -78,10 +78,9 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
-			$selector = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_pl_sm .gvnews_post_title a';
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} {$selector}",
+					'selector'       => $this->get_selector( 'selectorSecondTitleTypography', '.gvnews_pl_sm .gvnews_post_title' ),
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['secondTitleTypography'],
@@ -93,7 +92,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['thridTitleTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_pl_xs_2 .gvnews_post_title a",
+					'selector'       => $this->get_selector( 'selectorThridTitleTypography', '.gvnews_pl_xs_2 .gvnews_post_title' ),
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['thridTitleTypography'],
@@ -820,7 +819,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['typographyMetaAuthor'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a`",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_meta_author a",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMetaAuthor'],
@@ -1243,5 +1242,12 @@ class Block extends StyleAbstract {
 			default:
 				break;
 		}
+	}
+
+	private function get_selector( $selector, $def ) {
+		if ( isset( $this->attrs[ $selector ] ) ) {
+			return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $this->attrs[ $selector ];
+		}
+		return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $def;
 	}
 }
