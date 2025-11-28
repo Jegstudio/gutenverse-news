@@ -18622,6 +18622,10 @@ span.gvnews-category {
           }
         }
       }
+      &.tns-next {
+        background: #f70d28;
+        color: #fff;
+      }
     }
   }
 
@@ -18629,11 +18633,6 @@ span.gvnews-category {
     &:before {
       font-family: 'Font Awesome 6 Free' !important;
       font-weight: 900;
-    }
-
-    &.tns-next {
-      background: #f70d28;
-      color: #fff;
     }
   }
 

@@ -14,7 +14,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar, u } from 'gutenverse-core/components';
-import { addIconOnSlidernavigation, getModuleOptions } from '../../utils/helper';
+import { getModuleOptions } from '../../utils/helper';
 import { getBolockStyle } from './style/block-style';
 
 const defaultOptions = getModuleOptions();
@@ -299,6 +299,8 @@ const Slider1Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon,
     ]);
 
     useEffect(() => {
@@ -318,21 +320,27 @@ const Slider1Block = compose(
                         container: ele,
                         onInit: function (info) {
                             if ('undefined' !== typeof info.nextButton) {
-                                u(info.nextButton).addClass('tns-next');
+                                const nextButton = u(info.nextButton).addClass('tns-next');
+                                console.log({nextButton});
+                                
+                                if (nextButton.nodes.length > 0) {
+                                    nextButton.nodes[0].innerHTML = `<i class="${nextButtonIcon}"></i>`;
+                                }
                             }
                             if ('undefined' !== typeof info.prevButton) {
-                                u(info.prevButton).addClass('tns-prev');
+                                const prevButton = u(info.prevButton).addClass('tns-prev');
+                                if (prevButton.nodes.length > 0) {
+                                    prevButton.nodes[0].innerHTML = `<i class="${prevButtonIcon}"></i>`;
+                                }
                             }
                         },
                     });
                 });
             }
         }
-    }, [block]);
-
-    useEffect(() => {
-        addIconOnSlidernavigation(elementRef, nextButtonIcon, prevButtonIcon);
-    }, [nextButtonIcon, prevButtonIcon, block]);
+    }, [
+        block,
+    ]);
 
     return <>
         <CopyElementToolbar {...props} />

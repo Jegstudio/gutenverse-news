@@ -195,26 +195,6 @@ const getModuleOptions = () => {
     };
 };
 
-const addIconOnSlidernavigation = (
-    elementRef,
-    classNext = 'fas fa-chevron-right',
-    classPrev = 'fas fa-chevron-left'
-) => {
-    const navigations = elementRef.current.querySelector('.tns-outer .tns-controls');
-
-    if (!navigations) {
-        return;
-    }
-    const nextButton = navigations.querySelector('.tns-next');
-    if (nextButton) {
-        nextButton.innerHTML = `<i class="${classNext}"></i>`;
-    }
-    const prevButton = navigations.querySelector('.tns-prev');
-    if (prevButton) {
-        prevButton.innerHTML = `<i class="${classPrev}"></i>`;
-    }
-};
-
 export {
     createChunks,
     searchPosts,
@@ -226,5 +206,4 @@ export {
     getParentColumnWidth,
     getModuleOptions,
     gutenverseProActive,
-    addIconOnSlidernavigation,
 };

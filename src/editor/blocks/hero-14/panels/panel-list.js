@@ -64,24 +64,6 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
-                title: __('Center Content Style', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: centerContentStylePanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Right Content Style', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: rightContentStylePanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Left Content Style', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: leftContentStylePanel,
-                tabRole: TabStyle
-            },
-            {
                 title: __('Read More Button', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: readmoreStylePanel,
@@ -99,7 +81,7 @@ export const panelList = () => {
             {
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: responsivePanel
+                panelArray: responsivePanel,
             },
             {
                 title: __('Spacing', 'gutenverse-news'),

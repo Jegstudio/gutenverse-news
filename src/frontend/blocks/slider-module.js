@@ -102,6 +102,7 @@ class GutenverseFirstSlider {
     }
 
     init() {
+        
         let isSlider = false;
         if (typeof this.options.container === 'string') {
             isSlider = u(this.container).is(this.options.container);
@@ -136,7 +137,7 @@ class GutenverseFirstSlider {
                 lazyload: true,
                 lazyloadSelector: '.gvnews_slide_item .owl-lazy',
                 textDirection: this.options.textDirection,
-                onInit: function (info) {
+                onInit: this.options?.onInit ? this.options.onInit : function (info) {
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
                     }
@@ -450,7 +451,7 @@ class GutenverseSliderModule {
                                     debounceResize = setTimeout(() => {
                                         this.setNavCenter(sliderOption.container, wrapper);
                                     }, 150);
-                                }); break;
+                                }); break; 
                             case 9:
                                 const parent = sliderOption.container.closest('.gvnews_slider_wrapper');
                                 u(parent).find(('.gvnews_slider_type_9_thumb article')).map(element => {
@@ -480,8 +481,10 @@ class GutenverseSliderModule {
         });
     }
 
-    window.gvnewsSliderModule = (element) => {
-        new GutenverseSliderModule(element);
+    window.gvnewsSliderModule = (element, options = {}) => {
+        console.log({element, options});
+        
+        new GutenverseSliderModule(element, options);
     };
 })();
 
