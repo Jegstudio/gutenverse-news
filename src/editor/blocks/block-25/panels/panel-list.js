@@ -60,6 +60,18 @@ export const panelList = () => {
             },
             // Style
             {
+                title: __('Header', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => headerStylesPanel({ ...props }),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: thumbnailSettingPanel,
@@ -72,12 +84,6 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
-                title: __('Header', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => headerStylesPanel({ ...props }),
-                tabRole: TabStyle
-            },
-            {
                 title: __('Content Container', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) =>
@@ -85,12 +91,6 @@ export const panelList = () => {
                         ...props,
                         contentAlignVertical: { main: true }
                     }),
-                tabRole: TabStyle
-            },
-            {
-                title: __('Design', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: designPanel,
                 tabRole: TabStyle
             },
             {

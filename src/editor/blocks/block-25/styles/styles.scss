@@ -3,5 +3,23 @@
         display: flex;
         flex-direction: row;
         align-items: inherit;
+
+        .gvnews_postblock_content {
+            flex: 1;
+            width: -webkit-fill-available;
+            width: -moz-fill-available;
+            width: fill-available;
+        }
+    }
+    &.gvnews_col_1o3 {
+        .bottom-content {
+            flex-direction: column;
+            .gvnews_postblock_content {
+                flex: 1;
+                width: -webkit-fill-available;
+                width: -moz-fill-available;
+                width: fill-available;
+            }
+        }
     }
 }

@@ -1453,6 +1453,18 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['contentContainerBackground'] ) ) {
+			if ( isset( $this->attrs['contentContainerBackground']['color'] ) || isset( $this->attrs['contentContainerBackground']['gradient'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content  ",
+						'property'       => function ( $value ) {
+							return 'background: initial;';
+						},
+						'value'          => $this->attrs['contentContainerBackground'],
+						'device_control' => false,
+					)
+				);
+			}
 			$this->handle_background( ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content  ", $this->attrs['contentContainerBackground'] );
 		}
 
@@ -1554,6 +1566,18 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['contentContainerBackgroundSecond'] ) ) {
+			if ( isset( $this->attrs['contentContainerBackgroundSecond']['color'] ) || isset( $this->attrs['contentContainerBackgroundSecond']['gradient'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews_postblock_content  ",
+						'property'       => function ( $value ) {
+							return 'background: initial;';
+						},
+						'value'          => $this->attrs['contentContainerBackgroundSecond'],
+						'device_control' => false,
+					)
+				);
+			}
 			$this->handle_background( ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews_postblock_content  ", $this->attrs['contentContainerBackgroundSecond'] );
 		}
 

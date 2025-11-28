@@ -1,6 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef, useCallback } from '@wordpress/element';
 import Shuffle from 'shufflejs';
 
 const Block33Columns = (props) => {
@@ -23,22 +23,26 @@ const Block33Columns = (props) => {
         attributes,
     } = props;
 
-    const masonryRef = useRef();
     const shuffleInstance = useRef(null);
 
-    useEffect(() => {
-        if (shuffleInstance.current === null) {
-            shuffleInstance.current = new Shuffle(masonryRef.current, {
+    const masonryRef = useCallback((node) => {
+        if (node) {
+            shuffleInstance.current = new Shuffle(node, {
                 itemSelector: '.gvnews_post',
                 gutterWidth: 30,
                 speed: 0
             });
-        }
-
-        return () => {
+        } else {
             shuffleInstance.current?.destroy();
             shuffleInstance.current = null;
-        };
+        }
+    }, []);
+
+    useEffect(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.resetItems();
+            shuffleInstance.current.update();
+        }
     }, [
         blockWidth,
         attributes,

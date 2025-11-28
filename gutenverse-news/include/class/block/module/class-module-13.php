@@ -79,7 +79,6 @@ class Module_13 extends Module_View_Abstract {
 	public function build_column_1( $results ) {
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$first_block = $this->render_block( $results[0], 'gvnews-350x250', 1 );
-		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
@@ -87,7 +86,6 @@ class Module_13 extends Module_View_Abstract {
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block( $results[ $i ], 'gvnews-120x86', 2 );
 		}
-		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_1', $results[0]->ID ) . ">
                     {$first_block}
@@ -109,7 +107,6 @@ class Module_13 extends Module_View_Abstract {
 	public function build_column_2( $results ) {
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$first_block = $this->render_block( $results[0], 'gvnews-360x504', 1 );
-		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$third_block  = '';
@@ -122,7 +119,6 @@ class Module_13 extends Module_View_Abstract {
 				$third_block .= $this->render_block( $results[ $i ], 'gvnews-350x250', 2 );
 			}
 		}
-		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return '<div class="gvnews_posts gvnews-posts-row">
                     <article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_1 col-sm-6', $results[0]->ID ) . ">

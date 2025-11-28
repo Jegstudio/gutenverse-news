@@ -44,7 +44,7 @@ class Module_37 extends Module_View_Abstract {
 		$box_shadow_flag = isset( $this->attribute['box_shadow'] ) && $this->attribute['box_shadow'] ? 'box_shadow' : '';
 		$permalink       = esc_url( get_the_permalink( $post ) );
 
-		return '<article ' . gvnews_post_class( 'gvnews_post ' . $box_shadow_flag, $post_id ) . ">
+		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_5 ' . $box_shadow_flag, $post_id ) . ">
 					<div class='box_wrap'>
 						<div class=\"gvnews_thumb\">
 							" . gvnews_edit_post( $post_id ) . "
