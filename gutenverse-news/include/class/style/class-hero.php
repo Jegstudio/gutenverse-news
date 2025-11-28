@@ -110,6 +110,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (min-width: 1025px)',
 					'device_control' => false,
 				)
@@ -122,6 +123,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (max-width: 1024px) and (min-width: 769px)',
 					'device_control' => false,
 				)
@@ -134,6 +136,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (max-width: 768px) and (min-width: 668px)',
 					'device_control' => false,
 				)
@@ -146,6 +149,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (max-width: 667px) and (min-width: 569px)',
 					'device_control' => false,
 				)
@@ -158,6 +162,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (max-width: 568px) and (min-width: 481px)',
 					'device_control' => false,
 				)
@@ -170,6 +175,7 @@ class Hero extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_hero_wrapper .gvnews_heroblock_wrapper",
 					'value'          => "height: {$height}px; ",
+					'property'       => 'direct',
 					'custom'         => '@media only screen and (max-width: 480px)',
 					'device_control' => false,
 				)
