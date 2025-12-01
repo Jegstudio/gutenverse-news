@@ -482,8 +482,6 @@ class GutenverseSliderModule {
     }
 
     window.gvnewsSliderModule = (element, options = {}) => {
-        console.log({element, options});
-        
         new GutenverseSliderModule(element, options);
     };
 })();

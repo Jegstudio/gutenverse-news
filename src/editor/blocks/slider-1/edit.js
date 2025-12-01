@@ -321,7 +321,6 @@ const Slider1Block = compose(
                         onInit: function (info) {
                             if ('undefined' !== typeof info.nextButton) {
                                 const nextButton = u(info.nextButton).addClass('tns-next');
-                                console.log({nextButton});
                                 
                                 if (nextButton.nodes.length > 0) {
                                     nextButton.nodes[0].innerHTML = `<i class="${nextButtonIcon}"></i>`;
