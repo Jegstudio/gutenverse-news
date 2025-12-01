@@ -147,10 +147,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 		// Merge additional query vars found in the original URL into 'add_args' array.
 		if ( isset( $url_parts[1] ) ) {
 			// Find the format argument.
-			$format_args  = array();
+			$format_args    = array();
 			$url_query_args = array();
-			$format       = explode( '?', str_replace( '%_%', $args['format'], $args['base'] ) );
-			$format_query = isset( $format[1] ) ? $format[1] : '';
+			$format         = explode( '?', str_replace( '%_%', $args['format'], $args['base'] ) );
+			$format_query   = isset( $format[1] ) ? $format[1] : '';
 			wp_parse_str( $format_query, $format_args );
 
 			// Find the query args of the requested URL.
@@ -178,10 +178,17 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 		if ( $mid_size < 0 ) {
 			$mid_size = 2;
 		}
-		$add_args   = $args['add_args'];
-		$r          = '';
-		$page_links = array();
-		$dots       = false;
+		$add_args         = $args['add_args'];
+		$r                = '';
+		$page_links       = array();
+		$dots             = false;
+		$next_prev_button = '';
+		$is_type_3        = isset( $args['pagination_mode'] ) && 'nav_3' === $args['pagination_mode'];
+		/* translators: %1s and %2$s represents page number */
+		$paging_text = '<span class="page_info">' . sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total ) . '</span>';
+		if ( 'left' === $args['pagination_align'] ) {
+			$page_links[] = $paging_text;
+		}
 
 		if ( $args['prev_next'] && $current && 1 < $current ) :
 			$link = str_replace( '%_%', 2 == $current ? '' : $args['format'], $args['base'] );
@@ -198,11 +205,19 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			 *
 			 * @since 3.0.0
 			 */
-			$page_links[] = '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['prev_text'] . '</span></a>';
+			if ( $is_type_3 ) {
+				$next_prev_button .= '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['prev_text'] . '</span></a>';
+			} else {
+				$page_links   = array();
+				$page_links[] = '<a class="nav-item page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['prev_text'] . '</span></a>';
+				if ( 'left' === $args['pagination_align'] ) {
+					$page_links[] = $paging_text;
+				}
+			}
 		endif;
 		for ( $n = 1; $n <= $total; $n++ ) :
 			if ( $n == $current ) :
-				$page_links[] = "<span class='page_number active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</span>';
+				$page_links[] = "<span class='nav-item page_number active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</span>';
 				$dots         = true;
 			elseif ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
 				$link = str_replace( '%_%', 1 == $n ? '' : $args['format'], $args['base'] );
@@ -213,10 +228,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				$link .= $args['add_fragment'];
 
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = "<a class='page_number' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
+				$page_links[] = "<a class='nav-item page_number' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
 				$dots         = true;
 			elseif ( $dots && ! $args['show_all'] ) :
-				$page_links[] = '<span class="page_number dots">' . __( '&hellip;', 'gutenverse-news' ) . '</span>';
+				$page_links[] = '<span class="nav-item page_number dots">' . __( '&hellip;', 'gutenverse-news' ) . '</span>';
 				$dots         = false;
 			endif;
 		endfor;
@@ -228,8 +243,14 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			}
 			$link .= $args['add_fragment'];
 
-			/** This filter is documented in wp-includes/general-template.php */
-			$page_links[] = '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
+			if ( $is_type_3 ) {
+				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
+
+				error_log( $next_prev_button );
+			} else {
+				/** This filter is documented in wp-includes/general-template.php */
+				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
+			}
 		endif;
 
 		switch ( $args['type'] ) {
@@ -243,19 +264,22 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				break;
 
 			default:
-				$nav_class = 'gvnews_page' . $args['pagination_mode'];
-				$nav_align = 'gvnews_align' . $args['pagination_align'];
-				$nav_text  = $args['pagination_navtext'] ? '' : 'no_navtext';
-				$nav_info  = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
+				$nav_class        = 'gvnews_page' . $args['pagination_mode'];
+				$nav_align        = 'gvnews_align' . $args['pagination_align'];
+				$nav_text         = $args['pagination_navtext'] ? '' : 'no_navtext';
+				$nav_info         = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
+				$next_prev_button = ( isset( $next_prev_button ) && 'left' === $args['pagination_align'] ) ? '<div class="next-prev-button">' . $next_prev_button . '</div>' : $next_prev_button;
 				/* translators: %1s and %2$s represents page number */
-				$paging_text = sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total );
+				$paging_text     = '<span class="page_info">' . sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total ) . '</span>';
+				$top_paging_text = 'center' === $args['pagination_align'] ? $paging_text : '';
 
 				$r = join( "\n", $page_links );
 				$r = "<div class=\"gvnews_navigation gvnews_pagination {$column_class} {$nav_class} {$nav_align} {$nav_text} {$nav_info}\">
-                    <span class=\"page_info\">{$paging_text}</span>
+                    {$top_paging_text}
 					<div class=\"nav-wrapper\">
                     {$r}
 					</div>
+                    {$next_prev_button}
                 </div>";
 				break;
 		}
@@ -366,13 +390,16 @@ if ( ! function_exists( 'gvnews_get_all_categories' ) ) {
 	 * @return mixed|void
 	 */
 	function gvnews_get_all_categories( $post_id ) {
-		$categories = [];
+		$categories = array();
 
 		if ( 'post' === get_post_type( $post_id ) ) {
-			$raw = get_the_category( $post_id );
-			$categories = array_map( function ($val) {
-				return isset($val->term_id) ? $val->term_id : '';
-			}, $raw );
+			$raw        = get_the_category( $post_id );
+			$categories = array_map(
+				function ( $val ) {
+					return isset( $val->term_id ) ? $val->term_id : '';
+				},
+				$raw
+			);
 		}
 
 		return apply_filters( 'gvnews_post_all_categories', $categories );
@@ -388,13 +415,16 @@ if ( ! function_exists( 'gvnews_get_all_tags' ) ) {
 	 * @return mixed|void
 	 */
 	function gvnews_get_all_tags( $post_id ) {
-		$tags = [];
+		$tags = array();
 
 		if ( 'post' === get_post_type( $post_id ) ) {
-			$raw = get_the_tags( $post_id );
-			$tags = array_map( function ($val) {
-				return isset($val->term_id) ? $val->term_id : '';
-			}, $raw );
+			$raw  = get_the_tags( $post_id );
+			$tags = array_map(
+				function ( $val ) {
+					return isset( $val->term_id ) ? $val->term_id : '';
+				},
+				$raw
+			);
 		}
 
 		return apply_filters( 'gvnews_post_all_tags', $tags );

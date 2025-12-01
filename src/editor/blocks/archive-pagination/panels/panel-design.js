@@ -32,13 +32,13 @@ export const designPanel = (props) => {
         {
             id: 'paginationButtonTypography',
             label: __('Button Text Typography', 'gutenverse-news'),
-            show: paginationNavtext && paginationMode === 'nav_3',
+            show: paginationMode === 'nav_3',
             description: __('This option will change your pagination next and prev button typography.', 'gutenverse-news'),
             component: TypographyControl,
         },
         {
             id: 'numberGap',
-            label: __('Gap', 'gutenverse'),
+            label: __('Pagination Gap', 'gutenverse'),
             min: 0,
             max: 50,
             step: 1,
@@ -51,6 +51,37 @@ export const designPanel = (props) => {
                     'id': 'numberGap',
                     'responsive': true,
                     'selector': `.${elementId} .gvnews_pagination .nav-wrapper`,
+                    'properties': [
+                        {
+                            'name': 'gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'nextPrevGap',
+            label: __('Next Prev Gap', 'gutenverse'),
+            min: 0,
+            max: 50,
+            step: 1,
+            allowDeviceControl: true,
+            show: paginationMode === 'nav_3' && paginationAlign === 'left',
+            component: RangeControl,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'nextPrevGap',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_pagination .next-prev-button`,
                     'properties': [
                         {
                             'name': 'gap',
@@ -138,7 +169,7 @@ export const designPanel = (props) => {
             allowDeviceControl: true,
             component: RangeControl,
             unit: 'px',
-            show: paginationAlign === 'center',
+            show: paginationPageinfo && paginationAlign === 'center',
             liveStyle: [
                 {
                     'type': 'plain',
@@ -184,10 +215,7 @@ export const designPanel = (props) => {
         {
             id: '__paginationHover',
             component: SwitchControl,
-            options: paginationMode === 'nav_3' ? [
-                { value: 'normal', label: 'Normal' },
-                { value: 'hover', label: 'Hover' },
-            ] : [
+            options: [
                 { value: 'normal', label: 'Normal' },
                 { value: 'hover', label: 'Hover' },
                 { value: 'current', label: 'Active' }
@@ -197,81 +225,110 @@ export const designPanel = (props) => {
         {
             id: 'paginationColor',
             show: !switcher.paginationHover || switcher.paginationHover === 'normal',
-            label: __('Normal color', 'gutenverse'),
+            label: __('Pagination color', 'gutenverse'),
+            component: ColorControl,
+        },
+        {
+            id: 'paginationInfoColor',
+            show: paginationPageinfo && (!switcher.paginationHover || switcher.paginationHover === 'normal'),
+            label: __('Pagination Info Color', 'gutenverse'),
+            component: ColorControl,
+        },
+        {
+            id: 'nextPrevColor',
+            show: paginationMode === 'nav_3' && !switcher.paginationHover || switcher.paginationHover === 'normal',
+            label: __('Next/Prev color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'paginationCurrentColor',
             show: switcher.paginationHover === 'current',
-            label: __('Active color', 'gutenverse'),
+            label: __('Pagination color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'paginationHoverColor',
             show: switcher.paginationHover === 'hover',
-            label: __('Hover color', 'gutenverse'),
+            label: __('Pagination color', 'gutenverse'),
+            component: ColorControl,
+        },
+        {
+            id: 'nextPrevHoverColor',
+            show: paginationMode === 'nav_3' && switcher.paginationHover === 'hover',
+            label: __('Next/Prev color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'paginationBackground',
-            show: paginationMode !== 'nav_3' && !switcher.paginationHover || switcher.paginationHover === 'normal',
-            label: __('Background', 'gutenverse'),
+            show: paginationMode !== 'nav_3' && (!switcher.paginationHover || switcher.paginationHover === 'normal'),
+            label: __('Pagination Background', 'gutenverse'),
             component: BackgroundControl,
-            allowDeviceControl: true,
+            options: ['default', 'gradient'],
+        },
+        {
+            id: 'nextPrevBackground',
+            show: paginationMode === 'nav_3' && (!switcher.paginationHover || switcher.paginationHover === 'normal'),
+            label: __('Next/Prev Background', 'gutenverse'),
+            component: BackgroundControl,
             options: ['default', 'gradient'],
         },
         {
             id: 'paginationCurrentBackground',
             show: paginationMode !== 'nav_3' && switcher.paginationHover === 'current',
-            label: __('Active Background', 'gutenverse'),
+            label: __('Pagination Background', 'gutenverse'),
             component: BackgroundControl,
-            allowDeviceControl: true,
             options: ['default', 'gradient'],
         },
         {
             id: 'paginationHoverBackground',
             show: paginationMode !== 'nav_3' && switcher.paginationHover === 'hover',
-            label: __('Hover Background', 'gutenverse'),
+            label: __('Pagination Background', 'gutenverse'),
             component: BackgroundControl,
-            allowDeviceControl: true,
+            options: ['default', 'gradient'],
+        },
+        {
+            id: 'nextPrevHoverBackground',
+            show: paginationMode === 'nav_3' && switcher.paginationHover === 'hover',
+            label: __('Next/Prev Background', 'gutenverse'),
+            component: BackgroundControl,
             options: ['default', 'gradient'],
         },
         {
             id: 'paginationBorder',
             show: (!switcher.paginationHover || switcher.paginationHover === 'normal') && device === 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderControl,
         },
         {
             id: 'paginationBorderResponsive',
             show: (!switcher.paginationHover || switcher.paginationHover === 'normal') && device !== 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
         },
         {
             id: 'paginationHoverBorder',
             show: switcher.paginationHover === 'hover' && device === 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderControl,
         },
         {
             id: 'paginationHoverBorderResponsive',
             show: switcher.paginationHover === 'hover' && device !== 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
         },
         {
             id: 'paginationActiveBorder',
             show: paginationMode !== 'nav_3' && switcher.paginationHover === 'current' && device === 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderControl,
         },
         {
             id: 'paginationActiveBorderResponsive',
             show: paginationMode !== 'nav_3' && switcher.paginationHover === 'current' && device !== 'Desktop',
-            label: __('Border Botton', 'gutenverse'),
+            label: __('Button Border', 'gutenverse'),
             component: BorderResponsiveControl,
             allowDeviceControl: true,
         },

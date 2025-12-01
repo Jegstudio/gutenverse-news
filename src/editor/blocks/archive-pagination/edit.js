@@ -27,7 +27,8 @@ const ArchivePagination = compose(
         paginationAlign,
         paginationNavtext,
         paginationPageinfo,
-        paginationNextText
+        paginationNextText,
+        paginationPrevText
     } = attributes;
 
     const elementRef = useRef(null);
@@ -43,6 +44,9 @@ const ArchivePagination = compose(
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
+
+    const isNav3 = paginationMode === 'nav_3';
+    const isCenterAlign = paginationAlign === 'center';
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -61,16 +65,26 @@ const ArchivePagination = compose(
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
             <div className={`gvnews_navigation gvnews_pagination gvnews_col_3o3 gvnews_page${paginationMode} gvnews_align${paginationAlign} ${!paginationNavtext && 'no_navtext'} ${!paginationPageinfo && 'no_pageinfo'}`}>
-                {'center' === paginationAlign && <span className="page_info">Page 1 of 3</span>}
+                {isCenterAlign && <span className="page_info">Page 1 of 3</span>}
                 <div className="nav-wrapper">
-                    {'left' === paginationAlign && <span className="nav-item page_info">Page 1 of 3</span>}
+                    {!isNav3 && <a className="nav-item page_nav prev" data-id="2" href="javascript:void(0);"><span className="nav-item navtext">{paginationPrevText}</span></a>}
+                    {paginationAlign === 'left' && <span className="page_info">Page 1 of 3</span>}
                     <span className="nav-item page_number active">1</span>
+                    <span className="nav-item page_number dots">…</span>
                     <a className="nav-item page_number" data-id="2" href="javascript:void(0);">2</a>
                     <a className="nav-item page_number" data-id="3" href="javascript:void(0);">3</a>
-                    {'nav_3' !== paginationMode && <a className="nav-item page_nav next" data-id="2" href="javascript:void(0);"><span className="nav-item navtext">{paginationNextText}</span></a>}
+                    {!isNav3 && <a className="nav-item page_nav next" data-id="2" href="javascript:void(0);"><span className="nav-item navtext">{paginationNextText}</span></a>}
                 </div>
-                {'nav_3' === paginationMode && <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span></a>}
-
+                {isNav3 && !isCenterAlign && <div className="next-prev-button">
+                    <a className="page_nav prev" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationPrevText}</span></a>
+                    <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span></a>
+                </div>}
+                {isNav3 && isCenterAlign &&
+                    <>
+                        <a className="page_nav prev" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationPrevText}</span></a>
+                        <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span></a>
+                    </>
+                }
             </div>
         </div>
     </>;

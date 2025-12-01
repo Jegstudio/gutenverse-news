@@ -132,6 +132,10 @@
             "type": "object",
             "copyStyle": true
         },
+        "nextPrevGap": {
+            "type": "object",
+            "copyStyle": true
+        },
         "lineThick": {
             "type": "object",
             "copyStyle": true
@@ -144,7 +148,27 @@
             "type": "object",
             "copyStyle": true
         },
+        "nextPrevColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
         "paginationColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationInfoColor": {
             "type": "object",
             "copyStyle": true
         },
