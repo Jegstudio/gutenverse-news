@@ -21,7 +21,7 @@ const applyNavigationIcons = () => {
         const prevButton = u(navigations).find('.tns-prev');
         
         if (prevButton.length) {
-            const classPrev = dataSet.setclassPrev ? dataSet.setclassPrev : 'fas fa-chevron-left';
+            const classPrev = dataSet.classPrev ? dataSet.classPrev : 'fas fa-chevron-left';
             prevButton.nodes[0].innerHTML = `<i class="${classPrev}"></i>`;
         }
     });

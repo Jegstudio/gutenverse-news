@@ -232,10 +232,6 @@
             "type": "object",
             "default": {}
         },
-        "titleTypography": {
-            "type": "object",
-            "copyStyle": true
-        },
         "titleColor": {
             "type": "object",
             "copyStyle": true
