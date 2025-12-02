@@ -148,6 +148,22 @@
             "type": "object",
             "copyStyle": true
         },
+        "numberHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
         "nextPrevColor": {
             "type": "object",
             "copyStyle": true

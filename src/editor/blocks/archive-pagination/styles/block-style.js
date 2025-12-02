@@ -240,6 +240,25 @@ const getBlockStyle = (elementId, attributes) => {
             'id': 'paginationActiveBorderResponsive',
             'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_navigation .page_number.active`,
         });
+
+        isNotEmpty(attributes['numberHeight']) && data.push({
+            'type': 'plain',
+            'id': 'numberHeight',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)`,
+            'properties': [
+                {
+                    'name': 'height',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ]
+        });
     }
 
 
@@ -271,6 +290,63 @@ const getBlockStyle = (elementId, attributes) => {
         'properties': [
             {
                 'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ]
+    });
+
+    isNotEmpty(attributes['numberWidth']) && data.push({
+        'type': 'plain',
+        'id': 'numberWidth',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ]
+    });
+
+    isNotEmpty(attributes['nextPrevHeight']) && data.push({
+        'type': 'plain',
+        'id': 'nextPrevHeight',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_pagination .page_nav`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ]
+    });
+
+    isNotEmpty(attributes['nextPrevWidth']) && data.push({
+        'type': 'plain',
+        'id': 'nextPrevWidth',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_pagination .page_nav`,
+        'properties': [
+            {
+                'name': 'width',
                 'valueType': 'pattern',
                 'pattern': '{value}px',
                 'patternValues': {

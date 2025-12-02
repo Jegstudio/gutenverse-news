@@ -117,7 +117,7 @@ class Archive_Pagination extends StyleAbstract {
 		if ( isset( $this->attrs['paginationInfoColor'] ) ) {
 			$this->inject_style(
 				array(
-				'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pagination .page_info",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pagination .page_info",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -311,6 +311,19 @@ class Archive_Pagination extends StyleAbstract {
 			if ( isset( $this->attrs['paginationActiveBorderResponsive'] ) ) {
 				$this->handle_border( 'paginationActiveBorderResponsive', ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_navigation .page_number.active" );
 			}
+
+			if ( isset( $this->attrs['numberHeight'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)",
+						'property'       => function ( $value ) {
+								return "height: {$value}px;";
+						},
+						'value'          => $this->attrs['numberHeight'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
 
 		if ( isset( $this->attrs['numberGap'] ) ) {
@@ -334,6 +347,45 @@ class Archive_Pagination extends StyleAbstract {
 						return "gap: {$value}px;";
 					},
 					'value'          => $this->attrs['nextPrevGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['numberWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)",
+					'property'       => function ( $value ) {
+						return "width: {$value}px;";
+					},
+					'value'          => $this->attrs['numberWidth'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nextPrevHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pagination .page_nav",
+					'property'       => function ( $value ) {
+						return "height: {$value}px;";
+					},
+					'value'          => $this->attrs['nextPrevHeight'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nextPrevWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pagination .page_nav",
+					'property'       => function ( $value ) {
+						return "width: {$value}px;";
+					},
+					'value'          => $this->attrs['nextPrevWidth'],
 					'device_control' => true,
 				)
 			);

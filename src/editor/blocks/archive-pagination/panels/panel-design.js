@@ -37,6 +37,127 @@ export const designPanel = (props) => {
             component: TypographyControl,
         },
         {
+            id: 'numberHeight',
+            label: __('Pagination Number Height', 'gutenverse'),
+            show: 'nav_3' !== paginationMode,
+            min: 0,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            component: RangeControl,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'numberHeight',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'numberWidth',
+            label: __('Pagination Number Width', 'gutenverse'),
+            min: 0,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            component: RangeControl,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'width',
+                    'id': 'numberWidth',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_pagination .nav-wrapper .nav-item:not(.page_nav)`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'nextPrevHeight',
+            label: __('Next/Prev Button Height', 'gutenverse'),
+            min: 0,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            component: RangeControl,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'nextPrevHeight',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_pagination .page_nav`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'nextPrevWidth',
+            label: __('Next/Prev Button Width', 'gutenverse'),
+            min: 0,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            component: RangeControl,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'width',
+                    'id': 'nextPrevWidth',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_pagination .page_nav`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             id: 'numberGap',
             label: __('Pagination Gap', 'gutenverse'),
             min: 0,
