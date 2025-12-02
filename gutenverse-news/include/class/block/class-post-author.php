@@ -28,33 +28,34 @@ class Post_Author extends Post_Guten {
 	/**
 	 * Social media array.
 	 *
-	 * @var array
+	 * @return array
 	 */
-	protected $socials = array(
-		'url'        => 'fa fa-globe',
-		'facebook'   => 'fab fa-facebook-official',
-		'twitter'    => 'fab fa-twitter',
-		'linkedin'   => 'fab fa-linkedin',
-		'pinterest'  => 'fab fa-pinterest',
-		'behance'    => 'fab fa-behance',
-		'github'     => 'fab fa-github',
-		'flickr'     => 'fab fa-flickr',
-		'tumblr'     => 'fab fa-tumblr',
-		'dribbble'   => 'fab fa-dribbble',
-		'soundcloud' => 'fab fa-soundcloud',
-		'instagram'  => 'fab fa-instagram',
-		'vimeo'      => 'fab fa-vimeo',
-		'youtube'    => 'fab fa-youtube-play',
-		'vk'         => 'fab fa-vk',
-		'reddit'     => 'fab fa-reddit',
-		'weibo'      => 'fab fa-weibo',
-		'rss'        => 'fa fa-rss',
-		'twitch'     => 'fab fa-twitch',
-		'tiktok'     => 'fab jeg-icon icon-tiktok',
-		'threads'    => 'fab jeg-icon icon-threads',
-		'xing'       => 'fab fa-xing',
-		'bluesky'    => 'jeg-icon icon-bluesky',
-	);
+	public function social_icon_list() {
+		return array(
+			'url'        => 'fa fa-globe',
+			'facebook'   => 'fab fa-facebook',
+			'twitter'    => 'fab fa-twitter',
+			'linkedin'   => 'fab fa-linkedin',
+			'pinterest'  => 'fab fa-pinterest',
+			'behance'    => 'fab fa-behance',
+			'github'     => 'fab fa-github',
+			'flickr'     => 'fab fa-flickr',
+			'tumblr'     => 'fab fa-tumblr',
+			'dribbble'   => 'fab fa-dribbble',
+			'soundcloud' => 'fab fa-soundcloud',
+			'instagram'  => 'fab fa-instagram',
+			'vimeo'      => 'fab fa-vimeo',
+			'youtube'    => 'fab fa-youtube',
+			'vk'         => 'fab fa-vk',
+			'reddit'     => 'fab fa-reddit',
+			'weibo'      => 'fab fa-weibo',
+			'rss'        => 'fa fa-rss',
+			'twitch'     => 'fab fa-twitch',
+			'tiktok'     => 'fa-brands fa-tiktok',
+			'threads'    => 'fa-brands fa-threads',
+			'xing'       => 'fab fa-xing',
+		);
+	}
 
 	/**
 	 * Method get_content
@@ -123,14 +124,14 @@ class Post_Author extends Post_Guten {
 	protected function generate_social_element( $author_id ) {
 		$social_elements = '';
 
-		foreach ( $this->socials as $social => $icon ) {
+		foreach ( $this->social_icon_list() as $social => $icon ) {
 
 			$url = get_the_author_meta( $social, $author_id );
 
 			if ( '' !== $url ) {
 				$social_elements .=
 					'<a href="' . $url . '" class="' . $social . '">
-						<i class="fa ' . $icon . '"></i>
+						<i class="' . $icon . '"></i>
 					</a>';
 			}
 		}

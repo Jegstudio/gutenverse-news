@@ -472,6 +472,8 @@ class Init {
 			'weibo'      => 'Weibo',
 			'twitch'     => 'Twitch',
 			'rss'        => 'Rss',
+			'threads'    => 'Threads',
+			'xing'       => 'Xing',
 		);
 	}
 }

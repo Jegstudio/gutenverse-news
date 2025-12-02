@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS;
 
+use GUTENVERSE\NEWS\Block\Post_Author;
 use GUTENVERSE\NEWS\Util\Module_Query;
 use GUTENVERSE\NEWS\Util\Cache;
 
@@ -410,7 +411,7 @@ class Api {
 	 */
 	public function get_post_author( $request ) {
 		$attr         = $request->get_param( 'attr' );
-		$social_array = $this->declare_socials();
+		$social_array = ( new Post_Author() )->social_icon_list();
 		$data         = array();
 
 		if ( ! is_array( $attr['author'] ) ) {
@@ -572,7 +573,7 @@ class Api {
 	public function get_author( $attributes ) {
 		$data         = array();
 		$users        = get_users();
-		$social_array = $this->declare_socials();
+		$social_array = ( new Post_Author() )->social_icon_list();
 		$name         = '';
 		foreach ( $users as $user ) {
 			$meta = false;
@@ -873,37 +874,6 @@ class Api {
 		}
 
 		return wp_json_encode( $result );
-	}
-
-	/**
-	 * Method declare_socials
-	 *
-	 * @return array
-	 */
-	public function declare_socials() {
-		$social_array = array(
-			'url'        => 'fa fa-globe',
-			'facebook'   => 'fab fa-facebook-official',
-			'twitter'    => 'fab fa-twitter',
-			'linkedin'   => 'fab fa-linkedin',
-			'pinterest'  => 'fab fa-pinterest',
-			'behance'    => 'fab fa-behance',
-			'github'     => 'fab fa-github',
-			'flickr'     => 'fab fa-flickr',
-			'tumblr'     => 'fab fa-tumblr',
-			'dribbble'   => 'fab fa-dribbble',
-			'soundcloud' => 'fab fa-soundcloud',
-			'instagram'  => 'fab fa-instagram',
-			'vimeo'      => 'fab fa-vimeo',
-			'youtube'    => 'fab fa-youtube-play',
-			'vk'         => 'fab fa-vk',
-			'reddit'     => 'fab fa-reddit',
-			'weibo'      => 'fab fa-weibo',
-			'rss'        => 'fa fa-rss',
-			'twitch'     => 'fab fa-twitch',
-		);
-
-		return $social_array;
 	}
 
 	/**
