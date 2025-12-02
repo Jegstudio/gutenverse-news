@@ -29,7 +29,7 @@ const Block13Columns = props => {
         if (1 == props.type) {
             block.push(
                 <>
-                    <ThumbModule size={715} cat={true} post={post}/>
+                    <ThumbModule size={715} cat={true} post={post} imageSize={props.attr.imageSize}/>
                     <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 </>
             );
@@ -82,6 +82,7 @@ const Block13Columns = props => {
             option: moduleOption,
             length: excerptLength,
             elipsis: excerptEllipsis,
+            imageSize: renderedImageSizeSecond,
             date: {
                 type: metaDateType,
                 format: metaDateFormat,
@@ -105,7 +106,7 @@ const Block13Columns = props => {
             <>
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-6">
-                        <ThumbModule size={1400} cat={true} post={postData[0]}/>
+                        <ThumbModule size={1400} cat={true} post={postData[0]} imageSize={renderedImageSizeMain}/>
                         <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={postData[0]} attr={attr}/>
                     </article>
                     <div className="gvnews_postsmall col-sm-6">
@@ -138,11 +139,17 @@ const Block13Columns = props => {
         const rows3 = [];
 
         if (postData.length > 0) {
+            let count = 0;
             for (let i = 1; i < postData.length; i++) {
+                count++;
+                if (count >= 5) {
+                    rows3.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
+                    continue;
+                }
                 if (i <= 2) {
                     rows.push(<RenderBlock1 index={0} key={postData[i].id} attr={attr} type={2} post={postData[i]} />);
                 } else {
-                    rows3.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]}/>);
+                    rows2.push(<RenderBlock1 index={0} key={postData[i].id} attr={attr} type={2} post={postData[i]} />);
                 }
             }
         }

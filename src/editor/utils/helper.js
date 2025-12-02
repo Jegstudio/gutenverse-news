@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
+import { getDevice, isNotEmpty } from 'gutenverse-core/helper';
 
 const createChunks = (datas, chunkSize) => {
     const result = [];
@@ -200,6 +201,29 @@ const getImageSizeDetail = ( name, def = {} ) => {
     return imageSizes[name] ? imageSizes[name] : def;
 };
 
+const dimensionAttributeNotEmpty = (attr) => {
+    const dimensions = ['right', 'left', 'top', 'bottom'];
+    const currentDevice = getDevice();
+    
+
+    if (currentDevice !== 'Desktop' && isNotEmpty(attr[currentDevice])) {
+        for (let index = 0; index < dimensions.length; index++) {
+            const dimension = dimensions[index];
+            if (isNotEmpty(attr[currentDevice]['dimension'][dimension])) {
+                return true;
+            }
+        }
+    }
+
+    for (let index = 0; index < dimensions.length; index++) {
+            const dimension = dimensions[index];
+            if (isNotEmpty(attr['Desktop']['dimension'][dimension])) {
+                return true;
+            }
+        }
+    return false;
+}
+
 export {
     createChunks,
     searchPosts,
@@ -212,4 +236,5 @@ export {
     getModuleOptions,
     gutenverseProActive,
     getImageSizeDetail,
+    dimensionAttributeNotEmpty
 };

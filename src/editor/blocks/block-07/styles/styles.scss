@@ -1,14 +1,33 @@
 .gvnews_postblock_7 {
-    .bottom-content {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: inherit; 
-        justify-content: space-between;
-        // inherit disini akan mewarisi dari main-classnya, karena getBlockStyle memberi align-items ke mainClass
-    }
-    &.gvnews_col_1o3 {
-        .bottom-content {
-            flex-direction: column;
+	.bottom-content {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: inherit;
+		justify-content: space-between;
+		// inherit disini akan mewarisi dari main-classnya, karena getBlockStyle memberi align-items ke mainClass
+
+        .gvnews_thumb {
+            margin: 0;
         }
-    }
+        .gvnews_postblock_content {
+            margin-right: 30px;
+        }
+	}
+	&.gvnews_col_1o3 {
+		.bottom-content {
+			flex-direction: column;
+		}
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.gvnews_postblock_7 {
+		.bottom-content {
+			flex-direction: column;
+
+            .gvnews_thumb {
+                width: 100% !important;
+            }
+		}
+	}
 }

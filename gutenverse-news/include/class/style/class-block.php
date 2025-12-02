@@ -1472,7 +1472,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content  ",
 					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'margin' ) . 'width: initial;';
+						return $this->handle_dimension( $value, 'margin' );
 					},
 					'value'          => $this->attrs['contentMargin'],
 					'device_control' => true,
@@ -1585,7 +1585,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews_postblock_content  ",
 					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'margin' ) . 'width: initial;';
+						return $this->handle_dimension( $value, 'margin' );
 					},
 					'value'          => $this->attrs['contentMarginSecond'],
 					'device_control' => true,

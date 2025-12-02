@@ -44,14 +44,16 @@ class Module_25 extends Module_View_Abstract {
                         </h3>
                         {$this->post_meta_1($post)}
                     </div>
-                    <div class=\"gvnews_thumb\">
-                        " . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">{$thumbnail}</a>
-                    </div>
-                    <div class=\"gvnews_postblock_content\">
-                        <div class=\"gvnews_post_excerpt\">
-                            <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                        	{$read_more}
+                    <div class=\"bottom-content\">
+                        <div class=\"gvnews_thumb\">
+                            " . gvnews_edit_post( $post_id ) . "
+                            <a href=\"{$permalink}\">{$thumbnail}</a>
+                        </div>
+                        <div class=\"gvnews_postblock_content\">
+                            <div class=\"gvnews_post_excerpt\">
+                                <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
+                            	{$read_more}
+                            </div>
                         </div>
                     </div>
                 </article>";

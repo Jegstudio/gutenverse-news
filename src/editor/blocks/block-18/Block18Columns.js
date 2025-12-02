@@ -17,7 +17,6 @@ const Block18Columns = props => {
         renderedImageSizeMain,
         blockWidth
     } = props;
-    console.log(blockWidth);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;

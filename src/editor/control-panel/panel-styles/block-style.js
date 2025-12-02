@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { dimensionAttributeNotEmpty } from '../../utils/helper';
 
 const getBlockStyle = (
     elementId,
@@ -1309,6 +1310,7 @@ const getBlockStyle = (
     };
 
     if (isNotEmpty(attributes['contentMargin'])) {
+
         data.push({
             'type': 'dimension',
             'id': 'contentMargin',
@@ -1317,18 +1319,6 @@ const getBlockStyle = (
                 {
                     'name': 'margin',
                     'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'contentMargin',
-            'properties': [
-                {
-                    'name': 'width',
-                    'valueType': 'pattern',
-                    'pattern': 'initial',
                 }
             ],
             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
@@ -1444,18 +1434,6 @@ const getBlockStyle = (
                 {
                     'name': 'margin',
                     'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'contentMarginSecond',
-            'properties': [
-                {
-                    'name': 'width',
-                    'valueType': 'pattern',
-                    'pattern': 'initial',
                 }
             ],
             'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,

@@ -6,9 +6,18 @@
 		.gvnews_pl_lg_3 {
 			flex-direction: column;
 
-            .gvnews_thumb {
-                width: 100% !important;
-            }
+			.gvnews_thumb {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.gvnews_postblock_6 .gvnews_pl_lg_3 {
+		flex-direction: row-reverse !important;
+		.gvnews_thumb {
+			width: 40% !important;
 		}
 	}
 }
