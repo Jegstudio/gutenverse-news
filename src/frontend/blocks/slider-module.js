@@ -101,8 +101,35 @@ class GutenverseFirstSlider {
         }
     }
 
+    applyNavigationIcons = () => {
+        const sliders = u('.gvnews_slider_wrapper[data-navigation-icon]');
+
+        sliders.each((slider) => {
+            const navigations = u(slider).find('.tns-outer .tns-controls');
+
+            if (!navigations.length) {
+                return;
+            }
+
+            const dataSet = JSON.parse(slider.getAttribute('data-navigation-icon'));
+            const nextButton = u(navigations).find('.tns-next');
+
+            if (nextButton.length) {
+                const classNext = dataSet.classNext ? dataSet.classNext : 'fas fa-chevron-right';
+                nextButton.nodes[0].innerHTML = `<i class="${classNext}"></i>`;
+            }
+
+            const prevButton = u(navigations).find('.tns-prev');
+
+            if (prevButton.length) {
+                const classPrev = dataSet.classPrev ? dataSet.classPrev : 'fas fa-chevron-left';
+                prevButton.nodes[0].innerHTML = `<i class="${classPrev}"></i>`;
+            }
+        });
+    }
+
     init() {
-        
+
         let isSlider = false;
         if (typeof this.options.container === 'string') {
             isSlider = u(this.container).is(this.options.container);
@@ -178,6 +205,7 @@ class GutenverseFirstSlider {
                         u(info.prevButton).addClass('tns-prev');
                     }
                     this.setCurrentThumbnail(info);
+                    this.applyNavigationIcons();
                 },
             });
         }
@@ -451,7 +479,7 @@ class GutenverseSliderModule {
                                     debounceResize = setTimeout(() => {
                                         this.setNavCenter(sliderOption.container, wrapper);
                                     }, 150);
-                                }); break; 
+                                }); break;
                             case 9:
                                 const parent = sliderOption.container.closest('.gvnews_slider_wrapper');
                                 u(parent).find(('.gvnews_slider_type_9_thumb article')).map(element => {

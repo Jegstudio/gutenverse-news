@@ -32,14 +32,6 @@ abstract class Slider_View_Abstract extends Block_View_Abstract {
 		$attr['pagination_number_post'] = 1;
 		$results                        = $this->build_query( $attr );
 
-		wp_register_script(
-			'gutenverse-news-navigation-icon-slider',
-			GUTENVERSE_NEWS_URL . '/assets/js/frontend/navigation-icon-slider.js',
-			array( 'gutenverse-frontend-event' ),
-			GUTENVERSE_NEWS_VERSION,
-			true
-		);
-		wp_enqueue_script( 'gutenverse-news-navigation-icon-slider' );
 		return $this->render_element( $results['result'], $attr );
 	}
 
