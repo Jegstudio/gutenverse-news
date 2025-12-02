@@ -48,6 +48,7 @@ class Hero_14 extends StyleAbstract {
 
 		$this->generate_design_style();
 		$this->generate_category_label_style();
+		$this->generate_main_container();
 
 		if ( empty( $this->attrs['readmoreButtonDisabled'] ) || ( isset( $this->attrs['readmoreButtonDisabled'] ) && ! $this->attrs['readmoreButtonDisabled'] ) ) {
 			$this->generate_read_more_style();
@@ -146,6 +147,56 @@ class Hero_14 extends StyleAbstract {
 						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['thridTitleColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['excerptTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt p",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['excerptTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['excerptColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt p",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['excerptColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['secondTitleColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pl_lg_7 .gvnews_post_title a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['secondTitleColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['secondTitleColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pl_lg_7 .gvnews_post_title a:hover ",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['secondTitleColorHover'],
 					'device_control' => false,
 				)
 			);
@@ -555,6 +606,50 @@ class Hero_14 extends StyleAbstract {
 					)
 				);
 			}
+		}
+	}
+	/**
+	 * Generate main conainer style
+	 */
+	private function generate_main_container() {
+		if ( isset( $this->attrs['mainContainerBackground'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_pl_lg_7 ", $this->attrs['mainContainerBackground'] );
+		}
+
+		if ( isset( $this->attrs['mainContainerBorder'] ) ) {
+			$this->handle_border(
+				'mainContainerBorder',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_pl_lg_7"
+			);
+		}
+
+		if ( isset( $this->attrs['mainContainerBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pl_lg_7",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['mainContainerBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => isset( $this->attrs['border'] ) ? array(
+						'Desktop',
+					) : null,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['mainContainerShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_pl_lg_7",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['mainContainerShadow'],
+					'device_control' => false,
+				)
+			);
 		}
 	}
 }

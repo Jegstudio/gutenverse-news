@@ -33,6 +33,12 @@ export const styleHero = (props, typeCount = 1) => {
             component: TypographyControl,
         },
         {
+            id: 'excerptTypography',
+            label: __('Excerpt Typography', 'gutenverse-news'),
+            description: __('This option will change your post excerpt typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
             id: '__heroStyleHover',
             component: SwitchControl,
             options: [
@@ -53,12 +59,27 @@ export const styleHero = (props, typeCount = 1) => {
             component: ColorControl,
             show: isNormal,
         },
-
         {
             id: 'titleColorHover',
             label: __('Title Color', 'gutenverse-news'),
             component: ColorControl,
             show: !isNormal,
+        },
+        {
+            id: 'secondTitleColor',
+            label: __('Second List Title Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the post title color setting on the second list on hover condition.', 'gutenverse-news'),
+            show: showThridColor && isNormal,
+        },
+
+        {
+            id: 'secondTitleColorHover',
+            label: __('Second List Title Color', 'gutenverse-news'),
+            description: __('This option will override the post title color setting on the second list on hover condition.', 'gutenverse-news'),
+            component: ColorControl,
+            show: showThridColor && !isNormal,
+
         },
         {
             id: 'thridTitleColor',
@@ -75,6 +96,12 @@ export const styleHero = (props, typeCount = 1) => {
             component: ColorControl,
             show: showThridColor && !isNormal,
 
+        },
+        {
+            id: 'excerptColor',
+            label: __('Excerpt Color', 'gutenverse-news'),
+            component: ColorControl,
+            show: showThridColor && isNormal,
         },
     ];
 };

@@ -530,6 +530,80 @@ const getBlockStyle = (elementId, attributes) => {
         }
     }
 
+    isNotEmpty(attributes['mainContainerBackground']) && data.push({
+        'type': 'background',
+        'id': 'mainContainerBackground',
+        'selector': `.${elementId} .gvnews_pl_lg_7 `,
+    });
+
+    isNotEmpty(attributes['mainContainerBorder']) && data.push({
+        'type': 'border',
+        'id': 'mainContainerBorder',
+        'selector': `.${elementId} .gvnews_pl_lg_7 `,
+    });
+
+    isNotEmpty(attributes['mainContainerBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'mainContainerBorderResponsive',
+        'selector': `.${elementId} .gvnews_pl_lg_7 `,
+    });
+
+    isNotEmpty(attributes['mainContainerShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'mainContainerShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_pl_lg_7 `,
+    });
+
+    isNotEmpty(attributes['excerptTypography']) && data.push({
+        'type': 'typography',
+        'id': 'excerptTypography',
+        'selector': `.${elementId} .gvnews_post_excerpt p`,
+    });
+
+    isNotEmpty(attributes['excerptColor']) && data.push({
+        'type': 'color',
+        'id': 'excerptColor',
+        'selector': `.${elementId} .gvnews_post_excerpt p`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['secondTitleColor']) && data.push({
+        'type': 'color',
+        'id': 'secondTitleColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_lg_7 .gvnews_post_title a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+
+    isNotEmpty(attributes['secondTitleColorHover']) && data.push({
+        'type': 'color',
+        'id': 'secondTitleColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_lg_7 .gvnews_post_title a:hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+
     return data;
 };
 

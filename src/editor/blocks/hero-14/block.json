@@ -405,6 +405,27 @@
         },
         "sideCategoryButtonColorHover": {
             "type": "object"
+        },
+        "mainContainerBackground": {
+            "type": "object"
+        },
+        "mainContainerBorder": {
+            "type": "object"
+        },
+        "mainContainerBorderResponsive": {
+            "type": "object"
+        },
+        "mainContainerShadow": {
+            "type": "object"
+        },
+        "excerptTypography": {
+            "type": "object"
+        },
+        "secondTitleColor": {
+            "type": "object"
+        },
+        "secondTitleColorHover": {
+            "type": "object"
         }
     },
     "supports": {
@@ -413,6 +434,10 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-blocks-style"],
-    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-hero-slider-script"
+    ]
 }
