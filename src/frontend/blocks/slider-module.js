@@ -101,33 +101,6 @@ class GutenverseFirstSlider {
         }
     }
 
-    applyNavigationIcons = () => {
-        const sliders = u('.gvnews_slider_wrapper[data-navigation-icon]');
-
-        sliders.each((slider) => {
-            const navigations = u(slider).find('.tns-outer .tns-controls');
-
-            if (!navigations.length) {
-                return;
-            }
-
-            const dataSet = JSON.parse(slider.getAttribute('data-navigation-icon'));
-            const nextButton = u(navigations).find('.tns-next');
-
-            if (nextButton.length) {
-                const classNext = dataSet.classNext ? dataSet.classNext : 'fas fa-chevron-right';
-                nextButton.nodes[0].innerHTML = `<i class="${classNext}"></i>`;
-            }
-
-            const prevButton = u(navigations).find('.tns-prev');
-
-            if (prevButton.length) {
-                const classPrev = dataSet.classPrev ? dataSet.classPrev : 'fas fa-chevron-left';
-                prevButton.nodes[0].innerHTML = `<i class="${classPrev}"></i>`;
-            }
-        });
-    }
-
     init() {
 
         let isSlider = false;
@@ -164,12 +137,20 @@ class GutenverseFirstSlider {
                 lazyload: true,
                 lazyloadSelector: '.gvnews_slide_item .owl-lazy',
                 textDirection: this.options.textDirection,
-                onInit: this.options?.onInit ? this.options.onInit : function (info) {
+                onInit: this.options?.onInit ? this.options.onInit : (info) => {
+                    const dataset = JSON.parse(
+                        u('.gvnews_slider_wrapper[data-navigation-icon]')
+                        .first()
+                        .getAttribute('data-navigation-icon')
+                    );
+                    
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
+                        u(info.nextButton).html(`<i class="${dataset.classNext}"></i>`);
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
+                        u(info.prevButton).html(`<i class="${dataset.classPrev}"></i>`);
                     }
                 },
             });
@@ -205,7 +186,6 @@ class GutenverseFirstSlider {
                         u(info.prevButton).addClass('tns-prev');
                     }
                     this.setCurrentThumbnail(info);
-                    this.applyNavigationIcons();
                 },
             });
         }
