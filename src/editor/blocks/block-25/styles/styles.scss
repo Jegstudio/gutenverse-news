@@ -4,11 +4,16 @@
 		flex-direction: row;
 		align-items: inherit;
 
+		.gvnews_thumb {
+			margin: 0;
+		}
+
 		.gvnews_postblock_content {
 			flex: 1;
 			width: -webkit-fill-available;
 			width: -moz-fill-available;
 			width: fill-available;
+			margin-left: 30px;
 		}
 	}
 	&.gvnews_col_1o3 {
@@ -36,7 +41,9 @@
 
 			.gvnews_thumb {
 				width: 100%;
-				margin-right: 20px;
+			}
+			.gvnews_postblock_content {
+				margin-left: 20px;
 			}
 		}
 	}
