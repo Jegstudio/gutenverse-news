@@ -13172,7 +13172,7 @@ video {
   display: block;
 
   a {
-    color: #212121 !important;
+    color: #212121;
 
     &:hover {
       text-decoration: underline;
@@ -13205,7 +13205,7 @@ video {
   height: 40px;
   line-height: 38px;
   border: 1px solid #eee;
-  border-left: 0;
+  border-left: 0 !important;
   padding: 0 95px 0 15px;
   position: relative;
 }
@@ -13235,13 +13235,16 @@ video {
   background: #fff;
   cursor: pointer;
   border-left: 1px solid #eee;
-  line-height: 38px;
   width: 40px;
   font-size: 18px;
   display: flex;
   justify-content: center;
   float: right;
   position: relative;
+
+  i {
+    line-height: 38px;
+  }
 
   &:hover {
     background: #f7f7f7;

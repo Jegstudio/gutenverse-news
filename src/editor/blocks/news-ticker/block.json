@@ -403,12 +403,60 @@
 		},
 		"positioningBottom": {
 			"type": "object"
+		},
+		"nextIcon": {
+			"type": "string",
+			"default": "fas fa-angle-right"
+		},
+		"prevIcon": {
+			"type": "string",
+			"default": "fas fa-angle-left"
+		},
+		"navColor": {
+			"type": "object"
+		},
+		"navBackgroundColor": {
+			"type": "object"
+		},
+		"navHoverColor": {
+			"type": "object"
+		},
+		"navHoverBackgroundColor": {
+			"type": "object"
+		},
+		"navIconSize": {
+			"type": "object"
+		},
+		"navButtonWidth": {
+			"type": "object"
+		},
+		"navLineColor": {
+			"type": "object"
+		},
+		"containerBorderWidth": {
+			"type": "object"
+		},
+		"postTitleColor": {
+			"type": "object"
+		},
+		"postTitleHoverColor": {
+			"type": "object"
+		},
+		"postTitleTypography": {
+			"type": "object"
 		}
 	},
 	"supports": {
 		"className": false
 	},
-	"keywords": ["icon", "link"],
-	"style": ["gutenverse-news-frontend-blocks-style"],
-	"viewScript": ["gutenverse-news-frontend-newsticker-script"]
+	"keywords": [
+		"icon",
+		"link"
+	],
+	"style": [
+		"gutenverse-news-frontend-blocks-style"
+	],
+	"viewScript": [
+		"gutenverse-news-frontend-newsticker-script"
+	]
 }

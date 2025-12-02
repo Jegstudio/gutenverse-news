@@ -119,6 +119,143 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_breakingnews`,
     });
 
+    isNotEmpty(attributes['navColor']) && data.push({
+        'type': 'color',
+        'id': 'navColor',
+        'selector': `.${elementId} .gvnews_news_ticker_control i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navBackgroundColor']) && data.push({
+        'type': 'color',
+        'id': 'navBackgroundColor',
+        'selector': `.${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navHoverColor']) && data.push({
+        'type': 'color',
+        'id': 'navHoverColor',
+        'selector': `.${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow:hover i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navHoverBackgroundColor']) && data.push({
+        'type': 'color',
+        'id': 'navHoverBackgroundColor',
+        'selector': `.${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow:hover`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navIconSize']) && data.push({
+        'type': 'plain',
+        'id': 'navIconSize',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_news_ticker_control i`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navButtonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'navButtonWidth',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['postTitleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'postTitleTypography',
+        'selector': `.${elementId} .gvnews_news_ticker_item a`,
+    });
+
+    isNotEmpty(attributes['postTitleColor']) && data.push({
+        'type': 'color',
+        'id': 'postTitleColor',
+        'selector': `.${elementId} .gvnews_news_ticker_item a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['postTitleHoverColor']) && data.push({
+        'type': 'color',
+        'id': 'postTitleHoverColor',
+        'selector': `.${elementId} .gvnews_news_ticker_item a:hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['containerBorderWidth']) && data.push({
+        'type': 'plain',
+        'id': 'containerBorderWidth',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_news_ticker`,
+        'properties': [
+            {
+                'name': 'border-width',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            }
+        ],
+    });
+
+    console.log(attributes);
+
     return data;
 };
 

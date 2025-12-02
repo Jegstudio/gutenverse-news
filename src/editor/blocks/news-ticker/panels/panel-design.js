@@ -1,35 +1,55 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, ColorControl } from 'gutenverse-core/controls';
-import { handleColor, handleBackground } from 'gutenverse-core/styling';
+import { ColorControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const designPanel = (props) => {
     const {
         elementId,
-        normalOptions,
     } = props;
 
     return [
         {
-            id: 'titleTextColor',
-            label: __('Title Text Color', 'gutenverse-news'),
-            component: ColorControl,
-            style: [
-                {
-                    selector: `.${elementId} .gvnews_breakingnews_title`,
-                    render: value => handleColor(value, 'color')
-                }
-            ],
+            id: 'postTitleTypography',
+            label: __('Post Tile Typography', 'gutenverse-news'),
+            description: __('This option will change your post tile typography.', 'gutenverse-news'),
+            component: TypographyControl,
         },
         {
-            id: 'titleBackgroundColor',
-            component: BackgroundControl,
+            id: 'postTitleColor',
+            label: __('Post Tile Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'postTitleHoverColor',
+            label: __('Post Tile Hover Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'containerBorderWidth',
+            label: __('Container Border Width', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 50,
+            step: 1,
             allowDeviceControl: true,
-            options: normalOptions,
-            style: [
+            liveStyle: [
                 {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breakingnews_title`,
-                    hasChild: true,
-                    render: value => handleBackground(value)
+                    'type': 'plain',
+                    'id': 'containerBorderWidth',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_news_ticker`,
+                    'properties': [
+                        {
+                            'name': 'border-width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
                 }
             ]
         },

@@ -48,6 +48,16 @@ export const generalPanel = (props) => {
             component: IconControl
         },
         {
+            id: 'nextIcon',
+            label: __('Next Icon', 'gutenverse-news'),
+            component: IconControl
+        },
+        {
+            id: 'prevIcon',
+            label: __('Previous Icon', 'gutenverse-news'),
+            component: IconControl
+        },
+        {
             id: 'metaDateFormat',
             label: __('Date Format', 'gutenverse-news'),
             description: __('Choose which date format you want to use.', 'gutenverse-news'),

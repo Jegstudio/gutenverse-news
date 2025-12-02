@@ -4,6 +4,8 @@ import { settingPanel } from './panel-setting';
 import { generalPanel } from './panel-general';
 import { designPanel } from './panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { tickerTitlePanel } from "./panel-ticker-title";
+import { navigationPanel } from "./panel-navigation-panel";
 
 export const panelList = () => {
     return [
@@ -23,12 +25,18 @@ export const panelList = () => {
         },
         {
             title: __('Design', 'gutenverse-news'),
-            panelArray: (props) => designPanel({
-                ...props,
-                styleId: 'news-ticker-background',
-                normalOptions: [ 'default', 'gradient' ],
-            }),
-            tabRole: TabSetting
+            panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Ticker Title', 'gutenverse-news'),
+            panelArray: tickerTitlePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Navigation', 'gutenverse-news'),
+            panelArray: navigationPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),

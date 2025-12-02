@@ -57,6 +57,8 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        nextIcon,
+        prevIcon,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -239,8 +241,8 @@ const NewsTickerBlock = compose(
                             {ticker && initTicker(false)}
                         </div>
                         <div className="gvnews_news_ticker_control">
-                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><span><i className="fas fa-angle-right"></i></span></div>
-                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><span><i className="fas fa-angle-left"></i></span></div>
+                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i className={nextIcon}></i></div>
+                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><i className={prevIcon}></i></div>
                         </div>
                     </div>
                 </div>
