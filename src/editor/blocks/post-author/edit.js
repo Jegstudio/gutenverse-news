@@ -84,7 +84,7 @@ const PostAuthor = compose(
                 const metas = author.meta ? author.meta.map((meta, key) => {
                     return (
                         <a key={index} className="url" href="#" onClick={(e) => e.preventDefault()}>
-                            <i className={`fa ${meta.value}`}></i>
+                            <i className={meta.value}></i>
                         </a>
                     );
                 }) : (
