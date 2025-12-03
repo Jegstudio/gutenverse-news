@@ -27,10 +27,8 @@ const Block7Columns = props => {
                 <h3 property="headline" className="gvnews_post_title">
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </h3>
-                <div className='bottom-content'>
-                    <ThumbModule size={500} cat={false} post={props.post} imageSize={renderedImageSizeMain} />
-                    <ContentModule title={false} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
-                </div>
+                <ThumbModule size={500} cat={false} post={props.post} imageSize={renderedImageSizeMain} />
+                <ContentModule title={false} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </article>
         );
     };

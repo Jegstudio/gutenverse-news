@@ -1417,7 +1417,9 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['contentAlign'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content  ",
+					'selector'       => "
+										.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content,
+										.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_post_title",
 					'property'       => function ( $value ) {
 						return "text-align: {$value};";
 					},
@@ -1473,6 +1475,16 @@ class Block extends StyleAbstract {
 					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content  ",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['contentMargin'],
+					'device_control' => true,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}",
+					'property'       => function ( $value ) {
+						return 'column-gap: initial;';
 					},
 					'value'          => $this->attrs['contentMargin'],
 					'device_control' => true,

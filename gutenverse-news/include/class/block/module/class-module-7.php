@@ -41,17 +41,15 @@ class Module_7 extends Module_View_Abstract {
                     <h3 class=\"gvnews_post_title\">
                         <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
                     </h3>
-                    <div class="bottom-content">
-						<div class="gvnews_thumb">
-							' . gvnews_edit_post( $post_id, 'right' ) . "
-							<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
-						</div>
-						<div class=\"gvnews_postblock_content\">
-							{$this->post_meta_1($post)}
-							<div class=\"gvnews_post_excerpt\">
-								<p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-								{$read_more}
-							</div>
+                    <div class="gvnews_thumb">
+						' . gvnews_edit_post( $post_id, 'right' ) . "
+						<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+					</div>
+					<div class=\"gvnews_postblock_content\">
+						{$this->post_meta_1($post)}
+						<div class=\"gvnews_post_excerpt\">
+							<p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
+							{$read_more}
 						</div>
 					</div>
                 </article>";

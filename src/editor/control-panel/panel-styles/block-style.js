@@ -1251,7 +1251,10 @@ const getBlockStyle = (
         'type': 'plain',
         'responsive': true,
         'id': 'contentAlign',
-        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+        'selector': [
+            `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+            `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_post_title`
+        ],
         'properties': [
             {
                 'name': 'text-align',
@@ -1310,7 +1313,6 @@ const getBlockStyle = (
     };
 
     if (isNotEmpty(attributes['contentMargin'])) {
-
         data.push({
             'type': 'dimension',
             'id': 'contentMargin',
@@ -1322,6 +1324,19 @@ const getBlockStyle = (
                 }
             ],
             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'contentMargin',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'column-gap',
+                    'valueType': 'pattern',
+                    'pattern': 'initial;',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
         });
     }
 
