@@ -160,7 +160,7 @@ const Slider1Block = compose(
         }
         return (
             <>
-                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''}>
+                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''} data-class-next={nextButtonIcon} data-class-prev={prevButtonIcon}>
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">
@@ -307,39 +307,10 @@ const Slider1Block = compose(
         if (firstRender.current) {
             return;
         }
-        if ('function' === typeof window.gvnewsSliderModule && postData.length > 0 && block) {
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if (iframe) {
-                target = iframe.contentDocument;
-            }
-            let slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
-            if (slider.length) {
-                u(slider).each(function (ele) {
-                    window.gvnewsSliderModule(ele, {
-                        container: ele,
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                const nextButton = u(info.nextButton).addClass('tns-next');
-                                
-                                if (nextButton.nodes.length > 0) {
-                                    nextButton.nodes[0].innerHTML = `<i class="${nextButtonIcon}"></i>`;
-                                }
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                const prevButton = u(info.prevButton).addClass('tns-prev');
-                                if (prevButton.nodes.length > 0) {
-                                    prevButton.nodes[0].innerHTML = `<i class="${prevButtonIcon}"></i>`;
-                                }
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
         }
-    }, [
-        block,
-    ]);
+    }, [block]);
 
     return <>
         <CopyElementToolbar {...props} />

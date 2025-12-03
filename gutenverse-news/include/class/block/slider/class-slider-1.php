@@ -116,20 +116,13 @@ class Slider_1 extends Slider_View_Abstract {
 					'autoplay'     => esc_attr( $attr['enable_autoplay'] ),
 					'delay'        => esc_attr( $autoplay_delay ),
 					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
-				)
-			);
-
-			$data_navigation_icon = esc_attr(
-				wp_json_encode(
-					array(
-						'classNext' => $attr['nextButtonIcon'],
-						'classPrev' => $attr['prevButtonIcon'],
-					),
+					'class-next'   => $attr['nextButtonIcon'],
+					'class-prev'   => $attr['prevButtonIcon'],
 				)
 			);
 
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\" data-navigation-icon=\"{$data_navigation_icon}\">
+			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
                     <div class=\"gvnews_slider_type_1 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>
