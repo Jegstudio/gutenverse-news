@@ -29,6 +29,12 @@ export const tickerTitlePanel = (props) => {
             component: ColorControl,
         },
         {
+            id: 'titleBackgroundColor',
+            label: __('Background Color', 'gutenverse-news'),
+            component: ColorControl,
+            options: ['default', 'gradient'],
+        },
+        {
             id: 'iconTextSize',
             label: __('Icon Size', 'gutenverse-news'),
             component: RangeControl,
@@ -110,12 +116,6 @@ export const tickerTitlePanel = (props) => {
                     ],
                 }
             ]
-        },
-        {
-            id: 'titleBackgroundColor',
-            label: __('Background Color', 'gutenverse-news'),
-            component: ColorControl,
-            options: ['default', 'gradient'],
         },
         {
             id: 'titleBorder',

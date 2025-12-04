@@ -64,7 +64,15 @@ class News_Ticker extends StyleAbstract {
 			);
 		}
 		if ( isset( $this->attrs['titleBackgroundColor'] ) ) {
-			$this->handle_background( ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_breakingnews_title", $this->attrs['titleBackgroundColor'] );
+			$this->inject_style(
+				array(
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_breakingnews_title",
+					'property' => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'    => $this->attrs['titleBackgroundColor'],
+				)
+			);
 		}
 
 		if ( isset( $this->attrs['titleBorder'] ) ) {
@@ -309,6 +317,19 @@ class News_Ticker extends StyleAbstract {
 		}
 
 		// Border
+
+
+		if ( isset( $this->attrs['contentBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector' => ".{$this->element_id} .gvnews_news_ticker",
+					'property' => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'    => $this->attrs['contentBackground'],
+				)
+			);
+		}
 		if ( isset( $this->attrs['contentBorder'] ) ) {
 			$this->handle_border( 'contentBorder', ".{$this->element_id} .gvnews_news_ticker" );
 		}

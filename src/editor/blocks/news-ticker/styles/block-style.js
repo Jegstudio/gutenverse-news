@@ -51,6 +51,18 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['contentBackground']) && data.push({
+        'type': 'color',
+        'id': 'contentBackground',
+        'selector': `.${elementId} .gvnews_news_ticker`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     isNotEmpty(attributes['contentBorder']) && data.push({
         'type': 'border',
         'id': 'contentBorder',
@@ -405,9 +417,15 @@ const getBlockStyle = (elementId, attributes) => {
     });
 
     isNotEmpty(attributes['titleBackgroundColor']) && data.push({
-        'type': 'background',
+        'type': 'color',
         'id': 'titleBackgroundColor',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breakingnews_title`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
     });
 
     isNotEmpty(attributes['titleBorder']) && data.push({
