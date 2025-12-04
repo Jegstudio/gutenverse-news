@@ -318,7 +318,6 @@ class News_Ticker extends StyleAbstract {
 
 		// Border
 
-
 		if ( isset( $this->attrs['contentBackground'] ) ) {
 			$this->inject_style(
 				array(
@@ -389,7 +388,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['postTitleColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector' => ".{$this->element_id} .gvnews_news_ticker_item a",
+					'selector' => ".{$this->element_id} .gvnews_news_ticker_item a , .{$this->element_id} .gvnews_news_ticker_item",
 					'property' => function ( $value ) {
 						return $this->handle_color( $value, 'color' ); },
 					'value'    => $this->attrs['postTitleColor'],

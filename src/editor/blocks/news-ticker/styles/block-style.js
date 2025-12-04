@@ -370,7 +370,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['postTitleColor']) && data.push({
         'type': 'color',
         'id': 'postTitleColor',
-        'selector': `.${elementId} .gvnews_news_ticker_item a`,
+        'selector': `.${elementId} .gvnews_news_ticker_item a , .${elementId} .gvnews_news_ticker_item`,
         'properties': [
             {
                 'name': 'color',
