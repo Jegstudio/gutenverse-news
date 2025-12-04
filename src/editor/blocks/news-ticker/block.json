@@ -238,9 +238,6 @@
 		"navButtonHeight": {
 			"type": "object"
 		},
-		"navLineColor": {
-			"type": "object"
-		},
 		"containerBorderWidth": {
 			"type": "object"
 		},
@@ -284,6 +281,12 @@
 			"type": "object"
 		},
 		"navButtonBorderResponsive": {
+			"type": "object"
+		},
+		"navButtonBorderHover": {
+			"type": "object"
+		},
+		"navButtonBorderHoverResponsive": {
 			"type": "object"
 		},
 		"postTitleTypography": {

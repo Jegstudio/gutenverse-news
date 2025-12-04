@@ -316,6 +316,26 @@ class News_Ticker extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['navButtonBorderHover'] ) ) {
+			$this->handle_border( 'navButtonBorderHover', ".{$this->element_id} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover" );
+
+		}
+		if ( isset( $this->attrs['navButtonBorderHoverResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['navButtonBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
+
 		// Border
 
 		if ( isset( $this->attrs['contentBackground'] ) ) {

@@ -193,6 +193,18 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow`,
     });
 
+    isNotEmpty(attributes['navButtonBorderHover']) && data.push({
+        'type': 'border',
+        'id': 'navButtonBorderHover',
+        'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover`,
+    });
+
+    isNotEmpty(attributes['navButtonBorderHoverResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'navButtonBorderHoverResponsive',
+        'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover`,
+    });
+
     isNotEmpty(attributes['navButtonHeight']) && data.push({
         'type': 'plain',
         'id': 'navButtonHeight',

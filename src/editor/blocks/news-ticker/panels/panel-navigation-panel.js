@@ -180,14 +180,8 @@ export const navigationPanel = (props) => {
             options: ['default', 'gradient'],
         },
         {
-            id: 'navLineColor',
-            label: __('Line Color', 'gutenverse-news'),
-            show: !switcher.navButton || switcher.navButton === 'normal',
-            component: ColorControl,
-        },
-        {
             id: 'navButtonBorder',
-            label: __('Border', 'gutenverse'),
+            label: __('Border Button', 'gutenverse'),
             component: BorderControl,
             liveStyle: [
                 {
@@ -200,7 +194,7 @@ export const navigationPanel = (props) => {
 
         {
             id: 'navButtonBorderResponsive',
-            label: __('Border', 'gutenverse'),
+            label: __('Border Button', 'gutenverse'),
             show: device !== 'Desktop',
             component: BorderResponsiveControl,
             liveStyle: [
@@ -208,6 +202,35 @@ export const navigationPanel = (props) => {
                     'type': 'border',
                     'id': 'navButtonBorderResponsive',
                     'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow`,
+                }
+            ]
+        },
+        {
+            id: 'navButtonBorderHover',
+            label: __('Border Button', 'gutenverse'),
+            component: BorderControl,
+            show: switcher.navButton === 'hover',
+
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'navButtonBorderHover',
+                    'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover`,
+                }
+            ]
+        },
+
+        {
+            id: 'navButtonBorderHoverResponsive',
+            label: __('Border Button', 'gutenverse'),
+            show: device !== 'Desktop',
+            component: BorderResponsiveControl,
+            show: switcher.navButton === 'hover',
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'navButtonBorderHoverResponsive',
+                    'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover`,
                 }
             ]
         },
