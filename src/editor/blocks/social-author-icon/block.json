@@ -1,0 +1,78 @@
+{
+    "apiVersion": 3,
+    "name": "gutenverse/news-social-author-icon",
+    "title": "Social Author Icon",
+    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Social_Author_Icon",
+    "description": "Display the author's social media icon.",
+    "category": "gvnews-single-post",
+    "attributes": {
+        "elementId": {
+            "type": "string"
+        },
+        "authorType": {
+            "type": "string",
+            "default": "dynamic"
+        },
+        "socialMedia": {
+            "type": "object",
+            "default": {}
+        },
+        "hideIfEmpty": {
+            "type": "boolean",
+            "default": false
+        },
+        "defaultUrl": {
+            "type": "string"
+        },
+        "authorId": {
+            "type": "number"
+        },
+        "icon": {
+            "type": "string",
+            "default": "fab fa-wordpress"
+        },
+        "iconSize": {
+             "type": "object"
+        },
+        "iconColor": {
+             "type": "object"
+        },
+        "iconBackground": {
+             "type": "object"
+        },
+         "margin": {
+            "type": "object"
+        },
+        "padding": {
+            "type": "object"
+        },
+        "zIndex": {
+            "type": "object"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
+        },
+        "hideDesktop": {
+            "type": "boolean"
+        },
+        "hideTablet": {
+            "type": "boolean"
+        },
+        "hideMobile": {
+            "type": "boolean"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
+        }
+    },
+    "supports": {
+        "className": false
+    },
+    "keywords": [
+        "social",
+        "author",
+        "icon"
+    ]
+}

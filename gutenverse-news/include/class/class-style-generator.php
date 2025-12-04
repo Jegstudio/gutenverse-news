@@ -28,6 +28,7 @@ use GUTENVERSE\NEWS\Style\Slider;
 use GUTENVERSE\NEWS\Style\User_List;
 use GUTENVERSE\NEWS\Style\Post_Title;
 use GUTENVERSE\NEWS\Style\Post_Tag;
+use GUTENVERSE\NEWS\Style\Social_Author_Icon;
 
 /**
  * Class Style Generator
@@ -131,6 +132,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-post-featured' === $name:
 					$instance = new Post_Featured( $attrs, $name );
+					break;
+				case 'gutenverse/news-social-author-icon' === $name:
+					$instance = new Social_Author_Icon( $attrs, $name );
 					break;
 			}
 		}

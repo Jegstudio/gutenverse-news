@@ -449,31 +449,11 @@ class Init {
 	/**
 	 * Add additional admin contact
 	 *
+	 * @param array $contacts Contact methods.
+	 *
 	 * @return array
 	 */
-	public function add_additional_admin_contact() {
-		return array(
-			'facebook'   => 'Facebook',
-			'tiktok'     => 'Tiktok',
-			'twitter'    => 'Twitter',
-			'linkedin'   => 'Linkedin',
-			'pinterest'  => 'Pinterest',
-			'behance'    => 'Behance',
-			'github'     => 'Github',
-			'flickr'     => 'Flickr',
-			'tumblr'     => 'Tumblr',
-			'dribbble'   => 'Dribbble',
-			'soundcloud' => 'Soundcloud',
-			'instagram'  => 'Instagram',
-			'vimeo'      => 'Vimeo',
-			'youtube'    => 'Youtube',
-			'reddit'     => 'Reddit',
-			'vk'         => 'Vk',
-			'weibo'      => 'Weibo',
-			'twitch'     => 'Twitch',
-			'rss'        => 'Rss',
-			'threads'    => 'Threads',
-			'xing'       => 'Xing',
-		);
+	public function add_additional_admin_contact( $contacts ) {
+		return array_merge( $contacts, Social_Contacts::gvnews_admin_contact() );
 	}
 }

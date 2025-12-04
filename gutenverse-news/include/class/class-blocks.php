@@ -155,6 +155,7 @@ class Blocks {
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/user-list/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/rss/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/post-author/block.json' );
+		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/social-author-icon/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/post-breadcrumb/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/post-comment/block.json' );
 		$this->register_dynamic_block( GUTENVERSE_NEWS_DIR . './block/post-featured-image/block.json' );

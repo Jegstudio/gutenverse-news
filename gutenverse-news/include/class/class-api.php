@@ -9,7 +9,6 @@
 
 namespace GUTENVERSE\NEWS;
 
-use GUTENVERSE\NEWS\Block\Post_Author;
 use GUTENVERSE\NEWS\Util\Module_Query;
 use GUTENVERSE\NEWS\Util\Cache;
 
@@ -165,6 +164,16 @@ class Api {
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'dismiss_notice' ),
 				'permission_callback' => array( $this, 'edit_pages' ),
+			)
+		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'get-author-social-media',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_author_social_media' ),
+				'permission_callback' => '__return_true',
 			)
 		);
 	}
@@ -411,7 +420,7 @@ class Api {
 	 */
 	public function get_post_author( $request ) {
 		$attr         = $request->get_param( 'attr' );
-		$social_array = ( new Post_Author() )->social_icon_list();
+		$social_array = Social_Contacts::social_icon_list_class();
 		$data         = array();
 
 		if ( ! is_array( $attr['author'] ) ) {
@@ -573,7 +582,7 @@ class Api {
 	public function get_author( $attributes ) {
 		$data         = array();
 		$users        = get_users();
-		$social_array = ( new Post_Author() )->social_icon_list();
+		$social_array = Social_Contacts::social_icon_list_class();
 		$name         = '';
 		foreach ( $users as $user ) {
 			$meta = false;
@@ -929,5 +938,16 @@ class Api {
 	 */
 	public function response_success( $args ) {
 		return new \WP_REST_Response( $args, 200 );
+	}
+
+	/**
+	 * Get Author Social Media.
+	 *
+	 * @return array
+	 */
+	public function get_author_social_media() {
+		$result = array();
+		$result = Social_Contacts::gvnews_admin_contact();
+		return $result;
 	}
 }
