@@ -125,7 +125,6 @@ class Archive extends StyleAbstract {
 		$this->archive_title();
 		$this->archive_breadcrumb();
 		$this->archive_pagination();
-		$this->archive_description();
 		$this->archive_block();
 	}
 
@@ -234,38 +233,6 @@ class Archive extends StyleAbstract {
 			}
 		}
 		// missing style or typographpy only?
-	}
-
-	/**
-	 * Generate style for archive description
-	 */
-	private function archive_description() {
-		if ( 'gutenverse/news-archive-description' === $this->name ) {
-
-			if ( isset( $this->attrs['descTypography'] ) ) {
-				$this->inject_typography(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
-						'property'       => function ( $value ) {},
-						'value'          => $this->attrs['descTypography'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['textColor'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-desc h2",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['textColor'],
-						'device_control' => false,
-					)
-				);
-			}
-		}
 	}
 
 	/**

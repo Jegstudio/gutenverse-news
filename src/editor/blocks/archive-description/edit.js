@@ -24,6 +24,7 @@ const ArchiveDescription = compose(
 
     const {
         elementId,
+        tagType,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -44,7 +45,7 @@ const ArchiveDescription = compose(
         className: classnames(
             'gvnews-block',
             'gvnews-block-wrapper',
-            'gvnews-archive-description',
+            'gvnews-archive-desc',
             elementId,
             animationClass,
             displayClass,
@@ -52,13 +53,13 @@ const ArchiveDescription = compose(
         ref: elementRef
     });
 
+    const TagName = tagType || 'h2';
+
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div {...blockProps}>
-            <div className="gvnews-archive-desc">
-                <h2>{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</h2>
-            </div>
+            <TagName className="archive-desc">{__('Archive description goes here, it will change into related archive description on frontend website.', 'gutenverse-news')}</TagName>
         </div>
     </>;
 });
