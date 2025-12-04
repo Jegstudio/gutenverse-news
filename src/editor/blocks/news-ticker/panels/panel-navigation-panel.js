@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { BorderControl, BorderResponsiveControl, ColorControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const navigationPanel = (props) => {
     const {
@@ -7,6 +8,7 @@ export const navigationPanel = (props) => {
         switcher,
         setSwitcher,
     } = props;
+    const device = getDeviceType();
 
     return [
         {
@@ -70,6 +72,66 @@ export const navigationPanel = (props) => {
             ]
         },
         {
+            id: 'navButtonHeight',
+            label: __('Button Height', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 200,
+            step: 1,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'navButtonHeight',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_news_ticker_arrow`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'navSeparatorWidth',
+            label: __('Separator Width', 'gutenverse'),
+            min: 0,
+            max: 50,
+            step: 1,
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'navSeparatorWidth',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_news_ticker_control .nav-separator`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             id: '__navButton',
             component: SwitchControl,
             options: [
@@ -98,6 +160,13 @@ export const navigationPanel = (props) => {
             options: ['default', 'gradient'],
         },
         {
+            id: 'navSeparatorColor',
+            label: __('Separator Color', 'gutenverse-news'),
+            show: !switcher.navButton || switcher.navButton === 'normal',
+            component: ColorControl,
+            options: ['default', 'gradient'],
+        },
+        {
             id: 'navHoverColor',
             show: switcher.navButton === 'hover',
             label: __('Icon Color', 'gutenverse-news'),
@@ -115,6 +184,32 @@ export const navigationPanel = (props) => {
             label: __('Line Color', 'gutenverse-news'),
             show: !switcher.navButton || switcher.navButton === 'normal',
             component: ColorControl,
+        },
+        {
+            id: 'navButtonBorder',
+            label: __('Border', 'gutenverse'),
+            component: BorderControl,
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'navButtonBorder',
+                    'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow`,
+                }
+            ]
+        },
+
+        {
+            id: 'navButtonBorderResponsive',
+            label: __('Border', 'gutenverse'),
+            show: device !== 'Desktop',
+            component: BorderResponsiveControl,
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'navButtonBorderResponsive',
+                    'selector': `.${elementId} .gvnews_news_ticker_control .gvnews_news_ticker_arrow`,
+                }
+            ]
         },
 
     ];

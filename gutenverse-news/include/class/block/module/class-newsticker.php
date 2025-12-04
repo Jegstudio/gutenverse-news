@@ -84,10 +84,11 @@ class Newsticker extends Block_View_Abstract {
                     <div class=\"gvnews_news_ticker_items\">
                         {$items}
                     </div>
-                    <div class=\"gvnews_news_ticker_control\">
-						<div class=\"gvnews_news_ticker_next gvnews_news_ticker_arrow\"><span><i class=\"fas fa-angle-right\"></i></span></div>
-                        <div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\"><span><i class=\"fas fa-angle-left\"></i></span></div>
-                    </div>
+                </div>
+				<div class=\"gvnews_news_ticker_control\">
+					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\"><i class=\"fas fa-angle-left\"></i></div>
+					<span class=\"nav-separator\"></span>
+					<div class=\"gvnews_news_ticker_next gvnews_news_ticker_arrow\"><i class=\"fas fa-angle-right\"></i></div>
                 </div>
             </div>";
 
