@@ -1253,7 +1253,7 @@ const getBlockStyle = (
         'id': 'contentAlign',
         'selector': [
             `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
-            `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_post_title`
+            `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_heading`
         ],
         'properties': [
             {

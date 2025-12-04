@@ -1419,7 +1419,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => "
 										.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content,
-										.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_post_title",
+										.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_heading",
 					'property'       => function ( $value ) {
 						return "text-align: {$value};";
 					},
