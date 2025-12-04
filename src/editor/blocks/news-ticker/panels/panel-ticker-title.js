@@ -1,11 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, TypographyControl, DimensionControl } from 'gutenverse-core/controls';
+import { BorderControl, BorderResponsiveControl, ColorControl, RangeControl, TypographyControl, DimensionControl } from 'gutenverse-core/controls';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const tickerTitlePanel = (props) => {
     const {
         elementId,
     } = props;
-
+    const device = getDeviceType();
     return [
         {
             id: 'titleTextTypography',
@@ -115,6 +116,33 @@ export const tickerTitlePanel = (props) => {
             label: __('Background Color', 'gutenverse-news'),
             component: ColorControl,
             options: ['default', 'gradient'],
+        },
+        {
+            id: 'titleBorder',
+            label: __('Border', 'gutenverse'),
+            component: BorderControl,
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'titleBorder',
+                    'selector': `.${elementId} .gvnews_breakingnews_title`,
+
+                }
+            ]
+        },
+
+        {
+            id: 'titleBorderResponsive',
+            label: __('Border', 'gutenverse'),
+            show: device !== 'Desktop',
+            component: BorderResponsiveControl,
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'titleBorder',
+                    'selector': `.${elementId} .gvnews_breakingnews_title`,
+                }
+            ]
         },
     ];
 };

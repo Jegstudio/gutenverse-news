@@ -410,6 +410,20 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breakingnews_title`,
     });
 
+    isNotEmpty(attributes['titleBorder']) && data.push({
+        'type': 'border',
+        'id': 'titleBorder',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breakingnews_title`,
+
+    });
+
+    isNotEmpty(attributes['titleBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'titleBorderResponsive',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_breakingnews_title`,
+
+    });
+
     isNotEmpty(attributes['titleTextColor']) && data.push({
         'type': 'color',
         'id': 'titleTextColor',

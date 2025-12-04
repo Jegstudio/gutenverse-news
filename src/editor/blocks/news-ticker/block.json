@@ -300,6 +300,12 @@
 			"default": {
 				"Desktop": "38"
 			}
+		},
+		"titleBorder": {
+			"type": "object"
+		},
+		"titleBorderResponsive": {
+			"type": "object"
 		}
 	},
 	"supports": {

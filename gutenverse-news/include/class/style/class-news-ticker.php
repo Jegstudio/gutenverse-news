@@ -66,6 +66,26 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['titleBackgroundColor'] ) ) {
 			$this->handle_background( ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_breakingnews_title", $this->attrs['titleBackgroundColor'] );
 		}
+
+		if ( isset( $this->attrs['titleBorder'] ) ) {
+			$this->handle_border( 'titleBorder', ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_breakingnews_title" );
+		}
+		if ( isset( $this->attrs['titleBorderResponsive'] ) ) {
+
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_breakingnews_title",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['titleBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
 		if ( isset( $this->attrs['titleTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
