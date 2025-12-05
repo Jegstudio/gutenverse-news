@@ -1,57 +1,69 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, TextControl } from 'gutenverse-core/controls';
 
 export const generalPanel = (props) => {
     const {
-        elementId,
+        paginationNavtext,
     } = props;
 
     return [
         {
             'id': 'paginationMode',
             'component': SelectControl,
-            'label': __( 'Pagination Mode', 'gutenverse-news' ),
-            'description': __( 'Choose which pagination mode that fit with your block.', 'gutenverse-news' ),
+            'label': __('Pagination Mode', 'gutenverse-news'),
+            'description': __('Choose which pagination mode that fit with your block.', 'gutenverse-news'),
             'options': [
                 {
                     'value': 'nav_1',
-                    'label': __( 'Normal - Navigation 1', 'gutenverse-news' )
+                    'label': __('Normal - Navigation 1', 'gutenverse-news')
                 },
                 {
                     'value': 'nav_2',
-                    'label': __( 'Normal - Navigation 2', 'gutenverse-news' )
+                    'label': __('Normal - Navigation 2', 'gutenverse-news')
                 },
                 {
                     'value': 'nav_3',
-                    'label': __( 'Normal - Navigation 3', 'gutenverse-news' )
+                    'label': __('Normal - Navigation 3', 'gutenverse-news')
                 }
             ]
         },
         {
             'id': 'paginationAlign',
             'component': SelectControl,
-            'label': __( 'Pagination Align', 'gutenverse-news' ),
-            'description': __( 'Choose pagination alignment.', 'gutenverse-news' ),
+            'label': __('Pagination Align', 'gutenverse-news'),
+            'description': __('Choose pagination alignment.', 'gutenverse-news'),
             'options': [
                 {
                     'value': 'left',
-                    'label': __( 'Left', 'gutenverse-news' )
+                    'label': __('Left', 'gutenverse-news')
                 },
                 {
                     'value': 'center',
-                    'label': __( 'Center', 'gutenverse-news' )
+                    'label': __('Center', 'gutenverse-news')
                 }
             ]
         },
         {
             'id': 'paginationNavtext',
             'component': CheckboxControl,
-            'label': __( 'Show Navigation Text', 'gutenverse-news' )
+            'label': __('Show Navigation Text', 'gutenverse-news')
+        },
+        {
+            id: 'paginationPrevText',
+            show: paginationNavtext,
+            label: __('"Previous" Text', 'gutenverse'),
+            component: TextControl
+        },
+        {
+            id: 'paginationNextText',
+            show: paginationNavtext,
+            label: __('"Next" Text', 'gutenverse'),
+            component: TextControl
         },
         {
             'id': 'paginationPageinfo',
             'component': CheckboxControl,
-            'label': __( 'Show Page Info', 'gutenverse-news' )
+            'label': __('Show Page Info', 'gutenverse-news')
         }
     ];
 };
