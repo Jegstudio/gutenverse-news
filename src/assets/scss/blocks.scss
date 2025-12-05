@@ -13246,6 +13246,11 @@ video {
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  span a,
+  span {
+    line-height: inherit !important;
+  }
+
   .post-date {
     font-size: 11px;
     margin-left: 10px;
