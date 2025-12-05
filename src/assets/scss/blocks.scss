@@ -1346,6 +1346,11 @@
   .okayNav__menu-toggle {
     width: 30px;
   }
+
+  &.okayNav {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .gvnews_subcat_list {
