@@ -40,6 +40,12 @@
         "paginationTypography": {
             "type": "object"
         },
+        "pagintaionInfoTypography": {
+            "type": "object"
+        },
+        "paginationButtonTypography": {
+            "type": "object"
+        },
         "animation": {
             "type": "object",
             "default": []
@@ -123,6 +129,86 @@
             "copyStyle": true
         },
         "numberGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "lineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "lineGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "infoGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationInfoColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationCurrentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationDisabledColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationCurrentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverBackground": {
             "type": "object",
             "copyStyle": true
         },

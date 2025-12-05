@@ -10,7 +10,9 @@
 namespace GUTENVERSE\NEWS;
 
 use GUTENVERSE\NEWS\Style\Archive;
+use GUTENVERSE\NEWS\Style\Archive_Description;
 use GUTENVERSE\NEWS\Style\Archive_Hero;
+use GUTENVERSE\NEWS\Style\Archive_Pagination;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
@@ -102,6 +104,12 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-archive-hero' === $name:
 					$instance = new Archive_Hero( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-description' === $name:
+					$instance = new Archive_Description( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-pagination' === $name:
+					$instance = new Archive_Pagination( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );

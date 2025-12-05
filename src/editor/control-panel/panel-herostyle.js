@@ -1,8 +1,19 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, CheckboxControl, ColorControl, CompositeControl, TypographyControl } from 'gutenverse-core/controls';
+import { BackgroundControl, ColorControl, TypographyControl, CheckboxControl, RepeaterControl } from 'gutenverse-core/controls';
 
 export const styleHero = (props, typeCount = 1) => {
+    let numberItem = 0;
 
+    const getNumberItem = () => {
+        if (!props.heroItemOverlay) {
+            return;
+        }
+        if ((numberItem + 1) > props.heroItemOverlay.length) {
+            numberItem = 0;
+        }
+        numberItem++;
+        return numberItem;
+    };
     return [
         {
             id: 'typography',
@@ -38,11 +49,14 @@ export const styleHero = (props, typeCount = 1) => {
         {
             id: 'heroItemOverlay',
             label: __('Hero Style', 'gutenverse-news'),
-            component: CompositeControl,
-            titleFormat: (value, index) => {
-                return `Item ${index+1}`;
+            component: RepeaterControl,
+            titleFormat: () => {
+                return `Item ${getNumberItem()}`;
             },
-            allowAddItem: false,
+            isAddNew: false,
+            isRemove: false,
+            isDuplicate: false,
+            isDragable: false,
             options: [
                 {
                     id: 'overlayEnable',
@@ -54,7 +68,7 @@ export const styleHero = (props, typeCount = 1) => {
                     show: value => value.overlayEnable,
                     id: 'OverlayGradient',
                     allowDeviceControl: true,
-                    options: [ 'gradient' ],
+                    options: ['gradient'],
                     component: BackgroundControl,
                 },
             ],

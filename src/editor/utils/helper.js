@@ -195,4 +195,15 @@ const getModuleOptions = () => {
     };
 };
 
-export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions, gutenverseProActive };
+export {
+    createChunks,
+    searchPosts,
+    searchPages,
+    searchCategory,
+    searchAuthor,
+    searchTag,
+    searchCustomPostTemplate,
+    getParentColumnWidth,
+    getModuleOptions,
+    gutenverseProActive,
+};

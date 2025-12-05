@@ -533,5 +533,4 @@ const getBlockStyle = (elementId, attributes) => {
     return data;
 };
 
-
 export default getBlockStyle;
