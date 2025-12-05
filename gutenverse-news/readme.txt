@@ -152,6 +152,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add option to disable the read more button on blocks
 * Add more styling options on Archive Pagintaion block
 * Add navigaiton styling option on SLider - 1 block
+* Add more styling options on News Ticker block
 * Remove JQuery usage on all blocks
 * Imporve asset load mechanism on all blocks
 
