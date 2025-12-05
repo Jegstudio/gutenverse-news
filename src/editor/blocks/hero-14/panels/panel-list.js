@@ -81,7 +81,7 @@ export const panelList = () => {
             {
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: responsivePanel
+                panelArray: responsivePanel,
             },
             {
                 title: __('Spacing', 'gutenverse-news'),

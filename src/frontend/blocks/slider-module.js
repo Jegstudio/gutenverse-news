@@ -102,13 +102,27 @@ class GutenverseFirstSlider {
     }
 
     init() {
-        this.theSlider = u(this.container).find(this.options.container)?.nodes[0];
+
+        let isSlider = false;
+        if (typeof this.options.container === 'string') {
+            isSlider = u(this.container).is(this.options.container);
+        } else {
+            isSlider = this.container === this.options.container;
+        }
+
+        if (isSlider) {
+            this.theSlider = this.container;
+        } else {
+            this.theSlider = u(this.container).find(this.options.container)?.nodes[0];
+        }
         this.theWrapper = u(this.theSlider).parent('.gvnews_slider_wrapper')?.nodes[0];
         this.theThumbnail = u(this.theWrapper).find(this.options.navContainer)?.nodes[0];
 
         this.options.hover = this.theSlider.dataset.hoverAction;
         this.options.autoplay = this.theSlider.dataset.autoplay;
         this.options.autoplayTimeout = this.theSlider.dataset.delay;
+        let nextClass = this.theSlider.dataset.classNext || 'fas fa-chevron-right';
+        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-rigleft';
 
         if (!u(this.theSlider).hasClass('gvnews_tns_active')) {
             this.mainSlider = window.tns({
@@ -126,11 +140,14 @@ class GutenverseFirstSlider {
                 lazyloadSelector: '.gvnews_slide_item .owl-lazy',
                 textDirection: this.options.textDirection,
                 onInit: function (info) {
+
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
+                        u(info.nextButton).html(`<i class="${nextClass}"></i>`);
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
+                        u(info.prevButton).html(`<i class="${prevClass}"></i>`);
                     }
                 },
             });
@@ -469,8 +486,8 @@ class GutenverseSliderModule {
         });
     }
 
-    window.gvnewsSliderModule = (element) => {
-        new GutenverseSliderModule(element);
+    window.gvnewsSliderModule = (element, options = {}) => {
+        new GutenverseSliderModule(element, options);
     };
 })();
 
