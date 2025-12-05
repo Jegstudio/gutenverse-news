@@ -18,6 +18,7 @@ import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions } from '../../utils/helper';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { timeDifference } from '../../utils/date-util';
 
 const moduleOption = getModuleOptions();
 
@@ -62,6 +63,7 @@ const NewsTickerBlock = compose(
         contentBorderResponsive,
         contentHeight,
         contentHeightResponsive,
+        showMeta
     } = attributes;
 
     const elementRef = useRef(null);
@@ -183,9 +185,9 @@ const NewsTickerBlock = compose(
                 <span>
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </span>
-                <span className="post-date">
+                {showMeta && <span className="post-date">
                     {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
-                </span>
+                </span>}
             </div>
         );
     }
@@ -225,6 +227,7 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        showMeta
     ]);
 
     useEffect(() => {
@@ -233,7 +236,7 @@ const NewsTickerBlock = compose(
                 window.gvnewsNewsticker(blockRef.current);
             }, 100);
         }
-    }, [blockRef, postData, animationDirection]);
+    }, [blockRef, postData, animationDirection, showMeta]);
 
     return <>
         <CopyElementToolbar {...props} />

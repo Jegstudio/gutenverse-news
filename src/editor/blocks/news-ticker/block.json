@@ -309,6 +309,10 @@
 		},
 		"titleBorderResponsive": {
 			"type": "object"
+		},
+		"showMeta": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {

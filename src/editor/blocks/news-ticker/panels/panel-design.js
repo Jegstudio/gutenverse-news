@@ -8,6 +8,7 @@ export const designPanel = (props) => {
         elementId,
         switcher,
         setSwitcher,
+        showMeta
     } = props;
     const device = getDeviceType();
 
@@ -20,6 +21,7 @@ export const designPanel = (props) => {
         },
         {
             id: 'metaTypography',
+            show: showMeta,
             label: __('Meta Typography', 'gutenverse-news'),
             description: __('This option will change your meta typography.', 'gutenverse-news'),
             component: TypographyControl,
@@ -84,7 +86,7 @@ export const designPanel = (props) => {
         {
             id: 'metaColor',
             label: __('Meta Color', 'gutenverse-news'),
-            show: (!switcher.contentCondition || switcher.contentCondition === 'normal'),
+            show: showMeta && (!switcher.contentCondition || switcher.contentCondition === 'normal'),
             component: ColorControl,
         },
         {
