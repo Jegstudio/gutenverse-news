@@ -18607,47 +18607,60 @@ span.gvnews-category {
 }
 
 .gvnews_slider_type_1_wrapper {
-  .tns-outer .tns-controls button {
-    font-size: 14px;
-    color: #212121;
+  .tns-outer .tns-controls {
     position: absolute;
     bottom: 0;
     right: 0;
-    left: auto;
-    margin: auto;
-    height: 40px;
-    line-height: 40px;
-    width: 40px;
-    text-align: center;
-    background: #fff;
-    border: 0;
-    -webkit-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-    opacity: 1;
-    z-index: 999;
-  }
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    
+    button {
+      font-size: 14px;
+      color: #212121;
+      position: relative;
+      margin: auto;
+      height: 40px;
+      line-height: 40px;
+      width: 40px;
+      text-align: center;
+      background: #fff;
+      border: 0;
+      -webkit-transition: all 0.2s ease;
+      -o-transition: all 0.2s ease;
+      transition: all 0.2s ease;
+      opacity: 1;
+      z-index: 999;
 
-  .tns-controls button {
-    &:before {
-      font-family: 'Font Awesome 6 Free' !important;
-      font-weight: 900;
-    }
-
-    &.tns-next {
-      bottom: 40px;
-      background: #f70d28;
-      color: #fff;
+      &.tns-prev,
+      &.tns-next {
+        margin: 0;
+        right: 0;
+        transition: background-color 0.2s;
+        &::before {
+          display: none;
+        }
+        i {
+          transition: color 0.2s;
+          &.fab {
+            font-family: 'Font Awesome 6 Brands' !important;
+          }
+          &:not(.gtn):not(.fab) {
+            font-family: 'Font Awesome 6 Free' !important;
+          }
+        }
+      }
+      &.tns-next {
+        background: #f70d28;
+        color: #fff;
+      }
     }
   }
 
   button {
-    &.tns-prev:before {
-      content: '\f104' !important;
-    }
-
-    &.tns-next:before {
-      content: '\f105' !important;
+    &:before {
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900;
     }
   }
 
