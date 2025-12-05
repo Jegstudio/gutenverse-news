@@ -31,6 +31,7 @@ abstract class Slider_View_Abstract extends Block_View_Abstract {
 	public function render_module( $attr, $column_class ) {
 		$attr['pagination_number_post'] = 1;
 		$results                        = $this->build_query( $attr );
+
 		return $this->render_element( $results['result'], $attr );
 	}
 
