@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
-import { handleTypography } from 'gutenverse-core/styling';
+import { CheckboxControl, ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const stylePanel = (props) => {
     const {
@@ -19,6 +18,12 @@ export const stylePanel = (props) => {
             id: 'navTypography',
             label: __('Nav Text Typography', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'widthMode',
+            label: __('100% Width', 'gutenverse-news'),
+            component: CheckboxControl,
+            allowDeviceControl: true,
         },
         {
             id: '__stylePrevNextType',

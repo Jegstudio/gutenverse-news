@@ -37,6 +37,19 @@ const getBlockStyle = (elementId, attributes) => {
             }
         ]
     });
+    isNotEmpty(attributes['widthMode']) && data.push({
+        'type': 'plain',
+        'id': 'widthMode',
+        'responsive': true,
+        'selector': `${baseSelector} a`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '100% !important',
+            }
+        ]
+    });
     isNotEmpty(attributes['titleColorHover']) && data.push({
         'type': 'color',
         'id': 'titleColorHover',

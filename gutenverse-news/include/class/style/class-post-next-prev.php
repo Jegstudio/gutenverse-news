@@ -91,6 +91,19 @@ class Post_Next_Prev extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['widthMode'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$this->base_selector} a",
+					'property'       => function ( $value ) {
+						return 'width: 100% !important;';
+					},
+					'value'          => $this->attrs['widthMode'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['titleColor'] ) ) {
 			$this->inject_style(
 				array(
