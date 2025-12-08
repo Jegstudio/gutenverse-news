@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from '@wordpress/element';
-import OkayNav from "../../frontend/okaynav/okaynav";
+import OkayNav from '../../frontend/okaynav/okaynav';
 
 function Valid(value) {
     if ( value && value.length ) {

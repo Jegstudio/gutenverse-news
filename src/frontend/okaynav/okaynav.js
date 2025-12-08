@@ -66,16 +66,18 @@ class OkayNav {
             }
         };
 
-        this.windowResize = this._debounce(() => this._recalcNav(), 100);
+        this.resizeObserver = new ResizeObserver(this._debounce(() => this._recalcNav(), 100));
+        this.resizeObserver.observe(this.parent);
 
         document.addEventListener('click', this.documentClick);
-        window.addEventListener('resize', this.windowResize);
     }
 
     destroy() {
         // Remove event listeners
         document.removeEventListener('click', this.documentClick);
-        window.removeEventListener('resize', this.windowResize);
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
 
         // Move all children from invisible list back to visible list
         if (this.navInvisible && this.navInvisible.children.length > 0) {
@@ -141,10 +143,18 @@ class OkayNav {
         const wrapperWidth = this.parent.offsetWidth * this.options.threshold / 100;
         const navFullWidth = this.nav.offsetWidth;
         const visibleCount = this._getVisibleItemCount();
+        const hiddenCount = this._getHiddenItemCount();
 
         if (visibleCount > 0 && navFullWidth >= wrapperWidth) {
             this._collapseNavItem();
             this._recalcNav();
+        } else if (hiddenCount > 0) {
+            this._expandNavItem();
+            if (this.nav.offsetWidth >= wrapperWidth) {
+                this._collapseNavItem();
+            } else {
+                this._recalcNav();
+            }
         }
 
         if (this._getHiddenItemCount() === 0) {
@@ -160,6 +170,13 @@ class OkayNav {
         this.lastVisibleChildWidth = last.offsetWidth;
         this.navInvisible.prepend(last);
         this.options.itemHidden();
+    }
+
+    _expandNavItem() {
+        const first = this.navInvisible.querySelector('li:first-child');
+        if (!first) return;
+        this.navVisible.appendChild(first);
+        this.options.itemDisplayed();
     }
 
     _debounce(fn, delay) {
