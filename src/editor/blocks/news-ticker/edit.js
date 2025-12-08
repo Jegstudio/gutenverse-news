@@ -16,11 +16,11 @@ import { ModuleSkeleton } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { getModuleOptions } from '../../utils/helper';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { timeDifference } from '../../utils/date-util';
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const NewsTickerBlock = compose(
     withPartialRender,
@@ -57,6 +57,13 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        nextIcon,
+        prevIcon,
+        contentBorder,
+        contentBorderResponsive,
+        contentHeight,
+        contentHeightResponsive,
+        showMeta
     } = attributes;
 
     const elementRef = useRef(null);
@@ -143,6 +150,13 @@ const NewsTickerBlock = compose(
         offsetLoaded,
     ]);
 
+    useEffect(() => {
+        setAttributes({
+            ...attributes,
+            tickerLineHeight: getLineHeight(attributes)
+        });
+    }, [contentBorder, contentBorderResponsive, contentHeight, contentHeightResponsive]);
+
     const blockProps = useBlockProps({
         className: classnames(
             'gvnews-block',
@@ -171,9 +185,9 @@ const NewsTickerBlock = compose(
                 <span>
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </span>
-                <span className="post-date">
+                {showMeta && <span className="post-date">
                     {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
-                </span>
+                </span>}
             </div>
         );
     }
@@ -213,6 +227,7 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        showMeta
     ]);
 
     useEffect(() => {
@@ -221,7 +236,7 @@ const NewsTickerBlock = compose(
                 window.gvnewsNewsticker(blockRef.current);
             }, 100);
         }
-    }, [blockRef, postData]);
+    }, [blockRef, postData, animationDirection, showMeta]);
 
     return <>
         <CopyElementToolbar {...props} />
@@ -238,15 +253,48 @@ const NewsTickerBlock = compose(
                             {block ? block : 'loading'}
                             {ticker && initTicker(false)}
                         </div>
-                        <div className="gvnews_news_ticker_control">
-                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><span><i className="fas fa-angle-right"></i></span></div>
-                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><span><i className="fas fa-angle-left"></i></span></div>
-                        </div>
+                    </div>
+                    <div className="gvnews_news_ticker_control">
+                        <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><i className={prevIcon}></i></div>
+                        <span className="nav-separator"></span>
+                        <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i className={nextIcon}></i></div>
                     </div>
                 </div>
             </div>
         </div>
     </>;
 });
+
+const getLineHeight = (attributes) => {
+    let lineHeight = attributes?.contentHeight?.desktop || '38';
+    let topWidth = 1;
+    let bottomWidth = 1;
+    let value = {};
+    ['Desktop', 'Tablet', 'Mobile'].forEach((item) => {
+        lineHeight = attributes?.contentHeight?.[item] || lineHeight;
+
+        if (isNotEmpty(attributes['contentBorder'])) {
+            topWidth = attributes?.contentBorder?.all?.width || topWidth;
+            bottomWidth = attributes?.contentBorder?.all?.width || bottomWidth;
+            topWidth = attributes?.contentBorder?.top?.width || topWidth;
+            bottomWidth = attributes?.contentBorder?.bottom?.width || bottomWidth;
+        }
+        if (item !== 'Desktop') {
+            if (isNotEmpty(attributes['contentBorderResponsive']) && isNotEmpty(attributes['contentBorderResponsive'][item])) {
+                topWidth = attributes?.contentBorderResponsive?.[item]?.all?.width || topWidth;
+                bottomWidth = attributes?.contentBorderResponsive?.[item]?.all?.width || bottomWidth;
+                topWidth = attributes?.contentBorderResponsive?.[item]?.top?.width || topWidth;
+                bottomWidth = attributes?.contentBorderResponsive?.[item]?.bottom?.width || bottomWidth;
+                value[item] = parseInt(lineHeight) - topWidth - bottomWidth;
+            }
+
+        } else {
+            value[item] = parseInt(lineHeight) - topWidth - bottomWidth;
+        }
+    })
+
+    return value;
+
+}
 
 export default NewsTickerBlock;

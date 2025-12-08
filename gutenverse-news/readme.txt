@@ -152,6 +152,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add option to disable the read more button on blocks
 * Add more styling options on Archive Pagintaion block
 * Add navigaiton styling option on SLider - 1 block
+* Add more styling options on News Ticker block
+* Add Tag Type options on Archive Description block
+* Showing no content available on archive block when not seearch result exist
 * Remove JQuery usage on all blocks
 * Imporve asset load mechanism on all blocks
 
@@ -159,6 +162,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix archive block not working on archive search page
 * Fix Post Masonry issue on "Module - 32", "Module - 33", "Module - 34" and "Module - 35"
 * Fix cannot make the Left/Right Meta Element empty on Post Meta block
+* Fix spacing option issue on Archive Description block
 
 = 3.0.2 =
 ##### Improvements
