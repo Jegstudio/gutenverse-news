@@ -20,15 +20,6 @@ const getBlockStyle = (elementId, attributes) => {
     });
 
     /**
-     * Panel General
-     */
-    isNotEmpty(attributes['authorTypography']) && data.push({
-        'type': 'typography',
-        'id': 'authorTypography',
-        'selector': `.guten-element.${elementId}.gvnews-post-author`,
-    });
-
-    /**
      * Panel Border
      */
     isNotEmpty(attributes['border']) && data.push({

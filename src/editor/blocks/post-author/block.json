@@ -151,9 +151,6 @@
         "avatarBoxShadow": {
             "type": "object"
         },
-        "nameTypography": {
-            "type": "object"
-        },
         "nameColor": {
             "type": "string"
         },

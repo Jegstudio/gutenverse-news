@@ -46,16 +46,17 @@ export const biographyStylePanel = (props) => {
             label: __('Text Shadow', 'gutenverse'),
             component: TextShadowControl,
         },
+        // Hover
         {
             id: 'bioColorHover',
             show: switcher.styleHover === 'hover',
-            label: __('Hover Text color', 'gutenverse'),
+            label: __('Text color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'bioTextShadowHover',
             show: switcher.styleHover === 'hover',
-            label: __('Hover Text Shadow', 'gutenverse'),
+            label: __('Text Shadow', 'gutenverse'),
             component: TextShadowControl,
         },
     ];

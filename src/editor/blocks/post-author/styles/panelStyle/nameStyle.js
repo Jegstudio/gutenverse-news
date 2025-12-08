@@ -9,9 +9,9 @@ const nameStyle = (props) => {
     } = props;
     const selector = `.guten-element.${elementId}.gvnews-post-author .gvnews-author-name`;
 
-    isNotEmpty(attributes['nameTypography']) && data.push({
+    isNotEmpty(attributes['authorTypography']) && data.push({
         'type': 'typography',
-        'id': 'nameTypography',
+        'id': 'authorTypography',
         'selector': selector,
     });
     

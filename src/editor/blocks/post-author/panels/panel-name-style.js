@@ -4,7 +4,6 @@ import { ColorControl, SwitchControl, TextShadowControl, TypographyControl } fro
 
 export const nameStylePanel = (props) => {
     const {
-        authorType,
         switcher,
         setSwitcher
     } = props;
@@ -12,7 +11,7 @@ export const nameStylePanel = (props) => {
 
     return [
         {
-            id: 'nameTypography',
+            id: 'authorTypography',
             label: __('Typography', 'gutenverse'),
             component: TypographyControl,
         },
@@ -33,22 +32,27 @@ export const nameStylePanel = (props) => {
         },
         {
             id: 'nameColor',
+            show: switcher.styleHover === 'normal' || !switcher.styleHover,
             label: __('Text color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'nameTextShadow',
+            show: switcher.styleHover === 'normal' || !switcher.styleHover,
             label: __('Text Shadow', 'gutenverse'),
             component: TextShadowControl,
         },
+        // Hover
         {
             id: 'nameColorHover',
-            label: __('Hover Text color', 'gutenverse'),
+            show: switcher.styleHover === 'hover',
+            label: __('Text color', 'gutenverse'),
             component: ColorControl,
         },
         {
             id: 'nameTextShadowHover',
-            label: __('Hover Text Shadow', 'gutenverse'),
+            show: switcher.styleHover === 'hover',
+            label: __('Text Shadow', 'gutenverse'),
             component: TextShadowControl,
         },
     ];

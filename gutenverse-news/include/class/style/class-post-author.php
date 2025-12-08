@@ -66,18 +66,6 @@ class Post_Author extends Style_Abstract {
 		$this->avatar_style();
 		$this->name_style();
 
-		// General Panel.
-		if ( isset( $this->attrs['metaTypography'] ) ) {
-			$this->inject_typography(
-				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author span a",
-					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['metaTypography'],
-					'device_control' => false,
-				)
-			);
-		}
-
 		// Layout Panel.
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
@@ -217,12 +205,12 @@ class Post_Author extends Style_Abstract {
 	 * Bio Style
 	 */
 	private function name_style() {
-		if ( isset( $this->attrs['nameTypography'] ) ) {
+		if ( isset( $this->attrs['authorTypography'] ) ) {
 			$this->inject_typography(
 				array(
 					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name",
 					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['nameTypography'],
+					'value'          => $this->attrs['authorTypography'],
 					'device_control' => false,
 				)
 			);
