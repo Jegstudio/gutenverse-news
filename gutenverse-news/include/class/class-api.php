@@ -946,8 +946,10 @@ class Api {
 	 * @return array
 	 */
 	public function get_author_social_media() {
-		$result = array();
-		$result = Social_Contacts::gvnews_admin_contact();
+		$result = array(
+			'user_url' => 'Author Website',
+		);
+		$result = array_merge( $result, Social_Contacts::gvnews_admin_contact() );
 		return $result;
 	}
 }

@@ -44,7 +44,7 @@ class Social_Author_Icon extends Post_Guten {
 		$social_media     = ! empty( $attributes['socialMedia'] ) ? $attributes['socialMedia']['value'] : '';
 		$hide_if_empty    = $attributes['hideIfEmpty'];
 		$default_url      = isset( $attributes['defaultUrl'] ) ? $attributes['defaultUrl'] : '';
-		$static_author_id = isset( $attributes['authorId'] ) ? $attributes['authorId'] : 0;
+		$static_author_id = isset( $attributes['authorId'] ) ? $attributes['authorId']['value'] : 0;
 		$custom_icon      = isset( $attributes['icon'] ) ? $attributes['icon'] : '';
 
 		// Determine author ID based on author type.
@@ -95,5 +95,20 @@ class Social_Author_Icon extends Post_Guten {
 		$icons      = Social_Contacts::social_icon_list_class();
 		$icon_class = isset( $icons[ $social_media ] ) ? $icons[ $social_media ] : 'fa fa-globe';
 		return '<i class="' . esc_attr( $icon_class ) . '"></i>';
+	}
+
+	/**
+	 * Render view in frontend
+	 */
+	public function render_frontend() {
+		$this->is_deprecated = $this->check_deprecated();
+		$this->is_pro_block  = $this->check_pro();
+		$content             = $this->render_content();
+		if ( empty( $content ) ) {
+			return '';
+		}
+		return '<div class="' . $this->generate_container_class() . '">' .
+				$content . $this->render_overlay() .
+			'</div>';
 	}
 }

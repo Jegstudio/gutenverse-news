@@ -1,7 +1,7 @@
 {
     "apiVersion": 3,
     "name": "gutenverse/news-social-author-icon",
-    "title": "Social Author Icon",
+    "title": "Social Icon Author",
 	"parent": ["gutenverse/social-icons"],
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Social_Author_Icon",
     "description": "Display the author's social media icon.",
@@ -26,7 +26,7 @@
             "type": "string"
         },
         "authorId": {
-            "type": "number"
+            "type": "object"
         },
         "icon": {
             "type": "string",
