@@ -2,6 +2,7 @@
     "apiVersion": 3,
     "name": "gutenverse/news-social-author-icon",
     "title": "Social Author Icon",
+	"parent": ["gutenverse/social-icons"],
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Social_Author_Icon",
     "description": "Display the author's social media icon.",
     "category": "gvnews-single-post",
@@ -37,7 +38,19 @@
         "iconColor": {
              "type": "object"
         },
+        "iconColorHover": {
+             "type": "object"
+        },
         "iconBackground": {
+             "type": "object"
+        },
+        "iconBackgroundHover": {
+             "type": "object"
+        },
+        "iconBackgroundGradient": {
+             "type": "object"
+        },
+        "iconBackgroundGradientHover": {
              "type": "object"
         },
          "margin": {

@@ -12,7 +12,7 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Icon', 'gutenverse-news'),
+            title: __('Color', 'gutenverse-news'),
             initialOpen: false,
             panelArray: iconPanel,
             tabRole: TabStyle

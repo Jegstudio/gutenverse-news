@@ -126,6 +126,7 @@ class Frontend_Assets {
 			'post-related',
 			'post-tag',
 			'post-title',
+			'social-author-icon',
 		);
 
 		foreach ( $modules as $module ) {

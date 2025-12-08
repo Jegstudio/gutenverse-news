@@ -47,12 +47,12 @@ class Social_Author_Icon extends StyleAbstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".{$this->element_id}.gvnews-social-author-icon",
-					'hover'  => ".{$this->element_id}.gvnews-social-author-icon:hover",
+					'normal' => ".{$this->element_id}.gvnews-social-author-icon.guten-social-icon-item",
+					'hover'  => ".{$this->element_id}.gvnews-social-author-icon.guten-social-icon-item:hover",
 				),
 				'border'     => array(
-					'normal' => ".{$this->element_id}.gvnews-social-author-icon",
-					'hover'  => ".{$this->element_id}.gvnews-social-author-icon:hover",
+					'normal' => ".{$this->element_id}.gvnews-social-author-icon.guten-social-icon-item",
+					'hover'  => ".{$this->element_id}.gvnews-social-author-icon.guten-social-icon-item:hover",
 				),
 			)
 		);
@@ -63,11 +63,13 @@ class Social_Author_Icon extends StyleAbstract {
 	 */
 	public function generate() {
 
+		$this->color_style();
+
 		// Icon Size.
 		if ( isset( $this->attrs['iconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon i",
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item i",
 					'property'       => function ( $value ) {
 						return "font-size: {$value}px;";
 					},
@@ -77,39 +79,11 @@ class Social_Author_Icon extends StyleAbstract {
 			);
 		}
 
-		// Icon Color.
-		if ( isset( $this->attrs['iconColor'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon i",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
-					},
-					'value'          => $this->attrs['iconColor'],
-					'device_control' => false,
-				)
-			);
-		}
-
-		// Icon Background.
-		if ( isset( $this->attrs['iconBackground'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon i",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'background-color' );
-					},
-					'value'          => $this->attrs['iconBackground'],
-					'device_control' => false,
-				)
-			);
-		}
-
 		// Margin.
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon",
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -123,7 +97,7 @@ class Social_Author_Icon extends StyleAbstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon",
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -137,13 +111,86 @@ class Social_Author_Icon extends StyleAbstract {
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-social-author-icon",
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item",
 					'property'       => function ( $value ) {
 						return "z-index: {$value};";
 					},
 					'value'          => $this->attrs['zIndex'],
 					'device_control' => true,
 				)
+			);
+		}
+	}
+
+	/**
+	 * Color style
+	 */
+	private function color_style() {
+		// Icon Color.
+		if ( isset( $this->attrs['iconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['iconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['iconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['iconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		// Icon Background.
+		// Normal.
+		if ( isset( $this->attrs['iconBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['iconBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['iconBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['iconBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		// Gradient.
+		if ( isset( $this->attrs['iconBackgroundGradient'] ) ) {
+			$this->handle_background(
+				".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a",
+				$this->attrs['iconBackgroundGradient'],
+			);
+		}
+		if ( isset( $this->attrs['iconBackgroundGradientHover'] ) ) {
+			$this->handle_background(
+				".gvnews-social-author-icon.{$this->element_id}.guten-social-icon-item a:hover",
+				$this->attrs['iconBackgroundGradientHover'],
 			);
 		}
 	}

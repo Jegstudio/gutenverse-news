@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, TextControl, SelectSearchControl, CheckboxControl } from 'gutenverse-core/controls';
+import { SelectControl, TextControl, SelectSearchControl, CheckboxControl, IconControl, RangeControl } from 'gutenverse-core/controls';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 
@@ -46,6 +46,20 @@ export const generalPanel = (props) => {
     });
 
     return [
+        {
+            id: 'icon',
+            label: __('Custom Icon', 'gutenverse-news'),
+            component: IconControl,
+        },
+        {
+            id: 'iconSize',
+            label: __('Icon Size', 'gutenverse-news'),
+            component: RangeControl,
+            min: 10,
+            max: 100,
+            unit: 'px',
+            allowDeviceControl: true,
+        },
         {
             id: 'authorType',
             label: __('Author Type', 'gutenverse-news'),

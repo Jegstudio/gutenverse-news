@@ -1,54 +1,86 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, IconControl } from 'gutenverse-core/controls';
+import { ColorControl, RangeControl, IconControl, SwitchControl, BackgroundControl } from 'gutenverse-core/controls';
 import { handleColor, handleUnitPoint } from 'gutenverse-core/styling';
 
 export const iconPanel = (props) => {
     const {
-        elementId
+        elementId,
+        switcher,
+        setSwitcher
     } = props;
 
     return [
         {
-            id: 'icon',
-            label: __('Custom Icon', 'gutenverse-news'),
-            component: IconControl,
+            id: '__socialIconHover',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                }
+            ],
+            onChange: ({ __socialIconHover }) => setSwitcher({ ...switcher, socialIconHover: __socialIconHover })
         },
-        {
-            id: 'iconSize',
-            label: __('Icon Size', 'gutenverse-news'),
-            component: RangeControl,
-            min: 10,
-            max: 100,
-            unit: 'px',
-            allowDeviceControl: true,
-            // style: [
-            //     {
-            //         selector: `.${elementId} .gvnews-social-icon-link i, .${elementId} .gvnews-social-icon-link svg`,
-            //         render: value => handleUnitPoint(value, 'font-size')
-            //     }
-            // ]
-        },
+        // Normal
         {
             id: 'iconColor',
+            show: !switcher.socialIconHover || switcher.socialIconHover === 'normal',
             label: __('Icon Color', 'gutenverse-news'),
             component: ColorControl,
-            // style: [
-            //     {
-            //         selector: `.${elementId} .gvnews-social-icon-link i, .${elementId} .gvnews-social-icon-link svg`,
-            //         render: value => handleColor(value, 'color')
-            //     }
-            // ]
+        },
+        // Hover
+        {
+            id: 'iconColorHover',
+            show: switcher.socialIconHover === 'hover',
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
         },
         {
+            id: '__socialIconBgType',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'color',
+                    label: 'Color'
+                },
+                {
+                    value: 'gradient',
+                    label: 'Gradient'
+                }
+            ],
+            onChange: ({ __socialIconBgType }) => setSwitcher({ ...switcher, socialIconBgType: __socialIconBgType })
+        },
+        // Color Type
+        {
             id: 'iconBackground',
+            show: (!switcher.socialIconHover || switcher.socialIconHover === 'normal') && (!switcher.socialIconBgType || switcher.socialIconBgType === 'color'),
             label: __('Icon Background', 'gutenverse-news'),
             component: ColorControl,
-            // style: [
-            //     {
-            //         selector: `.${elementId} .gvnews-social-icon-link`,
-            //         render: value => handleColor(value, 'background-color')
-            //     }
-            // ]
-        }
+        },
+        {
+            id: 'iconBackgroundHover',
+            show: (switcher.socialIconHover === 'hover') && (!switcher.socialIconBgType || switcher.socialIconBgType === 'color'),
+            label: __('Icon Background', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        // Gradient Type
+        {
+            id: 'iconBackgroundGradient',
+            show: (!switcher.socialIconHover || switcher.socialIconHover === 'normal') && (switcher.socialIconBgType === 'gradient'),
+            label: __('Icon Background', 'gutenverse-news'),
+            component: BackgroundControl,
+            options: ['gradient'],
+        },
+        {
+            id: 'iconBackgroundGradientHover',
+            show: (switcher.socialIconHover === 'hover') && (switcher.socialIconBgType === 'gradient'),
+            label: __('Icon Background', 'gutenverse-news'),
+            component: BackgroundControl,
+            options: ['gradient'],
+        },
     ];
 };

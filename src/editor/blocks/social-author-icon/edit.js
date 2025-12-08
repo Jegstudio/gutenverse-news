@@ -1,8 +1,9 @@
+import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { useBlockProps } from '@wordpress/block-editor';
-import { classnames } from 'gutenverse-core/components';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { classnames, SelectParent } from 'gutenverse-core/components';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { useAnimationEditor, useDisplayEditor } from 'gutenverse-core/hooks';
@@ -43,7 +44,10 @@ const SocialAuthorIcon = compose(
         className: classnames(
             'gvnews-block',
             'guten-element',
+            'no-margin',
+            'width-auto',
             'gvnews-block-wrapper',
+            'guten-social-icon-item',
             'gvnews-social-author-icon',
             elementId,
             animationClass,
@@ -54,9 +58,16 @@ const SocialAuthorIcon = compose(
 
     return <>
         <CopyElementToolbar {...props} />
+        <InspectorControls>
+            <SelectParent {...props}>
+                {__('Modify Icon Group', 'gutenverse')}
+            </SelectParent>
+        </InspectorControls>
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <i className={icon}></i>
+            <a>
+                <i className={icon}></i>
+            </a>
         </div>
     </>;
 });

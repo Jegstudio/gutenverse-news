@@ -30,7 +30,7 @@ class Social_Author_Icon extends Post_Guten {
 	 * @return string
 	 */
 	public function get_custom_classes() {
-		return 'gvnews-social-author-icon';
+		return 'gvnews-social-author-icon guten-social-icon-item';
 	}
 
 	/**
@@ -73,7 +73,9 @@ class Social_Author_Icon extends Post_Guten {
 
 		$icon_html = $this->render_icon( $custom_icon, $social_media );
 
-		return '<a href="' . esc_url( $url ) . '" class="gvnews-social-icon-link" target="_blank" rel="noopener noreferrer">' .
+		wp_enqueue_style( 'gutenverse-news-frontend-social-author-icon-style' );
+
+		return '<a href="' . esc_url( $url ) . '">' .
 					$icon_html .
 				'</a>';
 	}
