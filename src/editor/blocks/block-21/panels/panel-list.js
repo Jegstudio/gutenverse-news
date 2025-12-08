@@ -9,7 +9,7 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
-import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
+import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 
 
 export const panelList = () => {
@@ -62,6 +62,12 @@ export const panelList = () => {
             panelArray: (props) => headerStylesPanel({
                 ...props,
             }),
+            tabRole: TabStyle
+        },
+        {
+            title: __('Header Filter Dropdown', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: HeaderFilterDropdownPanel,
             tabRole: TabStyle
         },
         {
