@@ -1143,6 +1143,53 @@ const getBlockStyle = (elementId, attributes) => {
         },
     );
 
+
+    isNotEmpty(attributes['headerTitlePadding']) && data.push({
+        'type': 'dimension',
+        'id': 'headerTitlePadding',
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading .gvnews_block_title span`,
+    });
+
+    isNotEmpty(attributes['headerMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'headerMargin',
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading`,
+    });
+
+
+    isNotEmpty(attributes['headerHeight']) && data.push({
+        'type': 'plain',
+        'id': 'headerHeight',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading .gvnews_block_title span , .${elementId} .gvnews_block_heading `,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
     data = headerFilterStyle(elementId, attributes, data);
 
     return data;
@@ -1341,6 +1388,19 @@ const headerFilterStyle = (elementId, attributes, data) => {
             'type': 'border',
             'id': 'filterDropdownItemBorderActive',
             'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
+        });
+
+        isNotEmpty(attributes['headerFilterPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'headerFilterPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_block_heading .gvnews_subcat`,
         });
     }
     return data;

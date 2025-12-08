@@ -496,6 +496,79 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerHeight',
+            label: __('Header Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+        },
+        {
+            id: 'headerTitlePadding',
+            label: __('Header Title Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['right', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'headerFilterPadding',
+            label: __('Header Filter Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['right', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'headerMargin',
+            label: __('Header Margin', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
             id: '__headerSwitcher',
             component: SwitchControl,
             options: [

@@ -1072,6 +1072,47 @@ class Block extends StyleAbstract {
 				);
 			}
 		}
+
+		if ( isset( $this->attrs['headerHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_heading .gvnews_block_title span , .{$this->element_id} .gvnews_block_heading",
+					'property'       => function ( $value ) {
+							return "height: {$value}px;";
+							},
+							'value'          => $this->attrs['headerHeight'],
+							'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['headerTitlePadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading .gvnews_block_title span",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['headerTitlePadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+
+		if ( isset( $this->attrs['headerMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['headerMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( $with_header_filter ) {
 			if ( isset( $this->attrs['headerFilterColor'] ) ) {
 					$this->inject_style(
@@ -1110,6 +1151,19 @@ class Block extends StyleAbstract {
 					)
 				);
 			}
+
+			if ( isset( $this->attrs['headerTitlePadding'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading .gvnews_subcat",
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['headerTitlePadding'],
+					'device_control' => true,
+				)
+			);
+		}
 			$this->dropdown_header_filter_style();
 		}
 
