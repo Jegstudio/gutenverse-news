@@ -46,11 +46,9 @@ class Archive_Block extends Archive_View_Abstract {
 		}
 		$result = $this->get_result( $attr, $attr['number_post'] );
 
-		if ( ! empty( $result['result'] ) ) {
-			$attr['pagination_mode'] = 'disable';
-			$attr['results']         = $result;
+		$attr['pagination_mode'] = 'disable';
+		$attr['results']         = $result;
 
-			return $instance->build_module( $attr );
-		}
+		return $instance->build_module( $attr );
 	}
 }

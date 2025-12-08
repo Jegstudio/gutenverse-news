@@ -154,6 +154,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add navigaiton styling option on SLider - 1 block
 * Add more styling options on News Ticker block
 * Add Tag Type options on Archive Description block
+* Showing no content available on archive block when not seearch result exist
 * Remove JQuery usage on all blocks
 * Imporve asset load mechanism on all blocks
 
