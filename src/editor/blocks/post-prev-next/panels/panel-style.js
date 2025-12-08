@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, RangeControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const stylePanel = (props) => {
     const {
@@ -21,9 +21,39 @@ export const stylePanel = (props) => {
         },
         {
             id: 'widthMode',
-            label: __('100% Width', 'gutenverse-news'),
+            label: __('Force 1 Column', 'gutenverse-news'),
             component: CheckboxControl,
             allowDeviceControl: true,
+        },
+        {
+            id: 'gap',
+            label: __('Gap', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'gap',
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post`,
+                }
+            ],
         },
         {
             id: '__stylePrevNextType',

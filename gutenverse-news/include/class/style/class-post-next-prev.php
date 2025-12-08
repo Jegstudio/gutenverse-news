@@ -91,14 +91,26 @@ class Post_Next_Prev extends Style_Abstract {
 			);
 		}
 
-		if ( isset( $this->attrs['widthMode'] ) ) {
+		if ( isset( $this->attrs['widthMode'] ) && $this->attrs['widthMode'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$this->base_selector} a",
+					'selector'       => "{$this->base_selector}",
 					'property'       => function ( $value ) {
-						return 'width: 100% !important;';
+						return 'flex-direction: column;';
 					},
 					'value'          => $this->attrs['widthMode'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['gap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$this->base_selector}",
+					'property'       => function ( $value ) {
+						return "gap: {$value}px;";
+					},
+					'value'          => $this->attrs['gap'],
 					'device_control' => true,
 				)
 			);

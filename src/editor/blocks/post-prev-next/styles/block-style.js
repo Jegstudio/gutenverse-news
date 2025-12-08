@@ -41,12 +41,30 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'plain',
         'id': 'widthMode',
         'responsive': true,
-        'selector': `${baseSelector} a`,
+        'selector': baseSelector,
         'properties': [
             {
-                'name': 'width',
+                'name': 'flex-direction',
                 'valueType': 'pattern',
-                'pattern': '100% !important',
+                'pattern': 'column',
+            }
+        ]
+    });
+    isNotEmpty(attributes['gap']) && data.push({
+        'type': 'plain',
+        'id': 'gap',
+        'responsive': true,
+        'selector': baseSelector,
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
             }
         ]
     });
