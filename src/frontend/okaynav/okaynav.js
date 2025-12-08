@@ -26,7 +26,7 @@ class OkayNav {
         const navVisible = this.nav.querySelector('ul');
         navVisible.classList.add('okayNav__nav--visible');
 
-        const invisibleClass = `okayNav__nav--invisible transition-enabled nav-${this.options.alignRight ? 'right' : 'left'}`;
+        const invisibleClass = `okayNav__nav--invisible nav-${this.options.alignRight ? 'right' : 'left'}`;
         const invisibleList = document.createElement('ul');
         invisibleList.className = invisibleClass;
 
