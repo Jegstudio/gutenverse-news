@@ -65,6 +65,7 @@ class Post_Author extends Style_Abstract {
 		$this->bio_style();
 		$this->avatar_style();
 		$this->name_style();
+		$this->social_icon_style();
 
 		// Layout Panel.
 		if ( isset( $this->attrs['margin'] ) ) {
@@ -348,6 +349,60 @@ class Post_Author extends Style_Abstract {
 					},
 					'value'          => $this->attrs['avatarBoxShadow'],
 					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Social Icon Style
+	 */
+	private function social_icon_style() {
+		if ( isset( $this->attrs['socialIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['socialIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['socialIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials",
+					'property'       => function ( $value ) {
+						return "gap: {$value}px;";
+					},
+					'value'          => $this->attrs['socialIconGap'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['socialIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['socialIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['socialIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials a:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['socialIconColorHover'],
+					'device_control' => false,
 				)
 			);
 		}

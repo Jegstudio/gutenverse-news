@@ -162,6 +162,18 @@
         },
         "nameTextShadowHover": {
             "type": "object"
+        },
+        "socialIconColor": {
+            "type": "object"
+        },
+        "socialIconColorHover": {
+            "type": "object"
+        },
+        "socialIconGap": {
+            "type": "object"
+        },
+        "socialIconSize": {
+            "type":"object"
         }
 
     },

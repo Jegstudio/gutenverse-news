@@ -5,6 +5,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import layoutPanel from './panel-layout';
 import { avatarStylePanel } from './panel-avatar-style';
 import { nameStylePanel } from './panel-name-style';
+import { iconStylePanel } from './panel-icon-style';
 
 export const panelList = () => {
     return [
@@ -36,6 +37,12 @@ export const panelList = () => {
             title: __('Avatar Style', 'gutenverse'),
             initialOpen: false,
             panelArray: avatarStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Social Icon Style', 'gutenverse'),
+            initialOpen: false,
+            panelArray: iconStylePanel,
             tabRole: TabStyle
         },
         {

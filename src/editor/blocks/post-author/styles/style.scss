@@ -34,14 +34,19 @@
 			margin-bottom: 1em;
 		}
 
-		.gvnews-author-socials a {
-			color: #999;
-			display: inline-block;
-			font-size: 16px;
-			margin: 10px 10px 20px 0;
-			-webkit-transition: all 0.2s ease-in-out;
-			-o-transition: all 0.2s ease-in-out;
-			transition: all 0.2s ease-in-out;
+		.gvnews-author-socials {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			flex-wrap: wrap;
+			a {
+				color: #999;
+				display: inline-block;
+				font-size: 16px;
+				-webkit-transition: all 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out;
+			}
 		}
 	}
 }

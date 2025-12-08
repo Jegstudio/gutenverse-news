@@ -71,11 +71,11 @@ const PostAuthor = compose(
                 </h3>
                 <p className="gvnews-author-desc">{currentUser?.description}</p>
                 <div className="gvnews-author-socials">
-                    <a href="#" className="url"><i className="fa fa-globe"></i></a>
-                    <a href="#" className="url"><i className="fab fa-facebook"></i></a>
-                    <a href="#" className="url"><i className="fab fa-twitter"></i></a>
-                    <a href="#" className="url"><i className="fab fa-linkedin"></i></a>
-                    <a href="#" className="url"><i className="fab fa-instagram"></i></a>
+                    <a className="url"><i className="fa fa-globe"></i></a>
+                    <a className="url"><i className="fab fa-facebook"></i></a>
+                    <a className="url"><i className="fab fa-twitter"></i></a>
+                    <a className="url"><i className="fab fa-linkedin"></i></a>
+                    <a className="url"><i className="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>

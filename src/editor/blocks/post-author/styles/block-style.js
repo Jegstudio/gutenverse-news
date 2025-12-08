@@ -4,6 +4,7 @@ import layoutStye from './panelStyle/layoutStyle';
 import bioStyle from './panelStyle/bioStyle';
 import avatarStyle from './panelStyle/avatarStyle';
 import nameStyle from './panelStyle/nameStyle';
+import iconStyle from './panelStyle/iconStyle';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -11,6 +12,7 @@ const getBlockStyle = (elementId, attributes) => {
     data = bioStyle({data, attributes, elementId});
     data = avatarStyle({data, attributes, elementId});
     data = nameStyle({data, attributes, elementId});
+    data = iconStyle({data, attributes, elementId});
     data = backgroundStyle({
         elementId,
         attributes,
