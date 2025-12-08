@@ -1064,9 +1064,14 @@
     color: inherit;
   }
 
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   i,
   span {
-    display: inline-block;
     line-height: 36px;
     padding: 0px 15px;
     white-space: nowrap;
@@ -1075,6 +1080,7 @@
   i {
     margin-right: 8px;
     padding: 0;
+    display: inline-block;
   }
 }
 
@@ -1346,6 +1352,11 @@
 
   .okayNav__menu-toggle {
     width: 30px;
+  }
+
+  &.okayNav {
+    display: flex;
+    align-items: center;
   }
 }
 

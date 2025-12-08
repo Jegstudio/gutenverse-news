@@ -425,75 +425,161 @@
 		"condition": {
 			"type": "object",
 			"default": {}
-        },
-        "showMeta": {
-            "type": "boolean",
-            "default": true
-        },
-        "showMetaDate": {
-            "type": "boolean",
-            "default": true
-        },
-        "showMetaAuthor": {
-            "type": "boolean",
-            "default": true
-        },
-        "showMetaComment": {
-            "type": "boolean",
-            "default": true
-        },
-        "metaColorHover": {
-            "type": "object"
-        },
-        "metaIconColor": {
-            "type": "object"
-        },
-        "metaIconColorHover": {
-            "type": "object"
-        },
-        "typographyMetaAuthor": {
-            "type": "object"
-        },
-        "metaAuthorColor": {
-            "type": "object"
-        },
-        "metaAuthorColorHover": {
-            "type": "object"
-        },
-        "headerTextTypography": {
-            "type": "object"
-        },
-        "headerSecondTextTypography": {
-            "type": "object"
-        },
-        "headerFilterTypography": {
-            "type": "object"
-        },
-        "headerSeondTextColor": {
-            "type": "object"
-        },
-        "headerFilterColor": {
-            "type": "object"
-        },
-        "headerFilterColorHover": {
-            "type": "object"
-        },
-        "headerFilterColorActive": {
-            "type": "object"
-        },
-        "headerLineThick": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "headerLineThick2": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "headerFilterLineColor": {
-            "type": "object"
-        },
-        "headerSecondTextColor": {
-            "type": "object"
+		},
+		"showMeta": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMetaDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMetaAuthor": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMetaComment": {
+			"type": "boolean",
+			"default": true
+		},
+		"metaColorHover": {
+			"type": "object"
+		},
+		"metaIconColor": {
+			"type": "object"
+		},
+		"metaIconColorHover": {
+			"type": "object"
+		},
+		"typographyMetaAuthor": {
+			"type": "object"
+		},
+		"metaAuthorColor": {
+			"type": "object"
+		},
+		"metaAuthorColorHover": {
+			"type": "object"
+		},
+		"headerTextTypography": {
+			"type": "object"
+		},
+		"headerSecondTextTypography": {
+			"type": "object"
+		},
+		"headerFilterTypography": {
+			"type": "object"
+		},
+		"headerSeondTextColor": {
+			"type": "object"
+		},
+		"headerFilterColor": {
+			"type": "object"
+		},
+		"headerFilterColorHover": {
+			"type": "object"
+		},
+		"headerFilterColorActive": {
+			"type": "object"
+		},
+		"headerLineThick": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerLineThick2": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerFilterLineColor": {
+			"type": "object"
+		},
+		"headerSecondTextColor": {
+			"type": "object"
+		},
+		"filterDropdownItemBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownItemBorderHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownItemBorderActive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownTypography": {
+			"type": "object"
+		},
+		"filterDowndownWrapperBackground": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownWrapperPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownItemPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownWrapperBorder": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownBoxShadow": {
+			"type": "object"
+		},
+		"filterDowndownColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownColorHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownColorActive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownItemBackground": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownItemBackgroundHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDowndownItemBackgroundActive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownToogleColor": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownToogleColorHover": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"filterDropdownToogleColorActive": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerTitlePadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerFilterPadding": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerMargin": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"headerHeight": {
+			"type": "object",
+			"copyStyle": true
 		}
 	},
 	"supports": {
@@ -502,6 +588,10 @@
 		"anchor": true
 	},
 	"keywords": [],
-	"viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"]
+	"viewScript": [
+		"gutenverse-news-frontend-blocks-script"
+	],
+	"style": [
+		"gutenverse-news-frontend-blocks-style"
+	]
 }
