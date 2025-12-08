@@ -87,5 +87,6 @@
         "social",
         "author",
         "icon"
-    ]
+    ],
+    "style": ["gutenverse-news-frontend-social-author-icon-style"]
 }

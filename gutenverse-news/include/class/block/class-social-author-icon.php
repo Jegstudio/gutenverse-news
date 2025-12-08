@@ -73,8 +73,6 @@ class Social_Author_Icon extends Post_Guten {
 
 		$icon_html = $this->render_icon( $custom_icon, $social_media );
 
-		wp_enqueue_style( 'gutenverse-news-frontend-social-author-icon-style' );
-
 		return '<a href="' . esc_url( $url ) . '">' .
 					$icon_html .
 				'</a>';

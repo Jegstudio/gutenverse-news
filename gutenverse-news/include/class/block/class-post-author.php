@@ -72,19 +72,17 @@ class Post_Author extends Post_Guten {
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
 
-		$block = '<div class="gvnews-authorbox">
-					<div class="gvnews-author-image">' .
-						get_avatar( $author['id'], 80, null, $author['name'] ) .
-					'</div>' .
-					'<div class="gvnews-author-content">
-						<h3 class="gvnews-author-name">
-							<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
-						</h3>
-						<p>' . esc_html( $author['desc'] ) . '</p>
-						<div class="gvnews-author-socials">' .
-							$this->generate_social_element( $author_id ) .
-						'</div>
-					</div>
+		$block = '<div class="gvnews-author-image">' .
+					get_avatar( $author['id'], 80, null, $author['name'] ) .
+				'</div>' .
+				'<div class="gvnews-author-content">
+					<h3 class="gvnews-author-name">
+						<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
+					</h3>
+					<p class="gvnews-author-desc">' . esc_html( $author['desc'] ) . '</p>
+					<div class="gvnews-author-socials">' .
+						$this->generate_social_element( $author_id ) .
+					'</div>
 				</div>';
 
 		return $block;
@@ -103,7 +101,7 @@ class Post_Author extends Post_Guten {
 	public function render_frontend() {
 		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
-		$custom_classes = $this->get_custom_classes();
+		$custom_classes  = $this->get_custom_classes();
 
 		return '<div class="' .
 							$element_id .

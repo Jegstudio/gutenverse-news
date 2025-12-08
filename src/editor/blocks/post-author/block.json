@@ -102,7 +102,71 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "authorColor": {
+            "type": "string"
+        },
+        "authorColorHover": {
+            "type": "string"
+        },
+        "authorTextShadow": {
+            "type": "object"
+        },
+        "authorTextShadowHover": {
+            "type": "object"
+        },
+        "bioTypography": {
+            "type": "object"
+        },
+        "bioColor": {
+            "type": "string"
+        },
+        "bioColorHover": {
+            "type": "string"
+        },
+        "bioTextShadow": {
+            "type": "object"
+        },
+        "bioTextShadowHover": {
+            "type": "object"
+        },
+        "avatarSize": {
+            "type": "object"
+        },
+        "avatarMargin": {
+            "type": "object"
+        },
+        "avatarOpacity": {
+            "type": "object"
+        },
+        "avatarRotate": {
+            "type": "object"
+        },
+        "avatarBorder": {
+            "type": "object"
+        },
+        "avatarBorderResponsive": {
+            "type": "object"
+        },
+        "avatarBoxShadow": {
+            "type": "object"
+        },
+        "nameTypography": {
+            "type": "object"
+        },
+        "nameColor": {
+            "type": "string"
+        },
+        "nameColorHover": {
+            "type": "string"
+        },
+        "nameTextShadow": {
+            "type": "object"
+        },
+        "nameTextShadowHover": {
+            "type": "object"
         }
+
     },
     "supports": {
         "className": false

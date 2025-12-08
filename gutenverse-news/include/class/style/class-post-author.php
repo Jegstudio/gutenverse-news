@@ -46,12 +46,12 @@ class Post_Author extends Style_Abstract {
 		$this->set_feature(
 			array(
 				'background' => array(
-					'normal' => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
-					'hover'  => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox:hover",
+					'normal' => ".{$this->element_id}.gvnews-post-author",
+					'hover'  => ".{$this->element_id}.gvnews-post-author:hover",
 				),
 				'border'     => array(
-					'normal' => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
-					'hover'  => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox:hover",
+					'normal' => ".{$this->element_id}.gvnews-post-author",
+					'hover'  => ".{$this->element_id}.gvnews-post-author:hover",
 				),
 			)
 		);
@@ -62,11 +62,15 @@ class Post_Author extends Style_Abstract {
 	 */
 	public function generate() {
 
+		$this->bio_style();
+		$this->avatar_style();
+		$this->name_style();
+
 		// General Panel.
 		if ( isset( $this->attrs['metaTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox span a",
+					'selector'       => ".{$this->element_id}.gvnews-post-author span a",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['metaTypography'],
 					'device_control' => false,
@@ -78,7 +82,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
+					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -91,7 +95,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['padding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
+					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -104,7 +108,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['width'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
+					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'width' );
 					},
@@ -117,7 +121,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['height'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
+					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'height' );
 					},
@@ -130,11 +134,231 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['zIndex'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-authorbox",
+					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
 						return "z-index: {$value};";
 					},
 					'value'          => $this->attrs['zIndex'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Bio Style
+	 */
+	private function bio_style() {
+		if ( isset( $this->attrs['bioTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['bioTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bioColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bioColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bioColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bioColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bioTextShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'property'       => function ( $value ) {
+						return $this->handle_text_shadow( $value );
+					},
+					'value'          => $this->attrs['bioTextShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bioTextShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_text_shadow( $value );
+					},
+					'value'          => $this->attrs['bioTextShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Bio Style
+	 */
+	private function name_style() {
+		if ( isset( $this->attrs['nameTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['nameTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nameColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['nameColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nameColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['nameColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nameTextShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name",
+					'property'       => function ( $value ) {
+						return $this->handle_text_shadow( $value );
+					},
+					'value'          => $this->attrs['nameTextShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['nameTextShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_text_shadow( $value );
+					},
+					'value'          => $this->attrs['nameTextShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Avatar Style.
+	 */
+	private function avatar_style() {
+		if ( isset( $this->attrs['avatarSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['avatarSize'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['avatarMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['avatarMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['avatarOpacity'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image img",
+					'property'       => function ( $value ) {
+						return "opacity: calc({$value}/100);";
+					},
+					'value'          => $this->attrs['avatarOpacity'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['avatarRotate'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image img",
+					'property'       => function ( $value ) {
+						return "transform: rotate({$value}deg);";
+					},
+					'value'          => $this->attrs['avatarRotate'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['avatarBorder'] ) ) {
+			$this->handle_border(
+				'avatarBorder',
+				".{$this->element_id}.gvnews-post-author .gvnews-author-image img",
+			);
+		}
+		if ( isset( $this->attrs['avatarBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image img",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['avatarBorderResponsive'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['avatarBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image img",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['avatarBoxShadow'],
 					'device_control' => true,
 				)
 			);
