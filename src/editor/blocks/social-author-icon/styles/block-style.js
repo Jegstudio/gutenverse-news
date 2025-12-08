@@ -20,14 +20,14 @@ const getBlockStyle = (elementId, attributes) => {
                 }
             }
         ],
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item i`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon i`,
     });
 
     // Icon Color
     isNotEmpty(attributes['iconColor']) && data.push({
         'type': 'color',
         'id': 'iconColor',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a i`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a i`,
         'properties': [
             {
                 'name': 'color',
@@ -39,7 +39,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['iconColorHover']) && data.push({
         'type': 'color',
         'id': 'iconColorHover',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a:hover i`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a:hover i`,
         'properties': [
             {
                 'name': 'color',
@@ -52,7 +52,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['iconBackground']) && data.push({
         'type': 'color',
         'id': 'iconBackground',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a`,
         'properties': [
             {
                 'name': 'background-color',
@@ -64,7 +64,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['iconBackgroundHover']) && data.push({
         'type': 'color',
         'id': 'iconBackgroundHover',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a:hover`,
         'properties': [
             {
                 'name': 'background-color',
@@ -77,13 +77,13 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['iconBackgroundGradient']) && data.push({
         'type': 'background',
         'id': 'iconBackgroundGradient',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a`,
     });
 
     isNotEmpty(attributes['iconBackgroundGradientHover']) && data.push({
         'type': 'background',
         'id': 'iconBackgroundGradientHover',
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item a:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon a:hover`,
     });
 
     // Margin
@@ -97,7 +97,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon`,
     });
 
     // Padding
@@ -111,7 +111,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon`,
     });
 
     // Z-Index
@@ -125,7 +125,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon-item`,
+        'selector': `.guten-element.${elementId}.gvnews-social-author-icon.guten-social-icon`,
     });
 
     return data;

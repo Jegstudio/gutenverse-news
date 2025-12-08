@@ -30,7 +30,7 @@ class Social_Author_Icon extends Post_Guten {
 	 * @return string
 	 */
 	public function get_custom_classes() {
-		return 'gvnews-social-author-icon guten-social-icon-item';
+		return 'gvnews-social-author-icon guten-social-icon';
 	}
 
 	/**

@@ -47,7 +47,7 @@ const SocialAuthorIcon = compose(
             'no-margin',
             'width-auto',
             'gvnews-block-wrapper',
-            'guten-social-icon-item',
+            'guten-social-icon',
             'gvnews-social-author-icon',
             elementId,
             animationClass,
