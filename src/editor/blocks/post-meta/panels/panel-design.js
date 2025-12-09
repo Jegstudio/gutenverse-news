@@ -5,13 +5,13 @@ export const designPanel = () => {
     return [
         {
             id: 'forceColumnLeft',
-            label: __('Force 1 Column', 'gutenverse-news'),
+            label: __('Meta Left 1 Column', 'gutenverse-news'),
             description: __('Enable this option to display all left meta on 1 column on mobile device', 'gutenverse-news'),
             component: CheckboxControl,
         },
         {
             id: 'forceColumnRight',
-            label: __('Force 1 Column', 'gutenverse-news'),
+            label: __('Meta Right 1 Column', 'gutenverse-news'),
             description: __('Enable this option to display all right meta on 1 column on mobile device', 'gutenverse-news'),
             component: CheckboxControl,
         },
