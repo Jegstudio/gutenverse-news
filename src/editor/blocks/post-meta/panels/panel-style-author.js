@@ -11,7 +11,8 @@ export const styleAuthorPanel = (props) => {
         switcher,
         setSwitcher,
         elementId,
-        authorPrefix
+        authorPrefix,
+        showAvatar
     } = props;
 
     const device = getDeviceType();
@@ -69,6 +70,7 @@ export const styleAuthorPanel = (props) => {
                 id: 'avatarSize',
                 label: __('Avatar Size', 'gutenverse-news'),
                 component: RangeControl,
+                show: showAvatar,
                 unit: 'px',
                 min: 1,
                 max: 400,
@@ -100,6 +102,7 @@ export const styleAuthorPanel = (props) => {
                 label: __('Avatar Gap', 'gutenverse'),
                 component: RangeControl,
                 allowDeviceControl: true,
+                show: showAvatar,
                 unit: 'px',
                 min: 1,
                 max: 100,
@@ -129,6 +132,7 @@ export const styleAuthorPanel = (props) => {
                 id: 'avatarOpacity',
                 label: __('Avatar Opacity', 'gutenverse'),
                 component: RangeControl,
+                show: showAvatar,
                 min: 1,
                 max: 100,
                 step: 1,
@@ -154,7 +158,7 @@ export const styleAuthorPanel = (props) => {
             },
             {
                 id: 'avatarBorder',
-                show: device === 'Desktop',
+                show: device === 'Desktop' && showAvatar,
                 label: __('Avatar Border', 'gutenverse'),
                 component: BorderControl,
                 liveStyle: [
@@ -167,7 +171,7 @@ export const styleAuthorPanel = (props) => {
             },
             {
                 id: 'avatarBorderResponsive',
-                show: device !== 'Desktop',
+                show: device !== 'Desktop' && showAvatar,
                 label: __('Avatar Border', 'gutenverse'),
                 component: BorderResponsiveControl,
                 allowDeviceControl: true,
@@ -183,6 +187,7 @@ export const styleAuthorPanel = (props) => {
                 id: 'avatarBoxShadow',
                 label: __('Avatar Box Shadow', 'gutenverse'),
                 component: BoxShadowControl,
+                show: showAvatar,
                 liveStyle: [
                     {
                         'type': 'boxShadow',

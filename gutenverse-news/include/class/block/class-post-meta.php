@@ -117,8 +117,9 @@ class Post_Meta extends Post_Guten {
 	 */
 	public function render_author( $is_last_item ) {
 		global $post;
+		$avatar = isset( $this->attributes['showAvatar'] ) && $this->attributes['showAvatar'] ? get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) : '';
 		return '<div class="gvnews-meta-author meta-items ' . $is_last_item . '">' .
-					get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) .
+					$avatar .
 					'<span class="meta-text">' .
 						esc_html__( 'by ', 'gutenverse-news' ) .
 					'</span>' .

@@ -32,6 +32,7 @@ const PostMeta = compose(
         authorPrefix,
         categoryPrefix,
         datePrefix,
+        showAvatar
     } = attributes;
 
     const elementRef = useRef(null);
@@ -136,14 +137,14 @@ const PostMeta = compose(
 
     const MetaAuthor = ({isLastItem}) => {
         return <div className={`gvnews-meta-author meta-items ${isLastItem}`}>
-            <img
+            {showAvatar && <img
                 alt="admin"
                 src={`${imgDir}/author.png`}
                 className="avatar avatar-80 photo"
                 height="80"
                 width="80"
                 loading="lazy"
-                decoding="async" />
+                decoding="async" />}
             <span className="meta_text null">{authorPrefix} </span>
             <a href="#">admin</a>
         </div>;
