@@ -1,7 +1,6 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
 
-const getSliderStyle = (elementId, attributes) => {
-    let data = [];
+const getSliderStyle = (elementId, attributes, data = []) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
