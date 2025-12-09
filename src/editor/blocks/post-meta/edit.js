@@ -29,6 +29,9 @@ const PostMeta = compose(
         metaLeft = [],
         metaRight = [],
         elementId,
+        authorPrefix,
+        categoryPrefix,
+        datePrefix,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -109,7 +112,7 @@ const PostMeta = compose(
 
     const MetaDate = ({isLastItem}) => {
 
-        return <div className={`gvnews-meta-date meta-items ${isLastItem}`}>
+        return <div className={`gvnews-meta-date meta-items ${isLastItem} ${datePrefix ? 'with-prefix' : ''}`}>
             <a href="#">{convertDateFormat(getCurrentDateTimeFormatted())}</a>
         </div>;
     };
@@ -117,7 +120,7 @@ const PostMeta = compose(
     const MetaCategory = ({isLastItem}) => {
         return <div className={`gvnews-meta-category meta-items ${isLastItem}`}>
             <span>
-                <span className="meta-text">{__('in', 'gutenverse-news')} </span>
+                <span className="meta-text"> {categoryPrefix} </span>
                 <a href="#" rel="category tag">Dummy, </a>
                 <a href="#" rel="category tag">Another, </a>
                 <a href="#" rel="category tag">Category </a>
@@ -141,7 +144,7 @@ const PostMeta = compose(
                 width="80"
                 loading="lazy"
                 decoding="async" />
-            <span className="meta_text null">by </span>
+            <span className="meta_text null">{authorPrefix} </span>
             <a href="#">admin</a>
         </div>;
     };
@@ -174,13 +177,13 @@ const PostMeta = compose(
     };
 
     const MetaLeftElement = () => {
-        return <div className="meta-left">
+        return <div className="meta-part meta-left">
             <RenderMeta metas={metaLeft ? metaLeft : []} />
         </div>;
     };
 
     const MetaRightElement = () => {
-        return <div className="meta-right">
+        return <div className="meta-part meta-right">
             <RenderMeta metas={metaRight ? metaRight : []} />
         </div>;
     };

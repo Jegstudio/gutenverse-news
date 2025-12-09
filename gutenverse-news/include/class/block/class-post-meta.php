@@ -41,13 +41,13 @@ class Post_Meta extends Post_Guten {
 		foreach ( $lefts as $index => $left ) {
 			$left_html .= $this->render_meta( $left['value'], $this->is_last_item( $index, count( $lefts ) ) );
 		}
-		$left_html = "<div class='meta-left'>{$left_html}</div>";
+		$left_html = "<div class='meta-part meta-left'>{$left_html}</div>";
 
 		$rights = isset( $this->attributes['metaRight'] ) ? $this->attributes['metaRight'] : array();
 		foreach ( $rights as $index => $right ) {
 			$right_html .= $this->render_meta( $right['value'], $this->is_last_item( $index, count( $rights ) ) );
 		}
-		$right_html = "<div class='meta-right'>{$right_html}</div>";
+		$right_html = "<div class='meta-part meta-right'>{$right_html}</div>";
 
 		return $left_html . $right_html;
 	}
@@ -135,10 +135,9 @@ class Post_Meta extends Post_Guten {
 	 */
 	public function render_date( $is_last_item ) {
 		global $post;
-
-		$date = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
-
-		return '<div class="gvnews-meta-date meta-items ' . $is_last_item . '">' .
+		$date        = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
+		$show_prefix = isset( $this->attributes['datePrefix'] ) && $this->attributes['datePrefix'] ? ' with-prefix' : '';
+		return '<div class="gvnews-meta-date meta-items ' . $is_last_item . $show_prefix . '">' .
 					'<a href="#">' . $date . '</a>' .
 				'</div>';
 	}
