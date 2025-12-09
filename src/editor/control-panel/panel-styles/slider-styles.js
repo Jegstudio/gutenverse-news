@@ -424,7 +424,7 @@ const getSliderStyle = (elementId, attributes) => {
         isNotEmpty(attributes['typographyMeta']) && data.push({
             'type': 'typography',
             'id': 'typographyMeta',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_meta>div ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .gvnews_meta_author .by`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_meta`,
         });
 
         isNotEmpty(attributes['typographyMetaAuthor']) && data.push({
