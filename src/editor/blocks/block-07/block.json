@@ -641,6 +641,22 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
+        },
+        "titleContainerAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

@@ -4,7 +4,7 @@
 		column-gap: 30px;
 		grid-template-columns: 1fr auto;
 		grid-template-areas:
-			"title none"
+			"title title"
 			"content thumb";
 
 		.gvnews_post_title {
