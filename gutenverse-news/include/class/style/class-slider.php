@@ -808,7 +808,7 @@ class Slider extends StyleAbstract {
 						return "gap: {$value}px;";
 					},
 					'value'          => $this->attrs['dotGap'],
-					'device_control' => false,
+					'device_control' => true,
 				)
 			);
 		}

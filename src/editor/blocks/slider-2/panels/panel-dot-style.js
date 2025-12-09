@@ -21,6 +21,7 @@ export const dotStylePanel = (props) => {
             id: 'dotGap',
             label: __('Dot Gap', 'gutenverse-news'),
             component: RangeControl,
+            allowDeviceControl: true,
             min: 0,
             max: 100,
             step: 1,

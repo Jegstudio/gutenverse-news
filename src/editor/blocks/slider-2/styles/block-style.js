@@ -22,6 +22,7 @@ export const blockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['dotGap']) && data.push({
         'id': 'dotGap',
         'type': 'plain',
+        'responsive': true,
         'properties': [
             {
                 'name': 'gap',
