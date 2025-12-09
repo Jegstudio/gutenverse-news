@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
-import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
+import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
@@ -70,6 +70,18 @@ export const panelList = () => {
                 ...props,
             }),
             tabRole: TabStyle
+        },
+        {
+            title: __('Header Filter Dropdown', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: HeaderFilterDropdownPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Pagination', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Design', 'gutenverse-news'),

@@ -1135,6 +1135,47 @@ class Block extends StyleAbstract {
 				);
 			}
 		}
+
+		if ( isset( $this->attrs['headerHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_heading .gvnews_block_title span , .{$this->element_id} .gvnews_block_heading",
+					'property'       => function ( $value ) {
+							return "height: {$value}px;";
+							},
+							'value'          => $this->attrs['headerHeight'],
+							'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['headerTitlePadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading .gvnews_block_title span",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['headerTitlePadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+
+		if ( isset( $this->attrs['headerMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['headerMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( $with_header_filter ) {
 			if ( isset( $this->attrs['headerFilterColor'] ) ) {
 					$this->inject_style(
@@ -1173,6 +1214,20 @@ class Block extends StyleAbstract {
 					)
 				);
 			}
+
+			if ( isset( $this->attrs['headerTitlePadding'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading .gvnews_subcat",
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['headerTitlePadding'],
+					'device_control' => true,
+				)
+			);
+		}
+			$this->dropdown_header_filter_style();
 		}
 
 		switch ( $this->attrs['headerType'] ) {
@@ -1657,5 +1712,213 @@ class Block extends StyleAbstract {
 			return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $this->attrs[ $selector ];
 		}
 		return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $def;
+	}
+
+	private function dropdown_header_filter_style() {
+		if ( isset( $this->attrs['filterDowndownTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector' => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter",
+					'value'    => $this->attrs['filterDowndownTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownWrapperBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDowndownWrapperBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownItemPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['filterDropdownItemPadding'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownWrapperPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['filterDropdownWrapperPadding'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownWrapperBorder'] ) ) {
+			$this->handle_border(
+				'filterDropdownWrapperBorder',
+				".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible"
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['filterDropdownBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['filterDowndownColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['filterDowndownColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownColorActive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['filterDowndownColorActive'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownItemBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDowndownItemBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownItemBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDowndownItemBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDowndownItemBackgroundActive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDowndownItemBackgroundActive'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownToogleColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__menu-toggle span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDropdownToogleColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownToogleColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__menu-toggle:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDropdownToogleColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownToogleColorActive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_subcat .okayNav__menu-toggle.icon--active span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background' );
+					},
+					'value'          => $this->attrs['filterDropdownToogleColorActive'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownItemBorder'] ) ) {
+			$this->handle_border(
+				'filterDropdownItemBorder',
+				".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter"
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownItemBorderHover'] ) ) {
+			$this->handle_border(
+				'filterDropdownItemBorderHover',
+				".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['filterDropdownItemBorderActive'] ) ) {
+			$this->handle_border(
+				'filterDropdownItemBorderActive',
+				".{$this->element_id} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current"
+			);
+		}
 	}
 }
