@@ -2,7 +2,9 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block2Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom , readmoreButtonDisabled = false } = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom , readmoreButtonDisabled = false,
+        metaDateIcon, metaDateIconType, metaDateIconSVG, metaCommentIcon, metaCommentIconType, metaCommentIconSVG
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -34,6 +36,14 @@ const Block2Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG,
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG,
             }
         };
         const rows = [];
@@ -67,6 +77,14 @@ const Block2Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG,
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG,
             }
         };
         const rows = [];
