@@ -271,6 +271,12 @@
         },
         "readmoreButtonDisabled": {
             "type": "boolean"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
         }
     },
     "supports": {
