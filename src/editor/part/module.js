@@ -39,6 +39,8 @@ const BlockModule = compose(
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -364,6 +366,8 @@ const BlockModule = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
