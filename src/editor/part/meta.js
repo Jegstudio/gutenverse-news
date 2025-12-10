@@ -27,9 +27,11 @@ const MetaDate = props => {
     const iconType = (customIconType && customIconType !== 'icon') ? customIconType : (attr.date?.iconType || 'icon');
     const iconSVG = customIconSVG || attr.date?.iconSVG || '';
 
+    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
+
     return <div className="gvnews_meta_date">
         <a>
-            {showIcon && renderIcon(icon, iconType, iconSVG)}
+            {showIcon && renderIcon(finalIcon, iconType, iconSVG)}
             {'custom' == attr.date.format ? formatDateString(date, attr.date.custom) : 'ago' == attr.date.format ? timeDifference(timestamp) : formatDateString(date, attr.option.option.date_format)}
         </a>
     </div>;
@@ -41,9 +43,11 @@ const MetaComments = props => {
     const iconType = attr.comment?.iconType || 'icon';
     const iconSVG = attr.comment?.iconSVG || '';
 
+    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
+
     return <div className="gvnews_meta_comment">
         <a>
-            {renderIcon(icon, iconType, iconSVG)}&nbsp;
+            {renderIcon(finalIcon, iconType, iconSVG)}&nbsp;
             {post.comment} {showText && __('Comments', 'gutenverse-news')}
         </a>
     </div>;

@@ -27,9 +27,11 @@ const Block1Columns = props => {
 
     const RenderBlock3 = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
+        const finalListIcon = (listIconType === 'svg' && !listIconSVG) ? '' : listIcon;
+
         return (
             <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
-                {renderIcon(listIcon, listIconType, listIconSVG)}
+                {renderIcon(finalListIcon, listIconType, listIconSVG)}
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
                 </div>
