@@ -455,7 +455,7 @@ class Slider extends StyleAbstract {
 						array(
 							'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption",
 							'property'       => function ( $value ) {
-								return "width: {$value}%;";
+								return "width: {$value}%; max-width:unset;";
 							},
 							'value'          => $this->attrs['containerWidth'],
 							'device_control' => true,
