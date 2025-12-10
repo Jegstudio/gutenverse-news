@@ -79,6 +79,14 @@ const BlockModule = compose(
         showMetaComment = true,
         readmoreButtonDisabled = false,
         listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        metaDateIcon = '',
+        metaDateIconType = 'icon',
+        metaDateIconSVG = '',
+        metaCommentIcon = '',
+        metaCommentIconType = 'icon',
+        metaCommentIconSVG = '',
     } = attributes;
 
     const metaSettings = {
@@ -303,7 +311,15 @@ const BlockModule = compose(
                 paginationPost: postPaginationLoaded,
                 page,
                 readmoreButtonDisabled,
-                listIcon
+                listIcon,
+                listIconType,
+                listIconSVG,
+                metaDateIcon,
+                metaDateIconType,
+                metaDateIconSVG,
+                metaCommentIcon,
+                metaCommentIconType,
+                metaCommentIconSVG
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -323,7 +339,15 @@ const BlockModule = compose(
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        listIcon
+        listIcon,
+        listIconType,
+        listIconSVG,
+        metaDateIcon,
+        metaDateIconType,
+        metaDateIconSVG,
+        metaCommentIcon,
+        metaCommentIconType,
+        metaCommentIconSVG
     ]);
 
     const blockProps = useBlockProps({

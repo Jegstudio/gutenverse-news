@@ -602,7 +602,13 @@ abstract class Block_View_Abstract {
 	 */
 	public function get_meta_date( $post ) {
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
-			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+			$icon      = isset( $this->attribute['meta_date_icon'] ) ? $this->attribute['meta_date_icon'] : 'far fa-clock';
+			$icon_type = isset( $this->attribute['meta_date_icon_type'] ) ? $this->attribute['meta_date_icon_type'] : 'icon';
+			$icon_svg  = isset( $this->attribute['meta_date_icon_svg'] ) ? $this->attribute['meta_date_icon_svg'] : '';
+
+			$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
+
+			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon_html . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		}
 		return '';
 	}
@@ -616,7 +622,14 @@ abstract class Block_View_Abstract {
 	public function get_meta_comment( $post ) {
 		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
 			$comment = gvnews_get_comments_number( $post->ID );
-			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" ><i class="far fa-comment"></i> ' . esc_attr( $comment ) . ' </a></div>';
+
+			$icon      = isset( $this->attribute['meta_comment_icon'] ) ? $this->attribute['meta_comment_icon'] : 'far fa-comment';
+			$icon_type = isset( $this->attribute['meta_comment_icon_type'] ) ? $this->attribute['meta_comment_icon_type'] : 'icon';
+			$icon_svg  = isset( $this->attribute['meta_comment_icon_svg'] ) ? $this->attribute['meta_comment_icon_svg'] : '';
+
+			$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
+
+			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon_html . ' ' . esc_attr( $comment ) . ' </a></div>';
 		}
 		return '';
 	}
@@ -650,6 +663,24 @@ abstract class Block_View_Abstract {
 			}
 		}
 		return '';
+	}
+
+	/**
+	 * Render Icon
+	 *
+	 * @param string $type Icon type.
+	 * @param string $icon Icon class.
+	 * @param string $svg  SVG data.
+	 *
+	 * @return string
+	 */
+	public function render_icon( $type, $icon, $svg ) {
+		if ( 'svg' === $type && ! empty( $svg ) ) {
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+			$svg_data = base64_decode( $svg );
+			return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+		}
+		return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
 	}
 
 	/**

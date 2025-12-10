@@ -24,6 +24,65 @@ class Frontend_Assets {
 		// Modular Script.
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_scripts' ) );
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_styles' ) );
+		add_filter( 'gutenverse_conditional_script_attributes', array( $this, 'font_icon_conditional_load' ), null, 3 );
+	}
+
+	/**
+	 * Icon conditional load
+	 *
+	 * @param mixed $conditions The value from the attributes array.
+	 */
+	private function icon_conditional_load( &$conditions ) {
+		$conditions[] = array(
+			'style' => 'fontawesome-gutenverse',
+		);
+
+		$conditions[] = array(
+			'style' => 'gutenverse-iconlist',
+		);
+
+		return $conditions;
+	}
+
+	/**
+	 * Conditional load font icon
+	 *
+	 * @param mixed  $conditions The value from the attributes array.
+	 * @param string $attrs The comparison operator (e.g., '===', '!==').
+	 * @param mixed  $block_name The value to compare against.
+	 */
+	public function font_icon_conditional_load( $conditions, $attrs, $block_name ) {
+		switch ( $block_name ) {
+			case 'gutenverse/news-block-1':
+				// Check list icon.
+				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+
+				// Check meta date icon.
+				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaDate'] ) || $attrs['showMetaDate'] ) ) {
+					if ( ! isset( $attrs['metaDateIconType'] ) || 'icon' === $attrs['metaDateIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+
+				// Check meta comment icon.
+				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaComment'] ) || $attrs['showMetaComment'] ) ) {
+					if ( ! isset( $attrs['metaCommentIconType'] ) || 'icon' === $attrs['metaCommentIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+
+				// Check header icon.
+				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
+					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+				break;
+		}
+
+		return $conditions;
 	}
 
 	/**

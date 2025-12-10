@@ -1,11 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, SelectControl, TextControl } from 'gutenverse-core/controls';
+import { CheckboxControl, SelectControl, TextControl, IconSVGControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
 export const metaPanel = (props, settings = []) => {
     const {
         metaDateFormat = 'default',
         showMetaDate = true,
+        showMetaComment = true,
         showMeta = true
     } = props;
 
@@ -63,6 +64,13 @@ export const metaPanel = (props, settings = []) => {
             description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
             component: TextControl,
         },
+        {
+            id: 'metaDateIcon',
+            show: showMeta && showMetaDate === true,
+            label: __('Date Icon', 'gutenverse-news'),
+            description: __('Choose icon for meta date.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
     );
     settings.includes('comment') && panelList.push(
         {
@@ -71,6 +79,13 @@ export const metaPanel = (props, settings = []) => {
             description: __('Enable this option to show meta comment on this block.', 'gutenverse-news'),
             show: showMeta,
             component: CheckboxControl
+        },
+        {
+            id: 'metaCommentIcon',
+            show: showMeta && showMetaComment === true,
+            label: __('Comment Icon', 'gutenverse-news'),
+            description: __('Choose icon for meta comment.', 'gutenverse-news'),
+            component: IconSVGControl
         },
     );
     return applyFilters('gutenverse.news.penels.meta.setting', panelList, props);

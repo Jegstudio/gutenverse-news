@@ -174,6 +174,16 @@ class Block extends Grab {
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 			),
 			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'list_icon_type'               => isset( $this->attributes['listIconType'] ) ? $this->attributes['listIconType'] : 'icon',
+			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
+			'meta_date_icon'               => isset( $this->attributes['metaDateIcon'] ) ? $this->attributes['metaDateIcon'] : '',
+			'meta_date_icon_type'          => isset( $this->attributes['metaDateIconType'] ) ? $this->attributes['metaDateIconType'] : 'icon',
+			'meta_date_icon_svg'           => isset( $this->attributes['metaDateIconSVG'] ) ? $this->attributes['metaDateIconSVG'] : '',
+			'meta_comment_icon'            => isset( $this->attributes['metaCommentIcon'] ) ? $this->attributes['metaCommentIcon'] : '',
+			'meta_comment_icon_type'       => isset( $this->attributes['metaCommentIconType'] ) ? $this->attributes['metaCommentIconType'] : 'icon',
+			'meta_comment_icon_svg'        => isset( $this->attributes['metaCommentIconSVG'] ) ? $this->attributes['metaCommentIconSVG'] : '',
+			'icon_type'                    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
+			'icon_svg'                     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
 		);
 		$sccontent = '';
 

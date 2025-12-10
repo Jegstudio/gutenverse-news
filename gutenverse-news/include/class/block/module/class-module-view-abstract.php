@@ -413,7 +413,13 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$additional_line = ( isset( $attr['header_type'] ) && 'heading_5' === $attr['header_type'] ) ? '<span class="line"></span>' : '';
 
 		if ( ! empty( $heading_title ) ) {
-			$heading_icon  = empty( $attr['header_icon'] ) ? '' : "<i class='" . ( count( explode( ' ', $attr['header_icon'] ) ) !== 1 ? '' : 'fa ' ) . "{$attr['header_icon']}'></i>";
+			$heading_icon = '';
+			$icon_type    = isset( $attr['icon_type'] ) ? $attr['icon_type'] : 'icon';
+			$icon_svg     = isset( $attr['icon_svg'] ) ? $attr['icon_svg'] : '';
+			$icon_class   = ! empty( $attr['header_icon'] ) ? $attr['header_icon'] : ( ! empty( $attr['icon'] ) ? $attr['icon'] : '' );
+
+			$heading_icon = $this->render_icon( $icon_type, $icon_class, $icon_svg );
+
 			$heading_title = "<span>{$heading_icon}{$attr['first_title']}{$subtitle}</span>";
 			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}'>{$heading_title}</a>" : $heading_title;
 			$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";

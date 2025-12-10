@@ -1,9 +1,10 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { createChunks } from '../../utils/helper';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const Block1Columns = props => {
-    const { postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false, listIcon = '' } = props;
+    const { postData, numberPost, paginationPost = numberPost, isLoadMore = false, moduleOption, blockWidth, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, readmoreButtonDisabled = false, listIcon = '', listIconType = 'icon', listIconSVG = '', metaDateIcon = '', metaDateIconType = 'icon', metaDateIconSVG = '', metaCommentIcon = '', metaCommentIconType = 'icon', metaCommentIconSVG = '' } = props;
 
     const RenderBlock1 = props=>{
         return (
@@ -28,7 +29,7 @@ const Block1Columns = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
         return (
             <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
-                <i className={listIcon ? listIcon : 'fas fa-caret-right'}></i>
+                {renderIcon(listIcon, listIconType, listIconSVG)}
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
                 </div>
@@ -60,6 +61,14 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG
             }
         };
 
@@ -92,6 +101,14 @@ const Block1Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG
             }
         };
 
@@ -124,6 +141,14 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG
             }
         };
 
