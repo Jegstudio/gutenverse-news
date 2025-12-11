@@ -22,8 +22,10 @@ export const stylePanel = (props) => {
         {
             id: 'widthMode',
             label: __('Force 1 Column', 'gutenverse-news'),
+            description: __('Turn on this option to show the next and previous blocks stacked in one column on mobile devices.', 'gutenverse-news'),
             component: CheckboxControl,
-            allowDeviceControl: true,
+            allowDeviceControl: false,
+            specificDevice: 'Mobile',
         },
         {
             id: 'gap',

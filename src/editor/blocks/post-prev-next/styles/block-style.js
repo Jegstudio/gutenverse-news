@@ -37,19 +37,36 @@ const getBlockStyle = (elementId, attributes) => {
             }
         ]
     });
-    isNotEmpty(attributes['widthMode']) && data.push({
-        'type': 'plain',
-        'id': 'widthMode',
-        'responsive': true,
-        'selector': baseSelector,
-        'properties': [
-            {
-                'name': 'flex-direction',
-                'valueType': 'pattern',
-                'pattern': 'column',
-            }
-        ]
-    });
+    if (isNotEmpty(attributes['widthMode'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'widthMode',
+            'responsive': false,
+            'specificDevice': 'Mobile',
+            'selector': baseSelector,
+            'properties': [
+                {
+                    'name': 'flex-direction',
+                    'valueType': 'pattern',
+                    'pattern': 'column',
+                }
+            ]
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'widthMode',
+            'responsive': false,
+            'specificDevice': 'Mobile',
+            'selector': `${baseSelector} a`,
+            'properties': [
+                {
+                    'name': 'width',
+                    'valueType': 'pattern',
+                    'pattern': '100%',
+                }
+            ]
+        });
+    }
     isNotEmpty(attributes['gap']) && data.push({
         'type': 'plain',
         'id': 'gap',
@@ -113,7 +130,7 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ]
-    });isNotEmpty(attributes['accentColorHover']) && data.push({
+    }); isNotEmpty(attributes['accentColorHover']) && data.push({
         'type': 'color',
         'id': 'accentColorHover',
         'selector': `${baseSelector} a:hover .post-title`,

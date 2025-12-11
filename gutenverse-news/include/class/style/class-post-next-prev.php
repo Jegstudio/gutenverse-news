@@ -94,12 +94,24 @@ class Post_Next_Prev extends Style_Abstract {
 		if ( isset( $this->attrs['widthMode'] ) && $this->attrs['widthMode'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$this->base_selector}",
-					'property'       => function ( $value ) {
+					'selector'        => "{$this->base_selector}",
+					'property'        => function ( $value ) {
 						return 'flex-direction: column;';
 					},
-					'value'          => $this->attrs['widthMode'],
-					'device_control' => true,
+					'value'           => $this->attrs['widthMode'],
+					'device_control'  => false,
+					'specific_device' => 'Mobile',
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'        => "{$this->base_selector} a",
+					'property'        => function ( $value ) {
+						return 'width: 100%;';
+					},
+					'value'           => $this->attrs['widthMode'],
+					'device_control'  => false,
+					'specific_device' => 'Mobile',
 				)
 			);
 		}
