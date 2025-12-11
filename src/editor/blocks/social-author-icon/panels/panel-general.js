@@ -9,7 +9,7 @@ export const generalPanel = (props) => {
     } = props;
 
     const searchSocials = input => new Promise(resolve => {
-        return resolve([
+        const list = [
             { label: __('Author Website', 'gutenverse-news'), value: 'user_url' },
             { label: __('Facebook', 'gutenverse-news'), value: 'facebook' },
             { label: __('Tiktok', 'gutenverse-news'), value: 'tiktok' },
@@ -32,8 +32,13 @@ export const generalPanel = (props) => {
             { label: __('Rss', 'gutenverse-news'), value: 'rss' },
             { label: __('Threads', 'gutenverse-news'), value: 'threads' },
             { label: __('Xing', 'gutenverse-news'), value: 'xing' },
-        ]);
+        ];
+
+        return resolve(list.filter(item =>
+            item.label.toLowerCase().includes(input.toLowerCase())
+        ));
     });
+
 
     return [
         {
