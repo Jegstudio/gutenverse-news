@@ -23480,7 +23480,17 @@ input:checked+.slider {
   }
 }
 
-.gvnews_block_container .gutenverse-icon-svg {
+.gvnews-block .gutenverse-icon-svg {
   display: inline-flex;
-  vertical-align: -0.2em;
+  vertical-align: -0.125em;
+
+  svg {
+    width: auto;
+    height: 1em;
+  }
+}
+
+.gutenverse-control-wrapper.gutenverse-control-icon .icon-preview svg {
+  width: auto;
+  height: 1em;
 }
