@@ -269,6 +269,9 @@
         },
         "containerPadding": {
             "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
         }
     },
     "supports": {
