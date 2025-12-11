@@ -21,6 +21,11 @@
 		.gvnews_postblock_content {
 			grid-area: content;
 		}
+		&:last-child {
+			border-bottom: initial;
+			padding-bottom: 30px;
+			border-bottom-color: #eee;
+		}
 	}
 	&.gvnews_col_1o3 {
 		.gvnews_pl_lg_6 {
