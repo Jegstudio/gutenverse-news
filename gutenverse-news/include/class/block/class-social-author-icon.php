@@ -41,7 +41,7 @@ class Social_Author_Icon extends Post_Guten {
 	public function get_content() {
 		$attributes       = $this->attributes;
 		$author_type      = isset( $attributes['authorType'] ) ? $attributes['authorType'] : 'dynamic';
-		$social_media     = ! empty( $attributes['socialMedia'] ) ? $attributes['socialMedia'] : '';
+		$social_media     = ! empty( $attributes['socialMedia'] ) ? $attributes['socialMedia']['value'] : '';
 		$hide_if_empty    = $attributes['hideIfEmpty'];
 		$default_url      = isset( $attributes['defaultUrl'] ) ? $attributes['defaultUrl'] : '';
 		$static_author_id = isset( $attributes['authorId'] ) ? $attributes['authorId']['value'] : 0;

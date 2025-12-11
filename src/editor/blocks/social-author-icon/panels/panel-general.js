@@ -7,17 +7,33 @@ export const generalPanel = (props) => {
         authorType,
         hideIfEmpty,
     } = props;
-    const getSocialMedias = () => {
-        const socialMedias = window.GVNewsConfig.socialMedias;
-        const result = [];
-        for (const key in socialMedias) {
-            result.push({
-                label: __(socialMedias[key], 'gutenverse-news'),
-                value: key
-            });
-        }
-        return result;
-    };
+
+    const searchSocials = input => new Promise(resolve => {
+        return resolve([
+            { label: __('Author Website', 'gutenverse-news'), value: 'user_url' },
+            { label: __('Facebook', 'gutenverse-news'), value: 'facebook' },
+            { label: __('Tiktok', 'gutenverse-news'), value: 'tiktok' },
+            { label: __('Twitter', 'gutenverse-news'), value: 'twitter' },
+            { label: __('Linkedin', 'gutenverse-news'), value: 'linkedin' },
+            { label: __('Pinterest', 'gutenverse-news'), value: 'pinterest' },
+            { label: __('Behance', 'gutenverse-news'), value: 'behance' },
+            { label: __('Github', 'gutenverse-news'), value: 'github' },
+            { label: __('Flickr', 'gutenverse-news'), value: 'flickr' },
+            { label: __('Tumblr', 'gutenverse-news'), value: 'tumblr' },
+            { label: __('Dribbble', 'gutenverse-news'), value: 'dribbble' },
+            { label: __('Soundcloud', 'gutenverse-news'), value: 'soundcloud' },
+            { label: __('Instagram', 'gutenverse-news'), value: 'instagram' },
+            { label: __('Vimeo', 'gutenverse-news'), value: 'vimeo' },
+            { label: __('Youtube', 'gutenverse-news'), value: 'youtube' },
+            { label: __('Reddit', 'gutenverse-news'), value: 'reddit' },
+            { label: __('Vk', 'gutenverse-news'), value: 'vk' },
+            { label: __('Weibo', 'gutenverse-news'), value: 'weibo' },
+            { label: __('Twitch', 'gutenverse-news'), value: 'twitch' },
+            { label: __('Rss', 'gutenverse-news'), value: 'rss' },
+            { label: __('Threads', 'gutenverse-news'), value: 'threads' },
+            { label: __('Xing', 'gutenverse-news'), value: 'xing' },
+        ]);
+    });
 
     return [
         {
@@ -46,8 +62,8 @@ export const generalPanel = (props) => {
         {
             id: 'socialMedia',
             label: __('Social Media', 'gutenverse-news'),
-            component: SelectControl,
-            options: getSocialMedias(),
+            component: SelectSearchControl,
+            onSearch: searchSocials,
         },
         {
             id: 'hideIfEmpty',

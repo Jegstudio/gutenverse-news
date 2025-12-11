@@ -126,7 +126,6 @@ class Editor_Assets {
 		$config['moduleOption']    = $this->get_module_option();
 		$config['gutenversePro']   = gutenverse_pro_active();
 		$config['imageSizes']      = Image::get_instance()->get_image_sizes();
-		$config['socialMedias']    = $this->get_author_social_media();
 		return $config;
 	}
 
@@ -176,18 +175,5 @@ class Editor_Assets {
 			),
 		);
 		return apply_filters( 'gvnews_module_options', $data );
-	}
-
-	/**
-	 * Get Author Social Media.
-	 *
-	 * @return array
-	 */
-	public function get_author_social_media() {
-		$result = array(
-			'user_url' => 'Author Website',
-		);
-		$result = array_merge( $result, Social_Contacts::gvnews_admin_contact() );
-		return $result;
 	}
 }

@@ -15,8 +15,11 @@
             "default": "dynamic"
         },
         "socialMedia": {
-            "type": "string",
-            "default": "user_url"
+            "type": "object",
+            "default": {
+                "value": "user_url",
+                "label": "Author Website"
+            }
         },
         "hideIfEmpty": {
             "type": "boolean",
