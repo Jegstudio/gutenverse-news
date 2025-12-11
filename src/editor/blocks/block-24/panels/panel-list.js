@@ -11,28 +11,27 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return applyFilters(
         'gutenverse.news.block.panels',
         [
+            // Setting
             {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => headerSettingsPanel({
-                    ...props,
-                }),
+                panelArray: (props) => headerSettingsPanel({ ...props }),
                 tabRole: TabSetting
             },
             {
                 id: 'header-filter',
                 title: __('Header Filter', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => {
-                    return headerFilterPanel(props);
-                },
+                panelArray: (props) => headerFilterPanel(props),
                 tabRole: TabSetting,
-
             },
             {
                 title: __('Content Filter', 'gutenverse-news'),
@@ -72,11 +71,36 @@ export const panelList = () => {
                 panelArray: paginationPanel,
                 tabRole: TabSetting
             },
+            // Style
+            {
+                title: __('Header', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => headerStylesPanel({ ...props }),
+                tabRole: TabStyle
+            },
             {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => designPanel(props, 2, true),
                 tabRole: TabStyle
+            },
+            {
+                title: __('Thumbnail', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailOverlayPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Content Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: contentContainerPanel,
+                tabRole: TabStyle,
             },
             {
                 title: __('Meta Style', 'gutenverse-news'),
@@ -127,6 +151,7 @@ export const panelList = () => {
                 }),
                 tabRole: TabStyle
             },
+            // Pro
             {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,
