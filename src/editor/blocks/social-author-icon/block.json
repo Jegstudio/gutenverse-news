@@ -33,7 +33,7 @@
         },
         "icon": {
             "type": "string",
-            "default": "fab fa-wordpress"
+            "default": "fa fa-globe"
         },
         "iconSize": {
              "type": "object"
