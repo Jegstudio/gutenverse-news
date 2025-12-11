@@ -1221,6 +1221,19 @@ const getBlockStyle = (
         ],
     });
 
+    isNotEmpty(attributes['borderItem']) && data.push({
+        'type': 'border',
+        'id': 'borderItem',
+        'selector': `.gvnews-block-wrapper.${elementId} .gvnews_postblock .${mainThumbnailClass}.gvnews_post`,
+    });
+
+    isNotEmpty(attributes['borderItemResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderItemResponsive',
+        'selector': `.gvnews-block-wrapper.${elementId} .gvnews_postblock .${mainThumbnailClass}.gvnews_post`,
+    });
+    console.log({data});
+
     data = headerFilterStyle(elementId, attributes, data);
     data = contentContainerStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);

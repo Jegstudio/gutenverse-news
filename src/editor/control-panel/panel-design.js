@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, TypographyControl, ColorControl, BorderControl, BorderResponsiveControl, HeadingControl } from 'gutenverse-core/controls';
+import { theDeviceType } from 'gutenverse-core/helper';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
 export const designPanel = (props, typeCount = 1, listIcon = false) => {
@@ -11,7 +12,14 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
         columnWidth,
         columnWidthExcept = [],
         hasColumnWidth = true,
+        hasBorder = {
+            main: false,
+            second: false,
+        }
     } = props;
+    const device = theDeviceType();
+    console.log(device);
+    
 
     const columnWidthOptions = () => {
         const result = [
@@ -139,6 +147,27 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
             description: __('This option will change the list icon color.', 'gutenverse-news'),
             show: listIcon,
             component: ColorControl,
+        },
+        {
+            id: '__borderHeader',
+            show: hasBorder.main || hasBorder.second,
+            label: __('Border Header', 'gutenverse-news'),
+            description: __('This option will change the border of the card.', 'gutenverse-news'),
+            component: HeadingControl,
+        },
+        {
+            id: 'borderItem',
+            show: hasBorder.main && device === 'Desktop',
+            label: __('Border Item', 'gutenverse-news'),
+            description: __('This option will change the border of the box.', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderItemResponsive',
+            show: hasBorder.main && device !== 'Desktop',
+            label: __('Border Item Responsive', 'gutenverse-news'),
+            description: __('This option will change the border of the box.', 'gutenverse-news'),
+            component: BorderResponsiveControl,
         },
     ];
 };

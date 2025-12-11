@@ -480,6 +480,29 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['borderItem'] ) ) {
+			$this->handle_border(
+				'borderItem',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}.gvnews_post"
+			);
+		}
+
+		if ( isset( $this->attrs['borderItemResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}.gvnews_post",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderItemResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
 	}
 
 	// PRIVATE FUNCTION.
