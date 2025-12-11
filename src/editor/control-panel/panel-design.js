@@ -151,8 +151,8 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
         {
             id: '__borderHeader',
             show: hasBorder.main || hasBorder.second,
-            label: __('Border Header', 'gutenverse-news'),
-            description: __('This option will change the border of the card.', 'gutenverse-news'),
+            label: __('Border Item', 'gutenverse-news'),
+            description: __('This option will change the border of the item.', 'gutenverse-news'),
             component: HeadingControl,
         },
         {
