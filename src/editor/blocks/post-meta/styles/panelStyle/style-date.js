@@ -11,7 +11,7 @@ const dateStyle = (props) => {
     isNotEmpty(attributes['dateTypography']) && data.push({
         'type': 'typography',
         'id': 'dateTypography',
-        'selector': `.${elementId}.gvnews-post-meta > div .meta-items.gvnews-meta-date`,
+        'selector': `.${elementId}.gvnews-post-meta > div .meta-items.gvnews-meta-date a`,
     });
 
     isNotEmpty(attributes['dateColor']) && data.push({
@@ -38,6 +38,18 @@ const dateStyle = (props) => {
             }
         ],
         'selector': `.${elementId}.gvnews-post-meta > div .meta-items.gvnews-meta-date a:hover`,
+    });
+
+    isNotEmpty(attributes['datePrefixColor']) && data.push({
+        'id': 'datePrefixColor',
+        'type': 'color',
+        'properties': [
+            {
+                'valueType': 'direct',
+                'name': 'color'
+            }
+        ],
+        'selector': `.${elementId}.gvnews-post-meta > div .meta-items.gvnews-meta-date::before`,
     });
 
     return data;

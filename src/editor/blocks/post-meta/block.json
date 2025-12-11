@@ -117,6 +117,86 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "avatarSize": {
+            "type": "object"
+        },
+        "avatarGap": {
+            "type": "object"
+        },
+        "avatarOpacity": {
+            "type": "string"
+        },
+        "avatarBorder": {
+            "type": "object"
+        },
+        "avatarBoxShadow": {
+            "type": "object"
+        },
+        "avatarBorderResponsive": {
+            "type": "object"
+        },
+        "forceColumnRight": {
+            "type": "boolean"
+        },
+        "forceColumnLeft": {
+            "type": "boolean"
+        },
+        "authorHideMobile": {
+            "type": "boolean"
+        },
+        "dateHideMobile": {
+            "type": "boolean"
+        },
+        "categoryHideMobile": {
+            "type": "boolean"
+        },
+        "commentHideMobile": {
+            "type": "boolean"
+        },
+        "authorRightHide": {
+            "type": "boolean"
+        },
+        "dateRightHide": {
+            "type": "boolean"
+        },
+        "categoryRightHide": {
+            "type": "boolean"
+        },
+        "commentRightHide": {
+            "type": "boolean"
+        },
+        "authorPrefix": {
+            "type": "string",
+            "default": "by"
+        },
+        "categoryPrefix": {
+            "type": "string",
+            "default": "in"
+        },
+        "datePrefix": {
+            "type": "boolean"
+        },
+        "authorPrefixTypography": {
+            "type": "object"
+        },
+        "categoryPrefixTypography": {
+            "type": "object"
+        },
+        "authorPrefixGap": {
+            "type": "object"
+        },
+        "categoryPrefixGap": {
+            "type": "object"
+        },
+        "authorPrefixColor": {
+            "type": "object"
+        },
+        "categoryPrefixColor": {
+            "type": "object"
+        },
+        "datePrefixColor": {
+            "type": "object"
         }
     },
     "supports": {
@@ -134,5 +214,7 @@
         "reading",
         "time"
     ],
-    "style": ["gutenverse-news-frontend-post-meta-style"]
+    "style": [
+        "gutenverse-news-frontend-post-meta-style"
+    ]
 }
