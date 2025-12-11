@@ -11,6 +11,9 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return [
@@ -51,6 +54,13 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Pagination', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationPanel,
+            tabRole: TabSetting
+        },
+        // Style
+        {
             title: __('Header', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => headerStylesPanel({
@@ -75,6 +85,24 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: designPanel,
             tabRole: TabStyle
+        },
+        {
+            title: __('Thumbnail', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailSettingPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Thumbnail Overlay', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailOverlayPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: contentContainerPanel,
+            tabRole: TabStyle,
         },
         {
             title: __('Meta Style', 'gutenverse-news'),

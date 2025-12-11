@@ -10,12 +10,15 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
-
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return [
+        // Srtting
         {
             title: __('Header', 'gutenverse-news'),
             initialOpen: false,
@@ -58,6 +61,7 @@ export const panelList = () => {
             panelArray: paginationPanel,
             tabRole: TabSetting
         },
+        // Style
         {
             title: __('Header', 'gutenverse-news'),
             initialOpen: false,
@@ -77,6 +81,36 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => designPanel(props, 3, true),
             tabRole: TabStyle
+        },
+        {
+            title: __('Thumbnail', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => thumbnailSettingPanel({
+                ...props,
+                hasSecondImageSize: true,
+            }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Thumbnail Overlay', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => thumbnailOverlayPanel({
+                ...props,
+                hasSecondImageSize: true
+            }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => contentContainerPanel({
+                ...props,
+                hasSecondImageSize: true,
+                contentAlignVertical: {
+                    second: true
+                }
+            }),
+            tabRole: TabStyle,
         },
         {
             title: __('Meta Style', 'gutenverse-news'),

@@ -34,6 +34,10 @@ const BlockModule = compose(
         columnAttr,
         panelList,
         freeModule = false,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        mainThumbnailClass,
+        secondThumbnailClass,
     } = props;
 
     const {
@@ -100,7 +104,17 @@ const BlockModule = compose(
     const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getBlockStyle(
+            elementId,
+            attributes,
+            mainThumbnailClass,
+            secondThumbnailClass,
+        ),
+        elementRef
+    );
 
     const {
         getBlock,
@@ -302,8 +316,11 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
+                renderedImageSizeMain,
+                renderedImageSizeSecond,
                 readmoreButtonDisabled,
-                listIcon
+                listIcon,
+                attributes,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -318,6 +335,8 @@ const BlockModule = compose(
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
         showMeta,
         showMetaDate,
         showMetaAuthor,
@@ -371,9 +390,18 @@ const BlockModule = compose(
         }
     };
 
+    const theProps = {
+        ...props,
+        attributes: {
+            ...attributes,
+            mainThumbnailClass,
+            secondThumbnailClass
+        }
+    };
+
     return <>
         <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <BlockPanelController panelList={panelList} props={theProps} elementRef={elementRef} />
         {!freeModule && <InspectorControls>
             {applyFilters(
                 'gutenverse.blocks-pro.upgrade-banner-professional',

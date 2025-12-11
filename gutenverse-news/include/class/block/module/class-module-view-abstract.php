@@ -661,6 +661,54 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
+	 * Method main_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function main_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeMain'] ) && 'default' !== $this->attribute['renderedImageSizeMain'] ? $this->attribute['renderedImageSizeMain'] : $size;
+		return $size;
+	}
+
+	/**
+	 * Method second_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function second_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeSecond'] ) && 'default' !== $this->attribute['renderedImageSizeSecond'] ? $this->attribute['renderedImageSizeSecond'] : $size;
+		return $size;
+	}
+
+	/**
+	 * Method thumbnail_container_class_default
+	 *
+	 * @param string $class_name class.
+	 * @return string
+	 */
+	public function thumbnail_container_class_default( $class_name ) {
+		if ( in_array( $this->attribute['renderedImageSizeMain'], array( 'default', 'full' ), true ) ) {
+			$class_name .= ' default';
+		}
+		return $class_name;
+	}
+
+	/**
+	 * Return name class no-liear-bg or ''.
+	 *
+	 * @return string
+	 */
+	protected function postblock_content_no_linear_bg() {
+
+		if ( ! empty( $this->attribute['content_container_background']['color'] ) || ! empty( $this->attribute['content_container_background']['gradientColor'] ) ) {
+			return 'no-linear-bg';
+		}
+		return '';
+	}
+
+	/**
 	 * Method render_column
 	 *
 	 * @param string $result       result.

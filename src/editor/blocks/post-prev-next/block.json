@@ -119,6 +119,13 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "widthMode": {
+            "type": "boolean",
+            "default": false
+        },
+        "gap": {
+            "type": "string"
         }
     },
     "supports": {
