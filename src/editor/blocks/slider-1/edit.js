@@ -170,7 +170,15 @@ const Slider1Block = compose(
         }
         return (
             <>
-                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''} data-class-next={nextButtonIcon} data-class-prev={prevButtonIcon}>
+                <div
+                    ref={blockRef}
+                    className="gvnews_slider_type_1 gvnews_slider"
+                    data-autoplay={autoplay ? true : ''}
+                    data-delay={sliderDelay}
+                    data-hover-action={hoverEffect ? true : ''}
+                    data-class-next={nextButtonIcon}
+                    data-class-prev={prevButtonIcon}
+                >
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">

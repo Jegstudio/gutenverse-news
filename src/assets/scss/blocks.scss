@@ -1173,12 +1173,12 @@
 
 .tns-outer button.tns-prev:before,
 .owl-carousel .owl-prev:before {
-  content: '\f104';
+  // content: '\f104';
 }
 
 .tns-outer button.tns-next:before,
 .owl-carousel .owl-next:before {
-  content: '\f105';
+  // content: '\f105';
 }
 
 /* Block Heading 1 */
@@ -14136,12 +14136,12 @@ span.gvnews-category {
 
 .tns-outer button.tns-prev:before,
 .owl-carousel .owl-prev:before {
-  content: '\f104';
+  // content: '\f104';
 }
 
 .tns-outer button.tns-next:before,
 .owl-carousel .owl-next:before {
-  content: '\f105';
+  // content: '\f105';
 }
 
 .tns-outer .tns-controls button:before,
@@ -18435,14 +18435,6 @@ span.gvnews-category {
       font-family: 'Font Awesome 6 Free' !important;
       font-weight: 900;
     }
-
-    &.tns-prev:before {
-      content: '\f104';
-    }
-
-    &.tns-next:before {
-      content: '\f105';
-    }
   }
 
   .tns-nav {
@@ -22522,10 +22514,6 @@ input:checked+.slider {
     &:before {
       font-family: 'Font Awesome 6 Free' !important;
       font-weight: 900;
-    }
-
-    &.tns-prev:before {
-      content: '\f104';
     }
   }
 

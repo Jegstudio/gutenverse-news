@@ -122,7 +122,7 @@ class GutenverseFirstSlider {
         this.options.autoplay = this.theSlider.dataset.autoplay;
         this.options.autoplayTimeout = this.theSlider.dataset.delay;
         let nextClass = this.theSlider.dataset.classNext || 'fas fa-chevron-right';
-        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-rigleft';
+        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-left';
 
         if (!u(this.theSlider).hasClass('gvnews_tns_active')) {
             this.mainSlider = window.tns({
@@ -208,6 +208,10 @@ class GutenverseSliderModule {
     }
 
     defaultOption = () => {
+        const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
+        const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
+        console.log({nextClass, prevClass});
+        
         let sliderDefault = {
             container: this.container,
             nav: true,
@@ -228,11 +232,15 @@ class GutenverseSliderModule {
             animateOut: 'tns-fadeOut',
             speed: 300,
             onInit: function (info) {
+                console.log({info});
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
+                    u(info.nextButton).html(`<i class="${nextClass}"></i>`);
+                    console.log({nextButton: info.nextButton});
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
+                    u(info.prevButton).html(`<i class="${prevClass}"></i>`);
                 }
             },
         };
@@ -422,6 +430,7 @@ class GutenverseSliderModule {
             ...defaultOption,
             ...this.options
         };
+        console.log({cona: this.container, sliderOption});
 
         if (slideType) {
             if (1 !== slideType) {

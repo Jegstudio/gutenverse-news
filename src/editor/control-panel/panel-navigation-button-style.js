@@ -22,9 +22,8 @@ export const navigationButtonStylePanel = (props) => {
         },
         {
             id: 'tootlipColor',
-            show: sliderType === 'slider-1',
             description: __('Active slider marker in image navigation', 'gutenverse-news'),
-            show: !props.hideImageNavigation,
+            show: !props.hideImageNavigation && sliderType === 'slider-1',
             label: __('Tootlip Color', 'gutenverse-news'),
             component: ColorControl,
         },
