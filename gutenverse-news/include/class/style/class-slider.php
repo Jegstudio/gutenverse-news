@@ -939,7 +939,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['gapItem'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1 .tns-item",
 					'property'       => function ( $value ) {
 						return "padding-right: {$value}px;";
 					},
@@ -952,7 +952,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['itemWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1 .tns-item",
 					'property'       => function ( $value ) {
 						return "width: calc({$value}%);";
 					},
