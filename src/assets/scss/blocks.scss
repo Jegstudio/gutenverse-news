@@ -6274,8 +6274,6 @@
     font-weight: normal;
     color: inherit;
     line-height: normal;
-    margin-right: 5px;
-    margin-bottom: 5px;
     padding: 2px 6px;
     background: #f70d28;
     text-transform: uppercase;
@@ -14446,6 +14444,7 @@ span.gvnews-category {
   .gvnews_post_category {
     line-height: 1;
     font-size: 11px;
+    margin-bottom: 10px;
 
     a {
       display: inline-block;
@@ -14453,7 +14452,6 @@ span.gvnews-category {
       font-weight: normal;
       color: inherit;
       line-height: 1;
-      margin-bottom: 5px;
       padding: 2px 6px;
       background: #f70d28;
       text-transform: uppercase;
