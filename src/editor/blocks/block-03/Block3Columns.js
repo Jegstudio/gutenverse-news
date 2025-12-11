@@ -2,7 +2,9 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block3Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom,
+        metaDateIcon, metaDateIconType, metaDateIconSVG, metaCommentIcon, metaCommentIconType, metaCommentIconSVG
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -25,6 +27,14 @@ const Block3Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
+                icon: metaDateIcon,
+                iconType: metaDateIconType,
+                iconSVG: metaDateIconSVG,
+            },
+            comment: {
+                icon: metaCommentIcon,
+                iconType: metaCommentIconType,
+                iconSVG: metaCommentIconSVG,
             }
         };
         const rows = [];

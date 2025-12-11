@@ -82,6 +82,7 @@ class Frontend_Assets {
 				break;
 
 			case 'gutenverse/news-block-2':
+			case 'gutenverse/news-block-3':
 				// Check meta date icon.
 				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaDate'] ) || $attrs['showMetaDate'] ) ) {
 					if ( ! isset( $attrs['metaDateIconType'] ) || 'icon' === $attrs['metaDateIconType'] ) {
