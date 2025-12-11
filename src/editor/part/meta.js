@@ -23,7 +23,7 @@ const MetaDate = props => {
     let date = new Date(post.date[typeDate] * 1000).toISOString();
     let timestamp = post.date[typeDate] * 1000;
 
-    const icon = customIcon || attr.date?.icon || 'far fa-clock';
+    const icon = customIcon || attr.date?.icon || '';
     const iconType = (customIconType && customIconType !== 'icon') ? customIconType : (attr.date?.iconType || 'icon');
     const iconSVG = customIconSVG || attr.date?.iconSVG || '';
 
@@ -39,7 +39,7 @@ const MetaDate = props => {
 
 const MetaComments = props => {
     const { post, attr, showText = true } = props;
-    const icon = attr.comment?.icon || 'far fa-comment';
+    const icon = attr.comment?.icon || '';
     const iconType = attr.comment?.iconType || 'icon';
     const iconSVG = attr.comment?.iconSVG || '';
 
