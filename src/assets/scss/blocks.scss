@@ -22669,6 +22669,8 @@ input:checked+.slider {
   .fa,
   .fas,
   .far,
+  .fab,
+  .gtn,
   svg {
     color: #2e9fff;
     font-size: inherit;
@@ -22700,7 +22702,10 @@ input:checked+.slider {
 
     .fa,
     .fas,
-    .far {
+    .far,
+    .fab,
+    .gtn,
+    svg {
       color: #2e9fff;
       font-size: inherit;
       margin-right: 2px;
