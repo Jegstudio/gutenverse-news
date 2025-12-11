@@ -7,8 +7,6 @@ export const generalPanel = (props) => {
         authorType,
         hideIfEmpty,
     } = props;
-    console.log({props});
-
     const getSocialMedias = () => {
         const socialMedias = window.GVNewsConfig.socialMedias;
         const result = [];
