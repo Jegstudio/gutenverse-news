@@ -36,6 +36,27 @@ export const categoryStylePanel = (props) => {
             },
         },
         {
+            id: 'categoryButtonMargin',
+            label: __('Margin', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
             id: '__categoryHover',
             component: SwitchControl,
             options: [

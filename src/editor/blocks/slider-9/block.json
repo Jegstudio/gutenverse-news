@@ -272,6 +272,9 @@
         },
         "metaIconColor": {
             "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

@@ -278,6 +278,9 @@
         },
         "containerPadding": {
             "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
