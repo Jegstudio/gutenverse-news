@@ -12,7 +12,8 @@ const getBlockStyle = (
     const {
         showMeta = true,
         showMetaAuthor = true,
-        headerType
+        headerType,
+        gvnewsModule
     } = attributes;
 
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
@@ -660,6 +661,31 @@ const getBlockStyle = (
         'type': 'typography',
         'id': 'categoryButtonTypography',
         'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+
+    isNotEmpty(attributes['categoryButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+    isNotEmpty(attributes['categoryButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Module\\Module_38' ? `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span` : `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category`,
     });
 
     isNotEmpty(attributes['categoryButtonBackground']) && data.push({
