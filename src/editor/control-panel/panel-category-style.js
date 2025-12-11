@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SwitchControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
+import { DimensionControl, SwitchControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
 
 export const categoryStylePanel = (props) => {
     const {
@@ -13,6 +13,48 @@ export const categoryStylePanel = (props) => {
             id: 'categoryButtonTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'categoryButtonPadding',
+            label: __('Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'categoryButtonMargin',
+            label: __('Margin', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
         },
         {
             id: '__categoryHover',

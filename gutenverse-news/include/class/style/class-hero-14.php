@@ -165,6 +165,32 @@ class Hero_14 extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['categoryButtonPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postbig .gvnews_pl_lg_7 .gvnews_thumb .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['categoryButtonPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postbig .gvnews_pl_lg_7 .gvnews_thumb .gvnews_post_category",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['categoryButtonMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['categoryButtonBackground'] ) ) {
 			$this->inject_style(
 				array(

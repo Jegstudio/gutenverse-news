@@ -12,6 +12,9 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return applyFilters(
@@ -44,7 +47,10 @@ export const panelList = () => {
             {
                 title: __('Content Setting', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: settingPanel,
+                panelArray: (props) => settingPanel({
+                    ...props,
+                    hasSecondImageSize: true,
+                }),
                 tabRole: TabSetting
             },
             {
@@ -53,6 +59,13 @@ export const panelList = () => {
                 panelArray: (props) => metaPanel(props, ['author', 'date']),
                 tabRole: TabSetting
             },
+            {
+                title: __('Pagination', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: paginationPanel,
+                tabRole: TabSetting
+            },
+            // Style
             {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
@@ -78,6 +91,33 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: (props) => designPanel(props, 2, true),
                 tabRole: TabStyle
+            },
+            {
+                title: __('Thumbnail', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => thumbnailSettingPanel({
+                    ...props,
+                    hasSecondImageSize: true,
+                }),
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => thumbnailOverlayPanel({
+                    ...props,
+                    hasSecondImageSize: true,
+                }),
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Content Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => contentContainerPanel({
+                    ...props,
+                    hasSecondImageSize: true
+                }),
+                tabRole: TabStyle,
             },
             {
                 title: __('Meta Style', 'gutenverse-news'),

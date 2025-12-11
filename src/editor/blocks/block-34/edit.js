@@ -5,6 +5,7 @@ import LockedBlockModule from '../../part/locked-module';
 import { gutenverseProActive } from '../../utils/helper';
 import BlockModule from '../../part/module';
 import { panelList } from './panels/panel-list';
+import { getImageSizeDetail } from '../../utils/helper';
 
 const Block34Block = compose(
     withPartialRender,
@@ -16,7 +17,15 @@ const Block34Block = compose(
     };
     const moduleName = '34';
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+        const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 350, width: 350, dimension: 1000, class: 'default' });
+        return <BlockModule
+            columnAttr={columnAttr}
+            moduleName={moduleName}
+            {...props}
+            panelList={panelList}
+            renderedImageSizeMain={renderedImageSizeMain}
+            mainThumbnailClass={'gvnews_pl_md_box'}
+        />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
     }
