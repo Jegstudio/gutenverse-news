@@ -46,10 +46,10 @@ class Slider extends StyleAbstract {
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
-		gutenverse_rlog( $this->attrs );
 
 		$this->slider_1_style();
 		$this->slider_2_style();
+		$this->slider_3_style();
 
 		if ( stristr( $this->attrs['gvnewsModule'], 'Slider_Overlay' ) ) {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
@@ -527,7 +527,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls",
 					'property'       => function ( $value ) {
 						return 'display: none !important;';
 					},
@@ -540,7 +540,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -553,7 +553,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next:hover i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -566,7 +566,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -579,7 +579,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev:hover i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -592,7 +592,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonSize'] ) && ! empty( $this->attrs['nextButtonSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next",
 					'property'       => function ( $value ) {
 						return "
 								font-size: {$value}px;
@@ -609,7 +609,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonSize'] ) && ! empty( $this->attrs['prevButtonSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev",
 					'property'       => function ( $value ) {
 						return "
 								font-size: {$value}px;
@@ -626,7 +626,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonPadding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -639,7 +639,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonPadding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
@@ -652,7 +652,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonBgColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -665,7 +665,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonBgColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -678,7 +678,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonBgColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -691,7 +691,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonBgColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -703,7 +703,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper #tns2-mw.tns-ovh",
 					'property'       => function ( $value ) {
 						return 'display: none !important;';
 					},
@@ -715,7 +715,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['tootlipColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper #tns2-mw.tns-ovh",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -725,7 +725,7 @@ class Slider extends StyleAbstract {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'border-top-color' );
 					},
@@ -738,7 +738,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['nextButtonTransition'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next",
 					'property'       => function ( $value ) {
 						return "transition: background-color {$value}ms;";
 					},
@@ -748,7 +748,7 @@ class Slider extends StyleAbstract {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-next i",
 					'property'       => function ( $value ) {
 						return "transition: color {$value}ms;";
 					},
@@ -760,7 +760,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['prevButtonTransition'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev",
 					'property'       => function ( $value ) {
 						return "transition: background-color {$value}ms;";
 					},
@@ -770,7 +770,7 @@ class Slider extends StyleAbstract {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-controls .tns-prev i",
 					'property'       => function ( $value ) {
 						return "transition: color {$value}ms;";
 					},
@@ -922,6 +922,41 @@ class Slider extends StyleAbstract {
 						return "width: {$value}px; height: {$value}px; border-radius: 100%;";
 					},
 					'value'          => $this->attrs['dotActiveSize'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate slider 3 style.
+	 */
+	private function slider_3_style() {
+		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
+			return;
+		}
+
+		if ( isset( $this->attrs['gapItem'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1",
+					'property'       => function ( $value ) {
+						return "padding-right: {$value}px;";
+					},
+					'value'          => $this->attrs['gapItem'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['itemWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1",
+					'property'       => function ( $value ) {
+						return "width: calc({$value}%);";
+					},
+					'value'          => $this->attrs['itemWidth'],
 					'device_control' => true,
 				)
 			);

@@ -258,6 +258,14 @@
         },
         "titleColorHover": {
             "type": "object"
+        },
+        "gapItem": {
+            "type": "object",
+            "default": {}
+        },
+        "itemWidth": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
