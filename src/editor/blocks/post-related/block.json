@@ -491,6 +491,12 @@
         },
         "readmoreButtonBoxShadowHover": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
