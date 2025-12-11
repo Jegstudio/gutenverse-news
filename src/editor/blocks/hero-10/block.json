@@ -334,6 +334,12 @@
         "selectorSecondTitleTypography": {
             "type": "string",
             "default": ".gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

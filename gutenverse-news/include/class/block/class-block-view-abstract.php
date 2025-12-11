@@ -50,7 +50,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Manager
 	 *
-	 * @var ModuleManager
+	 * @var Block_Manager
 	 */
 	protected $manager;
 
@@ -219,6 +219,7 @@ abstract class Block_View_Abstract {
 		$this->load_vc_icon_elements( $attr );
 
 		$column_class = $this->get_module_column_class( $attr );
+		$column_class = apply_filters( 'gvnews_custom_module_column_class', $column_class );
 		$output       = $this->render_module( $attr, $column_class );
 
 		if ( ! $this->is_column_compatible() && ( current_user_can( 'edit_posts' ) || current_user_can( 'activate_plugins' ) ) ) {
@@ -338,7 +339,11 @@ abstract class Block_View_Abstract {
 	 * @return mixed|string
 	 */
 	public function get_thumbnail( $post_id, $size ) {
-		if ( isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ) {
+		if (
+			isset( $this->attribute['force_normal_image_load'] )
+			&& ( 'true' === $this->attribute['force_normal_image_load']
+			|| 'yes' === $this->attribute['force_normal_image_load'] )
+		) {
 			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size );
 		}
 		return apply_filters( 'gvnews_image_thumbnail', $post_id, $size );

@@ -356,6 +356,12 @@
         "readmoreButtonBoxShadowHover": {
             "type": "object"
         },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
+        },
         "paginationWrapperMargin": {
             "type": "object"
         },
@@ -459,7 +465,7 @@
             "type": "object",
             "default": {}
         },
-         "showMeta": {
+        "showMeta": {
             "type": "boolean",
             "default": true
         },
@@ -530,6 +536,54 @@
         },
         "headerSecondTextColor": {
             "type": "object"
+        },
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
+        },
+        "borderMainThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type": "object"
+        },
+        "overlayBackgroundMain": {
+            "type": "object"
+        },
+        "overlayOpacityMain": {
+            "type": "object"
+        },
+        "contentAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "contentBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "contentContainerShadow": {
+            "type": "object",
+            "copyStyle": true
         },
         "filterDropdownItemBorder": {
             "type": "object",
@@ -616,6 +670,12 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

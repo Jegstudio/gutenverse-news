@@ -17,6 +17,18 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_2 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_2';
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $second_thumbnail_class = 'gvnews_pl_sm';
 
 	/**
 	 * Method render_block_type_1
@@ -90,13 +102,16 @@ class Module_2 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function build_column( $results, $column_class, $is_ajax ) {
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-350x250' );
-
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 		$second_block = '';
 		$size         = count( $results );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		if ( $is_ajax ) {
 			return $second_block;

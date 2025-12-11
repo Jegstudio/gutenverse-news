@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, DimensionControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
 export const designPanel = () => {
 
     return [
@@ -29,6 +29,37 @@ export const designPanel = () => {
             id: 'secondTitleColor',
             label: __('Second Title Color', 'gutenverse-news'),
             component: ColorControl,
+        },
+        {
+            id: 'containerWidth',
+            label: __('Container Width', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 100,
+            unit: '%',
+            step: 1,
+        },
+        {
+            id: 'containerPadding',
+            label: __('Container Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
         },
     ];
 };

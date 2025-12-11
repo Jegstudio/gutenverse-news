@@ -166,6 +166,8 @@ class Block extends Grab {
 			'compatible_column_notice'     => '',
 			'show_date'                    => $enbdate,
 			'short_code'                   => $this->attributes['gvnewsModule'],
+			'renderedImageSizeMain'        => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
+			'renderedImageSizeSecond'      => isset( $this->attributes['renderedImageSizeSecond'] ) ? $this->attributes['renderedImageSizeSecond'] : '',
 			'disable_readmore'             => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
 			'meta_settings'                => array(
 				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
@@ -174,6 +176,7 @@ class Block extends Grab {
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 			),
 			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : [],
 			'list_icon_type'               => isset( $this->attributes['listIconType'] ) ? $this->attributes['listIconType'] : 'icon',
 			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
 			'meta_date_icon'               => isset( $this->attributes['metaDateIcon'] ) ? $this->attributes['metaDateIcon'] : '',

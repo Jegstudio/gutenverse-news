@@ -255,6 +255,15 @@
         },
         "titleColorHover": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "containerWidth": {
+            "type": "object"
         }
     },
     "supports": {
