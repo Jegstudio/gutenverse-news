@@ -1166,9 +1166,9 @@ class Block extends StyleAbstract {
 					'selector'       => ".{$this->element_id} .gvnews_block_heading .gvnews_block_title span , .{$this->element_id} .gvnews_block_heading",
 					'property'       => function ( $value ) {
 							return "height: {$value}px;";
-							},
-							'value'          => $this->attrs['headerHeight'],
-							'device_control' => true,
+					},
+					'value'          => $this->attrs['headerHeight'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -1185,7 +1185,6 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
-
 
 		if ( isset( $this->attrs['headerMargin'] ) ) {
 			$this->inject_style(
@@ -1245,12 +1244,12 @@ class Block extends StyleAbstract {
 						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading .gvnews_subcat",
 						'property'       => function ( $value ) {
 							return $this->handle_dimension( $value, 'padding' );
-					},
-					'value'          => $this->attrs['headerTitlePadding'],
-					'device_control' => true,
-				)
-			);
-		}
+						},
+						'value'          => $this->attrs['headerTitlePadding'],
+						'device_control' => true,
+					)
+				);
+			}
 			$this->dropdown_header_filter_style();
 		}
 
@@ -1953,51 +1952,53 @@ class Block extends StyleAbstract {
 	 * Title Container Style
 	 */
 	private function title_container_style() {
-		$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock_7.gvnews_postblock .gvnews_post_title";
-		if ( isset( $this->attrs['titleContainerAlign'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => $selector,
-					'property'       => function ( $value ) {
-						return "text-align: {$value};";
-					},
-					'value'          => $this->attrs['titleContainerAlign'],
-					'device_control' => true,
-				)
-			);
-		}
+		if ( 'GUTENVERSE\\NEWS\\Block\\Module\\Module_7' === $this->attrs['gvnewsModule'] ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock_7.gvnews_postblock .gvnews_post_title";
+			if ( isset( $this->attrs['titleContainerAlign'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "text-align: {$value};";
+						},
+						'value'          => $this->attrs['titleContainerAlign'],
+						'device_control' => true,
+					)
+				);
+			}
 
-		if ( isset( $this->attrs['titleContainerBackground'] ) ) {
-			$this->handle_background(
-				$selector,
-				$this->attrs['titleContainerBackground'],
-			);
-		}
+			if ( isset( $this->attrs['titleContainerBackground'] ) ) {
+				$this->handle_background(
+					$selector,
+					$this->attrs['titleContainerBackground'],
+				);
+			}
 
-		if ( isset( $this->attrs['titleContainerMargin'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => $selector,
-					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'margin' );
-					},
-					'value'          => $this->attrs['titleContainerMargin'],
-					'device_control' => true,
-				)
-			);
-		}
+			if ( isset( $this->attrs['titleContainerMargin'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'margin' );
+						},
+						'value'          => $this->attrs['titleContainerMargin'],
+						'device_control' => true,
+					)
+				);
+			}
 
-		if ( isset( $this->attrs['titleContainerPadding'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => $selector,
-					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'padding' );
-					},
-					'value'          => $this->attrs['titleContainerPadding'],
-					'device_control' => true,
-				)
-			);
+			if ( isset( $this->attrs['titleContainerPadding'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'padding' );
+						},
+						'value'          => $this->attrs['titleContainerPadding'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
 	}
 }

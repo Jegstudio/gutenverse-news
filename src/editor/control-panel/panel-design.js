@@ -18,8 +18,6 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
         }
     } = props;
     const device = theDeviceType();
-    console.log(device);
-    
 
     const columnWidthOptions = () => {
         const result = [
