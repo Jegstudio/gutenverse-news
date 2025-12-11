@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, RangeControl, SizeControl, TypographyControl } from 'gutenverse-core/controls';
 export const designPanel = () => {
 
     return [
@@ -32,12 +32,25 @@ export const designPanel = () => {
         {
             id: 'itemWidth',
             label: __('Width Item', 'gutenverse-news'),
-            component: RangeControl,
+            component: SizeControl,
             allowDeviceControl: true,
-            min: 0,
-            max: 20,
-            step: 1,
-            unit: '%',
-        }
+            defaultUnit: '%',
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 300,
+                    step: 1,
+                    unit: 'px',
+                },
+                ['%']: {
+                    text: '%',
+                    min: 1,
+                    max: 20,
+                    step: 1,
+                    unit: '%',
+                },
+            },
+        },
     ];
 };

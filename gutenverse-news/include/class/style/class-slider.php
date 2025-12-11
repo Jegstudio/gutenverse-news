@@ -939,9 +939,9 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['gapItem'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1 .tns-item",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
 					'property'       => function ( $value ) {
-						return "padding-right: {$value}px;";
+						return "padding-right: {$value}px !important;";
 					},
 					'value'          => $this->attrs['gapItem'],
 					'device_control' => true,
@@ -952,9 +952,9 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['itemWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner #tns1 .tns-item",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
 					'property'       => function ( $value ) {
-						return "width: calc({$value}%);";
+						return $this->handle_unit_point( $value, 'width', true );
 					},
 					'value'          => $this->attrs['itemWidth'],
 					'device_control' => true,

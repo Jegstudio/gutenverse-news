@@ -11,7 +11,7 @@ export const blockStyle = (elementId, attributes) => {
             {
                 'name': 'padding-right',
                 'valueType': 'pattern',
-                'pattern': '{value}px',
+                'pattern': '{value}px !important',
                 'patternValues': {
                         'value': {
                             'type': 'direct',
@@ -19,18 +19,18 @@ export const blockStyle = (elementId, attributes) => {
                     }
             }
         ],
-        'selector': `.gvnews-slider-3.${elementId} .tns-inner #tns1 .tns-item`,
+        'selector': `.gvnews-slider-3.${elementId} .tns-inner .gvnews_slider_type_3 .tns-item`,
     });
 
     isNotEmpty(attributes['itemWidth']) && data.push({
         'id': 'itemWidth',
-        'type': 'plain',
+        'type': 'unitPoint',
         'responsive': true,
         'properties': [
             {
                 'name': 'width',
                 'valueType': 'pattern',
-                'pattern': 'calc({value}%)',
+                'pattern': '{value} !important',
                 'patternValues': {
                         'value': {
                             'type': 'direct',
@@ -38,7 +38,7 @@ export const blockStyle = (elementId, attributes) => {
                     }
             }
         ],
-        'selector': `.gvnews-slider-3.${elementId} .tns-inner #tns1 .tns-item`,
+        'selector': `.gvnews-slider-3.${elementId} .tns-inner .gvnews_slider_type_3 .tns-item`,
     });
     
     return data;
