@@ -426,6 +426,26 @@
             "type": "object",
             "default": {}
         },
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
+        },
+        "renderedImageSizeSecond": {
+            "type": "string",
+            "default": "default"
+        },
+        "borderMainThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type": "object"
+        },
+        "borderSecondThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveSecondThumbnail": {
+            "type": "object"
+        },
         "showMeta": {
             "type": "boolean",
             "default": true
@@ -501,6 +521,82 @@
         },
         "headerSecondTextColor": {
             "type": "object"
+        },
+        "overlayBackgroundMain": {
+            "type": "object"
+        },
+        "overlayOpacityMain": {
+            "type": "object"
+        },
+        "overlayBackgroundSecond": {
+            "type": "object"
+        },
+        "overlayOpacitySecond": {
+            "type": "object"
+        },
+        "contentAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "contentBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "contentContainerShadow": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentAlignSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentContainerBackgroundSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentMarginSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPaddingSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderResponsiveSecond": {
+            "type": "object",
+            "migrate": {
+                "attr": "contentBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "contentContainerShadowSecond": {
+            "type": "object",
+            "copyStyle": true
         },
         "filterDropdownItemBorder": {
             "type": "object",

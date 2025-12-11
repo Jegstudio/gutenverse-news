@@ -1,7 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaCategory, MetaModule1 } from '../../part/meta';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef, useCallback } from '@wordpress/element';
 import Shuffle from 'shufflejs';
 
 const Block32Columns = (props) => {
@@ -19,27 +19,35 @@ const Block32Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
-        readmoreButtonDisabled = false
+        readmoreButtonDisabled = false,
+        renderedImageSizeMain,
+        attributes,
     } = props;
 
-    const masonryRef = useRef();
     const shuffleInstance = useRef(null);
 
-    useEffect(() => {
-        if (shuffleInstance.current === null) {
-            shuffleInstance.current = new Shuffle(masonryRef.current, {
+    const masonryRef = useCallback((node) => {
+        if (node) {
+            shuffleInstance.current = new Shuffle(node, {
                 itemSelector: '.gvnews_post',
                 gutterWidth: 30,
                 speed: 0
             });
-        }
-
-        return () => {
-            shuffleInstance.current?.destroy;
+        } else {
+            shuffleInstance.current?.destroy();
             shuffleInstance.current = null;
-        };
+        }
+    }, []);
+
+    useEffect(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.resetItems();
+            shuffleInstance.current.update();
+        }
     }, [
         blockWidth,
+        attributes,
+        postData
     ]);
 
     const postDataLen = postData.length;
@@ -58,7 +66,7 @@ const Block32Columns = (props) => {
                             </h3>
                         )}
                     </header>
-                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} />}
+                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={renderedImageSizeMain} />}
                     <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>

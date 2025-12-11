@@ -3,7 +3,20 @@ import { MetaModule3 } from '../../part/meta';
 import { PostTitle, PostExcerpt } from '../../part/post';
 
 const Block23Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        renderedImageSizeMain,
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -11,7 +24,7 @@ const Block23Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                <ThumbModule size={715} cat={true} post={post}/>
+                <ThumbModule size={715} cat={true} post={post} imageSize={renderedImageSizeMain} />
                 <div className="gvnews_postblock_content">
                     {post.title && <PostTitle post={post} />}
                     {post.excerpt && <PostExcerpt post={post} attr={attr}/>}
