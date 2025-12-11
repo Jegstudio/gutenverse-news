@@ -40,7 +40,6 @@ const PostAuthor = compose(
     const displayClass = useDisplayEditor(attributes);
 
     const currentUser = wp.data.select('core').getCurrentUser();
-    console.log({currentUser});
 
     const blockProps = useBlockProps({
         className: classnames(

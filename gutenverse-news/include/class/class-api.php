@@ -166,16 +166,6 @@ class Api {
 				'permission_callback' => array( $this, 'edit_pages' ),
 			)
 		);
-
-		register_rest_route(
-			self::ENDPOINT,
-			'get-author-social-media',
-			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'get_author_social_media' ),
-				'permission_callback' => '__return_true',
-			)
-		);
 	}
 
 	/**
@@ -938,18 +928,5 @@ class Api {
 	 */
 	public function response_success( $args ) {
 		return new \WP_REST_Response( $args, 200 );
-	}
-
-	/**
-	 * Get Author Social Media.
-	 *
-	 * @return array
-	 */
-	public function get_author_social_media() {
-		$result = array(
-			'user_url' => 'Author Website',
-		);
-		$result = array_merge( $result, Social_Contacts::gvnews_admin_contact() );
-		return $result;
 	}
 }

@@ -15,8 +15,8 @@
             "default": "dynamic"
         },
         "socialMedia": {
-            "type": "object",
-            "default": {}
+            "type": "string",
+            "default": "user_url"
         },
         "hideIfEmpty": {
             "type": "boolean",

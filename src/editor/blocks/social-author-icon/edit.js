@@ -23,7 +23,6 @@ const SocialAuthorIcon = compose(
 
     const {
         elementId,
-        socialMedia,
         icon
     } = attributes;
     const elementRef = useRef(null);
