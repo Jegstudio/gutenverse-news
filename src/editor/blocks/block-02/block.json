@@ -166,7 +166,7 @@
         },
         "metaDateIcon": {
             "type": "string",
-            "default": "fas fa-clock"
+            "default": "far fa-clock"
         },
         "metaDateIconPosition": {
             "type": "string",
