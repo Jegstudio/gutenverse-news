@@ -703,7 +703,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-ovh",
 					'property'       => function ( $value ) {
 						return 'display: none !important;';
 					},
@@ -715,7 +715,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['tootlipColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_1_wrapper .tns-ovh",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},

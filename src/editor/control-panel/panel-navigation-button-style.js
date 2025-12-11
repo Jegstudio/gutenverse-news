@@ -5,6 +5,7 @@ export const navigationButtonStylePanel = (props) => {
     const {
         switcher,
         setSwitcher,
+        sliderType
     } = props;
 
     return [
@@ -15,11 +16,13 @@ export const navigationButtonStylePanel = (props) => {
         },
         {
             id: 'hideImageNavigation',
+            show: sliderType === 'slider-1',
             label: __('Hide Image Navigation'),
             component: CheckboxControl,
         },
         {
             id: 'tootlipColor',
+            show: sliderType === 'slider-1',
             description: __('Active slider marker in image navigation', 'gutenverse-news'),
             show: !props.hideImageNavigation,
             label: __('Tootlip Color', 'gutenverse-news'),
