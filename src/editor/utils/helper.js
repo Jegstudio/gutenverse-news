@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
+import { getDevice, isNotEmpty } from 'gutenverse-core/helper';
 
 const createChunks = (datas, chunkSize) => {
     const result = [];
@@ -195,6 +196,11 @@ const getModuleOptions = () => {
     };
 };
 
+const getImageSizeDetail = ( name, def = {} ) => {
+    const imageSizes = window.GVNewsConfig.imageSizes;
+    return imageSizes[name] ? imageSizes[name] : def;
+};
+
 export {
     createChunks,
     searchPosts,
@@ -206,4 +212,5 @@ export {
     getParentColumnWidth,
     getModuleOptions,
     gutenverseProActive,
+    getImageSizeDetail,
 };

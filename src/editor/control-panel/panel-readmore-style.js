@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SwitchControl, CheckboxControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
+import { SwitchControl, CheckboxControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl, DimensionControl } from 'gutenverse-core/controls';
 
 export const readmoreStylePanel = (props) => {
     const {
@@ -183,6 +183,76 @@ export const readmoreStylePanel = (props) => {
                     'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore:hover`,
                 }
             ]
+        },
+        {
+            id: 'readmoreButtonPadding',
+            label: __('Padding', 'gutenverse-news'),
+            show: !switcher.readmore || switcher.readmore === 'normal',
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['top', 'right', 'bottom', 'left'],
+            liveStyle: [
+                {
+                    'id': 'readmoreButtonPadding',
+                    'type': 'dimension',
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+                    'properties': [
+                        {
+                            'name': 'padding',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                ['%']: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'readmoreButtonMargin',
+            label: __('Margin', 'gutenverse-news'),
+            show: !switcher.readmore || switcher.readmore === 'normal',
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['top', 'right', 'bottom', 'left'],
+            liveStyle: [
+                {
+                    'id': 'readmoreButtonMargin',
+                    'type': 'dimension',
+                    'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+                    'properties': [
+                        {
+                            'name': 'margin',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                ['%']: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
         },
     ];
 };

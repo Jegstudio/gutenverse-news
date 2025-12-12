@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS;
 
+use GUTENVERSE\NEWS\Util\Image\Image;
+
 /**
  * Class Editor Assets
  *
@@ -123,6 +125,7 @@ class Editor_Assets {
 		$config['gvnews_ajax_url'] = esc_url_raw( add_query_arg( array( 'ajax-request' => 'gvnews' ), esc_url( gvnews_home_url_multilang( '/', 'relative' ) ) ) );
 		$config['moduleOption']    = $this->get_module_option();
 		$config['gutenversePro']   = gutenverse_pro_active();
+		$config['imageSizes']      = Image::get_instance()->get_image_sizes();
 		return $config;
 	}
 
