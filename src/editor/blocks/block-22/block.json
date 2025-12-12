@@ -611,6 +611,12 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

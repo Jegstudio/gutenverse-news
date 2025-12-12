@@ -303,6 +303,18 @@
         },
         "dotActiveSize": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "containerWidth": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
         }
     },
     "supports": {

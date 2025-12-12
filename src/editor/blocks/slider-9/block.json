@@ -260,6 +260,21 @@
         },
         "secondTitleColor": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "containerWidth": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

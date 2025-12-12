@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, SizeControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, TypographyControl, DimensionControl } from 'gutenverse-core/controls';
 export const designPanel = () => {
 
     return [
@@ -53,5 +53,26 @@ export const designPanel = () => {
         //         },
         //     },
         // },
+        {
+            id: 'containerPadding',
+            label: __('Container Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
     ];
 };

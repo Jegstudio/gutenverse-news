@@ -91,6 +91,32 @@ class Slider extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['categoryButtonPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['categoryButtonPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['categoryButtonMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['categoryButtonBackground'] ) ) {
 			$this->inject_style(
 				array(
@@ -403,6 +429,69 @@ class Slider extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
+		}
+
+		if ( isset( $this->attrs['containerPadding'] ) ) {
+			$selector = 'GUTENVERSE\NEWS\Block\Slider\Slider_8' === $this->attrs['gvnewsModule'] ? '.gvnews_slider .gvnews_item_caption' : '.gvnews_slider .gvnews_slide_caption';
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} {$selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['containerPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		$this->generate_container_width();
+	}
+
+	/**
+	 * Generate container width style.
+	 */
+	private function generate_container_width() {
+		if ( isset( $this->attrs['containerWidth'] ) ) {
+			switch ( $this->attrs['gvnewsModule'] ) {
+				case 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_1':
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption .gvnews_caption_container",
+							'property'       => function ( $value ) {
+								return "width: {$value}%;";
+							},
+							'value'          => $this->attrs['containerWidth'],
+							'device_control' => true,
+						)
+					);
+					break;
+				case 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_4':
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption",
+							'property'       => function ( $value ) {
+								return "width: {$value}%; max-width:unset;";
+							},
+							'value'          => $this->attrs['containerWidth'],
+							'device_control' => true,
+						)
+					);
+					break;
+
+				default:
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption",
+							'property'       => function ( $value ) {
+								return "width: {$value}%;";
+							},
+							'value'          => $this->attrs['containerWidth'],
+							'device_control' => true,
+						)
+					);
+					break;
+			}
 		}
 	}
 
