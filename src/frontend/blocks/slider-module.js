@@ -210,7 +210,6 @@ class GutenverseSliderModule {
     defaultOption = () => {
         const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
         const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
-        console.log({nextClass, prevClass});
         
         let sliderDefault = {
             container: this.container,
@@ -232,11 +231,9 @@ class GutenverseSliderModule {
             animateOut: 'tns-fadeOut',
             speed: 300,
             onInit: function (info) {
-                console.log({info});
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
                     u(info.nextButton).html(`<i class="${nextClass}"></i>`);
-                    console.log({nextButton: info.nextButton});
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
@@ -430,7 +427,6 @@ class GutenverseSliderModule {
             ...defaultOption,
             ...this.options
         };
-        console.log({cona: this.container, sliderOption});
 
         if (slideType) {
             if (1 !== slideType) {

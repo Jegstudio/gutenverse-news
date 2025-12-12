@@ -30,6 +30,12 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Navigation Button Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => navigationButtonStylePanel({
@@ -37,12 +43,6 @@ export const panelList = () => {
                 sliderType: 'slider-1',
             }),
             tabRole: TabStyle,
-        },
-        {
-            title: __('Design', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: designPanel,
-            tabRole: TabStyle
         },
         {
             title: __('Meta Style', 'gutenverse-news'),

@@ -6,14 +6,17 @@ export const dotStylePanel = (props) => {
         elementId,
         setSwitcher,
         switcher,
+        sliderType = '',
     } = props;
 
     const dotTypeNormal = !switcher.dotType || switcher.dotType === 'normal';
     const dotTypeHover = switcher.dotType === 'hover';
     const dotTypeActive = switcher.dotType === 'active';
+    const baseSelector = `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper`;
     return [
         {
             id: 'alwaysShowDot',
+            show: sliderType === 'slider-2',
             label: __('Always Show Dot', 'gutenverse-news'),
             component: CheckboxControl,
         },
@@ -30,6 +33,7 @@ export const dotStylePanel = (props) => {
                 {
                     'id': 'dotGap',
                     'type': 'plain',
+                    'responsive': true,
                     'properties': [
                         {
                             'name': 'gap',
@@ -42,7 +46,7 @@ export const dotStylePanel = (props) => {
                             }
                         }
                     ],
-                    'selector': `.${elementId} .gvnews_slider_type_2_wrapper .tns-nav`,
+                    'selector': `${baseSelector} .tns-nav`,
                 }
             ]
         },
@@ -121,7 +125,7 @@ export const dotStylePanel = (props) => {
                             'pattern': '100%',
                         }
                     ],
-                    'selector': `.${elementId} .gvnews_slider_type_2_wrapper .tns-nav button`,
+                    'selector': `${baseSelector} .tns-nav button`,
                 }
             ]
         },
@@ -148,9 +152,33 @@ export const dotStylePanel = (props) => {
             max: 100,
             step: 1,
             unit: 'px',
+        },
+        // Active
+        {
+            id: 'dotActiveColor',
+            show: dotTypeActive,
+            label: __('Dot Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'dotBorderActiveColor',
+            show: dotTypeActive,
+            label: __('Dot Border Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'dotActiveSize',
+            show: dotTypeActive,
+            label: __('Dot Size', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 0,
+            max: 100,
+            step: 1,
+            unit: 'px',
             liveStyle: [
                 {
-                    'id': 'dotHoverSize',
+                    'id': 'dotActiveSize',
                     'type': 'plain',
                     'responsive': true,
                     'properties': [
@@ -180,33 +208,9 @@ export const dotStylePanel = (props) => {
                             'pattern': '100%',
                         }
                     ],
-                    'selector': `.${elementId} .gvnews_slider_type_2_wrapper .tns-nav button:hover`,
+                    'selector': `${baseSelector} .tns-nav button.tns-nav-active`,
                 }
             ]
-        },
-        // Active
-        {
-            id: 'dotActiveColor',
-            show: dotTypeActive,
-            label: __('Dot Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'dotBorderActiveColor',
-            show: dotTypeActive,
-            label: __('Dot Border Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'dotActiveSize',
-            show: dotTypeActive,
-            label: __('Dot Size', 'gutenverse-news'),
-            component: RangeControl,
-            allowDeviceControl: true,
-            min: 0,
-            max: 100,
-            step: 1,
-            unit: 'px',
         }
     ];
 };

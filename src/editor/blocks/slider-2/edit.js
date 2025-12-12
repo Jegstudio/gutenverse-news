@@ -20,7 +20,6 @@ import { panelList } from './panels/panel-list';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
-import { blockStyle } from './styles/block-style';
 
 const defaultOptions = getModuleOptions();
 
@@ -86,11 +85,7 @@ const Slider2Block = compose(
     useDynamicStyle(
         elementId,
         attributes,
-        (elementId, attributes) => getSliderStyle(
-            elementId,
-            attributes,
-            blockStyle(elementId, attributes)
-        ),
+        getSliderStyle,
         elementRef
     );
 

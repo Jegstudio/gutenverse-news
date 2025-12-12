@@ -5,13 +5,24 @@ export const navigationButtonStylePanel = (props) => {
     const {
         switcher,
         setSwitcher,
-        sliderType
+        sliderType,
+        hideNavigationButton,
+        alwaysShowNavigationButton,
+        elementId
     } = props;
+
 
     return [
         {
             id: 'hideNavigationButton',
+            show: !alwaysShowNavigationButton,
             label: __('Hide Button Navigation'),
+            component: CheckboxControl,
+        },
+        {
+            id: 'alwaysShowNavigationButton',
+            show: !hideNavigationButton && ['slider-4', 'slider-5', 'slider-6', 'slider-8'].includes(sliderType),
+            label: __('Always Show Button Navigation'),
             component: CheckboxControl,
         },
         {
@@ -19,6 +30,16 @@ export const navigationButtonStylePanel = (props) => {
             show: sliderType === 'slider-1',
             label: __('Hide Image Navigation'),
             component: CheckboxControl,
+        },
+        {
+            id: 'transitionShow',
+            show: !hideNavigationButton && !alwaysShowNavigationButton && ['slider-4', 'slider-5', 'slider-6', 'slider-8'].includes(sliderType),
+            label: __('Transition Show Duration', 'gutenverse-news'),
+            component: RangeControl,
+            min: 0,
+            max: 10000,
+            unit: 'ms',
+            step: 100,
         },
         {
             id: 'tootlipColor',
@@ -93,6 +114,25 @@ export const navigationButtonStylePanel = (props) => {
             max: 100,
             unit: 'px',
             step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'nextButtonSize',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px; height: fit-content; width: fit-content;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
         },
         {
             id: 'nextButtonPadding',
@@ -170,6 +210,25 @@ export const navigationButtonStylePanel = (props) => {
             max: 100,
             unit: 'px',
             step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'prevButtonSize',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px; height: fit-content; width: fit-content;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
         },
         {
             id: 'prevButtonPadding',

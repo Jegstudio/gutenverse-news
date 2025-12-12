@@ -9,6 +9,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
 import { navigationButtonStylePanel } from '../../../control-panel/panel-navigation-button-style';
+import { dotStylePanel } from '../../../control-panel/panel-dot-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -33,6 +34,12 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Navigation Button Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => navigationButtonStylePanel({
@@ -42,9 +49,9 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
-                title: __('Design', 'gutenverse-news'),
+                title: __('Dot Style', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: designPanel,
+                panelArray: (props) => dotStylePanel(props),
                 tabRole: TabStyle
             },
             {

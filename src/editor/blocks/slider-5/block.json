@@ -10,6 +10,10 @@
         "elementId": {
             "type": "string"
         },
+        "extraClass": {
+            "type": "string",
+            "default": " gvnews-slider-5 "
+        },
         "gvnewsModule": {
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Slider\\Slider_5"
@@ -281,6 +285,75 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "nextButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonSize": {
+            "type": "string"
+        },
+        "prevButtonSize": {
+            "type": "string"
+        },
+        "nextButtonPadding": {
+            "type": "object"
+        },
+        "prevButtonPadding": {
+            "type": "object"
+        },
+        "nextButtonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "nextButtonTransition":{
+            "type":"string"
+        },
+        "prevButtonTransition":{
+            "type":"string"
         }
     },
     "supports": {

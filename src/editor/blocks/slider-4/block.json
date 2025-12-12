@@ -10,6 +10,10 @@
         "elementId": {
             "type": "string"
         },
+        "extraClass": {
+            "type": "string",
+            "default": " gvnews-slider-4 "
+        },
         "gvnewsModule": {
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Slider\\Slider_4"
@@ -316,6 +320,13 @@
             "type": "boolean",
             "default": false
         },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
         "nextButtonTransition":{
             "type":"string"
         },
@@ -329,6 +340,36 @@
             "type": "object"
         },
         "containerWidth": {
+            "type": "object"
+        },
+        "dotGap": {
+            "type": "object"
+        },
+        "dotNormalColor": {
+            "type": "object"
+        },
+        "dotBorderNormalColor": {
+            "type": "object"
+        },
+        "dotNormalSize": {
+            "type": "object"
+        },
+        "dotHoverColor": {
+            "type": "object"
+        },
+        "dotBorderHoverColor": {
+            "type": "object"
+        },
+        "dotHoverSize": {
+            "type": "object"
+        },
+        "dotActiveColor": {
+            "type": "object"
+        },
+        "dotBorderActiveColor": {
+            "type": "object"
+        },
+        "dotActiveSize": {
             "type": "object"
         }
     },

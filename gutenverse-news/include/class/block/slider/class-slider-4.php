@@ -82,8 +82,10 @@ class Slider_4 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-					'delay'    => esc_attr( $autoplay_delay ),
+					'autoplay'   => esc_attr( $attr['enable_autoplay'] ),
+					'delay'      => esc_attr( $autoplay_delay ),
+					'class-next' => $attr['nextButtonIcon'],
+					'class-prev' => $attr['prevButtonIcon'],
 				)
 			);
 

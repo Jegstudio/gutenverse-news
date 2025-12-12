@@ -98,7 +98,7 @@ const Slider4Block = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-element-full',
-            'gvnews-slider-3',
+            'gvnews-slider-4',
             elementId,
             animationClass,
             displayClass,
@@ -284,6 +284,8 @@ const Slider4Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon
     ]);
 
     useEffect(() => {
