@@ -390,9 +390,21 @@ class GutenverseNewsModule {
         }
 
         if (type === 'more' || type === 'scroll') {
-            this.load_more_block.find('a').text(this.load_more_block.find('a').data('load')).removeClass('active');
-            if (typeof this.load_more_block.find('a').data('icon') !== 'undefined') {
-                this.load_more_block.find('a').html(this.load_more_block.find('a').html() + ' <i class="fa ' + this.load_more_block.find('a').data('icon') + '"></i>');
+            const loadMoreLink = this.load_more_block.find('a');
+            const loadText = loadMoreLink.data('load');
+            const iconHtml = loadMoreLink.data('icon-html');
+            const iconPosition = loadMoreLink.data('icon-position');
+
+            // Restore text
+            loadMoreLink.text(loadText).removeClass('active');
+
+            // Restore icon if exists
+            if (typeof iconHtml !== 'undefined' && iconHtml) {
+                if (iconPosition === 'before') {
+                    loadMoreLink.html(iconHtml + ' ' + loadText);
+                } else {
+                    loadMoreLink.html(loadText + ' ' + iconHtml);
+                }
             }
         }
     }

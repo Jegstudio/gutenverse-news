@@ -196,10 +196,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next = $next ? '' : 'disabled';
 
-			// Get icon settings - IconRadioControl returns object with 'type' and 'value'.
-			$icon_data     = isset( $attr['pagination_icon'] ) ? $attr['pagination_icon'] : array();
-			$icon_type     = isset( $icon_data['type'] ) ? $icon_data['type'] : 'icon';
-			$icon          = isset( $icon_data['value'] ) ? $icon_data['value'] : '';
+			// Get icon settings.
+			$icon          = isset( $attr['pagination_icon'] ) ? $attr['pagination_icon'] : '';
+			$icon_type     = isset( $attr['pagination_icon_type'] ) ? $attr['pagination_icon_type'] : 'icon';
+			$icon_svg      = isset( $attr['pagination_icon_svg'] ) ? $attr['pagination_icon_svg'] : '';
 			$icon_position = isset( $attr['pagination_icon_position'] ) ? $attr['pagination_icon_position'] : 'before';
 
 			// Get custom text.
@@ -208,8 +208,9 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 
 			// Build output with icon.
 			$text_output = $loadmore_text;
-			if ( ! empty( $icon ) || 'svg' === $icon_type ) {
-				$icon_html = $this->render_icon( $icon_type, $icon, $icon );
+			$icon_html   = '';
+			if ( ! empty( $icon ) || ( 'svg' === $icon_type && ! empty( $icon_svg ) ) ) {
+				$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
 				if ( 'before' === $icon_position ) {
 					$text_output = $icon_html . ' ' . $text_output;
 				} else {
@@ -217,9 +218,15 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				}
 			}
 
+			// Prepare data attributes for frontend JavaScript.
+			$data_attrs = 'data-load="' . esc_attr( $loadmore_text ) . '" data-loading="' . esc_attr( $loading_text ) . '"';
+			if ( ! empty( $icon_html ) ) {
+				$data_attrs .= ' data-icon-html="' . esc_attr( $icon_html ) . '" data-icon-position="' . esc_attr( $icon_position ) . '"';
+			}
+
 			$output =
 			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . ' icon-position-' . esc_attr( $icon_position ) . '">
-                    <a href="#" class="' . esc_attr( $next ) . '" data-load="' . esc_attr( $loadmore_text ) . '" data-loading="' . esc_attr( $loading_text ) . '"> ' . $text_output . '</a>
+                    <a href="#" class="' . esc_attr( $next ) . '" ' . $data_attrs . '> ' . $text_output . '</a>
                 </div>';
 		}
 
