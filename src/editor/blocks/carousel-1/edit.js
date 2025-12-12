@@ -18,6 +18,7 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import { getImageSizeDetail } from '../../utils/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -62,6 +63,7 @@ const Carousel1Block = compose(
         iMargin,
         showMeta = true,
         showMetaDate = true,
+        renderedImageSizeMain,
     } = attributes;
 
     const metaSettings = {
@@ -115,12 +117,13 @@ const Carousel1Block = compose(
 
 
     function RenderContent(props) {
+        const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 120, width: 86, dimension: 715 });
         return (
             <div className="gvnews_post_wrapper">
                 <article className="gvnews_post">
                     <div className="gvnews_thumb">
                         <a>
-                            <div className="thumbnail-container size-715">
+                            <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
                                 <img src={props.post.thumbnail.url} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />
                             </div>
                         </a>
@@ -308,6 +311,7 @@ const Carousel1Block = compose(
         iMargin,
         showMeta,
         showMetaDate,
+        renderedImageSizeMain,
     ]);
 
     useEffect(() => {
