@@ -164,13 +164,26 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			$prev_text = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"></path></svg>';
-			$next_text = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>';
+			// Get icon settings with defaults.
+			$prev_icon      = isset( $attr['pagination_prev_icon'] ) ? $attr['pagination_prev_icon'] : 'fas fa-chevron-left';
+			$prev_icon_type = isset( $attr['pagination_prev_icon_type'] ) ? $attr['pagination_prev_icon_type'] : 'icon';
+			$prev_icon_svg  = isset( $attr['pagination_prev_icon_svg'] ) ? $attr['pagination_prev_icon_svg'] : '';
+			$next_icon      = isset( $attr['pagination_next_icon'] ) ? $attr['pagination_next_icon'] : 'fas fa-chevron-right';
+			$next_icon_type = isset( $attr['pagination_next_icon_type'] ) ? $attr['pagination_next_icon_type'] : 'icon';
+			$next_icon_svg  = isset( $attr['pagination_next_icon_svg'] ) ? $attr['pagination_next_icon_svg'] : '';
 
-			if ( $attr['pagination_nextprev_showtext'] ) {
+			// Render icons.
+			$prev_text = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg );
+			$next_text = $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
+
+			// Check if we should show text with icons.
+			$show_text = isset( $attr['pagination_nextprev_showtext'] ) ? $attr['pagination_nextprev_showtext'] : false;
+			if ( $show_text ) {
 				$additional_class .= ' showtext';
-				$prev_text         = $prev_text . ' ' . esc_html__( 'Prev', 'gutenverse-news' );
-				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . ' ' . $next_text;
+				$prev_label        = isset( $attr['pagination_prev_text'] ) ? esc_html( $attr['pagination_prev_text'] ) : esc_html__( 'Prev', 'gutenverse-news' );
+				$next_label        = isset( $attr['pagination_next_text'] ) ? esc_html( $attr['pagination_next_text'] ) : esc_html__( 'Next', 'gutenverse-news' );
+				$prev_text         = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg ) . ' ' . $prev_label;
+				$next_text         = $next_label . '  ' . $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
 			}
 
 			$output =
@@ -181,10 +194,32 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
-			$next   = $next ? '' : 'disabled';
+			$next = $next ? '' : 'disabled';
+
+			// Get icon settings - IconRadioControl returns object with 'type' and 'value'.
+			$icon_data     = isset( $attr['pagination_icon'] ) ? $attr['pagination_icon'] : array();
+			$icon_type     = isset( $icon_data['type'] ) ? $icon_data['type'] : 'icon';
+			$icon          = isset( $icon_data['value'] ) ? $icon_data['value'] : '';
+			$icon_position = isset( $attr['pagination_icon_position'] ) ? $attr['pagination_icon_position'] : 'before';
+
+			// Get custom text.
+			$loadmore_text = isset( $attr['pagination_loadmore_text'] ) ? esc_html( $attr['pagination_loadmore_text'] ) : esc_html__( 'Load More', 'gutenverse-news' );
+			$loading_text  = isset( $attr['pagination_loading_text'] ) ? esc_html( $attr['pagination_loading_text'] ) : esc_html__( 'Loading...', 'gutenverse-news' );
+
+			// Build output with icon.
+			$text_output = $loadmore_text;
+			if ( ! empty( $icon ) || 'svg' === $icon_type ) {
+				$icon_html = $this->render_icon( $icon_type, $icon, $icon );
+				if ( 'before' === $icon_position ) {
+					$text_output = $icon_html . ' ' . $text_output;
+				} else {
+					$text_output = $text_output . ' ' . $icon_html;
+				}
+			}
+
 			$output =
-			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . "\">
-                    <a href=\"#\" class='" . esc_attr( $next ) . "' data-load='" . esc_html__( 'Load More', 'gutenverse-news' ) . "' data-loading='" . esc_html__( 'Loading...', 'gutenverse-news' ) . "'> " . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
+			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . ' icon-position-' . esc_attr( $icon_position ) . '">
+                    <a href="#" class="' . esc_attr( $next ) . '" data-load="' . esc_attr( $loadmore_text ) . '" data-loading="' . esc_attr( $loading_text ) . '"> ' . $text_output . '</a>
                 </div>';
 		}
 

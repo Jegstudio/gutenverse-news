@@ -767,6 +767,59 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "paginationIcon": {
+            "type": "string",
+            "default": ""
+        },
+        "paginationIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "paginationIconSVG": {
+            "type": "string"
+        },
+        "paginationIconPosition": {
+            "type": "string",
+            "default": "before"
+        },
+        "paginationPrevIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "paginationPrevIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "paginationPrevIconSVG": {
+            "type": "string"
+        },
+        "paginationNextIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "paginationNextIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "paginationNextIconSVG": {
+            "type": "string"
+        },
+        "paginationPrevText": {
+            "type": "string",
+            "default": "Prev"
+        },
+        "paginationNextText": {
+            "type": "string",
+            "default": "Next"
+        },
+        "paginationLoadmoreText": {
+            "type": "string",
+            "default": "Load More"
+        },
+        "paginationLoadingText": {
+            "type": "string",
+            "default": "Loading..."
         }
     },
     "supports": {
