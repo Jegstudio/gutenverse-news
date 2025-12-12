@@ -59,7 +59,9 @@ class Carousel_1 extends Carousel_View_Abstract {
 	 */
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
-			$content        = $this->content( $result );
+			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+			$content = $this->content( $result );
+			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 			$width          = $this->manager->get_current_width();
 			$autoplay_delay = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
 			$number_item    = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
