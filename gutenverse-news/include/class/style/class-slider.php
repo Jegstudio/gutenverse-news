@@ -499,7 +499,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['typographyMeta'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_meta>* ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .gvnews_meta_author .by",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_meta",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['typographyMeta'],
