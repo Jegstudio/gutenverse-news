@@ -444,6 +444,12 @@
         },
         "secondTitleColorHover": {
             "type": "object"
+        },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

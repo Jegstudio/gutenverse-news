@@ -198,6 +198,32 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+
+    isNotEmpty(attributes['readmoreButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonPadding',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
+
+    isNotEmpty(attributes['readmoreButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonMargin',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
     /**
     * Panel Category Style
     */
