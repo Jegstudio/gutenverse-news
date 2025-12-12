@@ -634,9 +634,6 @@
         },
         "categoryButtonMargin": {
             "type": "object"
-        },
-        "rowItemGap": {
-            "type": "object"
         }
 	},
 	"supports": {

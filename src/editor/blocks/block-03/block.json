@@ -605,10 +605,6 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
-        },
-        "mainItemGap": {
-            "type": "object",
-            "copyStyle": true
         }
     },
     "supports": {
