@@ -15,6 +15,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
+import { multiPostItemPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () => {
     return [
@@ -81,6 +82,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => designPanel(props, 3, true),
             tabRole: TabStyle
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => multiPostItemPanel(props, 3, true),
+            tabRole: TabStyle,
         },
         {
             title: __('Thumbnail', 'gutenverse-news'),

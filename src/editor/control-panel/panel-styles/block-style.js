@@ -1263,7 +1263,9 @@ const getBlockStyle = (
     data = contentContainerStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = titleContainerStyle(elementId, attributes, data);
-
+    data = postItemStyle(elementId, attributes, data);
+    console.log(data);
+    console.log(attributes);
     return data;
 };
 
@@ -1849,6 +1851,155 @@ const titleContainerStyle = (elementId, attributes, data) => {
     });
 
     return data;
+}
+
+const postItemStyle = (elementId, attributes, data) => {
+
+    const {
+        mainListSelector,
+        secondListSelector,
+        thirdListSelector
+    } = attributes
+
+    if (isNotEmpty(mainListSelector)) {
+        isNotEmpty(attributes['mainItemPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'mainItemPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} ${mainListSelector}`,
+        });
+
+
+        isNotEmpty(attributes['mainItemMargin']) && data.push({
+            'type': 'dimension',
+            'id': 'mainItemMargin',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} ${mainListSelector}`,
+        });
+
+        isNotEmpty(attributes['secondItemPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'secondItemPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} ${secondListSelector}`,
+        });
+
+        isNotEmpty(attributes['thirdItemPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'thirdItemPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} ${thirdListSelector}`,
+        });
+
+
+        isNotEmpty(attributes['secondItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'secondItemGap',
+            'responsive': true,
+            'selector': `.${elementId} ${secondListSelector} .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        isNotEmpty(attributes['thirdItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'thirdItemGap',
+            'responsive': true,
+            'selector': `.${elementId} ${thirdListSelector} .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+    } else {
+        isNotEmpty(attributes['mainItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'mainItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_posts .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_posts .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+    }
+
+
+    return data;
+
 }
 
 
