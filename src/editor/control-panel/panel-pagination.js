@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, NumberControl, TextControl, IconSVGControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, NumberControl } from 'gutenverse-core/controls';
 
 export const paginationPanel = (props) => {
     const {
         paginationMode,
-        showNavText
     } = props;
 
     return [
@@ -33,6 +32,13 @@ export const paginationPanel = (props) => {
             ],
         },
         {
+            id: 'showNavText',
+            show: paginationMode === 'nextprev',
+            label: __('Show Navigation Text', 'gutenverse-news'),
+            description: __('Show previous and next text.', 'gutenverse-news'),
+            component: CheckboxControl
+        },
+        {
             id: 'paginationPost',
             label: __('Pagination Post', 'gutenverse-news'),
             description: __('Number of Post loaded during pagination request.', 'gutenverse-news'),
@@ -51,43 +57,6 @@ export const paginationPanel = (props) => {
             min: 1,
             max: 999,
             step: 1
-        },
-        {
-            id: '__paginationIconPrevNext',
-            component: HeadingControl,
-            label: __('Prev/Next Icon', 'gutenverse-news'),
-            show: paginationMode === 'nextprev',
-        },
-        {
-            id: 'paginationPrevIcon',
-            label: __('Prev Icon', 'gutenverse-news'),
-            component: IconSVGControl,
-            show: paginationMode === 'nextprev',
-        },
-        {
-            id: 'paginationNextIcon',
-            label: __('Next Icon', 'gutenverse-news'),
-            component: IconSVGControl,
-            show: paginationMode === 'nextprev',
-        },
-        {
-            id: 'showNavText',
-            show: paginationMode === 'nextprev',
-            label: __('Show Navigation Text', 'gutenverse-news'),
-            description: __('Show previous and next text.', 'gutenverse-news'),
-            component: CheckboxControl
-        },
-        {
-            id: 'paginationPrevText',
-            label: __('Prev Text', 'gutenverse-news'),
-            component: TextControl,
-            show: paginationMode === 'nextprev' && showNavText,
-        },
-        {
-            id: 'paginationNextText',
-            label: __('Next Text', 'gutenverse-news'),
-            component: TextControl,
-            show: paginationMode === 'nextprev' && showNavText,
         },
     ];
 };

@@ -59,20 +59,6 @@ class Frontend_Assets {
 					$this->icon_conditional_load( $conditions );
 				}
 
-				// Check meta date icon.
-				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaDate'] ) || $attrs['showMetaDate'] ) ) {
-					if ( ! isset( $attrs['metaDateIconType'] ) || 'icon' === $attrs['metaDateIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
-				// Check meta comment icon.
-				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaComment'] ) || $attrs['showMetaComment'] ) ) {
-					if ( ! isset( $attrs['metaCommentIconType'] ) || 'icon' === $attrs['metaCommentIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
 				// Check header icon.
 				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
@@ -83,20 +69,6 @@ class Frontend_Assets {
 
 			case 'gutenverse/news-block-2':
 			case 'gutenverse/news-block-3':
-				// Check meta date icon.
-				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaDate'] ) || $attrs['showMetaDate'] ) ) {
-					if ( ! isset( $attrs['metaDateIconType'] ) || 'icon' === $attrs['metaDateIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
-				// Check meta comment icon.
-				if ( ( ! isset( $attrs['showMeta'] ) || $attrs['showMeta'] ) && ( ! isset( $attrs['showMetaComment'] ) || $attrs['showMetaComment'] ) ) {
-					if ( ! isset( $attrs['metaCommentIconType'] ) || 'icon' === $attrs['metaCommentIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
 				// Check header icon.
 				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
