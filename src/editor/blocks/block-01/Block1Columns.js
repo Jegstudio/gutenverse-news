@@ -22,12 +22,7 @@ const Block1Columns = props => {
         listIcon = '',
         listIconType = 'icon',
         listIconSVG = '',
-        metaDateIcon = '',
-        metaDateIconType = 'icon',
-        metaDateIconSVG = '',
-        metaCommentIcon = '',
-        metaCommentIconType = 'icon',
-        metaCommentIconSVG = ''
+        metaDateIcon = ''
     } = props;
 
     const RenderBlock1 = props=>{
@@ -87,14 +82,7 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG
+                icon: metaDateIcon
             }
         };
 
@@ -127,14 +115,7 @@ const Block1Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG
+                icon: metaDateIcon
             }
         };
 
@@ -167,14 +148,7 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG
+                icon: metaDateIcon
             }
         };
 

@@ -196,37 +196,16 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next = $next ? '' : 'disabled';
 
-			// Get icon settings.
-			$icon          = isset( $attr['pagination_icon'] ) ? $attr['pagination_icon'] : '';
-			$icon_type     = isset( $attr['pagination_icon_type'] ) ? $attr['pagination_icon_type'] : 'icon';
-			$icon_svg      = isset( $attr['pagination_icon_svg'] ) ? $attr['pagination_icon_svg'] : '';
-			$icon_position = isset( $attr['pagination_icon_position'] ) ? $attr['pagination_icon_position'] : 'before';
-
 			// Get custom text.
 			$loadmore_text = isset( $attr['pagination_loadmore_text'] ) ? esc_html( $attr['pagination_loadmore_text'] ) : esc_html__( 'Load More', 'gutenverse-news' );
 			$loading_text  = isset( $attr['pagination_loading_text'] ) ? esc_html( $attr['pagination_loading_text'] ) : esc_html__( 'Loading...', 'gutenverse-news' );
 
-			// Build output with icon.
-			$text_output = $loadmore_text;
-			$icon_html   = '';
-			if ( ! empty( $icon ) || ( 'svg' === $icon_type && ! empty( $icon_svg ) ) ) {
-				$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
-				if ( 'before' === $icon_position ) {
-					$text_output = $icon_html . ' ' . $text_output;
-				} else {
-					$text_output = $text_output . ' ' . $icon_html;
-				}
-			}
-
 			// Prepare data attributes for frontend JavaScript.
 			$data_attrs = 'data-load="' . esc_attr( $loadmore_text ) . '" data-loading="' . esc_attr( $loading_text ) . '"';
-			if ( ! empty( $icon_html ) ) {
-				$data_attrs .= ' data-icon-html="' . esc_attr( $icon_html ) . '" data-icon-position="' . esc_attr( $icon_position ) . '"';
-			}
 
 			$output =
-			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . ' icon-position-' . esc_attr( $icon_position ) . '">
-                    <a href="#" class="' . esc_attr( $next ) . '" ' . $data_attrs . '> ' . $text_output . '</a>
+			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
+                    <a href="#" class="' . esc_attr( $next ) . '" ' . $data_attrs . '> ' . $loadmore_text . '</a>
                 </div>';
 		}
 

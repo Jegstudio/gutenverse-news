@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, NumberControl, HeadingControl, IconRadioControl, TextControl, IconSVGControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, NumberControl, TextControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const paginationPanel = (props) => {
     const {
@@ -51,46 +51,6 @@ export const paginationPanel = (props) => {
             min: 1,
             max: 999,
             step: 1
-        },
-        {
-            id: '__paginationIconLoadMore',
-            component: HeadingControl,
-            label: __('Load More Icon', 'gutenverse-news'),
-            show: paginationMode === 'loadmore' || paginationMode === 'scrollload',
-        },
-        {
-            id: 'paginationIcon',
-            label: __('Icon', 'gutenverse-news'),
-            component: IconSVGControl,
-            show: paginationMode === 'loadmore' || paginationMode === 'scrollload',
-        },
-        {
-            id: 'paginationIconPosition',
-            label: __('Icon Position', 'gutenverse-news'),
-            component: SelectControl,
-            show: paginationMode === 'loadmore' || paginationMode === 'scrollload',
-            options: [
-                {
-                    label: __('Before Text', 'gutenverse-news'),
-                    value: 'before'
-                },
-                {
-                    label: __('After Text', 'gutenverse-news'),
-                    value: 'after'
-                },
-            ],
-        },
-        {
-            id: 'paginationLoadmoreText',
-            label: __('Load More Text', 'gutenverse-news'),
-            component: TextControl,
-            show: paginationMode === 'loadmore' || paginationMode === 'scrollload',
-        },
-        {
-            id: 'paginationLoadingText',
-            label: __('Loading Text', 'gutenverse-news'),
-            component: TextControl,
-            show: paginationMode === 'loadmore' || paginationMode === 'scrollload',
         },
         {
             id: '__paginationIconPrevNext',

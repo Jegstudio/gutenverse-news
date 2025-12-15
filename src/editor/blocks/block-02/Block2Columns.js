@@ -16,11 +16,6 @@ const Block2Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         metaDateIcon,
-        metaDateIconType,
-        metaDateIconSVG,
-        metaCommentIcon,
-        metaCommentIconType,
-        metaCommentIconSVG,
         renderedImageSizeMain = {},
         renderedImageSizeSecond = {},
         readmoreButtonDisabled = false,
@@ -56,14 +51,7 @@ const Block2Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG,
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG,
+                icon: metaDateIcon
             }
         };
         const rows = [];
@@ -97,14 +85,7 @@ const Block2Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG,
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG,
+                icon: metaDateIcon
             }
         };
         const rows = [];

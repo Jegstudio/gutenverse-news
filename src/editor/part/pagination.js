@@ -1,32 +1,3 @@
-import { renderIcon } from 'gutenverse-core/helper';
-
-function LoadMore(props) {
-    const {
-        nextPrevTotalPagination = { next: false, prev: false, total_page: 1 },
-        onPageChange = () => {},
-        paginationIcon = '',
-        paginationIconType = 'icon',
-        paginationIconSVG = '',
-        paginationIconPosition = 'before',
-        paginationLoadmoreText = 'Load More'
-    } = props;
-
-    const finalIcon = (paginationIconType === 'svg' && !paginationIconSVG) ? '' : paginationIcon;
-    const iconHtml = (paginationIcon || paginationIconType === 'svg') ? renderIcon(finalIcon, paginationIconType, paginationIconSVG) : null;
-
-    return (
-        nextPrevTotalPagination.next && <div className={`gvnews_block_loadmore icon-position-${paginationIconPosition}`}>
-            <a onClick={() => nextPrevTotalPagination.next && onPageChange(1, 'more')} href="javascript:void(0);">
-                {paginationIconPosition === 'before' && iconHtml}
-                {paginationIconPosition === 'before' && iconHtml && ' '}
-                {paginationLoadmoreText}
-                {paginationIconPosition === 'after' && iconHtml && ' '}
-                {paginationIconPosition === 'after' && iconHtml}
-            </a>
-        </div>
-    );
-}
-
 function PervNext(props) {
     const {
         nextPrevTotalPagination = { next: false, prev: false, total_page: 1 },

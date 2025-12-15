@@ -15,11 +15,6 @@ const Block3Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         metaDateIcon,
-        metaDateIconType,
-        metaDateIconSVG,
-        metaCommentIcon,
-        metaCommentIconType,
-        metaCommentIconSVG,
         renderedImageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
@@ -44,14 +39,7 @@ const Block3Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-                icon: metaDateIcon,
-                iconType: metaDateIconType,
-                iconSVG: metaDateIconSVG,
-            },
-            comment: {
-                icon: metaCommentIcon,
-                iconType: metaCommentIconType,
-                iconSVG: metaCommentIconSVG,
+                icon: metaDateIcon
             }
         };
         const rows = [];

@@ -166,18 +166,11 @@
         },
         "metaDateIcon": {
             "type": "string",
-            "default": "far fa-clock"
+            "default": "fas fa-clock"
         },
         "metaDateIconPosition": {
             "type": "string",
             "default": "before"
-        },
-        "metaDateIconType": {
-            "type": "string",
-            "default": "icon"
-        },
-        "metaDateIconSVG": {
-            "type": "string"
         },
         "metaCategoryEnabled": {
             "type": "boolean",
@@ -186,17 +179,6 @@
         "metaCategoryIcon": {
             "type": "string",
             "default": "fas fa-tag"
-        },
-        "metaCommentIcon": {
-            "type": "string",
-            "default": "far fa-comment"
-        },
-        "metaCommentIconType": {
-            "type": "string",
-            "default": "icon"
-        },
-        "metaCommentIconSVG": {
-            "type": "string"
         },
         "metaPosition": {
             "type": "string",
