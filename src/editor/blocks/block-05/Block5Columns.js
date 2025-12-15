@@ -14,7 +14,7 @@ const Block5Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain = {},
+        imageSizeMain = {},
         readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
@@ -24,7 +24,7 @@ const Block5Columns = props => {
         const { post, index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_lg_2 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ThumbModule size={715} cat={true} post={post} imageSize={renderedImageSizeMain}/>
+                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={props.attr}/>
             </article>
         );

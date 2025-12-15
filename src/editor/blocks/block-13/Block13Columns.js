@@ -15,8 +15,8 @@ const Block13Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        renderedImageSizeMain,
-        renderedImageSizeSecond,
+        imageSizeMain = {},
+        imageSizeSecond = {},
         readmoreButtonDisabled = false,
     } = props;
 
@@ -82,7 +82,7 @@ const Block13Columns = props => {
             option: moduleOption,
             length: excerptLength,
             elipsis: excerptEllipsis,
-            imageSize: renderedImageSizeSecond,
+            imageSize: imageSizeSecond,
             date: {
                 type: metaDateType,
                 format: metaDateFormat,
@@ -106,7 +106,7 @@ const Block13Columns = props => {
             <>
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-6">
-                        <ThumbModule size={1400} cat={true} post={postData[0]} imageSize={renderedImageSizeMain}/>
+                        <ThumbModule size={1400} cat={true} post={postData[0]} imageSize={imageSizeMain}/>
                         <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={postData[0]} attr={attr}/>
                     </article>
                     <div className="gvnews_postsmall col-sm-6">
@@ -127,7 +127,7 @@ const Block13Columns = props => {
             option: moduleOption,
             length: excerptLength,
             elipsis: excerptEllipsis,
-            imageSize: renderedImageSizeSecond,
+            imageSize: imageSizeSecond,
             date: {
                 type: metaDateType,
                 format: metaDateFormat,
@@ -158,7 +158,7 @@ const Block13Columns = props => {
             <>
                 <div className="gvnews_posts gvnews-posts-row">
                     <article className="gvnews_post gvnews_pl_lg_1 col-sm-4">
-                        <ThumbModule size={1400} cat={true} post={postData[0]} imageSize={renderedImageSizeMain}/>
+                        <ThumbModule size={1400} cat={true} post={postData[0]} imageSize={imageSizeMain}/>
                         <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={postData[0]} attr={attr}/>
                     </article>
                     <div className="gvnews_postsmall col-sm-4">

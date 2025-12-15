@@ -18,7 +18,7 @@ const Block26Columns = props => {
         metaDateFormatCustom,
         blockWidth,
         readmoreButtonDisabled = false,
-        renderedImageSizeMain,
+        imageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -34,7 +34,7 @@ const Block26Columns = props => {
                     </h3>}
                     {attr.option && <MetaModule3 {...props}/>}
                 </div>
-                <ThumbModule size={500} cat={false} post={post} imageSize={renderedImageSizeMain} />
+                <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
                 <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 <div className="gvnews_meta_footer clearfix">
                     {<MetaAuthor {...props} />}

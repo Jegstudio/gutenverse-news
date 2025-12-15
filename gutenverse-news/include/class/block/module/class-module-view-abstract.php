@@ -529,9 +529,11 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				if ( isset( $_REQUEST['data']['attribute']['meta_settings'] ) ) {
 					$meta_settings = wp_unslash( $_REQUEST['data']['attribute']['meta_settings'] );
 					$meta_settings = array_map( 'sanitize_text_field', $meta_settings );
-
 				}
-				$attr = array(
+
+				$disable_readmore = isset( $_REQUEST['data']['attribute']['disable_readmore'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['disable_readmore'] ) ) : false;
+				$disable_readmore = 'string' === gettype( $disable_readmore ) && 'false' === $disable_readmore ? false : $disable_readmore;
+				$attr             = array(
 					'filter'       => isset( $_REQUEST['data']['filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['filter'] ) ) : '',
 					'filter_type'  => isset( $_REQUEST['data']['filter_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['filter_type'] ) ) : '',
 					'current_page' => isset( $_REQUEST['data']['current_page'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['current_page'] ) ) : '',
@@ -591,7 +593,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						'paged'                        => isset( $_REQUEST['data']['attribute']['paged'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['paged'] ) ) : '',
 						'column_class'                 => isset( $_REQUEST['data']['attribute']['column_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_class'] ) ) : '',
 						'class'                        => isset( $_REQUEST['data']['attribute']['class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['class'] ) ) : '',
-						'disable_readmore'             => isset( $_REQUEST['data']['attribute']['disable_readmore'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['disable_readmore'] ) ) : true,
+						'disable_readmore'             => $disable_readmore,
 						'meta_settings'                => $meta_settings,
 						'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 					),
