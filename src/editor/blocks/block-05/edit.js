@@ -3,7 +3,6 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { panelList } from './panels/panel-list';
 import Block5Columns from './Block5Columns';
 import BlockModule from '../../part/module';
-import { getImageSizeDetail } from '../../utils/helper';
 
 const Block5Block = compose(
     withPartialRender,

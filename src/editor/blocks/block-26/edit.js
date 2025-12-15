@@ -5,7 +5,6 @@ import LockedBlockModule from '../../part/locked-module';
 import { gutenverseProActive } from '../../utils/helper';
 import BlockModule from '../../part/module';
 import { panelList } from './panels/panel-list';
-import { getImageSizeDetail } from '../../utils/helper';
 
 const Block26Block = compose(
     withPartialRender,
