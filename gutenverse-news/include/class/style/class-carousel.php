@@ -53,6 +53,7 @@ class Carousel extends StyleAbstract {
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
 		}
+		$this->generate_thumbnail_style();
 	}
 
 
@@ -370,6 +371,33 @@ class Carousel extends StyleAbstract {
 					},
 					'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
 					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate style block thumbnail style.
+	 *
+	 * @return void
+	 */
+	private function generate_thumbnail_style() {
+		$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_thumb";
+		if ( isset( $this->attrs['borderMainThumbnail'] ) ) {
+			$this->handle_border( 'borderMainThumbnail', $selector );
+		}
+		if ( isset( $this->attrs['borderResponsiveMainThumbnail'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderResponsiveMainThumbnail'],
+					'device_control' => true,
+					'skip_device'    => isset( $this->attrs['border'] ) ? array(
+						'Desktop',
+					) : null,
 				)
 			);
 		}

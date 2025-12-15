@@ -20,7 +20,7 @@ const Block35Columns = (props) => {
         page = 1,
         isLoadMore = false,
         readmoreButtonDisabled = false,
-        renderedImageSizeMain,
+        imageSizeMain = {},
         attributes,
     } = props;
 
@@ -58,7 +58,7 @@ const Block35Columns = (props) => {
         return (
             <article className={`gvnews_post gvnews_pl_md_5 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={715} cat={true} post={post} imageSize={renderedImageSizeMain} />
+                    <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
                     <ContentModule cat={false} title={true} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>

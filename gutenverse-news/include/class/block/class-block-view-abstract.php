@@ -637,20 +637,25 @@ abstract class Block_View_Abstract {
 	 */
 	public function get_meta_author( $post, $avatar = false ) {
 		if ( $this->meta_settings['meta_author'] && 'false' !== $this->meta_settings['meta_author'] ) {
+			$author = isset( $post->post_author ) ? $post->post_author : 'rss_post';
 			if ( $avatar ) {
-				$author        = isset( $post->post_author ) ? $post->post_author : 'rss_post';
-				$is_rss        = gvnews_get_rss_post_id( $author );
-				$author_url    = $is_rss ? ( isset( $post->post_author_url ) ? $post->post_author_url : '' ) : get_author_posts_url( $author );
-				$author_name   = $is_rss ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
+				$is_rss      = gvnews_get_rss_post_id( $author );
+				$author_url  = $is_rss ? ( isset( $post->post_author_url ) ? $post->post_author_url : '' ) : get_author_posts_url( $author );
+				$author_name = $is_rss ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
+				if ( empty( $author_name ) ) {
+					return '';
+				}
 				$author_avatar = ( $is_rss ? false : $avatar ) ?
 				'<div class="gvnews_author_avatar">
 						' . get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) . '
 					</div>' : '';
 				return '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
 			} else {
-				$author      = $post->post_author;
 				$author_url  = gvnews_get_rss_post_id( $author ) ? $post->post_author_url : get_author_posts_url( $author );
 				$author_name = gvnews_get_rss_post_id( $author ) ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
+				if ( empty( $author_name ) ) {
+					return '';
+				}
 				return '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
 			}
 		}

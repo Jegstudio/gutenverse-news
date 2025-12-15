@@ -15,10 +15,11 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+
 const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
@@ -34,8 +35,8 @@ const BlockModule = compose(
         columnAttr,
         panelList,
         freeModule = false,
-        renderedImageSizeMain,
-        renderedImageSizeSecond,
+        defaultImageSizeMain = {},
+        defaultImageSizeSecond = {},
         mainThumbnailClass,
         secondThumbnailClass,
     } = props;
@@ -83,6 +84,8 @@ const BlockModule = compose(
         showMetaComment = true,
         readmoreButtonDisabled = false,
         listIcon = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond
     } = attributes;
 
     const metaSettings = {
@@ -303,6 +306,8 @@ const BlockModule = compose(
             return;
         }
         if (postData.length > 0) {
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
+            const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
             const allColumns = <ColumnBlock {...{
                 blockWidth,
                 excerptLength,
@@ -316,8 +321,8 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
-                renderedImageSizeMain,
-                renderedImageSizeSecond,
+                imageSizeMain,
+                imageSizeSecond,
                 readmoreButtonDisabled,
                 listIcon,
                 attributes,

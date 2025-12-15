@@ -75,12 +75,6 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Pagination', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: paginationPanel,
-            tabRole: TabSetting
-        },
-        {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,

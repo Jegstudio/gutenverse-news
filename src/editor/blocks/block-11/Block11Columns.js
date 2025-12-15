@@ -14,7 +14,7 @@ const Block11Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain = {},
+        imageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -24,7 +24,7 @@ const Block11Columns = props => {
         return (
             <article className={`gvnews_post gvnews_pl_md_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <div className="gvnews_inner_post">
-                    <ThumbModule size={715} cat={false} post={props.post} imageSize={renderedImageSizeMain}/>
+                    <ThumbModule size={715} cat={false} post={props.post} imageSize={imageSizeMain}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <h3 className="gvnews_post_title">

@@ -14,7 +14,7 @@ const Block7Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain,
+        imageSizeMain = {},
         readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
@@ -27,7 +27,7 @@ const Block7Columns = props => {
                 <h3 property="headline" className="gvnews_post_title">
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </h3>
-                <ThumbModule size={500} cat={false} post={props.post} imageSize={renderedImageSizeMain} />
+                <ThumbModule size={500} cat={false} post={props.post} imageSize={imageSizeMain} />
                 <ContentModule title={false} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </article>
         );

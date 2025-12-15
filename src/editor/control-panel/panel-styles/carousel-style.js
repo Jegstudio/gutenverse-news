@@ -5,6 +5,8 @@ const getCarouselStyle = (elementId, attributes) => {
     const {
         showMeta = true,
     } = attributes;
+
+    data = thumbnailAndOverlayStyle(elementId, attributes, data);
     /**
      * Panel Border
      */
@@ -290,5 +292,36 @@ const getCarouselStyle = (elementId, attributes) => {
     return data;
 };
 
+const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
+
+    isNotEmpty(attributes['borderMainThumbnail']) && data.push({
+        'id': 'borderMainThumbnail',
+        'type': 'border',
+        'selector': `.${elementId} .gvnews_postblock .gvnews_thumb`,
+    });
+    isNotEmpty(attributes['borderResponsiveMainThumbnail']) && data.push({
+        'id': 'borderResponsiveMainThumbnail',
+        'type': 'borderResponsive',
+        'selector': `.${elementId} .gvnews_postblock .gvnews_thumb`,
+    });
+    isNotEmpty(attributes['overlayBackgroundMain']) && data.push({
+        'type': 'background',
+        'id': 'overlayBackgroundMain',
+        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+    });
+    isNotEmpty(attributes['overlayOpacityMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayOpacityMain',
+        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+        'properties': [
+            {
+                'name': 'opacity',
+                'valueType': 'direct'
+            }
+        ]
+    });
+
+    return data;
+}
 
 export default getCarouselStyle;
