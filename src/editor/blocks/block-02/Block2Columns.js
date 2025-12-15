@@ -15,7 +15,6 @@ const Block2Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        metaDateIcon,
         renderedImageSizeMain = {},
         renderedImageSizeSecond = {},
         readmoreButtonDisabled = false,
@@ -50,8 +49,7 @@ const Block2Columns = props => {
             date: {
                 type: metaDateType,
                 format: metaDateFormat,
-                custom: metaDateFormatCustom,
-                icon: metaDateIcon
+                custom: metaDateFormatCustom
             }
         };
         const rows = [];
@@ -84,8 +82,7 @@ const Block2Columns = props => {
             date: {
                 type: metaDateType,
                 format: metaDateFormat,
-                custom: metaDateFormatCustom,
-                icon: metaDateIcon
+                custom: metaDateFormatCustom
             }
         };
         const rows = [];

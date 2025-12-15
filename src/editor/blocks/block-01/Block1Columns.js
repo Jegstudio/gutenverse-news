@@ -21,8 +21,7 @@ const Block1Columns = props => {
         readmoreButtonDisabled = false,
         listIcon = '',
         listIconType = 'icon',
-        listIconSVG = '',
-        metaDateIcon = ''
+        listIconSVG = ''
     } = props;
 
     const RenderBlock1 = props=>{
@@ -81,8 +80,7 @@ const Block1Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
-                icon: metaDateIcon
+                custom : metaDateFormatCustom
             }
         };
 
@@ -114,8 +112,7 @@ const Block1Columns = props => {
             date : {
                 type: metaDateType,
                 format: metaDateFormat,
-                custom: metaDateFormatCustom,
-                icon: metaDateIcon
+                custom: metaDateFormatCustom
             }
         };
 
@@ -147,8 +144,7 @@ const Block1Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
-                icon: metaDateIcon
+                custom : metaDateFormatCustom
             }
         };
 

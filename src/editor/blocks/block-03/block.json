@@ -17,13 +17,6 @@
             "type": "string",
             "default": ""
         },
-        "iconType": {
-            "type": "string",
-            "default": "icon"
-        },
-        "iconSVG": {
-            "type": "string"
-        },
         "title": {
             "type": "string",
             "default": ""

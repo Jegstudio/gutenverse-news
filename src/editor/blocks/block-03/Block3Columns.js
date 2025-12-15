@@ -14,7 +14,6 @@ const Block3Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        metaDateIcon,
         renderedImageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
@@ -38,8 +37,7 @@ const Block3Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
-                icon: metaDateIcon
+                custom: metaDateFormatCustom
             }
         };
         const rows = [];

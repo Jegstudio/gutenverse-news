@@ -17,13 +17,6 @@
             "type": "string",
             "default": ""
         },
-        "iconType": {
-            "type": "string",
-            "default": "icon"
-        },
-        "iconSVG": {
-            "type": "string"
-        },
         "title": {
             "type": "string",
             "default": ""
@@ -180,7 +173,6 @@
             "type": "string",
             "default": "fas fa-tag"
         },
-
         "metaPosition": {
             "type": "string",
             "default": "top"
@@ -565,13 +557,6 @@
         "listIcon": {
             "type": "string",
             "default": "fas fa-caret-right"
-        },
-        "listIconType": {
-            "type": "string",
-            "default": "icon"
-        },
-        "listIconSVG": {
-            "type": "string"
         },
         "listIconColor": {
             "type": "object"
