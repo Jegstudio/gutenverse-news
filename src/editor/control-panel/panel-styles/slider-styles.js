@@ -842,7 +842,10 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['alwaysShowNavigationButton']) && data.push({
         'type': 'plain',
         'id': 'alwaysShowNavigationButton',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`
+        ],
         'properties': [
             {
                 'name': 'opacity',
@@ -853,11 +856,15 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     });
 
     if (isNotEmpty(attributes['transitionShow'])) {
-        transitionShowCss = `opacity ${attributes['transitionShow']}ms ease`;
+        transitionShowCss = `opacity ${attributes['transitionShow']}ms ease,`;
         data.push({
             'type': 'plain',
             'id': 'transitionShow',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+            'selector': [
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a`
+            ],
             'properties': [
                 {
                     'name': 'transition',
@@ -872,13 +879,34 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             ]
         });
     }
-    
+
+    isNotEmpty(attributes['gapButton']) && data.push({
+        'type': 'plain',
+        'id': 'gapButton',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            }
+        ]
+    });
 
     // NEXT BUTTON
     isNotEmpty(attributes['nextButtonColor']) && data.push({
         'type': 'color',
         'id': 'nextButtonColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next i`
+        ],
         'properties': [
             {
                 'name': 'color',
@@ -890,7 +918,38 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['nextButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'nextButtonColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover i`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next:hover i`
+        ],
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['nextTextColor']) && data.push({
+        'type': 'color',
+        'id': 'nextTextColor',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next span`
+        ],
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['nextTextColorHover']) && data.push({
+        'type': 'color',
+        'id': 'nextTextColorHover',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next:hover span`
+        ],
         'properties': [
             {
                 'name': 'color',
@@ -902,7 +961,11 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['nextButtonSize']) && data.push({
         'type': 'plain',
         'id': 'nextButtonSize',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
+        ],
         'properties': [
             {
                 'name': 'font-size',
@@ -927,13 +990,19 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
+        ],
     });
 
     isNotEmpty(attributes['nextButtonBgColor']) && data.push({
         'type': 'color',
         'id': 'nextButtonBgColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
+        ],
         'properties': [
             {
                 'name': 'background-color',
@@ -945,7 +1014,10 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['nextButtonBgColorHover']) && data.push({
         'type': 'color',
         'id': 'nextButtonBgColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next:hover`
+        ],
         'properties': [
             {
                 'name': 'background-color',
@@ -958,12 +1030,15 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         data.push({
             'type': 'plain',
             'id': 'nextButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+            'selector': [
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
+            ],
             'properties': [
                 {
                     'name': 'transition',
                     'valueType': 'pattern',
-                    'pattern': `${transitionShowCss}, background-color {value}ms ease;`,
+                    'pattern': `${transitionShowCss} background-color {value}ms ease;`,
                     'patternValues': {
                         'value': {
                             'type': 'direct',
@@ -975,7 +1050,11 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         data.push({
             'type': 'plain',
             'id': 'nextButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+            'selector': [
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next i`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next span`,
+            ],
             'properties': [
                 {
                     'name': 'transition',
@@ -991,11 +1070,36 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         });
     }
 
+    isNotEmpty(attributes['nextButtonGap']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonGap',
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
+        ],
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    });
+
     // PREV BUTTON
     isNotEmpty(attributes['prevButtonColor']) && data.push({
         'type': 'color',
         'id': 'prevButtonColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev i`,
+        ],
         'properties': [
             {
                 'name': 'color',
@@ -1007,7 +1111,39 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['prevButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'prevButtonColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover i`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev:hover i`,
+        ],
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['prevTextColor']) && data.push({
+        'type': 'color',
+        'id': 'prevTextColor',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev span`
+        ],
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['prevTextColorHover']) && data.push({
+        'type': 'color',
+        'id': 'prevTextColorHover',
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev:hover span`
+        ],
         'properties': [
             {
                 'name': 'color',
@@ -1019,7 +1155,11 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['prevButtonSize']) && data.push({
         'type': 'plain',
         'id': 'prevButtonSize',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
+        ],
         'properties': [
             {
                 'name': 'font-size',
@@ -1044,13 +1184,19 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 'valueType': 'direct'
             }
         ],
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
+        ],
     });
 
     isNotEmpty(attributes['prevButtonBgColor']) && data.push({
         'type': 'color',
         'id': 'prevButtonBgColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
+        ],
         'properties': [
             {
                 'name': 'background-color',
@@ -1062,7 +1208,10 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['prevButtonBgColorHover']) && data.push({
         'type': 'color',
         'id': 'prevButtonBgColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev:hover`
+        ],
         'properties': [
             {
                 'name': 'background-color',
@@ -1075,12 +1224,15 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         data.push({
             'type': 'plain',
             'id': 'prevButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+            'selector': [
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
+            ],
             'properties': [
                 {
                     'name': 'transition',
                     'valueType': 'pattern',
-                    'pattern': `${transitionShowCss}, background-color {value}ms ease;`,
+                    'pattern': `${transitionShowCss} background-color {value}ms ease;`,
                     'patternValues': {
                         'value': {
                             'type': 'direct',
@@ -1092,7 +1244,11 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         data.push({
             'type': 'plain',
             'id': 'prevButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+            'selector': [
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev i`,
+                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev span`,
+            ],
             'properties': [
                 {
                     'name': 'transition',
@@ -1107,6 +1263,27 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             ],
         });
     }
+    isNotEmpty(attributes['prevButtonGap']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonGap',
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
+        ],
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    });
 
     return data;
 }

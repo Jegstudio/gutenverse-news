@@ -311,10 +311,10 @@
             "copyStyle": true
         },
         "nextButtonSize": {
-            "type": "string"
+            "type": "object"
         },
         "prevButtonSize": {
-            "type": "string"
+            "type": "object"
         },
         "nextButtonPadding": {
             "type": "object"

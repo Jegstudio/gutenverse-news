@@ -7,6 +7,7 @@ import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style'
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
 import { designPanel } from './panel-design';
+import { navigationButtonStylePanel } from '../../../control-panel/panel-navigation-button-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -29,6 +30,15 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: designPanel,
                 tabRole: TabStyle
+            },
+            {
+                title: __('Navigation Button Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => navigationButtonStylePanel({
+                    ...props,
+                    sliderType: 'slider-7',
+                }),
+                tabRole: TabStyle,
             },
             {
                 title: __('Category Label', 'gutenverse-news'),

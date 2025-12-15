@@ -15,7 +15,7 @@ export const navigationButtonStylePanel = (props) => {
     return [
         {
             id: 'hideNavigationButton',
-            show: !alwaysShowNavigationButton,
+            show: !alwaysShowNavigationButton && sliderType !== 'slider-7',
             label: __('Hide Button Navigation'),
             component: CheckboxControl,
         },
@@ -40,6 +40,37 @@ export const navigationButtonStylePanel = (props) => {
             max: 10000,
             unit: 'ms',
             step: 100,
+        },
+        {
+            id: 'gapButton',
+            show: !hideNavigationButton && sliderType === 'slider-6',
+            label: __('Gap Button', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 0,
+            max: 1000,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'gapButton',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
+                    'properties': [
+                        {
+                            'name': 'gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             id: 'tootlipColor',
@@ -74,19 +105,31 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'nextButtonColor',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
-            label: __('Color', 'gutenverse-news'),
+            label: __('Icon Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'nextButtonColorHover',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
-            label: __('Color Hover', 'gutenverse-news'),
+            label: __('Icon Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'nextButtonBgColor',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
             label: __('Background Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'nextTextColor',
+            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'nextTextColorHover',
+            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
@@ -98,7 +141,7 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'nextButtonTransition',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
-            label: __('Transition Duration', 'gutenverse-news'),
+            label: __('Transition Hover Duration', 'gutenverse-news'),
             component: RangeControl,
             min: 0,
             max: 10000,
@@ -110,6 +153,7 @@ export const navigationButtonStylePanel = (props) => {
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
             label: __('Size', 'gutenverse-news'),
             component: RangeControl,
+            allowDeviceControl: true,
             min: 1,
             max: 100,
             unit: 'px',
@@ -118,6 +162,7 @@ export const navigationButtonStylePanel = (props) => {
                 {
                     'type': 'plain',
                     'id': 'nextButtonSize',
+                    'responsive': true,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
                     'properties': [
                         {
@@ -133,6 +178,17 @@ export const navigationButtonStylePanel = (props) => {
                     ],
                 }
             ]
+        },
+        {
+            id: 'nextButtonGap',
+            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Gap', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 100,
+            unit: 'px',
+            step: 1,
         },
         {
             id: 'nextButtonPadding',
@@ -170,13 +226,25 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'prevButtonColor',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
-            label: __('Color', 'gutenverse-news'),
+            label: __('Icon Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'prevButtonColorHover',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
-            label: __('Color Hover', 'gutenverse-news'),
+            label: __('Icon Color Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'prevTextColor',
+            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'prevTextColorHover',
+            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
@@ -194,7 +262,7 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'prevButtonTransition',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
-            label: __('Transition Duration', 'gutenverse-news'),
+            label: __('Transition Hover Duration', 'gutenverse-news'),
             component: RangeControl,
             min: 0,
             max: 10000,
@@ -206,6 +274,7 @@ export const navigationButtonStylePanel = (props) => {
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             label: __('Size', 'gutenverse-news'),
             component: RangeControl,
+            allowDeviceControl: true,
             min: 1,
             max: 100,
             unit: 'px',
@@ -214,6 +283,7 @@ export const navigationButtonStylePanel = (props) => {
                 {
                     'type': 'plain',
                     'id': 'prevButtonSize',
+                    'responsive': true,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
                     'properties': [
                         {
@@ -229,6 +299,17 @@ export const navigationButtonStylePanel = (props) => {
                     ],
                 }
             ]
+        },
+        {
+            id: 'prevButtonGap',
+            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton && ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Text Gap', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 100,
+            unit: 'px',
+            step: 1,
         },
         {
             id: 'prevButtonPadding',

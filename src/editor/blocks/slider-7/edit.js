@@ -68,6 +68,8 @@ const Slider7Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         readmoreButtonDisabled = false,
+        nextButtonIcon,
+        prevButtonIcon,
     } = attributes;
 
     const metaSettings = {
@@ -137,7 +139,16 @@ const Slider7Block = compose(
             <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
                 <div className="gvnews_slide_image" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}></div>
-                <SliderCaption {...props} excerpt navigation withElipsis={true} withMeta={false} withReadmore={!readmoreButtonDisabled} />
+                <SliderCaption
+                    {...props}
+                    excerpt
+                    navigation
+                    withElipsis={true}
+                    withMeta={false}
+                    withReadmore={!readmoreButtonDisabled}
+                    nextButtonIcon={nextButtonIcon}
+                    prevButtonIcon={prevButtonIcon}
+                />
             </div>
         );
     }
@@ -161,7 +172,16 @@ const Slider7Block = compose(
         }
 
         return (
-            <div ref={blockRef} className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-nav-prev={'PREV'} data-nav-next={'NEXT'}>
+            <div
+                ref={blockRef}
+                className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`}
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-nav-prev={'PREV'}
+                data-nav-next={'NEXT'}
+                data-class-next={nextButtonIcon}
+                data-class-prev={prevButtonIcon}
+            >
                 {content}
             </div>
         );
@@ -313,7 +333,9 @@ const Slider7Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
-        readmoreButtonDisabled
+        readmoreButtonDisabled,
+        nextButtonIcon,
+        prevButtonIcon,
     ]);
 
     useEffect(() => {
