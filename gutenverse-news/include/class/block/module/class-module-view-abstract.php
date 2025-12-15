@@ -164,26 +164,13 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			// Get icon settings with defaults.
-			$prev_icon      = isset( $attr['pagination_prev_icon'] ) ? $attr['pagination_prev_icon'] : 'fas fa-chevron-left';
-			$prev_icon_type = isset( $attr['pagination_prev_icon_type'] ) ? $attr['pagination_prev_icon_type'] : 'icon';
-			$prev_icon_svg  = isset( $attr['pagination_prev_icon_svg'] ) ? $attr['pagination_prev_icon_svg'] : '';
-			$next_icon      = isset( $attr['pagination_next_icon'] ) ? $attr['pagination_next_icon'] : 'fas fa-chevron-right';
-			$next_icon_type = isset( $attr['pagination_next_icon_type'] ) ? $attr['pagination_next_icon_type'] : 'icon';
-			$next_icon_svg  = isset( $attr['pagination_next_icon_svg'] ) ? $attr['pagination_next_icon_svg'] : '';
+			$prev_text = '<i class="fas fa-chevron-left"></i>';
+			$next_text = '<i class="fas fa-chevron-right"></i>';
 
-			// Render icons.
-			$prev_text = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg );
-			$next_text = $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
-
-			// Check if we should show text with icons.
-			$show_text = isset( $attr['pagination_nextprev_showtext'] ) ? $attr['pagination_nextprev_showtext'] : false;
-			if ( $show_text ) {
+			if ( $attr['pagination_nextprev_showtext'] ) {
 				$additional_class .= ' showtext';
-				$prev_label        = isset( $attr['pagination_prev_text'] ) ? esc_html( $attr['pagination_prev_text'] ) : esc_html__( 'Prev', 'gutenverse-news' );
-				$next_label        = isset( $attr['pagination_next_text'] ) ? esc_html( $attr['pagination_next_text'] ) : esc_html__( 'Next', 'gutenverse-news' );
-				$prev_text         = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg ) . ' ' . $prev_label;
-				$next_text         = $next_label . '  ' . $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
+				$prev_text         = '<i class="fas fa-chevron-left"></i> ' . esc_html__( 'Prev', 'gutenverse-news' );
+				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . '  <i class="fas fa-chevron-right"></i>';
 			}
 
 			$output =
@@ -194,18 +181,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
-			$next = $next ? '' : 'disabled';
-
-			// Get custom text.
-			$loadmore_text = isset( $attr['pagination_loadmore_text'] ) ? esc_html( $attr['pagination_loadmore_text'] ) : esc_html__( 'Load More', 'gutenverse-news' );
-			$loading_text  = isset( $attr['pagination_loading_text'] ) ? esc_html( $attr['pagination_loading_text'] ) : esc_html__( 'Loading...', 'gutenverse-news' );
-
-			// Prepare data attributes for frontend JavaScript.
-			$data_attrs = 'data-load="' . esc_attr( $loadmore_text ) . '" data-loading="' . esc_attr( $loading_text ) . '"';
-
+			$next   = $next ? '' : 'disabled';
 			$output =
 			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
-                    <a href="#" class="' . esc_attr( $next ) . '" ' . $data_attrs . '> ' . $loadmore_text . '</a>
+                    <a href="#" class="' . esc_attr( $next ) . '" data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
                 </div>';
 		}
 
