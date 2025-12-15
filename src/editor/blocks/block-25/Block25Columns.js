@@ -16,7 +16,7 @@ const Block25Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         readmoreButtonDisabled = false,
-        renderedImageSizeMain
+        imageSizeMain
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -32,7 +32,7 @@ const Block25Columns = props => {
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
                 <div className='bottom-content'>
-                    <ThumbModule size={500} cat={false} post={post} imageSize={renderedImageSizeMain} />
+                    <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
                     <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr} />
                 </div>
             </article>

@@ -14,14 +14,13 @@ const Block8Block = compose(
         blockWidth: 12,
     };
     const moduleName = '8';
-    const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 350, width: 180, dimension: 500 });
     return <BlockModule
         columnAttr={columnAttr}
         moduleName={moduleName}
         {...props}
         panelList={panelList}
         freeModule={true}
-        renderedImageSizeMain={renderedImageSizeMain}
+        defaultImageSizeMain={{ height: 350, width: 180, dimension: 500 }}
         mainThumbnailClass={'gvnews_pl_md_1'}
     />;
 });

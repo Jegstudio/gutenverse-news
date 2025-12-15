@@ -17,13 +17,12 @@ const Block25Block = compose(
     };
     const moduleName = '25';
     if (gutenverseProActive) {
-        const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 360, width: 280, dimension: 500 });
         return <BlockModule
             columnAttr={columnAttr}
             moduleName={moduleName}
             {...props}
             panelList={panelList}
-            renderedImageSizeMain={renderedImageSizeMain}
+            defaultImageSizeMain={{ height: 360, width: 280, dimension: 500 }}
             mainThumbnailClass={'gvnews_post'}
         />;
     } else {

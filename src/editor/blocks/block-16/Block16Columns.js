@@ -14,7 +14,7 @@ const Block16Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain,
+        imageSizeMain = {},
         readmoreButtonDisabled = false,
         listIcon = '',
     } = props;
@@ -24,7 +24,7 @@ const Block16Columns = props => {
     const RenderBlock1 = props=>{
         return (
             <article className="gvnews_post gvnews_pl_lg_5">
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </article>
         );

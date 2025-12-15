@@ -15,8 +15,8 @@ const Block1Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain = {},
-        renderedImageSizeSecond = {},
+        imageSizeMain = {},
+        imageSizeSecond = {},
         readmoreButtonDisabled = false,
         listIcon = '',
     } = props;
@@ -83,12 +83,12 @@ const Block1Columns = props => {
             const rows = [];
             if (datas) {
                 for (let i = 1; i < datas.length; i++) {
-                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} imageSize={renderedImageSizeSecond}/>);
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} imageSize={imageSizeSecond}/>);
                 }
             }
             return <div className="gvnews_posts">
                 <article className={`gvnews_post gvnews_pl_lg_1 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
-                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={renderedImageSizeMain}/>}
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={imageSizeMain}/>}
                 </article>
                 <div className="gvnews_postsmall">
                     {rows}
@@ -115,12 +115,12 @@ const Block1Columns = props => {
             const rows = [];
             if (datas.length > 0) {
                 for (let i = 1; i < datas.length; i++) {
-                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1}  key={datas[i]} attr={attr} post={datas[i]} imageSize={renderedImageSizeSecond}/>);
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1}  key={datas[i]} attr={attr} post={datas[i]} imageSize={imageSizeSecond}/>);
                 }
             }
             return <div className={'gvnews_posts gvnews-posts-row'}>
                 <article className={`gvnews_post gvnews_pl_lg_1 col-sm-6 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
-                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={renderedImageSizeMain}/>}
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={imageSizeMain}/>}
                 </article>
                 <div className={'gvnews_postsmall col-sm-6'}>
                     {rows}
@@ -149,7 +149,7 @@ const Block1Columns = props => {
             if (datas.length > 0) {
                 let limit =  Math.ceil( ( datas.length - 1 ) * 2 / 5) + 1;
                 for (let i = 1; i < limit; i++) {
-                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} imageSize={renderedImageSizeSecond}/>);
+                    rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} imageSize={imageSizeSecond}/>);
                 }
                 for (let i = limit; i < datas.length; i++) {
                     rows2.push(<RenderBlock3 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1} key={datas[i].id} attr={attr} post={datas[i]} listIcon={listIcon} />);
@@ -158,7 +158,7 @@ const Block1Columns = props => {
 
             return <div className="gvnews_posts gvnews-posts-row">
                 <article className={`gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
-                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={renderedImageSizeMain}/>}
+                    {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={imageSizeMain}/>}
                 </article>
                 <div className="gvnews_postsmall col-sm-4">
                     {rows}

@@ -15,8 +15,8 @@ const Block19Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        renderedImageSizeMain = {},
-        renderedImageSizeSecond = {},
+        imageSizeMain = {},
+        imageSizeSecond = {},
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -40,14 +40,14 @@ const Block19Columns = props => {
             return (
                 <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
                     <div className="box_wrap">
-                        <PostMeta imageSize={renderedImageSizeMain}/>
+                        <PostMeta imageSize={imageSizeMain}/>
                     </div>
                 </article>
             );
         }else{
             return (
                 <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
-                    <PostMeta imageSize={renderedImageSizeSecond}/>
+                    <PostMeta imageSize={imageSizeSecond}/>
                 </article>
             );
         }
