@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { formatDateString } from '../utils/date-util';
 import { timeDifference } from '../utils/date-util';
 import { RawHTML } from '@wordpress/element';
-import { renderIcon } from 'gutenverse-core/helper';
 
 const MetaAuthor = props => {
     if (props.post.author) {
@@ -18,37 +17,24 @@ const MetaAuthor = props => {
 };
 
 const MetaDate = props => {
-    const { post, attr, showIcon = true, customIcon = false, customIconType = 'icon', customIconSVG = '' } = props;
+    const { post, attr, showIcon = true, customIcon = false } = props;
     const typeDate = attr.option.option.date_type;
     let date = new Date(post.date[typeDate] * 1000).toISOString();
     let timestamp = post.date[typeDate] * 1000;
 
-    const icon = customIcon || attr.date?.icon || '';
-    const iconType = (customIconType && customIconType !== 'icon') ? customIconType : (attr.date?.iconType || 'icon');
-    const iconSVG = customIconSVG || attr.date?.iconSVG || '';
-
-    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
-
     return <div className="gvnews_meta_date">
         <a>
-            {showIcon && renderIcon(finalIcon, iconType, iconSVG)}
+            {showIcon && <i className={customIcon ? customIcon : 'far fa-clock'}>&nbsp;</i>}
             {'custom' == attr.date.format ? formatDateString(date, attr.date.custom) : 'ago' == attr.date.format ? timeDifference(timestamp) : formatDateString(date, attr.option.option.date_format)}
         </a>
     </div>;
 };
 
 const MetaComments = props => {
-    const { post, attr, showText = true } = props;
-    const icon = attr.comment?.icon || '';
-    const iconType = attr.comment?.iconType || 'icon';
-    const iconSVG = attr.comment?.iconSVG || '';
-
-    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
-
     return <div className="gvnews_meta_comment">
         <a>
-            {renderIcon(finalIcon, iconType, iconSVG)}&nbsp;
-            {post.comment} {showText && __('Comments', 'gutenverse-news')}
+            <i className="far fa-comment">&nbsp;</i>
+            {props.post.comment} {props.showText && __('Comments', 'gutenverse-news')}
         </a>
     </div>;
 };
