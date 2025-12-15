@@ -1862,67 +1862,24 @@ const postItemStyle = (elementId, attributes, data) => {
         postItemGrid = false
     } = attributes
 
-    if (isNotEmpty(mainListSelector)) {
-        isNotEmpty(attributes['mainItemPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'mainItemPadding',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} ${mainListSelector}`,
-        });
+    if (postItemGrid) {
 
-
-        isNotEmpty(attributes['mainItemMargin']) && data.push({
-            'type': 'dimension',
-            'id': 'mainItemMargin',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'margin',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} ${mainListSelector}`,
-        });
-
-        isNotEmpty(attributes['secondItemPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'secondItemPadding',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} ${secondListSelector}`,
-        });
-
-        isNotEmpty(attributes['thirdItemPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'thirdItemPadding',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} ${thirdListSelector}`,
-        });
-
-
-        isNotEmpty(attributes['secondItemGap']) && data.push({
+        isNotEmpty(attributes['rowItemGap']) && data.push({
             'type': 'plain',
-            'id': 'secondItemGap',
+            'id': 'rowItemGap',
             'responsive': true,
-            'selector': `.${elementId} ${secondListSelector} .gvnews_post`,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
             'properties': [
+                {
+                    'name': 'row-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
                 {
                     'name': 'margin-bottom',
                     'valueType': 'pattern',
@@ -1935,58 +1892,6 @@ const postItemStyle = (elementId, attributes, data) => {
                 }
             ],
         });
-
-
-        isNotEmpty(attributes['thirdItemGap']) && data.push({
-            'type': 'plain',
-            'id': 'thirdItemGap',
-            'responsive': true,
-            'selector': `.${elementId} ${thirdListSelector} .gvnews_post`,
-            'properties': [
-                {
-                    'name': 'margin-bottom',
-                    'valueType': 'pattern',
-                    'pattern': '{value}px',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct'
-                        }
-                    }
-                }
-            ],
-        });
-
-    } else {
-        if (postItemGrid) {
-            isNotEmpty(attributes['rowItemGap']) && data.push({
-                'type': 'plain',
-                'id': 'rowItemGap',
-                'responsive': true,
-                'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
-                'properties': [
-                    {
-                        'name': 'row-gap',
-                        'valueType': 'pattern',
-                        'pattern': '{value}px',
-                        'patternValues': {
-                            'value': {
-                                'type': 'direct'
-                            }
-                        }
-                    },
-                    {
-                        'name': 'margin-bottom',
-                        'valueType': 'pattern',
-                        'pattern': '{value}px',
-                        'patternValues': {
-                            'value': {
-                                'type': 'direct'
-                            }
-                        }
-                    }
-                ],
-            });
-        }
         isNotEmpty(attributes['columnItemGap']) && data.push({
             'type': 'plain',
             'id': 'columnItemGap',
@@ -2006,7 +1911,70 @@ const postItemStyle = (elementId, attributes, data) => {
             ],
         });
 
+
+        if (isNotEmpty(secondListSelector)) {
+
+            isNotEmpty(attributes['columnItemGapSecond']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapSecond',
+                'responsive': true,
+                'selector': `.${elementId} ${secondListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+
+
+            isNotEmpty(attributes['columnItemGapThird']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapThird',
+                'responsive': true,
+                'selector': `.${elementId} ${thirdListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+        }
+
+    } else {
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
     }
+
 
 
     return data;

@@ -606,7 +606,7 @@
             "type": "object",
             "copyStyle": true
         },
-        "mainItemGap": {
+        "rowItemGap": {
             "type": "object",
             "copyStyle": true
         }

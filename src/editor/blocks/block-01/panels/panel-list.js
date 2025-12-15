@@ -86,7 +86,7 @@ export const panelList = () => {
         {
             title: __('Post Item', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => multiPostItemPanel(props, 3, true),
+            panelArray: multiPostItemPanel,
             tabRole: TabStyle,
         },
         {

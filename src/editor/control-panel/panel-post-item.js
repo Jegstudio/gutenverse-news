@@ -1,135 +1,79 @@
 import { __ } from '@wordpress/i18n';
-import { DimensionControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
-import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { RangeControl, SwitchControl } from 'gutenverse-core/controls';
 
-export const multiPostItemPanel = (props, third = false) => {
+export const multiPostItemPanel = (props) => {
     const {
         switcher,
         setSwitcher,
         elementId,
         secondListSelector = '',
-        thirdListSelector = ''
+        thirdListSelector = '',
+        columnWidth,
     } = props;
 
     return [
-        {
-            id: '__thumbnailType',
-            component: SwitchControl,
-            options: third ? [
-                {
-                    value: 'main',
-                    label: 'Main'
-                },
-                {
-                    value: 'second',
-                    label: 'Second'
-                },
-                {
-                    value: 'third',
-                    label: 'Third'
-                }
-            ] : [
-                {
-                    value: 'main',
-                    label: 'Main'
-                },
-                {
-                    value: 'second',
-                    label: 'Second'
-                }
-            ],
-            onChange: ({ __thumbnailType }) => setSwitcher({ ...switcher, state: __thumbnailType })
-        },
-        {
-            id: 'mainItemPadding',
-            label: __('Main Item Padding', 'gutenverse-news'),
-            description: __('Padding on the main post item', 'gutenverse-news'),
-            show: (!switcher.state || switcher.state === 'main'),
-            component: DimensionControl,
-            position: ['top', 'right', 'bottom', 'left'],
-            allowDeviceControl: true,
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                percent: {
-                    text: '%',
-                    unit: '%'
-                },
-            },
-        },
 
         {
-            id: 'mainItemMargin',
-            label: __('Main Item Margin', 'gutenverse-news'),
-            description: __('Margin on the main post item', 'gutenverse-news'),
-            show: (!switcher.state || switcher.state === 'main'),
-            component: DimensionControl,
-            position: ['top', 'right', 'bottom', 'left'],
-            allowDeviceControl: true,
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                percent: {
-                    text: '%',
-                    unit: '%'
-                },
-            },
-        },
-        {
-            id: 'secondItemPadding',
-            label: __('Second lists Padding', 'gutenverse-news'),
-            description: __('Padding on the second post lists', 'gutenverse-news'),
-            show: switcher.state === 'second',
-            component: DimensionControl,
-            position: ['top', 'right', 'bottom', 'left'],
-            allowDeviceControl: true,
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
-                },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                percent: {
-                    text: '%',
-                    unit: '%'
-                },
-            },
-        },
-        {
-            id: 'secondItemGap',
-            label: __('Second Item Gap', 'gutenverse-news'),
-            description: __('Gap between item on the second post lists', 'gutenverse-news'),
+            id: 'columnItemGap',
+            label: __('Post Lists Column Gap', 'gutenverse-news'),
+            description: __('Gap between post lists', 'gutenverse-news'),
             component: RangeControl,
             unit: 'px',
             min: 1,
             max: 100,
             step: 1,
             allowDeviceControl: true,
-            show: switcher.state === 'second',
             liveStyle: [
                 {
                     'type': 'plain',
-                    'id': 'secondItemGap',
+                    'id': 'columnItemGap',
                     'responsive': true,
-                    'selector': `.${elementId} ${secondListSelector} .gvnews_post`,
+                    'selector': `.${elementId} .gvnews_posts`,
+                    'properties': [
+                        {
+                            'name': 'column-gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+
+        {
+            id: 'rowItemGap',
+            label: __('Post Lists Row Gap', 'gutenverse-news'),
+            description: __('Row gap between post list and the margin bottom on all post lists', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'rowItemGap',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_posts`,
                     'properties': [
                         {
                             'name': 'margin-bottom',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                        {
+                            'name': 'column-gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {
@@ -143,30 +87,59 @@ export const multiPostItemPanel = (props, third = false) => {
             ]
         },
         {
-            id: 'thirdItemPadding',
-            label: __('Third Lists Padding', 'gutenverse-news'),
-            description: __('Padding on the third post lists', 'gutenverse-news'),
-            show: switcher.state === 'third' && third,
-            component: DimensionControl,
-            position: ['top', 'right', 'bottom', 'left'],
-            allowDeviceControl: true,
-            units: {
-                px: {
-                    text: 'px',
-                    unit: 'px'
+            id: '__postItem',
+            component: SwitchControl,
+            options: (columnWidth === 'auto' || columnWidth === '12') ? [
+                {
+                    value: 'second',
+                    label: 'Second'
                 },
-                em: {
-                    text: 'em',
-                    unit: 'em'
-                },
-                percent: {
-                    text: '%',
-                    unit: '%'
-                },
-            },
+                {
+                    value: 'third',
+                    label: 'Third'
+                }
+            ] : [
+                {
+                    value: 'second',
+                    label: 'Second'
+                }
+            ],
+            onChange: ({ __postItem }) => setSwitcher({ ...switcher, state: __postItem })
         },
         {
-            id: 'thirdItemGap',
+            id: 'columnItemGapSecond',
+            label: __('Second Item Gap', 'gutenverse-news'),
+            description: __('Gap between item on the second post lists', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            show: !switcher.state || switcher.state === 'second',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'columnItemGapSecond',
+                    'responsive': true,
+                    'selector': `.${elementId} ${secondListSelector}`,
+                    'properties': [
+                        {
+                            'name': 'column-gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'columnItemGapThird',
             label: __('Third Item Gap', 'gutenverse-news'),
             description: __('Gap between item on the third post lists', 'gutenverse-news'),
             component: RangeControl,
@@ -175,16 +148,16 @@ export const multiPostItemPanel = (props, third = false) => {
             max: 100,
             step: 1,
             allowDeviceControl: true,
-            show: switcher.state === 'third',
+            show: switcher.state === 'third' && (columnWidth === 'auto' || columnWidth === '12'),
             liveStyle: [
                 {
                     'type': 'plain',
-                    'id': 'thirdItemGap',
+                    'id': 'columnItemGapThird',
                     'responsive': true,
-                    'selector': `.${elementId} ${thirdListSelector} .gvnews_post`,
+                    'selector': `.${elementId} ${thirdListSelector}`,
                     'properties': [
                         {
-                            'name': 'margin-bottom',
+                            'name': 'column-gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {
@@ -206,7 +179,7 @@ export const postItemPanel = (props) => {
 
     return [
         {
-            id: 'mainItemGap',
+            id: 'rowItemGap',
             label: __('Post Item Gap', 'gutenverse-news'),
             description: __('Gap between item on the post lists', 'gutenverse-news'),
             component: RangeControl,
@@ -218,7 +191,7 @@ export const postItemPanel = (props) => {
             liveStyle: [
                 {
                     'type': 'plain',
-                    'id': 'mainItemGap',
+                    'id': 'rowItemGap',
                     'responsive': true,
                     'selector': `.${elementId} .gvnews_posts .gvnews_post`,
                     'properties': [
@@ -238,26 +211,6 @@ export const postItemPanel = (props) => {
         },
     ]
 }
-
-export const rowItemPanel = (props) => {
-
-    const { elementId } = props;
-
-    return [
-        {
-            id: 'rowItemGap',
-            label: __('Row Item Gap', 'gutenverse-news'),
-            description: __('Bottom gap between row post lists', 'gutenverse-news'),
-            component: RangeControl,
-            unit: 'px',
-            min: 1,
-            max: 100,
-            step: 1,
-            allowDeviceControl: true,
-        },
-    ]
-}
-
 
 
 
