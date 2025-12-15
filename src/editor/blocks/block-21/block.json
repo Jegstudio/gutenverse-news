@@ -605,6 +605,16 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "postItemGrid": {
+            "type": "boolean",
+            "default": true
         }
     },
     "supports": {
