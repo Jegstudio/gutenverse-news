@@ -417,6 +417,39 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "mainContainerBackground": {
+            "type": "object"
+        },
+        "mainContainerMargin": {
+            "type": "object"
+        },
+        "mainContainerPadding": {
+            "type": "object"
+        },
+        "mainContainerBorder": {
+            "type": "object"
+        },
+        "mainContainerBoxShadow": {
+            "type": "object"
+        },
+        "excerptTypography": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "secondTitleColor": {
+            "type": "object"
+        },
+        "secondTitleColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {

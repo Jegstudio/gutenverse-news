@@ -14,7 +14,7 @@ const Block18Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain,
+        imageSizeMain = {},
         blockWidth
     } = props;
 
@@ -24,7 +24,7 @@ const Block18Columns = props => {
     const RenderBlock1 = props => {
         const { post, attr, index = 'x' } = props;
         const thumb = post.thumbnail.url ? { src: post.thumbnail.url } : null;
-        const size = renderedImageSizeMain.dimension ? renderedImageSizeMain.dimension : '715';
+        const size = imageSizeMain.dimension ? imageSizeMain.dimension : '715';
 
         return (
             <article className={`gvnews_post gvnews_pl_lg_8 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
@@ -46,8 +46,8 @@ const Block18Columns = props => {
                                         'maxWidth': '100%'
                                     }}
                                     className="lazyloaded"
-                                    height={renderedImageSizeMain.height}
-                                    width={renderedImageSizeMain.width}
+                                    height={imageSizeMain.height}
+                                    width={imageSizeMain.width}
                                 />
                                 <div className="gvnews-thumb-overlay"></div>
                             </div>

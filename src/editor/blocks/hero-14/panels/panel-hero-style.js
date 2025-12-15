@@ -3,12 +3,10 @@ import { ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/
 
 export const styleHero = (props, typeCount = 1) => {
     const {
-        gvnewsModule = '',
         switcher,
         setSwitcher,
     } = props;
 
-    const showThridColor = 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_14' === gvnewsModule;
     const isNormal = !switcher.heroStyle || switcher.heroStyle === 'normal';
 
     return [
@@ -33,6 +31,12 @@ export const styleHero = (props, typeCount = 1) => {
             component: TypographyControl,
         },
         {
+            id: 'excerptTypography',
+            label: __('Excerpt Typography', 'gutenverse-news'),
+            description: __('This option will change your post excerpt typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
             id: '__heroStyleHover',
             component: SwitchControl,
             options: [
@@ -53,7 +57,12 @@ export const styleHero = (props, typeCount = 1) => {
             component: ColorControl,
             show: isNormal,
         },
-
+        {
+            id: 'excerptColor',
+            label: __('Excerpt Color', 'gutenverse-news'),
+            show: isNormal,
+            component: ColorControl,
+        },
         {
             id: 'titleColorHover',
             label: __('Title Color', 'gutenverse-news'),
@@ -61,11 +70,27 @@ export const styleHero = (props, typeCount = 1) => {
             show: !isNormal,
         },
         {
+            id: 'secondTitleColor',
+            label: __('Second List Title Color', 'gutenverse-news'),
+            component: ColorControl,
+            description: __('This option will override the post title color setting on the second list on hover condition.', 'gutenverse-news'),
+            show: isNormal,
+        },
+
+        {
+            id: 'secondTitleColorHover',
+            label: __('Second List Title Color', 'gutenverse-news'),
+            description: __('This option will override the post title color setting on the second list on hover condition.', 'gutenverse-news'),
+            component: ColorControl,
+            show: !isNormal,
+
+        },
+        {
             id: 'thridTitleColor',
             label: __('Thrid List Title Color', 'gutenverse-news'),
             component: ColorControl,
             description: __('This option will override the post title color setting on the thrid list on hover condition.', 'gutenverse-news'),
-            show: showThridColor && isNormal,
+            show: isNormal,
         },
 
         {
@@ -73,7 +98,7 @@ export const styleHero = (props, typeCount = 1) => {
             label: __('Thrid List Title Color', 'gutenverse-news'),
             description: __('This option will override the post title color setting on the thrid list on hover condition.', 'gutenverse-news'),
             component: ColorControl,
-            show: showThridColor && !isNormal,
+            show: !isNormal,
 
         },
     ];

@@ -3,7 +3,6 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { panelList } from './panels/panel-list';
 import Block6Columns from './Block6Columns';
 import BlockModule from '../../part/module';
-import { getImageSizeDetail } from '../../utils/helper';
 
 const Block6Block = compose(
     withPartialRender,
@@ -14,14 +13,13 @@ const Block6Block = compose(
         blockWidth: 12,
     };
     const moduleName = '6';
-    const renderedImageSizeMain = getImageSizeDetail(props.attributes.renderedImageSizeMain, { height: 350, width: 250, dimension: 715 });
     return <BlockModule
         columnAttr={columnAttr}
         moduleName={moduleName}
         {...props}
         panelList={panelList}
         freeModule={true}
-        renderedImageSizeMain={renderedImageSizeMain}
+        defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
         mainThumbnailClass={'gvnews_pl_lg_3'}
     />;
 });
