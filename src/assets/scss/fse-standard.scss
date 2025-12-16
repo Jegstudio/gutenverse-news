@@ -223,6 +223,10 @@
     }
 
     .gvnews_postblock_21 {
+        &.gvnews_col_3o3 .gvnews_posts {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
         .gvnews_posts {
             margin-bottom: 20px;
         }
