@@ -86,6 +86,7 @@ abstract class Block_View_Abstract {
 		'meta_date'    => true,
 		'meta_author'  => true,
 		'meta_comment' => true,
+		'meta_review'  => false,
 	);
 
 	/**
@@ -503,6 +504,7 @@ abstract class Block_View_Abstract {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_author( $post, $avatar );
 			$output .= $this->get_meta_date( $post );
 			$output .= ! $feed ? $this->get_meta_comment( $post ) : '';
@@ -523,6 +525,7 @@ abstract class Block_View_Abstract {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_date( $post );
 			$output .= '</div>';
 		}
@@ -540,6 +543,7 @@ abstract class Block_View_Abstract {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_author( $post, false );
 			$output .= $this->get_meta_date( $post );
 			$output .= '</div>';

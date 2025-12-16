@@ -132,8 +132,9 @@ class Carousel extends Grab {
 			'short_code'               => $this->attributes['gvnewsModule'],
 			'renderedImageSizeMain'    => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
 			'meta_settings'            => array(
-				'show_meta' => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
-				'meta_date' => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'show_meta'   => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'   => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
 		);
 

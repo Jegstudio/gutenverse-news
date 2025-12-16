@@ -82,6 +82,7 @@ const BlockModule = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         showMetaComment = true,
+        showMetaReview = false,
         readmoreButtonDisabled = false,
         listIcon = '',
         renderedImageSizeMain,
@@ -92,7 +93,8 @@ const BlockModule = compose(
         meta_show: showMeta,
         meta_date: showMetaDate,
         meta_comment: showMetaComment,
-        meta_author: showMetaAuthor
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview
     };
 
     const moduleOption = {
@@ -346,6 +348,7 @@ const BlockModule = compose(
         showMetaDate,
         showMetaAuthor,
         showMetaComment,
+        showMetaReview,
         readmoreButtonDisabled,
         listIcon
     ]);
