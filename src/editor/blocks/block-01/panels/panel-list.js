@@ -179,7 +179,7 @@ export const panelList = () => {
                 styleId: 'block-1-advance',
                 selector: [`.${props.elementId} .gvnews_postblock`],
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Condition', 'gutenverse-news'),

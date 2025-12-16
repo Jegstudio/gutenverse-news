@@ -33,7 +33,7 @@ export const panelList = () => {
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
             }),
-            tabRole: TabStyle,
+            tabRole: TabSetting,
         },
         {
             title: __('Border', 'gutenverse-news'),
