@@ -122,7 +122,7 @@ class GutenverseFirstSlider {
         this.options.autoplay = this.theSlider.dataset.autoplay;
         this.options.autoplayTimeout = this.theSlider.dataset.delay;
         let nextClass = this.theSlider.dataset.classNext || 'fas fa-chevron-right';
-        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-rigleft';
+        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-left';
 
         if (!u(this.theSlider).hasClass('gvnews_tns_active')) {
             this.mainSlider = window.tns({
