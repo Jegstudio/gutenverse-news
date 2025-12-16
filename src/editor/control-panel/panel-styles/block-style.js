@@ -1264,8 +1264,7 @@ const getBlockStyle = (
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
-    console.log(data);
-    console.log(attributes);
+    data = noContentStyle(elementId, attributes, data);
     return data;
 };
 
@@ -1977,6 +1976,54 @@ const postItemStyle = (elementId, attributes, data) => {
 
 
 
+    return data;
+
+}
+
+
+const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTypography']) && data.push({
+        'type': 'typography',
+        'id': 'noContentTypography',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentColor']) && data.push({
+        'type': 'color',
+        'id': 'noContentColor',
+        'selector': `.${elementId} .gvnews_empty_module`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['noContentBackground']) && data.push({
+        'type': 'background',
+        'id': 'noContentBackground',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentBorder']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'noContentBorder',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'noContentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
     return data;
 
 }

@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { BorderControl, CheckboxControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl } from 'gutenverse-core/controls';
+import { BorderResponsiveControl, CheckboxControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl } from 'gutenverse-core/controls';
 
 
 export const noContentPanel = (props) => {
     const {
-        showNoContent,
         elementId
     } = props;
 
@@ -36,13 +35,13 @@ export const noContentPanel = (props) => {
         {
             id: 'noContentBorder',
             label: __('Border', 'gutenverse'),
-            component: BorderControl,
+            component: BorderResponsiveControl,
             allowDeviceControl: true,
             liveStyle: [
                 {
                     'type': 'border',
                     'id': 'noContentBorder',
-                    'selector': `.${elementId} .gvnews_news_ticker_control`,
+                    'selector': `.${elementId} .gvnews_empty_module`,
                 }
             ]
         },
@@ -50,7 +49,7 @@ export const noContentPanel = (props) => {
             id: 'noContentPadding',
             label: __('Padding', 'gutenverse'),
             component: DimensionControl,
-            position: ['right', 'left'],
+            position: ['top', 'right', 'bottom', 'left'],
             allowDeviceControl: true,
             units: {
                 px: {

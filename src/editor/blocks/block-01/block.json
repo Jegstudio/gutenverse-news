@@ -761,6 +761,21 @@
         "postItemGrid": {
             "type": "boolean",
             "default": true
+        },
+        "noContentTypography":{
+            "type": "object"
+        },
+        "noContentColor":{
+            "type": "object"
+        },
+        "noContentBackground":{
+            "type": "object"
+        },
+        "noContentBorder":{
+            "type": "object"
+        },
+        "noContentPadding":{
+            "type": "object"
         }
     },
     "supports": {
