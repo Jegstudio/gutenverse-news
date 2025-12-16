@@ -456,6 +456,9 @@
         },
         "readmoreButtonMargin": {
             "type": "object"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {

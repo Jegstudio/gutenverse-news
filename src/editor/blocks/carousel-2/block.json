@@ -330,6 +330,9 @@
         },
         "borderResponsiveMainThumbnail": {
             "type": "object"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {

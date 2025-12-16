@@ -650,7 +650,10 @@
 		},
 		"postReviewMetaStarSize": {
 			"type": "object"
-		}
+		},
+            "showMetaReview": {
+            "type": "boolean"
+        }
 	},
 	"supports": {
 		"className": false,

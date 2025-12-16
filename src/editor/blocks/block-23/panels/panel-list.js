@@ -49,7 +49,7 @@ export const panelList = () => {
             {
                 title: __('Meta Settings', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => metaPanel(props, ['author', 'date']),
+                panelArray: (props) => metaPanel(props, ['author', 'date', 'review']),
                 tabRole: TabSetting
             },
             {

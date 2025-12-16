@@ -65,7 +65,7 @@ class Hero extends Grab {
 				'show_meta'   => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
 				'meta_date'   => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
 				'meta_author' => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
-
+				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
 		);
 

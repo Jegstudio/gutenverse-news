@@ -615,6 +615,9 @@
         "rowItemGap": {
             "type": "object",
             "copyStyle": true
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {

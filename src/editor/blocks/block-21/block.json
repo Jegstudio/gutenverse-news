@@ -621,6 +621,9 @@
         "postItemGrid": {
             "type": "boolean",
             "default": true
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {

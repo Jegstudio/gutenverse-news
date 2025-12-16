@@ -65,11 +65,13 @@ const Carousel2Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
+        showMetaReview = false,
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
+        meta_review: showMetaReview,
     };
 
     const moduleOption = {
@@ -316,6 +318,7 @@ const Carousel2Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
+        showMetaReview,
     ]);
 
     useEffect(() => {

@@ -50,13 +50,15 @@ const HeroComponent = (props) => {
     const {
         showMeta = true,
         showMetaDate = true,
-        showMetaAuthor = (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13')
+        showMetaAuthor = (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13'),
+        showMetaReview = false,
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
-        meta_author: showMetaAuthor
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview,
     };
 
     const moduleOption = {
@@ -225,6 +227,7 @@ const HeroComponent = (props) => {
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        showMetaReview,
     ]);
 
     useEffect(() => {

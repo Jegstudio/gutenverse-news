@@ -575,6 +575,9 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {

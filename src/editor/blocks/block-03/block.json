@@ -405,15 +405,15 @@
             "type": "object",
             "default": {}
         },
-        "renderedImageSizeMain":{
-            "type":"string",
-            "default":"default"
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
         },
         "borderMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "borderResponsiveMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "showMeta": {
             "type": "boolean",
@@ -485,18 +485,18 @@
             "type": "object"
         },
         "overlayBackgroundMain": {
-            "type":"object"
+            "type": "object"
         },
         "overlayOpacityMain": {
-            "type":"object"
+            "type": "object"
         },
         "contentAlign": {
             "type": "object",
             "copyStyle": true
         },
-        "contentAlignVertical":{
+        "contentAlignVertical": {
             "type": "object",
-            "copyStyle": true            
+            "copyStyle": true
         },
         "contentContainerBackground": {
             "type": "object",
@@ -615,6 +615,9 @@
         "rowItemGap": {
             "type": "object",
             "copyStyle": true
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
