@@ -16,7 +16,14 @@ const Block16Block = compose(
     };
     const moduleName = '16';
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+        return <BlockModule
+            columnAttr={columnAttr}
+            moduleName={moduleName}
+            {...props}
+            panelList={panelList}
+            defaultImageSizeMain={{ height: 1140, width: 570, dimension: 500 }}
+            mainThumbnailClass={'gvnews_pl_lg_5'}
+        />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
     }

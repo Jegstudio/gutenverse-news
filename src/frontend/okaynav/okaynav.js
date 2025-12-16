@@ -26,7 +26,7 @@ class OkayNav {
         const navVisible = this.nav.querySelector('ul');
         navVisible.classList.add('okayNav__nav--visible');
 
-        const invisibleClass = `okayNav__nav--invisible transition-enabled nav-${this.options.alignRight ? 'right' : 'left'}`;
+        const invisibleClass = `okayNav__nav--invisible nav-${this.options.alignRight ? 'right' : 'left'}`;
         const invisibleList = document.createElement('ul');
         invisibleList.className = invisibleClass;
 
@@ -50,24 +50,57 @@ class OkayNav {
         this.defaultWidth = this._getChildrenWidth(this.nav);
         this.parentFullWidth = this.parent.offsetWidth;
         this.lastVisibleChildWidth = 0;
-
         this._bindEvents();
+        this.toggleIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleInvisibleNav();
+        });
+
         this._recalcNav();
     }
 
     _bindEvents() {
-        document.addEventListener('click', (e) => {
+        this.documentClick = (e) => {
             if (!this.nav.contains(e.target) && this.navOpen) {
                 this.closeInvisibleNav();
             }
+        };
 
-            if (e.target.closest(`.${this.options.toggleIconClass}`)) {
-                e.preventDefault();
-                this.toggleInvisibleNav();
-            }
-        });
+        this.resizeObserver = new ResizeObserver(this._debounce(() => this._recalcNav(), 100));
+        this.resizeObserver.observe(this.parent);
 
-        window.addEventListener('resize', this._debounce(() => this._recalcNav(), 100));
+        document.addEventListener('click', this.documentClick);
+    }
+
+    destroy() {
+        // Remove event listeners
+        document.removeEventListener('click', this.documentClick);
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
+
+        // Move all children from invisible list back to visible list
+        if (this.navInvisible && this.navInvisible.children.length > 0) {
+            const children = Array.from(this.navInvisible.children);
+            children.forEach(child => {
+                this.navVisible.appendChild(child);
+            });
+        }
+
+        // Remove elements created by OkayNav
+        if (this.navInvisible) {
+            this.navInvisible.remove();
+        }
+        if (this.toggleIcon) {
+            this.toggleIcon.remove();
+        }
+
+        // Remove classes added by OkayNav
+        this.nav.classList.remove('okayNav', 'loaded');
+        if (this.navVisible) {
+            this.navVisible.classList.remove('okayNav__nav--visible');
+        }
+        document.body.classList.remove('okayNav-loaded');
     }
 
     openInvisibleNav() {
@@ -110,10 +143,18 @@ class OkayNav {
         const wrapperWidth = this.parent.offsetWidth * this.options.threshold / 100;
         const navFullWidth = this.nav.offsetWidth;
         const visibleCount = this._getVisibleItemCount();
+        const hiddenCount = this._getHiddenItemCount();
 
         if (visibleCount > 0 && navFullWidth >= wrapperWidth) {
             this._collapseNavItem();
             this._recalcNav();
+        } else if (hiddenCount > 0) {
+            this._expandNavItem();
+            if (this.nav.offsetWidth >= wrapperWidth) {
+                this._collapseNavItem();
+            } else {
+                this._recalcNav();
+            }
         }
 
         if (this._getHiddenItemCount() === 0) {
@@ -129,6 +170,13 @@ class OkayNav {
         this.lastVisibleChildWidth = last.offsetWidth;
         this.navInvisible.prepend(last);
         this.options.itemHidden();
+    }
+
+    _expandNavItem() {
+        const first = this.navInvisible.querySelector('li:first-child');
+        if (!first) return;
+        this.navVisible.appendChild(first);
+        this.options.itemDisplayed();
     }
 
     _debounce(fn, delay) {

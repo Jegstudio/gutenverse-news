@@ -494,7 +494,147 @@
         "headerFilterLineColor": {
             "type": "object"
         },
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
+        },
+        "borderMainThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type": "object"
+        },
         "headerSecondTextColor": {
+            "type": "object"
+        },
+        "overlayBackgroundMain": {
+            "type": "object"
+        },
+        "overlayOpacityMain": {
+            "type": "object"
+        },
+        "contentAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "contentBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "contentContainerShadow": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemBorderHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemBorderActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownTypography": {
+            "type": "object"
+        },
+        "filterDowndownWrapperBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownWrapperPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownWrapperBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownBoxShadow": {
+            "type": "object"
+        },
+        "filterDowndownColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownColorActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackgroundHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackgroundActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColorActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerTitlePadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
             "type": "object"
         }
     },
@@ -504,6 +644,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-frontend-blocks-script"],
-    "style": ["gutenverse-frontend-blocks-style"]
+    "viewScript": ["gutenverse-news-frontend-blocks-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

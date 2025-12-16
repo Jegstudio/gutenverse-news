@@ -339,7 +339,13 @@
         },
         "selectorSecondTitleTypography": {
             "type": "string",
-            "default": ".gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title a"
+            "default": ".gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
@@ -348,6 +354,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-frontend-blocks-style"],
-    "viewScript": ["gutenverse-frontend-hero-slider-script"]
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

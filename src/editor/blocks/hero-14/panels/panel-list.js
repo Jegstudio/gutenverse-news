@@ -10,6 +10,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { styleHero } from './panel-hero-style';
 import { mainCategoryStylePanel, sideCategoryStylePanel } from './panel-category-label';
+import { mainContainerPanel } from "./panel-container";
 
 export const panelList = () => {
     return applyFilters(
@@ -43,6 +44,12 @@ export const panelList = () => {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['date', 'author'], true),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Main Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: mainContainerPanel,
                 tabRole: TabStyle
             },
             {
@@ -81,7 +88,7 @@ export const panelList = () => {
             {
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: responsivePanel
+                panelArray: responsivePanel,
             },
             {
                 title: __('Spacing', 'gutenverse-news'),
@@ -90,7 +97,7 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-1-advance',
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
             {
                 title: __('Condition', 'gutenverse-news'),

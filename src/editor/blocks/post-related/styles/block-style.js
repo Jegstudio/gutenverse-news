@@ -3,18 +3,18 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
         case 'template_13':
-            return '.gvnews_pl_md_1 .gvnews_post_title a';
+            return '.gvnews_pl_md_1 .gvnews_post_title';
         case 'template_14':
-            return '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a';
+            return '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title';
         case 'template_16':
-            return '.gvnews_posts .gvnews_pl_xs_2 .gvnews_post_title a';
+            return '.gvnews_posts .gvnews_pl_xs_2 .gvnews_post_title';
         case 'template_20':
-            return '.gvnews_pl_xs .gvnews_post_title a';
+            return '.gvnews_pl_xs .gvnews_post_title';
         case 'template_24':
-            return '.gvnews_pl_xs_4 .gvnews_post_title a';
+            return '.gvnews_pl_xs_4 .gvnews_post_title';
     }
 
-    return '.gvnews_pl_sm .gvnews_post_title a';
+    return '.gvnews_pl_sm .gvnews_post_title';
 };
 
 const getTitleColorSelector = (templateType) => {
@@ -352,7 +352,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['typography']) && data.push({
         'type': 'typography',
         'id': 'typography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post .gvnews_post_title`,
     });
 
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
@@ -361,7 +361,7 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(templateType)}`,
     });
 
-    isNotEmpty(attributes['thridTitleTypography']) && data.push({
+    'template_1' === templateType && isNotEmpty(attributes['thridTitleTypography']) && data.push({
         'type': 'typography',
         'id': 'thridTitleTypography',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_xs_2 .gvnews_post_title a`,
@@ -525,6 +525,31 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'typography',
         'id': 'categoryButtonTypography',
         'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+
+    isNotEmpty(attributes['categoryButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+    isNotEmpty(attributes['categoryButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category`,
     });
 
     isNotEmpty(attributes['categoryButtonBackground']) && data.push({

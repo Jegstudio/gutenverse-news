@@ -187,5 +187,11 @@
         "post",
         "rss"
     ],
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ],
     "gutenversePro": true
 }

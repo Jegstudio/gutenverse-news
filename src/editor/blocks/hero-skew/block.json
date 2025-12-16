@@ -319,6 +319,12 @@
         },
         "typography": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
@@ -327,6 +333,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-frontend-blocks-style"],
-    "viewScript": ["gutenverse-frontend-hero-slider-script"]
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

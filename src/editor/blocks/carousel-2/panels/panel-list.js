@@ -7,6 +7,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { carouselDesignPanel } from '../../../control-panel/panel-design';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 
 export const panelList = () => {
 
@@ -44,6 +45,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Thumbnail', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
+            },
+            {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
@@ -76,7 +83,7 @@ export const panelList = () => {
                 panelArray: (props) => advancePanel({
                     ...props,
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             }, {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,

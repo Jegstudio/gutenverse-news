@@ -1,16 +1,30 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { dimensionAttributeNotEmpty } from '../../utils/helper';
 import { applyFilters } from '@wordpress/hooks';
 
-const getBlockStyle = (elementId, attributes) => {
+const getBlockStyle = (
+    elementId,
+    attributes,
+    mainThumbnailClass = null,
+    secondThumbnailClass = null
+) => {
     let data = [];
 
     const {
         showMeta = true,
         showMetaAuthor = true,
-        headerType
+        headerType,
+        gvnewsModule
     } = attributes;
 
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
+
+    const getSelector = (selector, def) => {
+        if (attributes[selector]) {
+            return `.gvnews-block.gvnews-block-wrapper.${elementId} ${attributes[selector]}`;
+        }
+        return `.gvnews-block.gvnews-block-wrapper.${elementId} ${def}`;
+    };
 
     /**
      * Panel Header
@@ -190,19 +204,19 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['typography']) && data.push({
         'type': 'typography',
         'id': 'typography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post .gvnews_post_title`,
     });
 
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
         'type': 'typography',
         'id': 'secondTitleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_pl_sm .gvnews_post_title a'}`,
+        'selector': getSelector('selectorSecondTitleTypography', '.gvnews_pl_sm .gvnews_post_title'),
     });
 
     isNotEmpty(attributes['thridTitleTypography']) && data.push({
         'type': 'typography',
         'id': 'thridTitleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pl_xs_2 .gvnews_post_title a`,
+        'selector': getSelector('selectorThridTitleTypography', '.gvnews_pl_xs_2 .gvnews_post_title'),
     });
 
     isNotEmpty(attributes['typographyContent']) && data.push({
@@ -217,7 +231,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['titleColor']) && data.push({
         'type': 'color',
         'id': 'titleColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorTitleColor']) ? attributes['selectorTitleColor'] : '.gvnews_postblock .gvnews_post_title a'}`,
+        'selector': getSelector('selectorTitleColor', '.gvnews_postblock .gvnews_post_title a'),
         'properties': [
             {
                 'name': 'color',
@@ -257,7 +271,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorIconList']) ? attributes['selectorIconList'] : '.gvnews_pl_xs_2>i'}`,
+        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i'),
         'properties': [
             {
                 'name': 'color',
@@ -650,6 +664,31 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
     });
 
+    isNotEmpty(attributes['categoryButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+    isNotEmpty(attributes['categoryButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Module\\Module_38' ? `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span` : `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category`,
+    });
+
     isNotEmpty(attributes['categoryButtonBackground']) && data.push({
         'type': 'color',
         'id': 'categoryButtonBackground',
@@ -826,6 +865,32 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
+    });
+
+    isNotEmpty(attributes['readmoreButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonPadding',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
+
+    isNotEmpty(attributes['readmoreButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonMargin',
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
     });
 
     // pagination styling
@@ -1137,6 +1202,71 @@ const getBlockStyle = (elementId, attributes) => {
         },
     );
 
+    isNotEmpty(attributes['headerTitlePadding']) && data.push({
+        'type': 'dimension',
+        'id': 'headerTitlePadding',
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading .gvnews_block_title span`,
+    });
+
+    isNotEmpty(attributes['headerMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'headerMargin',
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading`,
+    });
+
+
+    isNotEmpty(attributes['headerHeight']) && data.push({
+        'type': 'plain',
+        'id': 'headerHeight',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_block_heading .gvnews_block_title span , .${elementId} .gvnews_block_heading `,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['borderItem']) && data.push({
+        'type': 'border',
+        'id': 'borderItem',
+        'selector': `.gvnews-block-wrapper.${elementId} .gvnews_postblock .${mainThumbnailClass}.gvnews_post`,
+    });
+
+    isNotEmpty(attributes['borderItemResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderItemResponsive',
+        'selector': `.gvnews-block-wrapper.${elementId} .gvnews_postblock .${mainThumbnailClass}.gvnews_post`,
+    });
+
+    data = headerFilterStyle(elementId, attributes, data);
+    data = contentContainerStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+    data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+    data = titleContainerStyle(elementId, attributes, data);
+    data = postItemStyle(elementId, attributes, data);
+    console.log(data);
+    console.log(attributes);
     /*  review meta style */
     isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
         'type': 'color',
@@ -1173,6 +1303,718 @@ const getBlockStyle = (elementId, attributes) => {
         )
     ];
 };
+
+const headerFilterStyle = (elementId, attributes, data) => {
+
+    const {
+        headerCategory,
+        headerAuthor,
+        headerTag,
+    } = attributes;
+    const withHeaderFilter = isNotEmpty(headerCategory) || isNotEmpty(headerAuthor) || isNotEmpty(headerTag);
+    if (withHeaderFilter) {
+
+        isNotEmpty(attributes['filterDowndownTypography']) && data.push({
+            'type': 'typography',
+            'id': 'filterDowndownTypography',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+        });
+
+        isNotEmpty(attributes['filterDowndownWrapperBackground']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownWrapperBackground',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDropdownItemPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'filterDropdownItemPadding',
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+        });
+
+        isNotEmpty(attributes['filterDropdownWrapperPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'filterDropdownWrapperPadding',
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+        });
+
+        isNotEmpty(attributes['filterDropdownWrapperBorder']) && data.push({
+            'type': 'border',
+            'id': 'filterDropdownWrapperBorder',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+        });
+
+
+        isNotEmpty(attributes['filterDropdownBoxShadow']) && data.push({
+            'type': 'boxShadow',
+            'id': 'filterDropdownBoxShadow',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+            'properties': [
+                {
+                    'name': 'box-shadow',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownColor']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownColor',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownColorHover']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownColorHover',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownColorActive']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownColorActive',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownItemBackground']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownItemBackground',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownItemBackgroundHover']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownItemBackgroundHover',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDowndownItemBackgroundActive']) && data.push({
+            'type': 'color',
+            'id': 'filterDowndownItemBackgroundActive',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDropdownToogleColor']) && data.push({
+            'type': 'color',
+            'id': 'filterDropdownToogleColor',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle span`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDropdownToogleColorHover']) && data.push({
+            'type': 'color',
+            'id': 'filterDropdownToogleColorHover',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle:hover span`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDropdownToogleColorActive']) && data.push({
+            'type': 'color',
+            'id': 'filterDropdownToogleColorActive',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle.icon--active span`,
+            'properties': [
+                {
+                    'name': 'background',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['filterDropdownItemBorder']) && data.push({
+            'type': 'border',
+            'id': 'filterDropdownItemBorder',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+        });
+        isNotEmpty(attributes['filterDropdownItemBorderHover']) && data.push({
+            'type': 'border',
+            'id': 'filterDropdownItemBorderHover',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
+        });
+        isNotEmpty(attributes['filterDropdownItemBorderActive']) && data.push({
+            'type': 'border',
+            'id': 'filterDropdownItemBorderActive',
+            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
+        });
+
+        isNotEmpty(attributes['headerFilterPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'headerFilterPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_block_heading .gvnews_subcat`,
+        });
+    }
+    return data;
+
+}
+const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
+    // Panel Content Container
+    if (isNotEmpty(attributes['contentAlign'])) {
+        data.push({
+            'type': 'plain',
+            'responsive': true,
+            'id': 'contentAlign',
+            'selector': [
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_heading`
+            ],
+            'properties': [
+                {
+                    'name': 'text-align',
+                    'valueType': 'direct',
+                }
+            ],
+        });
+        data.push({
+            'type': 'plain',
+            'responsive': true,
+            'id': 'contentAlign',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content .gvnews_post_meta`,
+            'properties': [
+                {
+                    'name': 'justify-content',
+                    'valueType': 'function',
+                    'functionName': 'handleAlignReverse'
+                }
+            ],
+        });
+    }
+
+    isNotEmpty(attributes['contentAlignVertical']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignVertical',
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    if (isNotEmpty(attributes['contentContainerBackground'])) {
+        if (attributes['contentContainerBackground']?.color || attributes['contentContainerBackground']?.gradient) {
+            data.push({
+                'type': 'plain',
+                'id': 'contentContainerBackground',
+                'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+                'properties': [
+                    {
+                        'name': 'background',
+                        'valueType': 'pattern',
+                        'pattern': 'initial',
+                    }
+                ],
+            })
+        }
+        data.push({
+            'type': 'background',
+            'id': 'contentContainerBackground',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+        })
+    };
+
+    if (isNotEmpty(attributes['contentMargin'])) {
+        data.push({
+            'type': 'dimension',
+            'id': 'contentMargin',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'contentMargin',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'column-gap',
+                    'valueType': 'pattern',
+                    'pattern': 'initial;',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+        });
+    }
+
+    isNotEmpty(attributes['contentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'contentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentBorder']) && data.push({
+        'type': 'border',
+        'id': 'contentBorder',
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'contentBorderResponsive',
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentContainerShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'contentContainerShadow',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    // Panel Content Container Second
+    isNotEmpty(attributes['contentAlignSecond']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+        'properties': [
+            {
+                'name': 'text-align',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['contentAlignSecond']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content .gvnews_post_meta`,
+        'properties': [
+            {
+                'name': 'justify-content',
+                'valueType': 'function',
+                'functionName': 'handleAlignReverse'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['contentAlignVerticalSecond']) && data.push({
+        'type': 'plain',
+        'responsive': true,
+        'id': 'contentAlignVerticalSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass}`,
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    if (isNotEmpty(attributes['contentContainerBackgroundSecond'])) {
+        if (attributes['contentContainerBackgroundSecond'].color || attributes['contentContainerBackground']?.gradient) {
+            data.push({
+                'type': 'plain',
+                'id': 'contentContainerBackgroundSecond',
+                'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+                'properties': [
+                    {
+                        'name': 'background',
+                        'valueType': 'pattern',
+                        'pattern': 'initial',
+                    }
+                ],
+            })
+        }
+        data.push({
+            'type': 'background',
+            'id': 'contentContainerBackgroundSecond',
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+        });
+    }
+
+    if (isNotEmpty(attributes['contentMarginSecond'])) {
+        data.push({
+            'type': 'dimension',
+            'id': 'contentMarginSecond',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+        });
+    }
+
+    isNotEmpty(attributes['contentPaddingSecond']) && data.push({
+        'type': 'dimension',
+        'id': 'contentPaddingSecond',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentBorderSecond']) && data.push({
+        'type': 'border',
+        'id': 'contentBorderSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentBorderResponsiveSecond']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'contentBorderResponsiveSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    isNotEmpty(attributes['contentContainerShadowSecond']) && data.push({
+        'type': 'boxShadow',
+        'id': 'contentContainerShadowSecond',
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_postblock_content`,
+    });
+
+    return data;
+}
+const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
+    // Panel Thumbnail
+    if (isNotEmpty(mainThumbnailClass)) {
+        isNotEmpty(attributes['borderMainThumbnail']) && data.push({
+            'id': 'borderMainThumbnail',
+            'type': 'border',
+            'selector': [
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container`,
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_thumb::before`
+            ]
+        });
+        isNotEmpty(attributes['borderResponsiveMainThumbnail']) && data.push({
+            'id': 'borderResponsiveMainThumbnail',
+            'type': 'borderResponsive',
+            'selector': [
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .thumbnail-container`,
+                `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_thumb::before`
+            ]
+        });
+        isNotEmpty(attributes['overlayBackgroundMain']) && data.push({
+            'type': 'background',
+            'id': 'overlayBackgroundMain',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay`,
+        });
+        isNotEmpty(attributes['overlayOpacityMain']) && data.push({
+            'type': 'plain',
+            'id': 'overlayOpacityMain',
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay`,
+            'properties': [
+                {
+                    'name': 'opacity',
+                    'valueType': 'direct'
+                }
+            ]
+        });
+    }
+
+    if (isNotEmpty(secondThumbnailClass)) {
+        isNotEmpty(attributes['borderSecondThumbnail']) && data.push({
+            'id': 'borderSecondThumbnail',
+            'type': 'border',
+            'selector': [
+                `.${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container`,
+                `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_thumb::before`
+            ],
+        });
+        isNotEmpty(attributes['borderResponsiveSecondThumbnail']) && data.push({
+            'id': 'borderResponsiveSecondThumbnail',
+            'type': 'borderResponsive',
+            'selector': [
+                `.${elementId} .gvnews_postblock .${secondThumbnailClass} .thumbnail-container`,
+                `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews_thumb::before`
+            ]
+        });
+        isNotEmpty(attributes['overlayBackgroundSecond']) && data.push({
+            'type': 'background',
+            'id': 'overlayBackgroundSecond',
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay`,
+        });
+        isNotEmpty(attributes['overlayOpacitySecond']) && data.push({
+            'type': 'plain',
+            'id': 'overlayOpacitySecond',
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay`,
+            'properties': [
+                {
+                    'name': 'opacity',
+                    'valueType': 'direct'
+                }
+            ]
+        });
+    }
+
+    return data;
+}
+
+// This is for Module 7
+const titleContainerStyle = (elementId, attributes, data) => {
+    const selector = `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock_7.gvnews_postblock .gvnews_post_title`;
+    isNotEmpty(attributes['titleContainerAlign']) && data.push({
+        'type': 'plain',
+        'id': 'titleContainerAlign',
+        'responsive': true,
+        'selector': selector,
+        'properties': [
+            {
+                'name': 'text-align',
+                'valueType': 'direct'
+            }
+        ]
+    });
+    isNotEmpty(attributes['titleContainerBackground']) && data.push({
+        'type': 'background',
+        'id': 'titleContainerBackground',
+        'selector': selector,
+    });
+    isNotEmpty(attributes['titleContainerMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'titleContainerMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+    isNotEmpty(attributes['titleContainerPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'titleContainerPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    return data;
+}
+
+const postItemStyle = (elementId, attributes, data) => {
+
+    const {
+        mainListSelector,
+        secondListSelector,
+        thirdListSelector,
+        postItemGrid = false
+    } = attributes
+
+    if (postItemGrid) {
+
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
+            'properties': [
+                {
+                    'name': 'row-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+        isNotEmpty(attributes['columnItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'columnItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
+            'properties': [
+                {
+                    'name': 'column-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        if (isNotEmpty(secondListSelector)) {
+
+            isNotEmpty(attributes['columnItemGapSecond']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapSecond',
+                'responsive': true,
+                'selector': `.${elementId} ${secondListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+
+
+            isNotEmpty(attributes['columnItemGapThird']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapThird',
+                'responsive': true,
+                'selector': `.${elementId} ${thirdListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+        }
+
+    } else {
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+    }
+
+
+
+    return data;
+
+}
 
 
 export default getBlockStyle;

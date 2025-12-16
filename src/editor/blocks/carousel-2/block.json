@@ -314,6 +314,22 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
+        },
+        "borderMainThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type": "object"
         }
     },
     "supports": {
@@ -322,6 +338,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-frontend-carousel-slider-script"],
-    "style": ["gutenverse-frontend-blocks-style"]
+    "viewScript": ["gutenverse-news-frontend-carousel-slider-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

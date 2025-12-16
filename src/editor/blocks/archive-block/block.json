@@ -251,6 +251,12 @@
         },
         "categoryButtonBoxShadowHover": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
@@ -260,5 +266,11 @@
         "single",
         "archive",
         "block"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

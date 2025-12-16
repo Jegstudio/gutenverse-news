@@ -5,6 +5,7 @@ export const generalPanel = (props) => {
     const {
         metaDateFormat,
         autoplay,
+        showMeta
     } = props;
 
     return [
@@ -48,8 +49,25 @@ export const generalPanel = (props) => {
             component: IconControl
         },
         {
+            id: 'nextIcon',
+            label: __('Next Icon', 'gutenverse-news'),
+            component: IconControl
+        },
+        {
+            id: 'prevIcon',
+            label: __('Previous Icon', 'gutenverse-news'),
+            component: IconControl
+        },
+        {
+            id: 'showMeta',
+            label: __('Show Meta', 'gutenverse-news'),
+            description: __('Enable this option to meta on this block.', 'gutenverse-news'),
+            component: CheckboxControl
+        },
+        {
             id: 'metaDateFormat',
             label: __('Date Format', 'gutenverse-news'),
+            show: showMeta,
             description: __('Choose which date format you want to use.', 'gutenverse-news'),
             component: SelectControl,
             options: [
@@ -69,7 +87,7 @@ export const generalPanel = (props) => {
         },
         {
             id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
+            show: showMeta && metaDateFormat === 'custom',
             label: __('Custom Format', 'gutenverse-news'),
             component: TextControl,
         },

@@ -271,6 +271,15 @@
         },
         "readmoreButtonDisabled": {
             "type": "boolean"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
@@ -279,6 +288,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-frontend-blocks-style"],
-    "viewScript": ["gutenverse-frontend-slider-script"]
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

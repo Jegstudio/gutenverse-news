@@ -20,7 +20,6 @@ class GutenverseNewstickerModule {
             if (typeof this.options[item] === 'string') {
                 let str = this.options[item];
                 let el = 'item' === item && this.options.container && this.options.container.nodeName ? this.options.container.querySelectorAll(str) : newsTicker.querySelector(str);
-
                 if (el && (el.nodeName || ('object' === typeof el && el.length))) {
                     this.options[item] = el;
                 } else {
@@ -34,6 +33,7 @@ class GutenverseNewstickerModule {
         }
 
         this.container = this.options.container;
+        this.wrapper = newsTicker;
         this.item = this.options.item;
         this.current_slider = 0;
         this.trailing_slider = null;
@@ -69,10 +69,10 @@ class GutenverseNewstickerModule {
     }
 
     bind_direction = () => {
-        this.container.querySelector('.gvnews_news_ticker_control .gvnews_news_ticker_next').addEventListener('click', (e) => {
+        this.wrapper.querySelector('.gvnews_news_ticker_control .gvnews_news_ticker_next').addEventListener('click', (e) => {
             this.do_slide('next');
         });
-        this.container.querySelector('.gvnews_news_ticker_control .gvnews_news_ticker_prev').addEventListener('click', (e) => {
+        this.wrapper.querySelector('.gvnews_news_ticker_control .gvnews_news_ticker_prev').addEventListener('click', (e) => {
             this.do_slide('prev');
         });
 
