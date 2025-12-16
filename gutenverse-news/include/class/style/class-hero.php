@@ -464,26 +464,26 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderItem'] ) ) {
 			$this->handle_border(
 				'borderItem',
-				$selector
+				$selector . ' .gvnews_block_container'
 			);
 		}
 		if ( isset( $this->attrs['borderItemSecond'] ) ) {
 			$this->handle_border(
 				'borderItemSecond',
-				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2}"
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2} .gvnews_block_container"
 			);
 		}
 		if ( isset( $this->attrs['borderItemThird'] ) ) {
 			$this->handle_border(
 				'borderItemThird',
-				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3}"
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3} .gvnews_block_container"
 			);
 		}
 
 		if ( isset( $this->attrs['borderResponsiveItem'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $selector . ' .gvnews_block_container',
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -498,7 +498,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderResponsiveItemSecond'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2} .gvnews_block_container",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -513,7 +513,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderResponsiveItemThird'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3} .gvnews_block_container",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},

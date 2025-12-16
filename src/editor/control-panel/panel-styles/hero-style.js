@@ -385,34 +385,34 @@ const getHeroStyle = (elementId, attributes) => {
     isNotEmpty(attributes['borderItem']) && data.push({
         'type': 'border',
         'id': 'borderItem',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_block_container`,
     });
     isNotEmpty(attributes['borderItemSecond']) && data.push({
         'type': 'border',
         'id': 'borderItemSecond',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_block_container'}`,
     });
     isNotEmpty(attributes['borderItemThird']) && data.push({
         'type': 'border',
         'id': 'borderItemThird',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorThridTitleTypography']) ? attributes['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorThridTitleTypography']) ? attributes['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_block_container'}`,
     });
 
     // Border Responsive Item
     isNotEmpty(attributes['borderResponsiveItem']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsiveItem',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_block_container`,
     });
     isNotEmpty(attributes['borderResponsiveItemSecond']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsiveItemSecond',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecondTitleTypography']) ? attributes['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_block_container'}`,
     });
     isNotEmpty(attributes['borderResponsiveItemThird']) && data.push({
         'type': 'borderResponsive',
         'id': 'borderResponsiveItemThird',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorThridTitleTypography']) ? attributes['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorThridTitleTypography']) ? attributes['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_block_container'}`,
     });
 
     isNotEmpty(attributes['titleColor']) && data.push({
