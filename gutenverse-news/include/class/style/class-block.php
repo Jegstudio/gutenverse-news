@@ -68,6 +68,7 @@ class Block extends StyleAbstract {
 		$this->generate_thumbnail_overlay_style();
 		$this->generate_content_container_style();
 		$this->title_container_style();
+		$this->post_item_style();
 
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
@@ -528,6 +529,98 @@ class Block extends StyleAbstract {
 					),
 				)
 			);
+		}
+	}
+	/**
+	 * Generate style block post item style.
+	 */
+	private function post_item_style() {
+		$post_item_grid = isset( $this->attrs['postItemGrid'] ) ? $this->attrs['postItemGrid'] : false;
+
+		if ( $post_item_grid ) {
+			if ( isset( $this->attrs['rowItemGap'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts",
+						'property'       => function ( $value ) {
+							return "row-gap: {$value}px;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
+
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts",
+						'property'       => function ( $value ) {
+							return "margin-bottom: {$value}px;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['columnItemGap'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts",
+						'property'       => function ( $value ) {
+							return "column-gap: {$value}px;";
+						},
+						'value'          => $this->attrs['columnItemGap'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['secondListSelector'] ) ) {
+				$second_list_selector = isset( $this->attrs['secondListSelector'] ) ? $this->attrs['secondListSelector'] : 'gvnews_postblock .gvnews_posts .gvnews_postsmall:first-of-type';
+
+				if ( isset( $this->attrs['columnItemGapSecond'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$second_list_selector}",
+							'property'       => function ( $value ) {
+								return "gap: {$value}px;";
+							},
+							'value'          => $this->attrs['columnItemGapSecond'],
+							'device_control' => true,
+						)
+					);
+
+				}
+
+				$third_list_selector = isset( $this->attrs['thirdListSelector'] ) ? $this->attrs['thirdListSelector'] : 'gvnews_postblock .gvnews_posts .gvnews_postsmall:first-of-type';
+
+				if ( isset( $this->attrs['columnItemGapThird'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$third_list_selector}",
+							'property'       => function ( $value ) {
+								return "gap: {$value}px;";
+							},
+							'value'          => $this->attrs['columnItemGapThird'],
+							'device_control' => true,
+						)
+					);
+
+				}
+			}
+		}else {
+			if ( isset( $this->attrs['rowItemGap'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts .gvnews_post",
+						'property'       => function ( $value ) {
+							return "margin-bottom: {$value}px;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
 	}
 

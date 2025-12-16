@@ -14,6 +14,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
+import { postItemGridPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () => {
     return [
@@ -78,6 +79,12 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: postItemGridPanel,
             tabRole: TabStyle
         },
         {

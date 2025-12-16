@@ -13,6 +13,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
+import { postItemGridPanel } from '../../../control-panel/panel-post-item';
 
 
 export const panelList = () => {
@@ -73,6 +74,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: designPanel,
             tabRole: TabStyle,
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: postItemGridPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Thumbnail', 'gutenverse-news'),
