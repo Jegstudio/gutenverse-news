@@ -8,6 +8,7 @@ export const generalPanel = (props) => {
     const {
         hideAvatar,
         hideName,
+        avatarPosition,
     } = props;
     const deviceType = getDeviceType();
 
@@ -77,6 +78,28 @@ export const generalPanel = (props) => {
                     label: __('Align Right', 'gutenverse-news'),
                     value: 'flex-end',
                     icon: <AlignRight />,
+                },
+            ],
+        },
+        {
+            id: 'verticalAlign',
+            label: __('Vertical Alignment', 'gutenverse-news'),
+            desc: __('Vertical alignment of the author box content: name, description, and social icons.', 'gutenverse-news'),
+            show: avatarPosition !== 'top' || avatarPosition !== 'bottom',
+            component: SelectControl,
+            allowDeviceControl: true,
+            options: [
+                {
+                    label: __('Top', 'gutenverse-news'),
+                    value: 'flex-start',
+                },
+                {
+                    label: __('Center', 'gutenverse-news'),
+                    value: 'center',
+                },
+                {
+                    label: __('Bottom', 'gutenverse-news'),
+                    value: 'flex-end',
                 },
             ],
         },

@@ -119,7 +119,7 @@ class Post_Author extends Style_Abstract {
 			);
 		}
 
-		if ( $this->attrs['align'] ) {
+		if ( isset( $this->attrs['align'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author",
@@ -137,6 +137,19 @@ class Post_Author extends Style_Abstract {
 						return "justify-content: {$value};";
 					},
 					'value'          => $this->attrs['align'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['verticalAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author",
+					'property'       => function ( $value ) {
+						return "align-items: {$value};";
+					},
+					'value'          => $this->attrs['verticalAlign'],
 					'device_control' => true,
 				)
 			);

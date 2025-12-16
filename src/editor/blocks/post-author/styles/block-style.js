@@ -112,6 +112,19 @@ const getBlockStyle = (elementId, attributes) => {
         });
     }
 
+    isNotEmpty(attributes['verticalAlign']) && data.push({
+        'type': 'plain',
+        'id': 'verticalAlign',
+        'selector': `.guten-element.${elementId}.gvnews-post-author`,
+        'properties': [
+            {
+                'name': 'align-items',
+                'valueType': 'direct',
+            }
+        ],
+        'responsive': true,
+    });
+
     /**
      * Panel Border
      */

@@ -199,6 +199,10 @@
 			"type": "object",
 			"copyStyle": true
 		},
+		"verticalAlign": {
+			"type": "object",
+			"copyStyle": true
+		},
 		"titleTag": {
 			"type": "string",
 			"default": "h2"

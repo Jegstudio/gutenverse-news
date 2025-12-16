@@ -31,7 +31,7 @@ export const avatarStylePanel = (props) => {
                 px: {
                     text: 'px',
                     min: 1,
-                    max: 1000,
+                    max: 300,
                     step: 1
                 },
                 em: {
