@@ -142,7 +142,7 @@ class Post_Author extends Style_Abstract {
 			);
 		}
 
-		if ( isset( $this->attrs['verticalAlign'] ) ) {
+		if ( isset( $this->attrs['verticalAlign'] ) && ( 'right' === $this->attrs['avatarPosition'] || 'left' === $this->attrs['avatarPosition'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author",

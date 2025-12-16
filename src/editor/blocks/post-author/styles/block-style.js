@@ -5,9 +5,11 @@ import bioStyle from './panelStyle/bioStyle';
 import avatarStyle from './panelStyle/avatarStyle';
 import nameStyle from './panelStyle/nameStyle';
 import iconStyle from './panelStyle/iconStyle';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+    const deviceType = getDeviceType();
     data = layoutStye({ data, attributes, selector: `.guten-element.${elementId}.gvnews-post-author` });
     data = bioStyle({ data, attributes, elementId });
     data = avatarStyle({ data, attributes, elementId });
@@ -112,18 +114,20 @@ const getBlockStyle = (elementId, attributes) => {
         });
     }
 
-    isNotEmpty(attributes['verticalAlign']) && data.push({
-        'type': 'plain',
-        'id': 'verticalAlign',
-        'selector': `.guten-element.${elementId}.gvnews-post-author`,
-        'properties': [
-            {
-                'name': 'align-items',
-                'valueType': 'direct',
-            }
-        ],
-        'responsive': true,
-    });
+    if (isNotEmpty(attributes['verticalAlign']) && (attributes['avatarPosition'] === 'right' || attributes['avatarPosition'] === 'left')) {
+        data.push({
+            'type': 'plain',
+            'id': 'verticalAlign',
+            'selector': `.guten-element.${elementId}.gvnews-post-author`,
+            'properties': [
+                {
+                    'name': 'align-items',
+                    'valueType': 'direct',
+                }
+            ],
+            'responsive': true,
+        });
+    }
 
     /**
      * Panel Border

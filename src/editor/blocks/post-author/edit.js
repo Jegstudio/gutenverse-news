@@ -65,7 +65,6 @@ const PostAuthor = compose(
             />
         </div>
     }
-    console.log({ avatarPosition });
 
     return <>
         <CopyElementToolbar {...props} />

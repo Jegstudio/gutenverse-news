@@ -10,8 +10,6 @@ export const generalPanel = (props) => {
         hideName,
         avatarPosition,
     } = props;
-    const deviceType = getDeviceType();
-
     return [
         {
             id: 'hideName',
@@ -36,9 +34,8 @@ export const generalPanel = (props) => {
         {
             id: 'avatarPosition',
             label: __('Avatar Position', 'gutenverse-news'),
-            show: deviceType === 'Desktop' && !hideAvatar,
+            show: !hideAvatar,
             component: SelectControl,
-            showDeviceControlOnly: true,
             options: [
                 {
                     value: 'top',
@@ -84,8 +81,8 @@ export const generalPanel = (props) => {
         {
             id: 'verticalAlign',
             label: __('Vertical Alignment', 'gutenverse-news'),
-            description: __('Vertical alignment of the author box content: name, description, and social icons.', 'gutenverse-news'),
-            show: avatarPosition !== 'top' || avatarPosition !== 'bottom',
+            description: __('Vertical alignment of the author box.', 'gutenverse-news'),
+            show: avatarPosition === 'right' || avatarPosition === 'left',
             component: SelectControl,
             allowDeviceControl: true,
             options: [

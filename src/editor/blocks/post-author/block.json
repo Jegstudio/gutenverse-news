@@ -201,7 +201,10 @@
 		},
 		"verticalAlign": {
 			"type": "object",
-			"copyStyle": true
+			"copyStyle": true,
+            "default": {
+                "Desktop": "center"
+            }
 		},
 		"titleTag": {
 			"type": "string",
