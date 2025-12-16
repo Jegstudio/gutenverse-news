@@ -470,13 +470,13 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderItemSecond'] ) ) {
 			$this->handle_border(
 				'borderItemSecond',
-				$selector2
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2}"
 			);
 		}
 		if ( isset( $this->attrs['borderItemThird'] ) ) {
 			$this->handle_border(
 				'borderItemThird',
-				$selector3
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3}"
 			);
 		}
 
@@ -498,7 +498,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderResponsiveItemSecond'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector2,
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2}",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -513,7 +513,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['borderResponsiveItemThird'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector3,
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3}",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
