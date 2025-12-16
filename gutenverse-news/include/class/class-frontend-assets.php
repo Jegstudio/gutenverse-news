@@ -69,11 +69,97 @@ class Frontend_Assets {
 
 			case 'gutenverse/news-block-2':
 			case 'gutenverse/news-block-3':
+			case 'gutenverse/news-block-4':
+			case 'gutenverse/news-block-5':
+			case 'gutenverse/news-block-6':
+			case 'gutenverse/news-block-7':
+			case 'gutenverse/news-block-8':
+			case 'gutenverse/news-block-9':
+			case 'gutenverse/news-block-10':
+			case 'gutenverse/news-block-11':
+			case 'gutenverse/news-block-12':
+			case 'gutenverse/news-block-13':
+			case 'gutenverse/news-block-14':
+			case 'gutenverse/news-block-15':
+			case 'gutenverse/news-block-17':
+			case 'gutenverse/news-block-18':
+			case 'gutenverse/news-block-19':
+			case 'gutenverse/news-block-20':
+			case 'gutenverse/news-block-21':
+			case 'gutenverse/news-block-22':
+			case 'gutenverse/news-block-23':
+			case 'gutenverse/news-block-25':
+			case 'gutenverse/news-block-26':
+			case 'gutenverse/news-block-27':
+			case 'gutenverse/news-block-29':
+			case 'gutenverse/news-block-30':
+			case 'gutenverse/news-block-31':
+			case 'gutenverse/news-block-32':
+			case 'gutenverse/news-block-33':
+			case 'gutenverse/news-block-34':
+			case 'gutenverse/news-block-35':
+			case 'gutenverse/news-block-36':
+			case 'gutenverse/news-block-37':
+			case 'gutenverse/news-block-38':
+			case 'gutenverse/news-block-39':
 				// Check header icon.
 				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
 						$this->icon_conditional_load( $conditions );
 					}
+				}
+				break;
+
+			case 'gutenverse/news-block-16':
+			case 'gutenverse/news-block-24':
+			case 'gutenverse/news-block-28':
+				// Check list icon.
+				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				break;
+
+			case 'gutenverse/post-related':
+				// Check list icon.
+				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				break;
+
+			case 'gutenverse/user-list':
+				// Check header icon.
+				if ( ! empty( $attrs['icon'] ) ) {
+					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+				break;
+
+			case 'gutenverse/header':
+				// Check header icon.
+				if ( ! empty( $attrs['icon'] ) ) {
+					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+				break;
+
+			case 'gutenverse/news-ticker':
+				// Check main icon.
+				if ( ! empty( $attrs['icon'] ) ) {
+					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
+				}
+
+				// Check next button icon.
+				if ( ! isset( $attrs['nextIconType'] ) || 'icon' === $attrs['nextIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+
+				// Check prev button icon.
+				if ( ! isset( $attrs['prevIconType'] ) || 'icon' === $attrs['prevIconType'] ) {
+					$this->icon_conditional_load( $conditions );
 				}
 				break;
 		}

@@ -63,9 +63,14 @@ class Module_16 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_2( $post ) {
-		$icon = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
+		$icon      = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
+		$icon_type = isset( $this->attribute['list_icon_type'] ) ? $this->attribute['list_icon_type'] : 'icon';
+		$icon_svg  = isset( $this->attribute['list_icon_svg'] ) ? $this->attribute['list_icon_svg'] : '';
+
+		$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
+
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_2', $post->ID ) . '>
-                    <i class="' . $icon . '"></i>
+                    ' . $icon_html . '
                     <div class="gvnews_postblock_content">
                         <h3 class="gvnews_post_title">
                             <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>

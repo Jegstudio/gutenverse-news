@@ -333,6 +333,13 @@
             "type": "string",
             "default": "fas fa-caret-right"
         },
+        "listIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "listIconSVG": {
+            "type": "string"
+        },
         "listIconColor": {
             "type": "object"
         },

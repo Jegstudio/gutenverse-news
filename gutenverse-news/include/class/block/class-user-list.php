@@ -72,6 +72,8 @@ class User_List extends Grab {
 			'url'                 => $this->attributes['url_title'],
 			'header_type'         => $this->attributes['headerType'],
 			'header_icon'         => $this->attributes['icon'],
+			'header_icon_type'    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
+			'header_icon_svg'     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
 			'userlist_block1'     => $this->attributes['blockWidth'],
 			'userlist_block2'     => $this->attributes['blockWidth2'],
 			'userlist_block3'     => $this->attributes['blockWidth3'],
@@ -178,7 +180,9 @@ class User_List extends Grab {
 		$output = '';
 
 		if ( ! empty( $heading_title ) ) {
-			$heading_icon  = empty( $attr['header_icon'] ) ? '' : "<i class='{$attr['header_icon']}'></i>";
+			$icon_type = isset( $attr['header_icon_type'] ) ? $attr['header_icon_type'] : 'icon';
+			$icon_svg  = isset( $attr['header_icon_svg'] ) ? $attr['header_icon_svg'] : '';
+			$heading_icon = empty( $attr['header_icon'] ) ? '' : $this->render_icon( $icon_type, $attr['header_icon'], $icon_svg );
 			$heading_title = "<span>{$heading_icon}{$attr['first_title']}{$subtitle}</span>";
 			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}'>{$heading_title}</a>" : $heading_title;
 			$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";

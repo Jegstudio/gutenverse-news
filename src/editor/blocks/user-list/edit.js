@@ -32,6 +32,8 @@ const UserlistBlock = compose(
     const {
         elementId,
         icon,
+        iconType = 'icon',
+        iconSVG = '',
         title,
         second_title,
         headerType,
@@ -232,6 +234,8 @@ const UserlistBlock = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,

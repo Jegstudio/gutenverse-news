@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, ColorControl, DimensionControl, IconControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, DimensionControl, IconSVGControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
 
 export const navigationButtonStylePanel = (props) => {
     const {
@@ -46,7 +46,7 @@ export const navigationButtonStylePanel = (props) => {
             id: 'nextButtonIcon',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
             label: __('Icon', 'gutenverse-news'),
-            component: IconControl,
+            component: IconSVGControl,
         },
         {
             id: 'nextButtonColor',
@@ -123,7 +123,7 @@ export const navigationButtonStylePanel = (props) => {
             id: 'prevButtonIcon',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             label: __('Icon', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl,
         },
         {
             id: 'prevButtonColor',

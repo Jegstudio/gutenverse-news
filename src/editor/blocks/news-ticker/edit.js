@@ -17,7 +17,7 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions } from '../../utils/helper';
-import { isNotEmpty } from 'gutenverse-core/helper';
+import { isNotEmpty, renderIcon } from 'gutenverse-core/helper';
 import { timeDifference } from '../../utils/date-util';
 
 const moduleOption = getModuleOptions();
@@ -36,6 +36,8 @@ const NewsTickerBlock = compose(
     const {
         title,
         icon,
+        iconType = 'icon',
+        iconSVG = '',
         elementId,
         contentType,
         uniqueContent,
@@ -58,7 +60,11 @@ const NewsTickerBlock = compose(
         autoplayDelay,
         animationDirection,
         nextIcon,
+        nextIconType = 'icon',
+        nextIconSVG = '',
         prevIcon,
+        prevIconType = 'icon',
+        prevIconSVG = '',
         contentBorder,
         contentBorderResponsive,
         contentHeight,
@@ -245,7 +251,7 @@ const NewsTickerBlock = compose(
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div ref={blockRef} className="gvnews_breakingnews clearfix">
                     <div className="gvnews_breakingnews_title">
-                        <i className={icon}>&nbsp;</i>
+                        {renderIcon(icon, iconType, iconSVG)}
                         <span>{title}</span>
                     </div>
                     <div className="gvnews_news_ticker" data-autoplay={autoplay ? 1 : ''} data-delay={autoplayDelay} data-animation={animationDirection}>
@@ -255,9 +261,9 @@ const NewsTickerBlock = compose(
                         </div>
                     </div>
                     <div className="gvnews_news_ticker_control">
-                        <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><i className={prevIcon}></i></div>
+                        <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow">{renderIcon(prevIcon, prevIconType, prevIconSVG)}</div>
                         <span className="nav-separator"></span>
-                        <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i className={nextIcon}></i></div>
+                        <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow">{renderIcon(nextIcon, nextIconType, nextIconSVG)}</div>
                     </div>
                 </div>
             </div>
@@ -291,10 +297,10 @@ const getLineHeight = (attributes) => {
         } else {
             value[item] = parseInt(lineHeight) - topWidth - bottomWidth;
         }
-    })
+    });
 
     return value;
 
-}
+};
 
 export default NewsTickerBlock;
