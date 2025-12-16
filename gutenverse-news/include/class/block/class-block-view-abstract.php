@@ -671,10 +671,12 @@ abstract class Block_View_Abstract {
 	 * @return string
 	 */
 	public function render_icon( $type, $icon, $svg ) {
-		if ( 'svg' === $type && ! empty( $svg ) ) {
-			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-			$svg_data = base64_decode( $svg );
-			return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+		if ( 'svg' === $type ) {
+			if ( ! empty( $svg ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+				$svg_data = base64_decode( $svg );
+				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+			}
 		} elseif ( ! empty( $icon ) ) {
 			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
 		}
