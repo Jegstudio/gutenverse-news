@@ -1,10 +1,23 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, SizeControl } from 'gutenverse-core/controls';
+import { AlertControl, ColorControl, RangeControl, SizeControl } from 'gutenverse-core/controls';
 
 export const iconStylePanel = (props) => {
     const {
         elementId,
+        hideSocial
     } = props;
+
+    if (hideSocial) {
+        return [
+            {
+                id: 'sticky-notice',
+                component: AlertControl,
+                children: <>
+                    <span>{__('Social icons disabled. The Social panel will be hidden.')}</span>
+                </>
+            },
+        ];
+    }
 
     return [
         {

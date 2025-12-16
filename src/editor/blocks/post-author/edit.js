@@ -23,6 +23,8 @@ const PostAuthor = compose(
 
     const {
         elementId,
+        titleTag: TitleTag,
+        avatarPosition = 'left',
     } = attributes;
 
     const elementRef = useRef(null);
@@ -50,24 +52,30 @@ const PostAuthor = compose(
             elementId,
             animationClass,
             displayClass,
+            `avatar-${avatarPosition}`,
         ),
         ref: elementRef
     });
+
+    const AvatarImage = () => {
+        return <div className="gvnews-author-image">
+            <img
+                src={currentUser?.avatar_urls?.['48']}
+                className="avatar avatar-80 photo"
+            />
+        </div>
+    }
+    console.log({ avatarPosition });
 
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews-author-image">
-                <img
-                    src={currentUser?.avatar_urls?.['48']}
-                    className="avatar avatar-80 photo"
-                />
-            </div>
+            {(avatarPosition === 'left' || avatarPosition === 'top') && <AvatarImage />}
             <div className="gvnews-author-content">
-                <h3 className="gvnews-author-name">
+                <TitleTag className="gvnews-author-name">
                     <a>{currentUser?.name}</a>
-                </h3>
+                </TitleTag>
                 <p className="gvnews-author-desc">{currentUser?.description}</p>
                 <div className="gvnews-author-socials">
                     <a className="url"><i className="fa fa-globe"></i></a>
@@ -77,6 +85,7 @@ const PostAuthor = compose(
                     <a className="url"><i className="fab fa-instagram"></i></a>
                 </div>
             </div>
+            {(avatarPosition === 'right' || avatarPosition === 'bottom') && <AvatarImage />}
         </div>
     </>;
 });

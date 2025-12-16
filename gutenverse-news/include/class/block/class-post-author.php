@@ -72,18 +72,21 @@ class Post_Author extends Post_Guten {
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
 
-		$block = '<div class="gvnews-author-image">' .
-					get_avatar( $author['id'], 80, null, $author['name'] ) .
-				'</div>' .
-				'<div class="gvnews-author-content">
-					<h3 class="gvnews-author-name">
+		$block = '<div class="gvnews-author-content">
+					<' . $this->attributes['titleTag'] . ' class="gvnews-author-name">
 						<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
-					</h3>
+					</' . $this->attributes['titleTag'] . '>
 					<p class="gvnews-author-desc">' . esc_html( $author['desc'] ) . '</p>
 					<div class="gvnews-author-socials">' .
 						$this->generate_social_element( $author_id ) .
 					'</div>
 				</div>';
+
+		if ( 'left' === $this->attributes['avatarPosition'] || 'top' === $this->attributes['avatarPosition'] ) {
+			$block = $this->render_avatar( $author ) . $block;
+		} else {
+			$block = $block . $this->render_avatar( $author );
+		}
 
 		return $block;
 	}
@@ -102,13 +105,15 @@ class Post_Author extends Post_Guten {
 		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
 		$custom_classes  = $this->get_custom_classes();
+		$avatar_position = ' avatar-' . $this->attributes['avatarPosition'] . ' ';
 
 		return '<div class="' .
 							$element_id .
 							$display_classes .
 							// $animation_class .
 							$custom_classes .
-							'gvnews-post-author guten-element"
+							'gvnews-post-author guten-element
+							' . $avatar_position . '" 
 				>' . $this->render_content() . '</div>';
 	}
 
@@ -135,5 +140,18 @@ class Post_Author extends Post_Guten {
 		}
 
 		return $social_elements;
+	}
+
+	/**
+	 * Render avatar
+	 *
+	 * @param array $author author data.
+	 *
+	 * @return string
+	 */
+	private function render_avatar( $author ) {
+		return '<div class="gvnews-author-image">' .
+					get_avatar( $author['id'], 80, null, $author['name'] ) .
+				'</div>';
 	}
 }

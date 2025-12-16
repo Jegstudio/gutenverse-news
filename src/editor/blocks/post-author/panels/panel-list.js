@@ -6,9 +6,16 @@ import layoutPanel from './panel-layout';
 import { avatarStylePanel } from './panel-avatar-style';
 import { nameStylePanel } from './panel-name-style';
 import { iconStylePanel } from './panel-icon-style';
+import { generalPanel } from './panel-general';
 
 export const panelList = () => {
     return [
+        {
+            title: __('General', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: generalPanel,
+            tabRole: TabSetting
+        },
         {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,

@@ -1,13 +1,25 @@
 import { __ } from '@wordpress/i18n';
 
-import { ColorControl, SwitchControl, TextShadowControl, TypographyControl } from 'gutenverse-core/controls';
+import { AlertControl, ColorControl, SwitchControl, TextShadowControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const nameStylePanel = (props) => {
     const {
         switcher,
-        setSwitcher
+        setSwitcher,
+        hideName
     } = props;
-
+    
+    if (hideName) {
+        return [
+            {
+                id: 'sticky-notice',
+                component: AlertControl,
+                children: <>
+                    <span>{__('Name disabled. The Name panel will be hidden.')}</span>
+                </>
+            },
+        ];
+    }
 
     return [
         {

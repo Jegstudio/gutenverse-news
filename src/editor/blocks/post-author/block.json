@@ -174,7 +174,35 @@
         },
         "socialIconSize": {
             "type":"object"
-        }
+        },
+        "hideName": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideDesc": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideAvatar": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideSocial": {
+            "type": "boolean",
+            "default": false
+        },
+        "avatarPosition": {
+            "type": "string",
+            "default": "left"
+        },
+		"align": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h2"
+		}
 
     },
     "supports": {

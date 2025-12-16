@@ -67,6 +67,81 @@ class Post_Author extends Style_Abstract {
 		$this->name_style();
 		$this->social_icon_style();
 
+		if ( isset( $this->attrs['hideName'] ) && $this->attrs['hideName'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author .gvnews-author-name",
+					'property'       => function ( $value ) {
+						return 'display: none;';
+					},
+					'value'          => $this->attrs['hideName'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['hideAvatar'] ) && $this->attrs['hideAvatar'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author .gvnews-author-image",
+					'property'       => function ( $value ) {
+						return 'display: none;';
+					},
+					'value'          => $this->attrs['hideAvatar'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['hideDesc'] ) && $this->attrs['hideDesc'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'property'       => function ( $value ) {
+						return 'display: none;';
+					},
+					'value'          => $this->attrs['hideDesc'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['hideSocial'] ) && $this->attrs['hideSocial'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author .gvnews-author-socials",
+					'property'       => function ( $value ) {
+						return 'display: none;';
+					},
+					'value'          => $this->attrs['hideSocial'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( $this->attrs['align'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author",
+					'property'       => function ( $value ) {
+						return "text-align: {$this->handle_align($value)};justify-content: {$value};align-items: {$value};";
+					},
+					'value'          => $this->attrs['align'],
+					'device_control' => true,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-author .gvnews-author-socials",
+					'property'       => function ( $value ) {
+						return "justify-content: {$value};";
+					},
+					'value'          => $this->attrs['align'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		// Layout Panel.
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
@@ -279,7 +354,7 @@ class Post_Author extends Style_Abstract {
 				array(
 					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
+						return $this->handle_unit_point( $value, 'width' ) . ';' . $this->handle_unit_point( $value, 'height' );
 					},
 					'value'          => $this->attrs['avatarSize'],
 					'device_control' => true,

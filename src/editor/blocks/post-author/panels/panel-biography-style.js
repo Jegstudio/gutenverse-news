@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import {
+    AlertControl,
     ColorControl,
     TypographyControl,
     TextShadowControl,
@@ -10,8 +11,21 @@ export const biographyStylePanel = (props) => {
     const {
         elementId,
         switcher,
-        setSwitcher
+        setSwitcher,
+        hideDesc
     } = props;
+
+    if (hideDesc) {
+        return [
+            {
+                id: 'sticky-notice',
+                component: AlertControl,
+                children: <>
+                    <span>{__('Description disabled. The Description panel will be hidden.')}</span>
+                </>
+            },
+        ];
+    }
 
     return [
         {
