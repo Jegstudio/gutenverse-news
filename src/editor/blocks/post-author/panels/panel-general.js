@@ -84,7 +84,7 @@ export const generalPanel = (props) => {
         {
             id: 'verticalAlign',
             label: __('Vertical Alignment', 'gutenverse-news'),
-            desc: __('Vertical alignment of the author box content: name, description, and social icons.', 'gutenverse-news'),
+            description: __('Vertical alignment of the author box content: name, description, and social icons.', 'gutenverse-news'),
             show: avatarPosition !== 'top' || avatarPosition !== 'bottom',
             component: SelectControl,
             allowDeviceControl: true,
