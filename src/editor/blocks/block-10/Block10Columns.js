@@ -15,7 +15,7 @@ const Block10Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain = {},
+        imageSizeMain = {},
         readmoreButtonDisabled = false,
     } = props;
     const postDataLen = postData.length;
@@ -31,7 +31,7 @@ const Block10Columns = props => {
                     </h3>
                     {props.attr.option && !props.attr.option.meta_show && <MetaModule1 {...props}/>}
                 </header>
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
                 <ContentModule title={false} meta={false} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </article>
         );

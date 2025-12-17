@@ -13,7 +13,7 @@ const Block9Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain,
+        imageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -22,7 +22,7 @@ const Block9Columns = props => {
         const { index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={renderedImageSizeMain}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
             </article>
         );

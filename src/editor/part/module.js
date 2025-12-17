@@ -15,10 +15,11 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+
 const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
@@ -34,8 +35,8 @@ const BlockModule = compose(
         columnAttr,
         panelList,
         freeModule = false,
-        renderedImageSizeMain,
-        renderedImageSizeSecond,
+        defaultImageSizeMain = {},
+        defaultImageSizeSecond = {},
         mainThumbnailClass,
         secondThumbnailClass,
     } = props;
@@ -93,6 +94,9 @@ const BlockModule = compose(
         metaCommentIcon = '',
         metaCommentIconType = 'icon',
         metaCommentIconSVG = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        showNoContent = false,
     } = attributes;
 
     const metaSettings = {
@@ -312,7 +316,13 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
+        if (showNoContent) {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length > 0) {
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
+            const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
             const allColumns = <ColumnBlock {...{
                 blockWidth,
                 excerptLength,
@@ -326,8 +336,8 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
-                renderedImageSizeMain,
-                renderedImageSizeSecond,
+                imageSizeMain,
+                imageSizeSecond,
                 readmoreButtonDisabled,
                 listIcon,
                 listIconType,
@@ -369,6 +379,7 @@ const BlockModule = compose(
         metaCommentIcon,
         metaCommentIconType,
         metaCommentIconSVG
+        showNoContent,
     ]);
 
     const blockProps = useBlockProps({

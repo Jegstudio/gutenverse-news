@@ -15,8 +15,8 @@ const Block17Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        renderedImageSizeMain,
-        renderedImageSizeSecond
+        imageSizeMain = {},
+        imageSizeSecond = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -79,7 +79,7 @@ const Block17Columns = props => {
         let limit = 2;
 
         if (4 == blockWidth && postData.length > 0) {
-            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1} imageSize={renderedImageSizeMain} />);
+            first.push(<RenderBlock1 index="0" key={postData[0].id} attr={attr} post={postData[0]} type={1} imageSize={imageSizeMain} />);
             start = 1;
         } else if (12 == blockWidth) {
             limit = 3;
@@ -88,11 +88,11 @@ const Block17Columns = props => {
         if (postData.length > 0) {
             for (let i = start; i < postData.length; i++) {
                 if (4 == blockWidth) {
-                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={renderedImageSizeSecond} />);
+                    rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={imageSizeSecond} />);
                 } else { // block-17
                     rows.push(i < limit ?
-                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1} imageSize={renderedImageSizeMain}/> :
-                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={renderedImageSizeSecond} />
+                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={1} imageSize={imageSizeMain}/> :
+                        <RenderBlock1 index={i} key={postData[i].id} attr={attr} post={postData[i]} type={2} imageSize={imageSizeSecond} />
                     );
                 }
             }

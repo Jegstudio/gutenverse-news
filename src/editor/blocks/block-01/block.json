@@ -749,6 +749,52 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "secondListSelector": {
+            "type": "string",
+            "default": ".gvnews_postblock_1 .gvnews_posts .gvnews_postsmall:first-of-type"
+        },
+        "thirdListSelector": {
+            "type": "string",
+            "default": ".gvnews_postblock_1 .gvnews_posts .gvnews_postsmall:nth-of-type(2)"
+        },
+        "columnItemGapSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "columnItemGapThird": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "postItemGrid": {
+            "type": "boolean",
+            "default": true
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

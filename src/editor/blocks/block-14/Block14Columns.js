@@ -16,8 +16,8 @@ const Block14Columns = props => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
-        renderedImageSizeMain,
-        renderedImageSizeSecond
+        imageSizeMain = {},
+        imageSizeSecond = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -70,7 +70,7 @@ const Block14Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 1; i < postData.length; i++) {
-                rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]} imageSize={renderedImageSizeSecond} />);
+                rows.push(<RenderBlock1 index={i} key={postData[i].id} attr={attr} type={2} post={postData[i]} imageSize={imageSizeSecond} />);
             }
         }
 
@@ -79,7 +79,7 @@ const Block14Columns = props => {
                 <div className="gvnews_postbig">
                     <article className="gvnews_post gvnews_pl_lg_box">
                         <div className="box_wrap">
-                            <RenderBlock1 key={postData[0].id} attr={attr} type={postData[0].id} post={postData[0]} imageSize={renderedImageSizeMain} />
+                            <RenderBlock1 key={postData[0].id} attr={attr} type={postData[0].id} post={postData[0]} imageSize={imageSizeMain} />
                         </div>
                     </article>
                 </div>

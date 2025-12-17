@@ -20,7 +20,7 @@ const Block32Columns = (props) => {
         page = 1,
         isLoadMore = false,
         readmoreButtonDisabled = false,
-        renderedImageSizeMain,
+        imageSizeMain = {},
         attributes,
     } = props;
 
@@ -66,7 +66,7 @@ const Block32Columns = (props) => {
                             </h3>
                         )}
                     </header>
-                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={renderedImageSizeMain} />}
+                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} />}
                     <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>

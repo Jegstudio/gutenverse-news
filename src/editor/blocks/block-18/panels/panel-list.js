@@ -14,6 +14,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -77,12 +78,6 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
-                title: __('Pagination', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: paginationPanel,
-                tabRole: TabSetting
-            },
-            {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => designPanel({
@@ -122,6 +117,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Background', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => backgroundPanel({
@@ -156,7 +157,7 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-1-advance',
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
             {
                 title: __('Condition', 'gutenverse-news'),

@@ -15,7 +15,7 @@ const Block20Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        renderedImageSizeMain,
+        imageSizeMain = {},
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -25,7 +25,7 @@ const Block20Columns = props => {
         if (1==props.type){
             return (
                 <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
-                    <ThumbModule size={715} cat={false} post={post} imageSize={renderedImageSizeMain}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={attr}/>
                 </article>
             );
