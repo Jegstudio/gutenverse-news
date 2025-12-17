@@ -60,7 +60,7 @@ class Frontend_Assets {
 				}
 
 				// Check header icon.
-				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
+				if ( ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
 						$this->icon_conditional_load( $conditions );
 					}
@@ -103,7 +103,7 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-38':
 			case 'gutenverse/news-block-39':
 				// Check header icon.
-				if ( ! empty( $attrs['header_icon'] ) || ! empty( $attrs['icon'] ) ) {
+				if ( ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
 						$this->icon_conditional_load( $conditions );
 					}
@@ -119,14 +119,14 @@ class Frontend_Assets {
 				}
 				break;
 
-			case 'gutenverse/post-related':
+			case 'gutenverse/news-post-related':
 				// Check list icon.
 				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;
 
-			case 'gutenverse/slider-1':
+			case 'gutenverse/news-slider-1':
 				// Check next button icon.
 				if ( ! isset( $attrs['nextButtonIconType'] ) || 'icon' === $attrs['nextButtonIconType'] ) {
 					$this->icon_conditional_load( $conditions );
@@ -138,7 +138,7 @@ class Frontend_Assets {
 				}
 				break;
 
-			case 'gutenverse/user-list':
+			case 'gutenverse/news-user-list':
 				// Check header icon.
 				if ( ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
@@ -147,7 +147,7 @@ class Frontend_Assets {
 				}
 				break;
 
-			case 'gutenverse/header':
+			case 'gutenverse/news-header':
 				// Check header icon.
 				if ( ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
@@ -156,7 +156,7 @@ class Frontend_Assets {
 				}
 				break;
 
-			case 'gutenverse/news-ticker':
+			case 'gutenverse/news-news-ticker':
 				// Check main icon.
 				if ( ! empty( $attrs['icon'] ) ) {
 					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
