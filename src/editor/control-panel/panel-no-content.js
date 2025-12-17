@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { BorderResponsiveControl, CheckboxControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl } from 'gutenverse-core/controls';
+import { BorderResponsiveControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl, PreviewControl } from 'gutenverse-core/controls';
 
 
 export const noContentPanel = (props) => {
@@ -10,9 +10,13 @@ export const noContentPanel = (props) => {
     return [
         {
             id: 'showNoContent',
-            label: __('Show No Content', 'gutenverse-news'),
+            label: __('Preview No Content', 'gutenverse-news'),
             description: __('Enable this option to show the content when no post is found.', 'gutenverse-news'),
-            component: CheckboxControl
+            children: <>
+                <p>{__('Used to style the message displayed when no posts are found.', 'gutenverse-news')}</p>
+                <p>{__('Enable preview mode to simulate an empty state in the editor.', 'gutenverse-news')}</p>
+            </>,
+            component: PreviewControl
         },
         {
             id: 'noContentTypography',
