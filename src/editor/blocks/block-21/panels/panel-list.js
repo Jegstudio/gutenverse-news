@@ -161,7 +161,7 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-21-advance',
                 }),
-            tabRole: TabStyle,
+            tabRole: TabSetting,
         },
 
         // Pro

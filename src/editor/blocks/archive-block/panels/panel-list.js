@@ -114,7 +114,7 @@ export const panelList = () => {
                 ...props,
                 styleId: 'archive-pagination-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         }, {
             title: __('Condition', 'gutenverse-news'),
             panelArray: conditionPanel,

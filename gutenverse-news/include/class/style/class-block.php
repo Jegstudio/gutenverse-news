@@ -691,6 +691,9 @@ class Block extends StyleAbstract {
 	 * @return void
 	 */
 	private function set_class_thumbnail() {
+		if ( 'GUTENVERSE\\NEWS\\Block\\Element\\Header' === $this->attrs['gvnewsModule'] ) {
+			return;
+		}
 		$gvnews_module = ( 'GUTENVERSE\\NEWS\\Block\\Element\\Rss' !== $this->attrs['gvnewsModule'] ) ? $this->attrs['gvnewsModule']::get_instance() : \GUTENVERSE\NEWS\Block\Module\Module_3::get_instance();
 
 		if ( isset( $gvnews_module->main_thumbnail_class ) ) {
