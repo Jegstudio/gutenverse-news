@@ -605,6 +605,30 @@
         "headerHeight": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

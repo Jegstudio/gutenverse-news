@@ -1263,7 +1263,8 @@ const getBlockStyle = (
     data = contentContainerStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = titleContainerStyle(elementId, attributes, data);
-
+    data = postItemStyle(elementId, attributes, data);
+    data = noContentStyle(elementId, attributes, data);
     return data;
 };
 
@@ -1849,6 +1850,182 @@ const titleContainerStyle = (elementId, attributes, data) => {
     });
 
     return data;
+}
+
+const postItemStyle = (elementId, attributes, data) => {
+
+    const {
+        mainListSelector,
+        secondListSelector,
+        thirdListSelector,
+        postItemGrid = false
+    } = attributes
+
+    if (postItemGrid) {
+
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
+            'properties': [
+                {
+                    'name': 'row-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+        isNotEmpty(attributes['columnItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'columnItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts`,
+            'properties': [
+                {
+                    'name': 'column-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        if (isNotEmpty(secondListSelector)) {
+
+            isNotEmpty(attributes['columnItemGapSecond']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapSecond',
+                'responsive': true,
+                'selector': `.${elementId} ${secondListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+
+
+            isNotEmpty(attributes['columnItemGapThird']) && data.push({
+                'type': 'plain',
+                'id': 'columnItemGapThird',
+                'responsive': true,
+                'selector': `.${elementId} ${thirdListSelector}`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
+        }
+
+    } else {
+        isNotEmpty(attributes['rowItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+    }
+
+
+
+    return data;
+
+}
+
+
+const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTypography']) && data.push({
+        'type': 'typography',
+        'id': 'noContentTypography',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentColor']) && data.push({
+        'type': 'color',
+        'id': 'noContentColor',
+        'selector': `.${elementId} .gvnews_empty_module`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['noContentBackground']) && data.push({
+        'type': 'background',
+        'id': 'noContentBackground',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentBorder']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'noContentBorder',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'noContentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+    return data;
+
 }
 
 
