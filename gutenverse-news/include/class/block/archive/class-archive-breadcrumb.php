@@ -75,7 +75,10 @@ class Archive_Breadcrumb extends Archive_View_Abstract {
 			$this->recursive_category( $id, $breadcrumb, true );
 		}
 
-		$breadcrumb = implode( '<i class="fas fa-chevron-right"></i>', $breadcrumb );
+		$icon_separator = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>';
+		$icon_separator = $this->render_icon( 'svg', 'fas fa-chevron-right', base64_encode( $icon_separator ) );
+
+		$breadcrumb = implode( $icon_separator, $breadcrumb );
 		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
 
 		return apply_filters( 'gvnews_native_breadcrumb_category', $breadcrumb, $id );

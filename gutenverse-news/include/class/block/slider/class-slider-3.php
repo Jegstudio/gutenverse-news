@@ -37,7 +37,7 @@ class Slider_3 extends Slider_View_Abstract {
 			}
 
 			$content .=
-			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
+				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\">
                         {$image}
@@ -51,7 +51,7 @@ class Slider_3 extends Slider_View_Abstract {
                                 <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                             </h2>
                             <p class="gvnews_post_excerpt"> ' . esc_attr( $this->get_excerpt( $post ) ) . " </p>
-                            {$this->render_meta($post)}
+                            {$this->render_meta( $post )}
                         </div>
                     </div>
                 </div>";
@@ -95,7 +95,7 @@ class Slider_3 extends Slider_View_Abstract {
 			);
 
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
+				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
                     <div class=\"gvnews_slider_type_3 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>
@@ -117,10 +117,13 @@ class Slider_3 extends Slider_View_Abstract {
 	public function render_meta( $post ) {
 		$output = '';
 
+		$icon_clock = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg>';
+		$icon_clock = $this->render_icon( 'svg', 'fas fa-clock', base64_encode( $icon_clock ) );
+
 		$time   = $this->format_date( $post );
 		$output =
-		"<div class=\"gvnews_post_meta\">
-				<span class=\"gvnews_meta_date\"><i class=\"fas fa-clock\"></i> {$time}</span>
+			"<div class=\"gvnews_post_meta\">
+				<span class=\"gvnews_meta_date\">{$icon_clock} {$time}</span>
 			</div>";
 
 		return $output;

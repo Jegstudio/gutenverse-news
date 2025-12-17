@@ -32,6 +32,8 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
+		$icon_clock = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg>';
+		$icon_clock = $this->render_icon( 'svg', 'fas fa-clock', base64_encode( $icon_clock ) );
 
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
@@ -40,13 +42,13 @@ class Module_27 extends Module_View_Abstract {
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
 		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		$excerpt   = 1 === $type ? null :
-		'<div class="gvnews_post_excerpt">
+			'<div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
-							. $read_more . ' 
+			. $read_more . ' 
                         </div>';
 
 		$post_meta = "<div class=\"gvnews_post_meta\">
-                            <div class=\"gvnews_meta_date\"><i class=\"fas fa-clock\"></i> {$this->format_date($post)}</div>
+                            <div class=\"gvnews_meta_date\">{$icon_clock} {$this->format_date( $post )}</div>
                         </div>";
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_4', $post_id ) . '>
@@ -100,14 +102,14 @@ class Module_27 extends Module_View_Abstract {
 		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
-                    {$this->get_content_before($attr)}
+                    {$this->get_content_before( $attr )}
                     {$content}
-                    {$this->get_content_after($attr)}
+                    {$this->get_content_after( $attr )}
                 </div>
                 <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
+                    {$this->get_navigation_before( $attr )}
                     {$navigation}
-                    {$this->get_navigation_after($attr)}
+                    {$this->get_navigation_after( $attr )}
                 </div>";
 	}
 
@@ -120,7 +122,7 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_column( $result, $column_class ) {
-		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column($result,$column_class)}</div>";
+		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column( $result, $column_class )}</div>";
 	}
 
 	/**

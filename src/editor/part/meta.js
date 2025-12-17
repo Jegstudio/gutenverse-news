@@ -37,7 +37,7 @@ const MetaComments = props => {
 
     return <div className="gvnews_meta_comment">
         <a>
-            {renderIcon('','svg',btoa(icon))}
+            {renderIcon('far fa-comment','svg',btoa(icon))}
             {props.post.comment} {props.showText && __('Comments', 'gutenverse-news')}
         </a>
     </div>;
