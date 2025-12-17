@@ -86,7 +86,7 @@ const BlockModule = compose(
         listIcon = '',
         renderedImageSizeMain,
         renderedImageSizeSecond,
-        showNoContent = false,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const metaSettings = {
@@ -306,7 +306,7 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
-        if (showNoContent) {
+        if (gutenversePreviewBlock === 'noContent') {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
             return;
         }
@@ -353,7 +353,7 @@ const BlockModule = compose(
         showMetaComment,
         readmoreButtonDisabled,
         listIcon,
-        showNoContent
+        gutenversePreviewBlock
     ]);
 
     const blockProps = useBlockProps({
