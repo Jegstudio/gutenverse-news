@@ -1,4 +1,4 @@
-import { u } from 'gutenverse-core-frontend';
+import { u, renderIcon } from 'gutenverse-core-frontend';
 
 /**
  * Slider 01.
@@ -121,8 +121,17 @@ class GutenverseFirstSlider {
         this.options.hover = this.theSlider.dataset.hoverAction;
         this.options.autoplay = this.theSlider.dataset.autoplay;
         this.options.autoplayTimeout = this.theSlider.dataset.delay;
-        let nextClass = this.theSlider.dataset.classNext || 'fas fa-chevron-right';
-        let prevClass = this.theSlider.dataset.classPrev || 'fas fa-chevron-left';
+
+        const iconNext = this.theSlider.dataset.classNext || '';
+        const iconNextType = this.theSlider.dataset.classNextType || 'icon';
+        const iconNextSVG = this.theSlider.dataset.classNextSvg || '';
+
+        const iconPrev = this.theSlider.dataset.classPrev || '';
+        const iconPrevType = this.theSlider.dataset.classPrevType || 'icon';
+        const iconPrevSVG = this.theSlider.dataset.classPrevSvg || '';
+
+        const finalNextIcon = (iconNextType === 'svg' && !iconNextSVG) ? '' : iconNext;
+        const finalPrevIcon = (iconPrevType === 'svg' && !iconPrevSVG) ? '' : iconPrev;
 
         if (!u(this.theSlider).hasClass('gvnews_tns_active')) {
             this.mainSlider = window.tns({
@@ -140,14 +149,13 @@ class GutenverseFirstSlider {
                 lazyloadSelector: '.gvnews_slide_item .owl-lazy',
                 textDirection: this.options.textDirection,
                 onInit: function (info) {
-
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
-                        u(info.nextButton).html(`<i class="${nextClass}"></i>`);
+                        u(info.nextButton).html(renderIcon(finalNextIcon, iconNextType, iconNextSVG));
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
-                        u(info.prevButton).html(`<i class="${prevClass}"></i>`);
+                        u(info.prevButton).html(renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG));
                     }
                 },
             });

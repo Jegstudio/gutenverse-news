@@ -126,6 +126,18 @@ class Frontend_Assets {
 				}
 				break;
 
+			case 'gutenverse/slider-1':
+				// Check next button icon.
+				if ( ! isset( $attrs['nextButtonIconType'] ) || 'icon' === $attrs['nextButtonIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+
+				// Check prev button icon.
+				if ( ! isset( $attrs['prevButtonIconType'] ) || 'icon' === $attrs['prevButtonIconType'] ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				break;
+
 			case 'gutenverse/user-list':
 				// Check header icon.
 				if ( ! empty( $attrs['icon'] ) ) {

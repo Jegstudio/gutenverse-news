@@ -56,7 +56,11 @@ const Slider1Block = compose(
         hoverEffect,
         autoplayDelay,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
@@ -158,9 +162,10 @@ const Slider1Block = compose(
                 slider.push(<RenderSlider attr={attr} index={i} post={props.postData[i]} />);
             }
         }
+
         return (
             <>
-                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''} data-class-next={nextButtonIcon} data-class-prev={prevButtonIcon}>
+                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''} data-class-next={nextButtonIcon} data-class-next-type={nextButtonIconType} data-class-next-svg={nextButtonIconSVG} data-class-prev={prevButtonIcon} data-class-prev-type={prevButtonIconType} data-class-prev-svg={prevButtonIconSVG}>
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">
@@ -300,7 +305,11 @@ const Slider1Block = compose(
         showMetaDate,
         showMetaAuthor,
         nextButtonIcon,
+        nextButtonIconSVG,
+        nextButtonIconType,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     ]);
 
     useEffect(() => {
