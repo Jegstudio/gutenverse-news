@@ -634,7 +634,17 @@
         },
         "categoryButtonMargin": {
             "type": "object"
-        }
+        },
+		"rowItemGap": {
+			"type": "object"
+		},
+		"columnItemGap": {
+			"type": "object"
+		},
+		"postItemGrid": {
+			"type": "boolean",
+			"default": true
+		}
 	},
 	"supports": {
 		"className": false,

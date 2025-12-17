@@ -90,7 +90,7 @@ export const panelList = () => {
                 panelArray: (props) => advancePanel({
                     ...props,
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             }, {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,
