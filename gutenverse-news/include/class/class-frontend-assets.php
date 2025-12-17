@@ -55,8 +55,10 @@ class Frontend_Assets {
 		switch ( $block_name ) {
 			case 'gutenverse/news-block-1':
 				// Check list icon.
-				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['listIcon'] ) ) {
+					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 
 				// Check header icon.
@@ -114,27 +116,35 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-28':
 				// Check list icon.
-				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['listIcon'] ) ) {
+					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 				break;
 
 			case 'gutenverse/news-post-related':
 				// Check list icon.
-				if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['listIcon'] ) ) {
+					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 				break;
 
 			case 'gutenverse/news-slider-1':
 				// Check next button icon.
-				if ( ! isset( $attrs['nextButtonIconType'] ) || 'icon' === $attrs['nextButtonIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['nextButtonIcon'] ) ) {
+					if ( ! isset( $attrs['nextButtonIconType'] ) || 'icon' === $attrs['nextButtonIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 
 				// Check prev button icon.
-				if ( ! isset( $attrs['prevButtonIconType'] ) || 'icon' === $attrs['prevButtonIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['prevButtonIcon'] ) ) {
+					if ( ! isset( $attrs['prevButtonIconType'] ) || 'icon' === $attrs['prevButtonIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 				break;
 
@@ -165,13 +175,17 @@ class Frontend_Assets {
 				}
 
 				// Check next button icon.
-				if ( ! isset( $attrs['nextIconType'] ) || 'icon' === $attrs['nextIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['nextIcon'] ) ) {
+					if ( ! isset( $attrs['nextIconType'] ) || 'icon' === $attrs['nextIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 
 				// Check prev button icon.
-				if ( ! isset( $attrs['prevIconType'] ) || 'icon' === $attrs['prevIconType'] ) {
-					$this->icon_conditional_load( $conditions );
+				if ( ! empty( $attrs['prevIcon'] ) ) {
+					if ( ! isset( $attrs['prevIconType'] ) || 'icon' === $attrs['prevIconType'] ) {
+						$this->icon_conditional_load( $conditions );
+					}
 				}
 				break;
 		}
