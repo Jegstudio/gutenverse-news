@@ -378,7 +378,7 @@ const BlockModule = compose(
         metaDateIconSVG,
         metaCommentIcon,
         metaCommentIconType,
-        metaCommentIconSVG
+        metaCommentIconSVG,
         showNoContent,
     ]);
 
