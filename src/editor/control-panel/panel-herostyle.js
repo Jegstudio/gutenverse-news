@@ -41,6 +41,15 @@ export const styleHero = (props, typeCount = 1) => {
         }
         return result;
     }
+    const switchDescription = () => {
+        if (typeCount >= 3) {
+            return __('First styling applies to all items. Second styling overrides it for items of the second and third types. Third styling overrides both for items of the third type.', 'gutenverse-news');
+        }
+        if (typeCount >= 2) {
+            return __('First styling applies to all items. Second styling overrides it for items of the second types.', 'gutenverse-news');
+        }
+        return '';
+    }
     return [
         {
             id: 'titleColor',
@@ -57,7 +66,8 @@ export const styleHero = (props, typeCount = 1) => {
             component: SwitchControl,
             show: typeCount > 1,
             options: swicthValues(),
-            onChange: ({ __typeCount }) => setSwitcher({ ...switcher, typeCount: __typeCount })
+            onChange: ({ __typeCount }) => setSwitcher({ ...switcher, typeCount: __typeCount }),
+            description: switchDescription(),
         },
         // First Item
         {
@@ -131,7 +141,7 @@ export const styleHero = (props, typeCount = 1) => {
         // End Switcher
         {
             id: '__overlayHeader',
-            label: __('Hero Style', 'gutenverse-news'),
+            label: __('Hero Style Overlay', 'gutenverse-news'),
             component: HeadingControl,
         },
         {

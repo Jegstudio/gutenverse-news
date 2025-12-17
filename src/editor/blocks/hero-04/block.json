@@ -341,6 +341,18 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderResponsiveItem": {
+            "type": "object"
+        },
+        "borderResponsiveItemSecond": {
+            "type": "object"
         }
     },
     "supports": {

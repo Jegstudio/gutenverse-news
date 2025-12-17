@@ -423,8 +423,8 @@ class Hero extends StyleAbstract {
 	 */
 	private function generate_design_style() {
 		$selector  = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post";
-		$selector2 = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
-		$selector3 = isset( $this->attrs['selectorThridTitleTypography'] ) ? $this->attrs['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)';
+		$selector2 = isset( $this->attrs['selectorSecond'] ) ? $this->attrs['selectorSecond'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
+		$selector3 = isset( $this->attrs['selectorThrid'] ) ? $this->attrs['selectorThrid'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)';
 		if ( isset( $this->attrs['typography'] ) ) {
 				$this->inject_typography(
 					array(
