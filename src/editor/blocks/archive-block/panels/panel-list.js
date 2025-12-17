@@ -8,6 +8,7 @@ import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style'
 import { metaPanel } from './panel-meta';
 import { metaStylePanel } from './panel-meta-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 
 export const panelList = () => {
@@ -52,6 +53,12 @@ export const panelList = () => {
             title: __('Read More Button', 'gutenverse-news'),
             initialOpen: false,
             panelArray: readmoreStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
             tabRole: TabStyle
         },
         {

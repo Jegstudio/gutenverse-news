@@ -16,6 +16,8 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { multiPostItemPanel } from '../../../control-panel/panel-post-item';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
+
 
 export const panelList = () => {
     return [
@@ -141,6 +143,12 @@ export const panelList = () => {
             title: __('Pagination Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: paginationStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
             tabRole: TabStyle
         },
         {

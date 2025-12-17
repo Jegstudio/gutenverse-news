@@ -157,6 +157,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add option to change rendered thumbail size on Module Blocks
 * Add category label padding and margin options
 * Add Post Item Gap options on some Module blocks
+* Add options to styling the no content condition on Archive Block and all Module blocks
 * Move Spacing options to setting tab
 * Showing no content available on archive block when not seearch result exist
 * Remove JQuery usage on all blocks

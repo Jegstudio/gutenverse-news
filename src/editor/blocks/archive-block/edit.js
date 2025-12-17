@@ -43,6 +43,7 @@ const ArchiveBlock = compose(
         showMetaComment = true,
         readmoreButtonDisabled = false,
         listIcon = '',
+        showNoContent = false,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -87,6 +88,7 @@ const ArchiveBlock = compose(
         showMetaComment,
         readmoreButtonDisabled,
         listIcon,
+        showNoContent
     };
 
     return (
