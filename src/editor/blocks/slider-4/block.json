@@ -288,16 +288,10 @@
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonSize": {
+        "buttonSize": {
             "type": "object"
         },
-        "prevButtonSize": {
-            "type": "object"
-        },
-        "nextButtonPadding": {
-            "type": "object"
-        },
-        "prevButtonPadding": {
+        "buttonPadding": {
             "type": "object"
         },
         "nextButtonBgColor": {

@@ -4,8 +4,7 @@ import { filterPanel } from '../../../control-panel/panel-filter';
 import { sliderPanel } from '../../../control-panel/panel-slider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
-import { nextButtonStylePanel } from '../../../control-panel/panel-next-button-style';
-import { prevButtonStylePanel } from '../../../control-panel/panel-prev-button-style';
+import { navigationButtonStylePanel } from '../../../control-panel/panel-navigation-button-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
@@ -40,18 +39,9 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Next Button Style', 'gutenverse-news'),
+            title: __('Navigation Button Style', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: (props) => nextButtonStylePanel({
-                ...props,
-                sliderType: 'slider-1',
-            }),
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Prev Button Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: (props) => prevButtonStylePanel({
+            panelArray: (props) => navigationButtonStylePanel({
                 ...props,
                 sliderType: 'slider-1',
             }),

@@ -65,7 +65,7 @@ export const sliderPanel = (props) => {
             step: 100,
         },
         {
-            id: 'gapButton',
+            id: 'gapBetweenButton',
             show: !hideNavigationButton && sliderType === 'slider-6',
             label: __('Gap Button', 'gutenverse-news'),
             component: RangeControl,
@@ -77,7 +77,7 @@ export const sliderPanel = (props) => {
             liveStyle: [
                 {
                     'type': 'plain',
-                    'id': 'gapButton',
+                    'id': 'gapBetweeButton',
                     'responsive': true,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
                     'properties': [

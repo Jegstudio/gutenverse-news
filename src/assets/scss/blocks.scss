@@ -19052,11 +19052,15 @@ span.gvnews-category {
     border: 0;
     -webkit-box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
-    -webkit-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+    -webkit-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    transition: all 0.15s ease;
     opacity: 0;
     z-index: 1;
+    
+    i{
+      transition: inherit;
+    }
   }
 
   .tns-outer .tns-controls button:disabled {

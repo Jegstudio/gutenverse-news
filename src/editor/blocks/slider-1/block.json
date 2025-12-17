@@ -268,16 +268,10 @@
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonSize": {
+        "buttonSize": {
             "type": "object"
         },
-        "prevButtonSize": {
-            "type": "object"
-        },
-        "nextButtonPadding": {
-            "type": "object"
-        },
-        "prevButtonPadding": {
+        "buttonPadding": {
             "type": "object"
         },
         "nextButtonBgColor": {
@@ -302,12 +296,6 @@
         },
         "tootlipColor": {
             "type": "object"
-        },
-        "nextButtonTransition":{
-            "type":"string"
-        },
-        "prevButtonTransition":{
-            "type":"string"
         },
         "showMeta": {
             "type": "boolean",

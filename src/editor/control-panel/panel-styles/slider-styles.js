@@ -880,9 +880,9 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         });
     }
 
-    isNotEmpty(attributes['gapButton']) && data.push({
+    isNotEmpty(attributes['gapBetweenButton']) && data.push({
         'type': 'plain',
-        'id': 'gapButton',
+        'id': 'gapBetweeButton',
         'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
         'properties': [
@@ -897,6 +897,63 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 }
             }
         ]
+    });
+    isNotEmpty(attributes['buttonSize']) && data.push({
+        'type': 'plain',
+        'id': 'buttonSize',
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a`
+        ],
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px; height: fit-content; width: fit-content;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    });
+    isNotEmpty(attributes['buttonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'buttonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a`
+        ],
+    });
+    isNotEmpty(attributes['buttonGap']) && data.push({
+        'type': 'plain',
+        'id': 'buttonGap',
+        'responsive': true,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a`
+        ],
+        'properties': [
+            {
+                'name': 'gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
     });
 
     // NEXT BUTTON
@@ -914,7 +971,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
     isNotEmpty(attributes['nextButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'nextButtonColorHover',
@@ -957,45 +1013,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
-    isNotEmpty(attributes['nextButtonSize']) && data.push({
-        'type': 'plain',
-        'id': 'nextButtonSize',
-        'responsive': true,
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
-        ],
-        'properties': [
-            {
-                'name': 'font-size',
-                'valueType': 'pattern',
-                'pattern': '{value}px; height: fit-content; width: fit-content;',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct',
-                    }
-                }
-            },
-        ],
-    });
-
-    isNotEmpty(attributes['nextButtonPadding']) && data.push({
-        'type': 'dimension',
-        'id': 'nextButtonPadding',
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'padding',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
-        ],
-    });
-
     isNotEmpty(attributes['nextButtonBgColor']) && data.push({
         'type': 'color',
         'id': 'nextButtonBgColor',
@@ -1010,7 +1027,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
     isNotEmpty(attributes['nextButtonBgColorHover']) && data.push({
         'type': 'color',
         'id': 'nextButtonBgColorHover',
@@ -1023,72 +1039,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 'name': 'background-color',
                 'valueType': 'direct'
             }
-        ],
-    });
-
-    if (isNotEmpty(attributes['nextButtonTransition'])) {
-        data.push({
-            'type': 'plain',
-            'id': 'nextButtonTransition',
-            'selector': [
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
-            ],
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': `${transitionShowCss} background-color {value}ms ease;`,
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
-                    }
-                },
-            ],
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'nextButtonTransition',
-            'selector': [
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next i`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next span`,
-            ],
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
-                    }
-                },
-            ],
-        });
-    }
-
-    isNotEmpty(attributes['nextButtonGap']) && data.push({
-        'type': 'plain',
-        'id': 'nextButtonGap',
-        'responsive': true,
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.next`
-        ],
-        'properties': [
-            {
-                'name': 'gap',
-                'valueType': 'pattern',
-                'pattern': '{value}px',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct',
-                    }
-                }
-            },
         ],
     });
 
@@ -1107,7 +1057,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
     isNotEmpty(attributes['prevButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'prevButtonColorHover',
@@ -1136,7 +1085,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
     isNotEmpty(attributes['prevTextColorHover']) && data.push({
         'type': 'color',
         'id': 'prevTextColorHover',
@@ -1151,45 +1099,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
-    isNotEmpty(attributes['prevButtonSize']) && data.push({
-        'type': 'plain',
-        'id': 'prevButtonSize',
-        'responsive': true,
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
-        ],
-        'properties': [
-            {
-                'name': 'font-size',
-                'valueType': 'pattern',
-                'pattern': '{value}px; height: fit-content; width: fit-content;',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct',
-                    }
-                }
-            },
-        ],
-    });
-
-    isNotEmpty(attributes['prevButtonPadding']) && data.push({
-        'type': 'dimension',
-        'id': 'prevButtonPadding',
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'padding',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
-        ],
-    });
-
     isNotEmpty(attributes['prevButtonBgColor']) && data.push({
         'type': 'color',
         'id': 'prevButtonBgColor',
@@ -1204,7 +1113,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
     isNotEmpty(attributes['prevButtonBgColorHover']) && data.push({
         'type': 'color',
         'id': 'prevButtonBgColorHover',
@@ -1217,71 +1125,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 'name': 'background-color',
                 'valueType': 'direct'
             }
-        ],
-    });
-
-    if (isNotEmpty(attributes['prevButtonTransition'])) {
-        data.push({
-            'type': 'plain',
-            'id': 'prevButtonTransition',
-            'selector': [
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
-            ],
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': `${transitionShowCss} background-color {value}ms ease;`,
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
-                    }
-                },
-            ],
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'prevButtonTransition',
-            'selector': [
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev i`,
-                `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev span`,
-            ],
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
-                    }
-                },
-            ],
-        });
-    }
-    isNotEmpty(attributes['prevButtonGap']) && data.push({
-        'type': 'plain',
-        'id': 'prevButtonGap',
-        'responsive': true,
-        'selector': [
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a.prev`
-        ],
-        'properties': [
-            {
-                'name': 'gap',
-                'valueType': 'pattern',
-                'pattern': '{value}px',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct',
-                    }
-                }
-            },
         ],
     });
 
