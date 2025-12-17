@@ -272,19 +272,11 @@
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "nextButtonColor": {
+        "buttonColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonColor": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonColorHover": {
+        "buttonColorHover": {
             "type": "object",
             "copyStyle": true
         },
@@ -294,19 +286,11 @@
         "buttonPadding": {
             "type": "object"
         },
-        "nextButtonBgColor": {
+        "buttonBgColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonBgColor": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonBgColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonBgColorHover": {
+        "buttonBgColorHover": {
             "type": "object",
             "copyStyle": true
         },
@@ -321,11 +305,20 @@
         "transitionShow": {
             "type": "string"
         },
-        "nextButtonTransition":{
+        "buttonTransition":{
             "type":"string"
         },
-        "prevButtonTransition":{
-            "type":"string"
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
         },
         "categoryButtonPadding": {
             "type": "object"

@@ -1,7 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { AlertControl, ColorControl, DimensionControl, HeadingControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
-import { nextButtonStylePanel } from './panel-next-button-style';
-import { prevButtonStylePanel } from './panel-prev-button-style';
+import {
+    AlertControl,
+    BorderControl,
+    BorderResponsiveControl,
+    ColorControl,
+    DimensionControl,
+    HeadingControl,
+    RangeControl,
+    SwitchControl,
+} from 'gutenverse-core/controls';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const navigationButtonStylePanel = (props) => {
     const {
@@ -11,6 +19,7 @@ export const navigationButtonStylePanel = (props) => {
         hideNavigationButton,
         elementId,
     } = props;
+    const device = getDeviceType();
 
     if (hideNavigationButton) {
         return [
@@ -83,77 +92,67 @@ export const navigationButtonStylePanel = (props) => {
         },
         // Normal
         {
-            id: 'nextButtonColor',
+            id: 'buttonColor',
             show: switcher.styleType === 'normal' || !switcher.styleType,
-            label: __('Next Icon Color', 'gutenverse-news'),
+            label: __('Icon Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevButtonColor',
-            show: switcher.styleType === 'normal' || !switcher.styleType,
-            label: __('Prev Icon Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'nextTextColor',
+            id: 'textColor',
             show: (switcher.styleType === 'normal' || !switcher.styleType) && ['slider-6', 'slider-7'].includes(sliderType),
-            label: __('Next Text Color', 'gutenverse-news'),
+            label: __('Text Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevTextColor',
-            show: (switcher.styleType === 'normal' || !switcher.styleType) && ['slider-6', 'slider-7'].includes(sliderType),
-            label: __('Prev Text Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'nextButtonBgColor',
+            id: 'buttonBgColor',
             show: switcher.styleType === 'normal' || !switcher.styleType,
-            label: __('Next Background Color', 'gutenverse-news'),
+            label: __('Background Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevButtonBgColor',
-            show: switcher.styleType === 'normal' || !switcher.styleType,
-            label: __('Prev Background Color', 'gutenverse-news'),
-            component: ColorControl,
+            id: 'borderButton',
+            show: (switcher.styleType === 'normal' || !switcher.styleType) && device === 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderResponsiveButton',
+            show: (switcher.styleType === 'normal' || !switcher.styleType) && device !== 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
         },
         // Hover
         {
-            id: 'nextButtonColorHover',
+            id: 'buttonColorHover',
             show: switcher.styleType === 'hover',
-            label: __('Next Icon Color', 'gutenverse-news'),
+            label: __('Icon Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevButtonColorHover',
-            show: switcher.styleType === 'hover',
-            label: __('Prev Icon Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'nextTextColorHover',
+            id: 'textColorHover',
             show: switcher.styleType === 'hover' && ['slider-6', 'slider-7'].includes(sliderType),
-            label: __('Next Text Color', 'gutenverse-news'),
+            label: __('Text Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevTextColorHover',
-            show: switcher.styleType === 'hover' && ['slider-6', 'slider-7'].includes(sliderType),
-            label: __('Prev Text Color', 'gutenverse-news'),
-            component: ColorControl,
-        },
-        {
-            id: 'nextButtonBgColorHover',
+            id: 'buttonBgColorHover',
             show: switcher.styleType === 'hover',
-            label: __('Next Background Color', 'gutenverse-news'),
+            label: __('Background Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
-            id: 'prevButtonBgColorHover',
-            show: switcher.styleType === 'hover',
-            label: __('Prev Background Color', 'gutenverse-news'),
-            component: ColorControl,
+            id: 'borderButtonHover',
+            show: (switcher.styleType === 'hover') && device === 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderResponsiveButtonHover',
+            show: (switcher.styleType === 'hover') && device !== 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
         },
         // End Switcher
         {

@@ -289,19 +289,11 @@
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "nextButtonColor": {
+        "buttonColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonColor": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonColorHover": {
+        "buttonColorHover": {
             "type": "object",
             "copyStyle": true
         },
@@ -311,19 +303,11 @@
         "buttonPadding": {
             "type": "object"
         },
-        "nextButtonBgColor": {
+        "buttonBgColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonBgColor": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonBgColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonBgColorHover": {
+        "buttonBgColorHover": {
             "type": "object",
             "copyStyle": true
         },
@@ -333,21 +317,25 @@
         "buttonGap": {
             "type": "object"
         },
-        "nextTextColor": {
+        "textColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevTextColor": {
+        "textColorHover": {
             "type": "object",
             "copyStyle": true
         },
-        "nextTextColorHover": {
-            "type": "object",
-            "copyStyle": true
+        "borderButton": {
+            "type": "object"
         },
-        "prevTextColorHover": {
-            "type": "object",
-            "copyStyle": true
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
         }
     },
     "supports": {
