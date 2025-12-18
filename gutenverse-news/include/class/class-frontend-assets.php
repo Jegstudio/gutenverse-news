@@ -111,7 +111,7 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array(),
+			array( 'gutenverse-iconlist', 'fontawesome-gutenverse' ), /* TODO: Remove this depenency after update the svg icon mechanism */
 			GUTENVERSE_NEWS_VERSION
 		);
 
@@ -133,7 +133,7 @@ class Frontend_Assets {
 			wp_register_style(
 				'gutenverse-news-frontend-' . $module . '-style',
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
-				null,
+				array( 'gutenverse-iconlist', 'fontawesome-gutenverse' ), /* TODO: Remove this depenency after update the svg icon mechanism */
 				GUTENVERSE_NEWS_VERSION
 			);
 		}
