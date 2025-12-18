@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl, IconControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
@@ -7,6 +7,11 @@ export const sliderPanel = (props) => {
         metaDateFormat,
         overlayOption,
         isOverrideOverlay,
+        sliderType,
+        hideNavigationButton,
+        alwaysShowNavigationButton,
+        hideImageNavigation,
+        elementId
     } = props;
     return [
         {
@@ -80,6 +85,71 @@ export const sliderPanel = (props) => {
             label: __('Excerpt Ellipsis', 'gutenverse-news'),
             description: __('Define excerpt ellipsis', 'gutenverse-news'),
             component: TextControl,
+        },
+        {
+            id: 'hideNavigationButton',
+            show: !alwaysShowNavigationButton,
+            label: __('Hide Button Navigation'),
+            component: CheckboxControl,
+        },
+        {
+            id: 'alwaysShowNavigationButton',
+            show: !hideNavigationButton,
+            label: __('Always Show Button Navigation'),
+            component: CheckboxControl,
+        },
+        {
+            id: 'transitionShow',
+            show: !hideNavigationButton && !alwaysShowNavigationButton,
+            label: __('Transition Show Duration', 'gutenverse-news'),
+            component: RangeControl,
+            min: 0,
+            max: 10000,
+            unit: 'ms',
+            step: 100,
+        },
+        {
+            id: 'gapButton',
+            show: !hideNavigationButton,
+            label: __('Gap Button', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 0,
+            max: 1000,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'gapButton',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
+                    'properties': [
+                        {
+                            'name': 'gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'nextButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Next', 'gutenverse-news'),
+            component: IconControl,
+        },
+        {
+            id: 'prevButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Previous', 'gutenverse-news'),
+            component: IconControl
         },
     ];
 };

@@ -1,10 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, TextControl, IconControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
         autoplay,
         columnWidth,
+        sliderType,
+        hideNavigationButton,
+        alwaysShowNavigationButton,
+        hideImageNavigation,
+        elementId
     } = props;
     return [
         {
@@ -73,6 +78,18 @@ export const sliderPanel = (props) => {
                     label: __('Right', 'gutenverse-news')
                 },
             ]
+        },
+        {
+            id: 'nextButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Next', 'gutenverse-news'),
+            component: IconControl,
+        },
+        {
+            id: 'prevButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Previous', 'gutenverse-news'),
+            component: IconControl
         },
     ];
 };

@@ -22,13 +22,13 @@ export const noContentPanel = (props) => {
         {
             id: 'noContentTypography',
             label: __('Typography', 'gutenverse-news'),
-            description: __('This option will change your header filter dropdown typography.', 'gutenverse-news'),
+            description: __('This option will change yout No Content Available typography.', 'gutenverse-news'),
             component: TypographyControl,
         },
         {
             id: 'noContentColor',
             label: __('Color', 'gutenverse-news'),
-            description: __('Change color of your header filter dropdown text in normal condition.', 'gutenverse-news'),
+            description: __('Change color of your header No Content Available text.', 'gutenverse-news'),
             component: ColorControl,
         },
         {

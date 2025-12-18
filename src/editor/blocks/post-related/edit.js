@@ -93,6 +93,7 @@ const PostRelated = compose(
         showMetaAuthor = true,
         showMetaComment = true,
         readmoreButtonDisabled = false,
+        gutenversePreviewBlock = '',
     } = attributes;
 
 
@@ -269,6 +270,11 @@ const PostRelated = compose(
                 firstRender.current = false;
                 return;
             }
+
+            if (gutenversePreviewBlock === 'noContent') {
+                setContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+                return;
+            }
             if (postData.length > 0) {
                 let template;
 
@@ -394,7 +400,8 @@ const PostRelated = compose(
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        listIcon
+        listIcon,
+        gutenversePreviewBlock
     ]);
 
     const headerData = {

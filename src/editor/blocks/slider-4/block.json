@@ -10,6 +10,10 @@
         "elementId": {
             "type": "string"
         },
+        "extraClass": {
+            "type": "string",
+            "default": " gvnews-slider-4 "
+        },
         "gvnewsModule": {
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Slider\\Slider_4"
@@ -256,6 +260,66 @@
         "titleColorHover": {
             "type": "object"
         },
+        "hideNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "buttonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonSize": {
+            "type": "object"
+        },
+        "buttonPadding": {
+            "type": "object"
+        },
+        "buttonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "buttonTransition":{
+            "type":"string"
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
+        },
         "categoryButtonPadding": {
             "type": "object"
         },
@@ -263,6 +327,36 @@
             "type": "object"
         },
         "containerWidth": {
+            "type": "object"
+        },
+        "dotGap": {
+            "type": "object"
+        },
+        "dotNormalColor": {
+            "type": "object"
+        },
+        "dotBorderNormalColor": {
+            "type": "object"
+        },
+        "dotNormalSize": {
+            "type": "object"
+        },
+        "dotHoverColor": {
+            "type": "object"
+        },
+        "dotBorderHoverColor": {
+            "type": "object"
+        },
+        "dotHoverSize": {
+            "type": "object"
+        },
+        "dotActiveColor": {
+            "type": "object"
+        },
+        "dotBorderActiveColor": {
+            "type": "object"
+        },
+        "dotActiveSize": {
             "type": "object"
         }
     },

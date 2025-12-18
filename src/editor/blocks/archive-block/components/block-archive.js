@@ -25,7 +25,7 @@ const BlockArchive = (props) => {
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        showNoContent
+        gutenversePreviewBlock = '',
     } = props;
 
     const metaSettings = {
@@ -138,7 +138,7 @@ const BlockArchive = (props) => {
         if (!postData) {
             return;
         }
-        if (showNoContent) {
+        if (gutenversePreviewBlock === 'noContent') {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
             return;
         }
@@ -176,7 +176,7 @@ const BlockArchive = (props) => {
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        showNoContent
+        gutenversePreviewBlock
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;
