@@ -21,7 +21,7 @@ export const designPanel = () => {
         },
         {
             id: 'hideTitleStyling',
-            label: __('Hide Title Styling', 'gutenverse-news'),
+            label: __('Hide Title Box', 'gutenverse-news'),
             component: CheckboxControl,
         },
         {
