@@ -9,7 +9,8 @@ export const noContentPanel = (props) => {
 
     return [
         {
-            id: 'showNoContent',
+            id: 'gutenversePreviewBlock',
+            previewName: 'noContent',
             label: __('Preview No Content', 'gutenverse-news'),
             description: __('Enable this option to show the content when no post is found.', 'gutenverse-news'),
             children: <>
