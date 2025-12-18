@@ -15,6 +15,9 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
+import { multiPostItemPanel } from '../../../control-panel/panel-post-item';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
+
 
 export const panelList = () => {
     return [
@@ -83,6 +86,12 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: multiPostItemPanel,
+            tabRole: TabStyle,
+        },
+        {
             title: __('Thumbnail', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => thumbnailSettingPanel({
@@ -137,6 +146,12 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Background', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
@@ -172,7 +187,7 @@ export const panelList = () => {
                 styleId: 'block-1-advance',
                 selector: [`.${props.elementId} .gvnews_postblock`],
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Condition', 'gutenverse-news'),

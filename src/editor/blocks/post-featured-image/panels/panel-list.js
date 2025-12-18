@@ -32,7 +32,7 @@ export const panelList = () => {
             title: __('Image Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: imageBorderPanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Container Border', 'gutenverse-news'),

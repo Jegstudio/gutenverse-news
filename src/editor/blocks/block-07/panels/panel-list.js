@@ -15,6 +15,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { titleStylePanel } from './panel-title-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return [
@@ -134,6 +135,12 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Background', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
@@ -168,7 +175,7 @@ export const panelList = () => {
                 ...props,
                 styleId: 'block-1-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Condition', 'gutenverse-news'),

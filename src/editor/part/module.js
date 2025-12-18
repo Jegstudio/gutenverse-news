@@ -85,7 +85,8 @@ const BlockModule = compose(
         readmoreButtonDisabled = false,
         listIcon = '',
         renderedImageSizeMain,
-        renderedImageSizeSecond
+        renderedImageSizeSecond,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const metaSettings = {
@@ -305,6 +306,10 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length > 0) {
             const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
             const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
@@ -347,7 +352,8 @@ const BlockModule = compose(
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        listIcon
+        listIcon,
+        gutenversePreviewBlock
     ]);
 
     const blockProps = useBlockProps({

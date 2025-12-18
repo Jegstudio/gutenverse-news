@@ -252,47 +252,25 @@
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "nextButtonColor": {
+        "buttonColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonColor": {
+        "buttonColorHover": {
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonSize": {
-            "type": "string"
-        },
-        "prevButtonSize": {
-            "type": "string"
-        },
-        "nextButtonPadding": {
+        "buttonSize": {
             "type": "object"
         },
-        "prevButtonPadding": {
+        "buttonPadding": {
             "type": "object"
         },
-        "nextButtonBgColor": {
+        "buttonBgColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonBgColor": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonBgColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "prevButtonBgColorHover": {
+        "buttonBgColorHover": {
             "type": "object",
             "copyStyle": true
         },
@@ -302,12 +280,6 @@
         },
         "tootlipColor": {
             "type": "object"
-        },
-        "nextButtonTransition":{
-            "type":"string"
-        },
-        "prevButtonTransition":{
-            "type":"string"
         },
         "showMeta": {
             "type": "boolean",
@@ -340,6 +312,18 @@
             "type": "object"
         },
         "containerPadding": {
+            "type": "object"
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
             "type": "object"
         }
     },

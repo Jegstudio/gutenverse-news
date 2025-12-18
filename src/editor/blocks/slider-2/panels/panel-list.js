@@ -8,6 +8,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { dotStylePanel } from '../../../control-panel/panel-dot-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -35,6 +36,15 @@ export const panelList = () => {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Dot Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => dotStylePanel({
+                    ...props,
+                    sliderType: 'slider-2'
+                }),
                 tabRole: TabStyle
             },
             {
@@ -70,7 +80,7 @@ export const panelList = () => {
                 panelArray: (props) => advancePanel({
                     ...props,
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             }, {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,

@@ -12,6 +12,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 
 export const panelList = () => {
@@ -117,6 +118,12 @@ export const panelList = () => {
             title: __('Pagination Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: paginationStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
             tabRole: TabStyle
         },
         {

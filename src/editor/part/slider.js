@@ -2,7 +2,13 @@ import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
 const SliderCaption = (props) => {
-    const { withElipsis = true, withMeta = true, withReadmore = false} = props;
+    const {
+        withElipsis = true,
+        withMeta = true,
+        withReadmore = false,
+        nextButtonIcon = 'fas fa-angle-right',
+        prevButtonIcon = 'fas fa-angle-left',
+    } = props;
     return (
         <div className="gvnews_slide_caption">
             <div className="gvnews_caption_container">
@@ -22,12 +28,12 @@ const SliderCaption = (props) => {
             </div>
             {props.navigation && <div className="gvnews_block_nav">
                 <a className="prev">
-                    <i className="fas fa-angle-left"></i>
-                    prev
+                    <i className={prevButtonIcon}></i>
+                    <span>prev</span>
                 </a>
                 <a className="next">
-                    next
-                    <i className="fas fa-angle-right"></i>
+                    <span>next</span>
+                    <i className={nextButtonIcon}></i>
                 </a>
             </div>}
         </div>

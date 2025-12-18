@@ -10,6 +10,10 @@
         "elementId": {
             "type": "string"
         },
+        "extraClass": {
+            "type": "string",
+            "default": " gvnews-slider-6 "
+        },
         "gvnewsModule": {
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Slider\\Slider_6"
@@ -280,6 +284,73 @@
             "type": "object"
         },
         "categoryButtonMargin": {
+            "type": "object"
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "buttonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonSize": {
+            "type": "object"
+        },
+        "buttonPadding": {
+            "type": "object"
+        },
+        "buttonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "gapBetweenButton": {
+            "type": "object"
+        },
+        "buttonGap": {
+            "type": "object"
+        },
+        "textColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "textColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
             "type": "object"
         }
     },
