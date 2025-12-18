@@ -189,6 +189,7 @@ class Frontend_Assets {
 				break;
 
 			case 'gutenverse/news-slider-1':
+			case 'gutenverse/news-slider-4':
 				if ( $this->attr_has_icon( $attrs, $block_name, 'nextButtonIcon', 'nextButtonIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}

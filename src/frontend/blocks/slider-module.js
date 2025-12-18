@@ -216,8 +216,12 @@ class GutenverseSliderModule {
     }
 
     defaultOption = () => {
-        const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
-        const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
+        const nextClass = this.container.dataset.classNext || '';
+        const nextClassType = this.container.dataset.classNextType || 'icon';
+        const nextClassSvg = this.container.dataset.classNextSvg || '';
+        const prevClass = this.container.dataset.classPrev || '';
+        const prevClassType = this.container.dataset.classPrevType || 'icon';
+        const prevClassSvg = this.container.dataset.classPrevSvg || '';
         const navNext = this.container.dataset.navNext || '';
         const navPrev = this.container.dataset.navPrev || '';
 
@@ -243,11 +247,11 @@ class GutenverseSliderModule {
             onInit: function (info) {
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
-                    u(info.nextButton).html(`<span class="tns-nav-text">${navNext}</span><i class="${nextClass}"></i>`);
+                    u(info.nextButton).html(`<span class="tns-nav-text">${navNext}</span>` + renderIcon(nextClass, nextClassType, nextClassSvg));
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
-                    u(info.prevButton).html(`<i class="${prevClass}"></i><span class="tns-nav-text">${navPrev}</span>`);
+                    u(info.prevButton).html(renderIcon(prevClass, prevClassType, prevClassSvg) + `<span class="tns-nav-text">${navPrev}</span>`);
                 }
             },
         };
@@ -360,8 +364,12 @@ class GutenverseSliderModule {
 
         // Slider 8.
         if (u(sliderDefault.container).hasClass('gvnews_slider_type_8')) {
-            const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
-            const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
+            const nextClass = this.container.dataset.classNext || '';
+            const nextClassType = this.container.dataset.classNextType || 'icon';
+            const nextClassSvg = this.container.dataset.classNextSvg || '';
+            const prevClass = this.container.dataset.classPrev || '';
+            const prevClassType = this.container.dataset.classPrevType || 'icon';
+            const prevClassSvg = this.container.dataset.classPrevSvg || '';
 
             slideType = 8;
             wrapper = u(sliderDefault.container).parent('.gvnews_slider_wrapper');
@@ -396,11 +404,11 @@ class GutenverseSliderModule {
                 this.setNavCenter(sliderDefault.container, wrapper);
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
-                    u(info.nextButton).html(`<i class="${nextClass}"></i>`);
+                    u(info.nextButton).html(renderIcon(nextClass, nextClassType, nextClassSvg));
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
-                    u(info.prevButton).html(`<i class="${prevClass}"></i>`);
+                    u(info.prevButton).html(renderIcon(prevClass, prevClassType, prevClassSvg));
                 }
             };
 
