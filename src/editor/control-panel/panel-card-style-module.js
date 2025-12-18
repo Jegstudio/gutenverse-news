@@ -10,52 +10,41 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const cardStylePanelModule = (props) => {
     const {
-        typeCount = 1,
+        cardType = 1,
+        hasSecondClass = false,
         switcher,
         setSwitcher,
     } = props;
     const device = getDeviceType();
-    const swicthValues = () => {
-        const result = [
-            {
-                label: __('First', 'gutenverse-news'),
-                value: 'first'
-            },
-        ];
-        if (typeCount >= 2) {
-            result.push({
-                label: __('Second', 'gutenverse-news'),
-                value: 'second'
-            });
-        }
-        if (typeCount >= 3) {
-            result.push({
-                label: __('Third', 'gutenverse-news'),
-                value: 'third'
-            });
-        }
-        return result;
-    }
 
     return [
-        {
-            id: '__typeCount',
-            component: SwitchControl,
-            show: typeCount > 1,
-            options: swicthValues(),
-            onChange: ({ __typeCount }) => setSwitcher({ ...switcher, typeCount: __typeCount }),
-        },
-        // First
+            {
+                id: '__cardType',
+                show: hasSecondClass,
+                component: SwitchControl,
+                options: [
+                    {
+                        value: 'main',
+                        label: 'Main'
+                    },
+                    {
+                        value: 'second',
+                        label: 'Second'
+                    }
+                ],
+                onChange: ({ __cardType }) => setSwitcher({ ...switcher, cardType: __cardType })
+            },
+        // Main
         {
             id: 'cardBorder',
             component: BorderControl,
-            show: (switcher.typeCount === 'first' || !switcher.typeCount) && device === 'Desktop',
+            show: (switcher.cardType === 'main' || !switcher.cardType) && device === 'Desktop',
             label: __('Border', 'gutenverse-news'),
         },
         {
             id: 'cardBorderResponsive',
             component: BorderResponsiveControl,
-            show: (switcher.typeCount === 'first' || !switcher.typeCount) && device !== 'Desktop',
+            show: (switcher.cardType === 'main' || !switcher.cardType) && device !== 'Desktop',
             label: __('Border', 'gutenverse-news'),
             allowDeviceControl: true,
         },
@@ -63,13 +52,13 @@ export const cardStylePanelModule = (props) => {
         {
             id: 'cardBorderSecond',
             component: BorderControl,
-            show: (switcher.typeCount === 'second') && device === 'Desktop',
+            show: (switcher.cardType === 'second') && device === 'Desktop',
             label: __('Border', 'gutenverse-news'),
         },
         {
             id: 'cardBorderResponsiveSecond',
             component: BorderResponsiveControl,
-            show: (switcher.typeCount === 'second') && device !== 'Desktop',
+            show: (switcher.cardType === 'second') && device !== 'Desktop',
             label: __('Border', 'gutenverse-news'),
             allowDeviceControl: true,
         },

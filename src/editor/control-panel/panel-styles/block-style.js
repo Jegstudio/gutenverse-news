@@ -1265,6 +1265,7 @@ const getBlockStyle = (
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
     data = noContentStyle(elementId, attributes, data);
+    data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     return data;
 };
 
@@ -2027,8 +2028,33 @@ const noContentStyle = (elementId, attributes, data) => {
 
 }
 
-const cardStyleModule = (elementId, attributes, data, firstClass, secondClass, thirdClass = null) => {
-    
+const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) => {
+    // Main
+    isNotEmpty(attributes['cardBorder']) && data.push({
+        'type': 'border',
+        'id': 'cardBorder',
+        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+    })
+    isNotEmpty(attributes['cardBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'cardBorderResponsive',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+    })
+
+    // Second
+    isNotEmpty(attributes['cardBorderSecond']) && data.push({
+        'type': 'border',
+        'id': 'cardBorderSecond',
+        'selector': `.${elementId} .gvnews_postblock .${secondClass}`,
+    })
+    isNotEmpty(attributes['cardBorderResponsiveSecond']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'cardBorderResponsiveSecond',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_postblock .${secondClass}`,
+    })
+    return data;
 }
 
 export default getBlockStyle;
