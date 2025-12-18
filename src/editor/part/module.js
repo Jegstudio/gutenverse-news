@@ -379,7 +379,6 @@ const BlockModule = compose(
         metaCommentIcon,
         metaCommentIconType,
         metaCommentIconSVG,
-        showNoContent,
     ]);
 
     const blockProps = useBlockProps({
