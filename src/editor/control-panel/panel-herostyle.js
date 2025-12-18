@@ -1,5 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, ColorControl, TypographyControl, CheckboxControl, RepeaterControl, HeadingControl, SwitchControl, BorderControl, BorderResponsiveControl } from 'gutenverse-core/controls';
+import {
+    BackgroundControl,
+    ColorControl,
+    TypographyControl,
+    CheckboxControl,
+    RepeaterControl,
+    HeadingControl,
+    SwitchControl,
+    BorderControl,
+    BorderResponsiveControl
+} from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const styleHero = (props, typeCount = 1) => {

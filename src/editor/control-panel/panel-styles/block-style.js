@@ -1980,7 +1980,6 @@ const postItemStyle = (elementId, attributes, data) => {
 
 }
 
-
 const noContentStyle = (elementId, attributes, data) => {
     isNotEmpty(attributes['noContentTypography']) && data.push({
         'type': 'typography',
@@ -2028,5 +2027,8 @@ const noContentStyle = (elementId, attributes, data) => {
 
 }
 
+const cardStyleModule = (elementId, attributes, data, firstClass, secondClass, thirdClass = null) => {
+    
+}
 
 export default getBlockStyle;
