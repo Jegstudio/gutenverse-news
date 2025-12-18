@@ -45,6 +45,79 @@ class Frontend_Assets {
 	}
 
 	/**
+	 * Get default attribute value from block.json
+	 *
+	 * @param string $block_name Block name (e.g. gutenverse/news-block-1)
+	 * @param string $attr Attribute name
+	 * @return mixed|null
+	 */
+	private function get_block_default_attr( $block_name, $attr ) {
+		static $cache = array();
+
+		$root = dirname( __DIR__, 3 );
+
+		// normalize block folder name
+		if ( 0 === strpos( $block_name, 'gutenverse/news-' ) ) {
+			$slug = substr( $block_name, strlen( 'gutenverse/news-' ) );
+		} else {
+			$slug = $block_name;
+		}
+
+		$folder = $slug;
+		if ( preg_match( '/^block-(\d+)$/', $slug, $m ) ) {
+			$folder = 'block-' . sprintf( '%02d', intval( $m[1] ) );
+		}
+
+		$path = $root . '/src/editor/blocks/' . $folder . '/block.json';
+
+		if ( isset( $cache[ $path ] ) ) {
+			$data = $cache[ $path ];
+		} else {
+			if ( file_exists( $path ) ) {
+				$raw = file_get_contents( $path );
+				$data = json_decode( $raw, true );
+			} else {
+				$data = null;
+			}
+			$cache[ $path ] = $data;
+		}
+
+		if ( ! $data || empty( $data['attributes'] ) || empty( $data['attributes'][ $attr ] ) ) {
+			return null;
+		}
+
+		$def = $data['attributes'][ $attr ];
+		if ( is_array( $def ) && array_key_exists( 'default', $def ) ) {
+			return $def['default'];
+		}
+
+		return null;
+	}
+
+	/**
+	 * Check whether an attribute represents an icon (using value or block.json default)
+	 *
+	 * @param array $attrs Attributes passed from block
+	 * @param string $block_name Block name
+	 * @param string $attrName Attribute name to check for value
+	 * @param string|null $typeName Optional attribute name for icon type
+	 * @return bool
+	 */
+	private function attr_has_icon( $attrs, $block_name, $attrName, $typeName = null ) {
+		$value = array_key_exists( $attrName, $attrs ) ? $attrs[ $attrName ] : $this->get_block_default_attr( $block_name, $attrName );
+		if ( empty( $value ) ) {
+			return false;
+		}
+		if ( $typeName ) {
+			$type = array_key_exists( $typeName, $attrs ) ? $attrs[ $typeName ] : $this->get_block_default_attr( $block_name, $typeName );
+			if ( isset( $type ) && 'icon' !== $type ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Conditional load font icon
 	 *
 	 * @param mixed  $conditions The value from the attributes array.
@@ -53,22 +126,7 @@ class Frontend_Assets {
 	 */
 	public function font_icon_conditional_load( $conditions, $attrs, $block_name ) {
 		switch ( $block_name ) {
-			case 'gutenverse/news-block-1':
-				// Check list icon.
-				if ( ! empty( $attrs['listIcon'] ) ) {
-					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
-				// Check header icon.
-				if ( ! empty( $attrs['icon'] ) ) {
-					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-				break;
-
+			// Header-only blocks: check `icon` + optional `iconType`.
 			case 'gutenverse/news-block-2':
 			case 'gutenverse/news-block-3':
 			case 'gutenverse/news-block-4':
@@ -104,89 +162,55 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-37':
 			case 'gutenverse/news-block-38':
 			case 'gutenverse/news-block-39':
-				// Check header icon.
-				if ( ! empty( $attrs['icon'] ) ) {
-					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+			case 'gutenverse/news-user-list':
+			case 'gutenverse/news-header':
+				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
 				break;
 
+			// Blocks that may have both `listIcon` and `icon` (use defaults when missing)
+			case 'gutenverse/news-block-1':
 			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-28':
-				// Check list icon.
-				if ( ! empty( $attrs['listIcon'] ) ) {
-					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
 				break;
 
 			case 'gutenverse/news-post-related':
-				// Check list icon.
-				if ( ! empty( $attrs['listIcon'] ) ) {
-					if ( ! isset( $attrs['listIconType'] ) || 'icon' === $attrs['listIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
 				break;
 
 			case 'gutenverse/news-slider-1':
-				// Check next button icon.
-				if ( ! empty( $attrs['nextButtonIcon'] ) ) {
-					if ( ! isset( $attrs['nextButtonIconType'] ) || 'icon' === $attrs['nextButtonIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'nextButtonIcon', 'nextButtonIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
-
-				// Check prev button icon.
-				if ( ! empty( $attrs['prevButtonIcon'] ) ) {
-					if ( ! isset( $attrs['prevButtonIconType'] ) || 'icon' === $attrs['prevButtonIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-				break;
-
-			case 'gutenverse/news-user-list':
-				// Check header icon.
-				if ( ! empty( $attrs['icon'] ) ) {
-					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-				break;
-
-			case 'gutenverse/news-header':
-				// Check header icon.
-				if ( ! empty( $attrs['icon'] ) ) {
-					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'prevButtonIcon', 'prevButtonIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
 				break;
 
 			case 'gutenverse/news-news-ticker':
-				// Check main icon.
-				if ( ! empty( $attrs['icon'] ) ) {
-					if ( ! isset( $attrs['iconType'] ) || 'icon' === $attrs['iconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
+					$this->icon_conditional_load( $conditions );
 				}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'nextIcon', 'nextIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'prevIcon', 'prevIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				break;
 
-				// Check next button icon.
-				if ( ! empty( $attrs['nextIcon'] ) ) {
-					if ( ! isset( $attrs['nextIconType'] ) || 'icon' === $attrs['nextIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
-
-				// Check prev button icon.
-				if ( ! empty( $attrs['prevIcon'] ) ) {
-					if ( ! isset( $attrs['prevIconType'] ) || 'icon' === $attrs['prevIconType'] ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
+			default:
+				// No icon-related defaults for other blocks.
 				break;
 		}
 
