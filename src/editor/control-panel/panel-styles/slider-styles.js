@@ -411,10 +411,6 @@ const getSliderStyle = (elementId, attributes, data = []) => {
             }
         ],
     });
-
-
-
-
     isNotEmpty(attributes['titleColorHover']) && data.push({
         'type': 'color',
         'id': 'titleColorHover',
@@ -423,6 +419,21 @@ const getSliderStyle = (elementId, attributes, data = []) => {
             {
                 'name': 'color',
                 'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['hideTitleStyling']) && data.push({ // For slider 4
+        'type': 'plain',
+        'id': 'hideTitleStyling',
+        'selector': [
+            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:before`,
+            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:after`,
+        ],
+        'properties': [
+            {
+                'name': 'content',
+                'valueType': 'pattern',
+                'pattern': 'none',
             }
         ],
     });
@@ -623,6 +634,18 @@ const getDotStyle = (elementId, attributes, data = []) => {
                 'name': 'opacity',
                 'valueType': 'pattern',
                 'pattern': '1 !important',
+            }
+        ],
+        'selector': `${baseSelector} .tns-nav`,
+    });
+    isNotEmpty(attributes['hideDot']) && data.push({
+        'id': 'hideDot',
+        'type': 'plain',
+        'properties': [
+            {
+                'name': 'opacity',
+                'valueType': 'pattern',
+                'pattern': '0 !important',
             }
         ],
         'selector': `${baseSelector} .tns-nav`,

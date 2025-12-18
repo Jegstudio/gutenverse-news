@@ -7,6 +7,8 @@ export const dotStylePanel = (props) => {
         setSwitcher,
         switcher,
         sliderType = '',
+        alwaysShowDot,
+        hideDot,
     } = props;
 
     const dotTypeNormal = !switcher.dotType || switcher.dotType === 'normal';
@@ -16,8 +18,14 @@ export const dotStylePanel = (props) => {
     return [
         {
             id: 'alwaysShowDot',
-            show: sliderType === 'slider-2',
+            show: sliderType === 'slider-2' && !hideDot,
             label: __('Always Show Dot', 'gutenverse-news'),
+            component: CheckboxControl,
+        },
+        {
+            id: 'hideDot',
+            show: !alwaysShowDot,
+            label: __('Hide Dot', 'gutenverse-news'),
             component: CheckboxControl,
         },
         {
