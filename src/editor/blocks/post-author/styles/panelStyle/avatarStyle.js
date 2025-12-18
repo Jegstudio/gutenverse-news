@@ -19,10 +19,6 @@ const avatarStyle = (props) => {
                 'name': 'width',
                 'valueType': 'direct'
             },
-            {
-                'name': 'height',
-                'valueType': 'direct'
-            }
         ],
     });
 

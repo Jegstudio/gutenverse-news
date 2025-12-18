@@ -340,7 +340,7 @@ class Post_Author extends Style_Abstract {
 				array(
 					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-image",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' ) . ';' . $this->handle_unit_point( $value, 'height' );
+						return $this->handle_unit_point( $value, 'width' );
 					},
 					'value'          => $this->attrs['avatarSize'],
 					'device_control' => true,
