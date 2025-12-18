@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl } from 'gutenverse-core/controls';
+import { SelectControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 
 export const designPanel = (props) => {
     return [
@@ -26,6 +26,22 @@ export const designPanel = (props) => {
                     label: __('12  Column Design ( 3 Block )', 'gutenverse-news')
                 },
             ]
+        },
+        {
+            id: 'typography',
+            label: __('Title Typography', 'gutenverse-news'),
+            description: __('This option will change your title typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'titleColorHover',
+            label: __('Title Color Hover', 'gutenverse-news'),
+            component: ColorControl,
         },
     ];
 };

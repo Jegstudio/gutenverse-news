@@ -1,4 +1,4 @@
-import { MetaModule1, MetaModule2, MetaAuthor, MetaCategory } from './meta';
+import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
 const SliderCaption = (props) => {
@@ -22,12 +22,12 @@ const SliderCaption = (props) => {
             </div>
             {props.navigation && <div className="gvnews_block_nav">
                 <a className="prev">
-                    <i className="fas ffa-chevron-left"></i>
+                    <i className="fas fa-angle-left"></i>
                     prev
                 </a>
                 <a className="next">
                     next
-                    <i className="fas ffa-chevron-right"></i>
+                    <i className="fas fa-angle-right"></i>
                 </a>
             </div>}
         </div>
@@ -35,6 +35,9 @@ const SliderCaption = (props) => {
 };
 
 const SliderMeta = (props) => {
+    if (!props.attr.option.option.meta_show) {
+        return <></>;
+    }
     const dateAttr = props?.attr?.date;
 
     let date = new Date(props.post.date[dateAttr.type] * 1000).toISOString();
@@ -45,7 +48,7 @@ const SliderMeta = (props) => {
             {!props.date && props.attr.option.option.meta_author && <MetaAuthor {...props} />}
             {props.attr.option.option && props.attr.option.option.meta_date &&
                 <div className="gvnews_meta_date">
-                    {props.date && <i className="fas fa-clock">&nbsp;</i>}
+                    {props.date && <i className="far fa-clock">&nbsp;</i>}
                     <a>
                         {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
                     </a>

@@ -90,10 +90,15 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 	 * @return string
 	 */
 	public function render_output( $result, $attr, $column_class ) {
-		$this->margin = isset( $attr['hero_margin']['size'] ) ? $attr['hero_margin']['size'] : $attr['hero_margin'];
-		$content      = $this->render_output_loop( $result );
-		$name         = strtolower( substr( $attr['short_code'], strrpos( $attr['short_code'], '_' ) + 1 ) );
-		$data_attr    = $this->data_attr( $attr );
+		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
+		$this->meta_settings = array_merge(
+			$this->meta_settings,
+			$meta_settings
+		);
+		$this->margin        = isset( $attr['hero_margin']['size'] ) ? $attr['hero_margin']['size'] : $attr['hero_margin'];
+		$content             = $this->render_output_loop( $result );
+		$name                = strtolower( substr( $attr['short_code'], strrpos( $attr['short_code'], '_' ) + 1 ) );
+		$data_attr           = $this->data_attr( $attr );
 
 		if ( isset( $attr['hero_type'] ) ) {
 			$name = $attr['hero_type'];

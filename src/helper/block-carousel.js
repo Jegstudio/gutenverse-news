@@ -1,2 +1,0 @@
-import './gvnewscarousel';
-import './carousel';

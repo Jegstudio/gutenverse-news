@@ -6,6 +6,7 @@ import { addQueryArgs } from '@wordpress/url';
 import { getModuleOptions, getParentColumnWidth } from '../../../utils/helper';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
+const defaultOptions = getModuleOptions();
 
 
 const BlockArchive = (props) => {
@@ -19,9 +20,28 @@ const BlockArchive = (props) => {
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        showNoContent
     } = props;
 
-    const moduleOption = useRef(null);
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_comment: showMetaComment,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
     const postCount = useRef(0);
     const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(12);
@@ -57,6 +77,20 @@ const BlockArchive = (props) => {
         (select) => select('core/block-editor'),
         []
     );
+    useEffect(() => {
+        if (columnWidth == 'auto') {
+            if (deviceType === 'Desktop') {
+                getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
+            } else if (deviceType === 'Tablet') {
+                getWidth(8);
+            } else {
+                getWidth(4);
+            }
+        } else {
+            getWidth(columnWidth);
+        }
+    }, [
+    ]);
 
 
     useEffect(() => {
@@ -78,10 +112,6 @@ const BlockArchive = (props) => {
 
     useEffect(() => {
 
-        if (moduleOption.current == null) {
-            moduleOption.current = getModuleOptions();
-            postCount.current = moduleOption.current.option.post_count.publish;
-        }
 
         postBulk ? setOverlay(true) : null;
         apiFetch({
@@ -105,7 +135,11 @@ const BlockArchive = (props) => {
     }, [loadPost]);
 
     useEffect(() => {
-        if(!postData) {
+        if (!postData) {
+            return;
+        }
+        if (showNoContent) {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
             return;
         }
         setBlock(
@@ -115,13 +149,14 @@ const BlockArchive = (props) => {
                     blockWidth,
                     excerptLength,
                     excerptEllipsis,
-                    moduleOption: moduleOption.current,
+                    moduleOption: moduleOption,
                     postData,
                     metaDateType,
                     metaDateFormat,
                     metaDateFormatCustom,
                     postBulk,
                     overlay,
+                    readmoreButtonDisabled
                 }}
             />
         );
@@ -130,13 +165,18 @@ const BlockArchive = (props) => {
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
         postBulk,
         overlay,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        showNoContent
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;

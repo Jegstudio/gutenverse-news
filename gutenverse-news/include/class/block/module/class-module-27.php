@@ -16,7 +16,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  * @author Jegstudio
  */
 class Module_27 extends Module_View_Abstract {
-
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_4';
 	/**
 	 * Method render_block_type
 	 *
@@ -33,10 +38,11 @@ class Module_27 extends Module_View_Abstract {
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		$excerpt   = 1 === $type ? null :
 		'<div class="gvnews_post_excerpt">
-                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
-							<a href="' . $permalink . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
+							. $read_more . ' 
                         </div>';
 
 		$post_meta = "<div class=\"gvnews_post_meta\">
@@ -88,7 +94,10 @@ class Module_27 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
                     {$this->get_content_before($attr)}

@@ -407,9 +407,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		// Heading.
-		$subtitle      = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
-		$header_class  = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
-		$heading_title = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
+		$subtitle        = ! empty( $attr['second_title'] ) ? "<strong>&nbsp;{$attr['second_title']}</strong>" : '';
+		$header_class    = ! empty( $attr['header_type'] ) ? "gvnews_block_{$attr['header_type']}" : '';
+		$heading_title   = ( ! empty( $attr['first_title'] ) ? $attr['first_title'] : '' ) . $subtitle;
+		$additional_line = ( isset( $attr['header_type'] ) && 'heading_5' === $attr['header_type'] ) ? '<span class="line"></span>' : '';
 
 		if ( ! empty( $heading_title ) ) {
 			$heading_icon  = empty( $attr['header_icon'] ) ? '' : "<i class='" . ( count( explode( ' ', $attr['header_icon'] ) ) !== 1 ? '' : 'fa ' ) . "{$attr['header_icon']}'></i>";
@@ -488,6 +489,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		return empty( $heading_title ) && empty( $sub_cat ) ? '' :
 		"<div class=\"gvnews_block_heading {$header_class} gvnews_subcat_right\">
                      {$heading_title}
+					 {$additional_line}
                      {$sub_cat}
                  </div>";
 	}
@@ -523,7 +525,15 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	public function ajax_request() {
 		if ( isset( $_REQUEST['data'] ) && isset( $_REQUEST['data']['attribute'] ) ) {
 			if ( isset( $_REQUEST['data']['attribute'] ['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute'] ['nonce'] ) ), 'gvnews-module-nonce' ) ) {
-				$attr = array(
+				$meta_settings = array();
+				if ( isset( $_REQUEST['data']['attribute']['meta_settings'] ) ) {
+					$meta_settings = wp_unslash( $_REQUEST['data']['attribute']['meta_settings'] );
+					$meta_settings = array_map( 'sanitize_text_field', $meta_settings );
+				}
+
+				$disable_readmore = isset( $_REQUEST['data']['attribute']['disable_readmore'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['disable_readmore'] ) ) : false;
+				$disable_readmore = 'string' === gettype( $disable_readmore ) && 'false' === $disable_readmore ? false : $disable_readmore;
+				$attr             = array(
 					'filter'       => isset( $_REQUEST['data']['filter'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['filter'] ) ) : '',
 					'filter_type'  => isset( $_REQUEST['data']['filter_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['filter_type'] ) ) : '',
 					'current_page' => isset( $_REQUEST['data']['current_page'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['current_page'] ) ) : '',
@@ -583,6 +593,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						'paged'                        => isset( $_REQUEST['data']['attribute']['paged'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['paged'] ) ) : '',
 						'column_class'                 => isset( $_REQUEST['data']['attribute']['column_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_class'] ) ) : '',
 						'class'                        => isset( $_REQUEST['data']['attribute']['class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['class'] ) ) : '',
+						'disable_readmore'             => $disable_readmore,
+						'meta_settings'                => $meta_settings,
 						'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 					),
 				);
@@ -648,6 +660,54 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		return $args;
+	}
+
+	/**
+	 * Method main_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function main_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeMain'] ) && 'default' !== $this->attribute['renderedImageSizeMain'] ? $this->attribute['renderedImageSizeMain'] : $size;
+		return $size;
+	}
+
+	/**
+	 * Method second_custom_image_size
+	 *
+	 * @param mixed $size size.
+	 * @return mixed
+	 */
+	public function second_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeSecond'] ) && 'default' !== $this->attribute['renderedImageSizeSecond'] ? $this->attribute['renderedImageSizeSecond'] : $size;
+		return $size;
+	}
+
+	/**
+	 * Method thumbnail_container_class_default
+	 *
+	 * @param string $class_name class.
+	 * @return string
+	 */
+	public function thumbnail_container_class_default( $class_name ) {
+		if ( in_array( $this->attribute['renderedImageSizeMain'], array( 'default', 'full' ), true ) ) {
+			$class_name .= ' default';
+		}
+		return $class_name;
+	}
+
+	/**
+	 * Return name class no-liear-bg or ''.
+	 *
+	 * @return string
+	 */
+	protected function postblock_content_no_linear_bg() {
+
+		if ( ! empty( $this->attribute['content_container_background']['color'] ) || ! empty( $this->attribute['content_container_background']['gradientColor'] ) ) {
+			return 'no-linear-bg';
+		}
+		return '';
 	}
 
 	/**

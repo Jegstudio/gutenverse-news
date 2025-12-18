@@ -166,6 +166,17 @@ class Block extends Grab {
 			'compatible_column_notice'     => '',
 			'show_date'                    => $enbdate,
 			'short_code'                   => $this->attributes['gvnewsModule'],
+			'renderedImageSizeMain'        => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
+			'renderedImageSizeSecond'      => isset( $this->attributes['renderedImageSizeSecond'] ) ? $this->attributes['renderedImageSizeSecond'] : '',
+			'disable_readmore'             => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'                => array(
+				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+			),
+			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : [],
 		);
 		$sccontent = '';
 
@@ -173,11 +184,11 @@ class Block extends Grab {
 	}
 
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		$deprecated = array(
 			'GUTENVERSE\NEWS\Block\Module\Module_10',
 			'GUTENVERSE\NEWS\Block\Module\Module_11',
@@ -186,11 +197,9 @@ class Block extends Grab {
 			'GUTENVERSE\NEWS\Block\Module\Module_14',
 			'GUTENVERSE\NEWS\Block\Module\Module_15',
 			'GUTENVERSE\NEWS\Block\Module\Module_16',
-			'GUTENVERSE\NEWS\Block\Module\Module_17',
 			'GUTENVERSE\NEWS\Block\Module\Module_18',
 			'GUTENVERSE\NEWS\Block\Module\Module_19',
 			'GUTENVERSE\NEWS\Block\Module\Module_20',
-			'GUTENVERSE\NEWS\Block\Module\Module_21',
 			'GUTENVERSE\NEWS\Block\Module\Module_22',
 			'GUTENVERSE\NEWS\Block\Module\Module_23',
 			'GUTENVERSE\NEWS\Block\Module\Module_24',

@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-user-list",
     "title": "User List",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\User_List",
-    "description": "Your Block description.",
+    "description": "Display users, contributors, or members listed on your site.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {

@@ -5,19 +5,18 @@ import { stylePanel } from './panel-style';
 import { applyFilters } from '@wordpress/hooks';
 
 export const panelList = () => {
-    const domain = 'gutenverse-news';
     const selector = (props) => `.gvnews-block.gvnews-block-wrapper.${props.elementId} .gvnews_prevnext_post`;
     return applyFilters(
         'gutenverse.news.post-next-prev.panels',
         [
             {
-                title: __('Display', domain),
+                title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: responsivePanel,
                 tabRole: TabSetting
             },
             {
-                title: __('Spacing', domain),
+                title: __('Spacing', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => advancePanel({
                     ...props,
@@ -28,13 +27,13 @@ export const panelList = () => {
             },
             // Style
             {
-                title: __('Style', domain),
+                title: __('Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: stylePanel,
                 tabRole: TabStyle,
             },
             {
-                title: __('Border', domain),
+                title: __('Border', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => borderPanel({
                     ...props,
@@ -43,7 +42,7 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
-                title: __('Background', domain),
+                title: __('Background', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => backgroundPanel({
                     ...props,

@@ -2,7 +2,20 @@ import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 
 const Block22Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -10,7 +23,7 @@ const Block22Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                <ThumbModule size={715} cat={true} post={post}/>
+                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
                 <ContentModule title={true} meta={2} excerpt={false} post={post} attr={attr}/>
             </>
         );

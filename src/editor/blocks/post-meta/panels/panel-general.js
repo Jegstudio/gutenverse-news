@@ -1,7 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, SelectSearchControl } from 'gutenverse-core/controls';
+import { CheckboxControl, SelectControl, SelectSearchControl, TextControl } from 'gutenverse-core/controls';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
-export const generalPanel = () => {
+export const generalPanel = (props) => {
+
+    const {
+        metaLeft,
+        metaRight,
+    } = props;
 
     const searchMeta = input => new Promise(resolve => {
         return resolve([
@@ -23,6 +29,9 @@ export const generalPanel = () => {
             },
         ]);
     });
+
+
+
 
     return [
         {
@@ -56,6 +65,24 @@ export const generalPanel = () => {
                     value: 'published'
                 },
             ],
+        },
+        {
+            id: 'authorPrefix',
+            label: __('Author Prefix', 'gutenverse-news'),
+            component: TextControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'author')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'author'))
+        },
+        {
+            id: 'categoryPrefix',
+            label: __('Category Prefix', 'gutenverse-news'),
+            component: TextControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'category')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'category'))
+        },
+        {
+            id: 'datePrefix',
+            label: __('Date Prefix', 'gutenverse-news'),
+            component: CheckboxControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'date')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'date'))
         },
     ];
 };

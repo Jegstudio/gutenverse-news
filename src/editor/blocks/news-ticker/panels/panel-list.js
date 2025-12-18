@@ -4,6 +4,9 @@ import { settingPanel } from './panel-setting';
 import { generalPanel } from './panel-general';
 import { designPanel } from './panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { tickerTitlePanel } from './panel-ticker-title';
+import { navigationPanel } from './panel-navigation-panel';
+import { navigationWrapperPanel } from './panel-navigation-wrapper-panel';
 
 export const panelList = () => {
     return [
@@ -22,13 +25,24 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Design', 'gutenverse-news'),
-            panelArray: (props) => designPanel({
-                ...props,
-                styleId: 'news-ticker-background',
-                normalOptions: [ 'default', 'gradient' ],
-            }),
-            tabRole: TabSetting
+            title: __('Content', 'gutenverse-news'),
+            panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Ticker Title', 'gutenverse-news'),
+            panelArray: tickerTitlePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Navigation Wrapper', 'gutenverse-news'),
+            panelArray: navigationWrapperPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Navigation', 'gutenverse-news'),
+            panelArray: navigationPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),
@@ -46,19 +60,13 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
-            title: __('Positioning', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: positioningPanel,
-            tabRole: TabStyle,
-        },
-        {
             title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => advancePanel({
                 ...props,
                 styleId: 'news-ticker-advance',
             }),
-            tabRole: TabStyle,
+            tabRole: TabSetting,
         }
     ];
 };

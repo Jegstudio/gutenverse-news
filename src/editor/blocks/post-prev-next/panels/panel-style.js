@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
-import { handleTypography } from 'gutenverse-core/styling';
+import { CheckboxControl, ColorControl, RangeControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const stylePanel = (props) => {
     const {
@@ -8,18 +7,55 @@ export const stylePanel = (props) => {
         setSwitcher,
         switcher
     } = props;
-    const domain = 'gutenverse-news';
 
     return [
         {
             id: 'titleTypography',
-            label: __('Title Typography', domain),
+            label: __('Title Typography', 'gutenverse-news'),
             component: TypographyControl,
         },
         {
             id: 'navTypography',
-            label: __('Nav Text Typography', domain),
+            label: __('Nav Text Typography', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'widthMode',
+            label: __('Force 1 Column', 'gutenverse-news'),
+            description: __('Turn on this option to show the next and previous blocks stacked in one column on mobile devices.', 'gutenverse-news'),
+            component: CheckboxControl,
+            allowDeviceControl: false,
+            specificDevice: 'Mobile',
+        },
+        {
+            id: 'gap',
+            label: __('Gap', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'gap',
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'gap',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_prevnext_post`,
+                }
+            ],
         },
         {
             id: '__stylePrevNextType',
@@ -40,38 +76,38 @@ export const stylePanel = (props) => {
         {
             id: 'titleColor',
             show: !switcher.stylePrevNextType || switcher.stylePrevNextType === 'normal',
-            label: __('Title Color', domain),
+            label: __('Title Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'navTextColor',
             show: !switcher.stylePrevNextType || switcher.stylePrevNextType === 'normal',
-            label: __('Nav Text Color', domain),
+            label: __('Nav Text Color', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'accentColor',
             show: !switcher.stylePrevNextType || switcher.stylePrevNextType === 'normal',
-            label: __('Accent Color', domain),
+            label: __('Accent Color', 'gutenverse-news'),
             component: ColorControl,
         },
         // Hover
         {
             id: 'titleColorHover',
             show: switcher.stylePrevNextType === 'hover',
-            label: __('Title Color Hover', domain),
+            label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'navTextColorHover',
             show: switcher.stylePrevNextType === 'hover',
-            label: __('Nav Text Color Hover', domain),
+            label: __('Nav Text Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
         {
             id: 'accentColorHover',
             show: switcher.stylePrevNextType === 'hover',
-            label: __('Accent Color Hover', domain),
+            label: __('Accent Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
     ];

@@ -1,102 +1,175 @@
 import { __ } from '@wordpress/i18n';
 import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
-import { headerPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from '../../../control-panel/panel-design';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
-import { applyFilters } from '@wordpress/hooks';
 import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
+import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
+import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
+import { postItemGridPanel } from '../../../control-panel/panel-post-item';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
-    return applyFilters(
-        'gutenverse.news.block.panels',
-        [
-            {
-                title: __('Header', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => headerPanel({
+    return [
+        // Setting
+        {
+            title: __('Header', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => headerSettingsPanel({ ...props }),
+            tabRole: TabSetting,
+        },
+        {
+            id: 'header-filter',
+            title: __('Header Filter', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => headerFilterPanel(props),
+            tabRole: TabSetting,
+        },
+        {
+            title: __('Content Filter', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: filterPanel,
+            tabRole: TabSetting,
+        },
+        {
+            title: __('Content Setting', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: settingPanel,
+            tabRole: TabSetting,
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaPanel(props, ['date']),
+            tabRole: TabSetting,
+        },
+        {
+            title: __('Pagination', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationPanel,
+            tabRole: TabSetting,
+        },
+        // Style
+        {
+            title: __('Header', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => headerStylesPanel({ ...props }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Header Filter Dropdown', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: HeaderFilterDropdownPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: postItemGridPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Thumbnail', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailSettingPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Thumbnail Overlay', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailOverlayPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) =>
+                contentContainerPanel({
                     ...props,
-                    styleId: 'news-ticker-background',
-                    normalOptions: ['default', 'gradient'],
+                    contentAlignVertical: { main: true },
                 }),
-                tabRole: TabSetting
-            },
-            {
-                id: 'header-filter',
-                title: __('Header Filter', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => {
-                    return headerFilterPanel(props);
-                },
-                tabRole: TabSetting,
-
-            },
-            {
-                title: __('Content Filter', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: filterPanel,
-                tabRole: TabSetting
-            },
-            {
-                title: __('Content Setting', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: settingPanel,
-                tabRole: TabSetting
-            },
-            {
-                title: __('Pagination', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: paginationPanel,
-                tabRole: TabSetting
-            },
-            {
-                title: __('Design', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: designPanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Background', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => backgroundPanel({
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaStylePanel(props, ['date']),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Pagination Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: paginationStylePanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Background', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) =>
+                backgroundPanel({
                     ...props,
                     styleId: 'block-21-background',
-                    normalSelector: [`.${props.elementId} .gvnews_pb_boxed`, `.${props.elementId}`],
-                    hoverSelector: [`.${props.elementId} .gvnews_pb_boxed:hover`, `.${props.elementId}:hover`],
+                    normalSelector: [
+                        `.${props.elementId} .gvnews_pb_boxed`,
+                        `.${props.elementId}`,
+                    ],
+                    hoverSelector: [
+                        `.${props.elementId} .gvnews_pb_boxed:hover`,
+                        `.${props.elementId}:hover`,
+                    ],
                     normalOptions: ['default', 'gradient'],
                     hoverOptions: ['default', 'gradient'],
                 }),
-                tabRole: TabStyle
-            },
-            {
-                title: __('Border', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: borderPanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Display', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: responsivePanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Spacing', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) => advancePanel({
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Border', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: borderPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Display', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: responsivePanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Spacing', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) =>
+                advancePanel({
                     ...props,
                     styleId: 'block-21-advance',
                 }),
-                tabRole: TabStyle
-            },
-            {
-                title: __('Condition', 'gutenverse-news'),
-                panelArray: conditionPanel,
-                initialOpen: false,
-                pro: true
-            },
-        ]
-    );
+            tabRole: TabSetting,
+        },
+
+        // Pro
+        {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true,
+        },
+    ];
 };

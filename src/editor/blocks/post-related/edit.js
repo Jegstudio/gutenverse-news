@@ -49,7 +49,7 @@ import PaginationModule from '../../part/pagination';
 
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const PostRelated = compose(
     withPartialRender,
@@ -86,8 +86,30 @@ const PostRelated = compose(
         showNavText,
         paginationPost,
         sortBy,
-        columnWidth
+        columnWidth,
+        listIcon,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        readmoreButtonDisabled = false,
     } = attributes;
+
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_comment: showMetaComment,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -131,7 +153,7 @@ const PostRelated = compose(
 
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         getTrim([]);
@@ -169,7 +191,7 @@ const PostRelated = compose(
 
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         apiFetch({
@@ -192,7 +214,7 @@ const PostRelated = compose(
         }).then((data) => {
             const { result = [], ...pagination } = JSON.parse(data);
             setNextPrevTotalPagination(pagination);
-            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+            if (paginationMode === 'loadmore' || paginationMode === 'scrollload') {
                 result.length > 0 ? getTrim([...postData, ...result]) : null;
                 return;
             }
@@ -243,7 +265,7 @@ const PostRelated = compose(
 
     useEffect(() => {
         if (templateType) {
-            if(firstRender.current) {
+            if (firstRender.current) {
                 firstRender.current = false;
                 return;
             }
@@ -265,6 +287,8 @@ const PostRelated = compose(
                     numberPost,
                     paginationPost,
                     page,
+                    listIcon,
+                    readmoreButtonDisabled
                 };
 
                 switch (templateType) {
@@ -360,12 +384,17 @@ const PostRelated = compose(
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
         postData,
-        templateType
+        templateType,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        listIcon
     ]);
 
     const headerData = {
@@ -398,7 +427,7 @@ const PostRelated = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className={`${templateType.replace('template_', 'gvnews_postblock_')} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+            <div className={`${templateType.replace('template_', 'gvnews_postblock_')} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
                 <HeaderModule {...headerData} />
                 <div className="gvnews_block_container">
                     {content}

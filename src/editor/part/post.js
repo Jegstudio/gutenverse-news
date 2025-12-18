@@ -1,3 +1,4 @@
+import { isNotEmpty } from 'gutenverse-core/helper';
 import { MetaModule1, MetaModule2, MetaModule3, MetaCategory } from './meta';
 
 const PostTitle = (props) => {
@@ -28,8 +29,12 @@ const PostExcerpt = (props) => {
 };
 
 const ContentModule = (props) => {
+    let noLinear = '';
+    if (isNotEmpty(props.panelAttr?.contentContainerBackground?.gradientColor || props.panelAttr?.contentContainerBackground?.color)) {
+        noLinear = 'no-linear-bg';
+    }
     return (
-        <div className="gvnews_postblock_content">
+        <div className={`gvnews_postblock_content ${noLinear}`}>
             {props.cat && <MetaCategory {...props} />}
             {props.title && <PostTitle {...props} />}
             {props.attr.option && props.meta == 1 ? (

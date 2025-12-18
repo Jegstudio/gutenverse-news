@@ -1,5 +1,5 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
@@ -9,15 +9,15 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
-import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const PostPrevNext = compose(
     withPartialRender,
@@ -109,11 +109,18 @@ const PostPrevNext = compose(
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Post Next Prev" />
+                <PanelUpgradePro title="Post Next Prev" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
             <div {...blockProps}>
@@ -121,7 +128,7 @@ const PostPrevNext = compose(
                     <div className="gvnews_prevnext_post">
                         {content ? content : <ModuleOverlay />}
                     </div>
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

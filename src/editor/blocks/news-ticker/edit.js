@@ -16,11 +16,11 @@ import { ModuleSkeleton } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import { getModuleOptions } from '../../utils/helper';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { timeDifference } from '../../utils/date-util';
 
 const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
 
 const NewsTickerBlock = compose(
     withPartialRender,
@@ -57,9 +57,17 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        nextIcon,
+        prevIcon,
+        contentBorder,
+        contentBorderResponsive,
+        contentHeight,
+        contentHeightResponsive,
+        showMeta
     } = attributes;
 
     const elementRef = useRef(null);
+    const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -142,179 +150,12 @@ const NewsTickerBlock = compose(
         offsetLoaded,
     ]);
 
-    function newsTickerInit() {
-        let options = extend(
-            {
-                container: '.gvnews_news_ticker',
-                autoplay: true,
-                delay: 3000,
-                animation: 'vertical',
-                item: '.gvnews_news_ticker_item',
-                classes: {
-                    active_class: 'gvnews_news_ticker_active',
-                },
-            },
-            options || {}
-        );
-        let gvnewstickerList = ['container', 'item'],
-            optionsElements = {};
-        gvnewstickerList.forEach(function (item) {
-            if (typeof options[item] === 'string') {
-                let str = options[item],
-                    el = 'item' === item && options['container'] && options['container'].nodeName ? options['container'].querySelectorAll(str) : elementRef.current.querySelector(str);
-                optionsElements[item] = str;
-                if (el && (el.nodeName || ('object' === typeof el && el.length))) {
-                    options[item] = el;
-                } else {
-                    console.warn('Can\'t find', options[item]);
-                    return;
-                }
-            }
+    useEffect(() => {
+        setAttributes({
+            ...attributes,
+            tickerLineHeight: getLineHeight(attributes)
         });
-
-        if (options.container.children.length < 1) {
-            console.warn('No item found in', options.container);
-            return;
-        }
-
-        let container = options.container,
-            item = options.item,
-            current_slider = 0,
-            trailing_slider = null,
-            previous_slider = null,
-            number_slider = 0,
-            advance_timeout = null,
-            active_class = 'gvnews_news_ticker_active',
-            horizontal_effect = ['fadeInLeft', 'fadeInRight', 'fadeOutLeft', 'fadeOutRight'],
-            vertical_effect = ['fadeInUp', 'fadeInDown', 'fadeOutDown', 'fadeOutUp'],
-            slide_effect = null;
-
-        function init() {
-            options.animation = container.dataset.animation;
-            options.autoplay = container.dataset.autoplay;
-            options.delay = container.dataset.delay;
-            number_slider = item.length;
-
-            if (number_slider > 1) {
-                if ('horizontal' === options.animation) {
-                    slide_effect = horizontal_effect;
-                } else if ('vertical' === options.animation) {
-                    slide_effect = vertical_effect;
-                }
-                bind_direction();
-                do_autoplay();
-                do_slide('next');
-            } else {
-                item[0].classList.add(active_class);
-            }
-        }
-        function bind_direction() {
-            container.querySelector('.gvnews_news_ticker_control').addEventListener('click', function (e) {
-                let action = '';
-                if (e.target.classList.contains('gvnews_news_ticker_next')) {
-                    action = 'next';
-                }
-                if (e.target.classList.contains('gvnews_news_ticker_prev')) {
-                    action = 'prev';
-                }
-                if ('' !== action) {
-                    do_slide(action);
-                }
-            });
-            item.forEach(function (element, index) {
-                element.addEventListener('mouseover', function () {
-                    clearTimeout(advance_timeout);
-                });
-                element.addEventListener('mouseout', function () {
-                    do_autoplay();
-                });
-            });
-        }
-        function do_slide(goto) {
-            remove_class_trailing_slider();
-            add_active_class(goto);
-            advance_slider(goto);
-            do_autoplay();
-        }
-        function do_autoplay() {
-            if (options.autoplay) {
-                autoplay();
-            }
-        }
-        function autoplay() {
-            window.clearTimeout(advance_timeout);
-            advance_timeout = window.setTimeout(function () {
-                do_slide('next');
-            }, options.delay);
-        }
-        function remove_class_trailing_slider() {
-            if (null !== trailing_slider) {
-                let trailing_item = item[trailing_slider];
-                slide_effect.forEach(function (element, index) {
-                    trailing_item.classList.remove(element);
-                });
-            }
-        }
-        function add_active_class(goto) {
-            let current = item[current_slider],
-                previous = item[previous_slider];
-            trailing_slider = previous_slider;
-
-            if ('next' === goto) {
-                if (null !== previous_slider) {
-                    previous.classList.remove(active_class, slide_effect[0], slide_effect[1]);
-                    previous.classList.add(slide_effect[3]);
-                }
-                current.classList.add(active_class, slide_effect[0]);
-            } else {
-                if (null !== previous_slider) {
-                    previous.classList.remove(active_class, slide_effect[0], slide_effect[1]);
-                    previous.classList.add(slide_effect[2]);
-                }
-                current.classList.add(active_class, slide_effect[1]);
-            }
-        }
-        function advance_slider(goto) {
-            previous_slider = current_slider;
-
-            if ('next' === goto) {
-                current_slider++;
-            } else {
-                current_slider--;
-            }
-
-            if (current_slider >= number_slider) {
-                current_slider = 0;
-            }
-
-            if (current_slider < 0) {
-                current_slider = number_slider - 1;
-            }
-        }
-        init();
-    }
-
-    function extend() {
-        let obj,
-            name,
-            copy,
-            target = arguments[0] || {},
-            i = 1,
-            length = arguments.length;
-        for (; i < length; i++) {
-            if ((obj = arguments[i]) !== null) {
-                for (name in obj) {
-                    copy = obj[name];
-                    if (target === copy) {
-                        continue;
-                    } else if (copy !== undefined) {
-                        target[name] = copy;
-                    }
-                }
-            }
-        }
-        return target;
-    }
+    }, [contentBorder, contentBorderResponsive, contentHeight, contentHeightResponsive]);
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -344,9 +185,9 @@ const NewsTickerBlock = compose(
                 <span>
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </span>
-                <span className="post-date">
+                {showMeta && <span className="post-date">
                     {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
-                </span>
+                </span>}
             </div>
         );
     }
@@ -386,14 +227,23 @@ const NewsTickerBlock = compose(
         autoplay,
         autoplayDelay,
         animationDirection,
+        showMeta
     ]);
+
+    useEffect(() => {
+        if (blockRef.current && postData.length > 0) {
+            setTimeout(() => {
+                window.gvnewsNewsticker(blockRef.current);
+            }, 100);
+        }
+    }, [blockRef, postData, animationDirection, showMeta]);
 
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className="gvnews_breakingnews clearfix">
+                <div ref={blockRef} className="gvnews_breakingnews clearfix">
                     <div className="gvnews_breakingnews_title">
                         <i className={icon}>&nbsp;</i>
                         <span>{title}</span>
@@ -401,18 +251,50 @@ const NewsTickerBlock = compose(
                     <div className="gvnews_news_ticker" data-autoplay={autoplay ? 1 : ''} data-delay={autoplayDelay} data-animation={animationDirection}>
                         <div className="gvnews_news_ticker_items">
                             {block ? block : 'loading'}
-                            {ticker && newsTickerInit()}
                             {ticker && initTicker(false)}
                         </div>
-                        <div className="gvnews_news_ticker_control">
-                            <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><span><i className="fas fa-angle-right"></i></span></div>
-                            <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><span><i className="fas fa-angle-left"></i></span></div>
-                        </div>
+                    </div>
+                    <div className="gvnews_news_ticker_control">
+                        <div className="gvnews_news_ticker_prev gvnews_news_ticker_arrow"><i className={prevIcon}></i></div>
+                        <span className="nav-separator"></span>
+                        <div className="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i className={nextIcon}></i></div>
                     </div>
                 </div>
             </div>
         </div>
     </>;
 });
+
+const getLineHeight = (attributes) => {
+    let lineHeight = attributes?.contentHeight?.desktop || '38';
+    let topWidth = 1;
+    let bottomWidth = 1;
+    let value = {};
+    ['Desktop', 'Tablet', 'Mobile'].forEach((item) => {
+        lineHeight = attributes?.contentHeight?.[item] || lineHeight;
+
+        if (isNotEmpty(attributes['contentBorder'])) {
+            topWidth = attributes?.contentBorder?.all?.width || topWidth;
+            bottomWidth = attributes?.contentBorder?.all?.width || bottomWidth;
+            topWidth = attributes?.contentBorder?.top?.width || topWidth;
+            bottomWidth = attributes?.contentBorder?.bottom?.width || bottomWidth;
+        }
+        if (item !== 'Desktop') {
+            if (isNotEmpty(attributes['contentBorderResponsive']) && isNotEmpty(attributes['contentBorderResponsive'][item])) {
+                topWidth = attributes?.contentBorderResponsive?.[item]?.all?.width || topWidth;
+                bottomWidth = attributes?.contentBorderResponsive?.[item]?.all?.width || bottomWidth;
+                topWidth = attributes?.contentBorderResponsive?.[item]?.top?.width || topWidth;
+                bottomWidth = attributes?.contentBorderResponsive?.[item]?.bottom?.width || bottomWidth;
+                value[item] = parseInt(lineHeight) - topWidth - bottomWidth;
+            }
+
+        } else {
+            value[item] = parseInt(lineHeight) - topWidth - bottomWidth;
+        }
+    })
+
+    return value;
+
+}
 
 export default NewsTickerBlock;

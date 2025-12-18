@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-1",
     "title": "Hero 1",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
-    "description": "Your Block description.",
+    "description": "Display your posts in fancy way with Hero block.",
     "category": "gvnews-hero",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "attributes": {
@@ -289,10 +289,69 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

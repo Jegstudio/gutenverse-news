@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.0.0
+Stable tag: 3.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,7 +143,49 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.0.1 [DEV] =
+= 3.0.3 [DEV] =
+##### Improvements
+* Bring back the Archive Hero block as Free
+* Add more Meta options on all block
+* Add more Typography options on all block
+* Add more syling options on Module Header
+* Add option to disable the read more button on blocks
+* Add more styling options on Archive Pagintaion block
+* Add navigaiton styling option on SLider - 1 block
+* Add more styling options on News Ticker block
+* Add Tag Type options on Archive Description block
+* Add option to change rendered thumbail size on Module Blocks
+* Add category label padding and margin options
+* Add Post Item Gap options on some Module blocks
+* Add options to styling the no content condition on Archive Block and all Module blocks
+* Move Spacing options to setting tab
+* Showing no content available on archive block when not seearch result exist
+* Remove JQuery usage on all blocks
+* Imporve asset load mechanism on all blocks
+
+##### Bug Fixes
+* Fix archive block not working on archive search page
+* Fix Post Masonry issue on "Module - 32", "Module - 33", "Module - 34" and "Module - 35"
+* Fix cannot make the Left/Right Meta Element empty on Post Meta block
+* Fix spacing option issue on Archive Description block
+
+= 3.0.2 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
+* Bring back the Module 9 , Module 17 and Module 21
+* Changing Block title :
+    - Module 17 -> Module 10
+    - Module 21 -> Module 11
+* Introduce 53 new Pro blocks
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
+* Fix News Ticker arrow icon not clickable (only arrow box worked)
+
+= 3.0.1 =
 ##### Bug Fixes
 * Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
 * Fix auto column width detection not working on Carousel 3
@@ -152,8 +194,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Fix filter by Role option not working on User List block
 
 ##### Improvements
-* Changed the Post Offset option to an Input Range control
+* Added Pagination Style options on Module blocks
 * Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
+* Changed the Post Offset option to an Input Range control
+* Changed the default color on blocks, from using wp--preset--color to a predefined color
 
 = 3.0.0 =
 ##### Bug Fixes

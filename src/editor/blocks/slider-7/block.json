@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-slider-7",
     "title": "Slider 7",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
@@ -265,11 +265,29 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

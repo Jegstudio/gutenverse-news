@@ -1,415 +1,331 @@
 {
-    "apiVersion": 2,
-    "name": "gutenverse/news-news-ticker",
-    "title": "News Ticker",
-    "class_callback": "\\GUTENVERSE\\NEWS\\Block\\News_Ticker",
-    "description": "Your Block description.",
-    "category": "gvnews-element",
-    "attributes": {
-        "elementId": {
-            "type": "string"
-        },
-        "title": {
-            "type": "string",
-            "default": "TRENDING"
-        },
-        "gvnewsModule": {
-            "type": "string",
-            "default": "GUTENVERSE\\NEWS\\Block\\Module\\Newsticker"
-        },
-        "autoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "string",
-            "default": 3000
-        },
-        "animationDirection": {
-            "type": "string",
-            "default": "horizontal"
-        },
-        "titleBackgroundColor": {
-            "type": "object"
-        },
-        "titleTextColor": {
-            "type": "object"
-        },
-        "postType": {
-            "type": "string",
-            "default": "post"
-        },
-        "numberPost": {
-            "type": "string",
-            "default": 3
-        },
-        "postOffset": {
-            "type": "string",
-            "default": 0
-        },
-        "includePost": {
-            "type": "array",
-            "default": []
-        },
-        "includeOnly": {
-            "type": "boolean",
-            "default": false
-        },
-        "excludePost": {
-            "type": "array",
-            "default": []
-        },
-        "contentType": {
-            "type": "string",
-            "default": ""
-        },
-        "uniqueContent": {
-            "type": "string",
-            "default": "disable"
-        },
-        "includeCategory": {
-            "type": "array",
-            "default": []
-        },
-        "excludeCategory": {
-            "type": "array",
-            "default": []
-        },
-        "includeAuthor": {
-            "type": "array",
-            "default": []
-        },
-        "includeTag": {
-            "type": "array",
-            "default": []
-        },
-        "excludeTag": {
-            "type": "array",
-            "default": []
-        },
-        "sortBy": {
-            "type": "string",
-            "default": ""
-        },
-        "layout": {
-            "type": "string",
-            "default": "vertical"
-        },
-        "column": {
-            "type": "object"
-        },
-        "columnGap": {
-            "type": "object"
-        },
-        "imageEnabled": {
-            "type": "boolean",
-            "default": false
-        },
-        "backgroundImageEnabled": {
-            "type": "boolean",
-            "default": false
-        },
-        "iconEnabled": {
-            "type": "boolean",
-            "default": false
-        },
-        "icon": {
-            "type": "string",
-            "default": "fas fa-newspaper"
-        },
-        "metaEnabled": {
-            "type": "boolean",
-            "default": true
-        },
-        "metaDateEnabled": {
-            "type": "boolean",
-            "default": true
-        },
-        "metaDateType": {
-            "type": "string",
-            "default": "published"
-        },
-        "metaDateFormat": {
-            "type": "string",
-            "default": "default"
-        },
-        "metaDateFormatCustom": {
-            "type": "string",
-            "default": "d M Y"
-        },
-        "metaDateIcon": {
-            "type": "string",
-            "default": "fas fa-clock"
-        },
-        "metaDateIconPosition": {
-            "type": "string",
-            "default": "before"
-        },
-        "metaCategoryEnabled": {
-            "type": "boolean",
-            "default": false
-        },
-        "metaCategoryIcon": {
-            "type": "string",
-            "default": "fas fa-tag"
-        },
-        "metaPosition": {
-            "type": "string",
-            "default": "top"
-        },
-        "paginationMode": {
-            "type": "string",
-            "default": "disable"
-        },
-        "paginationLoadmoreText": {
-            "type": "string",
-            "default": "Load More"
-        },
-        "paginationLoadingText": {
-            "type": "string",
-            "default": "Loading..."
-        },
-        "paginationNumberPost": {
-            "type": "string",
-            "default": 3
-        },
-        "paginationScrollLimit": {
-            "type": "string",
-            "default": 0
-        },
-        "paginationIcon": {
-            "type": "string",
-            "default": ""
-        },
-        "paginationIconPosition": {
-            "type": "string",
-            "default": "before"
-        },
-        "contentAlign": {
-            "type": "object"
-        },
-        "contentMargin": {
-            "type": "object"
-        },
-        "contentPadding": {
-            "type": "object"
-        },
-        "contentWidth": {
-            "type": "object"
-        },
-        "contentBackground": {
-            "type": "object"
-        },
-        "contentHoverBackground": {
-            "type": "object"
-        },
-        "contentBorder": {
-            "type": "object"
-        },
-        "contentHoverBorder": {
-            "type": "object"
-        },
-        "contentShadow": {
-            "type": "object"
-        },
-        "contentHoverShadow": {
-            "type": "object"
-        },
-        "titlePadding": {
-            "type": "object"
-        },
-        "titleColor": {
-            "type": "object"
-        },
-        "titleTypography": {
-            "type": "object"
-        },
-        "titleColorHover": {
-            "type": "object"
-        },
-        "titleTypographyHover": {
-            "type": "object"
-        },
-        "iconAlign": {
-            "type": "object"
-        },
-        "iconBackground": {
-            "type": "object"
-        },
-        "iconWidth": {
-            "type": "object"
-        },
-        "iconHeight": {
-            "type": "object"
-        },
-        "iconLineHeight": {
-            "type": "object"
-        },
-        "iconSize": {
-            "type": "object"
-        },
-        "iconMargin": {
-            "type": "object"
-        },
-        "iconRadius": {
-            "type": "object"
-        },
-        "iconColor": {
-            "type": "object"
-        },
-        "iconHoverColor": {
-            "type": "object"
-        },
-        "metaAlign": {
-            "type": "object"
-        },
-        "metaTypography": {
-            "type": "object"
-        },
-        "metaIconSize": {
-            "type": "object"
-        },
-        "metaIconSpacing": {
-            "type": "object"
-        },
-        "metaMargin": {
-            "type": "object"
-        },
-        "metaPadding": {
-            "type": "object"
-        },
-        "metaColor": {
-            "type": "object"
-        },
-        "metaColorHover": {
-            "type": "object"
-        },
-        "metaBackground": {
-            "type": "object"
-        },
-        "metaHoverBackground": {
-            "type": "object"
-        },
-        "metaBorder": {
-            "type": "object"
-        },
-        "metaHoverBorder": {
-            "type": "object"
-        },
-        "paginationTypography": {
-            "type": "object"
-        },
-        "paginationMargin": {
-            "type": "object"
-        },
-        "paginationPadding": {
-            "type": "object"
-        },
-        "paginationWidth": {
-            "type": "object"
-        },
-        "paginationIconSpacing": {
-            "type": "object"
-        },
-        "paginationAlign": {
-            "type": "object"
-        },
-        "paginationColor": {
-            "type": "object"
-        },
-        "paginationHoverColor": {
-            "type": "object"
-        },
-        "paginationBackground": {
-            "type": "object"
-        },
-        "paginationHoverBackground": {
-            "type": "object"
-        },
-        "paginationBorder": {
-            "type": "object"
-        },
-        "paginationHoverBorder": {
-            "type": "object"
-        },
-        "paginationShadow": {
-            "type": "object"
-        },
-        "paginationHoverShadow": {
-            "type": "object"
-        },
-        "background": {
-            "type": "object",
-            "default": {}
-        },
-        "backgroundHover": {
-            "type": "object",
-            "default": {}
-        },
-        "border": {
-            "type": "object"
-        },
-        "boxShadow": {
-            "type": "object"
-        },
-        "borderHover": {
-            "type": "object"
-        },
-        "boxShadowHover": {
-            "type": "object"
-        },
-        "margin": {
-            "type": "object"
-        },
-        "padding": {
-            "type": "object"
-        },
-        "zIndex": {
-            "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
-        },
-        "hideDesktop": {
-            "type": "boolean"
-        },
-        "hideTablet": {
-            "type": "boolean"
-        },
-        "hideMobile": {
-            "type": "boolean"
-        },
-        "positioningType": {
-            "type": "object"
-        },
-        "positioningWidth": {
-            "type": "object"
-        },
-        "positioningAlign": {
-            "type": "object"
-        },
-        "positioningLocation": {
-            "type": "string"
-        },
-        "positioningLeft": {
-            "type": "object"
-        },
-        "positioningRight": {
-            "type": "object"
-        },
-        "positioningTop": {
-            "type": "object"
-        },
-        "positioningBottom": {
-            "type": "object"
-        }
-    },
-    "supports": {
-        "className": false
-    },
-    "keywords": [
-        "icon",
-        "link"
-    ]
+	"apiVersion": 3,
+	"name": "gutenverse/news-news-ticker",
+	"title": "News Ticker",
+	"class_callback": "\\GUTENVERSE\\NEWS\\Block\\News_Ticker",
+	"description": "Display your feed with responsive sliding news ticker to highlight breaking news, trending news, etc.",
+	"category": "gvnews-element",
+	"attributes": {
+		"elementId": {
+			"type": "string"
+		},
+		"title": {
+			"type": "string",
+			"default": "TRENDING"
+		},
+		"gvnewsModule": {
+			"type": "string",
+			"default": "GUTENVERSE\\NEWS\\Block\\Module\\Newsticker"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplayDelay": {
+			"type": "string",
+			"default": 3000
+		},
+		"animationDirection": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"titleBackgroundColor": {
+			"type": "object"
+		},
+		"titleTextColor": {
+			"type": "object"
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"numberPost": {
+			"type": "string",
+			"default": 3
+		},
+		"postOffset": {
+			"type": "string",
+			"default": 0
+		},
+		"includePost": {
+			"type": "array",
+			"default": []
+		},
+		"includeOnly": {
+			"type": "boolean",
+			"default": false
+		},
+		"excludePost": {
+			"type": "array",
+			"default": []
+		},
+		"contentType": {
+			"type": "string",
+			"default": ""
+		},
+		"uniqueContent": {
+			"type": "string",
+			"default": "disable"
+		},
+		"includeCategory": {
+			"type": "array",
+			"default": []
+		},
+		"excludeCategory": {
+			"type": "array",
+			"default": []
+		},
+		"includeAuthor": {
+			"type": "array",
+			"default": []
+		},
+		"includeTag": {
+			"type": "array",
+			"default": []
+		},
+		"excludeTag": {
+			"type": "array",
+			"default": []
+		},
+		"sortBy": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "vertical"
+		},
+		"column": {
+			"type": "object"
+		},
+		"columnGap": {
+			"type": "object"
+		},
+		"imageEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"backgroundImageEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"iconEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"default": "fas fa-newspaper"
+		},
+		"metaEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"metaDateEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"metaDateType": {
+			"type": "string",
+			"default": "published"
+		},
+		"metaDateFormat": {
+			"type": "string",
+			"default": "default"
+		},
+		"metaDateFormatCustom": {
+			"type": "string",
+			"default": "d M Y"
+		},
+		"titleColor": {
+			"type": "object"
+		},
+		"titleTypography": {
+			"type": "object"
+		},
+		"titleTextTypography": {
+			"type": "object"
+		},
+		"iconTextColor": {
+			"type": "object"
+		},
+		"iconTextSize": {
+			"type": "object"
+		},
+		"titleTextPadding": {
+			"type": "object"
+		},
+		"titleTextGap": {
+			"type": "object"
+		},
+		"titleColorHover": {
+			"type": "object"
+		},
+		"metaTypography": {
+			"type": "object"
+		},
+		"metaColor": {
+			"type": "object"
+		},
+		"background": {
+			"type": "object",
+			"default": {}
+		},
+		"backgroundHover": {
+			"type": "object",
+			"default": {}
+		},
+		"border": {
+			"type": "object"
+		},
+		"boxShadow": {
+			"type": "object"
+		},
+		"borderHover": {
+			"type": "object"
+		},
+		"boxShadowHover": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"zIndex": {
+			"type": "object"
+		},
+		"animation": {
+			"type": "object",
+			"default": {}
+		},
+		"hideDesktop": {
+			"type": "boolean"
+		},
+		"hideTablet": {
+			"type": "boolean"
+		},
+		"hideMobile": {
+			"type": "boolean"
+		},
+		"nextIcon": {
+			"type": "string",
+			"default": "fas fa-angle-right"
+		},
+		"prevIcon": {
+			"type": "string",
+			"default": "fas fa-angle-left"
+		},
+		"navColor": {
+			"type": "object"
+		},
+		"navBackgroundColor": {
+			"type": "object"
+		},
+		"navHoverColor": {
+			"type": "object"
+		},
+		"navHoverBackgroundColor": {
+			"type": "object"
+		},
+		"navIconSize": {
+			"type": "object"
+		},
+		"navButtonWidth": {
+			"type": "object"
+		},
+		"navButtonHeight": {
+			"type": "object"
+		},
+		"containerBorderWidth": {
+			"type": "object"
+		},
+		"postTitleColor": {
+			"type": "object"
+		},
+		"postTitleHoverColor": {
+			"type": "object"
+		},
+		"contentBorder": {
+			"type": "object"
+		},
+		"contentBorderResponsive": {
+			"type": "object"
+		},
+		"contentHeight": {
+			"type": "object"
+		},
+		"navWrapperBackgroundColor": {
+			"type": "object"
+		},
+		"navSeparatorColor": {
+			"type": "object"
+		},
+		"navSeparatorWidth": {
+			"type": "object"
+		},
+		"navGap": {
+			"type": "object"
+		},
+		"navWrapperBorder": {
+			"type": "object"
+		},
+		"navWrapperBorderResponsive": {
+			"type": "object"
+		},
+		"navWrapperPadding": {
+			"type": "object"
+		},
+		"navButtonBorder": {
+			"type": "object"
+		},
+		"navButtonBorderResponsive": {
+			"type": "object"
+		},
+		"navButtonBorderHover": {
+			"type": "object"
+		},
+		"navButtonBorderHoverResponsive": {
+			"type": "object"
+		},
+		"postTitleTypography": {
+			"type": "object"
+		},
+		"contentBackground": {
+			"type": "object"
+		},
+		"contentPadding": {
+			"type": "object"
+		},
+		"tickerLineHeight": {
+			"type": "object",
+			"default": {
+				"Desktop": "38"
+			}
+		},
+		"titleBorder": {
+			"type": "object"
+		},
+		"titleBorderResponsive": {
+			"type": "object"
+		},
+		"showMeta": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"className": false
+	},
+	"keywords": [
+		"icon",
+		"link"
+	],
+	"style": [
+		"gutenverse-news-frontend-blocks-style"
+	],
+	"viewScript": [
+		"gutenverse-news-frontend-newsticker-script"
+	]
 }
