@@ -329,6 +329,10 @@
         "containerWidth": {
             "type": "object"
         },
+        "hideDot": {
+            "type": "boolean",
+            "default": false
+        },
         "dotGap": {
             "type": "object"
         },

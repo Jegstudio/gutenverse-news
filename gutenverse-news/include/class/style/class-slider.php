@@ -912,6 +912,18 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['hideDot'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",
+					'property'       => function ( $value ) {
+						return 'opacity: 0 !important;';
+					},
+					'value'          => $this->attrs['hideDot'],
+					'device_control' => false,
+				)
+			);
+		}
 		if ( isset( $this->attrs['dotGap'] ) ) {
 			$this->inject_style(
 				array(

@@ -638,6 +638,18 @@ const getDotStyle = (elementId, attributes, data = []) => {
         ],
         'selector': `${baseSelector} .tns-nav`,
     });
+    isNotEmpty(attributes['hideDot']) && data.push({
+        'id': 'hideDot',
+        'type': 'plain',
+        'properties': [
+            {
+                'name': 'opacity',
+                'valueType': 'pattern',
+                'pattern': '0 !important',
+            }
+        ],
+        'selector': `${baseSelector} .tns-nav`,
+    });
     isNotEmpty(attributes['dotGap']) && data.push({
         'id': 'dotGap',
         'type': 'plain',
