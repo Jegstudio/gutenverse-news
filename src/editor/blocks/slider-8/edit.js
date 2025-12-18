@@ -66,7 +66,11 @@ const Slider8Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -168,7 +172,11 @@ const Slider8Block = compose(
                 data-autoplay={autoplay ? true : ''}
                 data-delay={sliderDelay}
                 data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
                 data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
             >
                 {content}
             </div>

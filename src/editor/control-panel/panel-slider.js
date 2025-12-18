@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, ColorControl, IconControl, IconSVGControl, RangeControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, IconSVGControl, RangeControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {

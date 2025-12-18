@@ -27,14 +27,31 @@ const SliderCaption = (props) => {
                 </a>}
             </div>
             {props.navigation && <div className="gvnews_block_nav">
-                <a className="prev">
-                    {renderIcon('fas fa-angle-left', 'svg', btoa(angleLeftSVG))}
-                    prev
-                </a>
-                <a className="next">
-                    next
-                    {renderIcon('fas fa-angle-right', 'svg', btoa(angleRightSVG))}
-                </a>
+                {(() => {
+                    const iconNext = props.nextButtonIcon || '';
+                    const iconNextType = props.nextButtonIconType || 'icon';
+                    const iconNextSVG = props.nextButtonIconSVG || '';
+
+                    const iconPrev = props.prevButtonIcon || '';
+                    const iconPrevType = props.prevButtonIconType || 'icon';
+                    const iconPrevSVG = props.prevButtonIconSVG || '';
+
+                    const finalNextIcon = (iconNextType === 'svg' && !iconNextSVG) ? '' : iconNext;
+                    const finalPrevIcon = (iconPrevType === 'svg' && !iconPrevSVG) ? '' : iconPrev;
+
+                    return (
+                        <>
+                            <a className="prev">
+                                {renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG)}
+                                prev
+                            </a>
+                            <a className="next">
+                                next
+                                {renderIcon(finalNextIcon, iconNextType, iconNextSVG)}
+                            </a>
+                        </>
+                    );
+                })()}
             </div>}
         </div>
     );

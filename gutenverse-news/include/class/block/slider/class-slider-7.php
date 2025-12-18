@@ -26,11 +26,11 @@ class Slider_7 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	private function content( $results, $attr ) {
-		$nav_prev = esc_html__( 'prev', 'gutenverse-news' );
-		$nav_next = esc_html__( 'next', 'gutenverse-news' );
-		$next_button_icon = isset( $attr['nextButtonIcon'] ) ? $attr['nextButtonIcon'] : 'fas fa-chevron-right';
-		$prev_button_icon = isset( $attr['prevButtonIcon'] ) ? $attr['prevButtonIcon'] : 'fas fa-chevron-left';
-		$content  = '';
+		$nav_prev         = esc_html__( 'prev', 'gutenverse-news' );
+		$nav_next         = esc_html__( 'next', 'gutenverse-news' );
+		$next_button_icon = $this->render_icon( $attr['next_button_icon_type'], $attr['nextButtonIcon'], $attr['next_button_icon_svg'] );
+		$prev_button_icon = $this->render_icon( $attr['prev_button_icon_type'], $attr['prevButtonIcon'], $attr['prev_button_icon_svg'] );
+		$content          = '';
 
 		foreach ( $results as $key => $post ) {
 			$primary_category = $this->get_primary_category( $post->ID );
@@ -42,12 +42,6 @@ class Slider_7 extends Slider_View_Abstract {
 			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
 			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 			$read_more       = ! $this->attribute['disable_readmore'] ? '<a href="' . esc_url( get_the_permalink( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
-
-			$icon_arrow_left = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"></path></svg>';
-			$icon_arrow_left = $this->render_icon( 'svg', 'fas fa-chevron-left', base64_encode( $icon_arrow_left ) );
-
-			$icon_arrow_right = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>';
-			$icon_arrow_right = $this->render_icon( 'svg', 'fas fa-chevron-right', base64_encode( $icon_arrow_right ) );
 
 			$content .=
 				'<div ' . gvnews_post_class( 'gvnews_slide_item clearfix', $post->ID ) . '>
@@ -71,12 +65,12 @@ class Slider_7 extends Slider_View_Abstract {
                         </div>
                         <div class=\"gvnews_block_nav \"> 
                         	<a href=\"#\" class=\"prev\">
-								{$icon_arrow_left}
-                                {$nav_prev}
+								{$prev_button_icon}
+								{$nav_prev}
                         	</a> 
                         	<a href=\"#\" class=\"next\">
-                                {$nav_next}
-								{$icon_arrow_right}
+								{$nav_next}
+								{$next_button_icon}
                         	</a> 
                         </div>
                     </div>
@@ -124,13 +118,17 @@ class Slider_7 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay'     => esc_attr( $attr['enable_autoplay'] ),
-					'delay'        => esc_attr( $autoplay_delay ),
-					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
-					'nav-prev'     => $nav_prev,
-					'nav-next'     => $nav_next,
-					'class-next'   => $attr['nextButtonIcon'],
-					'class-prev'   => $attr['prevButtonIcon'],
+					'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+					'delay'           => esc_attr( $autoplay_delay ),
+					'hover-action'    => esc_attr( $attr['enable_hover_action'] ),
+					'nav-prev'        => $nav_prev,
+					'nav-next'        => $nav_next,
+					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+					'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+					'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+					'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 				)
 			);
 

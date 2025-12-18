@@ -190,6 +190,10 @@ class Frontend_Assets {
 
 			case 'gutenverse/news-slider-1':
 			case 'gutenverse/news-slider-4':
+			case 'gutenverse/news-slider-5':
+			case 'gutenverse/news-slider-6':
+			case 'gutenverse/news-slider-7':
+			case 'gutenverse/news-slider-8':
 				if ( $this->attr_has_icon( $attrs, $block_name, 'nextButtonIcon', 'nextButtonIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
@@ -303,7 +307,7 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array( 'gutenverse-iconlist', 'fontawesome-gutenverse' ), /* TODO: Remove this depenency after update the svg icon mechanism */
+			array(), /* TODO: Remove this depenency after update the svg icon mechanism */
 			GUTENVERSE_NEWS_VERSION
 		);
 
@@ -325,7 +329,7 @@ class Frontend_Assets {
 			wp_register_style(
 				'gutenverse-news-frontend-' . $module . '-style',
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
-				array( 'gutenverse-iconlist', 'fontawesome-gutenverse' ), /* TODO: Remove this depenency after update the svg icon mechanism */
+				null, /* TODO: Remove this depenency after update the svg icon mechanism */
 				GUTENVERSE_NEWS_VERSION
 			);
 		}
