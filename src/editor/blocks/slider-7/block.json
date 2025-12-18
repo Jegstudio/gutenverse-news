@@ -280,6 +280,62 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "buttonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonSize": {
+            "type": "object"
+        },
+        "buttonPadding": {
+            "type": "object"
+        },
+        "buttonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "buttonGap": {
+            "type": "object"
+        },
+        "textColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "textColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
         }
     },
     "supports": {

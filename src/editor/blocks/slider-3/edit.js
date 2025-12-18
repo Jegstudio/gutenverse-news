@@ -21,6 +21,7 @@ import { panelList } from './panels/panel-list';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import { blockStyle } from './styles/block-style';
 
 const defaultOptions = getModuleOptions();
 
@@ -84,7 +85,16 @@ const Slider3Block = compose(
     const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getSliderStyle(
+            elementId,
+            attributes,
+            blockStyle(elementId, attributes)
+        ),
+        elementRef
+    );
 
     useEffect(() => {
         if (elementRef) {
@@ -146,7 +156,13 @@ const Slider3Block = compose(
             }
         }
         return (
-            <div ref={blockRef} className="gvnews_slider_type_3 gvnews_slider" data-items={sliderColumn} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_3 gvnews_slider"
+                data-items={sliderColumn}
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+            >
                 {content}
             </div>
         );

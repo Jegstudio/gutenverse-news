@@ -96,7 +96,7 @@ const BlockModule = compose(
         metaCommentIconSVG = '',
         renderedImageSizeMain,
         renderedImageSizeSecond,
-        showNoContent = false,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const metaSettings = {
@@ -316,7 +316,7 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
-        if (showNoContent) {
+        if (gutenversePreviewBlock === 'noContent') {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
             return;
         }

@@ -47,7 +47,10 @@ class Slider extends StyleAbstract {
 	 */
 	public function generate() {
 
+		$this->navigation_button_style();
 		$this->slider_1_style();
+		$this->dot_style();
+		$this->slider_3_style();
 
 		if ( stristr( $this->attrs['gvnewsModule'], 'Slider_Overlay' ) ) {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
@@ -602,16 +605,14 @@ class Slider extends StyleAbstract {
 	// === PRIVATE FUNCTIONS ===
 
 	/**
-	 * Generate Style for slider-1
-	 *
-	 * @return void
+	 * Generate Style for navigation button
 	 */
-	private function slider_1_style() {
-
+	private function navigation_button_style() {
+		$transition_show_css = '';
 		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls",
 					'property'       => function ( $value ) {
 						return 'display: none !important;';
 					},
@@ -621,173 +622,233 @@ class Slider extends StyleAbstract {
 			);
 		}
 
-		if ( isset( $this->attrs['nextButtonColor'] ) ) {
+		if ( isset( $this->attrs['alwaysShowNavigationButton'] ) && $this->attrs['alwaysShowNavigationButton'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return 'opacity: 1 !important;';
 					},
-					'value'          => $this->attrs['nextButtonColor'],
+					'value'          => $this->attrs['alwaysShowNavigationButton'],
 					'device_control' => false,
 				)
 			);
 		}
 
-		if ( isset( $this->attrs['nextButtonColorHover'] ) ) {
+		if ( isset( $this->attrs['transitionShow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next:hover i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return "transition: opacity {$value}ms;";
 					},
-					'value'          => $this->attrs['nextButtonColorHover'],
+					'value'          => $this->attrs['transitionShow'],
 					'device_control' => false,
 				)
 			);
+			$transition_show_css = 'opacity ' . $this->attrs['transitionShow'] . 'ms ease,';
 		}
-
-		if ( isset( $this->attrs['prevButtonColor'] ) ) {
+		if ( isset( $this->attrs['gapBetweenButton'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return "gap: {$value}px;";
 					},
-					'value'          => $this->attrs['prevButtonColor'],
-					'device_control' => false,
+					'value'          => $this->attrs['gapBetweenButton'],
+					'device_control' => true,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['prevButtonColorHover'] ) ) {
+		if ( isset( $this->attrs['buttonSize'] ) && ! empty( $this->attrs['buttonSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev:hover i",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
-					},
-					'value'          => $this->attrs['prevButtonColorHover'],
-					'device_control' => false,
-				)
-			);
-		}
-
-		if ( isset( $this->attrs['nextButtonSize'] ) && ! empty( $this->attrs['nextButtonSize'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
 						return "
 								font-size: {$value}px;
-								height: auto;
-								width: auto;
+								height: fit-content;
+								width: fit-content;
 								";
 					},
-					'value'          => $this->attrs['nextButtonSize'],
-					'device_control' => false,
+					'value'          => $this->attrs['buttonSize'],
+					'device_control' => true,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['prevButtonSize'] ) && ! empty( $this->attrs['prevButtonSize'] ) ) {
+		if ( isset( $this->attrs['buttonGap'] ) && ! empty( $this->attrs['buttonGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
-						return "
-								font-size: {$value}px;
-								height: auto;
-								width: auto;
-								";
+						return "gap: {$value}px;";
 					},
-					'value'          => $this->attrs['prevButtonSize'],
-					'device_control' => false,
+					'value'          => $this->attrs['buttonGap'],
+					'device_control' => true,
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['nextButtonPadding'] ) ) {
+		if ( isset( $this->attrs['buttonPadding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
-					'value'          => $this->attrs['nextButtonPadding'],
+					'value'          => $this->attrs['buttonPadding'],
 					'device_control' => true,
 				)
 			);
 		}
 
-		if ( isset( $this->attrs['prevButtonPadding'] ) ) {
+		// NEXT BUTTON.
+		if ( isset( $this->attrs['buttonColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button i,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a i",
 					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'padding' );
+						return $this->handle_color( $value, 'color' );
 					},
-					'value'          => $this->attrs['prevButtonPadding'],
+					'value'          => $this->attrs['buttonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['buttonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover i,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['buttonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['textColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button span,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['textColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['textColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover span,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['textColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['buttonBgColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['buttonBgColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['buttonBgColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['buttonBgColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['borderButton'] ) ) {
+			$this->handle_border(
+				'borderButton',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+				.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a"
+			);
+		}
+		if ( isset( $this->attrs['borderButtonHover'] ) ) {
+			$this->handle_border(
+				'borderButtonHover',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover,
+				.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['borderResponsiveButton'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderResponsiveButton'],
 					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['nextButtonBgColor'] ) ) {
+		if ( isset( $this->attrs['borderResponsiveButtonHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'background-color' );
+						return $this->handle_border_responsive( $value );
 					},
-					'value'          => $this->attrs['nextButtonBgColor'],
-					'device_control' => false,
+					'value'          => $this->attrs['borderResponsiveButtonHover'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
 				)
 			);
+		}
+	}
+
+	/**
+	 * Generate Style for slider-1
+	 *
+	 * @return void
+	 */
+	private function slider_1_style() {
+		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_1' ) ) {
+			return;
 		}
 
-		if ( isset( $this->attrs['prevButtonBgColor'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'background-color' );
-					},
-					'value'          => $this->attrs['prevButtonBgColor'],
-					'device_control' => false,
-				)
-			);
-		}
-
-		if ( isset( $this->attrs['nextButtonBgColorHover'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next:hover",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'background-color' );
-					},
-					'value'          => $this->attrs['nextButtonBgColorHover'],
-					'device_control' => false,
-				)
-			);
-		}
-
-		if ( isset( $this->attrs['prevButtonBgColorHover'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev:hover",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'background-color' );
-					},
-					'value'          => $this->attrs['prevButtonBgColorHover'],
-					'device_control' => false,
-				)
-			);
-		}
 		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_thumbnail_wrapper .tns-ovh",
 					'property'       => function ( $value ) {
 						return 'display: none !important;';
 					},
@@ -799,7 +860,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['tootlipColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} #tns2-mw.tns-ovh",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_thumbnail_wrapper .tns-ovh",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -809,7 +870,7 @@ class Slider extends StyleAbstract {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slider_thumbnail .tns-slide-active.current .gvnews_slide_thumbnail_item:before",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'border-top-color' );
 					},
@@ -818,48 +879,182 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
+	}
 
-		if ( isset( $this->attrs['nextButtonTransition'] ) ) {
+	/**
+	 * Generate slider 2 style.
+	 */
+	private function dot_style() {
+		if ( isset( $this->attrs['alwaysShowDot'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",
 					'property'       => function ( $value ) {
-						return "transition: background-color {$value}ms;";
+						return 'opacity: 1 !important;';
 					},
-					'value'          => $this->attrs['nextButtonTransition'],
-					'device_control' => false,
-				)
-			);
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next i",
-					'property'       => function ( $value ) {
-						return "transition: color {$value}ms;";
-					},
-					'value'          => $this->attrs['nextButtonTransition'],
+					'value'          => $this->attrs['alwaysShowDot'],
 					'device_control' => false,
 				)
 			);
 		}
-		if ( isset( $this->attrs['prevButtonTransition'] ) ) {
+		if ( isset( $this->attrs['dotGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",
 					'property'       => function ( $value ) {
-						return "transition: background-color {$value}ms;";
+						return "gap: {$value}px;";
 					},
-					'value'          => $this->attrs['prevButtonTransition'],
+					'value'          => $this->attrs['dotGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		// Dot Normal.
+		if ( isset( $this->attrs['dotNormalColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['dotNormalColor'],
 					'device_control' => false,
 				)
 			);
+		}
+		if ( isset( $this->attrs['dotBorderNormalColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev i",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button",
 					'property'       => function ( $value ) {
-						return "transition: color {$value}ms;";
+						return $this->handle_color( $value, 'border-color' );
 					},
-					'value'          => $this->attrs['prevButtonTransition'],
+					'value'          => $this->attrs['dotBorderNormalColor'],
 					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['dotNormalSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button",
+					'property'       => function ( $value ) {
+						return "width: {$value}px; height: {$value}px; border-radius: 100%;";
+					},
+					'value'          => $this->attrs['dotNormalSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		// Dot Hover.
+		if ( isset( $this->attrs['dotHoverColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['dotHoverColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['dotBorderHoverColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-color' );
+					},
+					'value'          => $this->attrs['dotBorderHoverColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['dotHoverSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button:hover",
+					'property'       => function ( $value ) {
+						return "width: {$value}px; height: {$value}px; border-radius: 100%;";
+					},
+					'value'          => $this->attrs['dotHoverSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		// Active.
+		if ( isset( $this->attrs['dotActiveColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button.tns-active",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['dotActiveColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['dotBorderActiveColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button.tns-active",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-color' );
+					},
+					'value'          => $this->attrs['dotBorderActiveColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['dotActiveSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav button.tns-active",
+					'property'       => function ( $value ) {
+						return "width: {$value}px; height: {$value}px; border-radius: 100%;";
+					},
+					'value'          => $this->attrs['dotActiveSize'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate slider 3 style.
+	 */
+	private function slider_3_style() {
+		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
+			return;
+		}
+
+		if ( isset( $this->attrs['gapItem'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+					'property'       => function ( $value ) {
+						return "padding-right: {$value}px !important;";
+					},
+					'value'          => $this->attrs['gapItem'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['itemWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width', true );
+					},
+					'value'          => $this->attrs['itemWidth'],
+					'device_control' => true,
 				)
 			);
 		}

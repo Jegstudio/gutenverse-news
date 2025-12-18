@@ -216,6 +216,11 @@ class GutenverseSliderModule {
     }
 
     defaultOption = () => {
+        const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
+        const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
+        const navNext = this.container.dataset.navNext || '';
+        const navPrev = this.container.dataset.navPrev || '';
+
         let sliderDefault = {
             container: this.container,
             nav: true,
@@ -238,9 +243,11 @@ class GutenverseSliderModule {
             onInit: function (info) {
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
+                    u(info.nextButton).html(`<span class="tns-nav-text">${navNext}</span><i class="${nextClass}"></i>`);
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
+                    u(info.prevButton).html(`<i class="${prevClass}"></i><span class="tns-nav-text">${navPrev}</span>`);
                 }
             },
         };
@@ -353,6 +360,9 @@ class GutenverseSliderModule {
 
         // Slider 8.
         if (u(sliderDefault.container).hasClass('gvnews_slider_type_8')) {
+            const nextClass = this.container.dataset.classNext || 'fas fa-chevron-right';
+            const prevClass = this.container.dataset.classPrev || 'fas fa-chevron-left';
+
             slideType = 8;
             wrapper = u(sliderDefault.container).parent('.gvnews_slider_wrapper');
             sliderDefault.items = sliderDefault.container.dataset.items;
@@ -384,12 +394,13 @@ class GutenverseSliderModule {
 
             sliderDefault.onInit = (info) => {
                 this.setNavCenter(sliderDefault.container, wrapper);
-
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
+                    u(info.nextButton).html(`<i class="${nextClass}"></i>`);
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
+                    u(info.prevButton).html(`<i class="${prevClass}"></i>`);
                 }
             };
 

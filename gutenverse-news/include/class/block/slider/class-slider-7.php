@@ -21,12 +21,15 @@ class Slider_7 extends Slider_View_Abstract {
 	 * Method content
 	 *
 	 * @param array $results result.
+	 * @param array $attr    attribute.
 	 *
 	 * @return string
 	 */
-	public function content( $results ) {
+	private function content( $results, $attr ) {
 		$nav_prev = esc_html__( 'prev', 'gutenverse-news' );
 		$nav_next = esc_html__( 'next', 'gutenverse-news' );
+		$next_button_icon = isset( $attr['nextButtonIcon'] ) ? $attr['nextButtonIcon'] : 'fas fa-chevron-right';
+		$prev_button_icon = isset( $attr['prevButtonIcon'] ) ? $attr['prevButtonIcon'] : 'fas fa-chevron-left';
 		$content  = '';
 
 		foreach ( $results as $key => $post ) {
@@ -93,7 +96,7 @@ class Slider_7 extends Slider_View_Abstract {
 	 */
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
-			$content        = $this->content( $result );
+			$content        = $this->content( $result, $attr );
 			$column_class   = $this->get_module_column_class( $attr );
 			$autoplay_delay = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
 			$nav_prev       = esc_html__( 'prev', 'gutenverse-news' );
@@ -126,6 +129,8 @@ class Slider_7 extends Slider_View_Abstract {
 					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
 					'nav-prev'     => $nav_prev,
 					'nav-next'     => $nav_next,
+					'class-next'   => $attr['nextButtonIcon'],
+					'class-prev'   => $attr['prevButtonIcon'],
 				)
 			);
 

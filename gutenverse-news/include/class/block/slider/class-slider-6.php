@@ -101,6 +101,8 @@ class Slider_6 extends Slider_View_Abstract {
 					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
 					'nav-prev'     => $nav_prev,
 					'nav-next'     => $nav_next,
+					'class-next'   => $attr['nextButtonIcon'],
+					'class-prev'   => $attr['prevButtonIcon'],
 				)
 			);
 
