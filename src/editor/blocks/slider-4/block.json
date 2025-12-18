@@ -358,6 +358,10 @@
         },
         "dotActiveSize": {
             "type": "object"
+        },
+        "hideTitleStyling": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

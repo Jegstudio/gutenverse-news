@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
 export const designPanel = () => {
 
     return [
@@ -18,6 +18,11 @@ export const designPanel = () => {
             id: 'titleColorHover',
             label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
+        },
+        {
+            id: 'hideTitleStyling',
+            label: __('Hide Title Styling', 'gutenverse-news'),
+            component: CheckboxControl,
         },
         {
             id: 'containerWidth',
