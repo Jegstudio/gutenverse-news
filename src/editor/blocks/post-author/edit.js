@@ -10,6 +10,7 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import { isNotEmpty } from 'gutenverse-core/helper';
 
 const PostAuthor = compose(
     withPartialRender,
@@ -42,6 +43,7 @@ const PostAuthor = compose(
     const displayClass = useDisplayEditor(attributes);
 
     const currentUser = wp.data.select('core').getCurrentUser();
+    const description = isNotEmpty(currentUser?.description) ? currentUser?.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -75,7 +77,7 @@ const PostAuthor = compose(
                 <TitleTag className="gvnews-author-name">
                     <a>{currentUser?.name}</a>
                 </TitleTag>
-                <p className="gvnews-author-desc">{currentUser?.description}</p>
+                <p className="gvnews-author-desc">{description}</p>
                 <div className="gvnews-author-socials">
                     <a className="url"><i className="fa fa-globe"></i></a>
                     <a className="url"><i className="fab fa-facebook"></i></a>

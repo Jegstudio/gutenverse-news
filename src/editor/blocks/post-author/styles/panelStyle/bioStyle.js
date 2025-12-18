@@ -26,19 +26,6 @@ const bioStyle = (props) => {
             }
         ]
     });
-    
-    isNotEmpty(attributes['bioColorHover']) && data.push({
-        'type': 'color',
-        'id': 'bioColorHover',
-        'selector': `${selector}:hover`,
-        'properties': [
-            {
-                'name': 'color',
-                'valueType': 'direct'
-            }
-        ]
-    });
-    
     isNotEmpty(attributes['bioTextShadow']) && data.push({
         'type': 'textShadow',
         'id': 'bioTextShadow',
@@ -50,19 +37,6 @@ const bioStyle = (props) => {
             }
         ]
     });
-    
-    isNotEmpty(attributes['bioTextShadowHover']) && data.push({
-        'type': 'textShadow',
-        'id': 'bioTextShadowHover',
-        'selector': `${selector}:hover`,
-        'properties': [
-            {
-                'name': 'text-shadow',
-                'valueType': 'direct'
-            }
-        ]
-    });
-
     return data;
 };
 

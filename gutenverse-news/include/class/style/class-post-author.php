@@ -249,20 +249,6 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
-
-		if ( isset( $this->attrs['bioColorHover'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc:hover",
-					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
-					},
-					'value'          => $this->attrs['bioColorHover'],
-					'device_control' => false,
-				)
-			);
-		}
-
 		if ( isset( $this->attrs['bioTextShadow'] ) ) {
 			$this->inject_style(
 				array(
@@ -271,19 +257,6 @@ class Post_Author extends Style_Abstract {
 						return $this->handle_text_shadow( $value );
 					},
 					'value'          => $this->attrs['bioTextShadow'],
-					'device_control' => false,
-				)
-			);
-		}
-
-		if ( isset( $this->attrs['bioTextShadowHover'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc:hover",
-					'property'       => function ( $value ) {
-						return $this->handle_text_shadow( $value );
-					},
-					'value'          => $this->attrs['bioTextShadowHover'],
 					'device_control' => false,
 				)
 			);

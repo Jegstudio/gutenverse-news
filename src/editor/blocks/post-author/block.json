@@ -121,13 +121,7 @@
         "bioColor": {
             "type": "string"
         },
-        "bioColorHover": {
-            "type": "string"
-        },
         "bioTextShadow": {
-            "type": "object"
-        },
-        "bioTextShadowHover": {
             "type": "object"
         },
         "avatarSize": {
