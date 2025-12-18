@@ -1440,3 +1440,28 @@ if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 		return defined( 'GUTENVERSE_PRO_VERSION' );
 	}
 }
+
+if ( ! function_exists( 'gvnews_render_icon' ) ) {
+	/**
+	 * Render Icon
+	 *
+	 * @param string $type Icon type.
+	 * @param string $icon Icon class.
+	 * @param string $svg  SVG data.
+	 *
+	 * @return string
+	 */
+	function gvnews_render_icon( $type, $icon, $svg ) {
+		if ( 'svg' === $type ) {
+			if ( ! empty( $svg ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+				$svg_data = base64_decode( $svg );
+				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+			}
+		} elseif ( ! empty( $icon ) ) {
+			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
+		}
+
+		return null;
+	}
+}
