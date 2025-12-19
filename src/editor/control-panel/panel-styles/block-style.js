@@ -1855,13 +1855,32 @@ const titleContainerStyle = (elementId, attributes, data) => {
 const postItemStyle = (elementId, attributes, data) => {
 
     const {
-        mainListSelector,
+        mainItemSelector = '.gvnews_block_container > .gvnews_post',
         secondListSelector,
         thirdListSelector,
         postItemGrid = false
     } = attributes
 
     if (postItemGrid) {
+
+        isNotEmpty(attributes['mainItemGap']) && data.push({
+            'type': 'plain',
+            'id': 'mainItemGap',
+            'responsive': true,
+            'selector': `.${elementId} ${mainItemSelector}`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+            ],
+        });
 
         isNotEmpty(attributes['rowItemGap']) && data.push({
             'type': 'plain',

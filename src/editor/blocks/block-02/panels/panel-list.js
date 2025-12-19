@@ -16,6 +16,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { postItemGridPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () => {
     return [
@@ -83,6 +84,15 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => designPanel(props, 2, false),
+            tabRole: TabStyle
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => postItemGridPanel({
+                ...props,
+                mainContent: '.gvnews_block_container > .gvnews_post'
+            }),
             tabRole: TabStyle
         },
         {
