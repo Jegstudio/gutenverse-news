@@ -234,5 +234,8 @@
     "keywords": [
         "user",
         "list"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }
