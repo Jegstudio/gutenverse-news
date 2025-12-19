@@ -10,8 +10,7 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-import { isNotEmpty } from 'gutenverse-core/helper';
-import { FacebookIcon, SiteIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from "./icons";
+import { FacebookIcon, SiteIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../../utils/social-icons';
 
 const PostAuthor = compose(
     withPartialRender,

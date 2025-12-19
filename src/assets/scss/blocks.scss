@@ -13637,14 +13637,12 @@ video {
     a {
       display: inline-block;
       margin-right: 14px;
+      color: #999999;
 
       &:last-child {
         margin-right: 0;
       }
 
-      i {
-        color: #999999;
-      }
     }
   }
 
