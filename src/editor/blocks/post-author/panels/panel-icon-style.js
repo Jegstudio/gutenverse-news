@@ -50,7 +50,7 @@ export const iconStylePanel = (props) => {
                     'type': 'unitPoint',
                     'id': 'socialIconSize',
                     'responsive': true,
-                    'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials i`,
+                    'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials svg`,
                     'properties': [
                         {
                             'name': 'font-size',

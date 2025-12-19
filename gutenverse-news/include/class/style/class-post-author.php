@@ -422,7 +422,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['socialIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials i",
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials svg",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'font-size' );
 					},
@@ -446,9 +446,9 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['socialIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials i",
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['socialIconColor'],
 					'device_control' => false,
@@ -458,9 +458,9 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['socialIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials a:hover i",
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-socials a:hover svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['socialIconColorHover'],
 					'device_control' => false,
