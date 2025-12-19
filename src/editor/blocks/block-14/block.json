@@ -718,19 +718,7 @@
             "type": "object",
             "copyStyle": true
         },
-        "cardBorderSecond": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "cardBorderResponsiveSecond": {
-            "type": "object",
-            "copyStyle": true
-        },
         "cardPadding": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "cardPaddingSecond": {
             "type": "object",
             "copyStyle": true
         }
