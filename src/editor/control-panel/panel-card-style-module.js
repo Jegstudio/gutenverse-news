@@ -24,22 +24,22 @@ export const cardStylePanelModule = (props) => {
     const device = getDeviceType();
 
     return [
-        {
-            id: '__cardType',
-            show: hasSecondClass,
-            component: SwitchControl,
-            options: [
-                {
-                    value: 'main',
-                    label: 'Main'
-                },
-                {
-                    value: 'second',
-                    label: 'Second'
-                }
-            ],
-            onChange: ({ __cardType }) => setSwitcher({ ...switcher, cardType: __cardType })
-        },
+        // {
+        //     id: '__cardType',
+        //     show: hasSecondClass,
+        //     component: SwitchControl,
+        //     options: [
+        //         {
+        //             value: 'main',
+        //             label: 'Main'
+        //         },
+        //         {
+        //             value: 'second',
+        //             label: 'Second'
+        //         }
+        //     ],
+        //     onChange: ({ __cardType }) => setSwitcher({ ...switcher, cardType: __cardType })
+        // },
         // Main
         // TODO: Add width control
         // {
@@ -78,19 +78,6 @@ export const cardStylePanelModule = (props) => {
         //     ]
         // },
         {
-            id: 'cardBorder',
-            component: BorderControl,
-            show: (switcher.cardType === 'main' || !switcher.cardType) && device === 'Desktop',
-            label: __('Border', 'gutenverse-news'),
-        },
-        {
-            id: 'cardBorderResponsive',
-            component: BorderResponsiveControl,
-            show: (switcher.cardType === 'main' || !switcher.cardType) && device !== 'Desktop',
-            label: __('Border', 'gutenverse-news'),
-            allowDeviceControl: true,
-        },
-        {
             id: 'cardPadding',
             component: DimensionControl,
             allowDeviceControl: true,
@@ -115,6 +102,19 @@ export const cardStylePanelModule = (props) => {
                     unit: 'rem'
                 },
             },
+        },
+        {
+            id: 'cardBorder',
+            component: BorderControl,
+            show: (switcher.cardType === 'main' || !switcher.cardType) && device === 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+        },
+        {
+            id: 'cardBorderResponsive',
+            component: BorderResponsiveControl,
+            show: (switcher.cardType === 'main' || !switcher.cardType) && device !== 'Desktop',
+            label: __('Border', 'gutenverse-news'),
+            allowDeviceControl: true,
         },
         // Second
         {

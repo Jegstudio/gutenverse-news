@@ -2027,13 +2027,13 @@ const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) =
     isNotEmpty(attributes['cardBorder']) && data.push({
         'type': 'border',
         'id': 'cardBorder',
-        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
     })
     isNotEmpty(attributes['cardBorderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'cardBorderResponsive',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
     })
     isNotEmpty(attributes['cardPadding']) && data.push({
         'type': 'dimension',
@@ -2045,7 +2045,7 @@ const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) =
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
     })
     // TODO: Add width control
     // isNotEmpty(attributes['cardWidth']) && data.push({
@@ -2060,18 +2060,6 @@ const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) =
     //     'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
     //     'responsive': true
     // })
-    // Second
-    isNotEmpty(attributes['cardBorderSecond']) && data.push({
-        'type': 'border',
-        'id': 'cardBorderSecond',
-        'selector': `.${elementId} .gvnews_postblock .${secondClass}`,
-    })
-    isNotEmpty(attributes['cardBorderResponsiveSecond']) && data.push({
-        'type': 'borderResponsive',
-        'id': 'cardBorderResponsiveSecond',
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_postblock .${secondClass}`,
-    })
     return data;
 }
 

@@ -1921,12 +1921,12 @@ class Block extends StyleAbstract {
 	private function generate_card_style() {
 		// Main Class.
 		if ( isset( $this->attrs['cardBorder'] ) ) {
-			$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}" );
+			$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)" );
 		}
 		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}",
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
 					'property'       => function ( $value ) {
 						return $this->handle_border_responsive( $value );
 					},
@@ -1941,43 +1941,11 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['cardPadding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}",
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
 					'value'          => $this->attrs['cardPadding'],
-					'device_control' => true,
-				)
-			);
-		}
-
-		// Second class.
-		if ( isset( $this->attrs['cardBorderSecond'] ) ) {
-			$this->handle_border( 'cardBorderSecond', ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}" );
-		}
-		if ( isset( $this->attrs['cardBorderResponsiveSecond'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}",
-					'property'       => function ( $value ) {
-						return $this->handle_border_responsive( $value );
-					},
-					'value'          => $this->attrs['cardBorderResponsiveSecond'],
-					'device_control' => true,
-					'skip_device'    => array(
-						'Desktop',
-					),
-				)
-			);
-		}
-		if ( isset( $this->attrs['cardPaddingSecond'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}",
-					'property'       => function ( $value ) {
-						return $this->handle_dimension( $value, 'padding' );
-					},
-					'value'          => $this->attrs['cardPaddingSecond'],
 					'device_control' => true,
 				)
 			);
