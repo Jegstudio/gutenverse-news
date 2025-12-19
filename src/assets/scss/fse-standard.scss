@@ -74,6 +74,8 @@
 
     .gvnews_block_container {
         >.gvnews_post {
+            margin-bottom: 30px;
+
             .gvnews_thumb {
                 margin-right: 0;
             }
@@ -392,6 +394,7 @@
 
             >.gvnews_post {
                 display: block;
+                margin-bottom: 20px;
 
                 .gvnews_postblock_content {
                     margin-left: 0;

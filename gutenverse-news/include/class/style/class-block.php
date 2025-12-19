@@ -597,6 +597,22 @@ class Block extends StyleAbstract {
 		$post_item_grid = isset( $this->attrs['postItemGrid'] ) ? $this->attrs['postItemGrid'] : false;
 
 		if ( $post_item_grid ) {
+
+			if ( isset( $this->attrs['mainItemGap'] ) ) {
+				$main_item_selector = isset( $this->attrs['mainItemSelector'] ) ? $this->attrs['mainItemSelector'] : '.gvnews_block_container > .gvnews_post';
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} {$main_item_selector}",
+						'property'       => function ( $value ) {
+								return "margin-bottom: {$value}px;";
+						},
+						'value'          => $this->attrs['mainItemGap'],
+						'device_control' => true,
+					)
+				);
+			}
+
 			if ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(
 					array(
@@ -625,6 +641,17 @@ class Block extends StyleAbstract {
 
 			if ( isset( $this->attrs['secondListSelector'] ) ) {
 				$second_list_selector = isset( $this->attrs['secondListSelector'] ) ? $this->attrs['secondListSelector'] : 'gvnews_postblock .gvnews_posts .gvnews_postsmall:first-of-type';
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock_1 .gvnews_block_container",
+						'property'       => function ( $value ) {
+							return "gap: {$value}px;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
 
 				if ( isset( $this->attrs['columnItemGapSecond'] ) ) {
 					$this->inject_style(

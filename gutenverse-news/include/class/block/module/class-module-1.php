@@ -177,7 +177,7 @@ class Module_1 extends Module_View_Abstract {
 			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
 
-		return '<div class="gvnews_posts gvnews-posts-row">
+		return '<div class="gvnews_posts">
 					<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_1 col-sm-6', $results[0]->ID ) . ">
 						$first_block
 					</article>
@@ -211,7 +211,7 @@ class Module_1 extends Module_View_Abstract {
 			$third_block .= $this->render_block_type_3( $results[ $i ] );
 		}
 
-		return '<div class="gvnews_posts gvnews-posts-row">
+		return '<div class="gvnews_posts">
 					<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_1 col-sm-4', $results[0]->ID ) . ">
 						$first_block
 					</article>

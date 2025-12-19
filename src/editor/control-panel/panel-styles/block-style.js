@@ -1,5 +1,4 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
-import { dimensionAttributeNotEmpty } from '../../utils/helper';
 
 const getBlockStyle = (
     elementId,
@@ -1922,6 +1921,25 @@ const postItemStyle = (elementId, attributes, data) => {
 
         if (isNotEmpty(secondListSelector)) {
 
+
+            isNotEmpty(attributes['rowItemGap']) && data.push({
+                'type': 'plain',
+                'id': 'rowItemGap',
+                'responsive': true,
+                'selector': `.${elementId} .gvnews_postblock_1 .gvnews_block_container`,
+                'properties': [
+                    {
+                        'name': 'gap',
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct'
+                            }
+                        }
+                    }
+                ],
+            });
             isNotEmpty(attributes['columnItemGapSecond']) && data.push({
                 'type': 'plain',
                 'id': 'columnItemGapSecond',
