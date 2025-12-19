@@ -704,6 +704,10 @@
         "cardBorderResponsive": {
             "type": "object",
             "copyStyle": true
+        },
+        "cardPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

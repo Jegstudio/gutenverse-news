@@ -1910,10 +1910,7 @@ const postItemStyle = (elementId, attributes, data) => {
                 }
             ],
         });
-
-
         if (isNotEmpty(secondListSelector)) {
-
             isNotEmpty(attributes['columnItemGapSecond']) && data.push({
                 'type': 'plain',
                 'id': 'columnItemGapSecond',
@@ -1932,8 +1929,6 @@ const postItemStyle = (elementId, attributes, data) => {
                     }
                 ],
             });
-
-
             isNotEmpty(attributes['columnItemGapThird']) && data.push({
                 'type': 'plain',
                 'id': 'columnItemGapThird',
@@ -1953,7 +1948,6 @@ const postItemStyle = (elementId, attributes, data) => {
                 ],
             });
         }
-
     } else {
         isNotEmpty(attributes['rowItemGap']) && data.push({
             'type': 'plain',
@@ -2041,7 +2035,31 @@ const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) =
         'responsive': true,
         'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
     })
-
+    isNotEmpty(attributes['cardPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'cardPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+    })
+    // TODO: Add width control
+    // isNotEmpty(attributes['cardWidth']) && data.push({
+    //     'type': 'unitPoint',
+    //     'id': 'cardWidth',
+    //     'properties': [
+    //         {
+    //             'name': 'width',
+    //             'valueType': 'direct'
+    //         }
+    //     ],
+    //     'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+    //     'responsive': true
+    // })
     // Second
     isNotEmpty(attributes['cardBorderSecond']) && data.push({
         'type': 'border',

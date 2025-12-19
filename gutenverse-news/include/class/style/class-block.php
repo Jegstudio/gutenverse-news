@@ -1923,7 +1923,6 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['cardBorder'] ) ) {
 			$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}" );
 		}
-
 		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
 			$this->inject_style(
 				array(
@@ -1939,12 +1938,23 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['cardPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class}",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['cardPadding'],
+					'device_control' => true,
+				)
+			);
+		}
 
 		// Second class.
 		if ( isset( $this->attrs['cardBorderSecond'] ) ) {
 			$this->handle_border( 'cardBorderSecond', ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}" );
 		}
-
 		if ( isset( $this->attrs['cardBorderResponsiveSecond'] ) ) {
 			$this->inject_style(
 				array(
@@ -1957,6 +1967,18 @@ class Block extends StyleAbstract {
 					'skip_device'    => array(
 						'Desktop',
 					),
+				)
+			);
+		}
+		if ( isset( $this->attrs['cardPaddingSecond'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class}",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['cardPaddingSecond'],
+					'device_control' => true,
 				)
 			);
 		}

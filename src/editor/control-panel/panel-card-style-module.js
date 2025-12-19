@@ -1,40 +1,82 @@
 import { __ } from '@wordpress/i18n';
 import {
-    BackgroundControl,
-    HeadingControl,
     SwitchControl,
     BorderControl,
-    BorderResponsiveControl
+    BorderResponsiveControl,
+    DimensionControl,
+    SizeControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const cardStylePanelModule = (props) => {
     const {
-        cardType = 1,
+        elementId,
         hasSecondClass = false,
         switcher,
         setSwitcher,
+        mainThumbnailClass,
+        secondThumbnailClass,
+        hasGap = {
+            main: false,
+            second: false
+        }
     } = props;
     const device = getDeviceType();
 
     return [
-            {
-                id: '__cardType',
-                show: hasSecondClass,
-                component: SwitchControl,
-                options: [
-                    {
-                        value: 'main',
-                        label: 'Main'
-                    },
-                    {
-                        value: 'second',
-                        label: 'Second'
-                    }
-                ],
-                onChange: ({ __cardType }) => setSwitcher({ ...switcher, cardType: __cardType })
-            },
+        {
+            id: '__cardType',
+            show: hasSecondClass,
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'main',
+                    label: 'Main'
+                },
+                {
+                    value: 'second',
+                    label: 'Second'
+                }
+            ],
+            onChange: ({ __cardType }) => setSwitcher({ ...switcher, cardType: __cardType })
+        },
         // Main
+        // TODO: Add width control
+        // {
+        //     id: 'cardWidth',
+        //     label: __('Width', 'gutenverse'),
+        //     show: (switcher.cardType === 'main' || !switcher.cardType),
+        //     component: SizeControl,
+        //     allowDeviceControl: true,
+        //     units: {
+        //         px: {
+        //             text: 'px',
+        //             min: 1,
+        //             max: 500,
+        //             step: 1
+        //         },
+        //         '%': {
+        //             text: '%',
+        //             min: 1,
+        //             max: 100,
+        //             step: 1
+        //         },
+        //     },
+        //     liveStyle: [
+        //         {
+        //             'type': 'unitPoint',
+        //             'id': 'cardWidth',
+        //             'properties': [
+        //                 {
+        //                     'name': 'width',
+        //                     'valueType': 'direct'
+        //                 }
+        //             ],
+        //             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
+        //             'responsive': true
+        //         }
+        //     ]
+        // },
         {
             id: 'cardBorder',
             component: BorderControl,
@@ -47,6 +89,32 @@ export const cardStylePanelModule = (props) => {
             show: (switcher.cardType === 'main' || !switcher.cardType) && device !== 'Desktop',
             label: __('Border', 'gutenverse-news'),
             allowDeviceControl: true,
+        },
+        {
+            id: 'cardPadding',
+            component: DimensionControl,
+            allowDeviceControl: true,
+            show: (switcher.cardType === 'main' || !switcher.cardType),
+            label: __('Padding', 'gutenverse-news'),
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                ['%']: {
+                    text: '%',
+                    unit: '%'
+                },
+                rem: {
+                    text: 'rem',
+                    unit: 'rem'
+                },
+            },
         },
         // Second
         {
@@ -61,6 +129,32 @@ export const cardStylePanelModule = (props) => {
             show: (switcher.cardType === 'second') && device !== 'Desktop',
             label: __('Border', 'gutenverse-news'),
             allowDeviceControl: true,
+        },
+        {
+            id: 'cardPaddingSecond',
+            component: DimensionControl,
+            allowDeviceControl: true,
+            show: (switcher.cardType === 'second'),
+            label: __('Padding', 'gutenverse-news'),
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                ['%']: {
+                    text: '%',
+                    unit: '%'
+                },
+                rem: {
+                    text: 'rem',
+                    unit: 'rem'
+                },
+            },
         },
     ];
 };
