@@ -1879,16 +1879,6 @@ const postItemStyle = (elementId, attributes, data) => {
                         }
                     }
                 },
-                {
-                    'name': 'margin-bottom',
-                    'valueType': 'pattern',
-                    'pattern': '{value}px',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct'
-                        }
-                    }
-                }
             ],
         });
         isNotEmpty(attributes['columnItemGap']) && data.push({
@@ -1958,7 +1948,7 @@ const postItemStyle = (elementId, attributes, data) => {
             'type': 'plain',
             'id': 'rowItemGap',
             'responsive': true,
-            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post`,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post:not(:last-of-type)`,
             'properties': [
                 {
                     'name': 'margin-bottom',

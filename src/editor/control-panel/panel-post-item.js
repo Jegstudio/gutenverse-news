@@ -63,16 +63,6 @@ export const multiPostItemPanel = (props) => {
                     'selector': `.${elementId} .gvnews_posts`,
                     'properties': [
                         {
-                            'name': 'margin-bottom',
-                            'valueType': 'pattern',
-                            'pattern': '{value}px',
-                            'patternValues': {
-                                'value': {
-                                    'type': 'direct',
-                                }
-                            }
-                        },
-                        {
                             'name': 'column-gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',

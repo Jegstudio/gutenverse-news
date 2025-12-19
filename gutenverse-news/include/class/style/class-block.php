@@ -608,17 +608,6 @@ class Block extends StyleAbstract {
 						'device_control' => true,
 					)
 				);
-
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts",
-						'property'       => function ( $value ) {
-							return "margin-bottom: {$value}px;";
-						},
-						'value'          => $this->attrs['rowItemGap'],
-						'device_control' => true,
-					)
-				);
 			}
 
 			if ( isset( $this->attrs['columnItemGap'] ) ) {
@@ -667,11 +656,10 @@ class Block extends StyleAbstract {
 
 				}
 			}
-		}else {
-			if ( isset( $this->attrs['rowItemGap'] ) ) {
+		} elseif ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts .gvnews_post",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts .gvnews_post:not(:last-of-type)",
 						'property'       => function ( $value ) {
 							return "margin-bottom: {$value}px;";
 						},
@@ -679,7 +667,6 @@ class Block extends StyleAbstract {
 						'device_control' => true,
 					)
 				);
-			}
 		}
 	}
 
