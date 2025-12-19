@@ -74,7 +74,7 @@ class Frontend_Assets {
 			$data = $cache[ $path ];
 		} else {
 			if ( file_exists( $path ) ) {
-				$raw = file_get_contents( $path );
+				$raw  = file_get_contents( $path );
 				$data = json_decode( $raw, true );
 			} else {
 				$data = null;
@@ -174,16 +174,11 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-28':
+			case 'gutenverse/news-post-related':
 				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
 				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
-					$this->icon_conditional_load( $conditions );
-				}
-				break;
-
-			case 'gutenverse/news-post-related':
-				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;

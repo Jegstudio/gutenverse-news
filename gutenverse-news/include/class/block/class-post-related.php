@@ -53,6 +53,9 @@ class Post_Related extends Post_Guten {
 		}
 
 		$attribute = array(
+			'icon'                         => $this->attributes['icon'],
+			'icon_type'                    => $this->attributes['iconType'],
+			'icon_svg'                     => $this->attributes['iconSVG'],
 			'first_title'                  => $this->attributes['title'],
 			'second_title'                 => $this->attributes['second_title'],
 			'header_type'                  => $this->attributes['headerType'],
@@ -89,10 +92,10 @@ class Post_Related extends Post_Guten {
 		do_action( 'gvnews_build_shortcode_' . strtolower( $mod ) );
 
 		/**
-		* Call module instance
-		*
-		* @var \GUTENVERSE\NEWS\Block\Module\Module_View_Abstract $instance
-		*/
+		 * Call module instance
+		 *
+		 * @var \GUTENVERSE\NEWS\Block\Module\Module_View_Abstract $instance
+		 */
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$content = $instance->build_module( $attribute );
