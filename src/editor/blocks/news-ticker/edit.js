@@ -251,7 +251,7 @@ const NewsTickerBlock = compose(
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div ref={blockRef} className="gvnews_breakingnews clearfix">
                     <div className="gvnews_breakingnews_title">
-                        {renderIcon(icon, iconType, iconSVG)}
+                        {renderIcon(icon, iconType, iconSVG)}&nbsp;
                         <span>{title}</span>
                     </div>
                     <div className="gvnews_news_ticker" data-autoplay={autoplay ? 1 : ''} data-delay={autoplayDelay} data-animation={animationDirection}>
