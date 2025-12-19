@@ -31,6 +31,8 @@ const HeaderBlock = compose(
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -52,6 +54,8 @@ const HeaderBlock = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
