@@ -239,188 +239,215 @@ class Archive extends StyleAbstract {
 	 * Generate style for archive block
 	 */
 	private function archive_block() {
-		if ( 'gutenverse/news-archive-block' === $this->name ) {
-			if ( isset( $this->attrs['titleTypography'] ) ) {
-				$this->inject_typography(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post .gvnews_post_title",
-						'property'       => function ( $value ) {},
-						'value'          => $this->attrs['titleTypography'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['secondTitleTypography'] ) ) {
-				$this->inject_typography(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a",
-						'property'       => function ( $value ) {
-						},
-						'value'          => $this->attrs['secondTitleTypography'],
-						'device_control' => false,
-					)
-				);
-			}
-			if ( isset( $this->attrs['contentTypography'] ) ) {
-				$this->inject_typography(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt p,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore",
-						'property'       => function ( $value ) {},
-						'value'          => $this->attrs['contentTypography'],
-						'device_control' => false,
-					)
-				);
-			}
-			if ( isset( $this->attrs['readmoreButtonTypography'] ) ) {
-				$this->inject_typography(
-					array(
-						'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
-						'value'    => $this->attrs['readmoreButtonTypography'],
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBackground'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background-color' );
-						},
-						'value'          => $this->attrs['readmoreButtonBackground'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBackgroundHover'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'background-color' );
-						},
-						'value'          => $this->attrs['readmoreButtonBackgroundHover'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonColor'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['readmoreButtonColor'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['readmoreButtonColorHover'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBorder'] ) ) {
-				$this->handle_border(
-					'readmoreButtonBorder',
-					".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore"
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBorderHover'] ) ) {
-				$this->handle_border(
-					'readmoreButtonBorderHover',
-					".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover"
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBoxShadow'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
-						'property'       => function ( $value ) {
-							return $this->handle_box_shadow( $value );
-						},
-						'value'          => $this->attrs['readmoreButtonBoxShadow'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( isset( $this->attrs['readmoreButtonBoxShadowHover'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
-						'property'       => function ( $value ) {
-							return $this->handle_box_shadow( $value );
-						},
-						'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
-						'device_control' => false,
-					)
-				);
-			}
-			if ( isset( $this->attrs['aHover'] ) ) {
-				$selector = '14' === $this->attrs['blockType'] ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a' : '.gvnews_postblock .gvnews_post_title a';
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_meta_author a, .{$this->element_id} {$selector}:hover",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['aHover'],
-						'device_control' => false,
-					)
-				);
-			}
-			if ( isset( $this->attrs['titleColor'] ) ) {
-				$selector = '14' === $this->attrs['blockType'] ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a' : '.gvnews_post_title a';
-
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id}  {$selector}",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['titleColor'],
-						'device_control' => false,
-					)
-				);
-			}
-			if ( isset( $this->attrs['excerptColor'] ) ) {
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id}  .gvnews_post_excerpt",
-						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'color' );
-						},
-						'value'          => $this->attrs['excerptColor'],
-						'device_control' => false,
-					)
-				);
-			}
-
-			if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
-				$this->generate_meta_style();
-			}
-
-			if ( ! in_array( $this->attrs['blockType'], array( '3', '4', '7', '9', '10', '25', '35' ) ) ) {
-				$this->generate_category_label_style();
-			}
-			$this->no_content_style();
+		if ( 'gutenverse/news-archive-block' !== $this->name ) {
+			return;
 		}
+		if ( isset( $this->attrs['titleTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post .gvnews_post_title",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['titleTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['secondTitleTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['contentTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt p,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['contentTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['readmoreButtonTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'value'    => $this->attrs['readmoreButtonTypography'],
+				)
+			);
+		}
+		if ( isset( $this->attrs['readmoreButtonBackground'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['readmoreButtonBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['readmoreButtonBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readmoreButtonColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readmoreButtonColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBorder'] ) ) {
+			$this->handle_border(
+				'readmoreButtonBorder',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore"
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBorderHover'] ) ) {
+			$this->handle_border(
+				'readmoreButtonBorderHover',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover"
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['readmoreButtonBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readmoreButtonBoxShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['aHover'] ) ) {
+			$selector = '14' === $this->attrs['blockType'] ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a' : '.gvnews_postblock .gvnews_post_title a';
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_meta_author a, .{$this->element_id} {$selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['aHover'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['titleColor'] ) ) {
+			$selector = '14' === $this->attrs['blockType'] ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a' : '.gvnews_post_title a';
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}  {$selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['titleColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['excerptColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}  .gvnews_post_excerpt",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['excerptColor'],
+					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['cardBorder'] ) ) {
+			$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)" );
+		}
+		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['cardBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
+		if ( isset( $this->attrs['cardPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['cardPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
+			$this->generate_meta_style();
+		}
+		if ( ! in_array( $this->attrs['blockType'], array( '3', '4', '7', '9', '10', '25', '35' ) ) ) {
+			$this->generate_category_label_style();
+		}
+		$this->no_content_style();
 	}
 
 	/**

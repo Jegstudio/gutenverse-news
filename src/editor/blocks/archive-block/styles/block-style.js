@@ -1,6 +1,7 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import readmoreStyle from './panel-style/style-readmore';
+import { cardStyleModule } from './panel-style/style-card';
 
 const getBlockStyle = (elementId, attributes) => {
     const {
@@ -18,6 +19,7 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundHoverSelector: `.${elementId} .gvnews_postblock:hover`,
     });
     data = noContentStyle(elementId, attributes, data);
+    data = cardStyleModule(elementId, attributes, data);
 
     /**
      * Panel Design
