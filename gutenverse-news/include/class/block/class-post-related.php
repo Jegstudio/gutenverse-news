@@ -54,8 +54,8 @@ class Post_Related extends Post_Guten {
 
 		$attribute = array(
 			'icon'                         => $this->attributes['icon'],
-			'icon_type'                    => $this->attributes['iconType'],
-			'icon_svg'                     => $this->attributes['iconSVG'],
+			'icon_type'                    => isset($this->attributes['iconType']) ? $this->attributes['iconType'] : 'icon',
+			'icon_svg'                     => isset($this->attributes['iconSVG']) ? $this->attributes['iconSVG'] : '',
 			'first_title'                  => $this->attributes['title'],
 			'second_title'                 => $this->attributes['second_title'],
 			'header_type'                  => $this->attributes['headerType'],
