@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Slider;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Slider_3
  *
@@ -117,7 +119,7 @@ class Slider_3 extends Slider_View_Abstract {
 	public function render_meta( $post ) {
 		$output = '';
 
-		$icon_clock = $this->render_svg_icon( 'fas fa-clock' );
+		$icon_clock = Svg_Icons::render_svg_icon( 'fas fa-clock' );
 
 		$time   = $this->format_date( $post );
 		$output =

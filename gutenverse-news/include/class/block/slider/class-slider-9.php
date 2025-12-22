@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Slider;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Slider_9
  *
@@ -143,8 +145,8 @@ class Slider_9 extends Slider_View_Abstract {
 		$time    = $this->format_date( $post );
 		$comment = get_comments_number( $post );
 
-		$icon_date    = $this->render_svg_icon( 'fas fa-clock' );
-		$icon_comment = $this->render_svg_icon( 'fas fa-comments' );
+		$icon_date    = Svg_Icons::render_svg_icon( 'fas fa-clock' );
+		$icon_comment = Svg_Icons::render_svg_icon( 'fas fa-comments' );
 
 		$output =
 			'<div class="gvnews_post_meta">

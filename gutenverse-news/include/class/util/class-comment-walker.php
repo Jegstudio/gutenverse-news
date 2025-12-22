@@ -16,7 +16,6 @@ namespace GUTENVERSE\NEWS\Util;
  * @author Jegstudio
  */
 class Comment_Walker extends \Walker_Comment {
-	use Svg_Icons;
 
 	/**
 	 * Output a single comment.
@@ -39,7 +38,7 @@ class Comment_Walker extends \Walker_Comment {
 			$add_below = 'div-comment';
 		}
 
-		$icon_clock = $this->render_svg_icon( 'fas fa-clock' );
+		$icon_clock = Svg_Icons::render_svg_icon( 'fas fa-clock' );
 		?>
 		<<?php echo esc_attr( $tag ); ?> 		<?php comment_class( $this->has_children ? 'parent' : '' ); ?> id="comment-<?php comment_ID(); ?>">
 			<?php if ( 'div' !== $args['style'] ) : ?>

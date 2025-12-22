@@ -19,7 +19,6 @@ use GUTENVERSE\NEWS\Util\Svg_Icons;
  * @author Jegstudio
  */
 abstract class Block_View_Abstract {
-	use Svg_Icons;
 
 	/**
 	 * Instance
@@ -609,7 +608,7 @@ abstract class Block_View_Abstract {
 	 */
 	public function get_meta_date( $post ) {
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
-			$icon = $this->render_svg_icon( 'far fa-clock' );
+			$icon = Svg_Icons::render_svg_icon( 'far fa-clock' );
 			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		}
 		return '';
@@ -624,7 +623,7 @@ abstract class Block_View_Abstract {
 	public function get_meta_comment( $post ) {
 		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
 			$comment = gvnews_get_comments_number( $post->ID );
-			$icon    = $this->render_svg_icon( 'far fa-comments' );
+			$icon    = Svg_Icons::render_svg_icon( 'far fa-comments' );
 			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon . ' ' . esc_attr( $comment ) . ' </a></div>';
 		}
 		return '';

@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Module;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Module_38
  *
@@ -36,7 +38,7 @@ class Module_38 extends Module_View_Abstract {
 
 		$permalink = esc_url( get_the_permalink( $post ) );
 
-		$icon_arrow_right = $this->render_svg_icon( 'fas fa-arrow-right-long' );
+		$icon_arrow_right = Svg_Icons::render_svg_icon( 'fas fa-arrow-right-long' );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . '>
 					' . gvnews_edit_post( $post_id, 'right' ) . "

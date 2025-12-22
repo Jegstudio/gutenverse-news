@@ -19,7 +19,6 @@ use GUTENVERSE\NEWS\Util\Svg_Icons;
  * @author Jegstudio
  */
 class Post_Meta extends Post_Guten {
-	 use Svg_Icons;
 
 	/**
 	 * Method get_custom_classes;
@@ -102,7 +101,7 @@ class Post_Meta extends Post_Guten {
 	 * @return string
 	 */
 	public function render_comment( $is_last_item ) {
-		$icon_comment = $this->render_svg_icon( 'far fa-comment' );
+		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
 
 		return '<div class="gvnews-meta-comment meta-items ' . $is_last_item . '">
 					<a href="' . esc_url( gvnews_get_respond_link() ) . '">' . $icon_comment . ' ' . esc_html( gvnews_get_comments_number() ) . '</a>

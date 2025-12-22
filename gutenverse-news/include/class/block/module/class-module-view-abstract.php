@@ -20,7 +20,6 @@ use GUTENVERSE\NEWS\Util\Svg_Icons;
  * @author Jegstudio
  */
 abstract class Module_View_Abstract extends Block_View_Abstract {
-	use Svg_Icons;
 
 	/**
 	 * Method render_module
@@ -166,8 +165,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			$prev_text = $this->render_svg_icon( 'fas fa-chevron-left' );
-			$next_text = $this->render_svg_icon( 'fas fa-chevron-right' );
+			$prev_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-left' );
+			$next_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
 
 			if ( $attr['pagination_nextprev_showtext'] ) {
 				$additional_class .= ' showtext';

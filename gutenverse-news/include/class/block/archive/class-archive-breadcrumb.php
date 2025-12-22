@@ -18,7 +18,6 @@ use GUTENVERSE\NEWS\Util\Svg_Icons;
  * @author Jegstudio
  */
 class Archive_Breadcrumb extends Archive_View_Abstract {
-	use Svg_Icons;
 
 	/**
 	 * Last link class
@@ -77,7 +76,7 @@ class Archive_Breadcrumb extends Archive_View_Abstract {
 			$this->recursive_category( $id, $breadcrumb, true );
 		}
 
-		$icon_separator = $this->render_svg_icon( 'fas fa-chevron-right' );
+		$icon_separator = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
 
 		$breadcrumb = implode( $icon_separator, $breadcrumb );
 		$breadcrumb = "<div id=\"breadcrumbs\">$breadcrumb</div>";
