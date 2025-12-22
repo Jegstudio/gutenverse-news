@@ -1,8 +1,48 @@
+/* Default pagination margin */
+.gvnews_postblock_3,
+.gvnews_postblock_4,
+.gvnews_postblock_5,
+.gvnews_postblock_6,
+.gvnews_postblock_7,
+.gvnews_postblock_8,
+.gvnews_postblock_9 {
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin: 30px 0;
+        }
+    }
+}
+
+.gvnews_postblock_17,
+.gvnews_postblock_21 {
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin: 25px 0;
+        }
+    }
+}
+
+.gvnews_postblock_10 {
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin: 50px 0;
+        }
+    }
+}
+
+
+
 .gvnews_postblock_1 {
     .gvnews_block_container {
         display: flex;
         flex-direction: column;
         gap: 30px;
+    }
+
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin: 30px 0;
+        }
     }
 
     .gvnews_posts {
@@ -38,6 +78,10 @@
             grid-template-columns: repeat(1, 1fr);
             row-gap: 20px;
         }
+
+        .gvnews_block_navigation {
+            margin: 20px 0;
+        }
     }
 
     &.gvnews_col_2o3 .gvnews_posts {
@@ -48,6 +92,8 @@
         padding-right: 0;
         margin-bottom: 0;
     }
+
+
 }
 
 /* Postblock 2 */
@@ -105,8 +151,15 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin: 30px 0;
+        }
+    }
+
 
 }
+
 
 /* Postblock 8 */
 
@@ -241,6 +294,10 @@
         .gvnews_posts {
             grid-template-columns: repeat(1, 1fr);
             row-gap: 20px;
+        }
+
+        .gvnews_block_navigation {
+            margin: 20px 0;
         }
     }
 

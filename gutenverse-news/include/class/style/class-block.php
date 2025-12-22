@@ -624,6 +624,17 @@ class Block extends StyleAbstract {
 						'device_control' => true,
 					)
 				);
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
+						'property'       => function ( $value ) {
+							return "margin: {$value}px 0;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
 			}
 
 			if ( isset( $this->attrs['columnItemGap'] ) ) {
@@ -694,6 +705,17 @@ class Block extends StyleAbstract {
 						'device_control' => true,
 					)
 				);
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
+						'property'       => function ( $value ) {
+							return "margin: {$value}px 0;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
 		}
 	}
 
@@ -726,7 +748,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationWrapperMargin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},

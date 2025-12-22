@@ -17,6 +17,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { postItemPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () => {
     return applyFilters(
@@ -83,6 +84,12 @@ export const panelList = () => {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Post Item', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: postItemPanel,
                 tabRole: TabStyle
             },
             {

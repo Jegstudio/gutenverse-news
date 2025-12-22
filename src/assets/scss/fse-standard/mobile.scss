@@ -21,6 +21,12 @@
         .gvnews_meta_author {
             display: inline-block;
         }
+
+        &.gvnews_postblock {
+            .gvnews_block_navigation {
+                margin: 20px 0;
+            }
+        }
     }
 
     .gvnews_postblock_9 {
@@ -53,12 +59,24 @@
             row-gap: 20px;
         }
 
+        &.gvnews_postblock {
+            .gvnews_block_navigation {
+                margin: 20px 0;
+            }
+        }
+
     }
 
     .gvnews_postblock_2 {
         .gvnews_posts {
             grid-template-columns: repeat(1, 1fr) !important;
             row-gap: 20px;
+        }
+
+        &.gvnews_postblock {
+            .gvnews_block_navigation {
+                margin: 20px 0;
+            }
         }
 
         .gvnews_pl_lg_2 {
