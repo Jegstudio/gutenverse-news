@@ -245,8 +245,6 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 
 			if ( $is_type_3 ) {
 				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
-
-				error_log( $next_prev_button );
 			} else {
 				/** This filter is documented in wp-includes/general-template.php */
 				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
