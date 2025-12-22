@@ -37,6 +37,18 @@ const bioStyle = (props) => {
             }
         ]
     });
+    isNotEmpty(attributes['bioSpaceBottom']) && data.push({
+        'type': 'unitPoint',
+        'id': 'bioSpaceBottom',
+        'selector': selector,
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin-bottom',
+                'valueType': 'direct'
+            }
+        ]
+    });
     return data;
 };
 

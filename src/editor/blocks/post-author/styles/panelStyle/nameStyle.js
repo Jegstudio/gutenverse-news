@@ -14,7 +14,18 @@ const nameStyle = (props) => {
         'id': 'authorTypography',
         'selector': selector,
     });
-    
+    isNotEmpty(attributes['nameSpaceBottom']) && data.push({
+        'type': 'unitPoint',
+        'id': 'nameSpaceBottom',
+        'selector': selector,
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin-bottom',
+                'valueType': 'direct'
+            }
+        ]
+    });
     isNotEmpty(attributes['nameColor']) && data.push({
         'type': 'color',
         'id': 'nameColor',
