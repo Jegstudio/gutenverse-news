@@ -40,4 +40,20 @@
         }
     }
 
+    .gvnews_postblock_11 {
+        &.gvnews_col_3o3 {
+            .gvnews_posts {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 20px;
+            }
+        }
+
+        &.gvnews_col_3o3,
+        .gvnews_col_2o3 {
+            .gvnews_posts {
+                row-gap: 20px;
+            }
+        }
+    }
+
 }
