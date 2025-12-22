@@ -36,8 +36,7 @@ class Module_38 extends Module_View_Abstract {
 
 		$permalink = esc_url( get_the_permalink( $post ) );
 
-		$icon_arrow_right = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free v6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>';
-		$icon_arrow_right = $this->render_icon( 'svg', 'fas fa-arrow-right-long', base64_encode( $icon_arrow_right ) );
+		$icon_arrow_right = $this->render_svg_icon( 'fas fa-arrow-right-long' );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . '>
 					' . gvnews_edit_post( $post_id, 'right' ) . "

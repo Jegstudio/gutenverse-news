@@ -32,8 +32,8 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
-		$icon_clock = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path></svg>';
-		$icon_clock = $this->render_icon( 'svg', 'fas fa-clock', base64_encode( $icon_clock ) );
+		$icon_clock = '';
+		$icon_clock = $this->render_svg_icon( 'fas fa-clock' );
 
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
