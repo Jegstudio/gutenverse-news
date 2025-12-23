@@ -30,8 +30,6 @@ class Archive_Pagination extends Archive_View_Abstract {
 	public function render_module( $attr, $column_class ) {
 		$column_class .= ' ' . esc_attr( $this->get_vc_class_name() );
 
-		$attr['prev_text'] = Svg_Icons::render_svg_icon( 'fas fa-angle-left' ) . $attr['prev_text'];
-		$attr['next_text'] = $attr['next_text'] . Svg_Icons::render_svg_icon( 'fas fa-angle-right' );
 		return gvnews_paging_navigation( $attr, false, $column_class );
 	}
 }

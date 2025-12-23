@@ -80,13 +80,13 @@ const ArchivePagination = compose(
                     {!isNav3 && <a className="nav-item page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}{renderIcon('fas fa-angle-right', 'svg', btoa(nextIcon))}</span></a>}
                 </div>
                 {isNav3 && !isCenterAlign && <div className="next-prev-button">
-                    <a className="page_nav prev" data-id="2" href="javascript:void(0);"><span className="navtext">{renderIcon('fas fa-angle-left', 'svg', btoa(prevIcon))}{paginationPrevText}</span></a>
-                    <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}{renderIcon('fas fa-angle-right', 'svg', btoa(nextIcon))}</span></a>
+                    <a className="page_nav prev" data-id="2" href="javascript:void(0);">{renderIcon('fas fa-angle-left', 'svg', btoa(prevIcon))}<span className="navtext">{paginationPrevText}</span></a>
+                    <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span>{renderIcon('fas fa-angle-right', 'svg', btoa(nextIcon))}</a>
                 </div>}
                 {isNav3 && isCenterAlign &&
                     <>
-                        <a className="page_nav prev" data-id="2" href="javascript:void(0);"><span className="navtext">{renderIcon('fas fa-angle-left', 'svg', btoa(prevIcon))}{paginationPrevText}</span></a>
-                        <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}{renderIcon('fas fa-angle-right', 'svg', btoa(nextIcon))}</span></a>
+                        <a className="page_nav prev" data-id="2" href="javascript:void(0);">{renderIcon('fas fa-angle-left', 'svg', btoa(prevIcon))}<span className="navtext">{paginationPrevText}</span></a>
+                        <a className="page_nav next" data-id="2" href="javascript:void(0);"><span className="navtext">{paginationNextText}</span>{renderIcon('fas fa-angle-right', 'svg', btoa(nextIcon))}</a>
                     </>
                 }
             </div>
