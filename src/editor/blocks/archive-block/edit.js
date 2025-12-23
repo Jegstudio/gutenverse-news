@@ -51,18 +51,18 @@ const ArchiveBlock = compose(
 
     const elementRef = useRef(null);
 
-    const setMainClass = () => {
-        const gvnewsPost = u(elementRef.current).find('.gvnews_post').first();
-        let gvnewsPostMainClass = mainClass;
-        if (!gvnewsPost) { // First Render skip
-            return;
-        }
-        gvnewsPostMainClass = gvnewsPost.classList[1];
-        setAttributes({
-            ...attributes,
-            mainClass: gvnewsPostMainClass
-        });
-    };
+    // const setMainClass = () => {
+    //     const gvnewsPost = u(elementRef.current).find('.gvnews_post').first();
+    //     let gvnewsPostMainClass = mainClass;
+    //     if (!gvnewsPost) { // First Render skip
+    //         return;
+    //     }
+    //     gvnewsPostMainClass = gvnewsPost.classList[1];
+    //     setAttributes({
+    //         ...attributes,
+    //         mainClass: gvnewsPostMainClass
+    //     });
+    // };
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -72,8 +72,31 @@ const ArchiveBlock = compose(
             setBlockRef(elementRef);
         }
     }, [elementRef]);
+
+    /**
+     * use observer to get main class of post
+     */
     useEffect(() => {
-        setMainClass();
+        if (!elementRef.current) return;
+
+        const observer = new MutationObserver(() => {
+            const post = u(elementRef.current).find('.gvnews_post').first();
+            if (!post) return;
+            const nextClass = post.classList[1];
+            if (nextClass && nextClass !== mainClass) {
+                setAttributes({ mainClass: nextClass });
+            }
+            observer.disconnect();
+        });
+
+        observer.observe(elementRef.current, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        return () => observer.disconnect();
     }, [blockType]);
 
     const animationClass = useAnimationEditor(attributes);
