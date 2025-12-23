@@ -27,7 +27,7 @@ class Header extends Grab {
 	public function get_content() {
 		$icon      = isset( $this->attributes['icon'] ) ? $this->attributes['icon'] : '';
 		$icon_type = isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon';
-		$icon_svg  = isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : '';
+		$icon_svg  = isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '';
 
 		$heading_icon  = gvnews_render_icon( $icon_type, $icon, $icon_svg );
 		$subtitle      = ! empty( $this->attributes['second_title'] ) ? '<strong>' . esc_attr( $this->attributes['second_title'] ) . '</strong>' : '';
