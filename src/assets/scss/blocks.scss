@@ -5139,18 +5139,6 @@
 }
 
 .gvnews-block.gvnews-block-wrapper .gvnews_pagination {
-  .page_nav {
-
-    &.prev:before,
-    &.next:after {
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      display: inline-block;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  }
 
   .nav-item {
     display: inline-flex;
@@ -5161,13 +5149,11 @@
 }
 
 .gvnews_pagination .page_nav {
-  &.prev:before {
-    content: "\f104";
+  &.prev .gutenverse-icon-svg {
     padding-right: 6px;
   }
 
-  &.next:after {
-    content: "\f105";
+  &.next .gutenverse-icon-svg {
     padding-left: 6px;
   }
 }
@@ -5178,11 +5164,11 @@
   }
 
   .page_nav {
-    &.prev:before {
+    &.prev .gutenverse-icon-svg {
       padding-right: 0;
     }
 
-    &.next:after {
+    &.next .gutenverse-icon-svg {
       padding-left: 0;
     }
   }
