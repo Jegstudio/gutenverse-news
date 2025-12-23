@@ -119,7 +119,7 @@ class Slider_3 extends Slider_View_Abstract {
 	public function render_meta( $post ) {
 		$output = '';
 
-		$icon_clock = Svg_Icons::render_svg_icon( 'fas fa-clock' );
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
 		$time   = $this->format_date( $post );
 		$output =
