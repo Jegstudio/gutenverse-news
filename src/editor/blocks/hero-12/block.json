@@ -352,15 +352,6 @@
         },
         "borderItemThird": {
             "type": "object"
-        },
-        "borderResponsiveItem": {
-            "type": "object"
-        },
-        "borderResponsiveItemSecond": {
-            "type": "object"
-        },
-        "borderResponsiveItemThird": {
-            "type": "object"
         }
     },
     "supports": {
