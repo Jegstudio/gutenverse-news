@@ -443,7 +443,7 @@ const getHeroStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .far `,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .far, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -455,7 +455,7 @@ const getHeroStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColorHover']) && data.push({
             'type': 'color',
             'id': 'metaIconColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post_meta a:hover .far`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post_meta a:hover .far, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post_meta a:hover svg`,
             'properties': [
                 {
                     'name': 'color',

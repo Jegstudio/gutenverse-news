@@ -263,7 +263,7 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav svg`,
                 }
             ]
         },
@@ -293,7 +293,7 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg`,
                 },
                 {
                     'type': 'unitPoint',
@@ -305,7 +305,7 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg`,
                 },
             ]
         },

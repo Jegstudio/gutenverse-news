@@ -192,7 +192,7 @@ class Archive extends StyleAbstract {
 			if ( isset( $this->attrs['arrowColor'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb i",
+						'selector'       => ".{$this->element_id} .gvnews-archive-breadcrumb i, .{$this->element_id} .gvnews-archive-breadcrumb svg",
 						'property'       => function ( $value ) {
 							return $this->handle_color( $value, 'color' );
 						},

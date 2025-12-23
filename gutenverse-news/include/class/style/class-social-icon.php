@@ -45,7 +45,7 @@ class Social_Icon extends StyleAbstract {
 		if ( isset( $this->attrs['iconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .socials_widget a .fa",
+					'selector'       => ".{$this->element_id} .socials_widget a .fa, .{$this->element_id} .socials_widget a svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -57,7 +57,7 @@ class Social_Icon extends StyleAbstract {
 		if ( isset( $this->attrs['bgColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .socials_widget .fa",
+					'selector'       => ".{$this->element_id} .socials_widget .fa, .{$this->element_id} .socials_widget svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background' );
 					},
