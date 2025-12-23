@@ -173,7 +173,7 @@ class Post_Related extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['listIconColor'] ) ) {
-			$selector = 'template_24' === $this->attrs['templateType'] ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i' : '.gvnews_pl_xs_2>i';
+			$selector = 'template_24' === $this->attrs['templateType'] ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>svg';
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}  {$selector}",
@@ -441,7 +441,7 @@ class Post_Related extends Style_Abstract {
 		if ( isset( $this->attrs['paginationBtnIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav svg",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'font-size' );
 					},
@@ -633,7 +633,7 @@ class Post_Related extends Style_Abstract {
 			if ( 'nextprev' === $this->attrs['paginationMode'] && $this->attrs['showNavText'] ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next i",
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg",
 						'property'       => function ( $value ) {
 							return $this->handle_unit_point( $value, 'margin-left' );
 						},
@@ -643,7 +643,7 @@ class Post_Related extends Style_Abstract {
 				);
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i",
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg",
 						'property'       => function ( $value ) {
 							return $this->handle_unit_point( $value, 'margin-right' );
 						},

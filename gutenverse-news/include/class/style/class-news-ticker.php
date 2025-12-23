@@ -106,7 +106,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['iconTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector' => ".{$this->element_id} .gvnews_breakingnews_title i",
+					'selector' => ".{$this->element_id} .gvnews_breakingnews_title i, .{$this->element_id} .gvnews_breakingnews_title svg",
 					'property' => function ( $value ) {
 						return $this->handle_color( $value, 'color' ); },
 					'value'    => $this->attrs['iconTextColor'],
@@ -116,7 +116,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['iconTextSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_breakingnews_title i",
+					'selector'       => ".{$this->element_id} .gvnews_breakingnews_title i, .{$this->element_id} .gvnews_breakingnews_title svg",
 					'property'       => function ( $value ) {
 						return "font-size: {$value}px;";
 					},
@@ -221,7 +221,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['navColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector' => ".{$this->element_id} .gvnews_news_ticker_control i",
+					'selector' => ".{$this->element_id} .gvnews_news_ticker_control i, .{$this->element_id} .gvnews_news_ticker_control svg",
 					'property' => function ( $value ) {
 						return $this->handle_color( $value, 'color' ); },
 					'value'    => $this->attrs['navColor'],
@@ -242,7 +242,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['navHoverColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector' => ".{$this->element_id} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover i",
+					'selector' => ".{$this->element_id} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover i, .{$this->element_id} .gvnews_news_ticker_control .gvnews_news_ticker_arrow:hover svg",
 					'property' => function ( $value ) {
 						return $this->handle_color( $value, 'color' ); },
 					'value'    => $this->attrs['navHoverColor'],
@@ -263,7 +263,7 @@ class News_Ticker extends StyleAbstract {
 		if ( isset( $this->attrs['navIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_news_ticker_control i",
+					'selector'       => ".{$this->element_id} .gvnews_news_ticker_control i, .{$this->element_id} .gvnews_news_ticker_control svg",
 					'property'       => function ( $value ) {
 						return "font-size: {$value}px;";
 					},
