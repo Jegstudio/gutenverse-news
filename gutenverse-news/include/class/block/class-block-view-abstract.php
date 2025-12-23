@@ -623,7 +623,7 @@ abstract class Block_View_Abstract {
 	public function get_meta_comment( $post ) {
 		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
 			$comment = gvnews_get_comments_number( $post->ID );
-			$icon    = Svg_Icons::render_svg_icon( 'far fa-comments' );
+			$icon    = Svg_Icons::render_svg_icon( 'far fa-comment' );
 			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon . ' ' . esc_attr( $comment ) . ' </a></div>';
 		}
 		return '';
