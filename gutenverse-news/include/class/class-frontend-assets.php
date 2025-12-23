@@ -302,7 +302,7 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array(), /* TODO: Remove this depenency after update the svg icon mechanism */
+			array(),
 			GUTENVERSE_NEWS_VERSION
 		);
 
@@ -324,7 +324,7 @@ class Frontend_Assets {
 			wp_register_style(
 				'gutenverse-news-frontend-' . $module . '-style',
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
-				null, /* TODO: Remove this depenency after update the svg icon mechanism */
+				array(),
 				GUTENVERSE_NEWS_VERSION
 			);
 		}
