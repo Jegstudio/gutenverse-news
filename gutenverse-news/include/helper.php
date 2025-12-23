@@ -452,7 +452,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_1 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_1 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -466,7 +466,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_2 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_2 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_secondary_background'] ) && ! empty( $attr['header_secondary_background'] ) ) {
@@ -480,7 +480,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_3 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_3 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				break;
@@ -490,7 +490,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_4 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_4 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				break;
@@ -500,7 +500,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_5 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_5 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -510,7 +510,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_6':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_6 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_6 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -524,7 +524,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_7':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_7 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_7 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_accent_color'] ) && ! empty( $attr['header_accent_color'] ) ) {
@@ -534,12 +534,12 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_8':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_8 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_8 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 				break;
 			case 'heading_9':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_9 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_9 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
