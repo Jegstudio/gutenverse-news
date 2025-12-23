@@ -2,6 +2,9 @@ import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import readmoreStyle from './panel-style/style-readmore';
 import { cardStyleModule } from './panel-style/style-card';
+import { contentContainerStyle } from './panel-style/style-content-container';
+import { thumbnailAndOverlayStyle } from './panel-style/style-thumbnail';
+import { titleContainerStyle } from './panel-style/style-title-container';
 
 const getBlockStyle = (elementId, attributes) => {
     const {
@@ -20,15 +23,18 @@ const getBlockStyle = (elementId, attributes) => {
     });
     data = noContentStyle(elementId, attributes, data);
     data = cardStyleModule(elementId, attributes, data);
+    data = contentContainerStyle(elementId, attributes, data);
+    data = thumbnailAndOverlayStyle(elementId, attributes, data);
+    data = titleContainerStyle(elementId, attributes, data);
 
-    /**
-     * Panel Design
-     */
-    isNotEmpty(attributes['titleTypography']) && data.push({
-        'type': 'typography',
-        'id': 'titleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
-    });
+        /**
+         * Panel Design
+         */
+        isNotEmpty(attributes['titleTypography']) && data.push({
+            'type': 'typography',
+            'id': 'titleTypography',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
+        });
 
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
         'type': 'typography',
@@ -540,8 +546,6 @@ const getBlockStyle = (elementId, attributes) => {
 
     return data;
 };
-
-
 const noContentStyle = (elementId, attributes, data) => {
     isNotEmpty(attributes['noContentTypography']) && data.push({
         'type': 'typography',
@@ -588,6 +592,4 @@ const noContentStyle = (elementId, attributes, data) => {
     return data;
 
 }
-
-
 export default getBlockStyle;
