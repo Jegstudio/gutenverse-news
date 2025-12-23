@@ -186,9 +186,11 @@ class GutenverseFirstSlider {
                 onInit: (info) => {
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
+                        u(info.nextButton).html(renderIcon(finalNextIcon, iconNextType, iconNextSVG));
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
+                        u(info.prevButton).html(renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG));
                     }
                     this.setCurrentThumbnail(info);
                 },
