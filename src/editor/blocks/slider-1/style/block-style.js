@@ -40,7 +40,7 @@ export const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['hideImageNavigation']) && data.push({
         'type': 'plain',
         'id': 'hideImageNavigation',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_thumbnail_wrapper .tns-ovh`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
         'properties': [
             {
                 'name': 'display',
@@ -54,7 +54,7 @@ export const getBlockStyle = (elementId, attributes) => {
         data.push({
             'type': 'color',
             'id': 'tootlipColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_thumbnail_wrapper .tns-ovh`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} #tns2-mw.tns-ovh`,
             'properties': [
                 {
                     'name': 'background-color',
@@ -75,5 +75,164 @@ export const getBlockStyle = (elementId, attributes) => {
         });
     }
 
+    isNotEmpty(attributes['nextButtonColor']) && data.push({
+        'type': 'color',
+        'id': 'nextButtonColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['nextButtonColorHover']) && data.push({
+        'type': 'color',
+        'id': 'nextButtonColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['prevButtonColor']) && data.push({
+        'type': 'color',
+        'id': 'prevButtonColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['prevButtonColorHover']) && data.push({
+        'type': 'color',
+        'id': 'prevButtonColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover i`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['nextButtonSize']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonSize',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px; height: auto; width: auto;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    });
+
+    isNotEmpty(attributes['prevButtonSize']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonSize',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px; height: auto; width: auto;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    });
+
+    isNotEmpty(attributes['nextButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'nextButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+    });
+
+    isNotEmpty(attributes['prevButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'prevButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+    });
+
+    isNotEmpty(attributes['nextButtonBgColor']) && data.push({
+        'type': 'color',
+        'id': 'nextButtonBgColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['prevButtonBgColor']) && data.push({
+        'type': 'color',
+        'id': 'prevButtonBgColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['nextButtonBgColorHover']) && data.push({
+        'type': 'color',
+        'id': 'nextButtonBgColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['prevButtonBgColorHover']) && data.push({
+        'type': 'color',
+        'id': 'prevButtonBgColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
     return data;
 };

@@ -252,25 +252,47 @@
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "buttonColor": {
+        "nextButtonColor": {
             "type": "object",
             "copyStyle": true
         },
-        "buttonColorHover": {
+        "nextButtonColorHover": {
             "type": "object",
             "copyStyle": true
         },
-        "buttonSize": {
+        "nextButtonSize": {
             "type": "object"
         },
-        "buttonPadding": {
+        "nextButtonPadding": {
             "type": "object"
         },
-        "buttonBgColor": {
+        "nextButtonBgColor": {
             "type": "object",
             "copyStyle": true
         },
-        "buttonBgColorHover": {
+        "nextButtonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonSize": {
+            "type": "object"
+        },
+        "prevButtonPadding": {
+            "type": "object"
+        },
+        "prevButtonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonBgColorHover": {
             "type": "object",
             "copyStyle": true
         },
