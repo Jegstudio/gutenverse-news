@@ -26,7 +26,11 @@ const MetaDate = props => {
 
     return <div className="gvnews_meta_date">
         <a>
-            {showIcon && renderIcon('far fa-clock', 'svg', btoa(icon))}
+            {showIcon && (
+                <>
+                    {renderIcon('far fa-clock', 'svg', btoa(icon))}&nbsp;
+                </>
+            )}
             {'custom' == attr.date.format ? formatDateString(date, attr.date.custom) : 'ago' == attr.date.format ? timeDifference(timestamp) : formatDateString(date, attr.option.option.date_format)}
         </a>
     </div>;
@@ -37,7 +41,7 @@ const MetaComments = props => {
 
     return <div className="gvnews_meta_comment">
         <a>
-            {renderIcon('far fa-comment','svg',btoa(icon))}
+            {renderIcon('far fa-comment','svg',btoa(icon))}&nbsp;
             {props.post.comment} {props.showText && __('Comments', 'gutenverse-news')}
         </a>
     </div>;

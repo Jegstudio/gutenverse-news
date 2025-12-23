@@ -150,7 +150,7 @@ class Slider_9 extends Slider_View_Abstract {
 
 		$output =
 			'<div class="gvnews_post_meta">
-				<span class="gvnews_meta_date">' . $icon_date . esc_attr( $time ) . '</span>
+				<span class="gvnews_meta_date">' . $icon_date . ' ' . esc_attr( $time ) . '</span>
 				<span class="gvnews_meta_comment">' . $icon_comment . ' ' . esc_attr( $comment ) . '</span>
 			</div>';
 
