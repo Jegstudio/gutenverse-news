@@ -143,7 +143,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.0.3 [DEV] =
+= 3.1.0 [DEV] =
 ##### Improvements
 * Bring back the Archive Hero block as Free
 * Add more Meta options on all block
