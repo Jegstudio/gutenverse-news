@@ -3398,43 +3398,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* Postblock 14 */
-
-.gvnews_postblock_14 {
-
-  .gvnews_pl_lg_box .box_wrap .gvnews_pl_md_1,
-  .gvnews_pl_lg_box .box_wrap .gvnews_pl_md_1 .gvnews_thumb {
-    margin-bottom: 0;
-  }
-
-  .gvnews_pl_lg_box .gvnews_post_category a {
-    color: #fff;
-    background: #f70d28;
-  }
-
-  .gvnews_posts_wrap {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .gvnews_posts {
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    display: flex;
-    align-items: flex-start;
-    margin-right: -30px;
-
-    .gvnews_post {
-      float: left;
-      width: 50%;
-      padding-right: 30px;
-    }
-  }
-
-  .gvnews_block_nav {
-    margin-bottom: 30px;
-  }
-}
 
 /* Postblock 15 */
 
@@ -8063,12 +8026,6 @@ h3.gvnews_author_name {
       }
 
       .gvnews_posts {
-        margin-right: -20px;
-
-        .gvnews_post {
-          padding-right: 20px;
-        }
-
         .gvnews_thumb .gvnews_post_category {
           left: 0;
           bottom: 0;
@@ -8077,10 +8034,6 @@ h3.gvnews_author_name {
             font-size: 10px;
           }
         }
-      }
-
-      .gvnews_post {
-        margin-bottom: 20px;
       }
 
       .gvnews_pl_md_1 {
@@ -8104,10 +8057,6 @@ h3.gvnews_author_name {
     &.gvnews_col_3o3 {
       .gvnews_postbig .gvnews_post_title {
         font-size: 32px;
-      }
-
-      .gvnews_posts .gvnews_post {
-        width: 33.333333333%;
       }
     }
   }
@@ -11299,7 +11248,6 @@ h3.gvnews_author_name {
   .gvnews_block_heading,
   .gvnews_pl_lg_box,
   .gvnews_pl_md_box,
-  .gvnews_postblock_14 .gvnews-posts-row:last-child>div[class*="col-"]:not(:last-child) .gvnews_pl_md_box,
   .gvnews_postblock_15 .gvnews-posts-row:last-child>div[class*="col-"]:not(:last-child) .gvnews_pl_md_box {
     margin-bottom: 15px;
   }
@@ -12088,12 +12036,10 @@ h3.gvnews_author_name {
   }
 
 
-  .gvnews_postblock_14 .gvnews_posts,
   .gvnews_postblock_15 .gvnews_posts {
     margin-right: 0;
   }
 
-  .gvnews_postblock_14 .gvnews_posts .gvnews_post,
   .gvnews_postblock_15 .gvnews_post {
     width: 100% !important;
     padding-right: 0;
