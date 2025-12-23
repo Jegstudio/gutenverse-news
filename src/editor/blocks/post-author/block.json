@@ -203,8 +203,13 @@
 		"titleTag": {
 			"type": "string",
 			"default": "h2"
-		}
-
+		},
+        "nameSpaceBottom": {
+            "type": "object"
+        },
+        "bioSpaceBottom": {
+            "type": "object"
+        }
     },
     "supports": {
         "className": false

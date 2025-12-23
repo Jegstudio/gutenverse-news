@@ -19057,12 +19057,13 @@ span.gvnews-category {
   .gvnews_slide_caption {
     color: #fff;
     position: absolute;
-    left: 40px;
-    bottom: 40px;
+    left: 0;
+    bottom: 0;
     padding: 0;
     width: 50%;
     background: none;
     z-index: 2;
+    padding: 0 0 40px 40px;
 
     .gvnews_post_title {
       font-size: 36px;
@@ -20024,8 +20025,7 @@ span.gvnews-category {
   }
 
   .gvnews_slider_type_5 .gvnews_slide_caption {
-    left: 20px;
-    bottom: 20px;
+    padding: 0 0 20px 20px;
 
     .gvnews_post_title {
       font-size: 20px;

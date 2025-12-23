@@ -62,11 +62,6 @@ class Post_Author extends Style_Abstract {
 	 */
 	public function generate() {
 
-		$this->bio_style();
-		$this->avatar_style();
-		$this->name_style();
-		$this->social_icon_style();
-
 		if ( isset( $this->attrs['hideName'] ) && $this->attrs['hideName'] ) {
 			$this->inject_style(
 				array(
@@ -78,6 +73,8 @@ class Post_Author extends Style_Abstract {
 					'device_control' => false,
 				)
 			);
+		} else {
+			$this->name_style();
 		}
 
 		if ( isset( $this->attrs['hideAvatar'] ) && $this->attrs['hideAvatar'] ) {
@@ -91,6 +88,8 @@ class Post_Author extends Style_Abstract {
 					'device_control' => false,
 				)
 			);
+		} else {
+			$this->avatar_style();
 		}
 
 		if ( isset( $this->attrs['hideDesc'] ) && $this->attrs['hideDesc'] ) {
@@ -104,6 +103,8 @@ class Post_Author extends Style_Abstract {
 					'device_control' => false,
 				)
 			);
+		} else {
+			$this->bio_style();
 		}
 
 		if ( isset( $this->attrs['hideSocial'] ) && $this->attrs['hideSocial'] ) {
@@ -117,6 +118,8 @@ class Post_Author extends Style_Abstract {
 					'device_control' => false,
 				)
 			);
+		} else {
+			$this->social_icon_style();
 		}
 
 		if ( isset( $this->attrs['align'] ) ) {
@@ -261,6 +264,18 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['bioSpaceBottom'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-bottom' );
+					},
+					'value'          => $this->attrs['bioSpaceBottom'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 	/**
@@ -274,6 +289,18 @@ class Post_Author extends Style_Abstract {
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['authorTypography'],
 					'device_control' => false,
+				)
+			);
+		}
+		if ( isset( $this->attrs['nameSpaceBottom'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-name",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-bottom' );
+					},
+					'value'          => $this->attrs['nameSpaceBottom'],
+					'device_control' => true,
 				)
 			);
 		}

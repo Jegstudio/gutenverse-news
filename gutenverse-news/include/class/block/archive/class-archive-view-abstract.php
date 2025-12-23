@@ -120,8 +120,10 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 			$attr['number_post']            = $this->post_per_page;
 			$attr['pagination_number_post'] = $this->post_per_page;
 			$attr['paged']                  = gvnews_get_post_current_page();
-
-			$result = Block_Query::do_query( $attr );
+			// search.
+			$search_query = get_search_query();
+			$attr['s']    = ! empty( $search_query ) ? esc_attr( $search_query ) : null;
+			$result       = Block_Query::do_query( $attr );
 
 			if ( isset( $result['result'] ) ) {
 				self::$result = $result;
