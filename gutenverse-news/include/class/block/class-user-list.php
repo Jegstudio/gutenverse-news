@@ -234,7 +234,7 @@ class User_List extends Grab {
 			$user_name = '<a href="' . get_author_posts_url( $user->ID ) . "\" class='gvnews_userlist-name'>" . esc_attr( $name ) . '</a>';
 
 			$content = $content . $user_name;
-			if ( ! in_array( $style, array( 'style-4', 'style-5', true ) ) ) {
+			if ( ! in_array( $style, array( 'style-4', 'style-5' ), true ) ) {
 
 				// ~ DESCRIPTION
 				if ( ! $hide_desc ) {

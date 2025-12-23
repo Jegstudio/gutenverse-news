@@ -50,7 +50,7 @@ class Slider extends StyleAbstract {
 		$this->navigation_button_style();
 		$this->slider_1_style();
 		$this->dot_style();
-		$this->slider_3_style();
+		// $this->slider_3_style();
 
 		if ( stristr( $this->attrs['gvnewsModule'], 'Slider_Overlay' ) ) {
 			if ( isset( $this->attrs['overrideOverlay'] ) && 'gradient' === $this->attrs['overlayOption'] ) {
@@ -340,6 +340,9 @@ class Slider extends StyleAbstract {
 				$this->generate_meta_style();
 		}
 	}
+
+	// === PRIVATE FUNCTIONS ===
+
 	/**
 	 * Generate design style.
 	 */
@@ -390,6 +393,20 @@ class Slider extends StyleAbstract {
 						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['titleColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['hideTitleStyling'] ) && $this->attrs['hideTitleStyling'] ) { // For Slider 4.
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:before,
+										.gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:after",
+					'property'       => function ( $value ) {
+						return 'content: none;';
+					},
+					'value'          => $this->attrs['hideTitleStyling'],
 					'device_control' => false,
 				)
 			);
@@ -602,8 +619,6 @@ class Slider extends StyleAbstract {
 		}
 	}
 
-	// === PRIVATE FUNCTIONS ===
-
 	/**
 	 * Generate Style for navigation button
 	 */
@@ -707,7 +722,7 @@ class Slider extends StyleAbstract {
 			);
 		}
 
-		// NEXT BUTTON.
+		// BUTTON.
 		if ( isset( $this->attrs['buttonColor'] ) ) {
 			$this->inject_style(
 				array(
@@ -897,6 +912,18 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['hideDot'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",
+					'property'       => function ( $value ) {
+						return 'opacity: 0 !important;';
+					},
+					'value'          => $this->attrs['hideDot'],
+					'device_control' => false,
+				)
+			);
+		}
 		if ( isset( $this->attrs['dotGap'] ) ) {
 			$this->inject_style(
 				array(
@@ -1026,37 +1053,38 @@ class Slider extends StyleAbstract {
 	}
 
 	/**
+	 * TODO
 	 * Generate slider 3 style.
 	 */
-	private function slider_3_style() {
-		if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
-			return;
-		}
+	// private function slider_3_style() {
+	// 	if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
+	// 		return;
+	// 	}
 
-		if ( isset( $this->attrs['gapItem'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
-					'property'       => function ( $value ) {
-						return "padding-right: {$value}px !important;";
-					},
-					'value'          => $this->attrs['gapItem'],
-					'device_control' => true,
-				)
-			);
-		}
+	// 	if ( isset( $this->attrs['gapItem'] ) ) {
+	// 		$this->inject_style(
+	// 			array(
+	// 				'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+	// 				'property'       => function ( $value ) {
+	// 					return "padding-right: {$value}px !important;";
+	// 				},
+	// 				'value'          => $this->attrs['gapItem'],
+	// 				'device_control' => true,
+	// 			)
+	// 		);
+	// 	}
 
-		if ( isset( $this->attrs['itemWidth'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
-					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width', true );
-					},
-					'value'          => $this->attrs['itemWidth'],
-					'device_control' => true,
-				)
-			);
-		}
-	}
+	// 	if ( isset( $this->attrs['itemWidth'] ) ) {
+	// 		$this->inject_style(
+	// 			array(
+	// 				'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+	// 				'property'       => function ( $value ) {
+	// 					return $this->handle_unit_point( $value, 'width', true );
+	// 				},
+	// 				'value'          => $this->attrs['itemWidth'],
+	// 				'device_control' => true,
+	// 			)
+	// 		);
+	// 	}
+	// }
 }

@@ -277,6 +277,10 @@
             "type": "boolean",
             "default": false
         },
+        "hideDot": {
+            "type": "boolean",
+            "default": false
+        },
         "dotNormalColor": {
             "type": "object"
         },
