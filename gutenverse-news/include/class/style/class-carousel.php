@@ -132,7 +132,7 @@ class Carousel extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_wrapper .gvnews_meta_date .far",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_wrapper .gvnews_meta_date .far, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_wrapper .gvnews_meta_date svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
