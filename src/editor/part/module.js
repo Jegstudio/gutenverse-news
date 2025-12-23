@@ -39,6 +39,8 @@ const BlockModule = compose(
         defaultImageSizeSecond = {},
         mainThumbnailClass,
         secondThumbnailClass,
+        useDedicatedStyle = false,
+        dedicatedStyle = () => [],
     } = props;
 
     const {
@@ -111,12 +113,20 @@ const BlockModule = compose(
     useDynamicStyle(
         elementId,
         attributes,
-        (elementId, attributes) => getBlockStyle(
-            elementId,
-            attributes,
-            mainThumbnailClass,
-            secondThumbnailClass,
-        ),
+        (elementId, attributes) => {
+            if (useDedicatedStyle) {
+                return dedicatedStyle(
+                    elementId,
+                    attributes,
+                );
+            }
+            return getBlockStyle(
+                elementId,
+                attributes,
+                mainThumbnailClass,
+                secondThumbnailClass,
+            );
+        },
         elementRef
     );
 

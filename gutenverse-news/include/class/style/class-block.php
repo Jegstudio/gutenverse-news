@@ -593,7 +593,7 @@ class Block extends StyleAbstract {
 	/**
 	 * Generate style block post item style.
 	 */
-	private function post_item_style() {
+	public function post_item_style() {
 		$post_item_grid = isset( $this->attrs['postItemGrid'] ) ? $this->attrs['postItemGrid'] : false;
 
 		if ( $post_item_grid ) {
