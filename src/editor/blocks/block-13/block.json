@@ -71,7 +71,7 @@
         },
         "numberPost": {
             "type": "string",
-            "default": 3
+            "default": 5
         },
         "postOffset": {
             "type": "string",

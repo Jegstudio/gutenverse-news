@@ -101,12 +101,6 @@ export const panelList = () =>
                 tabRole: TabStyle
             },
             {
-                title: __('Card Style', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: cardStylePanelModule,
-                tabRole: TabStyle,
-            },
-            {
                 title: __('Content Container', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: contentContainerPanel,

@@ -2022,18 +2022,25 @@ const noContentStyle = (elementId, attributes, data) => {
 
 }
 
-const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) => {
+const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
+    const str = attributes['gvnewsModule'].split('\\');
+    const gvnewsModule = str[str.length - 1];
+    const modulesWithBoxWrap = ['Module_32', 'Module_33', 'Module_34', 'Module_35', 'Module_36', 'Module_37', 'Module_39'];
+    const selector = modulesWithBoxWrap.includes(gvnewsModule) ? 
+    `.${elementId} .gvnews_postblock .gvnews_post .box_wrap` : 
+    `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`;
+    
     // Main
     isNotEmpty(attributes['cardBorder']) && data.push({
         'type': 'border',
         'id': 'cardBorder',
-        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
+        'selector': selector,
     })
     isNotEmpty(attributes['cardBorderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'cardBorderResponsive',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
+        'selector': selector,
     })
     isNotEmpty(attributes['cardPadding']) && data.push({
         'type': 'dimension',
@@ -2045,7 +2052,7 @@ const cardStyleModule = (elementId, attributes, data, firstClass, secondClass) =
                 'valueType': 'direct'
             }
         ],
-        'selector': `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`,
+        'selector': selector,
     })
     // TODO: Add width control
     // isNotEmpty(attributes['cardWidth']) && data.push({
