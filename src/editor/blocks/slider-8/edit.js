@@ -139,7 +139,7 @@ const Slider8Block = compose(
                             <h2 className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                             </h2>
-                            <SliderMeta {...props} date />
+                            <SliderMeta {...props} date blockType="slider-8" />
                         </div>
                     </div>
                 </div>
