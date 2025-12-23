@@ -1,14 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
-import { AlertControl, ColorControl, SwitchControl, TextShadowControl, TypographyControl } from 'gutenverse-core/controls';
+import { AlertControl, ColorControl, SizeControl, SwitchControl, TextShadowControl, TypographyControl } from 'gutenverse-core/controls';
 
 export const nameStylePanel = (props) => {
     const {
         switcher,
         setSwitcher,
-        hideName
+        hideName,
+        elementId,
     } = props;
-    
+
     if (hideName) {
         return [
             {
@@ -26,6 +27,42 @@ export const nameStylePanel = (props) => {
             id: 'authorTypography',
             label: __('Typography', 'gutenverse'),
             component: TypographyControl,
+        },
+        {
+            id: 'nameSpaceBottom',
+            label: __('Space Bottom', 'gutenverse'),
+            component: SizeControl,
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 200,
+                    step: 1,
+                    unit: 'px',
+                },
+                ['%']: {
+                    text: '%',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: '%',
+                },
+            },
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'nameSpaceBottom',
+                    'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-name`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'margin-bottom',
+                            'valueType': 'direct'
+                        }
+                    ]
+                }
+            ]
         },
         {
             id: '__styleHover',
