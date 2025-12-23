@@ -16,6 +16,7 @@ import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-ov
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { titleStylePanel } from './panel-title-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 
 export const panelList = () => {
     return [
@@ -103,6 +104,12 @@ export const panelList = () => {
             title: __('Title Container', 'gutenverse-news'),
             initialOpen: false,
             panelArray: titleStylePanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Card Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: cardStylePanelModule,
             tabRole: TabStyle,
         },
         {

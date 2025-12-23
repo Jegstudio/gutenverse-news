@@ -546,8 +546,6 @@ const getBlockStyle = (elementId, attributes) => {
 
     return data;
 };
-
-
 const noContentStyle = (elementId, attributes, data) => {
     isNotEmpty(attributes['noContentTypography']) && data.push({
         'type': 'typography',
@@ -594,6 +592,4 @@ const noContentStyle = (elementId, attributes, data) => {
     return data;
 
 }
-
-
 export default getBlockStyle;
