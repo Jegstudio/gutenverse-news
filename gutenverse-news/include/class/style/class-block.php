@@ -1534,7 +1534,6 @@ class Block extends StyleAbstract {
 
 			case 'heading_9':
 				if ( isset( $this->attrs['headerLineThick'] ) ) {
-					error_log( 'INJECT STYLe' );
 					$this->inject_style(
 						array(
 							'selector'       => ".{$this->element_id} .gvnews_block_heading_9",
