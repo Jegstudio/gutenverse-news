@@ -29,18 +29,16 @@ class Newsticker extends Block_View_Abstract {
 	 * @return string
 	 */
 	public function render_item( $post, $index ) {
-		$active = ( 0 === $index ) ? 'gvnews_news_ticker_active' : '';
-		$time   = $this->format_date( $post );
-		$class  = gvnews_post_class( "gvnews_news_ticker_item gvnews_news_ticker_animated {$active}", $post->ID );
+		$active    = ( 0 === $index ) ? 'gvnews_news_ticker_active' : '';
+		$class     = gvnews_post_class( "gvnews_news_ticker_item gvnews_news_ticker_animated {$active}", $post->ID );
+		$meta_date = $this->attribute['show_meta'] ? '<span class="post-date">' . $this->format_date( $post ) . '</span>' : '';
 
 		$output =
 		"<div {$class}>
                 <span>
                     <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
                 </span>
-                <span class=\"post-date\">
-                    $time
-                </span>
+					$meta_date
             </div>";
 
 		return $output;
@@ -84,12 +82,13 @@ class Newsticker extends Block_View_Abstract {
                     <div class=\"gvnews_news_ticker_items\">
                         {$items}
                     </div>
-                    <div class=\"gvnews_news_ticker_control\">
-						<div class=\"gvnews_news_ticker_next gvnews_news_ticker_arrow\"><span><i class=\"fas fa-angle-right\"></i></span></div>
-                        <div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\"><span><i class=\"fas fa-angle-left\"></i></span></div>
-                    </div>
                 </div>
-            </div>";
+				<div class=\"gvnews_news_ticker_control\">
+					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\"><i class=\"" . esc_attr( $attr['prev_icon'] ) . '"></i></div>
+					<span class="nav-separator"></span>
+					<div class="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i class="' . esc_attr( $attr['next_icon'] ) . '"></i></div>
+                </div>
+            </div>';
 
 		return $output;
 	}

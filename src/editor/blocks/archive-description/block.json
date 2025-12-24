@@ -16,21 +16,9 @@
         "textColor": {
             "type": "object"
         },
-        "scheme": {
-            "type": "string",
-            "default": ""
-        },
         "elClass": {
             "type": "string",
             "default": ""
-        },
-        "column": {
-            "type": "object",
-            "default": {}
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
         },
         "descTypography": {
             "type": "object",
@@ -62,26 +50,13 @@
             "type": "object"
         },
         "margin": {
-            "type": "number",
-            "default": 20
-        },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
+            "type": "object"
         },
         "padding": {
             "type": "object"
         },
         "zIndex": {
             "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
         },
         "hideDesktop": {
             "type": "boolean"
@@ -92,33 +67,16 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "positioningType": {
-            "type": "object"
-        },
-        "positioningWidth": {
-            "type": "object"
-        },
-        "positioningAlign": {
-            "type": "object"
-        },
-        "positioningLocation": {
-            "type": "string"
-        },
-        "positioningLeft": {
-            "type": "object"
-        },
-        "positioningRight": {
-            "type": "object"
-        },
-        "positioningTop": {
-            "type": "object"
-        },
-        "positioningBottom": {
-            "type": "object"
-        },
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "tagType": {
+            "type": "string",
+            "default": "h2"
+        },
+        "textAlign": {
+            "type": "string"
         }
     },
     "supports": {

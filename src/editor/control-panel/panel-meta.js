@@ -6,7 +6,7 @@ export const metaPanel = (props, settings = []) => {
     const {
         metaDateFormat = 'default',
         showMetaDate = true,
-        showMeta = true
+        showMeta = true,
     } = props;
 
     let panelList = [
@@ -73,5 +73,5 @@ export const metaPanel = (props, settings = []) => {
             component: CheckboxControl
         },
     );
-    return applyFilters('gutenverse.news.penels.meta.setting', panelList, props);
+    return applyFilters('gutenverse.news.penels.meta.setting', panelList, props, settings);
 };

@@ -260,6 +260,9 @@
         "aHover": {
             "type": "object"
         },
+        "typographyMeta": {
+            "type": "object"
+        },
         "metaColor": {
             "type": "object"
         },
@@ -488,6 +491,12 @@
         },
         "readmoreButtonBoxShadowHover": {
             "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
         }
     },
     "supports": {
@@ -499,5 +508,10 @@
         "relate",
         "related"
     ],
-    "style": ["gutenverse-frontend-post-related-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

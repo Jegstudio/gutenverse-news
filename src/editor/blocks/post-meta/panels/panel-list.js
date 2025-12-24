@@ -8,6 +8,7 @@ import { styleAuthorPanel } from './panel-style-author';
 import { styleDatePanel } from './panel-style-date';
 import { styleCategoryPanel } from './panel-style-category';
 import { styleCommentPanel } from './panel-style-comment';
+import { designPanel } from './panel-design';
 
 export const panelList = () => {
     const customPanels = applyFilters(
@@ -59,6 +60,36 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: layoutPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Author Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: styleAuthorPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Date Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: styleDatePanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Category Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: styleCategoryPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Comment Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: styleCommentPanel,
+            tabRole: TabStyle,
         },
         {
             title: __('Background', 'gutenverse-news'),

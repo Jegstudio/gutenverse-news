@@ -6,6 +6,7 @@ export const settingPanel = (props, withListIcon = false) => {
     const {
         enableExcerpt,
     } = props;
+
     return [
         {
             id: 'excerptLength',

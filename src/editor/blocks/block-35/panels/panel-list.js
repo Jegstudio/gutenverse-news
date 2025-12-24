@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
-import { headerSettingsPanel, headerStylesPanel } from '../../../control-panel/panel-header';
+import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
 import { designPanel } from './panel-design';
@@ -13,28 +13,28 @@ import { headerFilterPanel } from '../../../control-panel/panel-header-filter';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
+// Setting
 export const panelList = () => {
     return applyFilters(
         'gutenverse.news.block.panels',
         [
+            // Setting
             {
                 title: __('Header', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => headerSettingsPanel({
-                    ...props,
-                }),
+                panelArray: (props) => headerSettingsPanel({ ...props }),
                 tabRole: TabSetting
             },
             {
                 id: 'header-filter',
                 title: __('Header Filter', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => {
-                    return headerFilterPanel(props);
-                },
+                panelArray: (props) => headerFilterPanel(props),
                 tabRole: TabSetting,
-
             },
             {
                 title: __('Content Filter', 'gutenverse-news'),
@@ -51,7 +51,7 @@ export const panelList = () => {
             {
                 title: __('Meta Settings', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => metaPanel(props, ['author', 'date', 'comment']),
+                panelArray: (props) => metaPanel(props, ['author', 'date', 'comment', 'review']),
                 tabRole: TabSetting
             },
             {
@@ -63,16 +63,47 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Header Filter Dropdown', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: HeaderFilterDropdownPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Pagination', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: paginationPanel,
                 tabRole: TabSetting
+            },
+            // Style
+            {
+                title: __('Header', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => headerStylesPanel({ ...props }),
+                tabRole: TabStyle
             },
             {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
                 tabRole: TabStyle
+            },
+            {
+                title: __('Thumbnail', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailOverlayPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Content Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: contentContainerPanel,
+                tabRole: TabStyle,
             },
             {
                 title: __('Meta Style', 'gutenverse-news'),
@@ -133,8 +164,9 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-1-advance',
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
+            // Pro
             {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,

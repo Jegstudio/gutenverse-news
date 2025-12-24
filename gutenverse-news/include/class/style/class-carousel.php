@@ -53,6 +53,7 @@ class Carousel extends StyleAbstract {
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
 		}
+		$this->generate_thumbnail_style();
 	}
 
 
@@ -63,7 +64,7 @@ class Carousel extends StyleAbstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_carousel_post .gvnews_post_title a",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_carousel_post .gvnews_post .gvnews_post_title",
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['typography'],
 						'device_control' => false,
@@ -151,6 +152,32 @@ class Carousel extends StyleAbstract {
 				array(
 					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
 					'value'    => $this->attrs['categoryButtonTypography'],
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['categoryButtonPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['categoryButtonMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['categoryButtonMargin'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -344,6 +371,33 @@ class Carousel extends StyleAbstract {
 					},
 					'value'          => $this->attrs['readmoreButtonBoxShadowHover'],
 					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate style block thumbnail style.
+	 *
+	 * @return void
+	 */
+	private function generate_thumbnail_style() {
+		$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_thumb";
+		if ( isset( $this->attrs['borderMainThumbnail'] ) ) {
+			$this->handle_border( 'borderMainThumbnail', $selector );
+		}
+		if ( isset( $this->attrs['borderResponsiveMainThumbnail'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderResponsiveMainThumbnail'],
+					'device_control' => true,
+					'skip_device'    => isset( $this->attrs['border'] ) ? array(
+						'Desktop',
+					) : null,
 				)
 			);
 		}

@@ -119,6 +119,13 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "widthMode": {
+            "type": "boolean",
+            "default": false
+        },
+        "gap": {
+            "type": "string"
         }
     },
     "supports": {
@@ -132,5 +139,5 @@
         "next"
     ],
     "gutenversePro": true,
-    "style": ["gutenverse-frontend-post-prev-next-style"]
+    "style": ["gutenverse-news-frontend-post-prev-next-style"]
 }

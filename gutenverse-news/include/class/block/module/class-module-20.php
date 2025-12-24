@@ -18,6 +18,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_20 extends Module_View_Abstract {
 
 	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_sm';
+	/**
 	 * Method render_block_type
 	 *
 	 * @param object  $post       post.
@@ -60,6 +66,7 @@ class Module_20 extends Module_View_Abstract {
 	 */
 	public function build_column( $results, $column_class ) {
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$is_column_1o3 = 'gvnews_col_1o3' === $column_class;
 		$first_block   = $this->render_block_type( $results[0], 'gvnews-120x86', 1 );
 		$start         = $is_column_1o3 ? 1 : 0;
@@ -74,6 +81,7 @@ class Module_20 extends Module_View_Abstract {
 				$second_block .= $i < $limit ? $this->render_block_type( $results[ $i ], 'gvnews-120x86', 1 ) : $this->render_block_type( $results[ $i ], null, 2 );
 			}
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$postsmall = "<div class=\"gvnews_postsmall gvnews_load_more_flag\">
                             {$second_block}

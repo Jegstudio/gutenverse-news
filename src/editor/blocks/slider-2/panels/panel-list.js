@@ -7,6 +7,7 @@ import { applyFilters } from '@wordpress/hooks';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
+import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -43,6 +44,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Border', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => borderPanel({
@@ -63,7 +70,7 @@ export const panelList = () => {
                 panelArray: (props) => advancePanel({
                     ...props,
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             }, {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,

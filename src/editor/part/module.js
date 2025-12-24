@@ -15,10 +15,11 @@ import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+
 const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
@@ -34,6 +35,10 @@ const BlockModule = compose(
         columnAttr,
         panelList,
         freeModule = false,
+        defaultImageSizeMain = {},
+        defaultImageSizeSecond = {},
+        mainThumbnailClass,
+        secondThumbnailClass,
     } = props;
 
     const {
@@ -77,15 +82,19 @@ const BlockModule = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         showMetaComment = true,
+        showMetaReview = false,
         readmoreButtonDisabled = false,
         listIcon = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
         meta_comment: showMetaComment,
-        meta_author: showMetaAuthor
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview
     };
 
     const moduleOption = {
@@ -100,7 +109,17 @@ const BlockModule = compose(
     const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getBlockStyle(
+            elementId,
+            attributes,
+            mainThumbnailClass,
+            secondThumbnailClass,
+        ),
+        elementRef
+    );
 
     const {
         getBlock,
@@ -218,10 +237,6 @@ const BlockModule = compose(
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
                 getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
             }
         } else {
             getWidth(columnWidth);
@@ -293,6 +308,8 @@ const BlockModule = compose(
             return;
         }
         if (postData.length > 0) {
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
+            const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
             const allColumns = <ColumnBlock {...{
                 blockWidth,
                 excerptLength,
@@ -306,8 +323,11 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
+                imageSizeMain,
+                imageSizeSecond,
                 readmoreButtonDisabled,
-                listIcon
+                listIcon,
+                attributes,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -322,10 +342,13 @@ const BlockModule = compose(
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
         showMeta,
         showMetaDate,
         showMetaAuthor,
         showMetaComment,
+        showMetaReview,
         readmoreButtonDisabled,
         listIcon
     ]);
@@ -375,9 +398,18 @@ const BlockModule = compose(
         }
     };
 
+    const theProps = {
+        ...props,
+        attributes: {
+            ...attributes,
+            mainThumbnailClass,
+            secondThumbnailClass
+        }
+    };
+
     return <>
         <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <BlockPanelController panelList={panelList} props={theProps} elementRef={elementRef} />
         {!freeModule && <InspectorControls>
             {applyFilters(
                 'gutenverse.blocks-pro.upgrade-banner-professional',

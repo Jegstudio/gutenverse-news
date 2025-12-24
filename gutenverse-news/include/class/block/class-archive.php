@@ -96,6 +96,7 @@ class Archive extends Grab {
 				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
 				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
 		);
 
@@ -136,6 +137,8 @@ class Archive extends Grab {
 			$attr['pagination_align']    = $this->attributes['paginationAlign'];
 			$attr['pagination_navtext']  = $this->attributes['paginationNavtext'];
 			$attr['pagination_pageinfo'] = $this->attributes['paginationPageinfo'];
+			$attr['prev_text']           = isset( $this->attributes['paginationPrevText'] ) ? $this->attributes['paginationPrevText'] : esc_html__( 'Previous', 'gutenverse-news' );
+			$attr['next_text']           = isset( $this->attributes['paginationNextText'] ) ? $this->attributes['paginationNextText'] : esc_html__( 'Next', 'gutenverse-news' );
 		}
 		return $attr;
 	}

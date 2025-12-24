@@ -1,3 +1,4 @@
+import { applyFilters } from '@wordpress/hooks';
 import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
@@ -45,6 +46,9 @@ const SliderMeta = (props) => {
 
     return (
         <div className="gvnews_post_meta">
+            {applyFilters('gvnews.part.meta', [], {
+                post: props.post || {}, option: props.attr.option.option || {}
+            })}
             {!props.date && props.attr.option.option.meta_author && <MetaAuthor {...props} />}
             {props.attr.option.option && props.attr.option.option.meta_date &&
                 <div className="gvnews_meta_date">

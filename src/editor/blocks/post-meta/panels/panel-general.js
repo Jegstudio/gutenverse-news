@@ -23,13 +23,17 @@ export const generalPanel = (props) => {
         },
     ];
 
+    const {
+        metaLeft,
+        metaRight,
+    } = props;
+
     const searchMeta = input => new Promise(resolve => {
         return resolve(applyFilters(
             'gvnews.post-meta.panel.general.searchOption',
             listSearch
         ));
     });
-
 
     const controls = [
         {
@@ -63,6 +67,24 @@ export const generalPanel = (props) => {
                     value: 'published'
                 },
             ],
+        },
+        {
+            id: 'authorPrefix',
+            label: __('Author Prefix', 'gutenverse-news'),
+            component: TextControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'author')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'author'))
+        },
+        {
+            id: 'categoryPrefix',
+            label: __('Category Prefix', 'gutenverse-news'),
+            component: TextControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'category')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'category'))
+        },
+        {
+            id: 'datePrefix',
+            label: __('Date Prefix', 'gutenverse-news'),
+            component: CheckboxControl,
+            show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'date')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'date'))
         },
     ];
 

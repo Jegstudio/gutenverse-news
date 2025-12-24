@@ -15,6 +15,7 @@ const Block39Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        imageSizeMain = {},
     } = props;
 
     const postDataLen = postData.length;
@@ -25,7 +26,7 @@ const Block39Columns = (props) => {
         return (
             <article className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={500} cat={true} post={post} />
+                    <ThumbModule size={500} cat={true} post={post} imageSize={imageSizeMain} />
                     <ContentModule cat={false} title={true} meta={1} read={false} excerpt={false} post={post} attr={attr} />
                 </div>
             </article>

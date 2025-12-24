@@ -13,7 +13,17 @@ const Block17Block = compose(
         blockWidth: 12,
     };
     const moduleName = '17';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        defaultImageSizeMain={{ height: 1140, width: 570, dimension: 500 }}
+        defaultImageSizeSecond={{ height: 360, width: 180, dimension: 500 }}
+        mainThumbnailClass={'gvnews_pl_md_1'}
+        secondThumbnailClass={'gvnews_pl_sm'}
+    />;
 
 });
 

@@ -104,6 +104,10 @@ class News_Ticker extends Grab {
 			'date_format'          => $this->attributes['metaDateFormat'],
 			'date_format_custom'   => $this->attributes['metaDateFormatCustom'],
 			'short_code'           => $this->attributes['gvnewsModule'],
+			'show_meta'            => $this->attributes['showMeta'],
+			'next_icon'            => $this->attributes['nextIcon'],
+			'prev_icon'            => $this->attributes['prevIcon'],
+
 		);
 
 		$content = $this->get_module( $attr );

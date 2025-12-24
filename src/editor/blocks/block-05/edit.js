@@ -13,7 +13,15 @@ const Block5Block = compose(
         blockWidth: 12,
     };
     const moduleName = '5';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} freeModule={true} />;
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
+        mainThumbnailClass={'gvnews_pl_lg_2'}
+    />;
 });
 
 export default Block5Block;

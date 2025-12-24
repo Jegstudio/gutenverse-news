@@ -45,8 +45,8 @@ export const designPanel = (props) => {
         },
         {
             id: 'contentTypography',
-            label: __('Post Content Typography', 'gutenverse-news'),
-            description: __('This option will change your content typography.', 'gutenverse-news'),
+            label: __('Content Typography', 'gutenverse-news'),
+            description: __('This option will change your post excerpt and read more button typography.', 'gutenverse-news'),
             component: TypographyControl,
         },
         {

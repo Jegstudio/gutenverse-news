@@ -63,5 +63,5 @@ export const metaPanel = (props) => {
         },
     ];
 
-    return applyFilters('gutenverse.news.penels.meta.setting', panelList, props);
+    return applyFilters('gutenverse.news.penels.meta.setting', panelList, props, ['author', 'date', 'comment', 'review']);
 };

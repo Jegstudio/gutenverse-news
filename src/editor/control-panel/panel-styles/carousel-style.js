@@ -5,6 +5,8 @@ const getCarouselStyle = (elementId, attributes) => {
     const {
         showMeta = true,
     } = attributes;
+
+    data = thumbnailAndOverlayStyle(elementId, attributes, data);
     /**
      * Panel Border
      */
@@ -104,7 +106,7 @@ const getCarouselStyle = (elementId, attributes) => {
     isNotEmpty(attributes['typography']) && data.push({
         'type': 'typography',
         'id': 'typography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_carousel_post .gvnews_post_title a`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_carousel_post .gvnews_post .gvnews_post_title`,
 
     });
     isNotEmpty(attributes['titleColor']) && data.push({
@@ -175,6 +177,31 @@ const getCarouselStyle = (elementId, attributes) => {
             'type': 'typography',
             'id': 'categoryButtonTypography',
             'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+        });
+
+        isNotEmpty(attributes['categoryButtonPadding']) && data.push({
+            'type': 'dimension',
+            'id': 'categoryButtonPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+        });
+        isNotEmpty(attributes['categoryButtonMargin']) && data.push({
+            'type': 'dimension',
+            'id': 'categoryButtonMargin',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'margin',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category`,
         });
 
         isNotEmpty(attributes['categoryButtonBackground']) && data.push({
@@ -265,5 +292,36 @@ const getCarouselStyle = (elementId, attributes) => {
     return data;
 };
 
+const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
+
+    isNotEmpty(attributes['borderMainThumbnail']) && data.push({
+        'id': 'borderMainThumbnail',
+        'type': 'border',
+        'selector': `.${elementId} .gvnews_postblock .gvnews_thumb`,
+    });
+    isNotEmpty(attributes['borderResponsiveMainThumbnail']) && data.push({
+        'id': 'borderResponsiveMainThumbnail',
+        'type': 'borderResponsive',
+        'selector': `.${elementId} .gvnews_postblock .gvnews_thumb`,
+    });
+    isNotEmpty(attributes['overlayBackgroundMain']) && data.push({
+        'type': 'background',
+        'id': 'overlayBackgroundMain',
+        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+    });
+    isNotEmpty(attributes['overlayOpacityMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayOpacityMain',
+        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+        'properties': [
+            {
+                'name': 'opacity',
+                'valueType': 'direct'
+            }
+        ]
+    });
+
+    return data;
+}
 
 export default getCarouselStyle;
