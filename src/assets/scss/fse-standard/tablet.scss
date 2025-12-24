@@ -74,4 +74,13 @@
         }
     }
 
+    .gvnews_postblock_15 {
+
+        &.gvnews_col_3o3 {
+            .gvnews_posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+
 }
