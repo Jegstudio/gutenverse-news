@@ -245,6 +245,8 @@ class Archive extends StyleAbstract {
 
 		$this->generate_thumbnail_style();
 		$this->generate_thumbnail_overlay_style();
+		$this->generate_content_container_style();
+		$this->title_container_style();
 
 		if ( isset( $this->attrs['titleTypography'] ) ) {
 			$this->inject_typography(
@@ -940,6 +942,59 @@ class Archive extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
+		}
+	}
+	/**
+	 * Title Container Style
+	 */
+	private function title_container_style() {
+		if ( '7' === $this->attrs['blockType'] ) {
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock_7.gvnews_postblock .gvnews_post_title";
+			if ( isset( $this->attrs['titleContainerAlign'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "text-align: {$value};";
+						},
+						'value'          => $this->attrs['titleContainerAlign'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['titleContainerBackground'] ) ) {
+				$this->handle_background(
+					$selector,
+					$this->attrs['titleContainerBackground'],
+				);
+			}
+
+			if ( isset( $this->attrs['titleContainerMargin'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'margin' );
+						},
+						'value'          => $this->attrs['titleContainerMargin'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['titleContainerPadding'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'padding' );
+						},
+						'value'          => $this->attrs['titleContainerPadding'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
 	}
 }

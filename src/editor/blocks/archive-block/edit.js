@@ -51,19 +51,6 @@ const ArchiveBlock = compose(
 
     const elementRef = useRef(null);
 
-    // const setMainClass = () => {
-    //     const gvnewsPost = u(elementRef.current).find('.gvnews_post').first();
-    //     let gvnewsPostMainClass = mainClass;
-    //     if (!gvnewsPost) { // First Render skip
-    //         return;
-    //     }
-    //     gvnewsPostMainClass = gvnewsPost.classList[1];
-    //     setAttributes({
-    //         ...attributes,
-    //         mainClass: gvnewsPostMainClass
-    //     });
-    // };
-
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
