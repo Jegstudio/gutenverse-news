@@ -75,6 +75,56 @@ export const navigationButtonStylePanel = (props) => {
 				}
 			]
 		},
+		{
+			id: 'buttonPosition',
+			label: __('Button Position', 'gutenverse-news'),
+            description: __('Button Position from right and left', 'gutenverse-news'),
+            show: ['slider-5'].includes(sliderType),
+			component: RangeControl,
+			allowDeviceControl: true,
+			min: 1,
+			max: 300,
+			unit: 'px',
+			step: 1,
+			liveStyle: [
+				{
+					'type': 'plain',
+					'id': 'buttonPosition',
+					'responsive': true,
+					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+					'properties': [
+						{
+							'name': 'right',
+							'valueType': 'pattern',
+							'pattern': '{value}px;',
+							'patternValues': {
+								'value': {
+									'type': 'direct',
+								}
+							}
+						},
+					],
+				},
+                {
+					'type': 'plain',
+					'id': 'buttonPosition',
+					'responsive': true,
+					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+					'properties': [
+						{
+							'name': 'left',
+							'valueType': 'pattern',
+							'pattern': '{value}px;',
+							'patternValues': {
+								'value': {
+									'type': 'direct',
+								}
+							}
+						},
+					],
+				}
+			]
+		},
         {
             id: '__styleType',
             component: SwitchControl,

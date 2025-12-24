@@ -623,7 +623,6 @@ class Slider extends StyleAbstract {
 	 * Generate Style for navigation button
 	 */
 	private function navigation_button_style() {
-		$transition_show_css = '';
 		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
 			$this->inject_style(
 				array(
@@ -647,6 +646,29 @@ class Slider extends StyleAbstract {
 					},
 					'value'          => $this->attrs['alwaysShowNavigationButton'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['buttonPosition'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-next",
+					'property'       => function ( $value ) {
+						return "right: {$value}px;";
+					},
+					'value'          => $this->attrs['buttonPosition'],
+					'device_control' => true,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-prev",
+					'property'       => function ( $value ) {
+						return "left: {$value}px;";
+					},
+					'value'          => $this->attrs['buttonPosition'],
+					'device_control' => true,
 				)
 			);
 		}

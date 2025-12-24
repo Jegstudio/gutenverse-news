@@ -847,8 +847,6 @@ const getDotStyle = (elementId, attributes, data = []) => {
 
 const getNavigationStyle = (elementId, attributes, data = []) => {
 
-    let transitionShowCss = '';
-
     isNotEmpty(attributes['hideNavigationButton']) && data.push({
         'type': 'plain',
         'id': 'hideNavigationButton',
@@ -901,6 +899,45 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
                 }
             ]
         });
+    }
+
+    if (isNotEmpty(attributes['buttonPosition'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'buttonPosition',
+            'responsive': true,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+            'properties': [
+                {
+                    'name': 'right',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'buttonPosition',
+            'responsive': true,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+            'properties': [
+                {
+                    'name': 'left',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px;',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                },
+            ],
+        })
     }
 
     isNotEmpty(attributes['gapBetweenButton']) && data.push({

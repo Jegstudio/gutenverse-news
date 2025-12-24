@@ -305,6 +305,9 @@
         "buttonSize": {
             "type": "object"
         },
+        "buttonPosition": {
+            "type": "object"
+        },
         "buttonPadding": {
             "type": "object"
         },
