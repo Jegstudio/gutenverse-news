@@ -810,7 +810,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['paginationBtnIconSize']) && data.push({
         'type': 'unitPoint',
         'id': 'paginationBtnIconSize',
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav svg`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg`,
         'properties': [
             {
                 'name': 'font-size',

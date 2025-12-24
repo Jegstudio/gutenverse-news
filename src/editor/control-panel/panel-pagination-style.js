@@ -263,7 +263,7 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav svg`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg`,
                 }
             ]
         },

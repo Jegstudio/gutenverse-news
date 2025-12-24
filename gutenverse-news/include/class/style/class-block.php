@@ -855,7 +855,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav svg",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'font-size' );
 					},
