@@ -12,7 +12,6 @@ export const multiPostItemPanel = (props) => {
     } = props;
 
     return [
-
         {
             id: 'columnItemGap',
             label: __('Post Lists Column Gap', 'gutenverse-news'),
@@ -44,7 +43,6 @@ export const multiPostItemPanel = (props) => {
                 }
             ]
         },
-
         {
             id: 'rowItemGap',
             label: __('Post Lists Row Gap', 'gutenverse-news'),
@@ -73,7 +71,7 @@ export const multiPostItemPanel = (props) => {
                             }
                         },
                         {
-                            'name': 'column-gap',
+                            'name': 'row-gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {
@@ -211,9 +209,6 @@ export const postItemPanel = (props) => {
         },
     ]
 }
-
-
-
 
 export const postItemGridPanel = (props) => {
 
