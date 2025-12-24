@@ -70,6 +70,7 @@ class Block extends StyleAbstract {
 		$this->title_container_style();
 		$this->post_item_style();
 		$this->no_content_style();
+		$this->generate_card_style();
 
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
@@ -1945,6 +1946,57 @@ class Block extends StyleAbstract {
 					},
 					'value'          => $this->attrs['contentContainerShadowSecond'],
 					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate card style.
+	 */
+	private function generate_card_style() {
+		$str                   = explode( '\\', $this->attrs['gvnewsModule'] );
+		$gvnews_module         = end( $str );
+		$modules_with_box_wrap = array(
+			'Module_32',
+			'Module_33',
+			'Module_34',
+			'Module_35',
+			'Module_36',
+			'Module_37',
+			'Module_39',
+		);
+		$selector              = in_array( $gvnews_module, $modules_with_box_wrap, true )
+			? ".{$this->element_id} .gvnews_postblock .gvnews_post .box_wrap"
+			: ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)";
+		// Main Class.
+		if ( isset( $this->attrs['cardBorder'] ) ) {
+			$this->handle_border( 'cardBorder', $selector );
+		}
+		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['cardBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
+		if ( isset( $this->attrs['cardPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['cardPadding'],
+					'device_control' => true,
 				)
 			);
 		}

@@ -28,6 +28,7 @@ export const panelList = () => {
             panelArray: layoutPanel,
             tabRole: TabSetting
         },
+        // Style
         {
             title: __('Name Style', 'gutenverse'),
             initialOpen: false,
@@ -61,7 +62,7 @@ export const panelList = () => {
                 normalOptions: ['default', 'gradient'],
                 hoverOptions: ['default', 'gradient'],
             }),
-            tabRole: TabSetting,
+            tabRole: TabStyle,
         },
         {
             title: __('Border', 'gutenverse-news'),

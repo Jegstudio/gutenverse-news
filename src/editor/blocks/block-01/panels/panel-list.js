@@ -17,7 +17,7 @@ import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-ov
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { multiPostItemPanel } from '../../../control-panel/panel-post-item';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
-
+import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 
 export const panelList = () => {
     return [
@@ -106,6 +106,15 @@ export const panelList = () => {
             panelArray: (props) => thumbnailOverlayPanel({
                 ...props,
                 hasSecondImageSize: true
+            }),
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Card Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => cardStylePanelModule({
+                ...props,
+                hasSecondClass: true,
             }),
             tabRole: TabStyle,
         },
