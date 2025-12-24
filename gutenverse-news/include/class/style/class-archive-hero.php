@@ -238,32 +238,98 @@ class Archive_Hero extends StyleAbstract {
 					)
 				);
 		}
-
-		if ( isset( $this->attrs['secondTitleTypography'] ) && $with_second_typo ) {
-			$selector = $this->get_second_typography_selector( $this->attrs['heroType'] );
-			$this->inject_typography(
+		if ( isset( $this->attrs['borderItem'] ) ) {
+			$this->handle_border(
+				'borderItem',
+				".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_block_container"
+			);
+		}
+		if ( isset( $this->attrs['borderResponsiveItem'] ) ) {
+			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_block_container",
 					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
 					},
-					'value'          => $this->attrs['secondTitleTypography'],
-					'device_control' => false,
+					'value'          => $this->attrs['borderResponsiveItem'],
+					'device_control' => true,
+					'skip_device'    => isset( $this->attrs['borderResponsiveItem'] ) ? array(
+						'Desktop',
+					) : null,
 				)
 			);
 		}
 
-		if ( isset( $this->attrs['thridTitleTypography'] ) && $with_thrid_typo ) {
-			$selector = ( '12' === $this->attrs['heroType'] ) ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_post_title a' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title a';
+		if ( $with_second_typo ) {
+			$selector = $this->get_second_typography_selector( $this->attrs['heroType'] );
+			if ( isset( $this->attrs['secondTitleTypography'] ) ) {
+				$this->inject_typography(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_post_title a",
+						'property'       => function ( $value ) {
+						},
+						'value'          => $this->attrs['secondTitleTypography'],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs['borderItemSecond'] ) ) {
+				$this->handle_border(
+					'borderItemSecond',
+					".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_block_container",
+				);
+			}
+			if ( isset( $this->attrs['borderResponsiveItemSecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_block_container",
+						'property'       => function ( $value ) {
+							return $this->handle_border_responsive( $value );
+						},
+						'value'          => $this->attrs['borderResponsiveItemSecond'],
+						'device_control' => true,
+						'skip_device'    => isset( $this->attrs['borderResponsiveItemSecond'] ) ? array(
+							'Desktop',
+						) : null,
+					)
+				);
+			}
+		}
 
-			$this->inject_typography(
-				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
-					'property'       => function ( $value ) {
-					},
-					'value'          => $this->attrs['thridTitleTypography'],
-					'device_control' => false,
-				)
-			);
+		if ( $with_thrid_typo ) {
+			$selector = ( '12' === $this->attrs['heroType'] ) ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_post_title a' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)';
+			if ( isset( $this->attrs['thridTitleTypography'] ) ) {
+				$this->inject_typography(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_post_title a",
+						'property'       => function ( $value ) {
+						},
+						'value'          => $this->attrs['thridTitleTypography'],
+						'device_control' => false,
+					)
+				);
+			}
+			if ( isset( $this->attrs['borderItemThird'] ) ) {
+				$this->handle_border(
+					'borderItemThird',
+					".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_block_container",
+				);
+			}
+			if ( isset( $this->attrs['borderResponsiveItemThird'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews_block_container",
+						'property'       => function ( $value ) {
+							return $this->handle_border_responsive( $value );
+						},
+						'value'          => $this->attrs['borderResponsiveItemThird'],
+						'device_control' => true,
+						'skip_device'    => isset( $this->attrs['borderResponsiveItemThird'] ) ? array(
+							'Desktop',
+						) : null,
+					)
+				);
+			}
 		}
 
 		if ( isset( $this->attrs['titleColor'] ) ) {
@@ -541,14 +607,13 @@ class Archive_Hero extends StyleAbstract {
 	private function get_second_typography_selector( $hero_type ) {
 		switch ( $hero_type ) {
 			case '10':
-				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title a';
+				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5)';
 			case '11':
-				return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1 .gvnews_post_title a';
+				return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1';
 			case '12':
-				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5) .gvnews_post_title a';
-
+				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5)';
 			default:
-				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title a';
+				return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
 		}
 	}
 }

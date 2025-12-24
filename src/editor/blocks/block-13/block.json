@@ -78,7 +78,7 @@
         },
         "numberPost": {
             "type": "string",
-            "default": 3
+            "default": 5
         },
         "postOffset": {
             "type": "string",
@@ -750,6 +750,18 @@
             "copyStyle": true
         },
         "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardPadding": {
             "type": "object",
             "copyStyle": true
         }

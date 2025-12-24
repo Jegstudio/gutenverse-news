@@ -143,7 +143,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.0.3 [DEV] =
+= 3.1.0 [DEV] =
 ##### Improvements
 * Bring back the Archive Hero block as Free
 * Add more Meta options on all block
@@ -159,6 +159,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add Post Item Gap options on some Module blocks
 * Add options to styling the no content condition on Archive Block and all Module blocks
 * Add more option to styling the Author Box block
+* Add border item options on Hero blocks
 * Move Spacing options to setting tab
 * Showing no content available on archive block when not seearch result exist
 * Remove JQuery usage on all blocks
