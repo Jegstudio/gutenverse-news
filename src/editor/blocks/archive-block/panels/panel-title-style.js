@@ -9,8 +9,6 @@ export const titleStylePanel = (props) => {
         mainThumbnailClass,
         blockType
     } = props;
-    console.log({ blockType });
-
     const device = getDeviceType();
 
     if (blockType !== '7') {
