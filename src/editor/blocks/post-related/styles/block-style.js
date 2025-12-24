@@ -1,4 +1,7 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { contentContainerStyle } from './panel-styles/style-content-container';
+import { thumbnailAndOverlayStyle } from './panel-styles/style-thumbnail';
+import { cardStyleModule } from './panel-styles/style-card';
 
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
@@ -40,6 +43,9 @@ const getBlockStyle = (elementId, attributes) => {
 
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
     data = noContentStyle(elementId, attributes, data);
+    data = thumbnailAndOverlayStyle(elementId, attributes, data);
+    data = contentContainerStyle(elementId, attributes, data);
+    data = cardStyleModule(elementId, attributes, data);
 
     /**
      * Panel Header
@@ -1310,7 +1316,6 @@ const getBlockStyle = (elementId, attributes) => {
 
     return data;
 };
-
 
 const noContentStyle = (elementId, attributes, data) => {
     isNotEmpty(attributes['noContentTypography']) && data.push({
