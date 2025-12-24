@@ -66,10 +66,10 @@ class Slider_7 extends Slider_View_Abstract {
                         <div class=\"gvnews_block_nav \"> 
                         	<a href=\"#\" class=\"prev\">
 								{$prev_button_icon}
-								{$nav_prev}
+								<span>{$nav_prev}</span>
                         	</a> 
                         	<a href=\"#\" class=\"next\">
-								{$nav_next}
+								<span>{$nav_next}</span>
 								{$next_button_icon}
                         	</a> 
                         </div>
