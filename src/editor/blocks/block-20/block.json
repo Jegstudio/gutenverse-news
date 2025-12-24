@@ -642,7 +642,6 @@
     },
     "keywords": [],
     "gutenversePro": true,
-<<<<<<< HEAD
     "viewScript": [
         "gutenverse-news-frontend-blocks-script"
     ],
@@ -650,12 +649,3 @@
         "gutenverse-news-frontend-blocks-style"
     ]
 }
-=======
-    "viewScript": [
-    "gutenverse-news-frontend-blocks-script"
-],
-"style": [
-    "gutenverse-news-frontend-blocks-style"
-]
-}
->>>>>>> trunk
