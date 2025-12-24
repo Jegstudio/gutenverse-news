@@ -148,6 +148,7 @@ class Init {
 		}
 		add_action( 'plugins_loaded', array( $this, 'framework_loaded' ), 99 );
 		add_filter( 'gutenverse_companion_plugin_list', array( $this, 'plugin_name' ) );
+		add_filter( 'user_contactmethods', array( $this, 'add_additional_admin_contact' ) );
 		register_activation_hook( GUTENVERSE_NEWS_FILE, array( $this, 'set_activation_transient' ) );
 	}
 
@@ -517,5 +518,15 @@ class Init {
 			}
 		}
 		return false;
+	}
+	/**
+	 * Add additional admin contact
+	 *
+	 * @param array $contacts Contact methods.
+	 *
+	 * @return array
+	 */
+	public function add_additional_admin_contact( $contacts ) {
+		return array_merge( $contacts, Social_Contacts::gvnews_admin_contact() );
 	}
 }

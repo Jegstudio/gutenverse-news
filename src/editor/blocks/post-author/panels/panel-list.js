@@ -1,8 +1,12 @@
 import { __ } from '@wordpress/i18n';
 import { backgroundPanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
-import { generalPanel } from './panel-general';
+import { biographyStylePanel } from './panel-biography-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import layoutPanel from './panel-layout';
+import { avatarStylePanel } from './panel-avatar-style';
+import { nameStylePanel } from './panel-name-style';
+import { iconStylePanel } from './panel-icon-style';
+import { generalPanel } from './panel-general';
 
 export const panelList = () => {
     return [
@@ -23,6 +27,30 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: layoutPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Name Style', 'gutenverse'),
+            initialOpen: false,
+            panelArray: nameStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Biography Style', 'gutenverse'),
+            initialOpen: false,
+            panelArray: biographyStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Avatar Style', 'gutenverse'),
+            initialOpen: false,
+            panelArray: avatarStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Social Icon Style', 'gutenverse'),
+            initialOpen: false,
+            panelArray: iconStylePanel,
+            tabRole: TabStyle
         },
         {
             title: __('Background', 'gutenverse-news'),

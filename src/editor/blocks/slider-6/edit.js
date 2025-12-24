@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
@@ -63,6 +64,8 @@ const Slider6Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        nextButtonIcon,
+        prevButtonIcon,
     } = attributes;
 
     const metaSettings = {
@@ -145,7 +148,16 @@ const Slider6Block = compose(
         }
 
         return (
-            <div ref={blockRef} className="gvnews_slider_type_6 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-nav-prev={'PREV'} data-nav-next={'NEXT'}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_6 gvnews_slider"
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-nav-prev={__('prev', 'gutenverse-news')}
+                data-nav-next={__('next', 'gutenverse-news')}
+                data-class-next={nextButtonIcon}
+                data-class-prev={prevButtonIcon}
+            >
                 {content}
             </div>
         );
@@ -278,6 +290,8 @@ const Slider6Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon,
     ]);
 
     useEffect(() => {

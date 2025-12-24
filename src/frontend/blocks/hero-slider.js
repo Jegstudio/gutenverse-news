@@ -26,9 +26,11 @@ class GutenverseHeroModule {
                     onInit: function (info) {
                         if ('undefined' !== typeof info.nextButton) {
                             u(info.nextButton).addClass('tns-next');
+                            u(info.nextButton).html('<i class="fas fa-chevron-right"></i>');
                         }
                         if ('undefined' !== typeof info.prevButton) {
                             u(info.prevButton).addClass('tns-prev');
+                            u(info.prevButton).html('<i class="fas fa-chevron-left"></i>');
                         }
                     },
                 };

@@ -63,6 +63,8 @@ const Slider5Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        nextButtonIcon,
+        prevButtonIcon
     } = attributes;
 
     const metaSettings = {
@@ -144,7 +146,14 @@ const Slider5Block = compose(
             }
         }
         return (
-            <div ref={blockRef} className="gvnews_slider_type_5 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_5 gvnews_slider"
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-class-next={nextButtonIcon}
+                data-class-prev={prevButtonIcon}
+            >
                 {content}
             </div>
         );
@@ -278,6 +287,8 @@ const Slider5Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon
     ]);
 
     useEffect(() => {
