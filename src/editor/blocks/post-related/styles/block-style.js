@@ -419,7 +419,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>svg'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'}`,
         'properties': [
             {
                 'name': 'color',
@@ -1357,6 +1357,6 @@ const noContentStyle = (elementId, attributes, data) => {
     });
     return data;
 
-}
+};
 
 export default getBlockStyle;

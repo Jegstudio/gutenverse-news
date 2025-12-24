@@ -173,7 +173,7 @@ class Post_Related extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['listIconColor'] ) ) {
-			$selector = 'template_24' === $this->attrs['templateType'] ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>svg';
+			$selector = 'template_24' === $this->attrs['templateType'] ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg';
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}  {$selector}",

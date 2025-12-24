@@ -270,7 +270,7 @@ const getBlockStyle = (
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>svg'),
+        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'),
         'properties': [
             {
                 'name': 'color',
@@ -1478,7 +1478,7 @@ const headerFilterStyle = (elementId, attributes, data) => {
     }
     return data;
 
-}
+};
 const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
     // Panel Content Container
     if (isNotEmpty(attributes['contentAlign'])) {
@@ -1538,14 +1538,14 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
                         'pattern': 'initial',
                     }
                 ],
-            })
+            });
         }
         data.push({
             'type': 'background',
             'id': 'contentContainerBackground',
             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
-        })
-    };
+        });
+    }
 
     if (isNotEmpty(attributes['contentMargin'])) {
         data.push({
@@ -1666,7 +1666,7 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
                         'pattern': 'initial',
                     }
                 ],
-            })
+            });
         }
         data.push({
             'type': 'background',
@@ -1728,7 +1728,7 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
     });
 
     return data;
-}
+};
 const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
     // Panel Thumbnail
     if (isNotEmpty(mainThumbnailClass)) {
@@ -1802,7 +1802,7 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClas
     }
 
     return data;
-}
+};
 
 // This is for Module 7
 const titleContainerStyle = (elementId, attributes, data) => {
@@ -1850,7 +1850,7 @@ const titleContainerStyle = (elementId, attributes, data) => {
     });
 
     return data;
-}
+};
 
 const postItemStyle = (elementId, attributes, data) => {
 
@@ -1859,7 +1859,7 @@ const postItemStyle = (elementId, attributes, data) => {
         secondListSelector,
         thirdListSelector,
         postItemGrid = false
-    } = attributes
+    } = attributes;
 
     if (postItemGrid) {
 
@@ -1978,7 +1978,7 @@ const postItemStyle = (elementId, attributes, data) => {
 
     return data;
 
-}
+};
 
 
 const noContentStyle = (elementId, attributes, data) => {
@@ -2026,7 +2026,7 @@ const noContentStyle = (elementId, attributes, data) => {
     });
     return data;
 
-}
+};
 
 
 export default getBlockStyle;

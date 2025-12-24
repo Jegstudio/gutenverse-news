@@ -496,7 +496,7 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['listIconColor'] ) ) {
-			$selector = isset( $this->attrs['selectorIconList'] ) ? $this->attrs['selectorIconList'] : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>svg';
+			$selector = isset( $this->attrs['selectorIconList'] ) ? $this->attrs['selectorIconList'] : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg';
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper .{$this->element_id}  {$selector}",
