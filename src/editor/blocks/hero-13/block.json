@@ -337,9 +337,6 @@
         },
         "borderItem": {
             "type": "object"
-        },
-        "borderResponsiveItem": {
-            "type": "object"
         }
     },
     "supports": {

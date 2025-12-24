@@ -7,7 +7,6 @@ import {
     RepeaterControl,
     HeadingControl,
     SwitchControl,
-    BorderControl,
     BorderResponsiveControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
@@ -89,14 +88,7 @@ export const styleHero = (props, typeCount = 1) => {
         },
         {
             id: 'borderItem',
-            show: switcher.typeCount === 'first' || !switcher.typeCount && device === 'Desktop',
-            label: __('Border Item', 'gutenverse-news'),
-            description: __('This option will change your border item.', 'gutenverse-news'),
-            component: BorderControl,
-        },
-        {
-            id: 'borderResponsiveItem',
-            show: switcher.typeCount === 'first' || !switcher.typeCount && device !== 'Desktop',
+            show: switcher.typeCount === 'first' || !switcher.typeCount,
             label: __('Border Item', 'gutenverse-news'),
             description: __('This option will change your border item.', 'gutenverse-news'),
             component: BorderResponsiveControl,
@@ -112,14 +104,7 @@ export const styleHero = (props, typeCount = 1) => {
         },
         {
             id: 'borderItemSecond',
-            show: switcher.typeCount === 'second' && device === 'Desktop',
-            label: __('Second Border Item', 'gutenverse-news'),
-            description: __('This option will change your border item.', 'gutenverse-news'),
-            component: BorderControl,
-        },
-        {
-            id: 'borderResponsiveItemSecond',
-            show: switcher.typeCount === 'second' && device !== 'Desktop',
+            show: switcher.typeCount === 'second',
             label: __('Second Border Item', 'gutenverse-news'),
             description: __('This option will change your border item.', 'gutenverse-news'),
             component: BorderResponsiveControl,
@@ -135,14 +120,7 @@ export const styleHero = (props, typeCount = 1) => {
         },
         {
             id: 'borderItemThird',
-            show: switcher.typeCount === 'third' && device === 'Desktop',
-            label: __('Third Border Item', 'gutenverse-news'),
-            description: __('This option will change your border item.', 'gutenverse-news'),
-            component: BorderControl,
-        },
-        {
-            id: 'borderResponsiveItemThird',
-            show: switcher.typeCount === 'third' && device !== 'Desktop',
+            show: switcher.typeCount === 'third',
             label: __('Third Border Item', 'gutenverse-news'),
             description: __('This option will change your border item.', 'gutenverse-news'),
             component: BorderResponsiveControl,
