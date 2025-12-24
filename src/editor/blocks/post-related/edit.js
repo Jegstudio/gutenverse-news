@@ -95,8 +95,6 @@ const PostRelated = compose(
         showMetaComment = true,
         readmoreButtonDisabled = false,
         gutenversePreviewBlock = '',
-        mainClass,
-        secondClass,
         renderedImageSizeMain,
         renderedImageSizeSecond
     } = attributes;
@@ -155,7 +153,6 @@ const PostRelated = compose(
 
     const setHasSecondImageSize = (value) => {
         setAttributes({
-            ...attributes,
             hasSecondImageSize: value
         })
     };
@@ -289,7 +286,6 @@ const PostRelated = compose(
             const mainClass = classList[0];
             const secondClass = classList[1];
             setAttributes({
-                ...attributes,
                 mainClass,
                 secondClass
             });
