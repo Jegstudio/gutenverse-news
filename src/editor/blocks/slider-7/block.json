@@ -297,7 +297,7 @@
             "type": "object",
             "copyStyle": true
         },
-        "buttonSize": {
+        "iconSize": {
             "type": "object"
         },
         "buttonPadding": {

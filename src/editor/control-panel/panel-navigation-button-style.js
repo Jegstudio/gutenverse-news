@@ -46,8 +46,9 @@ export const navigationButtonStylePanel = (props) => {
             step: 1,
         },
 		{
-			id: 'buttonSize',
-			label: __('Size', 'gutenverse-news'),
+			id: 'iconSize',
+			label: __('Icon Size', 'gutenverse-news'),
+            description: __('Size of the icon using font-size', 'gutenverse-news'),
 			component: RangeControl,
 			allowDeviceControl: true,
 			min: 1,
@@ -57,7 +58,7 @@ export const navigationButtonStylePanel = (props) => {
 			liveStyle: [
 				{
 					'type': 'plain',
-					'id': 'buttonSize',
+					'id': 'iconSize',
 					'responsive': true,
 					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
 					'properties': [
@@ -73,6 +74,68 @@ export const navigationButtonStylePanel = (props) => {
 						},
 					],
 				}
+			]
+		},
+        {
+			id: 'buttonHeight',
+			label: __('Button Height', 'gutenverse-news'),
+            show: ['slider-4','slider-5', 'slider-6', 'slider-8'].includes(sliderType),
+			component: RangeControl,
+			allowDeviceControl: true,
+			min: 1,
+			max: 300,
+			unit: 'px',
+			step: 1,
+			liveStyle: [
+				{
+					'type': 'plain',
+					'id': 'buttonHeight',
+					'responsive': true,
+					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+					'properties': [
+						{
+							'name': 'height',
+							'valueType': 'pattern',
+							'pattern': '{value}px;',
+							'patternValues': {
+								'value': {
+									'type': 'direct',
+								}
+							}
+						},
+					],
+				},
+			]
+		},
+        {
+			id: 'buttonWidth',
+			label: __('Button Width', 'gutenverse-news'),
+            show: ['slider-4','slider-5', 'slider-6', 'slider-8'].includes(sliderType),
+			component: RangeControl,
+			allowDeviceControl: true,
+			min: 1,
+			max: 300,
+			unit: 'px',
+			step: 1,
+			liveStyle: [
+				{
+					'type': 'plain',
+					'id': 'buttonWidth',
+					'responsive': true,
+					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+					'properties': [
+						{
+							'name': 'width',
+							'valueType': 'pattern',
+							'pattern': '{value}px;',
+							'patternValues': {
+								'value': {
+									'type': 'direct',
+								}
+							}
+						},
+					],
+				},
 			]
 		},
 		{

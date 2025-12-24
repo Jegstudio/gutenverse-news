@@ -72,35 +72,95 @@ export const navigationButtonStylePanel = (props) => {
             component: ColorControl,
         },
         {
-            id: 'nextButtonSize',
+            id: 'nextIconSize',
             show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
-            label: __('Size', 'gutenverse-news'),
+            label: __('Icon Size', 'gutenverse-news'),
             component: RangeControl,
-			allowDeviceControl: true,
+            allowDeviceControl: true,
             min: 1,
             max: 100,
             unit: 'px',
             step: 1,
             liveStyle: [
-				{
-					'type': 'plain',
-					'id': 'nextButtonSize',
-					'responsive': true,
-					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
-					'properties': [
-						{
-							'name': 'font-size',
-							'valueType': 'pattern',
-							'pattern': '{value}px; height: fit-content; width: fit-content;',
-							'patternValues': {
-								'value': {
-									'type': 'direct',
-								}
-							}
-						},
-					],
-				}
-			]
+                {
+                    'type': 'plain',
+                    'id': 'nextIconSize',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'nextButtonHeight',
+            label: __('Button Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 300,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'nextButtonHeight',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                },
+            ]
+        },
+        {
+            id: 'nextButtonWidth',
+            label: __('Button Width', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 300,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'nextButtonWidth',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                },
+            ]
         },
         {
             id: 'nextButtonPadding',
@@ -154,9 +214,9 @@ export const navigationButtonStylePanel = (props) => {
             component: ColorControl,
         },
         {
-            id: 'prevButtonSize',
+            id: 'prevIconSize',
             show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
-            label: __('Size', 'gutenverse-news'),
+            label: __('Icon Size', 'gutenverse-news'),
             component: RangeControl,
             allowDeviceControl: true,
             min: 1,
@@ -164,25 +224,85 @@ export const navigationButtonStylePanel = (props) => {
             unit: 'px',
             step: 1,
             liveStyle: [
-				{
-					'type': 'plain',
-					'id': 'prevButtonSize',
-					'responsive': true,
-					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
-					'properties': [
-						{
-							'name': 'font-size',
-							'valueType': 'pattern',
-							'pattern': '{value}px; height: fit-content; width: fit-content;',
-							'patternValues': {
-								'value': {
-									'type': 'direct',
-								}
-							}
-						},
-					],
-				}
-			]
+                {
+                    'type': 'plain',
+                    'id': 'prevIconSize',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'prevButtonHeight',
+            label: __('Button Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 300,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'prevButtonHeight',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                },
+            ]
+        },
+        {
+            id: 'prevButtonWidth',
+            label: __('Button Width', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 300,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'prevButtonWidth',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                },
+            ]
         },
         {
             id: 'prevButtonPadding',

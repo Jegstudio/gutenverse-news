@@ -958,9 +958,9 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             }
         ]
     });
-    isNotEmpty(attributes['buttonSize']) && data.push({
+    isNotEmpty(attributes['iconSize']) && data.push({
         'type': 'plain',
-        'id': 'buttonSize',
+        'id': 'iconSize',
         'responsive': true,
         'selector': [
             `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
@@ -970,7 +970,7 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             {
                 'name': 'font-size',
                 'valueType': 'pattern',
-                'pattern': '{value}px; height: fit-content; width: fit-content;',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct',
@@ -979,6 +979,42 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             },
         ],
     });
+    isNotEmpty(attributes['buttonHeight']) && data.push({
+        'type': 'plain',
+        'id': 'buttonHeight',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    },);
+    isNotEmpty(attributes['buttonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'buttonWidth',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    },);
     isNotEmpty(attributes['buttonPadding']) && data.push({
         'type': 'dimension',
         'id': 'buttonPadding',

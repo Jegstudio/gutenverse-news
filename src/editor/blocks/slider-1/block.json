@@ -260,7 +260,13 @@
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonSize": {
+        "nextIconSize": {
+            "type": "object"
+        },
+        "nextButtonHeight": {
+            "type": "object"
+        },
+        "nextButtonWidth": {
             "type": "object"
         },
         "nextButtonPadding": {
@@ -282,7 +288,13 @@
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonSize": {
+        "prevIconSize": {
+            "type": "object"
+        },
+        "prevButtonHeight": {
+            "type": "object"
+        },
+        "prevButtonWidth": {
             "type": "object"
         },
         "prevButtonPadding": {

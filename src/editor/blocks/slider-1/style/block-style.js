@@ -123,16 +123,16 @@ export const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
-    isNotEmpty(attributes['nextButtonSize']) && data.push({
+    isNotEmpty(attributes['nextIconSize']) && data.push({
         'type': 'plain',
-        'id': 'nextButtonSize',
+        'id': 'nextIconSize',
         'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
         'properties': [
             {
                 'name': 'font-size',
                 'valueType': 'pattern',
-                'pattern': '{value}px; height: auto; width: auto;',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct',
@@ -142,16 +142,16 @@ export const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
-    isNotEmpty(attributes['prevButtonSize']) && data.push({
+    isNotEmpty(attributes['prevIconSize']) && data.push({
         'type': 'plain',
-        'id': 'prevButtonSize',
+        'id': 'prevIconSize',
         'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
         'properties': [
             {
                 'name': 'font-size',
                 'valueType': 'pattern',
-                'pattern': '{value}px; height: auto; width: auto;',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct',
@@ -234,5 +234,78 @@ export const getBlockStyle = (elementId, attributes) => {
             }
         ],
     });
+
+    isNotEmpty(attributes['nextButtonHeight']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonHeight',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['nextButtonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonWidth',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['prevButtonHeight']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonHeight',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['prevButtonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonWidth',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
+        ],
+    })
     return data;
 };
