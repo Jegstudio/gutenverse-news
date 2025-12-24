@@ -4,19 +4,21 @@ import { BackgroundControl, BorderControl, BorderResponsiveControl, BoxShadowCon
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
-export const contentContainerPanel = ({
-    elementId,
-    switcher,
-    setSwitcher,
-    hasSecondImageSize = false,
-    mainThumbnailClass,
-    secondThumbnailClass,
-    contentAlignVertical = {
-        main: false,
-        second: false
-    },
-}) => {
+export const contentContainerPanel = (props) => {
+    const {
+        elementId,
+        switcher,
+        setSwitcher,
+        hasSecondImageSize = false,
+        mainThumbnailClass,
+        secondThumbnailClass,
+        contentAlignVertical = {
+            main: false,
+            second: false
+        },
+    } = props;
     const device = getDeviceType();
+    console.log({props});
 
     return [
         {

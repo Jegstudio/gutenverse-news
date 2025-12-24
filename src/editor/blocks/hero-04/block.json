@@ -341,6 +341,12 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
         }
     },
     "supports": {

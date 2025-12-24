@@ -447,13 +447,47 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['secondTitleTypography']) && withSecondTypo && data.push({
         'type': 'typography',
         'id': 'secondTitleTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(heroType)}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(heroType)} .gvnews_post_title`,
     });
 
     isNotEmpty(attributes['thridTitleTypography']) && withThridTypo && data.push({
         'type': 'typography',
         'id': 'thridTitleTypography',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_post_title a' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title'}`,
+    });
+
+    // Border Item
+    isNotEmpty(attributes['borderItem']) && data.push({
+        'type': 'border',
+        'id': 'borderItem',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_block_container`,
+    });
+    isNotEmpty(attributes['borderItemSecond']) && data.push({
+        'type': 'border',
+        'id': 'borderItemSecond',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(heroType)} .gvnews_block_container`,
+    });
+    isNotEmpty(attributes['borderItemThird']) && data.push({
+        'type': 'border',
+        'id': 'borderItemThird',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_block_container' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_block_container'}`,
+    });
+
+    // Border Responsive Item
+    isNotEmpty(attributes['borderResponsiveItem']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderResponsiveItem',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_block_container`,
+    });
+    isNotEmpty(attributes['borderResponsiveItemSecond']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderResponsiveItemSecond',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(heroType)} .gvnews_block_container`,
+    });
+    isNotEmpty(attributes['borderResponsiveItemThird']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'borderResponsiveItemThird',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews_block_container' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_block_container'}`,
     });
 
     isNotEmpty(attributes['titleColor']) && data.push({
@@ -577,13 +611,13 @@ const getBlockStyle = (elementId, attributes) => {
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
         case '10':
-            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5) .gvnews_post_title';
+            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_5)';
         case '11':
-            return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1 .gvnews_post_title';
+            return '.gvnews_heroblock .gvnews_post.gvnews_hero_item_1';
         case '12':
-            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5) .gvnews_post_title';
+            return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5)';
     }
-    return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title';
+    return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
 };
 
 export default getBlockStyle;

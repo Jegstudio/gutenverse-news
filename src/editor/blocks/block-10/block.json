@@ -690,6 +690,18 @@
         "noContentPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

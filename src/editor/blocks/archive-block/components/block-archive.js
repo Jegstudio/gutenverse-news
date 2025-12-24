@@ -26,6 +26,7 @@ const BlockArchive = (props) => {
         showMetaComment,
         readmoreButtonDisabled,
         gutenversePreviewBlock = '',
+        renderedImageSizeMain,
     } = props;
 
     const metaSettings = {
@@ -156,7 +157,8 @@ const BlockArchive = (props) => {
                     metaDateFormatCustom,
                     postBulk,
                     overlay,
-                    readmoreButtonDisabled
+                    readmoreButtonDisabled,
+                    renderedImageSizeMain,
                 }}
             />
         );
@@ -176,7 +178,8 @@ const BlockArchive = (props) => {
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        renderedImageSizeMain
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;
