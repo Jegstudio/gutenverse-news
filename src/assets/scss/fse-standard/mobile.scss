@@ -189,4 +189,21 @@
         }
     }
 
+    .gvnews_postblock_16 {
+        .gvnews_pl_lg_5 {
+            margin-bottom: 15px;
+        }
+
+        .gvnews_posts {
+            padding-top: 10px;
+        }
+
+        &.gvnews_postblock {
+            .gvnews_posts {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+
+
 }
