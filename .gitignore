@@ -7,8 +7,8 @@ node_modules
 gutenverse-news/block
 gutenverse-news/assets/js
 gutenverse-news/assets/css
-gutenverse-news/lib/dependencies
-gutenverse-news/lib/framework
+gutenverse-news/lib/dependencies/*
+gutenverse-news/lib/framework/*
 
 # Files to ignore
 package-lock.json
