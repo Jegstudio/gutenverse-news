@@ -877,7 +877,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     });
 
     if (isNotEmpty(attributes['transitionShow'])) {
-        transitionShowCss = `opacity ${attributes['transitionShow']}ms ease,`;
         data.push({
             'type': 'plain',
             'id': 'transitionShow',
