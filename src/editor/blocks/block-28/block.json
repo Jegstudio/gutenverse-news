@@ -483,7 +483,7 @@
         },
         "selectorIconList": {
             "type": "string",
-            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i"
+            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg"
         },
         "headerSecondTextColor": {
             "type": "object"

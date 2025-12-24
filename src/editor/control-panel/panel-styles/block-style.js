@@ -19,10 +19,10 @@ const getBlockStyle = (
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
 
     const getSelector = (selector, def) => {
-        if (attributes[selector]) {
-            return `.gvnews-block.gvnews-block-wrapper.${elementId} ${attributes[selector]}`;
-        }
-        return `.gvnews-block.gvnews-block-wrapper.${elementId} ${def}`;
+        const base = `.gvnews-block.gvnews-block-wrapper.${elementId}`;
+        const raw = attributes[selector] ? attributes[selector] : def;
+        // split by comma, trim each part, prefix with base, then join back with comma
+        return raw.split(',').map(part => `${base} ${part.trim()}`).join(', ');
     };
 
     /**
@@ -2026,22 +2026,22 @@ const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
     const str = attributes['gvnewsModule'].split('\\');
     const gvnewsModule = str[str.length - 1];
     const modulesWithBoxWrap = ['Module_32', 'Module_33', 'Module_34', 'Module_35', 'Module_36', 'Module_37', 'Module_39'];
-    const selector = modulesWithBoxWrap.includes(gvnewsModule) ? 
-    `.${elementId} .gvnews_postblock .gvnews_post .box_wrap` : 
-    `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`;
-    
+    const selector = modulesWithBoxWrap.includes(gvnewsModule) ?
+        `.${elementId} .gvnews_postblock .gvnews_post .box_wrap` :
+        `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`;
+
     // Main
     isNotEmpty(attributes['cardBorder']) && data.push({
         'type': 'border',
         'id': 'cardBorder',
         'selector': selector,
-    })
+    });
     isNotEmpty(attributes['cardBorderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'cardBorderResponsive',
         'responsive': true,
         'selector': selector,
-    })
+    });
     isNotEmpty(attributes['cardPadding']) && data.push({
         'type': 'dimension',
         'id': 'cardPadding',
@@ -2053,7 +2053,7 @@ const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
             }
         ],
         'selector': selector,
-    })
+    });
     // TODO: Add width control
     // isNotEmpty(attributes['cardWidth']) && data.push({
     //     'type': 'unitPoint',
@@ -2068,6 +2068,6 @@ const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
     //     'responsive': true
     // })
     return data;
-}
+};
 
 export default getBlockStyle;
