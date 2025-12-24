@@ -17,6 +17,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 
 export const panelList = () =>
     applyFilters(

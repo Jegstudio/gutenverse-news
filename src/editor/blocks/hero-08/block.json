@@ -325,6 +325,9 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
         }
     },
     "supports": {
