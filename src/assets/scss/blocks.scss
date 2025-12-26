@@ -1099,6 +1099,24 @@
 
 /*  4.1 - Block Heading
   /* ------------------------------------------------------------------------- */
+.gvnews_block_heading .gvnews_block_title span {
+  height: 36px;
+}
+
+.gvnews_block_heading_1,
+.gvnews_block_heading_2,
+.gvnews_block_heading_3,
+.gvnews_block_heading_4 {
+  .gvnews_block_title span {
+    padding: 0 15px;
+  }
+}
+
+
+
+.gvnews_block_heading_5 .gvnews_block_title span {
+  padding-right: 15px;
+}
 
 .gvnews_block_heading {
   position: relative;
@@ -12527,9 +12545,11 @@ video {
     justify-content: center;
     align-items: center;
 
+    .gutenverse-icon-svg {
+      height: 38px;
+    }
 
-    i,
-    svg {
+    i {
       line-height: 38px;
     }
 

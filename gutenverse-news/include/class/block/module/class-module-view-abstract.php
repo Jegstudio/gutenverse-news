@@ -414,7 +414,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$additional_line = ( isset( $attr['header_type'] ) && 'heading_5' === $attr['header_type'] ) ? '<span class="line"></span>' : '';
 
 		if ( ! empty( $heading_title ) ) {
-			$icon      = isset( $attr['icon'] ) ? $attr['icon'] : '';
+			$icon      = isset( $attr['header_icon'] ) ? $attr['header_icon'] : '';
 			$icon_type = isset( $attr['icon_type'] ) ? $attr['icon_type'] : 'icon';
 			$icon_svg  = isset( $attr['icon_svg'] ) ? $attr['icon_svg'] : '';
 

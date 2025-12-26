@@ -54,7 +54,7 @@ class Frontend_Assets {
 	private function get_block_default_attr( $block_name, $attr ) {
 		static $cache = array();
 
-		$root = dirname( __DIR__, 3 );
+		$root = GUTENVERSE_NEWS_DIR;
 
 		// normalize block folder name
 		if ( 0 === strpos( $block_name, 'gutenverse/news-' ) ) {
@@ -68,8 +68,7 @@ class Frontend_Assets {
 			$folder = 'block-' . sprintf( '%02d', intval( $m[1] ) );
 		}
 
-		$path = $root . '/src/editor/blocks/' . $folder . '/block.json';
-
+		$path = $root . '/block/' . $folder . '/block.json';
 		if ( isset( $cache[ $path ] ) ) {
 			$data = $cache[ $path ];
 		} else {
