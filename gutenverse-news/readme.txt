@@ -146,6 +146,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 3.1.0 [DEV] =
 ##### Improvements
 * Bring back the Archive Hero block as Free
+* Add option to convert Webfont to SVG icon for improved SEO
 * Add more Meta options on all block
 * Add more Typography options on all block
 * Add more syling options on Module Header
