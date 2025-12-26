@@ -337,7 +337,7 @@ class Slider extends StyleAbstract {
 		}
 		$this->generate_design_style();
 		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
-				$this->generate_meta_style();
+			$this->generate_meta_style();
 		}
 	}
 
@@ -350,14 +350,14 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['typography'] ) ) {
 
 			$selector = 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' === $this->attrs['gvnewsModule'] ? '.gvnews_slider_type_8 .gvnews_post_title' : '.gvnews_slider_wrapper .gvnews_slide_caption .gvnews_post_title';
-				$this->inject_typography(
-					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
-						'property'       => function ( $value ) {},
-						'value'          => $this->attrs['typography'],
-						'device_control' => false,
-					)
-				);
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['typography'],
+					'device_control' => false,
+				)
+			);
 		}
 
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
@@ -377,7 +377,7 @@ class Slider extends StyleAbstract {
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_post_title a",
 					'property'       => function ( $value ) {
-								return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['titleColor'],
 					'device_control' => false,
@@ -569,7 +569,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .fas",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .fas, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -582,7 +582,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .fas",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover .fas, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta>*:hover svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -783,7 +783,9 @@ class Slider extends StyleAbstract {
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button i,
-									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a i",
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button svg,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a i,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -796,7 +798,9 @@ class Slider extends StyleAbstract {
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover i,
-									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover i",
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button:hover svg,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover i,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a:hover svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

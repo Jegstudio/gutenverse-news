@@ -11,6 +11,7 @@ namespace GUTENVERSE\NEWS\Block\Module;
 
 use GUTENVERSE\NEWS\Block\Block_View_Abstract;
 use GUTENVERSE\NEWS\Util\Cache;
+use GUTENVERSE\NEWS\Util\Svg_Icons;
 
 /**
  * Module_View_Abstract
@@ -164,17 +165,17 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			$prev_text = '<i class="fas fa-chevron-left"></i>';
-			$next_text = '<i class="fas fa-chevron-right"></i>';
+			$prev_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-left' );
+			$next_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
 
 			if ( $attr['pagination_nextprev_showtext'] ) {
 				$additional_class .= ' showtext';
-				$prev_text         = '<i class="fas fa-chevron-left"></i> ' . esc_html__( 'Prev', 'gutenverse-news' );
-				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . '  <i class="fas fa-chevron-right"></i>';
+				$prev_text         = $prev_text . ' ' . esc_html__( 'Prev', 'gutenverse-news' );
+				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . ' ' . $next_text;
 			}
 
 			$output =
-			'<div class="gvnews_block_nav ' . esc_attr( $additional_class ) . '">
+				'<div class="gvnews_block_nav ' . esc_attr( $additional_class ) . '">
                     <a href="#" class="prev ' . esc_attr( $prev ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
                     <a href=\"#\" class=\"next " . esc_attr( $next ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
                 </div>";
@@ -183,8 +184,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next   = $next ? '' : 'disabled';
 			$output =
-			'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . "\">
-                    <a href=\"#\" class='" . esc_attr( $next ) . "' data-load='" . esc_html__( 'Load More', 'gutenverse-news' ) . "' data-loading='" . esc_html__( 'Loading...', 'gutenverse-news' ) . "'> " . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
+				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
+                    <a href="#" class="' . esc_attr( $next ) . '" data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
                 </div>';
 		}
 
@@ -306,23 +307,23 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			if ( $n === $current ) :
 				$page_links[] = "<span class='page_number active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</span>';
 				$dots         = true;
-		elseif ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
-			$link = str_replace( '%_%', 1 == $n ? '' : $args['format'], $args['base'] );
-			$link = str_replace( '%#%', $n, $link );
-			if ( $add_args ) {
-				$link = add_query_arg( $add_args, $link );
-			}
-			$link .= $args['add_fragment'];
+			elseif ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
+				$link = str_replace( '%_%', 1 == $n ? '' : $args['format'], $args['base'] );
+				$link = str_replace( '%#%', $n, $link );
+				if ( $add_args ) {
+					$link = add_query_arg( $add_args, $link );
+				}
+				$link .= $args['add_fragment'];
 
-			/**
-		* This filter is documented in wp-includes/general-template.php
-*/
-			$page_links[] = "<a class='page_number' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
-			$dots         = true;
-		elseif ( $dots && ! $args['show_all'] ) :
-			$page_links[] = '<span class="page_number dots">&hellip;</span>';
-			$dots         = false;
-		endif;
+				/**
+				 * This filter is documented in wp-includes/general-template.php
+				 */
+				$page_links[] = "<a class='page_number' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
+				$dots         = true;
+			elseif ( $dots && ! $args['show_all'] ) :
+				$page_links[] = '<span class="page_number dots">&hellip;</span>';
+				$dots         = false;
+			endif;
 		endfor;
 		if ( $args['prev_next'] && $current && ( $current < $total || -1 == $total ) ) :
 			$link = str_replace( '%_%', $args['format'], $args['base'] );
@@ -333,8 +334,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$link .= $args['add_fragment'];
 
 			/**
-		* This filter is documented in wp-includes/general-template.php
-		*/
+			 * This filter is documented in wp-includes/general-template.php
+			 */
 			$page_links[] = '<a class="page_nav next" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['next_text'] ) . '</span></a>';
 		endif;
 
@@ -351,8 +352,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			default:
 				$nav_class = 'gvnews_page' . $args['pagination_mode'];
 				$nav_align = 'gvnews_align' . $args['pagination_align'];
-				$nav_text  = $args['pagination_navtext'] ? '' : 'no_navtext';
-				$nav_info  = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
+				$nav_text = $args['pagination_navtext'] ? '' : 'no_navtext';
+				$nav_info = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
 				/* translators: %1s represents current page and %2$s represents total */
 				$paging_text = sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total );
 
@@ -413,7 +414,12 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$additional_line = ( isset( $attr['header_type'] ) && 'heading_5' === $attr['header_type'] ) ? '<span class="line"></span>' : '';
 
 		if ( ! empty( $heading_title ) ) {
-			$heading_icon  = empty( $attr['header_icon'] ) ? '' : "<i class='" . ( count( explode( ' ', $attr['header_icon'] ) ) !== 1 ? '' : 'fa ' ) . "{$attr['header_icon']}'></i>";
+			$icon      = isset( $attr['icon'] ) ? $attr['icon'] : '';
+			$icon_type = isset( $attr['icon_type'] ) ? $attr['icon_type'] : 'icon';
+			$icon_svg  = isset( $attr['icon_svg'] ) ? $attr['icon_svg'] : '';
+
+			$heading_icon = $this->render_icon( $icon_type, $icon, $icon_svg );
+
 			$heading_title = "<span>{$heading_icon}{$attr['first_title']}{$subtitle}</span>";
 			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}'>{$heading_title}</a>" : $heading_title;
 			$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";
@@ -449,10 +455,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$authors = is_array( $authors ) ? $authors : array( $authors );
 
 				foreach ( $authors as $author ) {
-					$author_id   = trim( $author );
-					$author_url  = get_author_posts_url( $author_id );
-					$author_name = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$author_id    = trim( $author );
+					$author_url   = get_author_posts_url( $author_id );
+					$author_name  = get_the_author_meta( 'display_name', $author_id );
+					$sub_cat     .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
@@ -479,7 +485,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		if ( ! empty( $sub_cat ) ) {
 			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
 			$sub_cat =
-			"<div class=\"gvnews_subcat okayNav loaded\">
+				"<div class=\"gvnews_subcat okayNav loaded\">
                     <ul class=\"gvnews_subcat_list\">
                         {$sub_cat}
                     </ul>
@@ -487,7 +493,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		return empty( $heading_title ) && empty( $sub_cat ) ? '' :
-		"<div class=\"gvnews_block_heading {$header_class} gvnews_subcat_right\">
+			"<div class=\"gvnews_block_heading {$header_class} gvnews_subcat_right\">
                      {$heading_title}
 					 {$additional_line}
                      {$sub_cat}
@@ -514,7 +520,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$output = "<script>var {$this->unique_id} = {$json_attr};</script>";
 
 		return ! ( isset( $attr['ads_type'] ) && 'code' === $attr['ads_type'] ) ? $output :
-		$output .= "<div class='hidden'>
+			$output .= "<div class='hidden'>
 								<textarea readonly class='gvnews_ad_code'>{$this->content}</textarea>
 							</div>";
 	}
@@ -524,7 +530,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	 */
 	public function ajax_request() {
 		if ( isset( $_REQUEST['data'] ) && isset( $_REQUEST['data']['attribute'] ) ) {
-			if ( isset( $_REQUEST['data']['attribute'] ['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute'] ['nonce'] ) ), 'gvnews-module-nonce' ) ) {
+			if ( isset( $_REQUEST['data']['attribute']['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['nonce'] ) ), 'gvnews-module-nonce' ) ) {
 				$meta_settings = array();
 				if ( isset( $_REQUEST['data']['attribute']['meta_settings'] ) ) {
 					$meta_settings = wp_unslash( $_REQUEST['data']['attribute']['meta_settings'] );
@@ -538,65 +544,68 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					'filter_type'  => isset( $_REQUEST['data']['filter_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['filter_type'] ) ) : '',
 					'current_page' => isset( $_REQUEST['data']['current_page'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['current_page'] ) ) : '',
 					'attribute'    =>
-					array(
-						'first_title'                  => isset( $_REQUEST['data']['attribute']['first_title'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['first_title'] ) ) : '',
-						'second_title'                 => isset( $_REQUEST['data']['attribute']['second_title'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['second_title'] ) ) : '',
-						'url'                          => isset( $_REQUEST['data']['attribute']['url'] ) ? sanitize_url( wp_unslash( $_REQUEST['data']['attribute']['url'] ) ) : '',
-						'header_type'                  => isset( $_REQUEST['data']['attribute']['header_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_type'] ) ) : '',
-						'header_icon'                  => isset( $_REQUEST['data']['attribute']['header_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_icon'] ) ) : '',
-						'header_background'            => isset( $_REQUEST['data']['attribute']['header_background'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_background'] ) ) : '',
-						'header_secondary_background'  => isset( $_REQUEST['data']['attribute']['header_secondary_background'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_secondary_background'] ) ) : '',
-						'header_text_color'            => isset( $_REQUEST['data']['attribute']['header_text_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_text_color'] ) ) : '',
-						'header_line_color'            => isset( $_REQUEST['data']['attribute']['header_line_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_line_color'] ) ) : '',
-						'header_accent_color'          => isset( $_REQUEST['data']['attribute']['header_accent_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_accent_color'] ) ) : '',
-						'header_filter_category'       => isset( $_REQUEST['data']['attribute']['header_filter_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_category'] ) ) : '',
-						'header_filter_author'         => isset( $_REQUEST['data']['attribute']['header_filter_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_author'] ) ) : '',
-						'header_filter_tag'            => isset( $_REQUEST['data']['attribute']['header_filter_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_tag'] ) ) : '',
-						'header_filter_text'           => isset( $_REQUEST['data']['attribute']['header_filter_text'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_text'] ) ) : '',
-						'post_type'                    => isset( $_REQUEST['data']['attribute']['post_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_type'] ) ) : '',
-						'content_type'                 => isset( $_REQUEST['data']['attribute']['content_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['content_type'] ) ) : '',
-						'number_post'                  => isset( $_REQUEST['data']['attribute']['number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['number_post'] ) ) : '',
-						'post_offset'                  => isset( $_REQUEST['data']['attribute']['post_offset'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_offset'] ) ) : '',
-						'unique_content'               => isset( $_REQUEST['data']['attribute']['unique_content'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['unique_content'] ) ) : '',
-						'include_post'                 => isset( $_REQUEST['data']['attribute']['include_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_post'] ) ) : '',
-						'included_only'                => isset( $_REQUEST['data']['attribute']['included_only'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['included_only'] ) ) : '',
-						'exclude_post'                 => isset( $_REQUEST['data']['attribute']['exclude_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_post'] ) ) : '',
-						'include_category'             => isset( $_REQUEST['data']['attribute']['include_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_category'] ) ) : '',
-						'exclude_category'             => isset( $_REQUEST['data']['attribute']['exclude_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_category'] ) ) : '',
-						'include_author'               => isset( $_REQUEST['data']['attribute']['include_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_author'] ) ) : '',
-						'include_tag'                  => isset( $_REQUEST['data']['attribute']['include_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_tag'] ) ) : '',
-						'exclude_tag'                  => isset( $_REQUEST['data']['attribute']['exclude_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_tag'] ) ) : '',
-						'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : 'latest',
-						'date_format'                  => isset( $_REQUEST['data']['attribute']['date_format'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format'] ) ) : '',
-						'date_format_custom'           => isset( $_REQUEST['data']['attribute']['date_format_custom'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format_custom'] ) ) : '',
-						'excerpt_length'               => isset( $_REQUEST['data']['attribute']['excerpt_length'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_length'] ) ) : '',
-						'excerpt_ellipsis'             => isset( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ) : '',
-						'force_normal_image_load'      => isset( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ) : '',
-						'pagination_mode'              => isset( $_REQUEST['data']['attribute']['pagination_mode'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_mode'] ) ) : '',
-						'pagination_nextprev_showtext' => isset( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ) : '',
-						'pagination_number_post'       => isset( $_REQUEST['data']['attribute']['pagination_number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_number_post'] ) ) : '',
-						'pagination_scroll_limit'      => isset( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ) : '',
-						'boxed'                        => isset( $_REQUEST['data']['attribute']['boxed'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['boxed'] ) ) : '',
-						'boxed_shadow'                 => isset( $_REQUEST['data']['attribute']['boxed_shadow'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['boxed_shadow'] ) ) : '',
-						'el_id'                        => isset( $_REQUEST['data']['attribute']['el_id'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['el_id'] ) ) : '',
-						'el_class'                     => isset( $_REQUEST['data']['attribute']['el_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['el_class'] ) ) : '',
-						'scheme'                       => isset( $_REQUEST['data']['attribute']['scheme'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['scheme'] ) ) : '',
-						'column_width'                 => isset( $_REQUEST['data']['attribute']['column_width'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_width'] ) ) : '',
-						'title_color'                  => isset( $_REQUEST['data']['attribute']['title_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['title_color'] ) ) : '',
-						'accent_color'                 => isset( $_REQUEST['data']['attribute']['accent_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['accent_color'] ) ) : '',
-						'alt_color'                    => isset( $_REQUEST['data']['attribute']['alt_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['alt_color'] ) ) : '',
-						'excerpt_color'                => isset( $_REQUEST['data']['attribute']['excerpt_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_color'] ) ) : '',
-						'css'                          => isset( $_REQUEST['data']['attribute']['css'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['css'] ) ) : '',
-						'compatible_column_notice'     => isset( $_REQUEST['data']['attribute']['compatible_column_notice'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['compatible_column_notice'] ) ) : '',
-						'show_date'                    => isset( $_REQUEST['data']['attribute']['show_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['show_date'] ) ) : '',
-						'short_code'                   => isset( $_REQUEST['data']['attribute']['short_code'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['short_code'] ) ) : '',
-						'paged'                        => isset( $_REQUEST['data']['attribute']['paged'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['paged'] ) ) : '',
-						'column_class'                 => isset( $_REQUEST['data']['attribute']['column_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_class'] ) ) : '',
-						'class'                        => isset( $_REQUEST['data']['attribute']['class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['class'] ) ) : '',
-						'disable_readmore'             => $disable_readmore,
-						'meta_settings'                => $meta_settings,
-						'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
-					),
+						array(
+							'first_title'                  => isset( $_REQUEST['data']['attribute']['first_title'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['first_title'] ) ) : '',
+							'second_title'                 => isset( $_REQUEST['data']['attribute']['second_title'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['second_title'] ) ) : '',
+							'url'                          => isset( $_REQUEST['data']['attribute']['url'] ) ? sanitize_url( wp_unslash( $_REQUEST['data']['attribute']['url'] ) ) : '',
+							'header_type'                  => isset( $_REQUEST['data']['attribute']['header_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_type'] ) ) : '',
+							'header_icon'                  => isset( $_REQUEST['data']['attribute']['header_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_icon'] ) ) : '',
+							'header_background'            => isset( $_REQUEST['data']['attribute']['header_background'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_background'] ) ) : '',
+							'header_secondary_background'  => isset( $_REQUEST['data']['attribute']['header_secondary_background'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_secondary_background'] ) ) : '',
+							'header_text_color'            => isset( $_REQUEST['data']['attribute']['header_text_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_text_color'] ) ) : '',
+							'header_line_color'            => isset( $_REQUEST['data']['attribute']['header_line_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_line_color'] ) ) : '',
+							'header_accent_color'          => isset( $_REQUEST['data']['attribute']['header_accent_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_accent_color'] ) ) : '',
+							'header_filter_category'       => isset( $_REQUEST['data']['attribute']['header_filter_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_category'] ) ) : '',
+							'header_filter_author'         => isset( $_REQUEST['data']['attribute']['header_filter_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_author'] ) ) : '',
+							'header_filter_tag'            => isset( $_REQUEST['data']['attribute']['header_filter_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_tag'] ) ) : '',
+							'header_filter_text'           => isset( $_REQUEST['data']['attribute']['header_filter_text'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['header_filter_text'] ) ) : '',
+							'post_type'                    => isset( $_REQUEST['data']['attribute']['post_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_type'] ) ) : '',
+							'content_type'                 => isset( $_REQUEST['data']['attribute']['content_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['content_type'] ) ) : '',
+							'number_post'                  => isset( $_REQUEST['data']['attribute']['number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['number_post'] ) ) : '',
+							'post_offset'                  => isset( $_REQUEST['data']['attribute']['post_offset'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_offset'] ) ) : '',
+							'unique_content'               => isset( $_REQUEST['data']['attribute']['unique_content'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['unique_content'] ) ) : '',
+							'include_post'                 => isset( $_REQUEST['data']['attribute']['include_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_post'] ) ) : '',
+							'included_only'                => isset( $_REQUEST['data']['attribute']['included_only'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['included_only'] ) ) : '',
+							'exclude_post'                 => isset( $_REQUEST['data']['attribute']['exclude_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_post'] ) ) : '',
+							'include_category'             => isset( $_REQUEST['data']['attribute']['include_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_category'] ) ) : '',
+							'exclude_category'             => isset( $_REQUEST['data']['attribute']['exclude_category'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_category'] ) ) : '',
+							'include_author'               => isset( $_REQUEST['data']['attribute']['include_author'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_author'] ) ) : '',
+							'include_tag'                  => isset( $_REQUEST['data']['attribute']['include_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['include_tag'] ) ) : '',
+							'exclude_tag'                  => isset( $_REQUEST['data']['attribute']['exclude_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['exclude_tag'] ) ) : '',
+							'sort_by'                      => isset( $_REQUEST['data']['attribute']['sort_by'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['sort_by'] ) ) : 'latest',
+							'date_format'                  => isset( $_REQUEST['data']['attribute']['date_format'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format'] ) ) : '',
+							'date_format_custom'           => isset( $_REQUEST['data']['attribute']['date_format_custom'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format_custom'] ) ) : '',
+							'excerpt_length'               => isset( $_REQUEST['data']['attribute']['excerpt_length'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_length'] ) ) : '',
+							'excerpt_ellipsis'             => isset( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ) : '',
+							'force_normal_image_load'      => isset( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ) : '',
+							'pagination_mode'              => isset( $_REQUEST['data']['attribute']['pagination_mode'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_mode'] ) ) : '',
+							'pagination_nextprev_showtext' => isset( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ) : '',
+							'pagination_number_post'       => isset( $_REQUEST['data']['attribute']['pagination_number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_number_post'] ) ) : '',
+							'pagination_scroll_limit'      => isset( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ) : '',
+							'boxed'                        => isset( $_REQUEST['data']['attribute']['boxed'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['boxed'] ) ) : '',
+							'boxed_shadow'                 => isset( $_REQUEST['data']['attribute']['boxed_shadow'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['boxed_shadow'] ) ) : '',
+							'el_id'                        => isset( $_REQUEST['data']['attribute']['el_id'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['el_id'] ) ) : '',
+							'el_class'                     => isset( $_REQUEST['data']['attribute']['el_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['el_class'] ) ) : '',
+							'scheme'                       => isset( $_REQUEST['data']['attribute']['scheme'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['scheme'] ) ) : '',
+							'column_width'                 => isset( $_REQUEST['data']['attribute']['column_width'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_width'] ) ) : '',
+							'title_color'                  => isset( $_REQUEST['data']['attribute']['title_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['title_color'] ) ) : '',
+							'accent_color'                 => isset( $_REQUEST['data']['attribute']['accent_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['accent_color'] ) ) : '',
+							'alt_color'                    => isset( $_REQUEST['data']['attribute']['alt_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['alt_color'] ) ) : '',
+							'excerpt_color'                => isset( $_REQUEST['data']['attribute']['excerpt_color'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_color'] ) ) : '',
+							'css'                          => isset( $_REQUEST['data']['attribute']['css'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['css'] ) ) : '',
+							'compatible_column_notice'     => isset( $_REQUEST['data']['attribute']['compatible_column_notice'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['compatible_column_notice'] ) ) : '',
+							'show_date'                    => isset( $_REQUEST['data']['attribute']['show_date'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['show_date'] ) ) : '',
+							'short_code'                   => isset( $_REQUEST['data']['attribute']['short_code'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['short_code'] ) ) : '',
+							'paged'                        => isset( $_REQUEST['data']['attribute']['paged'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['paged'] ) ) : '',
+							'column_class'                 => isset( $_REQUEST['data']['attribute']['column_class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['column_class'] ) ) : '',
+							'class'                        => isset( $_REQUEST['data']['attribute']['class'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['class'] ) ) : '',
+							'disable_readmore'             => $disable_readmore,
+							'list_icon'                    => isset( $_REQUEST['data']['attribute']['list_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon'] ) ) : '',
+							'list_icon_type'               => isset( $_REQUEST['data']['attribute']['list_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon_type'] ) ) : '',
+							'list_icon_svg'                => isset( $_REQUEST['data']['attribute']['list_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon_svg'] ) ) : '',
+							'meta_settings'                => $meta_settings,
+							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
+						),
 				);
 
 				$column_class = $attr['attribute']['column_class'];
@@ -643,7 +652,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					$args['include_author'] = $attr['filter'];
 					break;
 				case 'tag':
-						$args['include_tag'] = $attr['filter'];
+					$args['include_tag'] = $attr['filter'];
 					break;
 			}
 			$args['paged'] = $attr['current_page'];

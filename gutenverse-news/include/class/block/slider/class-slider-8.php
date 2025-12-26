@@ -90,8 +90,12 @@ class Slider_8 extends Slider_View_Abstract {
 					'items'      => esc_attr( $number_item ),
 					'autoplay'   => esc_attr( $attr['enable_autoplay'] ),
 					'delay'      => esc_attr( $autoplay_delay ),
-					'class-next' => $attr['nextButtonIcon'],
-					'class-prev' => $attr['prevButtonIcon'],
+					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+					'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+					'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+					'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 				)
 			);
 

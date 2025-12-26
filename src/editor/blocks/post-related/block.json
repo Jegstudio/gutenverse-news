@@ -53,6 +53,13 @@
             "type": "string",
             "default": ""
         },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": "Related "
@@ -332,6 +339,13 @@
         "listIcon": {
             "type": "string",
             "default": "fas fa-caret-right"
+        },
+        "listIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "listIconSVG": {
+            "type": "string"
         },
         "listIconColor": {
             "type": "object"

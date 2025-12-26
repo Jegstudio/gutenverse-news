@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, GradientWithAngleControl, ColorControl, IconControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, GradientWithAngleControl, ColorControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
@@ -96,13 +96,13 @@ export const sliderPanel = (props) => {
             id: 'nextButtonIcon',
             show: !hideNavigationButton,
             label: __('Icon Next', 'gutenverse-news'),
-            component: IconControl,
+            component: IconSVGControl,
         },
         {
             id: 'prevButtonIcon',
             show: !hideNavigationButton,
             label: __('Icon Previous', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
     ];
 };
