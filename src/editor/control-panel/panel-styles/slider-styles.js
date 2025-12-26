@@ -941,7 +941,7 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
 
     isNotEmpty(attributes['gapBetweenButton']) && data.push({
         'type': 'plain',
-        'id': 'gapBetweeButton',
+        'id': 'gapBetweenButton',
         'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
         'properties': [
