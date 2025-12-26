@@ -706,7 +706,7 @@ class Slider extends StyleAbstract {
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
 									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px;";
+						return "font-size: {$value}px; height: fit-content; width: fit-content;";
 					},
 					'value'          => $this->attrs['iconSize'],
 					'device_control' => true,
@@ -716,7 +716,8 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['buttonHeight'] ) && ! empty( $this->attrs['buttonHeight'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-next,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-prev,
 									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
 						return "height: {$value}px;";
@@ -729,7 +730,8 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['buttonWidth'] ) && ! empty( $this->attrs['buttonWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button,
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-next,
+									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button.tns-prev,
 									.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a",
 					'property'       => function ( $value ) {
 						return "width: {$value}px;";
@@ -961,7 +963,7 @@ class Slider extends StyleAbstract {
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-next",
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px;";
+						return "font-size: {$value}px; height: fit-content; width: fit-content;";
 					},
 					'value'          => $this->attrs['nextIconSize'],
 					'device_control' => true,
@@ -998,7 +1000,7 @@ class Slider extends StyleAbstract {
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .tns-controls .tns-prev",
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px;";
+						return "font-size: {$value}px; height: fit-content; width: fit-content;";
 					},
 					'value'          => $this->attrs['prevIconSize'],
 					'device_control' => true,

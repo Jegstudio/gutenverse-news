@@ -139,6 +139,16 @@ export const getBlockStyle = (elementId, attributes) => {
                     }
                 }
             },
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            },
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            }
         ],
     });
 
@@ -158,6 +168,16 @@ export const getBlockStyle = (elementId, attributes) => {
                     }
                 }
             },
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            },
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            }
         ],
     });
 
