@@ -12527,9 +12527,11 @@ video {
     justify-content: center;
     align-items: center;
 
+    .gutenverse-icon-svg {
+      height: 38px;
+    }
 
-    i,
-    svg {
+    i {
       line-height: 38px;
     }
 
