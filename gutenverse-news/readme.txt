@@ -143,7 +143,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.1.0 [DEV] =
+= 3.1.0 =
 ##### Improvements
 * Bring back the Archive Hero block as Free
 * Add option to convert Webfont to SVG icon for improved SEO
