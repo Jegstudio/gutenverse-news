@@ -145,32 +145,32 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 = 3.1.0 =
 ##### Improvements
-* Bring back the Archive Hero block as Free
-* Add option to convert Webfont to SVG icon for improved SEO
-* Add more Meta options on all block
-* Add more Typography options on all block
-* Add more syling options on Module Header
-* Add option to disable the read more button on blocks
-* Add more styling options on Archive Pagintaion block
-* Add navigaiton styling option on SLider - 1 block
-* Add more styling options on News Ticker block
-* Add Tag Type options on Archive Description block
-* Add option to change rendered thumbail size on Module Blocks
-* Add category label padding and margin options
-* Add Post Item Gap options on some Module blocks
-* Add options to styling the no content condition on Archive Block and all Module blocks
-* Add more option to styling the Author Box block
-* Add border item options on Hero blocks
-* Move Spacing options to setting tab
-* Showing no content available on archive block when not seearch result exist
-* Remove JQuery usage on all blocks
-* Imporve asset load mechanism on all blocks
+* Bring back the Archive Hero block as a free feature
+* Add an option to convert Webfonts to SVG icons for improved SEO
+* Add more Meta options to all blocks
+* Add more Typography options to all blocks
+* Add more styling options to the Module Header
+* Add an option to disable the Read More button on blocks
+* Add more styling options to the Archive Pagination block
+* Add navigation styling options to the Slider – 1 block
+* Add more styling options to the News Ticker block
+* Add Tag Type options to the Archive Description block
+* Add an option to change the rendered thumbnail size on Module blocks
+* Add padding and margin options for category labels
+* Add Post Item Gap options to some Module blocks
+* Add options to style the “no content” condition on the Archive block and all Module blocks
+* Add more styling options to the Author Box block
+* Add border item options to Hero blocks
+* Move Spacing options to the Settings tab
+* Display a “no content available” message on the Archive block when no search results exist
+* Remove jQuery usage from all blocks
+* Improve the asset loading mechanism on all blocks
 
 ##### Bug Fixes
-* Fix archive block not working on archive search page
-* Fix Post Masonry issue on "Module - 32", "Module - 33", "Module - 34" and "Module - 35"
-* Fix cannot make the Left/Right Meta Element empty on Post Meta block
-* Fix spacing option issue on Archive Description block
+* Fix the Archive block not working on archive search pages
+* Fix Post Masonry issues on “Module – 32”, “Module – 33”, “Module – 34”, and “Module – 35”
+* Fix the inability to leave the Left/Right Meta elements empty on the Post Meta block
+* Fix spacing option issues on the Archive Description block
 
 = 3.0.2 =
 ##### Improvements
