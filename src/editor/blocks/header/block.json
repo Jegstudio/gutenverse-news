@@ -144,5 +144,8 @@
     },
     "keywords": [
         "header"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }
