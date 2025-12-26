@@ -626,7 +626,8 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['buttonTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button span",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button span,
+										.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_7 .gvnews_block_nav a span",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['buttonTextTypography'],
 					'device_control' => false,
@@ -696,7 +697,6 @@ class Slider extends StyleAbstract {
 					'device_control' => false,
 				)
 			);
-			$transition_show_css = 'opacity ' . $this->attrs['transitionShow'] . 'ms ease,';
 		}
 		if ( isset( $this->attrs['gapBetweenButton'] ) ) {
 			$this->inject_style(
@@ -1163,7 +1163,7 @@ class Slider extends StyleAbstract {
 	 * Generate slider 2 style.
 	 */
 	private function dot_style() {
-		if ( isset( $this->attrs['alwaysShowDot'] ) ) {
+		if ( isset( $this->attrs['alwaysShowDot'] ) && $this->attrs['alwaysShowDot'] ) {
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",
@@ -1175,7 +1175,7 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
-		if ( isset( $this->attrs['hideDot'] ) ) {
+		if ( isset( $this->attrs['hideDot'] ) && $this->attrs['hideDot'] ) {
 			$this->inject_style(
 				array(
 					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-nav",

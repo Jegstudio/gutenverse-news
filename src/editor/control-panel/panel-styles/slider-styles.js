@@ -942,8 +942,12 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['buttonTextTypography']) && data.push({
         'type': 'typography',
         'id': 'buttonTextTypography',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button span`,
+        'selector': [
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button span`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a span`
+        ],
     })
+    console.log({data, attributes});
 
     isNotEmpty(attributes['gapBetweenButton']) && data.push({
         'type': 'plain',
