@@ -19,6 +19,7 @@ use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\Hero_14;
 use GUTENVERSE\NEWS\Style\Module_13;
+use GUTENVERSE\NEWS\Style\Module_19;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
@@ -78,6 +79,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-block-13' === $name:
 					$instance = new Module_13( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-19' === $name:
+					$instance = new Module_19( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-block' ):
 					$instance = new Block( $attrs, $name );

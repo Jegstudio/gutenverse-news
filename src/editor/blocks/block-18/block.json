@@ -633,6 +633,10 @@
         "cardPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
