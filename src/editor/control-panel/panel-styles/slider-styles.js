@@ -947,7 +947,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
             `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a span`
         ],
     })
-    console.log({data, attributes});
 
     isNotEmpty(attributes['gapBetweenButton']) && data.push({
         'type': 'plain',
