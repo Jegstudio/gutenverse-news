@@ -316,7 +316,16 @@
             "type": "object",
             "copyStyle": true
         },
-        "buttonSize": {
+        "iconSize": {
+            "type": "object"
+        },
+        "buttonHeight": {
+            "type": "object"
+        },
+        "buttonWidth": {
+            "type": "object"
+        },
+        "buttonPosition": {
             "type": "object"
         },
         "buttonPadding": {

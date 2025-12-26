@@ -316,7 +316,13 @@
             "type": "object",
             "copyStyle": true
         },
-        "buttonSize": {
+        "iconSize": {
+            "type": "object"
+        },
+        "buttonHeight": {
+            "type": "object"
+        },
+        "buttonWidth": {
             "type": "object"
         },
         "buttonPadding": {
@@ -340,6 +346,9 @@
         },
         "transitionShow": {
             "type": "string"
+        },
+        "buttonTextTypography": {
+            "type": "object"
         },
         "gapBetweenButton": {
             "type": "object"
