@@ -46,7 +46,7 @@ class Module_26 extends Module_View_Abstract {
 		$author      = $post->post_author;
 		$author_text = '<div class="gvnews_meta_author"><span class="label">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . get_author_posts_url( $author ) . '">' . get_the_author_meta( 'display_name', $author ) . '</a></div>';
 
-		$icon_clock = Svg_Icons::render_svg_icon( 'fas fa-clock' );
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
 		$post_meta = "<div class=\"gvnews_post_meta\">
 						<div class=\"gvnews_meta_date\">{$icon_clock} {$this->format_date( $post )}</div>

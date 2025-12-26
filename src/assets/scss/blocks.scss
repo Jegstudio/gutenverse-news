@@ -1135,8 +1135,7 @@
     justify-content: center;
   }
 
-  i
-  span {
+  i span {
     line-height: 36px;
     padding: 0px 15px;
     white-space: nowrap;
@@ -1353,7 +1352,8 @@
       line-height: 30px !important;
     }
 
-    i, svg {
+    i,
+    svg {
       height: 30px !important;
       line-height: 30px !important;
     }
@@ -1805,7 +1805,8 @@
     padding: 10px;
     border-right: 1px solid #eee;
 
-    >.fa, >.gutenverse-icon-svg svg {
+    >.fa,
+    >.gutenverse-icon-svg svg {
       margin-right: 2px;
     }
 
@@ -2363,6 +2364,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
     &>.gutenverse-icon-svg {
       display: inline;
 
@@ -2373,7 +2375,7 @@
         left: 1px;
         top: 0;
       }
-  }
+    }
   }
 
   .gvnews_post_title {
@@ -2491,7 +2493,8 @@
     margin-right: 1em;
   }
 
-  >.fa, >.gutenverse-icon-svg svg {
+  >.fa,
+  >.gutenverse-icon-svg svg {
     margin-right: 2px;
   }
 }
@@ -4108,7 +4111,8 @@
   .gvnews_post_meta {
     color: #fff;
 
-    .fa, svg {
+    .fa,
+    svg {
       color: #fff;
     }
   }
@@ -4584,7 +4588,8 @@
     font-size: 16px;
   }
 
-  .gvnews_modified_date i, .gvnews_modified_date svg {
+  .gvnews_modified_date i,
+  .gvnews_modified_date svg {
     margin-right: 6px;
     margin-left: 6px;
   }
@@ -4792,7 +4797,7 @@
 
 .gvnews_pagination .page_nav {
   height: 30px;
-  
+
   &.prev .gutenverse-icon-svg {
     padding-right: 6px;
   }
@@ -6140,7 +6145,8 @@
     text-transform: none;
     font-style: italic;
 
-    .fa, svg {
+    .fa,
+    svg {
       display: none;
     }
   }
@@ -6172,7 +6178,8 @@
   .gvnews_post_meta {
     color: #a0a0a0;
 
-    .fa, svg {
+    .fa,
+    svg {
       color: #a0a0a0;
     }
   }
@@ -7027,11 +7034,13 @@
     margin-left: 0.5em;
   }
 
-  &.rounded a .fa, &.rounded a svg {
+  &.rounded a .fa,
+  &.rounded a svg {
     border-radius: 3px;
   }
 
-  &.circle a .fa, &.circle a svg {
+  &.circle a .fa,
+  &.circle a svg {
     border-radius: 100%;
   }
 
@@ -7043,7 +7052,8 @@
     margin-right: 0;
   }
 
-  &.nobg a .fa, &.nobg a svg {
+  &.nobg a .fa,
+  &.nobg a svg {
     font-size: 18px;
     width: auto;
     height: auto;
@@ -7255,7 +7265,8 @@
 }
 
 
-.gvnews_post_meta .fa, .gvnews_post_meta svg {
+.gvnews_post_meta .fa,
+.gvnews_post_meta svg {
   font-size: 16px;
   margin-right: 2px;
 }
@@ -7273,7 +7284,8 @@
     flex: 1 0 auto;
     margin-left: auto;
 
-    .fa, svg {
+    .fa,
+    svg {
       font-size: inherit;
     }
   }
@@ -12196,13 +12208,15 @@ h3.gvnews_author_name {
   }
 }
 
-.gvnews_btn-toggle .fa, .gvnews_btn-toggle svg {
+.gvnews_btn-toggle .fa,
+.gvnews_btn-toggle svg {
   -webkit-transition: transform 0.2s ease;
   -o-transition: transform 0.2s ease;
   transition: transform 0.2s ease;
 }
 
-.show-secondary .gvnews_btn-toggle .fa, .show-secondary .gvnews_btn-toggle svg {
+.show-secondary .gvnews_btn-toggle .fa,
+.show-secondary .gvnews_btn-toggle svg {
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
@@ -12451,7 +12465,8 @@ video {
   display: flex;
   align-items: center;
 
-  .fa, svg {
+  .fa,
+  svg {
     margin-right: 5px;
   }
 }
@@ -13394,6 +13409,7 @@ span.gvnews-category {
 }
 
 .gvnews_iconlink:hover {
+
   .gvnews_block_icon_link i,
   .gvnews_block_icon_link svg {
     color: #999;
@@ -14258,6 +14274,7 @@ span.gvnews-category {
       .fa {
         color: #a0a0a0;
       }
+
       svg {
         color: #a0a0a0;
       }
@@ -17886,7 +17903,7 @@ span.gvnews-category {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-end;
-    
+
     button {
       font-size: 14px;
       color: #212121;
@@ -17909,9 +17926,11 @@ span.gvnews-category {
         margin: 0;
         right: 0;
         transition: background-color 0.2s;
+
         &::before {
           display: none;
         }
+
         i,
         svg {
           transition: color 0.2s;
@@ -17925,6 +17944,7 @@ span.gvnews-category {
           }
         }
       }
+
       &.tns-next {
         background: #f70d28;
         color: #fff;
@@ -18422,9 +18442,9 @@ span.gvnews-category {
     transition: all 0.15s ease;
     opacity: 0;
     z-index: 1;
-    
+
     i,
-    svg{
+    svg {
       transition: inherit;
     }
   }
@@ -20973,8 +20993,7 @@ input:checked+.slider {
     .fas,
     .far,
     .fab,
-    .gtn,
-    svg {
+    .gtn {
       color: #2e9fff;
       font-size: inherit;
       margin-right: 2px;

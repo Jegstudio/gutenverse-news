@@ -35,7 +35,7 @@ class Module_27 extends Module_View_Abstract {
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
 		$icon_clock = '';
-		$icon_clock = Svg_Icons::render_svg_icon( 'fas fa-clock' );
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
