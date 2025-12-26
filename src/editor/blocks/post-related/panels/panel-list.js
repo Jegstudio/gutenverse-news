@@ -13,6 +13,10 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { thumbnailSettingPanel } from './panel-thumbnail-setting';
+import { thumbnailOverlayPanel } from './panel-thumbnail-overlay';
+import { contentContainerPanel } from './panel-content-container';
+import { cardStylePanelModule } from './panel-card-style';
 
 
 export const panelList = () => {
@@ -95,6 +99,30 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: designPanel,
             tabRole: TabStyle
+        },
+        {
+            title: __('Thumbnail', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailSettingPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Thumbnail Overlay', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: thumbnailOverlayPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: contentContainerPanel,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Card Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: cardStylePanelModule,
+            tabRole: TabStyle,
         },
         {
             title: __('Meta Style', 'gutenverse-news'),
