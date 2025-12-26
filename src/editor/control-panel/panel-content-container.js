@@ -18,7 +18,6 @@ export const contentContainerPanel = (props) => {
         },
     } = props;
     const device = getDeviceType();
-    console.log({props});
 
     return [
         {
