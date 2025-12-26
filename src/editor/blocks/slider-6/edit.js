@@ -65,7 +65,11 @@ const Slider6Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -156,7 +160,11 @@ const Slider6Block = compose(
                 data-nav-prev={__('prev', 'gutenverse-news')}
                 data-nav-next={__('next', 'gutenverse-news')}
                 data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
                 data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
             >
                 {content}
             </div>
@@ -291,7 +299,11 @@ const Slider6Block = compose(
         showMetaDate,
         showMetaAuthor,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     ]);
 
     useEffect(() => {

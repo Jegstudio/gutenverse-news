@@ -248,11 +248,25 @@
             "type": "string",
             "default": "fas fa-chevron-right"
         },
+        "nextButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "nextButtonIconSVG": {
+            "type": "string"
+        },
         "prevButtonIcon": {
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "buttonColor": {
+        "prevButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "prevButtonIconSVG": {
+            "type": "string"
+        },
+        "nextButtonColor": {
             "type": "object",
             "copyStyle": true
         },

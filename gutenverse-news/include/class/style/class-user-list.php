@@ -213,7 +213,7 @@ class User_List extends StyleAbstract {
 		if ( isset( $this->attrs['metaColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gutenverse.{$this->element_id} .gvnews_userlist .gvnews_subscribe_count, .gutenverse.{$this->element_id} .gvnews_userlist .follow-wrapper a, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a i",
+					'selector'       => ".gutenverse.{$this->element_id} .gvnews_userlist .gvnews_subscribe_count, .gutenverse.{$this->element_id} .gvnews_userlist .follow-wrapper a, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a i, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

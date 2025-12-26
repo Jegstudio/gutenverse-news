@@ -577,7 +577,7 @@ const getSliderStyle = (elementId, attributes, data = []) => {
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fas, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -843,7 +843,7 @@ const getDotStyle = (elementId, attributes, data = []) => {
     });
 
     return data;
-}
+};
 
 const getNavigationStyle = (elementId, attributes, data = []) => {
 
@@ -985,7 +985,9 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         'id': 'buttonColor',
         'selector': [
             `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button i`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a i`
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button svg`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a svg`
         ],
         'properties': [
             {
@@ -999,7 +1001,9 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         'id': 'buttonColorHover',
         'selector': [
             `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button:hover i`,
-            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a:hover i`
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button:hover svg`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a:hover i`,
+            `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_7 .gvnews_block_nav a:hover svg`
         ],
         'properties': [
             {
@@ -1097,6 +1101,6 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
         ],
     });
     return data;
-}
+};
 
 export default getSliderStyle;

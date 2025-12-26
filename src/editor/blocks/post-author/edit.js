@@ -10,7 +10,7 @@ import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-import { isNotEmpty } from 'gutenverse-core/helper';
+import { FacebookIcon, SiteIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../../utils/social-icons';
 
 const PostAuthor = compose(
     withPartialRender,
@@ -42,8 +42,8 @@ const PostAuthor = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
 
-    const currentUser = wp.data.select('core').getCurrentUser();
-    const description = isNotEmpty(currentUser?.description) ? currentUser?.description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+    const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+    const { imgDir } = window['GVNewsConfig'];
 
     const blockProps = useBlockProps({
         className: classnames(
@@ -62,9 +62,13 @@ const PostAuthor = compose(
     const AvatarImage = () => {
         return <div className="gvnews-author-image">
             <img
-                src={currentUser?.avatar_urls?.['48']}
+                alt="admin"
+                src={`${imgDir}/author.png`}
                 className="avatar avatar-80 photo"
-            />
+                height="80"
+                width="80"
+                loading="lazy"
+                decoding="async" />
         </div>
     }
 
@@ -75,15 +79,15 @@ const PostAuthor = compose(
             {(avatarPosition === 'left' || avatarPosition === 'top') && <AvatarImage />}
             <div className="gvnews-author-content">
                 <TitleTag className="gvnews-author-name">
-                    <a>{currentUser?.name}</a>
+                    <a>John Doe</a>
                 </TitleTag>
                 <p className="gvnews-author-desc">{description}</p>
                 <div className="gvnews-author-socials">
-                    <a className="url"><i className="fa fa-globe"></i></a>
-                    <a className="url"><i className="fab fa-facebook"></i></a>
-                    <a className="url"><i className="fab fa-twitter"></i></a>
-                    <a className="url"><i className="fab fa-linkedin"></i></a>
-                    <a className="url"><i className="fab fa-instagram"></i></a>
+                    <a href="javascript:void(0);" className="url"><SiteIcon /></a>
+                    <a href="javascript:void(0);" className="url"><FacebookIcon /></a>
+                    <a href="javascript:void(0);" className="url"><TwitterIcon /></a>
+                    <a href="javascript:void(0);" className="url"><LinkedinIcon /></a>
+                    <a href="javascript:void(0);" className="url"><InstagramIcon /></a>
                 </div>
             </div>
             {(avatarPosition === 'right' || avatarPosition === 'bottom') && <AvatarImage />}

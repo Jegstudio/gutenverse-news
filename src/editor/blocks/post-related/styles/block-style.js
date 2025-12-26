@@ -425,7 +425,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i' : '.gvnews_pl_xs_2>i'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'}`,
         'properties': [
             {
                 'name': 'color',
@@ -816,7 +816,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['paginationBtnIconSize']) && data.push({
         'type': 'unitPoint',
         'id': 'paginationBtnIconSize',
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg`,
         'properties': [
             {
                 'name': 'font-size',
@@ -1030,7 +1030,7 @@ const getBlockStyle = (elementId, attributes) => {
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg`,
         },
         {
             'type': 'unitPoint',
@@ -1042,7 +1042,7 @@ const getBlockStyle = (elementId, attributes) => {
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg`,
         },
     );
 
@@ -1362,6 +1362,6 @@ const noContentStyle = (elementId, attributes, data) => {
     });
     return data;
 
-}
+};
 
 export default getBlockStyle;

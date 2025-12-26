@@ -64,7 +64,11 @@ const Slider5Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         nextButtonIcon,
-        prevButtonIcon
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG
     } = attributes;
 
     const metaSettings = {
@@ -152,7 +156,11 @@ const Slider5Block = compose(
                 data-autoplay={autoplay ? true : ''}
                 data-delay={sliderDelay}
                 data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
                 data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
             >
                 {content}
             </div>
@@ -288,7 +296,11 @@ const Slider5Block = compose(
         showMetaDate,
         showMetaAuthor,
         nextButtonIcon,
-        prevButtonIcon
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG
     ]);
 
     useEffect(() => {

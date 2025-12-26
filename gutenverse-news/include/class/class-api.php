@@ -409,9 +409,8 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_post_author( $request ) {
-		$attr         = $request->get_param( 'attr' );
-		$social_array = Social_Contacts::social_icon_list_class();
-		$data         = array();
+		$attr = $request->get_param( 'attr' );
+		$data = array();
 
 		if ( ! is_array( $attr['author'] ) ) {
 			return wp_json_encode( $data );
@@ -420,14 +419,6 @@ class Api {
 		$author_id = $attr['author'][0];
 		$user      = get_user_by( 'id', $author_id );
 		if ( isset( $user->ID ) ) {
-			foreach ( $social_array as $key => $value ) {
-				if ( get_the_author_meta( $key, $user->ID ) ) {
-						$meta[] = array(
-							'key'   => get_the_author_meta( $key, $user->ID ),
-							'value' => $value,
-						);
-				}
-			}
 			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
 				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
 			} else {
@@ -439,7 +430,6 @@ class Api {
 				'avatar' => get_avatar_url( $user->ID, 80 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta,
 			);
 		}
 		return wp_json_encode( $data );
@@ -570,20 +560,10 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_author( $attributes ) {
-		$data         = array();
-		$users        = get_users();
-		$social_array = Social_Contacts::social_icon_list_class();
-		$name         = '';
+		$data  = array();
+		$users = get_users();
+		$name  = '';
 		foreach ( $users as $user ) {
-			$meta = false;
-			foreach ( $social_array as $key => $value ) {
-				if ( get_the_author_meta( $key, $user->ID ) ) {
-					$meta[] = array(
-						'key'   => get_the_author_meta( $key, $user->ID ),
-						'value' => $value,
-					);
-				}
-			}
 			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
 				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
 			} else {
@@ -595,7 +575,6 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta,
 			);
 		}
 

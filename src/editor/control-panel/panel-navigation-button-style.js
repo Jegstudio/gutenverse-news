@@ -45,36 +45,36 @@ export const navigationButtonStylePanel = (props) => {
             unit: 'px',
             step: 1,
         },
-		{
-			id: 'buttonSize',
-			label: __('Size', 'gutenverse-news'),
-			component: RangeControl,
-			allowDeviceControl: true,
-			min: 1,
-			max: 100,
-			unit: 'px',
-			step: 1,
-			liveStyle: [
-				{
-					'type': 'plain',
-					'id': 'buttonSize',
-					'responsive': true,
-					'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
-					'properties': [
-						{
-							'name': 'font-size',
-							'valueType': 'pattern',
-							'pattern': '{value}px; height: fit-content; width: fit-content;',
-							'patternValues': {
-								'value': {
-									'type': 'direct',
-								}
-							}
-						},
-					],
-				}
-			]
-		},
+        {
+            id: 'buttonSize',
+            label: __('Size', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 100,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'buttonSize',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px; height: fit-content; width: fit-content;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
+        },
         {
             id: '__styleType',
             component: SwitchControl,
