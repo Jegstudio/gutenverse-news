@@ -333,6 +333,9 @@
         "transitionShow": {
             "type": "string"
         },
+        "buttonTextTypography": {
+            "type": "object"
+        },
         "gapBetweenButton": {
             "type": "object"
         },

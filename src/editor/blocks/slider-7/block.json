@@ -314,6 +314,9 @@
         "transitionShow": {
             "type": "string"
         },
+        "buttonTextTypography": {
+            "type": "object"
+        },
         "buttonGap": {
             "type": "object"
         },

@@ -105,6 +105,7 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'nextButtonHeight',
             label: __('Button Height', 'gutenverse-news'),
+            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
             component: RangeControl,
             allowDeviceControl: true,
             min: 1,
@@ -135,6 +136,7 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'nextButtonWidth',
             label: __('Button Width', 'gutenverse-news'),
+            show: (!switcher.buttonType || switcher.buttonType === 'next') && !props.hideNavigationButton,
             component: RangeControl,
             allowDeviceControl: true,
             min: 1,
@@ -247,6 +249,7 @@ export const navigationButtonStylePanel = (props) => {
         {
             id: 'prevButtonHeight',
             label: __('Button Height', 'gutenverse-news'),
+            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             component: RangeControl,
             allowDeviceControl: true,
             min: 1,
@@ -279,6 +282,7 @@ export const navigationButtonStylePanel = (props) => {
             label: __('Button Width', 'gutenverse-news'),
             component: RangeControl,
             allowDeviceControl: true,
+            show: (switcher.buttonType === 'prev') && !props.hideNavigationButton,
             min: 1,
             max: 300,
             unit: 'px',

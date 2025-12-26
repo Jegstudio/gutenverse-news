@@ -623,6 +623,16 @@ class Slider extends StyleAbstract {
 	 * Generate Style for navigation button
 	 */
 	private function navigation_button_style() {
+		if ( isset( $this->attrs['buttonTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .tns-controls button span",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['buttonTextTypography'],
+					'device_control' => false,
+				)
+			);
+		}
 		if ( isset( $this->attrs['hideNavigationButton'] ) && $this->attrs['hideNavigationButton'] ) {
 			$this->inject_style(
 				array(

@@ -8,6 +8,7 @@ import {
     HeadingControl,
     RangeControl,
     SwitchControl,
+    TypographyControl,
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -34,6 +35,12 @@ export const navigationButtonStylePanel = (props) => {
     }
 
     return [
+        {
+            id: 'buttonTextTypography',
+            show: ['slider-6', 'slider-7'].includes(sliderType),
+            label: __('Button Text Typography', 'gutenverse-news'),
+            component: TypographyControl,
+        },
         {
             id: 'buttonGap',
             show: ['slider-6', 'slider-7'].includes(sliderType),
@@ -142,7 +149,7 @@ export const navigationButtonStylePanel = (props) => {
 			id: 'buttonPosition',
 			label: __('Button Position', 'gutenverse-news'),
             description: __('Button Position from right and left', 'gutenverse-news'),
-            show: ['slider-5'].includes(sliderType),
+            show: ['slider-4', 'slider-5', 'slider-8'].includes(sliderType),
 			component: RangeControl,
 			allowDeviceControl: true,
 			min: 1,

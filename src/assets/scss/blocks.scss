@@ -17452,6 +17452,14 @@ span.gvnews-category {
   position: relative;
   overflow: hidden;
   margin-bottom: 40px;
+
+  .tns-outer .tns-controls button,
+  .owl-carousel .owl-nav div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
 
 .gvnews_slider_placeholder .thumbnail-container img {
