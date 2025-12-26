@@ -1107,14 +1107,14 @@
 .gvnews_block_heading_2,
 .gvnews_block_heading_3,
 .gvnews_block_heading_4 {
-  span {
+  .gvnews_block_title span {
     padding: 0 15px;
   }
 }
 
 
 
-.gvnews_block_heading_5 span {
+.gvnews_block_heading_5 .gvnews_block_title span {
   padding-right: 15px;
 }
 
