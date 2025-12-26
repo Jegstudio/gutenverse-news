@@ -379,6 +379,7 @@ const BlockModule = compose(
         metaCommentIcon,
         metaCommentIconType,
         metaCommentIconSVG,
+        gutenversePreviewBlock
     ]);
 
     const blockProps = useBlockProps({
