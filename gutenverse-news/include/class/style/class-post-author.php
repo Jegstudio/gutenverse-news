@@ -190,7 +190,7 @@ class Post_Author extends Style_Abstract {
 				array(
 					'selector'       => ".{$this->element_id}.gvnews-post-author",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
+						return $this->handle_unit_point( $value, 'width', true );
 					},
 					'value'          => $this->attrs['width'],
 					'device_control' => true,
