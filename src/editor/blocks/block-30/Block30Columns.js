@@ -1,6 +1,5 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
 
 const Block30Columns = (props) => {
     const {
@@ -16,6 +15,8 @@ const Block30Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        readmoreButtonDisabled = false,
+        imageSizeMain = {},
     } = props;
 
     const postDataLen = postData.length;
@@ -23,14 +24,10 @@ const Block30Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_lg_7 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
-                <ThumbModule cat={true} size={715} post={post} />
-                <ContentModule meta={3} title={true} excerpt={true} read={true} post={post} attr={attr} />
+            <article className={`gvnews_post gvnews_pl_lg_7 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                <ThumbModule cat={true} size={715} post={post} imageSize={imageSizeMain} />
+                <ContentModule meta={3} title={true} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr} />
             </article>
         );
     };

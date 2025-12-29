@@ -1,10 +1,22 @@
 
 import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
-import { withFormatName } from '../../utils/helper';
 
 const Block21Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -12,7 +24,7 @@ const Block21Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                {<ThumbModule size={715} cat={false} post={post} />}
+                {<ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />}
                 <ContentModule
                     title={true}
                     meta={2}
@@ -39,14 +51,10 @@ const Block21Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                const className = withFormatName(
-                    `gvnews_post gvnews_pl_sm ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i].thumbnail.url && 'no_thumbnail'}`,
-                    postData[i]
-                );
                 rows.push(
                     <article
                         key={postData[i].id}
-                        className={className}
+                        className={`gvnews_post gvnews_pl_sm ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i].thumbnail.url && 'no_thumbnail'}`}
                     >
                         <RenderBlock1 attr={attr} post={postData[i]} />
                     </article>

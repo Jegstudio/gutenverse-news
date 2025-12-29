@@ -8,69 +8,19 @@ import Block6Block from './svg/module-6.svg';
 import Block7Block from './svg/module-7.svg';
 import Block8Block from './svg/module-8.svg';
 import Block9Block from './svg/module-9.svg';
-import Block10Block from './svg/module-10.svg';
-import Block11Block from './svg/module-11.svg';
-import Block12Block from './svg/module-12.svg';
-import Block13Block from './svg/module-13.svg';
-import Block14Block from './svg/module-14.svg';
-import Block15Block from './svg/module-15.svg';
-import Block16Block from './svg/module-16.svg';
 import Block17Block from './svg/module-17.svg';
-import Block18Block from './svg/module-18.svg';
-import Block19Block from './svg/module-19.svg';
-import Block20Block from './svg/module-20.svg';
 import Block21Block from './svg/module-21.svg';
-import Block22Block from './svg/module-22.svg';
-import Block23Block from './svg/module-23.svg';
-import Block24Block from './svg/module-24.svg';
-import Block25Block from './svg/module-25.svg';
-import Block26Block from './svg/module-26.svg';
-import Block27Block from './svg/module-27.svg';
-import Block28Block from './svg/module-28.svg';
-import Block29Block from './svg/module-29.svg';
-import Block30Block from './svg/module-30.svg';
-import Block31Block from './svg/module-31.svg';
-import Block32Block from './svg/module-32.svg';
-import Block33Block from './svg/module-33.svg';
-import Block34Block from './svg/module-34.svg';
-import Block35Block from './svg/module-35.svg';
-import Block36Block from './svg/module-36.svg';
-import Block37Block from './svg/module-37.svg';
-import Block38Block from './svg/module-38.svg';
-import Block39Block from './svg/module-39.svg';
 import ArchiveDescription from './svg/archive-description.svg';
 import ArchiveTitle from './svg/archive-title.svg';
 import ArchivePagination from './svg/archive-pagination.svg';
-import ArchiveHero from './svg/archive-hero.svg';
 import ArchiveBlock from './svg/archive-block.svg';
 import ArchiveBreadcrumb from './svg/archive-breadcrumb.svg';
-import Carousel1 from './svg/carousel-1.svg';
-import Carousel2 from './svg/carousel-2.svg';
-import Carousel3 from './svg/carousel-3.svg';
 import Hero1 from './svg/hero-1.svg';
 import Hero2 from './svg/hero-2.svg';
 import Hero3 from './svg/hero-3.svg';
 import Hero4 from './svg/hero-4.svg';
 import Hero5 from './svg/hero-5.svg';
-import Hero6 from './svg/hero-6.svg';
-import Hero7 from './svg/hero-7.svg';
-import Hero8 from './svg/hero-8.svg';
-import Hero9 from './svg/hero-9.svg';
-import Hero10 from './svg/hero-10.svg';
-import Hero11 from './svg/hero-11.svg';
-import Hero12 from './svg/hero-12.svg';
-import Hero13 from './svg/hero-13.svg';
-import Hero14 from './svg/hero-14.svg';
-import HeroSkew from './svg/hero-skew.svg';
 import Slider1 from './svg/slider-1.svg';
-import Slider2 from './svg/slider-2.svg';
-import Slider3 from './svg/slider-3.svg';
-import Slider4 from './svg/slider-4.svg';
-import Slider5 from './svg/slider-5.svg';
-import Slider6 from './svg/slider-6.svg';
-import Slider7 from './svg/slider-7.svg';
-import Slider8 from './svg/slider-8.svg';
-import Slider9 from './svg/slider-9.svg';
 import SliderOverlay from './svg/slider-overlay.svg';
 import CategoryIconSvg from './svg/icon-placeholder.svg';
 import NewsTickerBlock from './svg/news-ticker.svg';
@@ -79,7 +29,6 @@ import UserlistBlock from './svg/user-list.svg';
 import HeaderBlock from './svg/header-module.svg';
 import SplitNav from './svg/split-navigation.svg';
 import IconLink from './svg/icon-link.svg';
-import Rss from './svg/rss-block.svg';
 import AccountHeader from './svg/account-header.svg';
 import DateHeader from './svg/date-header.svg';
 import AboutWidget from './svg/about-widget.svg';
@@ -90,7 +39,6 @@ import PostBreadcrumb from './svg/post-breadcrumb.svg';
 import PostComment from './svg/post-comment.svg';
 import PostFeaturedImage from './svg/post-featured-image.svg';
 import PostMeta from './svg/post-meta.svg';
-import PostNextPrev from './svg/post-next-prev.svg';
 import PostRelated from './svg/post-related.svg';
 import PostShare from './svg/post-share.svg';
 import PostSubtitle from './svg/post-subtitle.svg';
@@ -110,11 +58,9 @@ import Block13BlockPro from './svg/pro/module-13.svg';
 import Block14BlockPro from './svg/pro/module-14.svg';
 import Block15BlockPro from './svg/pro/module-15.svg';
 import Block16BlockPro from './svg/pro/module-16.svg';
-import Block17BlockPro from './svg/pro/module-17.svg';
 import Block18BlockPro from './svg/pro/module-18.svg';
 import Block19BlockPro from './svg/pro/module-19.svg';
 import Block20BlockPro from './svg/pro/module-20.svg';
-import Block21BlockPro from './svg/pro/module-21.svg';
 import Block22BlockPro from './svg/pro/module-22.svg';
 import Block23BlockPro from './svg/pro/module-23.svg';
 import Block24BlockPro from './svg/pro/module-24.svg';
@@ -133,7 +79,7 @@ import Block36BlockPro from './svg/pro/module-36.svg';
 import Block37BlockPro from './svg/pro/module-37.svg';
 import Block38BlockPro from './svg/pro/module-38.svg';
 import Block39BlockPro from './svg/pro/module-39.svg';
-import ArchiveHeroPro from './svg/pro/archive-hero.svg';
+import ArchiveHero from './svg/archive-hero.svg';
 import Carousel1Pro from './svg/pro/carousel-1.svg';
 import Carousel2Pro from './svg/pro/carousel-2.svg';
 import Carousel3Pro from './svg/pro/carousel-3.svg';
@@ -157,7 +103,6 @@ import Slider8Pro from './svg/pro/slider-8.svg';
 import Slider9Pro from './svg/pro/slider-9.svg';
 import RssPro from './svg/pro/rss-block.svg';
 import PostNextPrevPro from './svg/pro/post-next-prev.svg';
-import { gutenverseProActive } from '../editor/utils/helper';
 
 export const Block1BlockSvg = () => {
     return <Block1Block />;
@@ -188,94 +133,94 @@ export const Block9BlockSvg = () => {
 };
 
 export const Block10BlockSvg = () => {
-    return gutenverseProActive ? <Block10BlockPro /> : <Block10Block />;
+    return <Block10BlockPro />;
 };
 export const Block11BlockSvg = () => {
-    return gutenverseProActive ? <Block11BlockPro /> : <Block11Block />;
+    return <Block11BlockPro />;
 };
 export const Block12BlockSvg = () => {
-    return gutenverseProActive ? <Block12BlockPro /> : <Block12Block />;
+    return <Block12BlockPro />;
 };
 export const Block13BlockSvg = () => {
-    return gutenverseProActive ? <Block13BlockPro /> : <Block13Block />;
+    return <Block13BlockPro />;
 };
 export const Block14BlockSvg = () => {
-    return gutenverseProActive ? <Block14BlockPro /> : <Block14Block />;
+    return <Block14BlockPro />;
 };
 export const Block15BlockSvg = () => {
-    return gutenverseProActive ? <Block15BlockPro /> : <Block15Block />;
+    return <Block15BlockPro />;
 };
 export const Block16BlockSvg = () => {
-    return gutenverseProActive ? <Block16BlockPro /> : <Block16Block />;
+    return <Block16BlockPro />;
 };
 export const Block17BlockSvg = () => {
     return <Block17Block />;
 };
 export const Block18BlockSvg = () => {
-    return gutenverseProActive ? <Block18BlockPro /> : <Block18Block />;
+    return <Block18BlockPro />;
 };
 export const Block19BlockSvg = () => {
-    return gutenverseProActive ? <Block19BlockPro /> : <Block19Block />;
+    return <Block19BlockPro />;
 };
 export const Block20BlockSvg = () => {
-    return gutenverseProActive ? <Block20BlockPro /> : <Block20Block />;
+    return <Block20BlockPro />;
 };
 export const Block21BlockSvg = () => {
     return <Block21Block />;
 };
 export const Block22BlockSvg = () => {
-    return gutenverseProActive ? <Block22BlockPro /> : <Block22Block />;
+    return <Block22BlockPro />;
 };
 export const Block23BlockSvg = () => {
-    return gutenverseProActive ? <Block23BlockPro /> : <Block23Block />;
+    return <Block23BlockPro />;
 };
 export const Block24BlockSvg = () => {
-    return gutenverseProActive ? <Block24BlockPro /> : <Block24Block />;
+    return <Block24BlockPro />;
 };
 export const Block25BlockSvg = () => {
-    return gutenverseProActive ? <Block25BlockPro /> : <Block25Block />;
+    return <Block25BlockPro />;
 };
 export const Block26BlockSvg = () => {
-    return gutenverseProActive ? <Block26BlockPro /> : <Block26Block />;
+    return <Block26BlockPro />;
 };
 export const Block27BlockSvg = () => {
-    return gutenverseProActive ? <Block27BlockPro /> : <Block27Block />;
+    return <Block27BlockPro />;
 };
 export const Block28BlockSvg = () => {
-    return gutenverseProActive ? <Block28BlockPro /> : <Block28Block />;
+    return <Block28BlockPro />;
 };
 export const Block29BlockSvg = () => {
-    return gutenverseProActive ? <Block29BlockPro /> : <Block29Block />;
+    return <Block29BlockPro />;
 };
 export const Block30BlockSvg = () => {
-    return gutenverseProActive ? <Block30BlockPro /> : <Block30Block />;
+    return <Block30BlockPro />;
 };
 export const Block31BlockSvg = () => {
-    return gutenverseProActive ? <Block31BlockPro /> : <Block31Block />;
+    return <Block31BlockPro />;
 };
 export const Block32BlockSvg = () => {
-    return gutenverseProActive ? <Block32BlockPro /> : <Block32Block />;
+    return <Block32BlockPro />;
 };
 export const Block33BlockSvg = () => {
-    return gutenverseProActive ? <Block33BlockPro /> : <Block33Block />;
+    return <Block33BlockPro />;
 };
 export const Block34BlockSvg = () => {
-    return gutenverseProActive ? <Block34BlockPro /> : <Block34Block />;
+    return <Block34BlockPro />;
 };
 export const Block35BlockSvg = () => {
-    return gutenverseProActive ? <Block35BlockPro /> : <Block35Block />;
+    return <Block35BlockPro />;
 };
 export const Block36BlockSvg = () => {
-    return gutenverseProActive ? <Block36BlockPro /> : <Block36Block />;
+    return <Block36BlockPro />;
 };
 export const Block37BlockSvg = () => {
-    return gutenverseProActive ? <Block37BlockPro /> : <Block37Block />;
+    return <Block37BlockPro />;
 };
 export const Block38BlockSvg = () => {
-    return gutenverseProActive ? <Block38BlockPro /> : <Block38Block />;
+    return <Block38BlockPro />;
 };
 export const Block39BlockSvg = () => {
-    return gutenverseProActive ? <Block39BlockPro /> : <Block39Block />;
+    return <Block39BlockPro />;
 };
 
 export const ArchiveDescriptionSvg = () => {
@@ -288,7 +233,7 @@ export const ArchivePaginationSvg = () => {
     return <ArchivePagination />;
 };
 export const ArchiveHeroSvg = () => {
-    return gutenverseProActive ? <ArchiveHeroPro /> : <ArchiveHero />;
+    return <ArchiveHero />;
 };
 export const ArchiveBlockSvg = () => {
     return <ArchiveBlock />;
@@ -297,13 +242,13 @@ export const ArchiveBreadcrumbSvg = () => {
     return <ArchiveBreadcrumb />;
 };
 export const Carousel1Svg = () => {
-    return gutenverseProActive ? <Carousel1Pro /> : <Carousel1 />;
+    return <Carousel1Pro />;
 };
 export const Carousel2Svg = () => {
-    return gutenverseProActive ? <Carousel2Pro /> : <Carousel2 />;
+    return <Carousel2Pro />;
 };
 export const Carousel3Svg = () => {
-    return gutenverseProActive ? <Carousel3Pro /> : <Carousel3 />;
+    return <Carousel3Pro />;
 };
 export const IconLinkSvg = () => {
     return <IconLink />;
@@ -315,7 +260,7 @@ export const SocialIconSvg = () => {
     return <SocialIcon />;
 };
 export const RssSvg = () => {
-    return gutenverseProActive ? <RssPro /> : <Rss />;
+    return <RssPro />;
 };
 export const SplitNavSvg = () => {
     return <SplitNav />;
@@ -363,34 +308,34 @@ export const Hero5Svg = () => {
     return <Hero5 />;
 };
 export const Hero6Svg = () => {
-    return gutenverseProActive ? <Hero6Pro /> : <Hero6 />;
+    return <Hero6Pro />;
 };
 export const Hero7Svg = () => {
-    return gutenverseProActive ? <Hero7Pro /> : <Hero7 />;
+    return <Hero7Pro />;
 };
 export const Hero8Svg = () => {
-    return gutenverseProActive ? <Hero8Pro /> : <Hero8 />;
+    return <Hero8Pro />;
 };
 export const Hero9Svg = () => {
-    return gutenverseProActive ? <Hero9Pro /> : <Hero9 />;
+    return <Hero9Pro />;
 };
 export const Hero10Svg = () => {
-    return gutenverseProActive ? <Hero10Pro /> : <Hero10 />;
+    return <Hero10Pro />;
 };
 export const Hero11Svg = () => {
-    return gutenverseProActive ? <Hero11Pro /> : <Hero11 />;
+    return <Hero11Pro />;
 };
 export const Hero12Svg = () => {
-    return gutenverseProActive ? <Hero12Pro /> : <Hero12 />;
+    return <Hero12Pro />;
 };
 export const Hero13Svg = () => {
-    return gutenverseProActive ? <Hero13Pro /> : <Hero13 />;
+    return <Hero13Pro />;
 };
 export const Hero14Svg = () => {
-    return gutenverseProActive ? <Hero14Pro /> : <Hero14 />;
+    return <Hero14Pro />;
 };
 export const HeroSkewSvg = () => {
-    return gutenverseProActive ? <HeroSkewPro /> : <HeroSkew />;
+    return <HeroSkewPro />;
 };
 export const PostTitleSvg = () => {
     return <PostTitle />;
@@ -409,7 +354,7 @@ export const PostRelatedSvg = () => {
 };
 
 export const PostNextPrevSvg = () => {
-    return gutenverseProActive ? <PostNextPrevPro /> : <PostNextPrev />;
+    return <PostNextPrevPro />;
 };
 export const PostMetaSvg = () => {
     return <PostMeta />;
@@ -430,28 +375,28 @@ export const Slider1Svg = () => {
     return <Slider1 />;
 };
 export const Slider2Svg = () => {
-    return gutenverseProActive ? <Slider2Pro /> : <Slider2 />;
+    return <Slider2Pro />;
 };
 export const Slider3Svg = () => {
-    return gutenverseProActive ? <Slider3Pro /> : <Slider3 />;
+    return <Slider3Pro />;
 };
 export const Slider4Svg = () => {
-    return gutenverseProActive ? <Slider4Pro /> : <Slider4 />;
+    return <Slider4Pro />;
 };
 export const Slider5Svg = () => {
-    return gutenverseProActive ? <Slider5Pro /> : <Slider5 />;
+    return <Slider5Pro />;
 };
 export const Slider6Svg = () => {
-    return gutenverseProActive ? <Slider6Pro /> : <Slider6 />;
+    return <Slider6Pro />;
 };
 export const Slider7Svg = () => {
-    return gutenverseProActive ? <Slider7Pro /> : <Slider7 />;
+    return <Slider7Pro />;
 };
 export const Slider8Svg = () => {
-    return gutenverseProActive ? <Slider8Pro /> : <Slider8 />;
+    return <Slider8Pro />;
 };
 export const Slider9Svg = () => {
-    return gutenverseProActive ? <Slider9Pro /> : <Slider9 />;
+    return <Slider9Pro />;
 };
 export const SliderOverlaySvg = () => {
     return <SliderOverlay />;

@@ -1,22 +1,30 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
 
 
 const Block4Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {post, index = 'x'} = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_md_3 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
-                <ThumbModule size={715} cat={false} post={post}/>
+            <article className={`gvnews_post gvnews_pl_md_3 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
                 <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={props.attr}/>
             </article>
         );

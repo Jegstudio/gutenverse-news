@@ -5,15 +5,13 @@ import { generalPanel } from './panel-general';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { panelType } from './panel-type';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
+import { metaPanel } from './panel-meta';
+import { metaStylePanel } from './panel-meta-style';
+import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+
 
 export const panelList = () => {
     return [
-        {
-            title: __('General', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: generalPanel,
-            tabRole: TabSetting
-        },
         {
             title: __('Block Type', 'gutenverse-news'),
             initialOpen: false,
@@ -21,9 +19,33 @@ export const panelList = () => {
             tabRole: TabSetting,
         },
         {
+            title: __('General', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: generalPanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: metaPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: metaStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Category Label', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: categoryStylePanel,
             tabRole: TabStyle
         },
         {
@@ -85,7 +107,7 @@ export const panelList = () => {
                 ...props,
                 styleId: 'archive-pagination-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         }, {
             title: __('Condition', 'gutenverse-news'),
             panelArray: conditionPanel,

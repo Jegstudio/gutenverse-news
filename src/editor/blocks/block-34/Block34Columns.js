@@ -1,8 +1,10 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
+import { useEffect, useRef, useCallback } from '@wordpress/element';
+import Shuffle from 'shufflejs';
 
 const Block34Columns = (props) => {
+
     const {
         postData,
         moduleOption,
@@ -16,22 +18,46 @@ const Block34Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        imageSizeMain = {},
+        attributes,
     } = props;
+
+    const shuffleInstance = useRef(null);
+
+    const masonryRef = useCallback((node) => {
+        if (node) {
+            shuffleInstance.current = new Shuffle(node, {
+                itemSelector: '.gvnews_post',
+                gutterWidth: 30,
+                speed: 0
+            });
+        } else {
+            shuffleInstance.current?.destroy();
+            shuffleInstance.current = null;
+        }
+    }, []);
+
+    useEffect(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.resetItems();
+            shuffleInstance.current.update();
+        }
+    }, [
+        blockWidth,
+        attributes,
+        postData
+    ]);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_md_box ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
+            <article className={`gvnews_post gvnews_pl_md_box ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={1000} cat={true} post={post} />
-                    <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={post} attr={attr} />
+                    <ThumbModule size={1000} cat={true} post={post} imageSize={imageSizeMain} />
+                    <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={post} attr={attr} panelAttr={attributes} />
                 </div>
             </article>
         );
@@ -59,7 +85,7 @@ const Block34Columns = (props) => {
 
         return (
             <div className="gvnews_posts_wrap gvnews_posts_masonry">
-                <div className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
+                <div ref={masonryRef} className={'gvnews_posts gvnews_load_more_flag'}>{rows}</div>
             </div>
         );
     };

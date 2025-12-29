@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { IconControl, TextControl, ColorControl, ImageRadioControl } from 'gutenverse-core/controls';
+import { AlertControl, BoxShadowControl, BorderControl, DimensionControl, IconControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl } from 'gutenverse-core/controls';
+import { isNotEmpty } from 'gutenverse-core/helper';
 import { handleColor } from 'gutenverse-core/styling';
 
 export const headerPanel = (props) => {
@@ -124,7 +125,7 @@ export const headerPanel = (props) => {
         },
         {
             id: 'headerTextColor',
-            label: __('Header Text Color', 'gutenverse-news'),
+            label: __('Header Title Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),
             component: ColorControl,
             style: [
@@ -133,6 +134,13 @@ export const headerPanel = (props) => {
                     render: value => handleColor(value, 'color')
                 }
             ],
+        },
+        {
+            id: 'headerSecondTextColor',
+            label: __('Second Title Color', 'gutenverse-news'),
+            description: __('Change color of your header text.', 'gutenverse-news'),
+            show: ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType),
+            component: ColorControl,
         },
         {
             id: 'headerSecondColor',
@@ -255,7 +263,18 @@ export const headerStylesPanel = (props) => {
     const {
         elementId,
         headerType,
+        title,
+        second_title,
+        switcher,
+        setSwitcher,
+        headerCategory,
+        headerAuthor,
+        headerTag,
     } = props;
+
+    const withText = isNotEmpty(title) || isNotEmpty(second_title);
+    const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType) && isNotEmpty(second_title);
+    const withHeaderFilter = isNotEmpty(headerCategory) || isNotEmpty(headerAuthor) || isNotEmpty(headerTag);
 
     const {
         imgDir
@@ -307,6 +326,29 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerTextTypography',
+            label: __('Header Title Typography', 'gutenverse-news'),
+            description: __('This option will change your header title text typography.', 'gutenverse-news'),
+            component: TypographyControl,
+            show: withText
+        },
+
+        {
+            id: 'headerSecondTextTypography',
+            label: __('Header Second Title Typography', 'gutenverse-news'),
+            description: __('This option will change your header title text typography.', 'gutenverse-news'),
+            show: withSecondText,
+            component: TypographyControl,
+        },
+        {
+            id: 'headerFilterTypography',
+            label: __('Header Filter Text Typography', 'gutenverse-news'),
+            description: __('This option will change your header title filter text typography.', 'gutenverse-news'),
+            show: withHeaderFilter,
+            component: TypographyControl,
+
+        },
+        {
             id: 'headerBackgroundColor',
             show: headerType === 'heading_1' || headerType === 'heading_2' || headerType === 'heading_4' || headerType === 'heading_5',
             label: __('Header Background Color', 'gutenverse-news'),
@@ -349,12 +391,14 @@ export const headerStylesPanel = (props) => {
             label: __('Header Text Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),
             component: ColorControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span`,
-                    render: value => handleColor(value, 'color')
-                }
-            ],
+            show: withText
+        },
+        {
+            id: 'headerSecondTextColor',
+            label: __('Second Title Color', 'gutenverse-news'),
+            description: __('Change color of your header text.', 'gutenverse-news'),
+            show: withSecondText,
+            component: ColorControl,
         },
         {
             id: 'headerSecondColor',
@@ -391,6 +435,17 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerLineThick',
+            label: headerType === 'heading_9' ? __('Header Line Bottom Thick', 'gutenverse-news') : __('Header Line Thick', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            show: headerType === 'heading_1' || headerType === 'heading_5' || headerType === 'heading_6' || headerType === 'heading_7' || headerType === 'heading_9',
+            unit: 'px',
+            min: 1,
+            max: 10,
+            step: 1,
+        },
+        {
             id: 'headerLineColor2',
             show: headerType === 'heading_5',
             label: __('Header Line Color', 'gutenverse-news'),
@@ -402,6 +457,17 @@ export const headerStylesPanel = (props) => {
                     render: value => handleColor(value, 'border-color')
                 }
             ],
+        },
+        {
+            id: 'headerLineThick2',
+            label: headerType === 'heading_9' ? __('Header Line Top Thick', 'gutenverse-news') : __('Header Line Thick', 'gutenverse-news'),
+            show: headerType === 'heading_9',
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 10,
+            step: 1,
         },
         {
             id: 'headerAccentColor',
@@ -429,5 +495,362 @@ export const headerStylesPanel = (props) => {
                 }
             ],
         },
+        {
+            id: 'headerHeight',
+            label: __('Header Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+        },
+        {
+            id: 'headerTitlePadding',
+            label: __('Header Title Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['right', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'headerFilterPadding',
+            label: __('Header Filter Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['right', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'headerMargin',
+            label: __('Header Margin', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: true,
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: '__headerSwitcher',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                },
+                {
+                    value: 'active',
+                    label: 'Active'
+                }
+            ],
+            show: withHeaderFilter,
+            onChange: ({ __headerSwitcher }) => setSwitcher({ ...switcher, header: __headerSwitcher })
+        },
+
+        {
+            id: 'headerFilterColor',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in normal condition.', 'gutenverse-news'),
+            show: (withHeaderFilter && (!switcher.header || switcher.header === 'normal')),
+            component: ColorControl,
+
+        },
+        {
+            id: 'headerFilterColorHover',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in hover condition.', 'gutenverse-news'),
+            show: withHeaderFilter && switcher.header === 'hover',
+            component: ColorControl,
+        },
+        {
+            id: 'headerFilterColorActive',
+            label: __('Header Filter Text Color', 'gutenverse-news'),
+            description: __('Change color of your header filter text in active condition.', 'gutenverse-news'),
+            show: withHeaderFilter && switcher.header === 'active',
+            component: ColorControl,
+        },
+        {
+            id: 'headerFilterLineColor',
+            label: __('Header Filter Line Color', 'gutenverse-news'),
+            description: __('Change color of your header filter line color on active condition.', 'gutenverse-news'),
+            show: withHeaderFilter && headerType === 'heading_3' && switcher.header === 'active',
+            component: ColorControl,
+        },
     ];
 };
+
+export const HeaderFilterDropdownPanel = (props) => {
+    const {
+        elementId,
+        switcher,
+        setSwitcher,
+        headerCategory,
+        headerAuthor,
+        headerTag,
+    } = props;
+
+    const withHeaderFilter = isNotEmpty(headerCategory) || isNotEmpty(headerAuthor) || isNotEmpty(headerTag);
+    if (!withHeaderFilter) {
+        return [{
+            id: 'sticky-notice',
+            component: AlertControl,
+            children: <>
+                <span>{__('This option is used for styling the Header Filter dropdown, you can add some header filter to use this option.', 'gutenverse-news')}</span>
+            </>
+        },];
+    }
+    return [
+
+        {
+            id: 'filterDowndownTypography',
+            label: __('Item Typography', 'gutenverse-news'),
+            description: __('This option will change your header filter dropdown typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'filterDowndownWrapperBackground',
+            label: __('Wrapper Background Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown wrapper background in normal.', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'filterDropdownItemPadding',
+            label: __('Item Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: false,
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'filterDropdownWrapperPadding',
+            label: __('Wrapper Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            allowDeviceControl: false,
+            position: ['top', 'right', 'bottom', 'left'],
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
+        },
+        {
+            id: 'filterDropdownWrapperBorder',
+            label: __('Wrapper Border', 'gutenverse-news'),
+            component: BorderControl,
+            allowDeviceControl: false,
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'filterDropdownWrapper',
+                    'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+                }
+            ]
+        },
+        {
+            id: 'filterDropdownBoxShadow',
+            label: __('Wrapper Box Shadow', 'gutenverse-news'),
+            component: BoxShadowControl,
+            allowDeviceControl: false,
+            liveStyle: [
+                {
+                    'type': 'boxShadow',
+                    'id': 'filterDropdownBoxShadow',
+                    'properties': [
+                        {
+                            'name': 'box-shadow',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
+                }
+            ],
+        },
+        {
+            id: '__filterDowndownSwitcher',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                },
+                {
+                    value: 'active',
+                    label: 'Active'
+                }
+            ],
+            onChange: ({ __filterDowndownSwitcher }) => setSwitcher({ ...switcher, filterDowndown: __filterDowndownSwitcher })
+        },
+        {
+            id: 'filterDowndownColor',
+            label: __('Item Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown text in normal condition.', 'gutenverse-news'),
+            show: (!switcher.filterDowndown || switcher.filterDowndown === 'normal'),
+            component: ColorControl,
+        },
+        {
+            id: 'filterDowndownColorHover',
+            label: __('Item Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown text in hover condition.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'hover',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDowndownColorActive',
+            label: __('Item Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown text in active condition.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'active',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDowndownItemBackground',
+            label: __('Item Background Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown item background in normal condition.', 'gutenverse-news'),
+            show: (!switcher.filterDowndown || switcher.filterDowndown === 'normal'),
+            component: ColorControl,
+        },
+        {
+            id: 'filterDowndownItemBackgroundHover',
+            label: __('Item Background Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown item background in hover condition.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'hover',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDowndownItemBackgroundActive',
+            label: __('Item Background Color', 'gutenverse-news'),
+            description: __('Change color of your header filter dropdown item background in active condition.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'active',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDropdownToogleColor',
+            label: __('Toggle Color', 'gutenverse-news'),
+            description: __('Change color of your header filter toogle color when dropdown is not open.', 'gutenverse-news'),
+            show: (!switcher.filterDowndown || switcher.filterDowndown === 'normal'),
+            component: ColorControl,
+        },
+        {
+            id: 'filterDropdownToogleColorHover',
+            label: __('Toggle Color', 'gutenverse-news'),
+            description: __('Change color of your header filter toogle color when on hover condition.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'hover',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDropdownToogleColorActive',
+            label: __('Toggle Color', 'gutenverse-news'),
+            description: __('Change color of your header filter toogle color when dropdown is open.', 'gutenverse-news'),
+            show: switcher.filterDowndown === 'active',
+            component: ColorControl,
+        },
+        {
+            id: 'filterDropdownItemBorder',
+            label: __('Item Border', 'gutenverse-news'),
+            component: BorderControl,
+            show: (!switcher.filterDowndown || switcher.filterDowndown === 'normal'),
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'filterDropdownItem',
+                    'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
+                }
+            ]
+        },
+        {
+            id: 'filterDropdownItemBorderHover',
+            label: __('Item Border', 'gutenverse-news'),
+            component: BorderControl,
+            show: switcher.filterDowndown === 'hover',
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'filterDropdownItem',
+                    'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
+                }
+            ]
+        },
+        {
+            id: 'filterDropdownItemBorderActive',
+            label: __('Item Border', 'gutenverse-news'),
+            component: BorderControl,
+            show: switcher.filterDowndown === 'active',
+            liveStyle: [
+                {
+                    'type': 'border',
+                    'id': 'filterDropdownItem',
+                    'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
+                }
+            ]
+        },
+    ]
+}
+
+

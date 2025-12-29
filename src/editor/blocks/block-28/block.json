@@ -3,7 +3,7 @@
     "name": "gutenverse/news-block-28",
     "title": "Module 28",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Block",
-    "description": "Your Block description.",
+    "description": "[PRO] A pre-designed block for displaying your post list with various features.",
     "category": "gvnews-module",
     "attributes": {
         "elementId": {
@@ -410,11 +410,163 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "headerTextTypography": {
+            "type": "object"
+        },
+        "headerSecondTextTypography": {
+            "type": "object"
+        },
+        "headerFilterTypography": {
+            "type": "object"
+        },
+        "headerSeondTextColor": {
+            "type": "object"
+        },
+        "headerFilterColor": {
+            "type": "object"
+        },
+        "headerFilterColorHover": {
+            "type": "object"
+        },
+        "headerFilterColorActive": {
+            "type": "object"
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterLineColor": {
+            "type": "object"
+        },
+        "listIcon": {
+            "type": "string",
+            "default": "fas fa-caret-right"
+        },
+        "listIconColor": {
+            "type": "object"
+        },
+        "selectorIconList": {
+            "type": "string",
+            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i"
+        },
+        "headerSecondTextColor": {
+            "type": "object"
+        },
+        "filterDropdownItemBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemBorderHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemBorderActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownTypography": {
+            "type": "object"
+        },
+        "filterDowndownWrapperBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownWrapperPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownItemPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownWrapperBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownBoxShadow": {
+            "type": "object"
+        },
+        "filterDowndownColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownColorActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackgroundHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDowndownItemBackgroundActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "filterDropdownToogleColorActive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerTitlePadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerFilterPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerHeight": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "viewScript": ["gutenverse-news-frontend-blocks-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

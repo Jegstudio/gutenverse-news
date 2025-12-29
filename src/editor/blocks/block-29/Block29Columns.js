@@ -1,5 +1,4 @@
 import { ContentModule } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
 
 const Block29Columns = (props) => {
     const {
@@ -12,9 +11,6 @@ const Block29Columns = (props) => {
         metaDateFormatCustom,
         blockWidth,
         showBorder,
-        showDate,
-        showDateFormat,
-        showDateFormatCustom,
         numberPost,
         paginationPost = numberPost,
         page = 1,
@@ -26,13 +22,9 @@ const Block29Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
-                <ContentModule meta={showDate ? 2 : false} title={true} post={post} attr={attr} />
+            <article className={`gvnews_post gvnews_pl_xs ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                <ContentModule meta={2} title={true} post={post} attr={attr} />
             </article>
         );
     };
@@ -43,8 +35,6 @@ const Block29Columns = (props) => {
                 ...moduleOption,
                 option: {
                     ...moduleOption.option,
-                    date_format: 'default' === showDateFormat ? showDateFormatCustom : moduleOption.option.date_format,
-                    meta_date: showDate,
                     meta_comment: false,
                     meta_author: false,
                 },

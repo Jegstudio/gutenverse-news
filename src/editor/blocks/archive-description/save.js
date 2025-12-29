@@ -17,7 +17,7 @@ const save = ((props) => {
 
     const className = classnames(
         'guten-element',
-        'gvnews-archive-description',
+        'gvnews-archive-desc',
         elementId,
         animationClass,
         displayClass

@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-author",
     "title": "Post Author Box",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_author",
-    "description": "Your Block description.",
+    "description": "Display the author’s profile details on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -112,5 +112,6 @@
         "post",
         "author",
         "author box"
-    ]
+    ],
+    "style": ["gutenverse-news-frontend-post-author-style"]
 }

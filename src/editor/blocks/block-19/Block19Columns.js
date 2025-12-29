@@ -1,18 +1,32 @@
 import { MetaModule2} from '../../part/meta';
 import ThumbModule from '../../part/thumbnail';
-import { withFormatName } from '../../utils/helper';
 
 const Block19Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        blockWidth,
+        imageSizeMain = {},
+        imageSizeSecond = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {attr, post, index = 'x'} = props;
 
-        let PostMeta = () => (
+        let PostMeta = ({imageSize}) => (
             <>
-                <ThumbModule size={715} cat={false} post={post}/>
+                <ThumbModule size={715} cat={false} post={post} imageSize={imageSize}/>
                 <div className="gvnews_postblock_content">
                     <h3 className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
@@ -23,25 +37,17 @@ const Block19Columns = props => {
         );
 
         if (1==props.type){
-            const className = withFormatName(
-                `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`,
-                post,
-            );
             return (
-                <article className={className}>
+                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
                     <div className="box_wrap">
-                        <PostMeta/>
+                        <PostMeta imageSize={imageSizeMain}/>
                     </div>
                 </article>
             );
         }else{
-            const className = withFormatName(
-                `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`,
-                post
-            );
             return (
-                <article className={className}>
-                    <PostMeta/>
+                <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
+                    <PostMeta imageSize={imageSizeSecond}/>
                 </article>
             );
         }

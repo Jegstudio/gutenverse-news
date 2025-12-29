@@ -1,22 +1,30 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
 
 const Block8Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false,  moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
-        const { index = 'x', post } = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
+        const { index = 'x' } = props;
         return (
-            <article className={className}>
-                <ThumbModule size={500} cat={true} post={props.post}/>
-                <ContentModule title={true} meta={3} excerpt={false} read={false} post={post} attr={props.attr}/>
+            <article className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
+                <ContentModule title={true} meta={3} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
         );
     };

@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { isNotEmpty } from 'gutenverse-core/helper';
+import { getDevice, isNotEmpty } from 'gutenverse-core/helper';
 
 const createChunks = (datas, chunkSize) => {
     const result = [];
@@ -198,11 +198,9 @@ const getModuleOptions = () => {
     };
 };
 
-const withFormatName = (className, data) => {
-    if (isNotEmpty(data)) {
-        return `${className} format-${data.format}`;
-    }
-    return className;
+const getImageSizeDetail = ( name, def = {} ) => {
+    const imageSizes = window.GVNewsConfig.imageSizes;
+    return imageSizes[name] ? imageSizes[name] : def;
 };
 
 export {
@@ -216,5 +214,5 @@ export {
     getParentColumnWidth,
     getModuleOptions,
     gutenverseProActive,
-    withFormatName
+    getImageSizeDetail,
 };

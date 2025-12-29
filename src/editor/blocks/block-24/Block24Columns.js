@@ -1,19 +1,35 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule, PostTitle } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const Block24Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        blockWidth,
+        listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {post} = props;
-        const className = withFormatName(`gvnews_post gvnews_pl_md_box ${!post.thumbnail.url && 'no_thumbnail'}`, post);
         return (
-            <article className={className}>
+            <article className={`gvnews_post gvnews_pl_md_box ${!post.thumbnail.url && 'no_thumbnail'}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={715} cat={false} post={post}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={props.attr}/>
                 </div>
             </article>
@@ -21,16 +37,13 @@ const Block24Columns = props => {
     };
 
     const RenderBlock2 = props=>{
-        const {index='x', post} = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
+        const {index='x'} = props;
+        const finalListIcon = (listIconType === 'svg' && !listIconSVG) ? '' : listIcon;
         return (
-            <article className={className}>
+            <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_content">
-                    <i className="fas fa-caret-right"></i>
-                    {post.title && <PostTitle post={post} />}
+                    {renderIcon(finalListIcon, listIconType, listIconSVG)}
+                    {props.post.title && <PostTitle post={props.post} />}
                 </div>
             </article>
         );

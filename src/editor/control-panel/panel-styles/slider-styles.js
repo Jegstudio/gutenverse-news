@@ -2,7 +2,11 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 
 const getSliderStyle = (elementId, attributes) => {
     let data = [];
-
+    const {
+        showMeta = true,
+        showMetaAuthor = true,
+        gvnewsModule,
+    } = attributes;
     /**
      * Panel General
      */
@@ -137,6 +141,32 @@ const getSliderStyle = (elementId, attributes) => {
         'id': 'categoryButtonTypography',
         'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
     });
+
+    isNotEmpty(attributes['categoryButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category span a`,
+    });
+    isNotEmpty(attributes['categoryButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'categoryButtonMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_category`,
+    });
+
 
     isNotEmpty(attributes['categoryButtonBackground']) && data.push({
         'type': 'color',
@@ -340,8 +370,247 @@ const getSliderStyle = (elementId, attributes) => {
         ],
     });
 
+    /**
+     * Panel Design
+     */
+    isNotEmpty(attributes['typography']) && data.push({
+        'type': 'typography',
+        'id': 'typography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' === gvnewsModule ? ' .gvnews_slider_type_8 .gvnews_post_title' : ' .gvnews_slider_wrapper .gvnews_slide_caption .gvnews_post_title'}`,
+
+    });
+
+    isNotEmpty(attributes['secondTitleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'secondTitleTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_pl_sm .gvnews_post_title`,
+    });
+
+
+    isNotEmpty(attributes['titleColor']) && data.push({
+        'type': 'color',
+        'id': 'titleColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_title a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['secondTitleColor']) && data.push({
+        'type': 'color',
+        'id': 'secondTitleColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_9_thumb .gvnews_post_title a`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+
+
+
+    isNotEmpty(attributes['titleColorHover']) && data.push({
+        'type': 'color',
+        'id': 'titleColorHover',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_title a:hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['typographyContent']) && data.push({
+        'type': 'typography',
+        'id': 'typographyContent',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption .gvnews_post_excerpt`,
+    });
+
+    isNotEmpty(attributes['excerptColor']) && data.push({
+        'type': 'color',
+        'id': 'excerptColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption .gvnews_post_excerpt`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    if (isNotEmpty(attributes['containerWidth'])) {
+
+        switch (gvnewsModule) {
+            case 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_1':
+                data.push({
+                    'type': 'plain',
+                    'id': 'containerWidth',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption .gvnews_caption_container`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'max-width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                });
+
+                break;
+
+            case 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_4':
+                data.push({
+                    'type': 'plain',
+                    'id': 'containerWidth',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                        {
+                            'name': 'max-width',
+                            'valueType': 'static',
+                            'staticValue': 'unset',
+                        }
+                    ],
+                });
+
+                break;
+
+            default:
+                data.push({
+                    'type': 'plain',
+                    'id': 'containerWidth',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                });
+
+                break;
+        }
+    }
+
+
+    isNotEmpty(attributes['containerPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'containerPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' ? `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_item_caption` : `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption`,
+    });
+
+    /**
+     * Panel Meta Style
+     */
+    if (showMeta) {
+        isNotEmpty(attributes['typographyMeta']) && data.push({
+            'type': 'typography',
+            'id': 'typographyMeta',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_meta`,
+        });
+
+        isNotEmpty(attributes['typographyMetaAuthor']) && data.push({
+            'type': 'typography',
+            'id': 'typographyMetaAuthor',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_caption .gvnews_meta_author a`,
+        });
+
+        isNotEmpty(attributes['metaColor']) && data.push({
+            'type': 'color',
+            'id': 'metaColor',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_meta , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .gvnews_meta_author .by , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_post_meta .gvnews_meta_date a`,
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['metaIconColor']) && data.push({
+            'type': 'color',
+            'id': 'metaIconColor',
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_meta .fas`,
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        if (showMetaAuthor) {
+            isNotEmpty(attributes['metaAuthorColor']) && data.push({
+                'type': 'color',
+                'id': 'metaAuthorColor',
+                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_caption .gvnews_meta_author a`,
+                'properties': [
+                    {
+                        'name': 'color',
+                        'valueType': 'direct'
+                    }
+                ],
+            });
+            isNotEmpty(attributes['metaAuthorColorHover']) && data.push({
+                'type': 'color',
+                'id': 'metaAuthorColorHover',
+                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_caption .gvnews_meta_author a:hover`,
+                'properties': [
+                    {
+                        'name': 'color',
+                        'valueType': 'direct'
+                    }
+                ],
+            });
+        }
+    }
+
     return data;
 };
+
+const getWidthSelector = (templateType) => {
+    switch (templateType) {
+        case 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_1':
+            return '.gvnews_slider .gvnews_slide_caption .gvnews_caption_container';
+    }
+
+    return '.gvnews_slider .gvnews_slide_caption';
+};
+
 
 
 export default getSliderStyle;

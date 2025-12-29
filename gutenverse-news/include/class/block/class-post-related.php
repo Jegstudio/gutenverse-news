@@ -61,7 +61,7 @@ class Post_Related extends Post_Guten {
 			'excerpt_length'               => $this->attributes['excerptLength'],
 			'pagination_number_post'       => $this->attributes['paginationPost'],
 			'number_post'                  => $this->attributes['numberPost'],
-			'column_width'            	   => $this->attributes['columnWidth'],
+			'column_width'                 => $this->attributes['columnWidth'],
 			'include_category'             => implode( ',', $category ),
 			'include_tag'                  => implode( ',', $tag ),
 			'exclude_post'                 => get_the_ID(),
@@ -71,6 +71,15 @@ class Post_Related extends Post_Guten {
 			'paged'                        => 1,
 			'post_offset'                  => 0,
 			'pagination_nextprev_showtext' => $this->attributes['showNavText'],
+			'disable_readmore'             => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'                => array(
+				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
+			),
+			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
 		);
 
 		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );

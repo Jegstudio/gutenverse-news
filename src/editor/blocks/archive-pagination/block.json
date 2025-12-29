@@ -3,7 +3,7 @@
     "name": "gutenverse/news-archive-pagination",
     "title": "Archive Pagination",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "Display the post list pagination on the archive page.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -38,6 +38,12 @@
             "default": ""
         },
         "paginationTypography": {
+            "type": "object"
+        },
+        "pagintaionInfoTypography": {
+            "type": "object"
+        },
+        "paginationButtonTypography": {
             "type": "object"
         },
         "animation": {
@@ -109,6 +115,138 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "paginationPrevText": {
+            "type": "string",
+            "default": "Prev"
+        },
+        "paginationNextText": {
+            "type": "string",
+            "default": "Next"
+        },
+        "paginationPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "lineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "lineGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "infoGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "numberWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHeight": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextPrevHoverBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationInfoColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationCurrentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationDisabledColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationCurrentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationHoverBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationHoverBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationHoverBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "paginationActiveBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "paginationActiveBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "paginationActiveBorder",
+                "type": "border"
+            },
+            "copyStyle": true
         }
     },
     "supports": {
@@ -118,5 +256,8 @@
         "single",
         "archive",
         "pagination"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

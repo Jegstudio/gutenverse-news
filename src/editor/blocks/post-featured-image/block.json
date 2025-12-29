@@ -3,7 +3,7 @@
     "name": "gutenverse/news-post-featured",
     "title": "Advanced Post Featured Image",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Featured",
-    "description": "Your Block description.",
+    "description": "Display the post’s featured image on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -161,5 +161,6 @@
         "featured",
         "image",
         "thumbnail"
-    ]
+    ],
+    "style": ["gutenverse-news-frontend-post-featured-image-style"]
 }

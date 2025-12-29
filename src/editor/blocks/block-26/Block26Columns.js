@@ -2,21 +2,31 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { RawHTML } from '@wordpress/element';
 import { MetaModule3, MetaCategory, MetaAuthor, MetaComments} from '../../part/meta';
-import { withFormatName } from '../../utils/helper';
 
 const Block26Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        blockWidth,
+        readmoreButtonDisabled = false,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {attr, post, index='x'} = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_lg_9 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
+            <article className={`gvnews_post gvnews_pl_lg_9 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_heading">
                     {<MetaCategory {...props} />}
                     {post.title && <h3 property="headline" className="gvnews_post_title">
@@ -24,8 +34,8 @@ const Block26Columns = props => {
                     </h3>}
                     {attr.option && <MetaModule3 {...props}/>}
                 </div>
-                <ThumbModule size={500} cat={false} post={post}/>
-                <ContentModule title={false} excerpt={true} read={true} post={post} attr={attr}/>
+                <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
+                <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 <div className="gvnews_meta_footer clearfix">
                     {<MetaAuthor {...props} />}
                     {blockWidth != 4 && <RawHTML key="html">{post.share}</RawHTML> }

@@ -116,6 +116,8 @@ class Slider_1 extends Slider_View_Abstract {
 					'autoplay'     => esc_attr( $attr['enable_autoplay'] ),
 					'delay'        => esc_attr( $autoplay_delay ),
 					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
+					'class-next'   => $attr['nextButtonIcon'],
+					'class-prev'   => $attr['prevButtonIcon'],
 				)
 			);
 

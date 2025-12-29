@@ -1,6 +1,8 @@
 import { PostExcerpt, PostTitle } from '../../part/post';
 import { MetaCategory, MetaModule3 } from '../../part/meta';
-import { withFormatName } from '../../utils/helper';
+import { renderIcon } from 'gutenverse-core/helper';
+
+const arrowRightSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free v6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>';
 
 const Block38Columns = (props) => {
     const {
@@ -23,12 +25,8 @@ const Block38Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
-        const className = withFormatName(
-            `gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
         return (
-            <article className={className}>
+            <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_thumb" style={{ backgroundImage: `url(${post.thumbnail.url})` }}></div>
                 <div className="box_wrap">
                     <MetaCategory {...props} />
@@ -39,7 +37,7 @@ const Block38Columns = (props) => {
                     </div>
                     <div className="gvnews_readmore_arrow">
                         <a>
-                            <i className="fa fa-long-arrow-right"></i>
+                            {renderIcon('fas fa-long-arrow-right', 'svg', btoa(arrowRightSVG))}
                         </a>
                     </div>
                 </div>

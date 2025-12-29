@@ -1,4 +1,5 @@
-import { MetaModule1, MetaModule2, MetaAuthor, MetaCategory } from './meta';
+import { applyFilters } from '@wordpress/hooks';
+import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 
 const SliderCaption = (props) => {
@@ -35,6 +36,9 @@ const SliderCaption = (props) => {
 };
 
 const SliderMeta = (props) => {
+    if (!props.attr.option.option.meta_show) {
+        return <></>;
+    }
     const dateAttr = props?.attr?.date;
 
     let date = new Date(props.post.date[dateAttr.type] * 1000).toISOString();
@@ -42,10 +46,13 @@ const SliderMeta = (props) => {
 
     return (
         <div className="gvnews_post_meta">
+            {applyFilters('gvnews.part.meta', [], {
+                post: props.post || {}, option: props.attr.option.option || {}
+            })}
             {!props.date && props.attr.option.option.meta_author && <MetaAuthor {...props} />}
             {props.attr.option.option && props.attr.option.option.meta_date &&
                 <div className="gvnews_meta_date">
-                    {props.date && <i className="fas fa-clock">&nbsp;</i>}
+                    {props.date && <i className="far fa-clock">&nbsp;</i>}
                     <a>
                         {'custom' == props.attr.date.format ? formatDateString(date, props.attr.date.custom) : 'ago' == props.attr.date.format ? timeDifference(timestamp) : formatDateString(date, props.attr.option.option.date_format)}
                     </a>

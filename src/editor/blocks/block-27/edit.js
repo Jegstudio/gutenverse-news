@@ -1,7 +1,7 @@
 import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import Block27Columns from './Block27Columns';
-import DeprecatedBlockModule from '../../part/deprecated-module';
+import LockedBlockModule from '../../part/locked-module';
 import { gutenverseProActive } from '../../utils/helper';
 import BlockModule from '../../part/module';
 import { panelList } from './panels/panel-list';
@@ -16,9 +16,16 @@ const Block27Block = compose(
     };
     const moduleName = '27';
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+        return <BlockModule
+            columnAttr={columnAttr}
+            moduleName={moduleName}
+            {...props}
+            panelList={panelList}
+            defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
+            mainThumbnailClass={'gvnews_pl_md_4'}
+        />;
     } else {
-        return <DeprecatedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
+        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
     }
 });
 

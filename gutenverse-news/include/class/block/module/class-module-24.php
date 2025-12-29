@@ -18,6 +18,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_24 extends Module_View_Abstract {
 
 	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_box';
+	/**
 	 * Method render_block_type
 	 *
 	 * @param object  $post       post.
@@ -27,6 +33,7 @@ class Module_24 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
+		$icon             = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
 		$post_id          = $post->ID;
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
@@ -49,7 +56,7 @@ class Module_24 extends Module_View_Abstract {
                 </article>" :
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post_id ) . ">
                     <div class=\"gvnews_postblock_content\">
-						<i class='fas fa-caret-right'></i>
+						<i class='" . $icon . "'></i>
                         {$title}
                     </div>
                 </article>";
@@ -139,11 +146,13 @@ class Module_24 extends Module_View_Abstract {
 
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		if ( ! empty( $results['result'] ) ) {
 			$content = $this->render_column( $results['result'], $column_class );
 		} else {
 			$content = $this->empty_content();
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
                 {$this->get_content_before($attr)}

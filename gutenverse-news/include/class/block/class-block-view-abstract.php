@@ -51,7 +51,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Manager
 	 *
-	 * @var ModuleManager
+	 * @var Block_Manager
 	 */
 	protected $manager;
 
@@ -75,6 +75,19 @@ abstract class Block_View_Abstract {
 	 * @var String
 	 */
 	protected $content;
+
+	/**
+	 * Meta settings.
+	 *
+	 * @var array
+	 */
+	protected $meta_settings = array(
+		'show_meta'    => true,
+		'meta_date'    => true,
+		'meta_author'  => true,
+		'meta_comment' => true,
+		'meta_review'  => false,
+	);
 
 	/**
 	 * Manager
@@ -216,6 +229,7 @@ abstract class Block_View_Abstract {
 		$this->load_vc_icon_elements( $attr );
 
 		$column_class = $this->get_module_column_class( $attr );
+		$column_class = apply_filters( 'gvnews_custom_module_column_class', $column_class );
 		$output       = $this->render_module( $attr, $column_class );
 
 		if ( ! $this->is_column_compatible() && ( current_user_can( 'edit_posts' ) || current_user_can( 'activate_plugins' ) ) ) {
@@ -335,7 +349,11 @@ abstract class Block_View_Abstract {
 	 * @return mixed|string
 	 */
 	public function get_thumbnail( $post_id, $size ) {
-		if ( isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ) {
+		if (
+			isset( $this->attribute['force_normal_image_load'] )
+			&& ( 'true' === $this->attribute['force_normal_image_load']
+			|| 'yes' === $this->attribute['force_normal_image_load'] )
+		) {
 			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size );
 		}
 		return apply_filters( 'gvnews_image_thumbnail', $post_id, $size );
@@ -484,30 +502,15 @@ abstract class Block_View_Abstract {
 	 */
 	public function post_meta_1( $post, $avatar = false, $feed = false ) {
 		$output = '';
-		if ( $this->block_options->get_module_options( 'meta_show', true ) ) {
-
-			// author detail.
-			$author        = isset( $post->post_author ) ? $post->post_author : 'rss_post';
-			$is_rss        = gvnews_get_rss_post_id( $author );
-			$author_url    = $is_rss ? ( isset( $post->post_author_url ) ? $post->post_author_url : '' ) : get_author_posts_url( $author );
-			$author_name   = $is_rss ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
-			$author_avatar = ( $is_rss ? false : $avatar ) ?
-			'<div class="gvnews_author_avatar">
-					' . get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) . '
-				</div>' : '';
-
+		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options, $this->block_options );
-			$output .= $this->block_options->get_module_options( 'meta_author', true ) ? '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>' : '';
-			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
-			if ( $this->block_options->get_module_options( 'meta_comment', true ) ) {
-
-				$comment = gvnews_get_comments_number( $post->ID );
-				$output .= ! $feed ? '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" ><i class="far fa-comment"></i> ' . esc_attr( $comment ) . ' </a></div>' : '';
-			}
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
+			$output .= $this->get_meta_author( $post, $avatar );
+			$output .= $this->get_meta_date( $post );
+			$output .= ! $feed ? $this->get_meta_comment( $post ) : '';
 			$output .= '</div>';
-		}
 
+		}
 		return $output;
 	}
 
@@ -520,13 +523,12 @@ abstract class Block_View_Abstract {
 	 */
 	public function post_meta_2( $post ) {
 		$output = '';
-		if ( $this->block_options->get_module_options( 'meta_show', true ) ) {
+		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options );
-			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
+			$output .= $this->get_meta_date( $post );
 			$output .= '</div>';
 		}
-
 		return $output;
 	}
 
@@ -539,17 +541,11 @@ abstract class Block_View_Abstract {
 	 */
 	public function post_meta_3( $post ) {
 		$output = '';
-		if ( $this->block_options->get_module_options( 'meta_show', true ) ) {
-
-			// author detail.
-			$author      = $post->post_author;
-			$author_url  = gvnews_get_rss_post_id( $author ) ? $post->post_author_url : get_author_posts_url( $author );
-			$author_name = gvnews_get_rss_post_id( $author ) ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
-
+		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
-			$output .= apply_filters( 'gvnews_meta', '', $post, $this->block_options );
-			$output .= $this->block_options->get_module_options( 'meta_author', true ) ? '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>' : '';
-			$output .= $this->block_options->get_module_options( 'meta_date', true ) ? '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>' : '';
+			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
+			$output .= $this->get_meta_author( $post, false );
+			$output .= $this->get_meta_date( $post );
 			$output .= '</div>';
 		}
 		return $output;
@@ -563,8 +559,12 @@ abstract class Block_View_Abstract {
 	 * @return array
 	 */
 	public function get_attribute( $attr ) {
-		$this->attribute = wp_parse_args( $attr, $this->options );
-
+		$this->attribute     = wp_parse_args( $attr, $this->options );
+		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
+		$this->meta_settings = array_merge(
+			$this->meta_settings,
+			$meta_settings
+		);
 		return $this->attribute;
 	}
 
@@ -576,7 +576,12 @@ abstract class Block_View_Abstract {
 	 * @return void
 	 */
 	public function set_attribute( $attr ) {
-		$this->attribute = $attr;
+		$this->attribute     = $attr;
+		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
+		$this->meta_settings = array_merge(
+			$this->meta_settings,
+			$meta_settings
+		);
 	}
 
 	/**
@@ -605,6 +610,69 @@ abstract class Block_View_Abstract {
 	 * @return void
 	 */
 	public function content_template() {
+	}
+
+	/**
+	 * Get post meta date.
+	 *
+	 * @param object $post WP Post objcet.
+	 * @return string
+	 */
+	public function get_meta_date( $post ) {
+		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
+			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+		}
+		return '';
+	}
+
+	/**
+	 * Get post meta comment.
+	 *
+	 * @param object $post WP Post objcet.
+	 * @return string
+	 */
+	public function get_meta_comment( $post ) {
+		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
+			$comment = gvnews_get_comments_number( $post->ID );
+			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" ><i class="far fa-comment"></i> ' . esc_attr( $comment ) . ' </a></div>';
+		}
+		return '';
+	}
+
+
+
+	/**
+	 * Get post meta author.
+	 *
+	 * @param object  $post WP Post objcet.
+	 * @param boolean $avatar Show user avatar condition.
+	 * @return string
+	 */
+	public function get_meta_author( $post, $avatar = false ) {
+		if ( $this->meta_settings['meta_author'] && 'false' !== $this->meta_settings['meta_author'] ) {
+			$author = isset( $post->post_author ) ? $post->post_author : 'rss_post';
+			if ( $avatar ) {
+				$is_rss      = gvnews_get_rss_post_id( $author );
+				$author_url  = $is_rss ? ( isset( $post->post_author_url ) ? $post->post_author_url : '' ) : get_author_posts_url( $author );
+				$author_name = $is_rss ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
+				if ( empty( $author_name ) ) {
+					return '';
+				}
+				$author_avatar = ( $is_rss ? false : $avatar ) ?
+				'<div class="gvnews_author_avatar">
+						' . get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) . '
+					</div>' : '';
+				return '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
+			} else {
+				$author_url  = gvnews_get_rss_post_id( $author ) ? $post->post_author_url : get_author_posts_url( $author );
+				$author_name = gvnews_get_rss_post_id( $author ) ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
+				if ( empty( $author_name ) ) {
+					return '';
+				}
+				return '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
+			}
+		}
+		return '';
 	}
 
 	/**

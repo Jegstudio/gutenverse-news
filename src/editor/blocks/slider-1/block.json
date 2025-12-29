@@ -3,7 +3,7 @@
     "name": "gutenverse/news-slider-1",
     "title": "Slider 1",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
@@ -188,9 +188,6 @@
         "typographyContent": {
             "type": "object"
         },
-        "titleColor": {
-            "type": "object"
-        },
         "aHover": {
             "type": "object"
         },
@@ -234,10 +231,122 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "titleColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "nextButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonSize": {
+            "type": "string"
+        },
+        "prevButtonSize": {
+            "type": "string"
+        },
+        "nextButtonPadding": {
+            "type": "object"
+        },
+        "prevButtonPadding": {
+            "type": "object"
+        },
+        "nextButtonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "nextButtonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "tootlipColor": {
+            "type": "object"
+        },
+        "nextButtonTransition":{
+            "type":"string"
+        },
+        "prevButtonTransition":{
+            "type":"string"
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "containerWidth": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false
     },
-    "keywords": []
+    "keywords": [],
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

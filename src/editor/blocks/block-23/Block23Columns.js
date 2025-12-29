@@ -1,10 +1,22 @@
 import ThumbModule from '../../part/thumbnail';
 import { MetaModule3 } from '../../part/meta';
 import { PostTitle, PostExcerpt } from '../../part/post';
-import { withFormatName } from '../../utils/helper';
 
 const Block23Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -12,7 +24,7 @@ const Block23Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                <ThumbModule size={715} cat={true} post={post}/>
+                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
                 <div className="gvnews_postblock_content">
                     {post.title && <PostTitle post={post} />}
                     {post.excerpt && <PostExcerpt post={post} attr={attr}/>}
@@ -37,12 +49,8 @@ const Block23Columns = props => {
 
         if (postData.length > 0) {
             for (let i = 0; i < postData.length; i++) {
-                const className = withFormatName(
-                    `gvnews_post ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`,
-                    postData[i]
-                );
                 rows.push(
-                    <article key={postData[i].id} className={className}>
+                    <article key={postData[i].id} className={`gvnews_post ${isLoadMore && i >= loadValidAnim && i <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(i - loadValidAnim)}` : ''} ${!postData[i]?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_1`}>
                         <RenderBlock1 attr={attr} post={postData[i]}/>
                     </article>
                 );

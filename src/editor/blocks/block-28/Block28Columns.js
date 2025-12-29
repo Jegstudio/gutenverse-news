@@ -1,6 +1,6 @@
 import { PostTitle } from '../../part/post';
 import { MetaModule2 } from '../../part/meta';
-import { withFormatName } from '../../utils/helper';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const Block28Columns = (props) => {
     const {
@@ -12,30 +12,27 @@ const Block28Columns = (props) => {
         metaDateFormat,
         metaDateFormatCustom,
         blockWidth,
-        showDate,
-        showDateFormat,
-        showDateFormatCustom,
         numberPost,
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = ''
     } = props;
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = (props) => {
-        const { index = 'x', post } = props;
-        const className = withFormatName(
-            `gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`,
-            post
-        );
+        const { index = 'x' } = props;
+        const finalListIcon = (listIconType === 'svg' && !listIconSVG) ? '' : listIcon;
         return (
-            <article className={className}>
+            <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_content">
-                    <i className="fas fa-caret-right"></i>
+                    {renderIcon(finalListIcon, listIconType, listIconSVG)}
                     <PostTitle {...props} />
-                    {showDate ? <MetaModule2 {...props} /> : ''}
+                    <MetaModule2 {...props} />
                 </div>
             </article>
         );
@@ -47,8 +44,6 @@ const Block28Columns = (props) => {
                 ...moduleOption,
                 option: {
                     ...moduleOption.option,
-                    date_format: 'default' === showDateFormat ? showDateFormatCustom : moduleOption.option.date_format,
-                    meta_date: showDate,
                     meta_comment: false,
                     meta_author: false,
                 },

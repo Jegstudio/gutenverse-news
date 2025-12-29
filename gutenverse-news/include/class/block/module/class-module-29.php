@@ -26,8 +26,7 @@ class Module_29 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block( $post ) {
-		$attr = $this->attribute;
-		$date = isset( $attr['show_date'] ) && $attr['show_date'] ? $this->post_meta_2( $post ) : '';
+		$date = $this->post_meta_2( $post );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs', $post->ID ) . '>
                     <div class="gvnews_postblock_content">
