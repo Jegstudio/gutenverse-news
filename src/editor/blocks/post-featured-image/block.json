@@ -162,5 +162,6 @@
         "image",
         "thumbnail"
     ],
-    "style": ["gutenverse-news-frontend-post-featured-image-style"]
+    "viewScript": ["gutenverse-news-frontend-featured-video-script", "gutenverse-news-frontend-featured-gallery-script"],
+    "style": ["gutenverse-news-frontend-blocks-style","gutenverse-news-frontend-post-featured-image-style"]
 }
