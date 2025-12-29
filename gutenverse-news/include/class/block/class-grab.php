@@ -138,10 +138,10 @@ class Grab {
 		do_action( 'gvnews_build_shortcode_' . strtolower( $mod ) );
 
 		/**
-		* Call module class
-		*
-		* @var \GUTENVERSE\NEWS\Block\Block_View_Abstract $instance
-		*/
+		 * Call module class
+		 *
+		 * @var \GUTENVERSE\NEWS\Block\Block_View_Abstract $instance
+		 */
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$content = $instance->build_module( $attr, $sccontent );
@@ -310,5 +310,28 @@ class Grab {
 
 					</div>';
 		}
+	}
+
+	/**
+	 * Render Icon
+	 *
+	 * @param string $type Icon type.
+	 * @param string $icon Icon class.
+	 * @param string $svg  SVG data.
+	 *
+	 * @return string
+	 */
+	public function render_icon( $type, $icon, $svg ) {
+		if ( 'svg' === $type ) {
+			if ( ! empty( $svg ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+				$svg_data = base64_decode( $svg );
+				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+			}
+		} elseif ( ! empty( $icon ) ) {
+			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
+		}
+
+		return null;
 	}
 }

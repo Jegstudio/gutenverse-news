@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, IconControl, SelectControl, TextControl, RangeControl } from 'gutenverse-core/controls';
+import { CheckboxControl, IconSVGControl, SelectControl, TextControl, RangeControl } from 'gutenverse-core/controls';
 
 export const generalPanel = (props) => {
     const {
@@ -46,17 +46,17 @@ export const generalPanel = (props) => {
         {
             id: 'icon',
             label: __('Icon', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'nextIcon',
             label: __('Next Icon', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'prevIcon',
             label: __('Previous Icon', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'showMeta',

@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Slider;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Slider_3
  *
@@ -37,7 +39,7 @@ class Slider_3 extends Slider_View_Abstract {
 			}
 
 			$content .=
-			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
+				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\">
                         {$image}
@@ -51,7 +53,7 @@ class Slider_3 extends Slider_View_Abstract {
                                 <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                             </h2>
                             <p class="gvnews_post_excerpt"> ' . esc_attr( $this->get_excerpt( $post ) ) . " </p>
-                            {$this->render_meta($post)}
+                            {$this->render_meta( $post )}
                         </div>
                     </div>
                 </div>";
@@ -95,7 +97,7 @@ class Slider_3 extends Slider_View_Abstract {
 			);
 
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
+				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
                     <div class=\"gvnews_slider_type_3 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>
@@ -117,10 +119,12 @@ class Slider_3 extends Slider_View_Abstract {
 	public function render_meta( $post ) {
 		$output = '';
 
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
+
 		$time   = $this->format_date( $post );
 		$output =
-		"<div class=\"gvnews_post_meta\">
-				<span class=\"gvnews_meta_date\"><i class=\"fas fa-clock\"></i> {$time}</span>
+			"<div class=\"gvnews_post_meta\">
+				<span class=\"gvnews_meta_date\">{$icon_clock} {$time}</span>
 			</div>";
 
 		return $output;

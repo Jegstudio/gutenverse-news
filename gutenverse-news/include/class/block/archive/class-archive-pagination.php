@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Archive;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Archive_Pagination
  *
@@ -27,6 +29,7 @@ class Archive_Pagination extends Archive_View_Abstract {
 	 */
 	public function render_module( $attr, $column_class ) {
 		$column_class .= ' ' . esc_attr( $this->get_vc_class_name() );
+
 		return gvnews_paging_navigation( $attr, false, $column_class );
 	}
 }

@@ -46,6 +46,8 @@ const BlockModule = compose(
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -86,6 +88,14 @@ const BlockModule = compose(
         showMetaComment = true,
         readmoreButtonDisabled = false,
         listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        metaDateIcon = '',
+        metaDateIconType = 'icon',
+        metaDateIconSVG = '',
+        metaCommentIcon = '',
+        metaCommentIconType = 'icon',
+        metaCommentIconSVG = '',
         renderedImageSizeMain,
         renderedImageSizeSecond,
         gutenversePreviewBlock = '',
@@ -340,6 +350,14 @@ const BlockModule = compose(
                 imageSizeSecond,
                 readmoreButtonDisabled,
                 listIcon,
+                listIconType,
+                listIconSVG,
+                metaDateIcon,
+                metaDateIconType,
+                metaDateIconSVG,
+                metaCommentIcon,
+                metaCommentIconType,
+                metaCommentIconSVG,
                 attributes,
             }} />;
             setBlock(allColumns);
@@ -363,6 +381,14 @@ const BlockModule = compose(
         showMetaComment,
         readmoreButtonDisabled,
         listIcon,
+        listIconType,
+        listIconSVG,
+        metaDateIcon,
+        metaDateIconType,
+        metaDateIconSVG,
+        metaCommentIcon,
+        metaCommentIconType,
+        metaCommentIconSVG,
         gutenversePreviewBlock
     ]);
 
@@ -380,6 +406,8 @@ const BlockModule = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,

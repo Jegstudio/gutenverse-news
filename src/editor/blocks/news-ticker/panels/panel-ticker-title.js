@@ -48,7 +48,7 @@ export const tickerTitlePanel = (props) => {
                     'type': 'plain',
                     'id': 'navIconSize',
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_breakingnews_title i`,
+                    'selector': `.${elementId} .gvnews_breakingnews_title i, .${elementId} .gvnews_breakingnews_title svg`,
 
                     'properties': [
                         {

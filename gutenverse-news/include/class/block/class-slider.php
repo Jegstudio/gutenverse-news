@@ -132,7 +132,11 @@ class Slider extends Grab {
 			'featured_position'        => isset( $this->attributes['fimagePosition'] ) ? $this->attributes['fimagePosition'] : '',
 			'short_code'               => $this->attributes['gvnewsModule'],
 			'nextButtonIcon'           => isset( $this->attributes['nextButtonIcon'] ) ? $this->attributes['nextButtonIcon'] : '',
+			'next_button_icon_type'    => isset( $this->attributes['nextButtonIconType'] ) ? $this->attributes['nextButtonIconType'] : 'icon',
+			'next_button_icon_svg'     => isset( $this->attributes['nextButtonIconSVG'] ) ? $this->attributes['nextButtonIconSVG'] : '',
 			'prevButtonIcon'           => isset( $this->attributes['prevButtonIcon'] ) ? $this->attributes['prevButtonIcon'] : '',
+			'prev_button_icon_type'    => isset( $this->attributes['prevButtonIconType'] ) ? $this->attributes['prevButtonIconType'] : 'icon',
+			'prev_button_icon_svg'     => isset( $this->attributes['prevButtonIconSVG'] ) ? $this->attributes['prevButtonIconSVG'] : '',
 			'disable_readmore'         => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
 			'meta_settings'            => array(
 				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,

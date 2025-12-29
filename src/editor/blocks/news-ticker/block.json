@@ -117,6 +117,13 @@
 			"type": "string",
 			"default": "fas fa-newspaper"
 		},
+		"iconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"iconSVG": {
+			"type": "string"
+		},
 		"metaEnabled": {
 			"type": "boolean",
 			"default": true
@@ -213,9 +220,23 @@
 			"type": "string",
 			"default": "fas fa-angle-right"
 		},
+		"nextIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"nextIconSVG": {
+			"type": "string"
+		},
 		"prevIcon": {
 			"type": "string",
 			"default": "fas fa-angle-left"
+		},
+		"prevIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"prevIconSVG": {
+			"type": "string"
 		},
 		"navColor": {
 			"type": "object"

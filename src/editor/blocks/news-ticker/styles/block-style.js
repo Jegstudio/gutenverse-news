@@ -110,7 +110,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['iconTextColor']) && data.push({
         'type': 'color',
         'id': 'iconTextColor',
-        'selector': `.${elementId} .gvnews_breakingnews_title i`,
+        'selector': `.${elementId} .gvnews_breakingnews_title i, .${elementId} .gvnews_breakingnews_title svg`,
         'properties': [
             {
                 'name': 'color',
@@ -123,7 +123,7 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'plain',
         'id': 'iconTextSize',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_breakingnews_title i`,
+        'selector': `.${elementId} .gvnews_breakingnews_title i, .${elementId} .gvnews_breakingnews_title svg`,
         'properties': [
             {
                 'name': 'font-size',
@@ -246,7 +246,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navColor']) && data.push({
         'type': 'color',
         'id': 'navColor',
-        'selector': `.${elementId} .gvnews_news_ticker_control i`,
+        'selector': `.${elementId} .gvnews_news_ticker_control i, .${elementId} .gvnews_news_ticker_control svg`,
         'properties': [
             {
                 'name': 'color',
@@ -270,7 +270,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['navHoverColor']) && data.push({
         'type': 'color',
         'id': 'navHoverColor',
-        'selector': `.${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow:hover i`,
+        'selector': `.${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow:hover i, .${elementId} .gvnews_news_ticker_control  .gvnews_news_ticker_arrow:hover svg`,
         'properties': [
             {
                 'name': 'color',
@@ -283,7 +283,7 @@ const getBlockStyle = (elementId, attributes) => {
         'type': 'plain',
         'id': 'navIconSize',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_news_ticker_control i`,
+        'selector': `.${elementId} .gvnews_news_ticker_control i, .${elementId} .gvnews_news_ticker_control svg`,
         'properties': [
             {
                 'name': 'font-size',

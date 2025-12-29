@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { IconControl, TextControl, ColorControl, ImageRadioControl } from 'gutenverse-core/controls';
+import { IconSVGControl, TextControl, ColorControl, ImageRadioControl } from 'gutenverse-core/controls';
 import { handleColor } from 'gutenverse-core/styling';
 
 export const headerPanel = (props) => {
@@ -19,7 +19,7 @@ export const headerPanel = (props) => {
             show: title !== '',
             label: __('Icon', 'gutenverse-news'),
             description: __('Choose icon for this block icon.', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'title',

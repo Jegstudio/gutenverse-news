@@ -37,7 +37,7 @@ const Block3Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
+                custom: metaDateFormatCustom
             }
         };
         const rows = [];

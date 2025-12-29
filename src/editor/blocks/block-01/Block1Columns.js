@@ -1,6 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { createChunks } from '../../utils/helper';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const Block1Columns = props => {
     const {
@@ -19,6 +20,8 @@ const Block1Columns = props => {
         imageSizeSecond = {},
         readmoreButtonDisabled = false,
         listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = ''
     } = props;
 
     const RenderBlock1 = props=>{
@@ -42,9 +45,11 @@ const Block1Columns = props => {
 
     const RenderBlock3 = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
+        const finalListIcon = (listIconType === 'svg' && !listIconSVG) ? '' : listIcon;
+
         return (
             <article className={`gvnews_post gvnews_pl_xs_2 ${isLoadMoreAnimation ? `gvnews_ajax_loaded anim_${index}` : ''}`}>
-                <i className={listIcon ? listIcon : 'fas fa-caret-right'}></i>
+                {renderIcon(finalListIcon, listIconType, listIconSVG)}
                 <div className="gvnews_postblock_content">
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr} />
                 </div>
@@ -75,7 +80,7 @@ const Block1Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
+                custom : metaDateFormatCustom
             }
         };
 
@@ -107,7 +112,7 @@ const Block1Columns = props => {
             date : {
                 type: metaDateType,
                 format: metaDateFormat,
-                custom: metaDateFormatCustom,
+                custom: metaDateFormatCustom
             }
         };
 
@@ -139,7 +144,7 @@ const Block1Columns = props => {
             date : {
                 type : metaDateType,
                 format : metaDateFormat,
-                custom : metaDateFormatCustom,
+                custom : metaDateFormatCustom
             }
         };
 
