@@ -653,17 +653,18 @@ class Block extends StyleAbstract {
 
 			if ( isset( $this->attrs['secondListSelector'] ) ) {
 				$second_list_selector = isset( $this->attrs['secondListSelector'] ) ? $this->attrs['secondListSelector'] : 'gvnews_postblock .gvnews_posts .gvnews_postsmall:first-of-type';
-
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_postblock_1 .gvnews_block_container",
-						'property'       => function ( $value ) {
-							return "gap: {$value}px;";
-						},
-						'value'          => $this->attrs['rowItemGap'],
-						'device_control' => true,
-					)
-				);
+				if ( isset( $this->attrs['rowItemGap'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_postblock_1 .gvnews_block_container",
+							'property'       => function ( $value ) {
+								return "gap: {$value}px;";
+							},
+							'value'          => $this->attrs['rowItemGap'],
+							'device_control' => true,
+						)
+					);
+				}
 
 				if ( isset( $this->attrs['columnItemGapSecond'] ) ) {
 					$this->inject_style(
@@ -2007,18 +2008,24 @@ class Block extends StyleAbstract {
 
 		// If raw is an array, prefix each item
 		if ( is_array( $raw ) ) {
-			$parts = array_map( function ( $p ) use ( $base ) {
-				return trim( $base . ' ' . $p );
-			}, $raw );
+			$parts = array_map(
+				function ( $p ) use ( $base ) {
+					return trim( $base . ' ' . $p );
+				},
+				$raw
+			);
 
 			return implode( ', ', $parts );
 		}
 
 		// Split by comma, trim and prefix each selector with base
 		$parts = array_map( 'trim', explode( ',', $raw ) );
-		$parts = array_map( function ( $p ) use ( $base ) {
-			return "{$base} {$p}";
-		}, $parts );
+		$parts = array_map(
+			function ( $p ) use ( $base ) {
+				return "{$base} {$p}";
+			},
+			$parts
+		);
 
 		return implode( ', ', $parts );
 	}
