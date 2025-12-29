@@ -17,6 +17,13 @@
             "type": "string",
             "default": ""
         },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": ""
@@ -686,6 +693,10 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

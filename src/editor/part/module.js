@@ -44,6 +44,8 @@ const BlockModule = compose(
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -85,8 +87,17 @@ const BlockModule = compose(
         showMetaReview = false,
         readmoreButtonDisabled = false,
         listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        metaDateIcon = '',
+        metaDateIconType = 'icon',
+        metaDateIconSVG = '',
+        metaCommentIcon = '',
+        metaCommentIconType = 'icon',
+        metaCommentIconSVG = '',
         renderedImageSizeMain,
-        renderedImageSizeSecond
+        renderedImageSizeSecond,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const metaSettings = {
@@ -307,6 +318,10 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length > 0) {
             const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
             const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
@@ -327,6 +342,14 @@ const BlockModule = compose(
                 imageSizeSecond,
                 readmoreButtonDisabled,
                 listIcon,
+                listIconType,
+                listIconSVG,
+                metaDateIcon,
+                metaDateIconType,
+                metaDateIconSVG,
+                metaCommentIcon,
+                metaCommentIconType,
+                metaCommentIconSVG,
                 attributes,
             }} />;
             setBlock(allColumns);
@@ -350,7 +373,16 @@ const BlockModule = compose(
         showMetaComment,
         showMetaReview,
         readmoreButtonDisabled,
-        listIcon
+        listIcon,
+        listIconType,
+        listIconSVG,
+        metaDateIcon,
+        metaDateIconType,
+        metaDateIconSVG,
+        metaCommentIcon,
+        metaCommentIconType,
+        metaCommentIconSVG,
+        gutenversePreviewBlock
     ]);
 
     const blockProps = useBlockProps({
@@ -367,6 +399,8 @@ const BlockModule = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,

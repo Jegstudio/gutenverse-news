@@ -17,6 +17,13 @@
             "type": "string",
             "default": ""
         },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": ""
@@ -458,6 +465,13 @@
             "type": "string",
             "default": "fas fa-caret-right"
         },
+        "listIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "listIconSVG": {
+            "type": "string"
+        },
         "listIconColor": {
             "type": "object"
         },
@@ -467,7 +481,7 @@
         },
         "selectorIconList": {
             "type": "string",
-            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i"
+            "default": ".gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg"
         },
         "renderedImageSizeMain": {
             "type": "string",
@@ -610,6 +624,38 @@
             "type": "object",
             "copyStyle": true
         },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
         "showMetaReview": {
             "type": "boolean"
         }
@@ -620,6 +666,10 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

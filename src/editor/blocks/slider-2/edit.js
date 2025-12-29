@@ -82,7 +82,12 @@ const Slider2Block = compose(
     const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        getSliderStyle,
+        elementRef
+    );
 
     useEffect(() => {
         if (elementRef) {

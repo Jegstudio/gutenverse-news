@@ -17,6 +17,13 @@
             "type": "string",
             "default": ""
         },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": ""
@@ -592,8 +599,33 @@
         "categoryButtonMargin": {
             "type": "object"
         },
-        "showMetaReview": {
-            "type": "boolean"
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
@@ -602,6 +634,10 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

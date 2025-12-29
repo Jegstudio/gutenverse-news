@@ -65,6 +65,12 @@ const Slider8Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -133,7 +139,7 @@ const Slider8Block = compose(
                             <h2 className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                             </h2>
-                            <SliderMeta {...props} date />
+                            <SliderMeta {...props} date blockType="slider-8" />
                         </div>
                     </div>
                 </div>
@@ -159,7 +165,19 @@ const Slider8Block = compose(
             }
         }
         return (
-            <div ref={blockRef} className="gvnews_slider_type_8 gvnews_slider" data-items={sliderColumn} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_8 gvnews_slider"
+                data-items={sliderColumn}
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
+                data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
+            >
                 {content}
             </div>
         );
@@ -303,6 +321,8 @@ const Slider8Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon,
     ]);
 
     useEffect(() => {

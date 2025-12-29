@@ -1,4 +1,7 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { contentContainerStyle } from './panel-styles/style-content-container';
+import { thumbnailAndOverlayStyle } from './panel-styles/style-thumbnail';
+import { cardStyleModule } from './panel-styles/style-card';
 
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
@@ -39,6 +42,10 @@ const getBlockStyle = (elementId, attributes) => {
     } = attributes;
 
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
+    data = noContentStyle(elementId, attributes, data);
+    data = thumbnailAndOverlayStyle(elementId, attributes, data);
+    data = contentContainerStyle(elementId, attributes, data);
+    data = cardStyleModule(elementId, attributes, data);
 
     /**
      * Panel Header
@@ -418,7 +425,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i' : '.gvnews_pl_xs_2>i'}`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'template_24' === templateType ? '.gvnews_pl_xs_4 .gvnews_postblock_content>i, .gvnews_pl_xs_4 .gvnews_postblock_content>.gutenverse-icon-svg svg' : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'}`,
         'properties': [
             {
                 'name': 'color',
@@ -809,7 +816,7 @@ const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['paginationBtnIconSize']) && data.push({
         'type': 'unitPoint',
         'id': 'paginationBtnIconSize',
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg`,
         'properties': [
             {
                 'name': 'font-size',
@@ -1023,7 +1030,7 @@ const getBlockStyle = (elementId, attributes) => {
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg`,
         },
         {
             'type': 'unitPoint',
@@ -1035,7 +1042,7 @@ const getBlockStyle = (elementId, attributes) => {
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg`,
         },
     );
 
@@ -1308,6 +1315,53 @@ const getBlockStyle = (elementId, attributes) => {
     });
 
     return data;
+};
+
+const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTypography']) && data.push({
+        'type': 'typography',
+        'id': 'noContentTypography',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentColor']) && data.push({
+        'type': 'color',
+        'id': 'noContentColor',
+        'selector': `.${elementId} .gvnews_empty_module`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['noContentBackground']) && data.push({
+        'type': 'background',
+        'id': 'noContentBackground',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentBorder']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'noContentBorder',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'noContentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+    return data;
+
 };
 
 export default getBlockStyle;

@@ -267,6 +267,79 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "nextButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "nextButtonIconSVG": {
+            "type": "string"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "prevButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "prevButtonIconSVG": {
+            "type": "string"
+        },
+        "buttonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "iconSize": {
+            "type": "object"
+        },
+        "buttonHeight": {
+            "type": "object"
+        },
+        "buttonWidth": {
+            "type": "object"
+        },
+        "buttonPadding": {
+            "type": "object"
+        },
+        "buttonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
         }
     },
     "supports": {

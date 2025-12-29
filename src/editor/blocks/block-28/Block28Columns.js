@@ -1,5 +1,6 @@
 import { PostTitle } from '../../part/post';
 import { MetaModule2 } from '../../part/meta';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const Block28Columns = (props) => {
     const {
@@ -15,7 +16,9 @@ const Block28Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
-        listIcon = ''
+        listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = ''
     } = props;
 
     const postDataLen = postData.length;
@@ -23,10 +26,11 @@ const Block28Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { index = 'x' } = props;
+        const finalListIcon = (listIconType === 'svg' && !listIconSVG) ? '' : listIcon;
         return (
             <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_content">
-                    <i className={listIcon ? listIcon : 'fas fa-caret-right'}></i>
+                    {renderIcon(finalListIcon, listIconType, listIconSVG)}
                     <PostTitle {...props} />
                     <MetaModule2 {...props} />
                 </div>

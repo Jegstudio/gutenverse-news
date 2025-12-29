@@ -232,6 +232,42 @@
         "categoryButtonMargin": {
             "type": "object"
         },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItemThird": {
+            "type": "object"
+        },
+        "borderResponsiveItem": {
+            "type": "object"
+        },
+        "borderResponsiveItemSecond": {
+            "type": "object"
+        },
+        "borderResponsiveItemThird": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItemThird": {
+            "type": "object"
+        },
+        "borderResponsiveItem": {
+            "type": "object"
+        },
+        "borderResponsiveItemSecond": {
+            "type": "object"
+        },
+        "borderResponsiveItemThird": {
+            "type": "object"
+        },
         "showMetaReview": {
             "type": "boolean"
         }

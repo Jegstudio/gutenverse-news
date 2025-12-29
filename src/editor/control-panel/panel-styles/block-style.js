@@ -20,10 +20,10 @@ const getBlockStyle = (
     const withSecondText = ['heading_5', 'heading_6', 'heading_7', 'heading_8'].includes(headerType);
 
     const getSelector = (selector, def) => {
-        if (attributes[selector]) {
-            return `.gvnews-block.gvnews-block-wrapper.${elementId} ${attributes[selector]}`;
-        }
-        return `.gvnews-block.gvnews-block-wrapper.${elementId} ${def}`;
+        const base = `.gvnews-block.gvnews-block-wrapper.${elementId}`;
+        const raw = attributes[selector] ? attributes[selector] : def;
+        // split by comma, trim each part, prefix with base, then join back with comma
+        return raw.split(',').map(part => `${base} ${part.trim()}`).join(', ');
     };
 
     /**
@@ -271,7 +271,7 @@ const getBlockStyle = (
     isNotEmpty(attributes['listIconColor']) && data.push({
         'type': 'color',
         'id': 'listIconColor',
-        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i'),
+        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'),
         'properties': [
             {
                 'name': 'color',
@@ -499,7 +499,7 @@ const getBlockStyle = (
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -511,7 +511,7 @@ const getBlockStyle = (
         isNotEmpty(attributes['metaIconColorHover']) && data.push({
             'type': 'color',
             'id': 'metaIconColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -972,7 +972,7 @@ const getBlockStyle = (
     isNotEmpty(attributes['paginationBtnIconSize']) && data.push({
         'type': 'unitPoint',
         'id': 'paginationBtnIconSize',
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav i, .${elementId} .gvnews_block_navigation .gvnews_block_nav svg`,
         'properties': [
             {
                 'name': 'font-size',
@@ -1186,7 +1186,7 @@ const getBlockStyle = (
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg`,
         },
         {
             'type': 'unitPoint',
@@ -1198,7 +1198,7 @@ const getBlockStyle = (
                 }
             ],
             'responsive': true,
-            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i`,
+            'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .${elementId} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg`,
         },
     );
 
@@ -1265,8 +1265,9 @@ const getBlockStyle = (
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
-    console.log(data);
-    console.log(attributes);
+    data = noContentStyle(elementId, attributes, data);
+    data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+
     /*  review meta style */
     isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
         'type': 'color',
@@ -1514,7 +1515,7 @@ const headerFilterStyle = (elementId, attributes, data) => {
     }
     return data;
 
-}
+};
 const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
     // Panel Content Container
     if (isNotEmpty(attributes['contentAlign'])) {
@@ -1574,14 +1575,14 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
                         'pattern': 'initial',
                     }
                 ],
-            })
+            });
         }
         data.push({
             'type': 'background',
             'id': 'contentContainerBackground',
             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews_postblock_content`,
-        })
-    };
+        });
+    }
 
     if (isNotEmpty(attributes['contentMargin'])) {
         data.push({
@@ -1702,7 +1703,7 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
                         'pattern': 'initial',
                     }
                 ],
-            })
+            });
         }
         data.push({
             'type': 'background',
@@ -1764,7 +1765,7 @@ const contentContainerStyle = (elementId, attributes, data, mainThumbnailClass, 
     });
 
     return data;
-}
+};
 const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
     // Panel Thumbnail
     if (isNotEmpty(mainThumbnailClass)) {
@@ -1838,7 +1839,7 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClas
     }
 
     return data;
-}
+};
 
 // This is for Module 7
 const titleContainerStyle = (elementId, attributes, data) => {
@@ -1886,7 +1887,7 @@ const titleContainerStyle = (elementId, attributes, data) => {
     });
 
     return data;
-}
+};
 
 const postItemStyle = (elementId, attributes, data) => {
 
@@ -1895,7 +1896,7 @@ const postItemStyle = (elementId, attributes, data) => {
         secondListSelector,
         thirdListSelector,
         postItemGrid = false
-    } = attributes
+    } = attributes;
 
     if (postItemGrid) {
 
@@ -1945,10 +1946,7 @@ const postItemStyle = (elementId, attributes, data) => {
                 }
             ],
         });
-
-
         if (isNotEmpty(secondListSelector)) {
-
             isNotEmpty(attributes['columnItemGapSecond']) && data.push({
                 'type': 'plain',
                 'id': 'columnItemGapSecond',
@@ -1967,8 +1965,6 @@ const postItemStyle = (elementId, attributes, data) => {
                     }
                 ],
             });
-
-
             isNotEmpty(attributes['columnItemGapThird']) && data.push({
                 'type': 'plain',
                 'id': 'columnItemGapThird',
@@ -1988,7 +1984,6 @@ const postItemStyle = (elementId, attributes, data) => {
                 ],
             });
         }
-
     } else {
         isNotEmpty(attributes['rowItemGap']) && data.push({
             'type': 'plain',
@@ -2014,7 +2009,101 @@ const postItemStyle = (elementId, attributes, data) => {
 
     return data;
 
-}
+};
 
+const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTypography']) && data.push({
+        'type': 'typography',
+        'id': 'noContentTypography',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentColor']) && data.push({
+        'type': 'color',
+        'id': 'noContentColor',
+        'selector': `.${elementId} .gvnews_empty_module`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['noContentBackground']) && data.push({
+        'type': 'background',
+        'id': 'noContentBackground',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentBorder']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'noContentBorder',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'noContentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+    return data;
+
+};
+
+const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
+    const str = attributes['gvnewsModule'].split('\\');
+    const gvnewsModule = str[str.length - 1];
+    const modulesWithBoxWrap = ['Module_32', 'Module_33', 'Module_34', 'Module_35', 'Module_36', 'Module_37', 'Module_39'];
+    const selector = modulesWithBoxWrap.includes(gvnewsModule) ?
+        `.${elementId} .gvnews_postblock .gvnews_post .box_wrap` :
+        `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`;
+
+    // Main
+    isNotEmpty(attributes['cardBorder']) && data.push({
+        'type': 'border',
+        'id': 'cardBorder',
+        'selector': selector,
+    });
+    isNotEmpty(attributes['cardBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'cardBorderResponsive',
+        'responsive': true,
+        'selector': selector,
+    });
+    isNotEmpty(attributes['cardPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'cardPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+    // TODO: Add width control
+    // isNotEmpty(attributes['cardWidth']) && data.push({
+    //     'type': 'unitPoint',
+    //     'id': 'cardWidth',
+    //     'properties': [
+    //         {
+    //             'name': 'width',
+    //             'valueType': 'direct'
+    //         }
+    //     ],
+    //     'selector': `.${elementId} .gvnews_postblock .${firstClass}`,
+    //     'responsive': true
+    // })
+    return data;
+};
 
 export default getBlockStyle;

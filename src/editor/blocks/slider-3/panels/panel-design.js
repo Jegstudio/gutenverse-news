@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, DimensionControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, TypographyControl, DimensionControl } from 'gutenverse-core/controls';
 export const designPanel = () => {
 
     return [
@@ -19,6 +19,40 @@ export const designPanel = () => {
             label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
+        // TODO: Add gap item and item width
+        // {
+        //     id: 'gapItem',
+        //     label: __('Gap Item', 'gutenverse-news'),
+        //     component: RangeControl,
+        //     allowDeviceControl: true,
+        //     min: 0,
+        //     max: 100,
+        //     step: 1,
+        //     unit: 'px',
+        // },
+        // {
+        //     id: 'itemWidth',
+        //     label: __('Width Item', 'gutenverse-news'),
+        //     component: SizeControl,
+        //     allowDeviceControl: true,
+        //     defaultUnit: '%',
+        //     units: {
+        //         px: {
+        //             text: 'px',
+        //             min: 1,
+        //             max: 300,
+        //             step: 1,
+        //             unit: 'px',
+        //         },
+        //         ['%']: {
+        //             text: '%',
+        //             min: 1,
+        //             max: 20,
+        //             step: 1,
+        //             unit: '%',
+        //         },
+        //     },
+        // },
         {
             id: 'containerPadding',
             label: __('Container Padding', 'gutenverse-news'),

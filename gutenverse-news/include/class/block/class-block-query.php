@@ -307,8 +307,10 @@ class Block_Query {
 		}
 
 		// search.
-		$search_query = get_search_query();
-		$args['s']    = ! empty( $search_query ) ? esc_attr( $search_query ) : null;
+		if ( isset( $attr['s'] ) ) {
+			$args['s'] = $attr['s'];
+		}
+
 		// date.
 		if ( isset( $attr['date_query'] ) ) {
 			$args['date_query'] = $attr['date_query'];

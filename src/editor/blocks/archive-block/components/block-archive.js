@@ -25,6 +25,8 @@ const BlockArchive = (props) => {
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
+        gutenversePreviewBlock = '',
+        renderedImageSizeMain,
     } = props;
 
     const metaSettings = {
@@ -137,6 +139,10 @@ const BlockArchive = (props) => {
         if (!postData) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         setBlock(
             <BlockColumns
                 {...{
@@ -151,7 +157,8 @@ const BlockArchive = (props) => {
                     metaDateFormatCustom,
                     postBulk,
                     overlay,
-                    readmoreButtonDisabled
+                    readmoreButtonDisabled,
+                    renderedImageSizeMain,
                 }}
             />
         );
@@ -171,6 +178,8 @@ const BlockArchive = (props) => {
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
+        gutenversePreviewBlock,
+        renderedImageSizeMain
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;

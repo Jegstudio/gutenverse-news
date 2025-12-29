@@ -332,6 +332,12 @@
         "categoryButtonMargin": {
             "type": "object"
         },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
         "showMetaReview": {
             "type": "boolean"
         }

@@ -333,14 +333,26 @@
         "secondTitleTypography": {
             "type": "object"
         },
-        "selectorSecondTitleTypography": {
+        "selectorSecond": {
             "type": "string",
-            "default": ".gvnews_heroblock .gvnews_post.gvnews_hero_item_1 .gvnews_post_title"
+            "default": ".gvnews_heroblock .gvnews_post.gvnews_hero_item_1"
         },
         "categoryButtonPadding": {
             "type": "object"
         },
         "categoryButtonMargin": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
             "type": "object"
         },
         "showMetaReview": {

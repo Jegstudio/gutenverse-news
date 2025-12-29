@@ -53,6 +53,9 @@ class Post_Related extends Post_Guten {
 		}
 
 		$attribute = array(
+			'header_icon'                  => $this->attributes['icon'],
+			'icon_type'                    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
+			'icon_svg'                     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
 			'first_title'                  => $this->attributes['title'],
 			'second_title'                 => $this->attributes['second_title'],
 			'header_type'                  => $this->attributes['headerType'],
@@ -72,6 +75,8 @@ class Post_Related extends Post_Guten {
 			'post_offset'                  => 0,
 			'pagination_nextprev_showtext' => $this->attributes['showNavText'],
 			'disable_readmore'             => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'renderedImageSizeMain'        => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
+			'renderedImageSizeSecond'      => isset( $this->attributes['renderedImageSizeSecond'] ) ? $this->attributes['renderedImageSizeSecond'] : '',
 			'meta_settings'                => array(
 				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
 				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
@@ -80,6 +85,8 @@ class Post_Related extends Post_Guten {
 				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
 			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'list_icon_type'               => isset( $this->attributes['listIconType'] ) ? $this->attributes['listIconType'] : 'icon',
+			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
 		);
 
 		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );
@@ -88,10 +95,10 @@ class Post_Related extends Post_Guten {
 		do_action( 'gvnews_build_shortcode_' . strtolower( $mod ) );
 
 		/**
-		* Call module instance
-		*
-		* @var \GUTENVERSE\NEWS\Block\Module\Module_View_Abstract $instance
-		*/
+		 * Call module instance
+		 *
+		 * @var \GUTENVERSE\NEWS\Block\Module\Module_View_Abstract $instance
+		 */
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$content = $instance->build_module( $attribute );

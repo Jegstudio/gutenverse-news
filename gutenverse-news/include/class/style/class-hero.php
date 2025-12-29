@@ -46,6 +46,7 @@ class Hero extends StyleAbstract {
 
 		$this->hero_14_style();
 		$this->title_meta_style();
+		$this->generate_design_style();
 
 		if ( isset( $this->attrs['heroItemOverlay'] ) && ( ! stristr( $this->attrs['gvnewsModule'], 'Hero_14' ) ) ) {
 			foreach ( $this->attrs['heroItemOverlay'] as $key => $local_attr ) {
@@ -412,7 +413,6 @@ class Hero extends StyleAbstract {
 			);
 		}
 
-		$this->generate_design_style();
 		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
 				$this->generate_meta_style();
 		}
@@ -423,10 +423,13 @@ class Hero extends StyleAbstract {
 	 * Generate design style.
 	 */
 	private function generate_design_style() {
+		$selector  = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post";
+		$selector2 = isset( $this->attrs['selectorSecond'] ) ? $this->attrs['selectorSecond'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
+		$selector3 = isset( $this->attrs['selectorThrid'] ) ? $this->attrs['selectorThrid'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2)';
 		if ( isset( $this->attrs['typography'] ) ) {
 				$this->inject_typography(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews_post_title",
+						'selector'       => $selector . ' .gvnews_post_title',
 						'property'       => function ( $value ) {},
 						'value'          => $this->attrs['typography'],
 						'device_control' => false,
@@ -435,11 +438,9 @@ class Hero extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['secondTitleTypography'] ) ) {
-			$selector = isset( $this->attrs['selectorSecondTitleTypography'] ) ? $this->attrs['selectorSecondTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews_post_title';
-
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2} .gvnews_post_title",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['secondTitleTypography'],
@@ -449,15 +450,51 @@ class Hero extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['thridTitleTypography'] ) ) {
-			$selector = isset( $this->attrs['selectorThridTitleTypography'] ) ? $this->attrs['selectorThridTitleTypography'] : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews_post_title';
 
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector}",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3} .gvnews_post_title",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['thridTitleTypography'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['borderItem'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector . ' .gvnews_block_container',
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderItem'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['borderItemSecond'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2} .gvnews_block_container",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderItemSecond'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['borderItemThird'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3} .gvnews_block_container",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['borderItemThird'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -548,7 +585,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .far ",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta .far, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_meta svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -561,7 +598,7 @@ class Hero extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post_meta a:hover .far",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post_meta a:hover .far, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_heroblock .gvnews_post_meta a:hover svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
