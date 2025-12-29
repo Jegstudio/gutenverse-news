@@ -108,11 +108,7 @@ class Module_27 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after( $attr )}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before( $attr )}
-                    {$navigation}
-                    {$this->get_navigation_after( $attr )}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

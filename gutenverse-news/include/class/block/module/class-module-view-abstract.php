@@ -161,6 +161,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$output           = '';
 		$additional_class = $next || $prev ? '' : 'inactive';
 
+		if ( 'disable' === $attr['pagination_mode'] ) {
+			return '';
+		}
+
 		if ( 'nextprev' === $attr['pagination_mode'] ) {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
@@ -197,7 +201,11 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			}
 		}
 
-		return $output;
+		return "<div class=\"gvnews_block_navigation\">
+                    {$this->get_navigation_before($attr)}
+                    {$output}
+                    {$this->get_navigation_after($attr)}
+                </div>";
 	}
 
 	/**
@@ -352,8 +360,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			default:
 				$nav_class = 'gvnews_page' . $args['pagination_mode'];
 				$nav_align = 'gvnews_align' . $args['pagination_align'];
-				$nav_text = $args['pagination_navtext'] ? '' : 'no_navtext';
-				$nav_info = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
+				$nav_text  = $args['pagination_navtext'] ? '' : 'no_navtext';
+				$nav_info  = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
 				/* translators: %1s represents current page and %2$s represents total */
 				$paging_text = sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total );
 
@@ -455,10 +463,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$authors = is_array( $authors ) ? $authors : array( $authors );
 
 				foreach ( $authors as $author ) {
-					$author_id    = trim( $author );
-					$author_url   = get_author_posts_url( $author_id );
-					$author_name  = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat     .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$author_id   = trim( $author );
+					$author_url  = get_author_posts_url( $author_id );
+					$author_name = get_the_author_meta( 'display_name', $author_id );
+					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
