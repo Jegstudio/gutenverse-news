@@ -44,7 +44,7 @@ class Slider_1 extends Slider_View_Abstract {
 			}
 
 			$content .=
-			'<div class="gvnews_slide_item">
+				'<div class="gvnews_slide_item">
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . get_permalink( $post ) . "\" class=\"gvnews_slide_img\">{$image}</a>
                     <div class=\"gvnews_slide_caption\">
@@ -55,7 +55,7 @@ class Slider_1 extends Slider_View_Abstract {
                             <h2 class=\"gvnews_post_title\">
                                 <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h2>
-                            {$this->render_meta($post)}
+                            {$this->render_meta( $post )}
                         </div>
                     </div>
                 </div>";
@@ -113,16 +113,20 @@ class Slider_1 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay'     => esc_attr( $attr['enable_autoplay'] ),
-					'delay'        => esc_attr( $autoplay_delay ),
-					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
-					'class-next'   => $attr['nextButtonIcon'],
-					'class-prev'   => $attr['prevButtonIcon'],
+					'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+					'delay'           => esc_attr( $autoplay_delay ),
+					'hover-action'    => esc_attr( $attr['enable_hover_action'] ),
+					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+					'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+					'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+					'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 				)
 			);
 
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
+				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
                     <div class=\"gvnews_slider_type_1 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>

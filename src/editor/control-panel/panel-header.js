@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { AlertControl, BoxShadowControl, BorderControl, DimensionControl, IconControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl } from 'gutenverse-core/controls';
+import { AlertControl, BoxShadowControl, BorderControl, DimensionControl, IconSVGControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import { handleColor } from 'gutenverse-core/styling';
 
@@ -21,7 +21,7 @@ export const headerPanel = (props) => {
             show: title !== '' || second_title !== '',
             label: __('Icon', 'gutenverse-news'),
             description: __('Choose icon for this block icon.', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'title',
@@ -236,7 +236,7 @@ export const headerSettingsPanel = (props) => {
             show: title !== '' || second_title !== '',
             label: __('Icon', 'gutenverse-news'),
             description: __('Choose icon for this block icon.', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
         {
             id: 'title',
@@ -850,7 +850,7 @@ export const HeaderFilterDropdownPanel = (props) => {
                 }
             ]
         },
-    ]
-}
+    ];
+};
 
 

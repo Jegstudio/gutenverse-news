@@ -70,7 +70,11 @@ const Slider7Block = compose(
         showMetaAuthor = true,
         readmoreButtonDisabled = false,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -148,7 +152,11 @@ const Slider7Block = compose(
                     withMeta={false}
                     withReadmore={!readmoreButtonDisabled}
                     nextButtonIcon={nextButtonIcon}
+                    nextButtonIconType={nextButtonIconType}
+                    nextButtonIconSVG={nextButtonIconSVG}
                     prevButtonIcon={prevButtonIcon}
+                    prevButtonIconType={prevButtonIconType}
+                    prevButtonIconSVG={prevButtonIconSVG}
                 />
             </div>
         );
@@ -181,7 +189,11 @@ const Slider7Block = compose(
                 data-nav-prev={__('prev', 'gutenverse-news')}
                 data-nav-next={__('next', 'gutenverse-news')}
                 data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
                 data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
             >
                 {content}
             </div>
@@ -336,7 +348,11 @@ const Slider7Block = compose(
         showMetaAuthor,
         readmoreButtonDisabled,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     ]);
 
     useEffect(() => {

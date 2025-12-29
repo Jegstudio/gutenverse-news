@@ -285,9 +285,23 @@
             "type": "string",
             "default": "fas fa-chevron-right"
         },
+        "nextButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "nextButtonIconSVG": {
+            "type": "string"
+        },
         "prevButtonIcon": {
             "type": "string",
             "default": "fas fa-chevron-left"
+        },
+        "prevButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "prevButtonIconSVG": {
+            "type": "string"
         },
         "buttonColor": {
             "type": "object",
@@ -297,7 +311,7 @@
             "type": "object",
             "copyStyle": true
         },
-        "buttonSize": {
+        "iconSize": {
             "type": "object"
         },
         "buttonPadding": {
@@ -313,6 +327,9 @@
         },
         "transitionShow": {
             "type": "string"
+        },
+        "buttonTextTypography": {
+            "type": "object"
         },
         "buttonGap": {
             "type": "object"

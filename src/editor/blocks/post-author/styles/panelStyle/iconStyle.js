@@ -12,7 +12,7 @@ const iconStyle = (props) => {
         'type': 'unitPoint',
         'id': 'socialIconSize',
         'responsive': true,
-        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials i`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials svg`,
         'properties': [
             {
                 'name': 'font-size',
@@ -43,10 +43,10 @@ const iconStyle = (props) => {
     isNotEmpty(attributes['socialIconColor']) && data.push({
         'type': 'color',
         'id': 'socialIconColor',
-        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials i`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials svg`,
         'properties': [
             {
-                'name': 'color',
+                'name': 'fill',
                 'valueType': 'direct'
             }
         ],
@@ -55,10 +55,10 @@ const iconStyle = (props) => {
     isNotEmpty(attributes['socialIconColorHover']) && data.push({
         'type': 'color',
         'id': 'socialIconColorHover',
-        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials i:hover`,
+        'selector': `.guten-element.${elementId}.gvnews-post-author .gvnews-author-socials a:hover svg`,
         'properties': [
             {
-                'name': 'color',
+                'name': 'fill',
                 'valueType': 'direct'
             }
         ],

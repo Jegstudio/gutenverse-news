@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl, IconControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, TextControl, GradientWithAngleControl, BackgroundControl, ColorControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
@@ -109,7 +109,7 @@ export const sliderPanel = (props) => {
             step: 100,
         },
         {
-            id: 'gapButton',
+            id: 'gapBetweenButton',
             show: !hideNavigationButton,
             label: __('Gap Button', 'gutenverse-news'),
             component: RangeControl,
@@ -121,7 +121,7 @@ export const sliderPanel = (props) => {
             liveStyle: [
                 {
                     'type': 'plain',
-                    'id': 'gapButton',
+                    'id': 'gapBetweenButton',
                     'responsive': true,
                     'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
                     'properties': [
@@ -143,13 +143,13 @@ export const sliderPanel = (props) => {
             id: 'nextButtonIcon',
             show: !hideNavigationButton,
             label: __('Icon Next', 'gutenverse-news'),
-            component: IconControl,
+            component: IconSVGControl,
         },
         {
             id: 'prevButtonIcon',
             show: !hideNavigationButton,
             label: __('Icon Previous', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
     ];
 };
