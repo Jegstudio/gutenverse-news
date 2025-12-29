@@ -86,4 +86,14 @@
     .gvnews_postblock_16 .gvnews_pl_lg_5 {
         margin-bottom: 20px;
     }
+
+    /* Postblock 20 */
+    .gvnews_postblock_20 {
+        &.gvnews_col_3o3 {
+
+            .gvnews_postsmall {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
 }

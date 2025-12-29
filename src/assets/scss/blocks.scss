@@ -13,7 +13,6 @@
 @import '../../editor/blocks/block-05/styles/styles.scss';
 @import '../../editor/blocks/block-06/styles/styles.scss';
 @import '../../editor/blocks/block-07/styles/styles.scss';
-@import '../../editor/blocks/block-20/styles/styles.scss';
 @import '../../editor/blocks/block-22/styles/styles.scss';
 @import '../../editor/blocks/block-23/styles/styles.scss';
 @import '../../editor/blocks/block-24/styles/styles.scss';
@@ -3469,12 +3468,6 @@
 }
 
 
-
-/* Postblock 20 */
-
-.gvnews_postblock_20 .gvnews_pl_sm {
-  margin-bottom: 15px;
-}
 
 /* Postblock 22 */
 
@@ -9559,9 +9552,6 @@ h3.gvnews_author_name {
   }
 
 
-  .gvnews_postblock_20 .gvnews_pl_sm {
-    margin-bottom: 10px;
-  }
 }
 
 /* Tablet Potrait & iPhone 6 Plus Lanscape */
@@ -9918,8 +9908,6 @@ h3.gvnews_author_name {
   }
 
 
-  .gvnews_postblock_19 .gvnews_posts,
-  .gvnews_postblock_20 .gvnews_posts,
   .gvnews_postblock_24 .gvnews_posts {
     margin-bottom: 30px;
   }
