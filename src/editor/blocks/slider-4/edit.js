@@ -62,6 +62,12 @@ const Slider4Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -96,7 +102,7 @@ const Slider4Block = compose(
             'gvnews-block',
             'gvnews-block-wrapper',
             'gvnews-element-full',
-            'gvnews-slider-3',
+            'gvnews-slider-4',
             elementId,
             animationClass,
             displayClass,
@@ -143,7 +149,18 @@ const Slider4Block = compose(
             }
         }
         return (
-            <div ref={blockRef} className="gvnews_slider_type_4 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_4 gvnews_slider"
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
+                data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
+            >
                 {content}
             </div>
         );
@@ -275,6 +292,12 @@ const Slider4Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG
     ]);
 
     useEffect(() => {

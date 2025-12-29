@@ -17,6 +17,13 @@
             "type": "string",
             "default": ""
         },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": ""
@@ -551,6 +558,13 @@
             "type": "string",
             "default": "fas fa-caret-right"
         },
+        "listIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "listIconSVG": {
+            "type": "string"
+        },
         "listIconColor": {
             "type": "object"
         },
@@ -690,6 +704,38 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardPadding": {
+            "type": "object",
+            "copyStyle": true
         },
         "showMetaReview": {
             "type": "boolean"

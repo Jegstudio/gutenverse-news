@@ -102,6 +102,113 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "authorColor": {
+            "type": "string"
+        },
+        "authorColorHover": {
+            "type": "string"
+        },
+        "authorTextShadow": {
+            "type": "object"
+        },
+        "authorTextShadowHover": {
+            "type": "object"
+        },
+        "bioTypography": {
+            "type": "object"
+        },
+        "bioColor": {
+            "type": "string"
+        },
+        "bioTextShadow": {
+            "type": "object"
+        },
+        "avatarSize": {
+            "type": "object"
+        },
+        "avatarMargin": {
+            "type": "object"
+        },
+        "avatarOpacity": {
+            "type": "object"
+        },
+        "avatarRotate": {
+            "type": "object"
+        },
+        "avatarBorder": {
+            "type": "object"
+        },
+        "avatarBorderResponsive": {
+            "type": "object"
+        },
+        "avatarBoxShadow": {
+            "type": "object"
+        },
+        "nameColor": {
+            "type": "string"
+        },
+        "nameColorHover": {
+            "type": "string"
+        },
+        "nameTextShadow": {
+            "type": "object"
+        },
+        "nameTextShadowHover": {
+            "type": "object"
+        },
+        "socialIconColor": {
+            "type": "object"
+        },
+        "socialIconColorHover": {
+            "type": "object"
+        },
+        "socialIconGap": {
+            "type": "object"
+        },
+        "socialIconSize": {
+            "type":"object"
+        },
+        "hideName": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideDesc": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideAvatar": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideSocial": {
+            "type": "boolean",
+            "default": false
+        },
+        "avatarPosition": {
+            "type": "string",
+            "default": "left"
+        },
+		"align": {
+			"type": "object",
+			"copyStyle": true
+		},
+		"verticalAlign": {
+			"type": "object",
+			"copyStyle": true,
+            "default": {
+                "Desktop": "center"
+            }
+		},
+		"titleTag": {
+			"type": "string",
+			"default": "h2"
+		},
+        "nameSpaceBottom": {
+            "type": "object"
+        },
+        "bioSpaceBottom": {
+            "type": "object"
         }
     },
     "supports": {

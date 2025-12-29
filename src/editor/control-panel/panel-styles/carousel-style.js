@@ -158,7 +158,7 @@ const getCarouselStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_wrapper .gvnews_meta_date .far`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_wrapper .gvnews_meta_date .far, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_wrapper .gvnews_meta_date svg`,
             'properties': [
                 {
                     'name': 'color',

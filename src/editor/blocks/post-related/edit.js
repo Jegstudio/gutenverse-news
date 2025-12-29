@@ -42,12 +42,12 @@ import Block27Columns from '../block-27/Block27Columns';
 import { select, subscribe, useSelect } from '@wordpress/data';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
+import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
 import PaginationModule from '../../part/pagination';
-
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { getImageSizeDetail } from '../../utils/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -58,7 +58,8 @@ const PostRelated = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes,
     } = props;
 
     const {
@@ -93,6 +94,9 @@ const PostRelated = compose(
         showMetaAuthor = true,
         showMetaComment = true,
         readmoreButtonDisabled = false,
+        gutenversePreviewBlock = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond
     } = attributes;
 
 
@@ -131,6 +135,27 @@ const PostRelated = compose(
     const [forceReload, setForceReload] = useState(false);
     const firstRender = useRef(true);
     const elementRef = useRef(null);
+
+    /**
+     * @param {import('umbrellajs').Umbrella} gvnewsPost
+     * @returns {string[]}
+     */
+    const getMainSecondClass = (gvnewsPost) => {
+        const classSet = new Set();
+
+        gvnewsPost.nodes.forEach((element) => {
+            const selector = '.' + [...element.classList].join('.');
+            classSet.add(selector);
+        });
+
+        return [...classSet];
+    };
+
+    const setHasSecondImageSize = (value) => {
+        setAttributes({
+            hasSecondImageSize: value
+        })
+    };
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
@@ -249,6 +274,32 @@ const PostRelated = compose(
         deviceType
     ]);
 
+    /**
+     * use observer to get main class of post
+     */
+    useEffect(() => {
+        if (!elementRef.current) return;
+        const observer = new MutationObserver(() => {
+            const gvnewsPost = u(elementRef.current).find('.gvnews_post');
+            if (!gvnewsPost.first()) return;
+            const classList = getMainSecondClass(gvnewsPost);
+            const mainClass = classList[0];
+            const secondClass = classList[1];
+            setAttributes({
+                mainClass,
+                secondClass
+            });
+            observer.disconnect();
+        });
+        observer.observe(elementRef.current, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        return () => observer.disconnect();
+    }, [templateType]);
+
     const blockProps = useBlockProps({
         className: classnames(
             'guten-element',
@@ -267,6 +318,11 @@ const PostRelated = compose(
         if (templateType) {
             if (firstRender.current) {
                 firstRender.current = false;
+                return;
+            }
+
+            if (gutenversePreviewBlock === 'noContent') {
+                setContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
                 return;
             }
             if (postData.length > 0) {
@@ -288,90 +344,119 @@ const PostRelated = compose(
                     paginationPost,
                     page,
                     listIcon,
-                    readmoreButtonDisabled
+                    readmoreButtonDisabled,
+                    imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 360, width: 180, dimension: 500 }), // default value from edit module 1
+                    imageSizeSecond: getImageSizeDetail(renderedImageSizeSecond, { height: 120, width: 86, dimension: 715 }),
                 };
 
                 switch (templateType) {
                     case 'template_1':
                         template = <Block1Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_2':
                         template = <Block2Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_3':
                         template = <Block3Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_4':
                         template = <Block4Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_5':
                         template = <Block5Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_6':
                         template = <Block6Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_7':
                         template = <Block7Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_8':
                         template = <Block8Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_9':
                         template = <Block9Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_10':
                         template = <Block10Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_11':
                         template = <Block11Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_12':
                         template = <Block12Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_13':
                         template = <Block13Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_14':
                         template = <Block14Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_15':
                         template = <Block15Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_16':
                         template = <Block16Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_17':
                         template = <Block17Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_18':
                         template = <Block18Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_19':
                         template = <Block19Columns {...columnData} />;
+                        setHasSecondImageSize(true);
                         break;
                     case 'template_20':
                         template = <Block20Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_21':
                         template = <Block21Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_22':
                         template = <Block22Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_23':
                         template = <Block23Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_24':
                         template = <Block24Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_25':
                         template = <Block25Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_26':
                         template = <Block26Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                     case 'template_27':
                         template = <Block27Columns {...columnData} />;
+                        setHasSecondImageSize(false);
                         break;
                 }
                 setContent(template);
@@ -394,7 +479,10 @@ const PostRelated = compose(
         showMetaAuthor,
         showMetaComment,
         readmoreButtonDisabled,
-        listIcon
+        listIcon,
+        gutenversePreviewBlock,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
     ]);
 
     const headerData = {

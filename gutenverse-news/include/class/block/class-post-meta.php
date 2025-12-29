@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS\Block;
 
 use GUTENVERSE\NEWS\Block\Post_Guten;
+use GUTENVERSE\NEWS\Util\Svg_Icons;
 
 /**
  * Post_Meta
@@ -100,11 +101,10 @@ class Post_Meta extends Post_Guten {
 	 * @return string
 	 */
 	public function render_comment( $is_last_item ) {
+		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
+
 		return '<div class="gvnews-meta-comment meta-items ' . $is_last_item . '">
-					<a href="' . esc_url( gvnews_get_respond_link() ) . '">
-						<i class="far fa-comment"></i> '
-						. esc_html( gvnews_get_comments_number() ) .
-					'</a>
+					<a href="' . esc_url( gvnews_get_respond_link() ) . '">' . $icon_comment . ' ' . esc_html( gvnews_get_comments_number() ) . '</a>
 				</div>';
 	}
 
@@ -119,12 +119,12 @@ class Post_Meta extends Post_Guten {
 		global $post;
 		$avatar = isset( $this->attributes['showAvatar'] ) && $this->attributes['showAvatar'] ? get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) : '';
 		return '<div class="gvnews-meta-author meta-items ' . $is_last_item . '">' .
-					$avatar .
-					'<span class="meta-text">' .
-						esc_html__( 'by ', 'gutenverse-news' ) .
-					'</span>' .
-					gvnews_the_author_link( $post->post_author, false ) .
-				'</div>';
+			$avatar .
+			'<span class="meta-text">' .
+			esc_html__( 'by ', 'gutenverse-news' ) .
+			'</span>' .
+			gvnews_the_author_link( $post->post_author, false ) .
+			'</div>';
 	}
 
 	/**
@@ -139,8 +139,8 @@ class Post_Meta extends Post_Guten {
 		$date        = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
 		$show_prefix = isset( $this->attributes['datePrefix'] ) && $this->attributes['datePrefix'] ? ' with-prefix' : '';
 		return '<div class="gvnews-meta-date meta-items ' . $is_last_item . $show_prefix . '">' .
-					'<a href="#">' . $date . '</a>' .
-				'</div>';
+			'<a href="#">' . $date . '</a>' .
+			'</div>';
 	}
 
 	/**

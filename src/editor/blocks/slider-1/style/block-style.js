@@ -1,8 +1,7 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
-import getSliderStyle from '../../../control-panel/panel-styles/slider-styles';
 
-export const getBolockStyle = (elementId, attributes) => {
-    let data = getSliderStyle(elementId, attributes);
+export const getBlockStyle = (elementId, attributes) => {
+    let data = [];
 
     // ---- START TITLE STYLE -----
 
@@ -37,19 +36,6 @@ export const getBolockStyle = (elementId, attributes) => {
     });
 
     // ----- START NAVIGATION STYLE -----
-
-    isNotEmpty(attributes['hideNavigationButton']) && data.push({
-        'type': 'plain',
-        'id': 'hideNavigationButton',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls`,
-        'properties': [
-            {
-                'name': 'display',
-                'valueType': 'pattern',
-                'pattern': 'none !important',
-            }
-        ]
-    });
 
     isNotEmpty(attributes['hideImageNavigation']) && data.push({
         'type': 'plain',
@@ -137,39 +123,61 @@ export const getBolockStyle = (elementId, attributes) => {
         ],
     });
 
-    isNotEmpty(attributes['nextButtonSize']) && data.push({
+    isNotEmpty(attributes['nextIconSize']) && data.push({
         'type': 'plain',
-        'id': 'nextButtonSize',
+        'id': 'nextIconSize',
+        'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
         'properties': [
             {
                 'name': 'font-size',
                 'valueType': 'pattern',
-                'pattern': '{value}px; height: auto; width: auto;',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct',
                     }
                 }
             },
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            },
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            }
         ],
     });
 
-    isNotEmpty(attributes['prevButtonSize']) && data.push({
+    isNotEmpty(attributes['prevIconSize']) && data.push({
         'type': 'plain',
-        'id': 'prevButtonSize',
+        'id': 'prevIconSize',
+        'responsive': true,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
         'properties': [
             {
                 'name': 'font-size',
                 'valueType': 'pattern',
-                'pattern': '{value}px; height: auto; width: auto;',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct',
                     }
                 }
             },
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            },
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': 'fit-content',
+            }
         ],
     });
 
@@ -247,79 +255,77 @@ export const getBolockStyle = (elementId, attributes) => {
         ],
     });
 
-    if (isNotEmpty(attributes['nextButtonTransition'])) {
-        data.push({
-            'type': 'plain',
-            'id': 'nextButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'background-color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
+    isNotEmpty(attributes['nextButtonHeight']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonHeight',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
                     }
-                },
-            ],
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'nextButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['nextButtonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'nextButtonWidth',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-next`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
                     }
-                },
-            ],
-        });
-    }
-
-    if (isNotEmpty(attributes['prevButtonTransition'])) {
-        data.push({
-            'type': 'plain',
-            'id': 'prevButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'background-color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['prevButtonHeight']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonHeight',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
                     }
-                },
-            ],
-        });
-        data.push({
-            'type': 'plain',
-            'id': 'prevButtonTransition',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
-            'properties': [
-                {
-                    'name': 'transition',
-                    'valueType': 'pattern',
-                    'pattern': 'color {value}ms;',
-                    'patternValues': {
-                        'value': {
-                            'type': 'direct',
-                        }
+                }
+            },
+        ],
+    })
+    isNotEmpty(attributes['prevButtonWidth']) && data.push({
+        'type': 'plain',
+        'id': 'prevButtonWidth',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls button.tns-prev`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}px;',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
                     }
-                },
-            ],
-        });
-    }
-
+                }
+            },
+        ],
+    })
     return data;
 };

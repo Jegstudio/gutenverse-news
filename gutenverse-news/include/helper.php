@@ -187,6 +187,8 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 		$dots             = false;
 		$next_prev_button = '';
 		$is_type_3        = isset( $args['pagination_mode'] ) && 'nav_3' === $args['pagination_mode'];
+		$prev_icon        = \GUTENVERSE\NEWS\Util\Svg_Icons::render_svg_icon( 'fas fa-angle-left' );
+		$next_icon        = \GUTENVERSE\NEWS\Util\Svg_Icons::render_svg_icon( 'fas fa-angle-right' );
 		/* translators: %1s and %2$s represents page number */
 		$paging_text = '<span class="page_info">' . sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total ) . '</span>';
 		if ( 'left' === $args['pagination_align'] ) {
@@ -209,10 +211,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			 * @since 3.0.0
 			 */
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$next_prev_button .= '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 			} else {
 				$page_links   = array();
-				$page_links[] = '<a class="nav-item page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$page_links[] = '<a class="nav-item page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 				if ( 'left' === $args['pagination_align'] ) {
 					$page_links[] = $paging_text;
 				}
@@ -247,12 +249,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			$link .= $args['add_fragment'];
 
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
-
-				error_log( $next_prev_button );
+				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			} else {
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span></a>';
+				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			}
 		endif;
 
@@ -267,13 +267,13 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				break;
 
 			default:
-				$nav_class        = 'gvnews_page' . $args['pagination_mode'];
-				$nav_align        = 'gvnews_align' . $args['pagination_align'];
-				$nav_text         = $args['pagination_navtext'] ? '' : 'no_navtext';
-				$nav_info         = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
+				$nav_class = 'gvnews_page' . $args['pagination_mode'];
+				$nav_align = 'gvnews_align' . $args['pagination_align'];
+				$nav_text = $args['pagination_navtext'] ? '' : 'no_navtext';
+				$nav_info = $args['pagination_pageinfo'] ? '' : 'no_pageinfo';
 				$next_prev_button = ( isset( $next_prev_button ) && 'left' === $args['pagination_align'] ) ? '<div class="next-prev-button">' . $next_prev_button . '</div>' : $next_prev_button;
 				/* translators: %1s and %2$s represents page number */
-				$paging_text     = '<span class="page_info">' . sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total ) . '</span>';
+				$paging_text = '<span class="page_info">' . sprintf( esc_html__( 'Page %1$s of %2$s', 'gutenverse-news' ), $current, $total ) . '</span>';
 				$top_paging_text = 'center' === $args['pagination_align'] ? $paging_text : '';
 
 				$r = join( "\n", $page_links );
@@ -311,19 +311,19 @@ if ( ! function_exists( 'gvnews_edit_post' ) ) {
 			switch ( $type ) {
 				case 'post':
 					$text = esc_html__( 'edit post', 'gutenverse-news' );
-					$url  = get_edit_post_link( $id );
+					$url = get_edit_post_link( $id );
 					break;
 				case 'playlist':
 					$text = esc_html__( 'edit playlist', 'gutenverse-news' );
-					$url  = get_permalink( $id );
+					$url = get_permalink( $id );
 					break;
 				case 'podcast':
 					$text = esc_html__( 'edit podcast', 'gutenverse-news' );
-					$url  = get_edit_term_link( $id );
+					$url = get_edit_term_link( $id );
 					break;
 				case 'category':
 					$text = esc_html__( 'edit category', 'gutenverse-news' );
-					$url  = get_edit_term_link( $id );
+					$url = get_edit_term_link( $id );
 					break;
 			}
 
@@ -335,7 +335,7 @@ if ( ! function_exists( 'gvnews_edit_post' ) ) {
 			);
 
 			return "<a class=\"{$wrapper_classes}\" href=\"" . esc_url( $url ) . "\" target=\"_blank\">
-                        <i class=\"fa fa-pencil\"></i>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d='M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z'></path></svg>
                         <span>{$text}</span>
                     </a>";
 		}
@@ -457,7 +457,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_1 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_1 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_1 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -471,7 +471,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_2 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_2 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_2 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_secondary_background'] ) && ! empty( $attr['header_secondary_background'] ) ) {
@@ -485,7 +485,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_3 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_3 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_3 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				break;
@@ -495,7 +495,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_4 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_4 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_4 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				break;
@@ -505,7 +505,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				}
 
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_5 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_5 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_5 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -515,7 +515,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_6':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_6 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_6 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_6 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -529,7 +529,7 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_7':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_7 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_7 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_7 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_accent_color'] ) && ! empty( $attr['header_accent_color'] ) ) {
@@ -539,12 +539,12 @@ if ( ! function_exists( 'gvnews_header_styling' ) ) {
 				break;
 			case 'heading_8':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_8 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_8 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_8 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 				break;
 			case 'heading_9':
 				if ( isset( $attr['header_text_color'] ) && ! empty( $attr['header_text_color'] ) ) {
-					$style .= ".{$unique_class}.gvnews_block_heading_9 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title i { color: {$attr['header_text_color']}; }";
+					$style .= ".{$unique_class}.gvnews_block_heading_9 .gvnews_block_title span, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title i, .{$unique_class}.gvnews_block_heading_9 .gvnews_block_title svg { color: {$attr['header_text_color']}; }";
 				}
 
 				if ( isset( $attr['header_line_color'] ) && ! empty( $attr['header_line_color'] ) ) {
@@ -1515,6 +1515,31 @@ if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 	 */
 	function gutenverse_pro_active() {
 		return defined( 'GUTENVERSE_PRO_VERSION' );
+	}
+}
+
+if ( ! function_exists( 'gvnews_render_icon' ) ) {
+	/**
+	 * Render Icon
+	 *
+	 * @param string $type Icon type.
+	 * @param string $icon Icon class.
+	 * @param string $svg  SVG data.
+	 *
+	 * @return string
+	 */
+	function gvnews_render_icon( $type, $icon, $svg ) {
+		if ( 'svg' === $type ) {
+			if ( ! empty( $svg ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+				$svg_data = base64_decode( $svg );
+				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+			}
+		} elseif ( ! empty( $icon ) ) {
+			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
+		}
+
+		return null;
 	}
 }
 

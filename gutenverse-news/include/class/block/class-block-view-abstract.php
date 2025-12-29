@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS\Block;
 
 use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
+use GUTENVERSE\NEWS\Util\Svg_Icons;
 use GUTENVERSE\NEWS\Util\Options;
 
 /**
@@ -203,7 +204,7 @@ abstract class Block_View_Abstract {
 					$class_name = 'gvnews_col_2o3';
 					break;
 				case 12:
-						$class_name = 'gvnews_col_3o3';
+					$class_name = 'gvnews_col_3o3';
 					break;
 				default:
 					$class_name = 'gvnews_col_3o3';
@@ -286,7 +287,7 @@ abstract class Block_View_Abstract {
 		/* translators: %1s represents column and %2$s represents width */
 		$text    = wp_kses( sprintf( __( 'This module works best for column <strong>%1$s</strong> ( current column width <strong>%2$s</strong> ). This warning will only show if you login as Admin.', 'gutenverse-news' ), implode( ', ', $compatible ), $column ), wp_kses_allowed_html() );
 		$element =
-		'<div class="alert alert-error alert-compatibility">
+			'<div class="alert alert-error alert-compatibility">
                 <strong>' . esc_html__( 'Optimal Column', 'gutenverse-news' ) . "</strong> {$text}
             </div>";
 
@@ -352,7 +353,7 @@ abstract class Block_View_Abstract {
 		if (
 			isset( $this->attribute['force_normal_image_load'] )
 			&& ( 'true' === $this->attribute['force_normal_image_load']
-			|| 'yes' === $this->attribute['force_normal_image_load'] )
+				|| 'yes' === $this->attribute['force_normal_image_load'] )
 		) {
 			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size );
 		}
@@ -620,7 +621,8 @@ abstract class Block_View_Abstract {
 	 */
 	public function get_meta_date( $post ) {
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
-			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '"><i class="far fa-clock"></i> ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+			$icon = Svg_Icons::render_svg_icon( 'far fa-clock' );
+			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		}
 		return '';
 	}
@@ -634,7 +636,8 @@ abstract class Block_View_Abstract {
 	public function get_meta_comment( $post ) {
 		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
 			$comment = gvnews_get_comments_number( $post->ID );
-			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" ><i class="far fa-comment"></i> ' . esc_attr( $comment ) . ' </a></div>';
+			$icon    = Svg_Icons::render_svg_icon( 'far fa-comment' );
+			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon . ' ' . esc_attr( $comment ) . ' </a></div>';
 		}
 		return '';
 	}
@@ -659,7 +662,7 @@ abstract class Block_View_Abstract {
 					return '';
 				}
 				$author_avatar = ( $is_rss ? false : $avatar ) ?
-				'<div class="gvnews_author_avatar">
+					'<div class="gvnews_author_avatar">
 						' . get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) . '
 					</div>' : '';
 				return '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
@@ -673,6 +676,29 @@ abstract class Block_View_Abstract {
 			}
 		}
 		return '';
+	}
+
+	/**
+	 * Render Icon
+	 *
+	 * @param string $type Icon type.
+	 * @param string $icon Icon class.
+	 * @param string $svg  SVG data.
+	 *
+	 * @return string
+	 */
+	public function render_icon( $type, $icon, $svg ) {
+		if ( 'svg' === $type ) {
+			if ( ! empty( $svg ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+				$svg_data = base64_decode( $svg );
+				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
+			}
+		} elseif ( ! empty( $icon ) ) {
+			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
+		}
+
+		return null;
 	}
 
 	/**

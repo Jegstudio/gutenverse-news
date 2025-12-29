@@ -25,7 +25,7 @@ export const navigationPanel = (props) => {
                     'type': 'plain',
                     'id': 'navIconSize',
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_news_ticker_control i`,
+                    'selector': `.${elementId} .gvnews_news_ticker_control i, .${elementId} .gvnews_news_ticker_control svg`,
                     'properties': [
                         {
                             'name': 'font-size',

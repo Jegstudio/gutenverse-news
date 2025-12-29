@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from '@wordpress/element';
 import OkayNav from '../../frontend/okaynav/okaynav';
+import { renderIcon } from 'gutenverse-core/helper';
 
 function Valid(value) {
     if ( value && value.length ) {
@@ -78,10 +79,17 @@ function HeadTitle(props) {
     if ( !props.title && !props.second_title ) {
         return null;
     }
+
+    const icon = props.icon || '';
+    const iconType = props.iconType || 'icon';
+    const iconSVG = props.iconSVG || '';
+
+    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
+
     return (
         <h3 className="gvnews_block_title">
             <span>
-                {props.icon && <i className={props.icon}></i>}
+                {renderIcon(finalIcon, iconType, iconSVG)}
                 {props.title}
                 {props.second_title && <strong>
                     &nbsp;{props.second_title}

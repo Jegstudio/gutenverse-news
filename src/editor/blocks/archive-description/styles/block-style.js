@@ -136,9 +136,6 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
-    console.log(attributes);
-
-
     return data;
 };
 
