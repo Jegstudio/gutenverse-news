@@ -15,7 +15,8 @@ import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import { getModuleOptions } from '../../utils/helper';
-import { getBolockStyle } from './style/block-style';
+import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
+import { getBlockStyle } from './style/block-style';
 
 const defaultOptions = getModuleOptions();
 
@@ -56,7 +57,11 @@ const Slider1Block = compose(
         hoverEffect,
         autoplayDelay,
         nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
@@ -79,7 +84,16 @@ const Slider1Block = compose(
     const elementRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBolockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getSliderStyle(
+            elementId,
+            attributes,
+            getBlockStyle(elementId, attributes)
+        ),
+        elementRef
+    );
 
     useEffect(() => {
         if (elementRef) {
@@ -158,9 +172,22 @@ const Slider1Block = compose(
                 slider.push(<RenderSlider attr={attr} index={i} post={props.postData[i]} />);
             }
         }
+
         return (
             <>
-                <div ref={blockRef} className="gvnews_slider_type_1 gvnews_slider" data-autoplay={autoplay ? true : ''} data-delay={sliderDelay} data-hover-action={hoverEffect ? true : ''} data-class-next={nextButtonIcon} data-class-prev={prevButtonIcon}>
+                <div
+                    ref={blockRef}
+                    className="gvnews_slider_type_1 gvnews_slider"
+                    data-autoplay={autoplay ? true : ''}
+                    data-delay={sliderDelay}
+                    data-hover-action={hoverEffect ? true : ''}
+                    data-class-next={nextButtonIcon}
+                    data-class-next-type={nextButtonIconType}
+                    data-class-next-svg={nextButtonIconSVG}
+                    data-class-prev={prevButtonIcon}
+                    data-class-prev-type={prevButtonIconType}
+                    data-class-prev-svg={prevButtonIconSVG}
+                >
                     {content}
                 </div>
                 <div className="gvnews_slider_thumbnail_wrapper">
@@ -300,7 +327,11 @@ const Slider1Block = compose(
         showMetaDate,
         showMetaAuthor,
         nextButtonIcon,
+        nextButtonIconSVG,
+        nextButtonIconType,
         prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     ]);
 
     useEffect(() => {

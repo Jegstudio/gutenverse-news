@@ -74,9 +74,24 @@ class Newsticker extends Block_View_Abstract {
 			}
 		}
 
+		// Get icon rendering HTML for main icon
+		$icon_type       = isset( $attr['newsticker_icon_type'] ) ? $attr['newsticker_icon_type'] : 'icon';
+		$icon_svg        = isset( $attr['newsticker_icon_svg'] ) ? $attr['newsticker_icon_svg'] : '';
+		$newsticker_icon = empty( $attr['newsticker_icon'] ) ? '' : $this->render_icon( $icon_type, $attr['newsticker_icon'], $icon_svg );
+
+		// Get icon rendering HTML for prev button
+		$prev_icon_type = isset( $attr['prev_icon_type'] ) ? $attr['prev_icon_type'] : 'icon';
+		$prev_icon_svg  = isset( $attr['prev_icon_svg'] ) ? $attr['prev_icon_svg'] : '';
+		$prev_icon_html = empty( $attr['prev_icon'] ) ? '' : $this->render_icon( $prev_icon_type, $attr['prev_icon'], $prev_icon_svg );
+
+		// Get icon rendering HTML for next button
+		$next_icon_type = isset( $attr['next_icon_type'] ) ? $attr['next_icon_type'] : 'icon';
+		$next_icon_svg  = isset( $attr['next_icon_svg'] ) ? $attr['next_icon_svg'] : '';
+		$next_icon_html = empty( $attr['next_icon'] ) ? '' : $this->render_icon( $next_icon_type, $attr['next_icon'], $next_icon_svg );
+
 		$output =
 		'<div ' . esc_attr( $this->element_id( $attr ) ) . ' class="gvnews_breakingnews clearfix ' . esc_attr( $this->unique_id ) . '">
-                <div class="gvnews_breakingnews_title"><i class="' . esc_attr( $attr['newsticker_icon'] ) . '">&nbsp;</i> <span>' . esc_attr( $attr['newsticker_title'] ) . "</span></div>
+                <div class="gvnews_breakingnews_title">' . $newsticker_icon . '&nbsp;<span>' . esc_attr( $attr['newsticker_title'] ) . "</span></div>
 
                 <div class=\"gvnews_news_ticker\" data-autoplay='" . esc_attr( $attr['enable_autoplay'] ) . "' data-delay='" . esc_attr( $autoplay_delay ) . "' data-animation='" . esc_attr( $attr['newsticker_animation'] ) . "'>
                     <div class=\"gvnews_news_ticker_items\">
@@ -84,11 +99,11 @@ class Newsticker extends Block_View_Abstract {
                     </div>
                 </div>
 				<div class=\"gvnews_news_ticker_control\">
-					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\"><i class=\"" . esc_attr( $attr['prev_icon'] ) . '"></i></div>
-					<span class="nav-separator"></span>
-					<div class="gvnews_news_ticker_next gvnews_news_ticker_arrow"><i class="' . esc_attr( $attr['next_icon'] ) . '"></i></div>
+					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\">" . $prev_icon_html . "</div>
+					<span class=\"nav-separator\"></span>
+					<div class=\"gvnews_news_ticker_next gvnews_news_ticker_arrow\">" . $next_icon_html . "</div>
                 </div>
-            </div>';
+            </div>";
 
 		return $output;
 	}

@@ -8,6 +8,7 @@ import { applyFilters } from '@wordpress/hooks';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { designPanel } from './panel-design';
+import { navigationButtonStylePanel } from '../../../control-panel/panel-navigation-button-style';
 
 export const panelList = () => {
     return applyFilters(
@@ -36,6 +37,15 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: designPanel,
                 tabRole: TabStyle
+            },
+            {
+                title: __('Navigation Button Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => navigationButtonStylePanel({
+                    ...props,
+                    sliderType: 'slider-6',
+                }),
+                tabRole: TabStyle,
             },
             {
                 title: __('Meta Style', 'gutenverse-news'),

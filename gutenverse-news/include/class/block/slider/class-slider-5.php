@@ -92,8 +92,14 @@ class Slider_5 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-					'delay'    => esc_attr( $autoplay_delay ),
+					'autoplay'   => esc_attr( $attr['enable_autoplay'] ),
+					'delay'      => esc_attr( $autoplay_delay ),
+					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+					'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+					'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+					'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 				)
 			);
 

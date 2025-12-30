@@ -248,15 +248,25 @@
             "type": "string",
             "default": "fas fa-chevron-right"
         },
+        "nextButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "nextButtonIconSVG": {
+            "type": "string"
+        },
         "prevButtonIcon": {
             "type": "string",
             "default": "fas fa-chevron-left"
         },
-        "nextButtonColor": {
-            "type": "object",
-            "copyStyle": true
+        "prevButtonIconType": {
+            "type": "string",
+            "default": "icon"
         },
-        "prevButtonColor": {
+        "prevButtonIconSVG": {
+            "type": "string"
+        },
+        "nextButtonColor": {
             "type": "object",
             "copyStyle": true
         },
@@ -264,31 +274,47 @@
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonColorHover": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "nextButtonSize": {
-            "type": "string"
-        },
-        "prevButtonSize": {
-            "type": "string"
-        },
-        "nextButtonPadding": {
+        "nextIconSize": {
             "type": "object"
         },
-        "prevButtonPadding": {
+        "nextButtonHeight": {
+            "type": "object"
+        },
+        "nextButtonWidth": {
+            "type": "object"
+        },
+        "nextButtonPadding": {
             "type": "object"
         },
         "nextButtonBgColor": {
             "type": "object",
             "copyStyle": true
         },
-        "prevButtonBgColor": {
+        "nextButtonBgColorHover": {
             "type": "object",
             "copyStyle": true
         },
-        "nextButtonBgColorHover": {
+        "prevButtonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevButtonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "prevIconSize": {
+            "type": "object"
+        },
+        "prevButtonHeight": {
+            "type": "object"
+        },
+        "prevButtonWidth": {
+            "type": "object"
+        },
+        "prevButtonPadding": {
+            "type": "object"
+        },
+        "prevButtonBgColor": {
             "type": "object",
             "copyStyle": true
         },
@@ -302,12 +328,6 @@
         },
         "tootlipColor": {
             "type": "object"
-        },
-        "nextButtonTransition":{
-            "type":"string"
-        },
-        "prevButtonTransition":{
-            "type":"string"
         },
         "showMeta": {
             "type": "boolean",
@@ -340,6 +360,18 @@
             "type": "object"
         },
         "containerPadding": {
+            "type": "object"
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
             "type": "object"
         }
     },

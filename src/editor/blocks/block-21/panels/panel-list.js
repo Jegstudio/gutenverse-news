@@ -14,7 +14,8 @@ import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-ov
 import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { postItemGridPanel } from '../../../control-panel/panel-post-item';
-
+import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 
 export const panelList = () => {
     return [
@@ -94,6 +95,12 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
+            title: __('Card Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: cardStylePanelModule,
+            tabRole: TabStyle,
+        },
+        {
             title: __('Content Container', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) =>
@@ -114,6 +121,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: paginationStylePanel,
             tabRole: TabStyle,
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Background', 'gutenverse-news'),

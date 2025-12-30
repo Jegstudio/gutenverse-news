@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { IconControl, RangeControl, TextControl } from 'gutenverse-core/controls';
+import { IconSVGControl, RangeControl, TextControl } from 'gutenverse-core/controls';
 
 export const contentPanel = props => {
     const {
@@ -32,7 +32,7 @@ export const contentPanel = props => {
             show: withListIcon,
             label: __('Item List Icon', 'gutenverse-news'),
             description: __('Choose icon for post list icon.', 'gutenverse-news'),
-            component: IconControl
+            component: IconSVGControl
         },
     ];
 };

@@ -69,6 +69,8 @@ class Block extends StyleAbstract {
 		$this->generate_content_container_style();
 		$this->title_container_style();
 		$this->post_item_style();
+		$this->no_content_style();
+		$this->generate_card_style();
 
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
@@ -495,10 +497,10 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['listIconColor'] ) ) {
-			$selector = isset( $this->attrs['selectorIconList'] ) ? $this->attrs['selectorIconList'] : '.gvnews_pl_xs_2>i';
+			$selector = isset( $this->attrs['selectorIconList'] ) ? $this->attrs['selectorIconList'] : '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg';
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper .{$this->element_id}  {$selector}",
+					'selector'       => $this->get_selector( 'selectorIconList', $selector ),
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -530,8 +532,65 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
-
 		do_action( 'gvnews_module_style', $this );
+	}
+	/**
+	 * Generate style block no content style.
+	 */
+	private function no_content_style() {
+		if ( isset( $this->attrs['noContentTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['noContentTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['noContentColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentBackground'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_empty_module", $this->attrs['noContentBackground'] );
+		}
+
+		if ( isset( $this->attrs['noContentBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['noContentBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['noContentPadding'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 	/**
 	 * Generate style block post item style.
@@ -610,7 +669,7 @@ class Block extends StyleAbstract {
 
 				}
 			}
-		}else {
+		} else {
 			if ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(
 					array(
@@ -794,7 +853,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav .gutenverse-icon-svg svg",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'font-size' );
 					},
@@ -986,7 +1045,7 @@ class Block extends StyleAbstract {
 			if ( 'nextprev' === $this->attrs['paginationMode'] && $this->attrs['showNavText'] ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next i",
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .next svg",
 						'property'       => function ( $value ) {
 							return $this->handle_unit_point( $value, 'margin-left' );
 						},
@@ -996,7 +1055,7 @@ class Block extends StyleAbstract {
 				);
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i",
+						'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev i, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.showtext .prev svg",
 						'property'       => function ( $value ) {
 							return $this->handle_unit_point( $value, 'margin-right' );
 						},
@@ -1065,7 +1124,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .fas",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta .fas, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -1078,7 +1137,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['metaIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .fas",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover .fas, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:hover svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -1286,7 +1345,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_block_heading .gvnews_block_title span , .{$this->element_id} .gvnews_block_heading",
 					'property'       => function ( $value ) {
-							return "height: {$value}px;";
+						return "height: {$value}px;";
 					},
 					'value'          => $this->attrs['headerHeight'],
 					'device_control' => true,
@@ -1322,16 +1381,16 @@ class Block extends StyleAbstract {
 
 		if ( $with_header_filter ) {
 			if ( isset( $this->attrs['headerFilterColor'] ) ) {
-					$this->inject_style(
-						array(
-							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a:not(.current)",
-							'property'       => function ( $value ) {
-								return $this->handle_color( $value, 'color' );
-							},
-							'value'          => $this->attrs['headerFilterColor'],
-							'device_control' => false,
-						)
-					);
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_subcat_list>li>a:not(.current)",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs['headerFilterColor'],
+						'device_control' => false,
+					)
+				);
 			}
 			if ( isset( $this->attrs['headerFilterColorActive'] ) ) {
 				$this->inject_style(
@@ -1474,7 +1533,6 @@ class Block extends StyleAbstract {
 
 			case 'heading_9':
 				if ( isset( $this->attrs['headerLineThick'] ) ) {
-					error_log( 'INJECT STYLe' );
 					$this->inject_style(
 						array(
 							'selector'       => ".{$this->element_id} .gvnews_block_heading_9",
@@ -1492,7 +1550,7 @@ class Block extends StyleAbstract {
 						array(
 							'selector'       => ".{$this->element_id} .gvnews_block_heading_9",
 							'property'       => function ( $value ) {
-										return "border-top-width: {$value}px;";
+								return "border-top-width: {$value}px;";
 							},
 							'value'          => $this->attrs['headerLineThick2'],
 							'device_control' => true,
@@ -1631,7 +1689,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews_postblock_content   .gvnews_post_meta",
 					'property'       => function ( $value ) {
-						return "justify-content: {$this->handle_align_reverse($value)};";
+						return "justify-content: {$this->handle_align_reverse( $value )};";
 					},
 					'value'          => $this->attrs['contentAlign'],
 					'device_control' => true,
@@ -1757,7 +1815,7 @@ class Block extends StyleAbstract {
 				array(
 					'selector'       => ".{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews_postblock_content   .gvnews_post_meta",
 					'property'       => function ( $value ) {
-						return "justify-content: {$this->handle_align_reverse($value)};";
+						return "justify-content: {$this->handle_align_reverse( $value )};";
 					},
 					'value'          => $this->attrs['contentAlignSecond'],
 					'device_control' => true,
@@ -1854,11 +1912,77 @@ class Block extends StyleAbstract {
 		}
 	}
 
-	private function get_selector( $selector, $def ) {
-		if ( isset( $this->attrs[ $selector ] ) ) {
-			return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $this->attrs[ $selector ];
+	/**
+	 * Generate card style.
+	 */
+	private function generate_card_style() {
+		$str                   = explode( '\\', $this->attrs['gvnewsModule'] );
+		$gvnews_module         = end( $str );
+		$modules_with_box_wrap = array(
+			'Module_32',
+			'Module_33',
+			'Module_34',
+			'Module_35',
+			'Module_36',
+			'Module_37',
+			'Module_39',
+		);
+		$selector              = in_array( $gvnews_module, $modules_with_box_wrap, true )
+			? ".{$this->element_id} .gvnews_postblock .gvnews_post .box_wrap"
+			: ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)";
+		// Main Class.
+		if ( isset( $this->attrs['cardBorder'] ) ) {
+			$this->handle_border( 'cardBorder', $selector );
 		}
-		return ".gvnews-block.gvnews-block-wrapper.{$this->element_id} " . $def;
+		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['cardBorderResponsive'],
+					'device_control' => true,
+					'skip_device'    => array(
+						'Desktop',
+					),
+				)
+			);
+		}
+		if ( isset( $this->attrs['cardPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['cardPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	private function get_selector( $selector, $def ) {
+		$base = ".gvnews-block.gvnews-block-wrapper.{$this->element_id}";
+		$raw  = isset( $this->attrs[ $selector ] ) ? $this->attrs[ $selector ] : $def;
+
+		// If raw is an array, prefix each item
+		if ( is_array( $raw ) ) {
+			$parts = array_map( function ( $p ) use ( $base ) {
+				return trim( $base . ' ' . $p );
+			}, $raw );
+
+			return implode( ', ', $parts );
+		}
+
+		// Split by comma, trim and prefix each selector with base
+		$parts = array_map( 'trim', explode( ',', $raw ) );
+		$parts = array_map( function ( $p ) use ( $base ) {
+			return "{$base} {$p}";
+		}, $parts );
+
+		return implode( ', ', $parts );
 	}
 
 	private function dropdown_header_filter_style() {

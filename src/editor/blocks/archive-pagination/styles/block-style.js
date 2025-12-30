@@ -3,7 +3,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
-    const { paginationMode, paginationAlign } = attributes
+    const { paginationMode, paginationAlign } = attributes;
     const isType3 = paginationMode === 'nav_3';
     /**
      * Panel Design
@@ -401,11 +401,6 @@ const getBlockStyle = (elementId, attributes) => {
         'id': 'paginationHoverBorderResponsive',
         'selector': isType3 ? `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_pagenav_3 .page_nav:hover` : `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_navigation .page_nav:hover, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_navigation .page_number:hover`,
     });
-
-
-
-    console.log(isType3);
-    console.log(data);
 
     /**
      * Panel Background
