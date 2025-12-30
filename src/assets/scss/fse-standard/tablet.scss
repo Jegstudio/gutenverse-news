@@ -104,4 +104,12 @@
             }
         }
     }
+
+    /* Postblock 23 */
+    .gvnews_postblock_23 {
+        &.gvnews_col_3o3 .gvnews_posts {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 30px;
+        }
+    }
 }

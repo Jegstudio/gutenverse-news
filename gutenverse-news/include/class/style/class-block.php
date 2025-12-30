@@ -630,7 +630,7 @@ class Block extends StyleAbstract {
 					array(
 						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
 						'property'       => function ( $value ) {
-							return "margin: {$value}px 0;";
+							return "margin-top: {$value}px;";
 						},
 						'value'          => $this->attrs['rowItemGap'],
 						'device_control' => true,
@@ -712,7 +712,7 @@ class Block extends StyleAbstract {
 					array(
 						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
 						'property'       => function ( $value ) {
-							return "margin: {$value}px 0;";
+							return "margin-top: {$value}px;";
 						},
 						'value'          => $this->attrs['rowItemGap'],
 						'device_control' => true,

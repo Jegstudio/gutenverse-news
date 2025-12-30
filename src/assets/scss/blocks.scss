@@ -13,7 +13,6 @@
 @import '../../editor/blocks/block-05/styles/styles.scss';
 @import '../../editor/blocks/block-06/styles/styles.scss';
 @import '../../editor/blocks/block-07/styles/styles.scss';
-@import '../../editor/blocks/block-23/styles/styles.scss';
 @import '../../editor/blocks/block-24/styles/styles.scss';
 @import '../../editor/blocks/block-25/styles/styles.scss';
 @import '../../editor/blocks/block-27/styles/styles.scss';
@@ -2706,7 +2705,7 @@
 .gvnews_pagination_loadmore .gvnews_block_navigation,
 .gvnews_pagination_scrollload .gvnews_block_navigation,
 .gvnews-element .gvnews_block_navigation {
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 .navigation_overlay {
@@ -3446,35 +3445,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-
-
-
-/* Postblock 23 */
-
-.gvnews_postblock_23 {
-  .gvnews_posts_wrap {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .gvnews_posts {
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    display: flex;
-    align-items: flex-start;
-    margin-right: -40px;
-  }
-
-  .gvnews_post {
-    float: left;
-    width: 50%;
-    padding-right: 40px;
-  }
-
-  .gvnews_post_excerpt {
-    margin: 10px 0;
-  }
-}
 
 /* Postblock 24 */
 
@@ -4456,14 +4426,6 @@
 
 
 @media screen and (min-width: 768px) {
-
-  .gvnews_postblock_23.gvnews_pb_boxed {
-
-    &.gvnews_col_2o3 .gvnews_posts,
-    &.gvnews_col_3o3 .gvnews_posts {
-      margin-bottom: -25px;
-    }
-  }
 
   .gvnews_postblock_27.gvnews_pb_boxed {
 
@@ -7982,24 +7944,6 @@ h3.gvnews_author_name {
   }
 
 
-
-  .gvnews_postblock_23 {
-    &.gvnews_col_1o3 {
-      .gvnews_posts {
-        margin-right: 0;
-      }
-
-      .gvnews_post {
-        width: 100%;
-        padding-right: 0;
-      }
-    }
-
-    &.gvnews_col_3o3 .gvnews_post {
-      width: 33.333333333%;
-    }
-  }
-
   .gvnews_postblock_24 {
     &:not(.gvnews_col_1o3) .gvnews_posts {
       -webkit-flex-wrap: wrap;
@@ -9845,11 +9789,6 @@ h3.gvnews_author_name {
   }
 
 
-  .gvnews_postblock_23 {
-    .gvnews_post_title {
-      font-size: 16px;
-    }
-  }
 
   .gvnews_postblock_24 .gvnews_pl_md_box {
     margin-bottom: 15px;
@@ -10865,20 +10804,6 @@ h3.gvnews_author_name {
     font-size: 14px;
   }
 
-  .gvnews_postblock_23 {
-    .gvnews_posts {
-      margin-right: 0;
-    }
-
-    .gvnews_post {
-      width: 100%;
-      padding-right: 0;
-    }
-
-    .gvnews_post_excerpt {
-      margin: 0 0 0.5em;
-    }
-  }
 
   .gvnews_postblock_25 {
     .gvnews_post {
@@ -11779,9 +11704,6 @@ h3.gvnews_author_name {
     font-size: 16px;
   }
 
-  .gvnews_postblock_23 .gvnews_post {
-    margin-bottom: 20px;
-  }
 
   .gvnews_postblock_25 {
     .gvnews_postblock_heading {

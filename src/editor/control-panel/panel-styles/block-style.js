@@ -1907,9 +1907,9 @@ const postItemStyle = (elementId, attributes, data) => {
                 'selector': `.${elementId} .gvnews_postblock .gvnews_block_navigation`,
                 'properties': [
                     {
-                        'name': 'margin',
+                        'name': 'margin-top',
                         'valueType': 'pattern',
-                        'pattern': '{value}px 0',
+                        'pattern': '{value}px',
                         'patternValues': {
                             'value': {
                                 'type': 'direct'
@@ -2021,9 +2021,9 @@ const postItemStyle = (elementId, attributes, data) => {
                 'selector': `.${elementId} .gvnews_postblock .gvnews_block_navigation`,
                 'properties': [
                     {
-                        'name': 'margin',
+                        'name': 'margin-top',
                         'valueType': 'pattern',
-                        'pattern': '{value}px 0',
+                        'pattern': '{value}px',
                         'patternValues': {
                             'value': {
                                 'type': 'direct'
