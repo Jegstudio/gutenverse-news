@@ -5,6 +5,7 @@ import LockedBlockModule from '../../part/locked-module';
 import { gutenverseProActive } from '../../utils/helper';
 import BlockModule from '../../part/module';
 import { panelList } from './panels/panel-list';
+import dedicatedStyle from './styles/block-style';
 
 const Block24Block = compose(
     withPartialRender,
@@ -22,7 +23,8 @@ const Block24Block = compose(
             {...props}
             panelList={panelList}
             defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
-            mainThumbnailClass={'gvnews_pl_md_box'}
+            useDedicatedStyle={true}
+            dedicatedStyle={dedicatedStyle}
         />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
