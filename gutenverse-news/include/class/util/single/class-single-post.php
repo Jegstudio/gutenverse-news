@@ -231,7 +231,7 @@ class Single_Post {
 	public function featured_image( $size, $id = null, $class = null ) {
 		$output = "<div {$id} class=\"gvnews_featured featured_image {$class}\">";
 
-		$image_src = $this->get_featured_image_src( 'full' );
+		// $image_src = $this->get_featured_image_src( 'full' );
 
 		if ( has_post_thumbnail() ) {
 			$output .= \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail_unwrap( $this->post_id, $size );
