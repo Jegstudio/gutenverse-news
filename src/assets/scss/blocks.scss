@@ -1657,9 +1657,11 @@
 
 .gvnews_pl_lg_7 {
   background: #fff;
-  margin-bottom: 40px;
   border: 1px solid #eee;
   overflow: visible;
+  &:not(:last-of-type) {
+    margin-bottom: 40px;
+  }
 
   .gvnews_postblock_content {
     padding: 20px 30px 30px;
@@ -2222,7 +2224,9 @@
 }
 
 .gvnews_pl_sm_2 {
-  margin-bottom: 20px;
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
 
   &:after {
     content: '';
