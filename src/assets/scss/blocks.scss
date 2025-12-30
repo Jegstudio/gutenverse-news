@@ -2272,7 +2272,9 @@
 /* Postlist Extra Small */
 
 .gvnews_pl_xs {
-  margin: 0 0 12px;
+  &:not(:last-of-type) {
+    margin-bottom: 12px;
+  }
 
   .gvnews_postblock_content {
     position: relative;
@@ -2359,7 +2361,9 @@
 }
 
 .gvnews_pl_xs_4 {
-  margin: 0 0 10px;
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
 
   .gvnews_postblock_content {
     position: relative;
@@ -10709,8 +10713,11 @@ h3.gvnews_author_name {
   }
 
   .gvnews_pl_xs_4 {
-    margin-bottom: 5px;
     padding-bottom: 5px;
+
+    &:not(:last-of-type) {
+      margin-bottom: 5px;
+    }
   }
 
   .gvnews_heropost_1 .gvnews_pl_sm_2 {
