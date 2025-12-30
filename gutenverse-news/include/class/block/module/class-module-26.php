@@ -74,7 +74,6 @@ class Module_26 extends Module_View_Abstract {
                     </div>
                     <div class=\"gvnews_meta_footer clearfix\">
                         {$author_text}
-						<div></div>
                         <div class=\"gvnews_meta_comment\">{$icon_comment} <a href=\"" . gvnews_get_respond_link( $post_id ) . '">' . gvnews_get_comments_number( $post_id ) . ' ' . esc_html__( 'Comments', 'gutenverse-news' ) . '</a></div>
                     </div>
                 </article>';

@@ -38,7 +38,7 @@ const Block26Columns = props => {
                 <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 <div className="gvnews_meta_footer clearfix">
                     {<MetaAuthor {...props} />}
-                    {blockWidth != 4 && <RawHTML key="html">{post.share}</RawHTML> }
+                    {/* {blockWidth != 4 && <RawHTML key="html">{post.share}</RawHTML> } TODO: add social share icon on this module */}
                     {<MetaComments {...props} showText={true}/>}
                 </div>
             </article>
