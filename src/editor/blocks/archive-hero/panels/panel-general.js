@@ -1,11 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
+import { CheckboxControl, RangeControl } from 'gutenverse-core/controls';
 
 export const generalPanel = (props) => {
     const {
         elementId,
         heroType,
-        dateFormat
     } = props;
 
     return [
@@ -57,36 +56,6 @@ export const generalPanel = (props) => {
                     ],
                 },
             ],
-        },
-        {
-            id: 'dateFormat',
-            component: SelectControl,
-            label: __('Choose Date Format', 'gutenverse-news'),
-            description: 'Choose which date format you want to use.',
-            show: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'skew'].includes(heroType),
-            options: [
-                {
-                    value: 'ago',
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                },
-                {
-                    value: 'default',
-                    label: __('WordPress Default Format', 'gutenverse-news'),
-                },
-                {
-                    value: 'custom',
-                    label: __('Custom Format', 'gutenverse-news'),
-                },
-            ],
-        },
-        {
-            id: 'dateFormatCustom',
-            component: TextControl,
-            label: __('Custom Date Format', 'gutenverse-news'),
-            description: __(
-                'Please write custom date format for your module, for more detail about how to write date format, you can refer to this <a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">link</a>.'
-            ),
-            show: 'custom' === dateFormat,
         },
         {
             id: 'firstPage',

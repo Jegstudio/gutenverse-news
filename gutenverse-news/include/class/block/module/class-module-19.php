@@ -17,6 +17,18 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_19 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_box';
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $second_thumbnail_class = 'gvnews_pl_sm';
 
 	/**
 	 * Method render_block
@@ -61,12 +73,18 @@ class Module_19 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function build_column_1( $results ) {
-		$first_block  = $this->render_block( $results[0], 'gvnews-350x250', 1 );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$first_block = $this->render_block( $results[0], 'gvnews-350x250', 1 );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+
 		$second_block = '';
 		$size         = count( $results );
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block( $results[ $i ], 'gvnews-120x86', 2 );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return "<div class=\"gvnews_posts\">
                     {$first_block}
@@ -90,9 +108,13 @@ class Module_19 extends Module_View_Abstract {
 		$size        = count( $results );
 		for ( $i = 0; $i < $size; $i++ ) {
 			if ( $i < $limit ) {
+				add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 				$first_block .= $this->render_block( $results[ $i ], 'gvnews-350x250', 1 );
+				remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 			} else {
+				add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 				$first_block .= $this->render_block( $results[ $i ], 'gvnews-120x86', 2 );
+				remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 			}
 		}
 

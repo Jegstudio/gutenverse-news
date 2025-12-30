@@ -10,10 +10,14 @@
 namespace GUTENVERSE\NEWS;
 
 use GUTENVERSE\NEWS\Style\Archive;
+use GUTENVERSE\NEWS\Style\Archive_Description;
+use GUTENVERSE\NEWS\Style\Archive_Hero;
+use GUTENVERSE\NEWS\Style\Archive_Pagination;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
+use GUTENVERSE\NEWS\Style\Hero_14;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
@@ -26,6 +30,7 @@ use GUTENVERSE\NEWS\Style\Slider;
 use GUTENVERSE\NEWS\Style\User_List;
 use GUTENVERSE\NEWS\Style\Post_Title;
 use GUTENVERSE\NEWS\Style\Post_Tag;
+use GUTENVERSE\NEWS\Style\Social_Author_Icon;
 
 /**
  * Class Style Generator
@@ -73,6 +78,9 @@ class Style_Generator {
 				case stristr( $name, 'gutenverse/news-block' ):
 					$instance = new Block( $attrs, $name );
 					break;
+				case 'gutenverse/news-hero-14' === $name:
+					$instance = new Hero_14( $attrs, $name );
+					break;
 				case stristr( $name, 'gutenverse/news-hero' ):
 					$instance = new Hero( $attrs, $name );
 					break;
@@ -93,6 +101,15 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-rss' === $name:
 					$instance = new Block( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-hero' === $name:
+					$instance = new Archive_Hero( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-description' === $name:
+					$instance = new Archive_Description( $attrs, $name );
+					break;
+				case 'gutenverse/news-archive-pagination' === $name:
+					$instance = new Archive_Pagination( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-archive-' ):
 					$instance = new Archive( $attrs, $name );
@@ -123,6 +140,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-post-featured' === $name:
 					$instance = new Post_Featured( $attrs, $name );
+					break;
+				case 'gutenverse/news-social-author-icon' === $name:
+					$instance = new Social_Author_Icon( $attrs, $name );
 					break;
 			}
 		}

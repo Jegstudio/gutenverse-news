@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, TextControl, RangeControl, CheckboxControl, ImageRadioControl } from 'gutenverse-core/controls';
+import { RangeControl, CheckboxControl, ImageRadioControl } from 'gutenverse-core/controls';
 
 export const settingHero = (props) => {
     const {
         elementId,
-        metaDateFormat,
     } = props;
 
     const {
@@ -78,61 +77,34 @@ export const settingHero = (props) => {
             component: ImageRadioControl,
             options: [
                 {
-                    image: <img src={`${imgDir}/hero-1.png`}/>,
+                    image: <img src={`${imgDir}/hero-1.png`} />,
                     value: '1'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-2.png`}/>,
+                    image: <img src={`${imgDir}/hero-2.png`} />,
                     value: '2'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-3.png`}/>,
+                    image: <img src={`${imgDir}/hero-3.png`} />,
                     value: '3'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-4.png`}/>,
+                    image: <img src={`${imgDir}/hero-4.png`} />,
                     value: '4'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-5.png`}/>,
+                    image: <img src={`${imgDir}/hero-5.png`} />,
                     value: '5'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-6.png`}/>,
+                    image: <img src={`${imgDir}/hero-6.png`} />,
                     value: '6'
                 },
                 {
-                    image: <img src={`${imgDir}/hero-7.png`}/>,
+                    image: <img src={`${imgDir}/hero-7.png`} />,
                     value: '7'
                 },
             ],
-        },
-        {
-            id: 'metaDateFormat',
-            label: __('Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            component: SelectControl,
-            options: [
-                {
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                    value: 'ago'
-                },
-                {
-                    label: __('Wordpress Default Format', 'gutenverse-news'),
-                    value: 'default'
-                },
-                {
-                    label: __('Custom Format', 'gutenverse-news'),
-                    value: 'custom'
-                },
-            ],
-        },
-        {
-            id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
-            label: __('Custom Format', 'gutenverse-news'),
-            description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
-            component: TextControl,
         },
         {
             id: 'normalImage',

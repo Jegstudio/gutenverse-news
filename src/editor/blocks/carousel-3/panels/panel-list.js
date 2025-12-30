@@ -3,6 +3,10 @@ import { advancePanel, LockedProPanel, responsivePanel, borderPanel, conditionPa
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
+import { designPanel } from './panel-design';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 
 export const panelList = () => {
 
@@ -22,10 +26,34 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date', 'review']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: filterPanel,
                 tabRole: TabSetting
+            },
+            {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Thumbnail', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
+                tabRole: TabStyle
             },
             {
                 title: __('Border', 'gutenverse-news'),
@@ -48,7 +76,7 @@ export const panelList = () => {
                 panelArray: (props) => advancePanel({
                     ...props,
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             }, {
                 title: __('Condition', 'gutenverse-news'),
                 panelArray: conditionPanel,

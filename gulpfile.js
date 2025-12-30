@@ -16,7 +16,7 @@ const pot = require('gulp-wp-pot');
 
 const pluginFolder = path.join(__dirname, './release/gutenverse-news');
 const languageFolder = path.join(pluginFolder, '/languages/gutenverse-news.pot');
-
+const sourcemaps = require('gulp-sourcemaps');
 const postCSSOptions = [
     autoprefixer(),
     mqpacker(), // Gabung media query jadi satu
@@ -25,6 +25,7 @@ const postCSSOptions = [
 
 const sassOptions = {
     includePaths: [path.resolve(__dirname, './src/')],
+    outputStyle: 'expanded',
 };
 
 module.exports = {
@@ -32,14 +33,34 @@ module.exports = {
     sassOptions,
 };
 
+const blocksDir = path.resolve(__dirname, './src/editor/blocks');
+const blocksStyle = blocksDir + '/**/styles/style.scss';
+const finalDest = path.join(__dirname, 'gutenverse-news/assets/css/frontend');
+
+gulp.task('frontend-block-styles', function () {
+    return gulp
+        .src([blocksStyle])
+        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(postCSSOptions))
+        .on('data', function (file) {
+            const pathParts = file.relative.split(path.sep);
+            const blockName = pathParts[0];
+
+            file.path = path.join(file.base, blockName + '.css');
+        })
+        .pipe(gulp.dest(finalDest));
+});
+
 
 gulp.task('blocks', function () {
     return gulp
         .src([path.resolve(__dirname, './src/assets/scss/blocks.scss')])
-        .pipe(sass({ includePaths: ['node_modules'] }))
+        .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
-        .pipe(concat('blocks-styles.css'))
         .pipe(postcss(postCSSOptions))
+        .pipe(concat('blocks-styles.css'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
 
@@ -63,12 +84,32 @@ gulp.task('update-notice', function () {
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
 
-gulp.task('build-process', gulp.parallel('blocks', 'downgrade-plugin', 'update-notice'));
+const terser = require('gulp-terser');
+
+gulp.task('minify-okaynav', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/frontend/okaynav/okaynav.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
+});
+
+gulp.task('minify-tns', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/frontend/tiny-slider/tiny-slider.js')])
+        .pipe(terser())
+        .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
+});
+
+gulp.task('build-process', gulp.parallel('blocks', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
 
 gulp.task('build', gulp.series('build-process'));
 
 const watchProcess = (basePath = '.') => {
-    gulp.watch([`${basePath}/src/**/*.scss`], gulp.parallel(['blocks', 'downgrade-plugin', 'update-notice']));
+    gulp.watch([
+        `${basePath}/src/**/*.scss`,
+        `${basePath}/src/frontend/okaynav/*.js`,
+        `${basePath}/src/frontend/tiny-slider/*.js`,
+    ], gulp.parallel(['blocks', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
 };
 
 gulp.task(
@@ -152,11 +193,20 @@ gulp.task('generate-pot', () => {
         .pipe(gulp.dest(languageFolder));
 });
 
+
+gulp.task('clean-maps', function () {
+    return del([
+        './release/gutenverse-news/assets/css/**/*.map',
+        './release/gutenverse-news/assets/js/**/*.map',
+    ], { force: true });
+});
+
 gulp.task('release', gulp.series(
     'copy-plugin-folder',
     'copy-framework',
     'replace-text-domain',
     'generate-pot',
+    'clean-maps',
     'zip'
 ));
 

@@ -15,8 +15,11 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
     let pagination = parentIndex + 1;
 
     if (['1', '2', '3', '4', '5', '6', '10', '11', '12'].includes(heroType)) {
-        for (let i = parentIndex; i < limit; i++) {
+        for (let i = parentIndex; i < (limit + parentIndex); i++) {
             let off = pagination * numberPostShow - numberPostShow + index;
+            if (!postData[off]) {
+                break;
+            }
             let item = <HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />;
             if (i === parentIndex) {
                 firstBlock.push(item);
@@ -32,8 +35,11 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
             </>
         );
     } else {
-        for (let i = parentIndex; i < limit; i++) {
+        for (let i = parentIndex; i < (limit + parentIndex); i++) {
             let off = pagination * numberPostShow - numberPostShow + index;
+            if (!postData[off]) {
+                break;
+            }
             secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />);
             index++;
         }

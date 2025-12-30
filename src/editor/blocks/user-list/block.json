@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-user-list",
     "title": "User List",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\User_List",
-    "description": "Your Block description.",
+    "description": "Display users, contributors, or members listed on your site.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {
@@ -76,6 +76,13 @@
         "icon": {
             "type": "string",
             "default": ""
+        },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
         },
         "title": {
             "type": "string",
@@ -234,5 +241,8 @@
     "keywords": [
         "user",
         "list"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

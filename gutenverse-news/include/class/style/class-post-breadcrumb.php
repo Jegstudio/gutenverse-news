@@ -78,7 +78,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['gap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a, .guten-element.{$this->element_id}.gvnews-post-breadcrumb i",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb span a, .guten-element.{$this->element_id}.gvnews-post-breadcrumb i, .guten-element.{$this->element_id}.gvnews-post-breadcrumb svg",
 					'property'       => function ( $value ) {
 						return "margin-right: {$value}px;";
 					},
@@ -117,7 +117,7 @@ class Post_Breadcrumb extends Style_Abstract {
 		if ( isset( $this->attrs['arrowColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb i",
+					'selector'       => ".guten-element.{$this->element_id}.gvnews-post-breadcrumb i, .guten-element.{$this->element_id}.gvnews-post-breadcrumb svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},

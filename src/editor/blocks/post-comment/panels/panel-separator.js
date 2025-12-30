@@ -6,7 +6,6 @@ export const separatorPanel = (props) => {
         switcher,
         setSwitcher
     } = props;
-    const domain = 'gutenverse-news';
 
     return [
         {
@@ -27,7 +26,7 @@ export const separatorPanel = (props) => {
         // FORM STYLE
         {
             id: 'separatorStyle',
-            label: __('Style', domain),
+            label: __('Style', 'gutenverse-news'),
             show: !switcher.separatorType || switcher.separatorType === 'form',
             component: SelectControl,
             options: [
@@ -63,13 +62,13 @@ export const separatorPanel = (props) => {
         },
         {
             id: 'separatorColor',
-            label: __('Color', domain),
+            label: __('Color', 'gutenverse-news'),
             show: !switcher.separatorType || switcher.separatorType === 'form',
             component: ColorControl
         },
         {
             id: 'separatorWidth',
-            label: __('Width', domain),
+            label: __('Width', 'gutenverse-news'),
             show: !switcher.separatorType || switcher.separatorType === 'form',
             component: SizeControl,
             allowDeviceControl: true,
@@ -92,7 +91,7 @@ export const separatorPanel = (props) => {
         },
         {
             id: 'separatorHeight',
-            label: __('Height', domain),
+            label: __('Height', 'gutenverse-news'),
             show: !switcher.separatorType || switcher.separatorType === 'form',
             component: SizeControl,
             allowDeviceControl: true,
@@ -115,7 +114,7 @@ export const separatorPanel = (props) => {
         },
         {
             id: 'separatorMargin',
-            label: __('Margin', domain),
+            label: __('Margin', 'gutenverse-news'),
             show: !switcher.separatorType || switcher.separatorType === 'form',
             component: DimensionControl,
             allowDeviceControl: true,
@@ -142,7 +141,7 @@ export const separatorPanel = (props) => {
         // REPLY STYLE
         {
             id: 'separatorReplyStyle',
-            label: __('Style', domain),
+            label: __('Style', 'gutenverse-news'),
             show: switcher.separatorType === 'reply',
             component: SelectControl,
             options: [
@@ -178,13 +177,13 @@ export const separatorPanel = (props) => {
         },
         {
             id: 'separatorReplyColor',
-            label: __('Color', domain),
+            label: __('Color', 'gutenverse-news'),
             show: switcher.separatorType === 'reply',
             component: ColorControl
         },
         {
             id: 'separatorReplyWidth',
-            label: __('Width', domain),
+            label: __('Width', 'gutenverse-news'),
             show: switcher.separatorType === 'reply',
             component: SizeControl,
             allowDeviceControl: true,
@@ -207,7 +206,7 @@ export const separatorPanel = (props) => {
         },
         {
             id: 'separatorReplyHeight',
-            label: __('Height', domain),
+            label: __('Height', 'gutenverse-news'),
             show: switcher.separatorType === 'reply',
             component: SizeControl,
             allowDeviceControl: true,

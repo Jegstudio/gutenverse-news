@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useIsFirstRender } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -13,13 +13,14 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
     withPartialRender,
@@ -27,16 +28,24 @@ const BlockModule = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         clientId,
         setBlockRef,
         moduleName,
         columnAttr,
         panelList,
+        freeModule = false,
+        defaultImageSizeMain = {},
+        defaultImageSizeSecond = {},
+        mainThumbnailClass,
+        secondThumbnailClass,
     } = props;
 
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -69,12 +78,59 @@ const BlockModule = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        paginationWrapperAlign,
+        paginationDisableSeparator,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        showMetaReview = false,
+        readmoreButtonDisabled = false,
+        listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        metaDateIcon = '',
+        metaDateIconType = 'icon',
+        metaDateIconSVG = '',
+        metaCommentIcon = '',
+        metaCommentIconType = 'icon',
+        metaCommentIconSVG = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        gutenversePreviewBlock = '',
     } = attributes;
 
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_comment: showMetaComment,
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
     const elementRef = useRef(null);
+    const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => getBlockStyle(
+            elementId,
+            attributes,
+            mainThumbnailClass,
+            secondThumbnailClass,
+        ),
+        elementRef
+    );
 
     const {
         getBlock,
@@ -102,9 +158,12 @@ const BlockModule = compose(
     });
     const [forceReload, setForceReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
+    const [postLoaded, setPostLoaded] = useState(0);
+    const [postStart, setPostStart] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(paginationPost);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
-    const firstRender = useRef(true);
+    const firstRender = useIsFirstRender();
 
     useEffect(() => {
         if (elementRef) {
@@ -113,15 +172,61 @@ const BlockModule = compose(
     }, [elementRef]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
+            let ovr = {
+                ...attributes,
+                paginationWrapperAlign: { ...paginationWrapperAlign },
+                paginationDisableSeparator: true
+            };
+            ovr['paginationWrapperAlign'][device] = 'start';
+            setAttributes(ovr);
+        }
+    }, [showNavText]);
+
+    useEffect(() => {
+        if (paginationPost > 0) {
+            setPostPaginationLoaded(parseInt(paginationPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                paginationPost: 5
+            });
+        }
+    }, [paginationPost]);
+
+    useEffect(() => {
+        if (firstRender) {
             return;
         }
         getTrim([]);
+        setIsLoaded(false);
         setPage(1);
         setForceReload(!forceReload);
     }, [
         paginationMode,
-        paginationPost,
+        postPaginationLoaded,
         activeFilter,
         contentType,
         includeOnly,
@@ -134,8 +239,8 @@ const BlockModule = compose(
         includeTag,
         excludeTag,
         sortBy,
-        numberPost,
-        postOffset,
+        postLoaded,
+        postStart,
     ]);
 
 
@@ -143,10 +248,6 @@ const BlockModule = compose(
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
                 getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
             }
         } else {
             getWidth(columnWidth);
@@ -157,12 +258,15 @@ const BlockModule = compose(
     ]);
 
     useEffect(() => {
+        if (firstRender) {
+            return;
+        }
         let attr = {
             contentType,
             uniqueContent,
             includeOnly,
             postType,
-            numberPost,
+            numberPost: postLoaded,
             includePost,
             excludePost,
             includeCategory,
@@ -172,9 +276,9 @@ const BlockModule = compose(
             excludeTag,
             sortBy,
             page,
-            paginationPost: paginationPost || numberPost,
+            paginationPost: postPaginationLoaded || postLoaded,
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
-            postOffset,
+            postOffset: postStart,
             advancedResponse: true,
         };
         if (activeFilter['value'] != -100) {
@@ -199,7 +303,7 @@ const BlockModule = compose(
         }).then((data) => {
             const { result = [], ...pagination } = JSON.parse(data);
             setNextPrevTotalPagination(pagination);
-            if( paginationMode === 'loadmore' || paginationMode === 'scrollload' ) {
+            if (paginationMode === 'loadmore' || paginationMode === 'scrollload') {
                 result.length > 0 ? getTrim([...postData, ...result]) : null;
                 return;
             }
@@ -208,14 +312,19 @@ const BlockModule = compose(
             setOverlay(false);
             setIsLoaded(true);
         });
-    }, [ page, forceReload ]);
+    }, [page, forceReload]);
 
     useEffect(() => {
-        if(firstRender.current) {
-            firstRender.current = false;
+        if (firstRender) {
+            return;
+        }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
             return;
         }
         if (postData.length > 0) {
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
+            const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
             const allColumns = <ColumnBlock {...{
                 blockWidth,
                 excerptLength,
@@ -226,12 +335,25 @@ const BlockModule = compose(
                 metaDateFormatCustom,
                 postData,
                 isLoadMore: (paginationMode === 'loadmore' || paginationMode === 'scrollload'),
-                numberPost,
-                paginationPost,
+                numberPost: postLoaded,
+                paginationPost: postPaginationLoaded,
                 page,
+                imageSizeMain,
+                imageSizeSecond,
+                readmoreButtonDisabled,
+                listIcon,
+                listIconType,
+                listIconSVG,
+                metaDateIcon,
+                metaDateIconType,
+                metaDateIconSVG,
+                metaCommentIcon,
+                metaCommentIconType,
+                metaCommentIconSVG,
+                attributes,
             }} />;
             setBlock(allColumns);
-        } else {
+        } else if (isLoaded) {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
         return () => setBlock(<ModuleSkeleton />);
@@ -239,11 +361,28 @@ const BlockModule = compose(
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        showMetaReview,
+        readmoreButtonDisabled,
+        listIcon,
+        listIconType,
+        listIconSVG,
+        metaDateIcon,
+        metaDateIconType,
+        metaDateIconSVG,
+        metaCommentIcon,
+        metaCommentIconType,
+        metaCommentIconSVG,
+        gutenversePreviewBlock
     ]);
 
     const blockProps = useBlockProps({
@@ -260,6 +399,8 @@ const BlockModule = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -269,7 +410,7 @@ const BlockModule = compose(
         headerDefault,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
-            setActiveFilter({value, label});
+            setActiveFilter({ value, label });
             setActiveType(type);
             setLoadClass('');
             setOverlay(true);
@@ -291,12 +432,28 @@ const BlockModule = compose(
         }
     };
 
+    const theProps = {
+        ...props,
+        attributes: {
+            ...attributes,
+            mainThumbnailClass,
+            secondThumbnailClass
+        }
+    };
+
     return <>
         <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <BlockPanelController panelList={panelList} props={theProps} elementRef={elementRef} />
+        {!freeModule && <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>}
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}

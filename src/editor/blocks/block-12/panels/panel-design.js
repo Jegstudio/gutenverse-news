@@ -38,10 +38,6 @@ export const designPanel = (props) => {
                     value: '8',
                     label: __('8 Column Design ( 2 Block )', 'gutenverse-news')
                 },
-                {
-                    value: '12',
-                    label: __('12  Column Design ( 3 Block )', 'gutenverse-news')
-                },
             ]
         },
         {

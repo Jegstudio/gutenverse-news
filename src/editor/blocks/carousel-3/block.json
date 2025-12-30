@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-carousel-3",
     "title": "Carousel 3",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Carousel",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed carousel block.",
     "category": "gvnews-carousel",
     "attributes": {
         "elementId": {
@@ -15,7 +15,7 @@
         },
         "columnWidth": {
             "type": "string",
-            "default": 12
+            "default": "auto"
         },
         "contentType": {
             "type": "string",
@@ -261,11 +261,53 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
+        },
+        "borderMainThumbnail": {
+            "type": "object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type": "object"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "viewScript": ["gutenverse-news-frontend-carousel-slider-script"],
+    "style": ["gutenverse-news-frontend-blocks-style"]
 }

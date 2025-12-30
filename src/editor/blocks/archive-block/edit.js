@@ -10,7 +10,7 @@ import BlockHandler from './components/block-handler';
 // import BlockHandler from './block-handler';
 import { useRef, useEffect } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
+import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 
 const ArchiveBlock = compose(
@@ -20,7 +20,8 @@ const ArchiveBlock = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes,
     } = props;
 
     const {
@@ -37,6 +38,15 @@ const ArchiveBlock = compose(
         dateFormat,
         dateFormatCustom,
         firstPage,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        readmoreButtonDisabled = false,
+        listIcon = '',
+        gutenversePreviewBlock = '',
+        mainClass,
+        renderedImageSizeMain
     } = attributes;
 
     const elementRef = useRef(null);
@@ -49,6 +59,32 @@ const ArchiveBlock = compose(
             setBlockRef(elementRef);
         }
     }, [elementRef]);
+
+    /**
+     * use observer to get main class of post
+     */
+    useEffect(() => {
+        if (!elementRef.current) return;
+
+        const observer = new MutationObserver(() => {
+            const post = u(elementRef.current).find('.gvnews_post').first();
+            if (!post) return;
+            const nextClass = post.classList[1];
+            if (nextClass && nextClass !== mainClass) {
+                setAttributes({ mainClass: nextClass });
+            }
+            observer.disconnect();
+        });
+
+        observer.observe(elementRef.current, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        return () => observer.disconnect();
+    }, [blockType]);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -75,6 +111,14 @@ const ArchiveBlock = compose(
         metaDateFormat: dateFormat,
         metaDateFormatCustom: dateFormatCustom,
         firstPage,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        readmoreButtonDisabled,
+        listIcon,
+        gutenversePreviewBlock,
+        renderedImageSizeMain,
     };
 
     return (

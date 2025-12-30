@@ -28,7 +28,7 @@ class Carousel_3 extends Carousel_View_Abstract {
 		$content = '';
 		foreach ( $results as $key => $post ) {
 			$image            = $this->get_thumbnail( $post->ID, 'gvnews-75x75' );
-			$additional_class = ( ! has_post_thumbnail( $post->ID ) ) ? ' no_thumbnail' : '';
+			$additional_class = '';
 
 			$content .=
 			'<div class="gvnews_post_wrapper">
@@ -60,7 +60,9 @@ class Carousel_3 extends Carousel_View_Abstract {
 	 */
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
-			$content          = $this->content( $result );
+			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+			$content = $this->content( $result );
+			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 			$width            = isset( $attr['column_width'] ) && 'auto' !== $attr['column_width'] ? $attr['column_width'] : $this->manager->get_current_width();
 			$additional_class = $attr['show_nav'] ? 'shownav' : '';
 			$autoplay_delay   = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];

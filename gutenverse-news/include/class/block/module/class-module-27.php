@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Module;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Module_27
  *
@@ -16,7 +18,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  * @author Jegstudio
  */
 class Module_27 extends Module_View_Abstract {
-
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_4';
 	/**
 	 * Method render_block_type
 	 *
@@ -27,20 +34,23 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
+		$icon_clock = '';
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		$excerpt   = 1 === $type ? null :
-		'<div class="gvnews_post_excerpt">
-                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
-							<a href="' . $permalink . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+			'<div class="gvnews_post_excerpt">
+                            <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
+			. $read_more . ' 
                         </div>';
 
 		$post_meta = "<div class=\"gvnews_post_meta\">
-                            <div class=\"gvnews_meta_date\"><i class=\"fas fa-clock\"></i> {$this->format_date($post)}</div>
+                            <div class=\"gvnews_meta_date\">{$icon_clock} {$this->format_date( $post )}</div>
                         </div>";
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_4', $post_id ) . '>
@@ -88,17 +98,20 @@ class Module_27 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
-                    {$this->get_content_before($attr)}
+                    {$this->get_content_before( $attr )}
                     {$content}
-                    {$this->get_content_after($attr)}
+                    {$this->get_content_after( $attr )}
                 </div>
                 <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
+                    {$this->get_navigation_before( $attr )}
                     {$navigation}
-                    {$this->get_navigation_after($attr)}
+                    {$this->get_navigation_after( $attr )}
                 </div>";
 	}
 
@@ -111,7 +124,7 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_column( $result, $column_class ) {
-		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column($result,$column_class)}</div>";
+		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column( $result, $column_class )}</div>";
 	}
 
 	/**

@@ -20,14 +20,14 @@ class Image_Normal_Load implements Image_Interface {
 	/**
 	 * Instance
 	 *
-	 * @var ImageNormalLoad
+	 * @var Image_Normal_Load
 	 */
 	private static $instance;
 
 	/**
 	 * Get instance
 	 *
-	 * @return ImageNormalLoad
+	 * @return Image_Normal_Load
 	 */
 	public static function get_instance() {
 		if ( null === static::$instance ) {
@@ -120,14 +120,17 @@ class Image_Normal_Load implements Image_Interface {
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
 
 		$image_size = Image::get_instance()->get_image_size( $size );
+		$size       = apply_filters( 'gvnews_use_custom_image', $size );
 
 		$additional_class = '';
 		if ( ! has_post_thumbnail( $id ) ) {
 			$additional_class = 'no_thumbnail';
 		}
+		$additional_class = apply_filters( 'gvnews_custom_thumbnail_class', '' );
 
 		$thumbnail  = '<div class="thumbnail-container ' . esc_attr( $additional_class ) . ' size-' . esc_attr( $image_size['dimension'] ) . ' ">';
 		$thumbnail .= get_the_post_thumbnail( $id, $size );
+		$thumbnail .= '<div class="gvnews-thumb-overlay"></div>';
 		$thumbnail .= '</div>';
 
 		gvnews_remove_filters( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10 );

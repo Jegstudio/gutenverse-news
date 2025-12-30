@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_10 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_4';
 
 	/**
 	 * Method render_block_type_1
@@ -29,6 +35,7 @@ class Module_10 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$post_id   = $post->ID;
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_4', $post_id ) . ">
                     <header class=\"gvnews_postblock_heading\">
@@ -37,20 +44,20 @@ class Module_10 extends Module_View_Abstract {
                         </h3>
                         {$this->post_meta_1($post)}
                     </header>
-                    <div class=\"gvnews_postblock_content\">
-                    <div class=\"gvnews_thumb\">
-                            " . gvnews_edit_post( $post_id, 'right' ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
-                            <div class=\"gvnews_post_category\">
-                                <span>{$this->get_primary_category($post_id)}</span>
-                            </div>
+					<div class=\"gvnews_thumb\">
+                        " . gvnews_edit_post( $post_id, 'right' ) . "
+                        <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                        <div class=\"gvnews_post_category\">
+                            <span>{$this->get_primary_category($post_id)}</span>
                         </div>
+                    </div>
+                    <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_excerpt\">
                             <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
+							{$read_more}
                         </div>
-                        <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
                     </div>
-                </article>';
+                </article>";
 	}
 
 	/**
@@ -122,9 +129,11 @@ class Module_10 extends Module_View_Abstract {
 		$first_block = '';
 		$size        = count( $result );
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $result[ $i ], $image_size );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}

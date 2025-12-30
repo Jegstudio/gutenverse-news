@@ -409,39 +409,28 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_post_author( $request ) {
-		$attr         = $request->get_param( 'attr' );
-		$social_array = $this->declare_socials();
-		if ( is_array( $attr['author'] ) ) {
-			$data = array();
-			foreach ( $attr['author'] as $author ) {
-				if ( is_array( $author ) ) {
-					$user = get_user_by( 'login', $author['value'] );
+		$attr = $request->get_param( 'attr' );
+		$data = array();
 
-					if ( isset( $user->ID ) ) {
-						foreach ( $social_array as $key => $value ) {
-							if ( get_the_author_meta( $key, $user->ID ) ) {
-									$meta[] = array(
-										'key'   => get_the_author_meta( $key, $user->ID ),
-										'value' => $value,
-									);
-							}
-						}
-						if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
-							$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
-						} else {
-							$name = get_the_author_meta( 'display_name', $user->ID );
-						}
-						$data[] = array(
-							'ID'     => $user->ID,
-							'name'   => $name,
-							'avatar' => get_avatar_url( $user->ID, 80 ),
-							'role'   => $user->roles[0],
-							'desc'   => get_the_author_meta( 'description', $user->ID ),
-							'meta'   => $meta,
-						);
-					}
-				}
+		if ( ! is_array( $attr['author'] ) ) {
+			return wp_json_encode( $data );
+		}
+
+		$author_id = $attr['author'][0];
+		$user      = get_user_by( 'id', $author_id );
+		if ( isset( $user->ID ) ) {
+			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
+				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
+			} else {
+				$name = get_the_author_meta( 'display_name', $user->ID );
 			}
+			$data[] = array(
+				'ID'     => $user->ID,
+				'name'   => $name,
+				'avatar' => get_avatar_url( $user->ID, 80 ),
+				'role'   => $user->roles[0],
+				'desc'   => get_the_author_meta( 'description', $user->ID ),
+			);
 		}
 		return wp_json_encode( $data );
 	}
@@ -554,6 +543,8 @@ class Api {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
 			$roles = new \WP_Roles();
+		} else {
+			$roles = $wp_roles;
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
@@ -569,20 +560,10 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_author( $attributes ) {
-		$data         = array();
-		$users        = get_users();
-		$social_array = $this->declare_socials();
-		$name         = '';
+		$data  = array();
+		$users = get_users();
+		$name  = '';
 		foreach ( $users as $user ) {
-			$meta = false;
-			foreach ( $social_array as $key => $value ) {
-				if ( get_the_author_meta( $key, $user->ID ) ) {
-					$meta[] = array(
-						'key'   => get_the_author_meta( $key, $user->ID ),
-						'value' => $value,
-					);
-				}
-			}
 			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
 				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
 			} else {
@@ -594,7 +575,6 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta,
 			);
 		}
 
@@ -722,6 +702,10 @@ class Api {
 			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
 		}
 
+		if ( isset( $attributes['dateQuery'] ) ) {
+			$attr['date_query'] = $attributes['dateQuery'];
+		}
+
 		$result = Module_Query::do_query( $attr );
 
 		$advanced_response = false;
@@ -782,6 +766,8 @@ class Api {
 				),
 				'comment'   => get_comments_number( $post->ID ),
 			);
+
+			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', [], $post ) );
 
 			if ( $advanced_response ) {
 				$data['result'][] = $final_data;
@@ -872,37 +858,6 @@ class Api {
 		}
 
 		return wp_json_encode( $result );
-	}
-
-	/**
-	 * Method declare_socials
-	 *
-	 * @return array
-	 */
-	public function declare_socials() {
-		$social_array = array(
-			'url'        => 'fa-globe',
-			'facebook'   => 'fa-facebook-official',
-			'twitter'    => 'fa-twitter',
-			'linkedin'   => 'fa-linkedin',
-			'pinterest'  => 'fa-pinterest',
-			'behance'    => 'fa-behance',
-			'github'     => 'fa-github',
-			'flickr'     => 'fa-flickr',
-			'tumblr'     => 'fa-tumblr',
-			'dribbble'   => 'fa-dribbble',
-			'soundcloud' => 'fa-soundcloud',
-			'instagram'  => 'fa-instagram',
-			'vimeo'      => 'fa-vimeo',
-			'youtube'    => 'fa-youtube-play',
-			'vk'         => 'fa-vk',
-			'reddit'     => 'fa-reddit',
-			'weibo'      => 'fa-weibo',
-			'rss'        => 'fa-rss',
-			'twitch'     => 'fa-twitch',
-		);
-
-		return $social_array;
 	}
 
 	/**

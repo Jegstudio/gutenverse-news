@@ -3,8 +3,7 @@ import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'guten
 
 export const generalPanel = (props) => {
     const {
-        boxed,
-        dateFormat
+        boxed
     } = props;
     return [
         {
@@ -43,36 +42,6 @@ export const generalPanel = (props) => {
             component: TextControl,
             label: __('Excerpt Ellipsis', 'gutenverse-news'),
             description: __('Define excerpt ellipsis', 'gutenverse-news'),
-        },
-        {
-            id: 'dateFormat',
-            component: SelectControl,
-            label: __('Content Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            options: [
-                {
-                    value: 'ago',
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                },
-                {
-                    value: 'default',
-                    label: __('WordPress Default Format', 'gutenverse-news'),
-                },
-                {
-                    value: 'custom',
-                    label: __('Custom Format', 'gutenverse-news'),
-                },
-            ],
-        },
-        {
-            show: dateFormat === 'custom',
-            id: 'dateFormatCustom',
-            component: TextControl,
-            label: __('Custom Date Format', 'gutenverse-news'),
-            description: __(
-                'Please write custom date format for your module, for more detail about how to write date format, you can refer to this <a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">link</a>.',
-                'gutenverse-news'
-            ),
         },
         {
             id: 'firstPage',

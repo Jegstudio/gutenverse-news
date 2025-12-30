@@ -16,6 +16,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  * @author Jegstudio
  */
 class Module_30 extends Module_View_Abstract {
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_7';
 
 	/**
 	 * Method render_block
@@ -28,6 +34,8 @@ class Module_30 extends Module_View_Abstract {
 	public function render_block( $post, $attr ) {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_7', $post_id ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
@@ -45,10 +53,10 @@ class Module_30 extends Module_View_Abstract {
                         </div>
                         <div class=\"gvnews_post_excerpt\">
                             <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                            <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                        	{$read_more}
                         </div>
                     </div>
-                </article>';
+                </article>";
 	}
 
 	/**
@@ -80,7 +88,10 @@ class Module_30 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
                     {$this->get_content_before($attr)}

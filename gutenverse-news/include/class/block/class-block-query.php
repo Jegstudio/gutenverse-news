@@ -190,6 +190,7 @@ class Block_Query {
 
 				if ( self::stil_has_post( count( $inc_args['post__in'] ), $args['paged'], $args['offset'] ) ) {
 					$included_posts         = new \WP_Query( $inc_args );
+					$args['posts_per_page'] = (int) $args['posts_per_page'];
 					$args['posts_per_page'] = $args['posts_per_page'] - count( $included_posts->posts );
 					$args['offset']         = 0;
 				} else {
@@ -315,6 +316,7 @@ class Block_Query {
 		if ( isset( $attr['s'] ) ) {
 			$args['s'] = $attr['s'];
 		}
+
 		// date.
 		if ( isset( $attr['date_query'] ) ) {
 			$args['date_query'] = $attr['date_query'];

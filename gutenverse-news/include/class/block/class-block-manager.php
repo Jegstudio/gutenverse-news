@@ -79,6 +79,75 @@ class Block_Manager {
 	}
 
 	/**
+	 * ModuleManager constructor.
+	 */
+	private function __construct() {
+		$this->setup_hook();
+	}
+
+	/**
+	 * Setup Hook.
+	 */
+	public function setup_hook() {
+		global $pagenow;
+
+		if ( 'admin-ajax.php' === $pagenow || ! is_admin() ) {
+			add_filter( 'gvnews_module_block_container_extend_after', array( $this, 'module_container_after' ), null, 2 );
+			add_filter( 'gvnews_module_block_container_extend_before', array( $this, 'module_navigation_before' ), null, 2 );
+		}
+	}
+
+	/**
+	 * Module container before
+	 *
+	 * @param string $content .
+	 *
+	 * @return string
+	 */
+	public function module_navigation_before( $content ) {
+		return $content . "<div class='navigation_overlay'><div class='module-preloader gvnews_preloader'><span></span><span></span><span></span></div></div>";
+	}
+
+	/**
+	 * Module Container After
+	 *
+	 * @param string $content .
+	 *
+	 * @return string
+	 */
+	public function module_container_after( $content ) {
+		return $content . $this->module_loader();
+	}
+
+	/**
+	 * Show Loader
+	 *
+	 * @return string
+	 */
+	public function module_loader() {
+		/** TODO : give option for loader type */
+		$loader = 'dot';
+
+		return "<div class='module-overlay'>
+				    <div class='preloader_type preloader_{$loader}'>
+				        <div class=\"module-preloader gvnews_preloader dot\">
+				            <span></span><span></span><span></span>
+				        </div>
+				        <div class=\"module-preloader gvnews_preloader circle\">
+				            <div class=\"jnews_preloader_circle_outer\">
+				                <div class=\"jnews_preloader_circle_inner\"></div>
+				            </div>
+				        </div>
+				        <div class=\"module-preloader gvnews_preloader square\">
+				            <div class=\"jeg_square\">
+				                <div class=\"jeg_square_inner\"></div>
+				            </div>
+				        </div>
+				    </div>
+				</div>";
+	}
+
+	/**
 	 * Get file path
 	 *
 	 * @param string $filename file name.

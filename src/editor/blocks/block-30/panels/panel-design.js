@@ -57,20 +57,8 @@ export const designPanel = (props) => {
             ]
         },
         {
-            id: 'typographyMeta',
-            show: enableExcerpt === true,
-            label: __('Meta Typography', 'gutenverse-news'),
-            component: TypographyControl,
-            style: [
-                {
-                    selector: `.editor-styles-wrapper .wp-block .${elementId} .gvnews_post_meta>div`,
-                    hasChild: true,
-                    render: (value,id) => handleTypography(value, props, id)
-                }
-            ]
-        },
-        {
             id: 'typographyContent',
+            show: enableExcerpt === true,
             label: __('Content Typography', 'gutenverse-news'),
             component: TypographyControl,
             style: [
