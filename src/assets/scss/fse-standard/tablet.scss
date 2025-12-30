@@ -118,4 +118,12 @@
             margin-bottom: 2px;
         }
     }
+
+    /* Module 27 */
+    .gvnews_postblock_27 {
+        .gvnews_posts {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
 }
