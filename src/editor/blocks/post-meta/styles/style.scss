@@ -1,19 +1,21 @@
 .gvnews-post-meta {
-	display: block;
 	font-size: 13px;
 	width: 100%;
 	text-transform: none;
+	justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
 
 	.gvnews-post-meta-inner {
 		justify-content: space-between;
 		display: flex;
 		flex-wrap: wrap;
+		width: 100%;
 		.meta-part {
 			display: flex;
 			align-items: center;
 			box-sizing: border-box;
 			gap: 10px;
-
 			a {
 				color: inherit;
 
@@ -23,8 +25,11 @@
 			}
 
 			.meta-items {
-				display: inline-flex;
-				align-items: center;
+				display: inline-block;
+
+				&.is-last-item {
+					margin-right: 5px;
+				}
 			}
 
 			.gvnews-meta-author {
