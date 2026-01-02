@@ -13,7 +13,15 @@ const Block4Block = compose(
         blockWidth  : 8,
     };
     const moduleName = '4';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
+        mainThumbnailClass={'gvnews_pl_md_3'}
+    />;
 });
 
 export default Block4Block;

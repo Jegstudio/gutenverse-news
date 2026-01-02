@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_3 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_2';
 
 	/**
 	 * Method render_block_type_1
@@ -27,8 +33,10 @@ class Module_3 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post, $image_size ) {
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$is_feed   = gvnews_get_rss_post_id( $post->ID );
 		$thumbnail = $is_feed ? $post->get_thumbnail( $image_size ) : $this->get_thumbnail( $post->ID, $image_size );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$title     = $is_feed ? $post->title : get_the_title( $post->ID );
 		$permalink = $is_feed ? $post->permalink : get_the_permalink( $post->ID );
 		$edit      = $is_feed ? '' : gvnews_edit_post( $post->ID );

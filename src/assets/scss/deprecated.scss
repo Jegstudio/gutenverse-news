@@ -17,7 +17,7 @@
 
 .gvnews-deprecated-block {
     position: relative;
-    min-height: 150px;
+    min-height: 190px;
     margin: 10px 0;
 
     .deprecated-block-content {
@@ -39,7 +39,7 @@
         font-weight: 400;
         flex-direction: column;
         font-size: 16px;
-        min-height: 150px;
+        min-height: 190px;
 
         span {
             display: inline-flex;
@@ -69,6 +69,10 @@
                 background: #FFFFFF;
                 border-color: #FFFFFF;
             }
+
+            &:focus {
+                outline: none;
+            }
         }
 
         .note {
@@ -77,6 +81,12 @@
             font-size: 12px;
         }
     }
+}
+
+.gvnews-deprecated-block .deprecated-block-content.upgrade-to-pro .note {
+    position: absolute;
+    bottom: 16px;
+
 }
 
 .gutenverse-panel-wrapper {
@@ -89,6 +99,11 @@
         flex-direction: row;
         gap: 12px;
         border-radius: 5px;
+
+        .deprecated-icon {
+            display: flex;
+            flex-direction: column;
+        }
 
         .deprecated-desc {
             font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -320,6 +335,7 @@
                 font-size: 13px;
                 margin: 0;
                 color: #1E1E1E;
+
                 b {
                     font-weight: 700;
                 }

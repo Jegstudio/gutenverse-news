@@ -39,117 +39,117 @@ export const panelType = () => {
                 },
                 {
                     value: '10',
-                    image: <img src={`${imgDir}/content-10.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-12.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '11',
-                    image: <img src={`${imgDir}/content-11.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-13.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '12',
-                    image: <img src={`${imgDir}/content-12.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-14.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '14',
-                    image: <img src={`${imgDir}/content-14.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-16.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '15',
-                    image: <img src={`${imgDir}/content-15.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-17.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '18',
-                    image: <img src={`${imgDir}/content-18.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    image: <img src={`${imgDir}/content-19.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '22',
                     image: <img src={`${imgDir}/content-22.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '23',
                     image: <img src={`${imgDir}/content-23.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '25',
                     image: <img src={`${imgDir}/content-25.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '26',
                     image: <img src={`${imgDir}/content-26.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '27',
                     image: <img src={`${imgDir}/content-27.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '32',
                     image: <img src={`${imgDir}/content-32.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '33',
                     image: <img src={`${imgDir}/content-33.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '34',
                     image: <img src={`${imgDir}/content-34.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '35',
                     image: <img src={`${imgDir}/content-35.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '36',
                     image: <img src={`${imgDir}/content-36.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '37',
                     image: <img src={`${imgDir}/content-37.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '38',
                     image: <img src={`${imgDir}/content-38.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '39',
                     image: <img src={`${imgDir}/content-39.png`} />,
-                    deprecated: !gutenverseProActive,
-                    pro: gutenverseProActive
+                    pro: true,
+                    minTier: 'professional'
                 },
             ],
         },

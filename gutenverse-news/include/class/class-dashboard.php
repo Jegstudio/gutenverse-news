@@ -79,7 +79,7 @@ class Dashboard {
 			'name'           => GUTENVERSE_NEWS_NAME,
 			'version'        => GUTENVERSE_NEWS_VERSION,
 			'currentNotice'  => GUTENVERSE_NEWS_NOTICE_VERSION,
-			'noticeVersions' => array( '3.0.0' ),
+			'noticeVersions' => array( '3.1.0' ),
 		);
 
 		return $config;

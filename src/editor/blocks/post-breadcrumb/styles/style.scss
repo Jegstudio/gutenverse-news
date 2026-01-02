@@ -4,3 +4,26 @@
     box-sizing: border-box;
     display: flex;
 }
+
+.gvnews_breadcrumbs {
+	margin: 0 auto 15px;
+}
+
+.gvnews_breadcrumbs {
+	margin-bottom: 20px;
+}
+
+.gvnews_breadcrumbs #breadcrumbs,
+.gvnews-archive-breadcrumb #breadcrumbs {
+	font-size: 12px;
+	margin: 0;
+	color: #a0a0a0;
+
+	.fas {
+		padding: 0 3px;
+
+		&:before {
+			content: ">";
+		}
+	}
+}

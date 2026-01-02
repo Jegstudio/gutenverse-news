@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-slider-8",
     "title": "Slider 8",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
@@ -231,11 +231,123 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "nextButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-right"
+        },
+        "nextButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "nextButtonIconSVG": {
+            "type": "string"
+        },
+        "prevButtonIcon": {
+            "type": "string",
+            "default": "fas fa-chevron-left"
+        },
+        "prevButtonIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "prevButtonIconSVG": {
+            "type": "string"
+        },
+        "buttonColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "iconSize": {
+            "type": "object"
+        },
+        "buttonHeight": {
+            "type": "object"
+        },
+        "buttonWidth": {
+            "type": "object"
+        },
+        "buttonPadding": {
+            "type": "object"
+        },
+        "buttonBgColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "buttonBgColorHover": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "hideImageNavigation": {
+            "type": "boolean",
+            "default": false
+        },
+        "alwaysShowNavigationButton": {
+            "type": "boolean",
+            "default": false
+        },
+        "transitionShow": {
+            "type": "string"
+        },
+        "borderButton": {
+            "type": "object"
+        },
+        "borderButtonHover": {
+            "type": "object"
+        },
+        "borderResponsiveButton": {
+            "type": "object"
+        },
+        "borderResponsiveButtonHover": {
+            "type": "object"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

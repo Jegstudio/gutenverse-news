@@ -1,7 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { DimensionControl, NumberControl, SizeControl } from 'gutenverse-core/controls';
 
-const layoutPanel = () => {
+const layoutPanel = (props) => {
+    const {
+        elementId
+    } = props;
+    const selector = `.guten-element.${elementId}.gvnews-post-author`
 
     return [
         {
@@ -75,6 +79,26 @@ const layoutPanel = () => {
                     unit: '%',
                 },
             },
+            liveStyle: [
+                {
+                    'id': 'width',
+                    'type': 'unitPoint',
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value} !important',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                    'selector': selector,
+                }
+            ]
         },
         {
             id: 'height',
@@ -97,6 +121,20 @@ const layoutPanel = () => {
                     unit: '%',
                 },
             },
+            liveStyle: [
+                {
+                    'id': 'height',
+                    'type': 'unitPoint',
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'selector': selector,
+                }
+            ]
         },
         {
             id: 'zIndex',

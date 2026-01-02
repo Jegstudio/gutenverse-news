@@ -9,8 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
-use Gutenverse\Framework\Block\Block_Abstract;
-use GUTENVERSE\NEWS\Block\Grab;
+use GUTENVERSE\NEWS\Social_Contacts;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,38 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author Jegstudio
  */
 class Post_Author extends Post_Guten {
-
-	/**
-	 * Social media array.
-	 *
-	 * @var array
-	 */
-	protected $socials = array(
-		'url'        => 'fa-globe',
-		'facebook'   => 'fa-facebook-official',
-		'twitter'    => 'fa-twitter',
-		'linkedin'   => 'fa-linkedin',
-		'pinterest'  => 'fa-pinterest',
-		'behance'    => 'fa-behance',
-		'github'     => 'fa-github',
-		'flickr'     => 'fa-flickr',
-		'tumblr'     => 'fa-tumblr',
-		'dribbble'   => 'fa-dribbble',
-		'soundcloud' => 'fa-soundcloud',
-		'instagram'  => 'fa-instagram',
-		'vimeo'      => 'fa-vimeo',
-		'youtube'    => 'fa-youtube-play',
-		'vk'         => 'fa-vk',
-		'reddit'     => 'fa-reddit',
-		'weibo'      => 'fa-weibo',
-		'rss'        => 'fa-rss',
-		'twitch'     => 'fa-twitch',
-		'tiktok'     => 'jeg-icon icon-tiktok',
-		'threads'    => 'jeg-icon icon-threads',
-		'xing'       => 'fa-xing',
-		'bluesky'    => 'jeg-icon icon-bluesky',
-	);
-
 	/**
 	 * Method get_content
 	 *
@@ -71,20 +38,21 @@ class Post_Author extends Post_Guten {
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
 
-		$block = '<div class="gvnews-authorbox">
-					<div class="gvnews-author-image">' .
-						get_avatar( $author['id'], 80, null, $author['name'] ) .
-					'</div>' .
-					'<div class="gvnews-author-content">
-						<h3 class="gvnews-author-name">
-							<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
-						</h3>
-						<p>' . esc_html( $author['desc'] ) . '</p>
-						<div class="gvnews-author-socials">' .
-							$this->generate_social_element( $author_id ) .
-						'</div>
-					</div>
+		$block = '<div class="gvnews-author-content">
+					<' . $this->attributes['titleTag'] . ' class="gvnews-author-name">
+						<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
+					</' . $this->attributes['titleTag'] . '>
+					<p class="gvnews-author-desc">' . esc_html( $author['desc'] ) . '</p>
+					<div class="gvnews-author-socials">' .
+			$this->generate_social_element( $author_id ) .
+			'</div>
 				</div>';
+
+		if ( 'left' === $this->attributes['avatarPosition'] || 'top' === $this->attributes['avatarPosition'] ) {
+			$block = $this->render_avatar( $author ) . $block;
+		} else {
+			$block = $block . $this->render_avatar( $author );
+		}
 
 		return $block;
 	}
@@ -102,14 +70,16 @@ class Post_Author extends Post_Guten {
 	public function render_frontend() {
 		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
-		$custom_classes = $this->get_custom_classes();
+		$custom_classes  = $this->get_custom_classes();
+		$avatar_position = ' avatar-' . $this->attributes['avatarPosition'] . ' ';
 
 		return '<div class="' .
-							$element_id .
-							$display_classes .
-							// $animation_class .
-							$custom_classes .
-							'gvnews-post-author guten-element"
+			$element_id .
+			$display_classes .
+			// $animation_class .
+			$custom_classes .
+			'gvnews-post-author guten-element
+							' . $avatar_position . '" 
 				>' . $this->render_content() . '</div>';
 	}
 
@@ -122,19 +92,33 @@ class Post_Author extends Post_Guten {
 	 */
 	protected function generate_social_element( $author_id ) {
 		$social_elements = '';
-
-		foreach ( $this->socials as $social => $icon ) {
-
+		$social_icons    = Social_Contacts::social_icon_list();
+		foreach ( $social_icons as $social => $icon ) {
 			$url = get_the_author_meta( $social, $author_id );
 
 			if ( '' !== $url ) {
 				$social_elements .=
 					'<a href="' . $url . '" class="' . $social . '">
-						<i class="fa ' . $icon . '"></i>
+					<div class="gutenverse-icon-svg">
+						' . $icon . '
+					</div>
 					</a>';
 			}
 		}
 
 		return $social_elements;
+	}
+
+	/**
+	 * Render avatar
+	 *
+	 * @param array $author author data.
+	 *
+	 * @return string
+	 */
+	private function render_avatar( $author ) {
+		return '<div class="gvnews-author-image">' .
+			get_avatar( $author['id'], 80, null, $author['name'] ) .
+			'</div>';
 	}
 }

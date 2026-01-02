@@ -2,16 +2,31 @@ import { MetaModule2} from '../../part/meta';
 import ThumbModule from '../../part/thumbnail';
 
 const Block19Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom, blockWidth} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        blockWidth,
+        imageSizeMain = {},
+        imageSizeSecond = {},
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
     const RenderBlock1 = props=>{
         const {attr, post, index = 'x'} = props;
 
-        let PostMeta = () => (
+        let PostMeta = ({imageSize}) => (
             <>
-                <ThumbModule size={715} cat={false} post={post}/>
+                <ThumbModule size={715} cat={false} post={post} imageSize={imageSize}/>
                 <div className="gvnews_postblock_content">
                     <h3 className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
@@ -25,14 +40,14 @@ const Block19Columns = props => {
             return (
                 <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_md_box`}>
                     <div className="box_wrap">
-                        <PostMeta/>
+                        <PostMeta imageSize={imageSizeMain}/>
                     </div>
                 </article>
             );
         }else{
             return (
                 <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
-                    <PostMeta/>
+                    <PostMeta imageSize={imageSizeSecond}/>
                 </article>
             );
         }

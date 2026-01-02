@@ -17,6 +17,18 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_1 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_1';
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $second_thumbnail_class = 'gvnews_pl_sm';
 
 	/**
 	 * Method render_block_type_1
@@ -29,23 +41,25 @@ class Module_1 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
+		$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
 		return '<div class="gvnews_thumb">
-					' . gvnews_edit_post( $post_id ) . "
-					<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
-					<div class=\"gvnews_post_category\">
-						<span>{$this->get_primary_category($post_id)}</span>
+					' . gvnews_edit_post( $post_id ) . '
+					<a href="' . $permalink . '">' . $this->get_thumbnail( $post_id, $image_size ) . '</a>
+					<div class="gvnews_post_category">
+						<span>' . $this->get_primary_category( $post_id ) . '</span>
 					</div>
 				</div>
-				<div class=\"gvnews_postblock_content\">
-					<h3 property=\"headline\" class=\"gvnews_post_title\">
-						<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-					</h3>
-					{$this->post_meta_1($post)}
-					<div class=\"gvnews_post_excerpt\">
-						<p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-						<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
-					</div>
+				<div class="gvnews_postblock_content">
+					<h3 property="headline" class="gvnews_post_title">
+						<a href="' . $permalink . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+					</h3>'
+					. $this->post_meta_1( $post ) .
+					'<div class="gvnews_post_excerpt">
+						<p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
+						. $read_more .
+					'</div>
 				</div>';
 	}
 
@@ -61,6 +75,7 @@ class Module_1 extends Module_View_Abstract {
 		$post_id          = $post->ID;
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post_id ) . '>
 					<div class="gvnews_thumb">
@@ -86,8 +101,14 @@ class Module_1 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_3( $post ) {
+		$icon      = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
+		$icon_type = isset( $this->attribute['list_icon_type'] ) ? $this->attribute['list_icon_type'] : 'icon';
+		$icon_svg  = isset( $this->attribute['list_icon_svg'] ) ? $this->attribute['list_icon_svg'] : '';
+
+		$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
+
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_2', $post->ID ) . '>
-					<i class="fas fa-caret-right"></i>
+					' . $icon_html . '
 					<div class="gvnews_postblock_content">
 						<h3 class="gvnews_post_title"><a href="' . get_permalink( $post ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
 						{$this->post_meta_2($post)}
@@ -104,9 +125,11 @@ class Module_1 extends Module_View_Abstract {
 	 */
 	public function build_column_1( $results ) {
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
@@ -151,6 +174,7 @@ class Module_1 extends Module_View_Abstract {
 	 */
 	public function build_column_2( $results ) {
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
@@ -177,6 +201,7 @@ class Module_1 extends Module_View_Abstract {
 	 */
 	public function build_column_3( $results ) {
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-360x180' );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$size        = count( $results );
 		$first_limit = (int) ceil( ( $size - 1 ) * 2 / 5 ) + 1;

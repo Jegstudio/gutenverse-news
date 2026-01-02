@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_12 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_card';
 
 	/**
 	 * Method render_block_type_1
@@ -32,11 +38,12 @@ class Module_12 extends Module_View_Abstract {
 		$primary_category = gvnews_get_primary_category( $post_id );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
+		$read_more        = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 		$post_meta        = 'gvnews_col_1o3' === $column_class ? $this->post_meta_3( $post ) : $this->post_meta_1( $post ) . '
                                 <div class="gvnews_post_excerpt">
                                     <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                                    <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
-                                </div>';
+                        			{$read_more}
+                                </div>";
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_card' . $additional_class, $post_id ) . '>
                     <div class="gvnews_inner_post">
@@ -79,9 +86,11 @@ class Module_12 extends Module_View_Abstract {
 			$image_size = 'gvnews-1140x570';
 		}
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], $image_size, $column_class );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}

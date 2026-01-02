@@ -1,31 +1,19 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-meta",
     "title": "Post Meta",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Meta",
-    "description": "Your Block description.",
+    "description": "Display a list of post meta information on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
             "type": "string"
         },
         "metaLeft": {
-            "type": "array",
-            "default": [
-                {
-                    "label": "Author",
-                    "value": "author"
-                }
-            ]
+            "type": "array"
         },
         "metaRight": {
-            "type": "array",
-            "default": [
-                {
-                    "label": "Date",
-                    "value": "date"
-                }
-            ]
+            "type": "array"
         },
         "showAvatar": {
             "type": "boolean",
@@ -33,7 +21,7 @@
         },
         "postDate": {
             "type": "string",
-            "default":"published"
+            "default": "published"
         },
         "gvnewsModule": {
             "type": "string",
@@ -47,11 +35,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -63,7 +51,7 @@
         },
         "boxShadowHover": {
             "type": "object"
-        }, 
+        },
         "margin": {
             "type": "number"
         },
@@ -71,11 +59,11 @@
             "type": "object"
         },
         "width": {
-            "type":"object",
+            "type": "object",
             "default": {}
         },
         "height": {
-            "type":"object",
+            "type": "object",
             "default": {}
         },
         "zIndex": {
@@ -91,37 +79,37 @@
             "type": "boolean"
         },
         "authorTypography": {
-            "type":"object"
+            "type": "object"
         },
         "authorColor": {
-            "type":"object"
+            "type": "object"
         },
         "authorColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "dateTypography": {
-            "type":"object"
+            "type": "object"
         },
         "dateColor": {
-            "type":"object"
+            "type": "object"
         },
         "dateColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "categoryTypography": {
-            "type":"object"
+            "type": "object"
         },
         "categoryColor": {
-            "type":"object"
+            "type": "object"
         },
         "categoryColorHover": {
-            "type":"object"
+            "type": "object"
         },
         "commentTypography": {
-            "type":"object"
+            "type": "object"
         },
         "commentColor": {
-            "type":"object"
+            "type": "object"
         },
         "commentColorHover": {
             "type":"object"
@@ -200,6 +188,86 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "avatarSize": {
+            "type": "object"
+        },
+        "avatarGap": {
+            "type": "object"
+        },
+        "avatarOpacity": {
+            "type": "string"
+        },
+        "avatarBorder": {
+            "type": "object"
+        },
+        "avatarBoxShadow": {
+            "type": "object"
+        },
+        "avatarBorderResponsive": {
+            "type": "object"
+        },
+        "forceColumnRight": {
+            "type": "boolean"
+        },
+        "forceColumnLeft": {
+            "type": "boolean"
+        },
+        "authorHideMobile": {
+            "type": "boolean"
+        },
+        "dateHideMobile": {
+            "type": "boolean"
+        },
+        "categoryHideMobile": {
+            "type": "boolean"
+        },
+        "commentHideMobile": {
+            "type": "boolean"
+        },
+        "authorRightHide": {
+            "type": "boolean"
+        },
+        "dateRightHide": {
+            "type": "boolean"
+        },
+        "categoryRightHide": {
+            "type": "boolean"
+        },
+        "commentRightHide": {
+            "type": "boolean"
+        },
+        "authorPrefix": {
+            "type": "string",
+            "default": "by"
+        },
+        "categoryPrefix": {
+            "type": "string",
+            "default": "in"
+        },
+        "datePrefix": {
+            "type": "boolean"
+        },
+        "authorPrefixTypography": {
+            "type": "object"
+        },
+        "categoryPrefixTypography": {
+            "type": "object"
+        },
+        "authorPrefixGap": {
+            "type": "object"
+        },
+        "categoryPrefixGap": {
+            "type": "object"
+        },
+        "authorPrefixColor": {
+            "type": "object"
+        },
+        "categoryPrefixColor": {
+            "type": "object"
+        },
+        "datePrefixColor": {
+            "type": "object"
         }
     },
     "supports": {
@@ -216,5 +284,8 @@
         "trending",
         "reading",
         "time"
+    ],
+    "style": [
+        "gutenverse-news-frontend-post-meta-style"
     ]
 }

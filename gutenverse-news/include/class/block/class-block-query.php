@@ -316,6 +316,7 @@ class Block_Query {
 		if ( isset( $attr['s'] ) ) {
 			$args['s'] = $attr['s'];
 		}
+
 		// date.
 		if ( isset( $attr['date_query'] ) ) {
 			$args['date_query'] = $attr['date_query'];

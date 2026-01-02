@@ -39,38 +39,56 @@ export const typePanel = (props) => {
                 {
                     value: '6',
                     image: <img src={`${imgDir}/hero-type-6.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '7',
                     image: <img src={`${imgDir}/hero-type-7.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '8',
                     image: <img src={`${imgDir}/hero-type-8.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '9',
                     image: <img src={`${imgDir}/hero-type-9.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '10',
                     image: <img src={`${imgDir}/hero-type-10.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '11',
                     image: <img src={`${imgDir}/hero-type-11.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '12',
                     image: <img src={`${imgDir}/hero-type-12.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: '13',
                     image: <img src={`${imgDir}/hero-type-13.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
                 {
                     value: 'skew',
                     image: <img src={`${imgDir}/hero-type-Skew.png`} />,
+                    pro: true,
+                    minTier: 'professional'
                 },
             ],
         },

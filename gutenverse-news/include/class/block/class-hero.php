@@ -47,6 +47,13 @@ class Hero extends Grab {
 			'excerpt_color'            => '',
 			'css'                      => '',
 			'compatible_column_notice' => '',
+			'include_post'             => '',
+			'exclude_post'             => '',
+			'include_category'         => '',
+			'exclude_category'         => '',
+			'include_tag'              => '',
+			'exclude_tag'              => '',
+			'include_author'           => '',
 			'hero_margin'              => $this->attributes['heroMargin'],
 			'hero_style'               => 'gvnews_hero_style_' . $this->attributes['heroStyle'],
 			'hero_height_desktop'      => $this->attributes['heightDesktop'],
@@ -60,6 +67,13 @@ class Hero extends Grab {
 			'hero_slider_delay'        => $this->attributes['autoplayDelay'],
 			'hero_slider_auto_play'    => $this->attributes['autoplay'],
 			'short_code'               => $this->attributes['gvnewsModule'],
+			'disable_readmore'         => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'            => array(
+				'show_meta'   => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'   => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author' => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
+			),
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {
@@ -126,11 +140,11 @@ class Hero extends Grab {
 		return $this->get_module( $options );
 	}
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		$deprecated = array(
 			'GUTENVERSE\NEWS\Block\Hero\Hero_6',
 			'GUTENVERSE\NEWS\Block\Hero\Hero_7',

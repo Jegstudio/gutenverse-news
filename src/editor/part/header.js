@@ -1,4 +1,6 @@
-import { useState, useEffect }  from '@wordpress/element';
+import { useState, useEffect, useRef } from '@wordpress/element';
+import OkayNav from '../../frontend/okaynav/okaynav';
+import { renderIcon } from 'gutenverse-core/helper';
 
 function Valid(value) {
     if ( value && value.length ) {
@@ -19,8 +21,9 @@ function SubCatItem(props) {
 }
 
 function SubCat(props) {
-    const { onSubCatChange = () => {} } = props;
+    const { onSubCatChange = () => { } } = props;
     const [active, setActive] = useState(-100);
+    const headerRef = useRef(null);
 
     const catOnClickHandler = (type, val, label) => {
         setActive(val);
@@ -30,14 +33,30 @@ function SubCat(props) {
     useEffect(() => {
         setActive(-100);
         catOnClickHandler('all', -100, 'all');
-    },[props.headerCategory, props.headerAuthor, props.headerTag]);
+        let okayNavInstance = null;
+
+        if (headerRef.current) {
+            okayNavInstance = new OkayNav(headerRef.current, {
+                swipe_enabled: false,
+                threshold: 50,
+                toggle_icon_content: '<span></span><span></span><span></span>'
+            });
+        }
+
+        return () => {
+            if (okayNavInstance) {
+                okayNavInstance.destroy();
+            }
+        };
+
+    }, [props.headerCategory, props.headerAuthor, props.headerTag]);
 
     if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
         return null;
     }
 
     return (
-        <div className="gvnews_subcat okayNav loaded">
+        <div ref={headerRef} className="gvnews_subcat">
             <ul className="gvnews_subcat_list">
                 <li>
                     <a className={`subclass-filter ${active === -100 ? 'current' : ''}`} onClick={() => catOnClickHandler('all', -100, 'all')} href="javascript:void(0);">{props.headerDefault}</a>
@@ -60,10 +79,17 @@ function HeadTitle(props) {
     if ( !props.title && !props.second_title ) {
         return null;
     }
+
+    const icon = props.icon || '';
+    const iconType = props.iconType || 'icon';
+    const iconSVG = props.iconSVG || '';
+
+    const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
+
     return (
         <h3 className="gvnews_block_title">
             <span>
-                {props.icon && <i className={props.icon}></i>}
+                {renderIcon(finalIcon, iconType, iconSVG)}
                 {props.title}
                 {props.second_title && <strong>
                     &nbsp;{props.second_title}
@@ -78,8 +104,9 @@ const HeaderModule = (props) => {
         return null;
     }
     return <div className={`gvnews_block_heading gvnews_block_${props.headerType} gvnews_subcat_right`}>
-        <HeadTitle {...props}/>
-        <SubCat {...props}/>
+        <HeadTitle {...props} />
+        {('heading_5' === props.headerType) && <span className="line"></span>}
+        <SubCat {...props} />
     </div>;
 };
 

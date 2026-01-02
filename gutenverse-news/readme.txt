@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.0.1
+Stable tag: 3.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,6 +142,53 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 3.1.0 =
+##### Improvements
+* Bring back the Archive Hero block as a free feature
+* Add an option to convert webfonts to SVG icons for improved SEO
+* Add more Meta options to all blocks
+* Add more Typography options to all blocks
+* Add more styling options to the Module Header
+* Add an option to disable the Read More button on blocks
+* Add more styling options to the Archive Pagination block
+* Add navigation styling options to Slider blocks
+* Add more styling options to the News Ticker block
+* Add Tag Type options to the Archive Description block
+* Add an option to change the rendered thumbnail size on Module blocks
+* Add an option to change the container and card styles on Module blocks
+* Add padding and margin options for category labels
+* Add Post Item Gap options to selected Module blocks
+* Add options to style the “no content” state on the Archive block and all Module blocks
+* Add border options for items in Hero blocks
+* Add social media URL options to user profiles to be displayed in the Post Author Box block
+* Add more styling options to the Post Author Box block
+* Move Spacing options to the Settings tab
+* Display a “no content available” message on the Archive block when no search results are found
+* Remove jQuery usage from all blocks
+* Improve the asset loading mechanism across all blocks
+
+##### Bug Fixes
+* Fix the Archive block not working on archive search pages
+* Fix Post Masonry issues on “Module – 32”, “Module – 33”, “Module – 34”, and “Module – 35”
+* Fix the inability to leave the Left/Right Meta elements empty on the Post Meta block
+* Fix spacing option issues on the Archive Description block
+
+= 3.0.2 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
+* Bring back the Module 9 , Module 17 and Module 21
+* Changing Block title :
+    - Module 17 -> Module 10
+    - Module 21 -> Module 11
+* Introduce 53 new Pro blocks
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
+* Fix News Ticker arrow icon not clickable (only arrow box worked)
 
 = 3.0.1 =
 ##### Bug Fixes

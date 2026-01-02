@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Module;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Module_26
  *
@@ -17,7 +19,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_26 extends Module_View_Abstract {
 
-
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_9';
 	/**
 	 * Method render_block_type
 	 *
@@ -33,14 +40,19 @@ class Module_26 extends Module_View_Abstract {
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
 
 		// author detail.
 		$author      = $post->post_author;
 		$author_text = '<div class="gvnews_meta_author"><span class="label">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . get_author_posts_url( $author ) . '">' . get_the_author_meta( 'display_name', $author ) . '</a></div>';
 
+		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
+
 		$post_meta = "<div class=\"gvnews_post_meta\">
-						<div class=\"gvnews_meta_date\"><i class=\"fas fa-clock\"></i> {$this->format_date($post)}</div>
+						<div class=\"gvnews_meta_date\">{$icon_clock} {$this->format_date( $post )}</div>
 					</div>";
+
+		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_9', $post_id ) . ">
                     <header class=\"gvnews_postblock_heading\">
@@ -57,13 +69,13 @@ class Module_26 extends Module_View_Abstract {
                             <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
                         </div>
                         <div class=\"gvnews_readmore_wrap\">
-                            <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . "</a>
+                        	{$read_more}
                         </div>
                     </div>
                     <div class=\"gvnews_meta_footer clearfix\">
                         {$author_text}
 						<div></div>
-                        <div class=\"gvnews_meta_comment\"><i class=\"far fa-comment\"></i> <a href=\"" . gvnews_get_respond_link( $post_id ) . '">' . gvnews_get_comments_number( $post_id ) . ' ' . esc_html__( 'Comments', 'gutenverse-news' ) . '</a></div>
+                        <div class=\"gvnews_meta_comment\">{$icon_comment} <a href=\"" . gvnews_get_respond_link( $post_id ) . '">' . gvnews_get_comments_number( $post_id ) . ' ' . esc_html__( 'Comments', 'gutenverse-news' ) . '</a></div>
                     </div>
                 </article>';
 	}
@@ -105,17 +117,20 @@ class Module_26 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
-                    {$this->get_content_before($attr)}
+                    {$this->get_content_before( $attr )}
                     {$content}
-                    {$this->get_content_after($attr)}
+                    {$this->get_content_after( $attr )}
                 </div>
                 <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
+                    {$this->get_navigation_before( $attr )}
                     {$navigation}
-                    {$this->get_navigation_after($attr)}
+                    {$this->get_navigation_after( $attr )}
                 </div>";
 	}
 
@@ -128,7 +143,7 @@ class Module_26 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_column( $result, $column_class ) {
-		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column($result,$column_class, false)}</div>";
+		return "<div class=\"gvnews_posts gvnews_load_more_flag\">{$this->build_column( $result, $column_class, false )}</div>";
 	}
 
 	/**
