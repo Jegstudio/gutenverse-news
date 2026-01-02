@@ -549,16 +549,18 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function like_dislike_button() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-like-dislike-button";
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta .meta-items.gvnews-like-dislike-button";
 
 		// Like Panel.
-		if ( isset( $this->attrs['likeIconTypography'] ) ) {
-			$this->inject_typography(
+		if ( isset( $this->attrs['likeIconSize'] ) ) {
+			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
-					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['likeIconTypography'],
-					'device_control' => false,
+					'selector'       => "{$base_selector} a.thumb.like i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['likeIconSize'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -643,13 +645,15 @@ class Post_Meta extends Style_Abstract {
 		}
 
 		// Dislike Panel.
-		if ( isset( $this->attrs['dislikeIconTypography'] ) ) {
-			$this->inject_typography(
+		if ( isset( $this->attrs['dislikeIconSize'] ) ) {
+			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
-					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['dislikeIconTypography'],
-					'device_control' => false,
+					'selector'       => "{$base_selector} .thumb.dislike i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['dislikeIconSize'],
+					'device_control' => true,
 				)
 			);
 		}

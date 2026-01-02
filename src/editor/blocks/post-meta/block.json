@@ -118,7 +118,7 @@
             "type": "string",
             "default": "both"
         },
-        "likeIconTypography": {
+        "likeIconSize": {
             "type":"object"
         },
         "likeIconColor": {
@@ -141,7 +141,7 @@
             "type": "object"
         },
 
-        "dislikeIconTypography": {
+        "dislikeIconSize": {
             "type":"object"
         },
         "dislikeIconColor": {
