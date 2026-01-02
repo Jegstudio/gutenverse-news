@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, SelectSearchControl, CheckboxControl, TextControl } from 'gutenverse-core/controls';
+import { CheckboxControl, SelectControl, SelectSearchControl, TextControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
@@ -34,7 +34,6 @@ export const generalPanel = (props) => {
             listSearch
         ));
     });
-
 
     const controls = [
         {
