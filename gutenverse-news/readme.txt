@@ -143,6 +143,11 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 3.1.1-dev =
+##### Bug Fixes
+* Fix the meta icon color option not working on Archive Block and Post Related Block
+* Fix Space Bottom option not working on Biography Style on Author Box block
+
 = 3.1.0 =
 ##### Improvements
 * Bring back the Archive Hero block as a free feature
