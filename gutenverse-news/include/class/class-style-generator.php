@@ -93,6 +93,9 @@ class Style_Generator {
 					$instance = new Module_24( $attrs, $name );
 					break;
 				case 'gutenverse/news-block-32' === $name:
+				case 'gutenverse/news-block-33' === $name:
+				case 'gutenverse/news-block-34' === $name:
+				case 'gutenverse/news-block-35' === $name:
 					$instance = new Module_32( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-block' ):

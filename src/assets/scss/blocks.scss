@@ -13228,7 +13228,10 @@ span.gvnews-category {
   .gvnews_posts.shuffle {
     .gvnews_post {
       visibility: visible;
-      margin-bottom: 30px;
+
+      &:not(:last-of-type) {
+        margin-bottom: 30px;
+      }
     }
   }
 }

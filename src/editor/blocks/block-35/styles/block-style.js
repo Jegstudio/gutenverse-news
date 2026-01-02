@@ -2,7 +2,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 import getBlockStyle from '../../../control-panel/panel-styles/block-style';
 
 const dedicatedStyle = (elementId, attributes) => {
-    let data = getBlockStyle(elementId, attributes, 'box_wrap');
+    let data = getBlockStyle(elementId, attributes, 'gvnews_pl_md_5');
 
 
     isNotEmpty(attributes['rowItemGap']) && data.push({

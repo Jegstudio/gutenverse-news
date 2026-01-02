@@ -459,7 +459,7 @@ class GutenverseNewsModule {
 
     create_masonry = () => {
         let posts = this.container.find('.gvnews_posts_masonry .gvnews_posts').nodes[0];
-        let gutter = parseInt(this.data.attribute.gutter_width) || 30;
+        let gutter = parseInt(this.data.attribute.gutter_width);
         this.shuffleInstance = new Shuffle(posts, {
             itemSelector: '.gvnews_post',
             gutterWidth: gutter,

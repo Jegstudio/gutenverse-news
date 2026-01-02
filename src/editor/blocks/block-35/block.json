@@ -715,6 +715,15 @@
         "cardPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "gutterWidth": {
+            "type": "string",
+            "default": 30,
+            "copyStyle": true
         }
     },
     "supports": {

@@ -23,9 +23,20 @@ class Module_32 extends Block {
 		if ( isset( $this->attrs['rowItemGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post",
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post:not(:last-of-type)",
 					'property'       => function ( $value ) {
-						return "row-gap: {$value}px;";
+						return "margin-bottom: {$value}px;";
+					},
+					'value'          => $this->attrs['rowItemGap'],
+					'device_control' => true,
+				)
+			);
+
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
+					'property'       => function ( $value ) {
+						return "margin-top: {$value}px;";
 					},
 					'value'          => $this->attrs['rowItemGap'],
 					'device_control' => true,
