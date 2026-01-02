@@ -775,7 +775,7 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function reading_time() {
-		$selector = '.' . $this->element_id . '.gvnews-reading-time.gvnews-block';
+		$selector = '.' . $this->element_id . ' .gvnews-reading-time';
 
 		if ( isset( $this->attrs['readingTimeTextColor'] ) ) {
 			$this->inject_style(

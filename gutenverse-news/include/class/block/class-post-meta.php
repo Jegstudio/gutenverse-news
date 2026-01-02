@@ -75,8 +75,13 @@ class Post_Meta extends Post_Guten {
 		);
 		$meta_components = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes );
 		if ( isset( $meta_components[ $meta ] ) ) {
-			$element = $meta_components[ $meta ];
-			return '<div class="meta-items ' . $is_last_item . '">'
+			$element          = $meta_components[ $meta ];
+			$additional_class = '';
+			if ( isset( $element['element'] ) ) {
+				$additional_class = $element['additional_class'];
+				$element          = $element['element'];
+			}
+			return '<div class="meta-items ' . $is_last_item . ' ' . $additional_class . '">'
 				. $element .
 			'</div>';
 		}
@@ -85,20 +90,19 @@ class Post_Meta extends Post_Guten {
 	// === PRIVATE ===
 
 	/**
-	 * Method meta_category
+	 * Method render_category
+	 *
+	 * @param string $is_last_item class is-last-item.
 	 *
 	 * @return string
 	 */
-	private function meta_category() {
-		$element = '<span>
+	public function render_category( $is_last_item ) {
+		return '<div class="gvnews-meta-category meta-items ' . $is_last_item . '">
+                <span>
                     <span class="meta-text">' . esc_html__( 'in', 'gutenverse-news' ) . '</span>
                     ' . get_the_category_list( '<span class="category-separator">, </span>' ) . ' 
-                </span>';
-
-		return array(
-			'element'          => $element,
-			'additional_class' => 'gvnews-meta-category',
-		);
+                </span>
+            </div>';
 	}
 
 	/**
