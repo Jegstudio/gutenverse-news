@@ -21,7 +21,9 @@ const Block32Columns = (props) => {
         isLoadMore = false,
         readmoreButtonDisabled = false,
         imageSizeMain = {},
-        attributes,
+        rowItemGap,
+        gutterWidth,
+        attributes
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -30,7 +32,7 @@ const Block32Columns = (props) => {
         if (node) {
             shuffleInstance.current = new Shuffle(node, {
                 itemSelector: '.gvnews_post',
-                gutterWidth: 30,
+                gutterWidth: gutterWidth ? parseInt(gutterWidth) : 30,
                 speed: 0
             });
         } else {
@@ -39,15 +41,24 @@ const Block32Columns = (props) => {
         }
     }, []);
 
+    const onImageLoad = useCallback(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.layout();
+        }
+    }, []);
+
     useEffect(() => {
         if (shuffleInstance.current) {
+            shuffleInstance.current.options.gutterWidth = gutterWidth ? parseInt(gutterWidth) : 30;
             shuffleInstance.current.resetItems();
             shuffleInstance.current.update();
         }
     }, [
         blockWidth,
         attributes,
-        postData
+        gutterWidth,
+        postData,
+        rowItemGap
     ]);
 
     const postDataLen = postData.length;
@@ -66,7 +77,7 @@ const Block32Columns = (props) => {
                             </h3>
                         )}
                     </header>
-                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} />}
+                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} onLoad={onImageLoad} />}
                     <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>

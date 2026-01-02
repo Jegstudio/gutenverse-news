@@ -324,3 +324,36 @@ export const postItemGridPanel = (props) => {
 }
 
 
+export const postItemMasonryPanel = (props) => {
+
+    const {
+        elementId,
+    } = props;
+
+    return [
+        {
+            id: 'rowItemGap',
+            label: __('Row Item Gap', 'gutenverse-news'),
+            description: __('Row gap beteen your post lists', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+        },
+        {
+            id: 'gutterWidth',
+            label: __('Post Lists Column Gap', 'gutenverse-news'),
+            description: __('The column gap between post lists', 'gutenverse-news'),
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            step: 1,
+            isParseFloat: false,
+            allowDeviceControl: false,
+        },
+    ]
+}
+
+

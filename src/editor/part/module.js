@@ -41,6 +41,7 @@ const BlockModule = compose(
         secondThumbnailClass,
         useDedicatedStyle = false,
         dedicatedStyle = () => [],
+        isMasonry = false
     } = props;
 
     const {
@@ -99,7 +100,20 @@ const BlockModule = compose(
         renderedImageSizeMain,
         renderedImageSizeSecond,
         gutenversePreviewBlock = '',
+        gutterWidth = 30,
+        rowItemGap,
     } = attributes;
+
+    useEffect(() => {
+        if (isMasonry) {
+            setTimeout(() => {
+                setMasonryReload(!masonryReload);
+            }, 300);
+        }
+    }, [
+        gutterWidth,
+        rowItemGap
+    ]);
 
     const metaSettings = {
         meta_show: showMeta,
@@ -165,6 +179,7 @@ const BlockModule = compose(
         totalPage: 1,
     });
     const [forceReload, setForceReload] = useState(false);
+    const [masonryReload, setMasonryReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
     const [postLoaded, setPostLoaded] = useState(0);
     const [postStart, setPostStart] = useState(0);
@@ -359,6 +374,8 @@ const BlockModule = compose(
                 metaCommentIconType,
                 metaCommentIconSVG,
                 attributes,
+                gutterWidth,
+                rowItemGap,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -389,7 +406,8 @@ const BlockModule = compose(
         metaCommentIcon,
         metaCommentIconType,
         metaCommentIconSVG,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        masonryReload,
     ]);
 
     const blockProps = useBlockProps({

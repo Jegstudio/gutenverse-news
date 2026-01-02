@@ -180,7 +180,8 @@ class Block extends Grab {
 			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
 			'icon_type'                    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
 			'icon_svg'                     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
-			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : [],
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : array(),
+			'gutter_width'                 => isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30,
 		);
 		$sccontent = '';
 
