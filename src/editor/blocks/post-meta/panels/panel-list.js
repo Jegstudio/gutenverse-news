@@ -48,7 +48,6 @@ export const panelList = () => {
     );
 
     const corePanels = [
-
         {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,

@@ -4,7 +4,10 @@ import { applyFilters } from '@wordpress/hooks';
 import { isNotEmpty } from 'gutenverse-core/helper';
 
 export const generalPanel = (props) => {
-
+    const {
+        metaLeft,
+        metaRight,
+    } = props;
     const listSearch = [
         {
             label: __('Author', 'gutenverse-news'),
@@ -23,10 +26,6 @@ export const generalPanel = (props) => {
             value: 'comment'
         },
     ];
-    const {
-        metaLeft,
-        metaRight,
-    } = props;
 
     const searchMeta = input => new Promise(resolve => {
         return resolve(applyFilters(
