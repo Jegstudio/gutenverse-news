@@ -153,7 +153,7 @@ class Post_Meta extends Post_Guten {
 	 */
 	protected function is_last_item( $index, $array_length ) {
 		if ( $index === $array_length - 1 ) {
-			return 'is-last-item';
+			return ' is-last-item ';
 		}
 		return '';
 	}
