@@ -44,7 +44,7 @@ export const cardStylePanelModule = (props) => {
         },
         {
             id: 'cardUseBorder',
-            label: __('Use Border', '--gctd--'),
+            label: __('Use Border', 'gutenverse-news'),
             component: CheckboxControl,
         },
         {
