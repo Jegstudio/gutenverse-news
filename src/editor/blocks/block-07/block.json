@@ -708,6 +708,18 @@
         "rowItemGap": {
             "type": "object",
             "copyStyle": true
+        },
+        "cardUseBorder": {
+            "type": "boolean",
+            "default": true
+        },
+        "cardLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardLineColor": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {

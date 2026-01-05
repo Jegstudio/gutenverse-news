@@ -23,6 +23,7 @@ use GUTENVERSE\NEWS\Style\Module_19;
 use GUTENVERSE\NEWS\Style\Module_20;
 use GUTENVERSE\NEWS\Style\Module_24;
 use GUTENVERSE\NEWS\Style\Module_32;
+use GUTENVERSE\NEWS\Style\Module_7;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
@@ -97,6 +98,9 @@ class Style_Generator {
 				case 'gutenverse/news-block-34' === $name:
 				case 'gutenverse/news-block-35' === $name:
 					$instance = new Module_32( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-7' === $name:
+					$instance = new Module_7( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-block' ):
 					$instance = new Block( $attrs, $name );

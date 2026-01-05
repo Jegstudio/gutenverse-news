@@ -4,7 +4,8 @@ const getBlockStyle = (
     elementId,
     attributes,
     mainThumbnailClass = null,
-    secondThumbnailClass = null
+    secondThumbnailClass = null,
+    skipped = []
 ) => {
     let data = [];
 
@@ -1264,7 +1265,9 @@ const getBlockStyle = (
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
     data = noContentStyle(elementId, attributes, data);
-    data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+    if (!skipped.includes('cardStyle')) {
+        data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+    }
     return data;
 };
 

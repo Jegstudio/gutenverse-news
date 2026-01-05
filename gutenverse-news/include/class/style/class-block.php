@@ -1954,7 +1954,7 @@ class Block extends StyleAbstract {
 	/**
 	 * Generate card style.
 	 */
-	private function generate_card_style() {
+	protected function generate_card_style() {
 		$str                   = explode( '\\', $this->attrs['gvnewsModule'] );
 		$gvnews_module         = end( $str );
 		$modules_with_box_wrap = array(
