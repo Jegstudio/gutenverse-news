@@ -1659,6 +1659,7 @@
   background: #fff;
   border: 1px solid #eee;
   overflow: visible;
+
   &:not(:last-of-type) {
     margin-bottom: 40px;
   }
@@ -2942,10 +2943,10 @@
   animation-name: gvnews_fadeinleft;
 }
 
-.gvnews_postblock.loaded.more .gvnews_ajax_loaded,
-.loaded.more .gvnews_postblock .gvnews_ajax_loaded,
-.gvnews_postblock.loaded.scroll .gvnews_ajax_loaded,
-.loaded.scroll .gvnews_postblock .gvnews_ajax_loaded {
+.gvnews_postblock.loaded.more:not(.disable-fade-up) .gvnews_ajax_loaded,
+.loaded.more:not(.disable-fade-up) .gvnews_postblock .gvnews_ajax_loaded,
+.gvnews_postblock.loaded.scroll:not(.disable-fade-up) .gvnews_ajax_loaded,
+.loaded.scroll:not(.disable-fade-up) .gvnews_postblock .gvnews_ajax_loaded {
   -webkit-animation-duration: .4s;
   animation-duration: .4s;
   -webkit-animation-fill-mode: both;
@@ -2953,6 +2954,19 @@
   -webkit-animation-name: gvnews_fadeinup;
   animation-name: gvnews_fadeinup;
 }
+
+.gvnews_postblock.loaded.more.disable-fade-up .gvnews_ajax_loaded,
+.loaded.more.disable-fade-up .gvnews_postblock .gvnews_ajax_loaded,
+.gvnews_postblock.loaded.scroll.disable-fade-up .gvnews_ajax_loaded,
+.loaded.scroll.disable-fade-up .gvnews_postblock .gvnews_ajax_loaded {
+  -webkit-animation-duration: .4s;
+  animation-duration: .4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: gvnews_onlyfade;
+  animation-name: gvnews_onlyfade;
+}
+
 
 .gvnews_postblock.loaded {
 
@@ -5502,6 +5516,16 @@
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 0;
+  }
+}
+
+@keyframes gvnews_onlyfade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

@@ -18,6 +18,13 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_35 extends Module_View_Abstract {
 
 	/**
+	 * Additional class
+	 *
+	 * @var string
+	 */
+	protected $additional_class = 'disable-fade-up';
+
+	/**
 	 * This variable for consume block style
 	 *
 	 * @var string

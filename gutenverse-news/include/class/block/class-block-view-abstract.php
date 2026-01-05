@@ -89,6 +89,13 @@ abstract class Block_View_Abstract {
 	);
 
 	/**
+	 * Additional class
+	 *
+	 * @var string
+	 */
+	protected $additional_class = '';
+
+	/**
 	 * Get instance
 	 *
 	 * @return ModuleViewAbstract
