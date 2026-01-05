@@ -41,7 +41,8 @@ const BlockModule = compose(
         secondThumbnailClass,
         useDedicatedStyle = false,
         dedicatedStyle = () => [],
-        isMasonry = false
+        isMasonry = false,
+        checkLandscapeThumbnail = false
     } = props;
 
     const {
@@ -303,6 +304,7 @@ const BlockModule = compose(
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
             postOffset: postStart,
             advancedResponse: true,
+            checkLandscapeThumbnail,
         };
         if (activeFilter['value'] != -100) {
             switch (activeType) {

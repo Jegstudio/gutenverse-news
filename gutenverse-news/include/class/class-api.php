@@ -709,6 +709,8 @@ class Api {
 			$advanced_response = isset( $attributes['advancedResponse'] );
 		}
 
+		$check_landscape_thumbnail = isset( $attributes['checkLandscapeThumbnail'] ) ? $attributes['checkLandscapeThumbnail'] : false;
+
 		$data = $advanced_response ? array(
 			'result'     => array(),
 			'next'       => $result['next'] ?? false,
@@ -732,35 +734,38 @@ class Api {
 				$excerpt = $post->post_content;
 			}
 
-			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
-			$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
-			$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
-			$excerpt           = wp_trim_words( $excerpt, 200, null );
+			$post_thumbnail_id   = get_post_thumbnail_id( $post->ID );
+			$excerpt             = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
+			$excerpt             = wp_trim_words( $excerpt, 200, null );
+			$landscape_thumbnail = false;
+			if ( $check_landscape_thumbnail ) {
+				$thumb_data          = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+				$landscape_thumbnail = ( ( isset( $thumb_data[1] ) && isset( $thumb_data[2] ) ) && ( $thumb_data[1] < $thumb_data[2] ) ) ? false : true;
+			}
 
 			$final_data = array(
-				'id'        => $post->ID,
-				'title'     => html_entity_decode( get_the_title( $post->ID ) ),
-				'thumbnail' => array(
-					'id'      => get_post_thumbnail_id( $post->ID ),
-					'url'     => get_the_post_thumbnail_url( $post->ID ),
-					'padding' => $padding,
+				'id'                 => $post->ID,
+				'title'              => html_entity_decode( get_the_title( $post->ID ) ),
+				'thumbnail'          => array(
+					'id'  => $post_thumbnail_id,
+					'url' => get_the_post_thumbnail_url( $post->ID ),
 				),
-				'category'  => array(
+				'category'           => array(
 					'id'   => $cat_id,
 					'name' => $category,
 				),
-				'date'      => array(
+				'date'               => array(
 					'published' => get_post_timestamp( $post->ID, 'date' ),
 					'modified'  => get_post_timestamp( $post->ID, 'modified' ),
 				),
-				'excerpt'   => $excerpt,
-				'author'    => array(
+				'excerpt'            => $excerpt,
+				'author'             => array(
 					'id'     => $post->post_author,
 					'name'   => get_the_author_meta( 'display_name', $post->post_author ),
 					'avatar' => get_avatar_url( $post->post_author, array( 'size' => 75 ) ),
 				),
-				'comment'   => get_comments_number( $post->ID ),
+				'comment'            => get_comments_number( $post->ID ),
+				'landscapeThumbnail' => $landscape_thumbnail,
 			);
 
 			if ( $advanced_response ) {
