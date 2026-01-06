@@ -20154,8 +20154,9 @@ input:checked+.slider {
   }
 
   .gvnews_post_meta .fa,
-  .gvnews_post_meta svg {
-    color: #fff !important;
+  .gvnews_post_meta svg,
+  .gvnews_post_meta>.gvnews_meta_post_review svg {
+    color: #fff;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   }
 

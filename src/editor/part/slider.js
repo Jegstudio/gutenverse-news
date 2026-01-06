@@ -20,7 +20,7 @@ const SliderCaption = (props) => {
                     .split(' ')
                     .splice(0, props.attr.length)
                     .join(' ') + (withElipsis ? props.attr.elipsis : '')}</p>}
-                {props.post && withMeta && props.attr.option.option.show_meta && <SliderMeta {...props} />}
+                {props.post && withMeta && <SliderMeta {...props} />}
                 {withReadmore && <a href="javascript:void(0);" className="gvnews_readmore">
                     Read more
                 </a>}
@@ -66,7 +66,7 @@ const SliderMeta = (props) => {
     let timestamp = props.post.date[dateAttr.type] * 1000;
 
     return (
-        <div className="gvnews_post_meta">
+        <div className="gvnews_post_meta type-2">
             {applyFilters('gvnews.part.meta', [], {
                 post: props.post || {}, option: props.attr.option.option || {}
             })}

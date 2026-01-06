@@ -278,6 +278,12 @@
         },
         "showMetaReview": {
             "type": "boolean"
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
         }
     },
     "supports": {

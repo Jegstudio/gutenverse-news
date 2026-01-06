@@ -64,12 +64,14 @@ const Slider9Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        showMetaReview = false,
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
-        meta_author: showMetaAuthor
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview,
     };
 
     const moduleOption = {
@@ -302,6 +304,7 @@ const Slider9Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        showMetaReview,
     ]);
 
     useEffect(() => {
