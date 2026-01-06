@@ -57,6 +57,7 @@ class Hero_14 extends StyleAbstract {
 		}
 
 		$this->generate_main_container();
+		do_action( 'gvnews_hero_style', $this );
 	}
 
 	/**

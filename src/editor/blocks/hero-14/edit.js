@@ -63,12 +63,14 @@ const Hero14Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         readmoreButtonDisabled = false,
+        showMetaReview = false,
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
-        meta_author: showMetaAuthor
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview,
     };
 
     const moduleOption = {
@@ -279,6 +281,7 @@ const Hero14Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        showMetaReview,
         readmoreButtonDisabled
     ]);
 
