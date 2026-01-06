@@ -1272,7 +1272,7 @@ const getBlockStyle = (
     isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
         'type': 'color',
         'id': 'postReviewMetaStarColor',
-        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa, .${elementId} .gvnews_heroblock .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review .gutenverse-icon-svg svg`,
         'properties': [
             {
                 'name': 'color',
@@ -1283,7 +1283,7 @@ const getBlockStyle = (
     isNotEmpty(attributes['postReviewMetaStarSize']) && data.push({
         'type': 'unitPoint',
         'id': 'postReviewMetaStarSize',
-        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review i.fa`,
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review .gutenverse-icon-svg svg`,
         'properties': [
             {
                 'name': 'font-size',

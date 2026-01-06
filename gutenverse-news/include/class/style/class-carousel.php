@@ -54,6 +54,7 @@ class Carousel extends StyleAbstract {
 			$this->generate_category_label_style();
 		}
 		$this->generate_thumbnail_style();
+		do_action( 'gvnews_carousel_style', $this );
 	}
 
 

@@ -504,7 +504,7 @@ abstract class Block_View_Abstract {
 	public function post_meta_1( $post, $avatar = false, $feed = false ) {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
-			$output .= '<div class="gvnews_post_meta">';
+			$output .= '<div class="gvnews_post_meta type-1">';
 			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_author( $post, $avatar );
 			$output .= $this->get_meta_date( $post );
@@ -525,7 +525,7 @@ abstract class Block_View_Abstract {
 	public function post_meta_2( $post ) {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
-			$output .= '<div class="gvnews_post_meta">';
+			$output .= '<div class="gvnews_post_meta type-2">';
 			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_date( $post );
 			$output .= '</div>';
@@ -543,7 +543,7 @@ abstract class Block_View_Abstract {
 	public function post_meta_3( $post ) {
 		$output = '';
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
-			$output .= '<div class="gvnews_post_meta">';
+			$output .= '<div class="gvnews_post_meta type-3">';
 			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_author( $post, false );
 			$output .= $this->get_meta_date( $post );
