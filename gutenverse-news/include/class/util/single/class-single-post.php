@@ -199,12 +199,6 @@ class Single_Post {
 		$format = get_post_format();
 
 		switch ( $format ) {
-			case 'gallery':
-				if ( is_null( $gallery_size ) ) {
-					$gallery_size = $this->get_gallery_thumbnail_size();
-				}
-				$output = $this->featured_gallery( $gallery_size, $id, $class );
-				break;
 			case 'video':
 				$output = "<div {$id} class='jeg_feature_video_wrapper {$class}'>" . $this->featured_video( $image_size, $id, $class ) . '</div>';
 				break;
@@ -276,38 +270,6 @@ class Single_Post {
 		}
 	}
 
-	/**
-	 * Featured Gallery method
-	 *
-	 * @param mixed $size size.
-	 * @param mixed $id id.
-	 * @param mixed $additional_class class.
-	 * @return mixed
-	 */
-	public function featured_gallery( $size, $id = null, $additional_class = null ) {
-		$dimension = gvnews_get_image_dimension_by_name( $size );
-		$output    = '';
-		$images    = apply_filters( 'gvnews_metabox_value', false, 'gallery', $id );
-		$content   = '';
-		if ( $images ) {
-			foreach ( $images as $key => $image ) {
-				$image_id = $image['id'];
-				$image    = wp_get_attachment_image_src( $image_id, 'full' );
-				$content .= '<a>' .
-								apply_filters( 'gvnews_single_image_lazy_owl', $image_id, $size ) .
-							'</a>';
-			}
-			$output = '<div class="gvnews_featured thumbnail-container gvnews_owlslider size-' . $dimension . ' ' . $additional_class . '">
-							<div class="featured_gallery">'
-							. $content .
-							'</div>
-						</div>';
-		}
-		if ( ! is_admin() && '' !== $content ) {
-			wp_enqueue_script( 'gutenverse-news-frontend-featured-gallery-script' );
-		}
-		return apply_filters( 'gvnews_featured_gallery', $output, $this->post_id );
-	}
 
 	/**
 	 * Featured Video

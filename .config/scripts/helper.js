@@ -17,9 +17,6 @@ const helper = {
 		"downgrade-plugin": {
 			import: path.resolve(__dirname, "../../src/wizard/downgrade-plugin.js"),
 		},
-		'featured-gallery': {
-			import: path.resolve( __dirname, "../../src/helper/featured-gallery.js" )
-		},
 		'featured-video': {
 			import: path.resolve( __dirname, "../../src/helper/featured-video.js" )
 		},
