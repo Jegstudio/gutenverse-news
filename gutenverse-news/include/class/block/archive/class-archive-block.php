@@ -31,6 +31,7 @@ class Archive_Block extends Archive_View_Abstract {
 			remove_all_filters( 'the_content' ); /* TODO: this is hot fix for fixing the conflix with pattern wrapper block */
 		}
 		if ( $attr['first_page'] && gvnews_get_post_current_page() > 1 ) {
+			$this->set_skipped_post( (int) $attr['number_post'], true );
 			return false;
 		}
 		$name = 'GUTENVERSE\NEWS\Block\Module\Module_' . $attr['block_type'];
