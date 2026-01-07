@@ -8,10 +8,11 @@ import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import BlockHandler from './components/block-handler';
 // import BlockHandler from './block-handler';
-import { useRef, useEffect } from '@wordpress/element';
+import { useRef, useEffect, useState } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+const withMasonry = ['32', '33', '34', '35'];
 
 const ArchiveBlock = compose(
     withPartialRender,
@@ -46,8 +47,24 @@ const ArchiveBlock = compose(
         listIcon = '',
         gutenversePreviewBlock = '',
         mainClass,
-        renderedImageSizeMain
+        renderedImageSizeMain,
+        gutterWidth = 30,
+        rowItemGap,
     } = attributes;
+
+    const [masonryReload, setMasonryReload] = useState(false);
+
+    useEffect(() => {
+        if (withMasonry.includes(blockType)) {
+            setTimeout(() => {
+                setMasonryReload(!masonryReload);
+            }, 300);
+        }
+    }, [
+        gutterWidth,
+        rowItemGap
+    ]);
+
 
     const elementRef = useRef(null);
 
@@ -119,6 +136,9 @@ const ArchiveBlock = compose(
         listIcon,
         gutenversePreviewBlock,
         renderedImageSizeMain,
+        masonryReload,
+        gutterWidth,
+        rowItemGap,
     };
 
     return (

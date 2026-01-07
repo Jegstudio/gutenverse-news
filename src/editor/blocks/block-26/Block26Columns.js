@@ -36,7 +36,7 @@ const Block26Columns = props => {
                 </div>
                 <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
                 <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
-                <div className="gvnews_meta_footer clearfix">
+                <div className="gvnews_meta_footer">
                     {<MetaAuthor {...props} />}
                     {/* {blockWidth != 4 && <RawHTML key="html">{post.share}</RawHTML> } TODO: add social share icon on this module */}
                     {<MetaComments {...props} showText={true}/>}

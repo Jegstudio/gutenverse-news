@@ -220,6 +220,7 @@ class Archive extends Grab {
 			$attr['date_format_custom'] = $this->attributes['dateFormatCustom'];
 			$attr['first_page']         = $this->attributes['firstPage'];
 			$attr['column_width']       = $this->attributes['columnWidth'];
+			$attr['gutter_width']       = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
 		}
 		return $attr;
 	}

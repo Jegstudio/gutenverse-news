@@ -361,6 +361,31 @@
         "titleContainerPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "mainItemGap": {
+            "type": "object"
+        },
+        "gutterWidth": {
+            "type": "string",
+            "default": 30
+        },
+        "cardUseBorder": {
+            "type": "boolean",
+            "default": true
+        },
+        "cardLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardLineColor": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
