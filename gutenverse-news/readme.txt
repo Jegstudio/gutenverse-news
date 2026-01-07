@@ -144,6 +144,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.1.1-dev =
+##### Changes
+* Remove default additional margin on all Module Block
+##### Improvements
+* Add post item gap option on all Module Block
 ##### Bug Fixes
 * Fix the meta icon color option not working on Archive Block and Post Related Block
 * Fix Space Bottom option not working on Biography Style on Author Box block
