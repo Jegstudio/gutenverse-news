@@ -16977,7 +16977,6 @@ span.gvnews-category {
 .gvnews_slider_wrapper {
   position: relative;
   overflow: hidden;
-  margin-bottom: 40px;
 
   .tns-outer .tns-controls button,
   .owl-carousel .owl-nav div {
@@ -18562,10 +18561,6 @@ span.gvnews-category {
 
 /* iPhone 6 Plus */
 @media only screen and (max-width: 767px) {
-  .gvnews_slider_wrapper {
-    margin-bottom: 30px;
-  }
-
   /* Slider Type 2 */
 
   .gvnews_slider_type_2_wrapper .thumbnail-container {
@@ -18613,9 +18608,6 @@ span.gvnews-category {
 
 /* iPhone 6 */
 @media only screen and (max-width: 667px) {
-  .gvnews_slider_wrapper {
-    margin-bottom: 30px;
-  }
 
   /* Slider Type 4 */
 
@@ -19497,7 +19489,6 @@ input:checked+.slider {
 /* Postblock Carousel 1 */
 
 .gvnews_postblock_carousel_1 {
-  margin-bottom: 40px;
 
   .gvnews_post_title {
     font-size: 14px;
@@ -19530,7 +19521,6 @@ input:checked+.slider {
 /* Postblock Carousel 2 */
 
 .gvnews_postblock_carousel_2 {
-  margin-bottom: 40px;
 
   .gvnews_post {
     position: relative;
@@ -19998,12 +19988,6 @@ input:checked+.slider {
   }
 }
 
-/* iPhone 6 Plus */
-@media only screen and (max-width: 767px) {
-  .gvnews_postblock_carousel_2 {
-    margin-bottom: 30px;
-  }
-}
 
 /* iPhone 6 */
 @media only screen and (max-width: 667px) {
