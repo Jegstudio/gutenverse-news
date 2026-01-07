@@ -25,13 +25,6 @@ class Module_39 extends Module_View_Abstract {
 	public $main_thumbnail_class = 'gvnews_pl_md_1';
 
 	/**
-	 * Construct
-	 */
-	public function __construct() {
-		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
-		parent::__construct();
-	}
-	/**
 	 * Method render_block_type
 	 *
 	 * @param object $post       post.
@@ -134,16 +127,4 @@ class Module_39 extends Module_View_Abstract {
 		return $this->build_column( $result );
 	}
 
-	/**
-	 * Method custom_module_column_class
-	 *
-	 * @param string $column_class column class.
-	 * @return string
-	 */
-	public function custom_module_column_class( $column_class ) {
-		if ( 'auto' === $this->attribute['column_width'] ) {
-			$column_class = 'gvnews_col_3o3';
-		}
-		return $column_class;
-	}
 }
