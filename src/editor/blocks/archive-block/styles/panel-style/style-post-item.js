@@ -127,11 +127,6 @@ export const postItemStyle = (elementId, attributes, data) => {
             ]
         });
     } else {
-
-        console.log('postItemStyle- bawah');
-        console.log(attributes);
-        console.log('e o postItemStyle- bawah');
-
         if (isNotEmpty(attributes['rowItemGap'])) {
             data.push({
                 'type': 'plain',

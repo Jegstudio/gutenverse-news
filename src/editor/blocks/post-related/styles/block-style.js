@@ -2,6 +2,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 import { contentContainerStyle } from './panel-styles/style-content-container';
 import { thumbnailAndOverlayStyle } from './panel-styles/style-thumbnail';
 import { cardStyleModule } from './panel-styles/style-card';
+import { postItemStyle } from './panel-styles/style-post-item';
 
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
@@ -46,6 +47,7 @@ const getBlockStyle = (elementId, attributes) => {
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
     data = contentContainerStyle(elementId, attributes, data);
     data = cardStyleModule(elementId, attributes, data);
+    data = postItemStyle(elementId, attributes, data);
 
     /**
      * Panel Header

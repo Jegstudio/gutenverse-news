@@ -17,7 +17,7 @@ import { thumbnailSettingPanel } from './panel-thumbnail-setting';
 import { thumbnailOverlayPanel } from './panel-thumbnail-overlay';
 import { contentContainerPanel } from './panel-content-container';
 import { cardStylePanelModule } from './panel-card-style';
-
+import { postItemPanel } from "./panel-post-item";
 
 export const panelList = () => {
     return [
@@ -70,6 +70,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: responsivePanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Post Item', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: postItemPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Positioning', 'gutenverse'),

@@ -659,6 +659,35 @@
         "cardPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "columnItemGapSecond": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "columnItemGapThird": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "mainItemGap": {
+            "type": "object"
+        },
+        "cardUseBorder": {
+            "type": "boolean",
+            "default": true
+        },
+        "cardLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardLineColor": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
