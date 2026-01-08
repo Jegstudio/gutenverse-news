@@ -73,6 +73,7 @@ class Archive_Block extends StyleAbstract {
 		}
 		$this->other_style();
 		$this->post_item_style();
+		$this->generate_card_style();
 	}
 
 	/**
@@ -926,24 +927,61 @@ class Archive_Block extends StyleAbstract {
 				)
 			);
 		}
-		if ( isset( $this->attrs['cardBorder'] ) ) {
-			$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)" );
+	}
+
+	/**
+	 * Generate style block card style.
+	 *
+	 * @return void
+	 */
+	private function generate_card_style() {
+		if ( '7' !== $this->attrs['blockType'] || ( isset( $this->attrs['cardUseBorder'] ) && $this->attrs['cardUseBorder'] ) ) {
+			if ( isset( $this->attrs['cardBorder'] ) ) {
+				$this->handle_border( 'cardBorder', ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)" );
+			}
+			if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
+						'property'       => function ( $value ) {
+							return $this->handle_border_responsive( $value );
+						},
+						'value'          => $this->attrs['cardBorderResponsive'],
+						'device_control' => true,
+						'skip_device'    => array(
+							'Desktop',
+						),
+					)
+				);
+			}
+		} else {
+			if ( isset( $this->attrs['cardLineColor'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_pl_lg_6:not(:last-of-type)",
+						'property'       => function ( $value ) {
+							return $this->handle_color( $value, 'border-color' );
+						},
+						'value'          => $this->attrs['cardLineColor'],
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['cardLineThick'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_pl_lg_6:not(:last-of-type)",
+						'property'       => function ( $value ) {
+							return "border-width: {$value}px;";
+						},
+						'value'          => $this->attrs['cardLineThick'],
+						'device_control' => true,
+					)
+				);
+			}
 		}
-		if ( isset( $this->attrs['cardBorderResponsive'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)",
-					'property'       => function ( $value ) {
-						return $this->handle_border_responsive( $value );
-					},
-					'value'          => $this->attrs['cardBorderResponsive'],
-					'device_control' => true,
-					'skip_device'    => array(
-						'Desktop',
-					),
-				)
-			);
-		}
+
 		if ( isset( $this->attrs['cardPadding'] ) ) {
 			$this->inject_style(
 				array(
