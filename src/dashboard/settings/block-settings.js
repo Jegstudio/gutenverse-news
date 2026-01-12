@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ControlCheckbox, ControlSelect } from 'gutenverse-core/backend';
-import { applyFilters } from '@wordpress/hooks';
+import { ControlSelect } from 'gutenverse-core/backend';
 
 const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData }) => {
     /* option default value */
@@ -14,10 +13,10 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
     };
 
     return <>
-        <div className="template-tab-body" style={{ paddingTop: '10px' }}>
+        <div className="template-tab-body">
             <ControlSelect
                 id={'image_load'}
-                title={__('Image Load', '--gctd--')}
+                title={__('Image Loading Mechanism', '--gctd--')}
                 description={__('Default image load mechanism on Gutenverse News Post Blocks. if you choose the Lazy Load option, you can enable the "Use Normal Image Load" option on the spesific block.', '--gctd--')}
                 value={image_load}
                 updateValue={updateValue}
