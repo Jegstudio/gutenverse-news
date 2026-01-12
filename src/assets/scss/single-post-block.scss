@@ -32,9 +32,6 @@
 	}
 }
 
-.gvnews_featured {
-	margin-bottom: 20px;
-}
 
 .gvnews_post_source,
 .gvnews_post_via,
@@ -48,22 +45,4 @@
 .editor-styles-wrapper .gvnews_post_category span {
 	font-weight: bold;
 	margin-right: 3px;
-}
-
-
-/*** Featured Content ***/
-
-.gvnews_featured {
-	margin-bottom: 30px;
-
-	.wp-caption-text {
-		margin: 3px 0 0;
-		text-align: right;
-		font-size: 11px;
-		color: #a0a0a0;
-	}
-
-	// .gvnews_video_container {
-	// 	background: #dfdfdf;
-	// }
 }

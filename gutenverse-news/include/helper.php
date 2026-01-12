@@ -1485,28 +1485,6 @@ if ( ! function_exists( 'gvnews_get_image_src' ) ) {
 	}
 }
 
-if ( ! function_exists( 'gvnews_check_video_type' ) ) {
-	/**
-	 * Check youtube URL
-	 *
-	 * @param string $url url.
-	 *
-	 * @return string
-	 */
-	function gvnews_check_video_type( $url ) {
-		if ( strpos( $url, 'iframe' ) > 0 ) {
-			return 'iframe';
-		} elseif ( strpos( $url, 'youtube' ) > 0 || strpos( $url, 'youtu.be' ) > 0 ) {
-			return 'youtube';
-		} elseif ( strpos( $url, 'vimeo' ) > 0 ) {
-			return 'vimeo';
-		} elseif ( strpos( $url, 'dailymotion' ) > 0 || strpos( $url, 'dai.ly' ) > 0 ) {
-			return 'dailymotion';
-		} else {
-			return 'unknown';
-		}
-	}
-}
 if ( ! function_exists( 'gutenverse_pro_active' ) ) {
 	/**
 	 * Check if Gutenverse Pro plugin is Active.

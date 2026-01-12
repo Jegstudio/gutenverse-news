@@ -196,19 +196,10 @@ class Single_Post {
 	 * @return void
 	 */
 	public function feature_post_1( $image_size = null, $gallery_size = null, $id = null, $class = null ) {
-		$format = get_post_format();
-
-		switch ( $format ) {
-			case 'video':
-				$output = "<div {$id} class='jeg_feature_video_wrapper {$class}'>" . $this->featured_video( $image_size, $id, $class ) . '</div>';
-				break;
-			default:
-				if ( is_null( $image_size ) ) {
-					$image_size = $this->get_single_thumbnail_size();
-				}
-				$output = $this->featured_image( $image_size, $id, $class );
-				break;
+		if ( is_null( $image_size ) ) {
+			$image_size = $this->get_single_thumbnail_size();
 		}
+		$output = $this->featured_image( $image_size, $id, $class );
 
 		echo gvnews_sanitize_output( $output );
 	}
@@ -268,83 +259,5 @@ class Single_Post {
 				$this->recursive_category( $children, $result );
 			}
 		}
-	}
-
-
-	/**
-	 * Featured Video
-	 *
-	 * @param string $image_size image size.
-	 * @param int    $id id.
-	 * @param mixed  $class class.
-	 * @return string
-	 */
-	public function featured_video( $image_size = null, $id = null, $class = null ) {
-		// $following = defined( 'JNEWS_AUTOLOAD_POST' ) ? false : get_theme_mod( 'jnews_single_following_video', false );
-		// $position  = get_theme_mod( 'jnews_single_following_video_position', 'top_right' );
-		$following = false;
-		$position  = 'top_right';
-		$video_url = apply_filters( 'gvnews_metabox_value', '', 'video', $id );
-		// if ( class_exists( '\JNews\Paywall\Truncater\Truncater' ) ) {
-		// 	if ( \JNews\Paywall\Truncater\Truncater::instance()->check_status() ) {
-		// 		if ( jeg_metabox( 'jnews_paywall_metabox.enable_preview_video', false, $this->post_id ) ) {
-		// 			$video_url = jeg_metabox( 'jnews_paywall_metabox.video_preview_url', '', $this->post_id );
-		// 		} elseif ( get_theme_mod( 'jpw_block_video_content', false ) ) {
-		// 			if ( null === $image_size ) {
-		// 				$image_size = $this->get_single_thumbnail_size();
-		// 			}
-		// 			return $this->featured_image( $image_size, $id, $class );
-		// 		}
-		// 	}
-		// }
-		$video_format = strtolower( pathinfo( $video_url, PATHINFO_EXTENSION ) );
-		$featured_img = gvnews_get_image_src( get_post_thumbnail_id( $this->post_id ), 'gvnews-featured-750' );
-
-		$video_type   = gvnews_check_video_type( $video_url );
-		$allowed_type = array( 'youtube', 'vimeo', 'dailymotion' );
-
-		if ( '' === $video_url ) {
-			$content = '<div class="gvnews_video_container" style="display: none;"></div>';
-		} elseif ( in_array( $video_type, $allowed_type, true ) ) {
-			$content =
-				'<div
-					data-src="' . esc_url( $video_url ) . '"
-					data-type="' . esc_attr( $video_type ) . '"
-					data-repeat="false"
-					data-autoplay="false"
-					class="' . esc_attr( $video_type ) . '-class clearfix"
-				>
-					<div class="gvnews_video_container"></div>
-				</div>';
-		} elseif ( 'mp4' === $video_format ) {
-			$content =
-				'<div class="gvnews_video_container">
-					<video
-						width="640"
-						height="360"
-						style="width: 100%; height: 100%;"
-						poster="' . esc_attr( $featured_img ) . '"
-						controls preload="none"
-					>
-						<source type="video/mp4" src="' . esc_url( $video_url ) . '">
-					</video>
-				</div>';
-		} elseif ( wp_oembed_get( $video_url ) ) {
-			$content = '<div class="gvnews_video_container">' . wp_oembed_get( $video_url ) . '</div>';
-		} else {
-			$content = '<div class="gvnews_video_container">' . $video_url . '</div>';
-		}
-
-		$output = '<div class="gvnews_featured featured_video ' . $position . ' " data-following="' . $following . '" data-position="' . $position . '">
-						<div class="gvnews_featured_video_wrapper">'
-							. $content .
-							'<div class="floating_close"></div>
-						</div>
-					</div>';
-		if ( ! is_admin() && '' !== $video_url ) {
-			wp_enqueue_script( 'gutenverse-news-frontend-featured-video-script' );
-		}
-
-		return apply_filters( 'gvnews_featured_video', $output, $this->post_id );
 	}
 }

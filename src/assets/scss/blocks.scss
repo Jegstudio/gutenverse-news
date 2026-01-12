@@ -1071,31 +1071,31 @@
 }
 
 .gvnews_pl_sm.format-video,
-.gvnews_pl_sm.format-gallery{
-    .gvnews_thumb:after {
-      transform: scale(0.7);
-    }
+.gvnews_pl_sm.format-gallery {
+  .gvnews_thumb:after {
+    transform: scale(0.7);
   }
+}
 
 .gvnews_post.format-video .gvnews_thumb:after {
-    -webkit-backface-visibility: hidden;
-    border: 2px solid #fff;
-    border-radius: 100%;
-    content: "\F04B";
-    font-size: 24px;
-    height: 48px;
-    letter-spacing: -4px;
-    line-height: 46px;
-    margin: -22px 0 0 -22px;
-    width: 48px;
-    color: #fff;
-    font-family: FontAwesome;
-    left: 50%;
-    pointer-events: none;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    z-index: 1;
+  -webkit-backface-visibility: hidden;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  content: "\F04B";
+  font-size: 24px;
+  height: 48px;
+  letter-spacing: -4px;
+  line-height: 46px;
+  margin: -22px 0 0 -22px;
+  width: 48px;
+  color: #fff;
+  font-family: FontAwesome;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  z-index: 1;
 }
 
 .gvnews_post.format-gallery .gvnews_thumb:after {
@@ -7324,39 +7324,46 @@
 
 
 /* Video Embeds */
-
-.gvnews_video_container {
+.gvnews_featured_video_wrapper {
+  height: 500px;
+  width: 100%;
   position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 25px;
-  height: 0;
 
-  iframe,
-  object,
-  embed,
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-/* fix conflict with VC wrapper */
-
-.wpb_video_wrapper {
   .gvnews_video_container {
-    position: relative;
-    padding-top: 0;
-    padding-bottom: 0;
-    height: auto;
-  }
 
-  .gvnews_video_content {
-    margin-bottom: 0;
+    iframe,
+    object,
+    embed,
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
+
+.gvnews_featured {
+  &.featured_video {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .gvnews_featured_video_preview {
+      width: 100%;
+      height: 500px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+  }
+}
+
 
 /*** Social Share Button ***/
 
