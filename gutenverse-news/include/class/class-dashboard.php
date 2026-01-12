@@ -20,6 +20,7 @@ class Dashboard {
 	 */
 	public function __construct() {
 		add_filter( 'gutenverse_dashboard_config', array( $this, 'dashboard_config' ) );
+		add_filter( 'gutenverse_settings_data', array( $this, 'merge_settings_data' ) );
 		add_filter( 'gutenverse_include_dashboard', array( $this, 'enqueue_scripts' ) );
 	}
 
@@ -84,5 +85,18 @@ class Dashboard {
 		);
 
 		return $config;
+	}
+
+	/**
+	 * Merge Gutenverse Settings with additional setting from Gutenvers News.
+	 *
+	 * @param array $settings Gutenverse Settings.
+	 * @return array
+	 */
+	public function merge_settings_data( $settings ) {
+		return array_merge(
+			$settings,
+			array( 'gvnews_settings' => get_option( 'gvnews_settings', array() ) )
+		);
 	}
 }

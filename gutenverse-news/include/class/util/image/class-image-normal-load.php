@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Util\Image;
 
+use GUTENVERSE\NEWS\Util\Options;
+
 /**
  * Image_Normal_Load
  *
@@ -23,6 +25,20 @@ class Image_Normal_Load implements Image_Interface {
 	 * @var Image_Normal_Load
 	 */
 	private static $instance;
+
+	/**
+	 * Use normal load
+	 *
+	 * @var bool
+	 */
+	protected $use_normal_load = false;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->use_normal_load = 'normal' === Options::get_instance()->get_block_option( 'image_load', 'lazy_load' );
+	}
 
 	/**
 	 * Get instance
@@ -80,7 +96,7 @@ class Image_Normal_Load implements Image_Interface {
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
 
 		$post_thumbnail_id = get_post_thumbnail_id( $id );
-		$percentage = 100;
+		$percentage        = 100;
 
 		if ( $post_thumbnail_id ) {
 			$image_size = wp_get_attachment_image_src( $post_thumbnail_id, $size );
@@ -112,12 +128,21 @@ class Image_Normal_Load implements Image_Interface {
 	 *
 	 * @param string $id   id.
 	 * @param string $size size.
+	 * @param bool   $skip_lazy the skip lazyload image.
 	 *
 	 * @return string
 	 */
-	public function image_thumbnail( $id, $size ) {
-		add_filter( 'wp_lazy_loading_enabled', '__return_false' );
-		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
+	public function image_thumbnail( $id, $size, $skip_lazy = false ) {
+		if ( $skip_lazy || $this->use_normal_load ) {
+			$image_attr = array(
+				'loading'       => 'eager',
+				'fetchpriority' => 'high',
+			);
+		} else {
+			$image_attr = array(
+				'loading' => 'lazy',
+			);
+		}
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 		$size       = apply_filters( 'gvnews_use_custom_image', $size );
@@ -129,12 +154,9 @@ class Image_Normal_Load implements Image_Interface {
 		$additional_class = apply_filters( 'gvnews_custom_thumbnail_class', '' );
 
 		$thumbnail  = '<div class="thumbnail-container ' . esc_attr( $additional_class ) . ' size-' . esc_attr( $image_size['dimension'] ) . ' ">';
-		$thumbnail .= get_the_post_thumbnail( $id, $size );
+		$thumbnail .= get_the_post_thumbnail( $id, $size, $image_attr );
 		$thumbnail .= '<div class="gvnews-thumb-overlay"></div>';
 		$thumbnail .= '</div>';
-
-		gvnews_remove_filters( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10 );
-		gvnews_remove_filters( 'wp_lazy_loading_enabled', '__return_false' );
 
 		return $thumbnail;
 	}
@@ -144,21 +166,27 @@ class Image_Normal_Load implements Image_Interface {
 	 *
 	 * @param string $id   id.
 	 * @param string $size size.
+	 * @param bool   $skip_lazy the skip lazyload image.
 	 *
 	 * @return string
 	 */
-	public function owl_single_image( $id, $size ) {
-		add_filter( 'wp_lazy_loading_enabled', '__return_false' );
-		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10, 2 );
+	public function owl_single_image( $id, $size, $skip_lazy = false ) {
+		if ( $skip_lazy || $this->use_normal_load ) {
+			$image_attr = array(
+				'loading'       => 'eager',
+				'fetchpriority' => 'high',
+			);
+		} else {
+			$image_attr = array(
+				'loading' => 'lazy',
+			);
+		}
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 
 		$thumbnail  = '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">';
-		$thumbnail .= wp_get_attachment_image( $id, $size );
+		$thumbnail .= wp_get_attachment_image( $id, $size, $image_attr );
 		$thumbnail .= '</div>';
-
-		gvnews_remove_filters( 'wp_get_attachment_image_attributes', array( $this, 'normal_load_image' ), 10 );
-		gvnews_remove_filters( 'wp_lazy_loading_enabled', '__return_false' );
 
 		return $thumbnail;
 	}

@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS\Block\Hero;
 
 use GUTENVERSE\NEWS\Block\Hero\Hero_View_Abstract;
+use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
 
 /**
  * Hero_14
@@ -39,11 +40,12 @@ class Hero_14 extends Hero_View_Abstract {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
 			$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
+			$skip_lazy = isset( $this->attribute['normal_image'] ) && 'true' === $this->attribute['normal_image'];
 
 			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">" . apply_filters( 'gvnews_image_thumbnail', $post_id, 'gvnews-750x536' ) . "</a>
+                            <a href=\"{$permalink}\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-750x536', $skip_lazy ) . "</a>
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
                             </div>
@@ -108,12 +110,12 @@ class Hero_14 extends Hero_View_Abstract {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
-
+			$skip_lazy = isset( $this->attribute['normal_image'] ) && 'true' === $this->attribute['normal_image'];
 			return '<article ' . gvnews_post_class( 'gvnews_post right gvnews_pl_md_box gvnews_hero_item_' . $index, $post_id ) . '>
                         <div class="box_wrap">
                             <div class="gvnews_thumb">
                                 ' . gvnews_edit_post( $post_id ) . "
-                                <a href=\"{$permalink}\">" . apply_filters( 'gvnews_image_thumbnail', $post_id, 'gvnews-350x250' ) . "</a>
+                                <a href=\"{$permalink}\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-350x250', $skip_lazy ) . "</a>
                             </div>
                             <div class=\"gvnews_postblock_content\">
                                 <h3 class=\"gvnews_post_title\">

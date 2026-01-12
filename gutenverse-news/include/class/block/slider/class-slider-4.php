@@ -32,7 +32,7 @@ class Slider_4 extends Slider_View_Abstract {
 			$size             = $attr['fullsize_image'] ? 'full' : 'gvnews-1140x815';
 			$image            = get_the_post_thumbnail_url( $post->ID, $size );
 			$image_mechanism  = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image     = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$hidden_image     = $image_mechanism && 0 <= $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 			$content .=
 			'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . ' style="background-image: url(' . esc_url( $image ) . ')">

@@ -33,8 +33,8 @@ class Slider_2 extends Slider_View_Abstract {
 			} else {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
-			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$image_mechanism = isset( $this->attribute['normal_image'] ) && 'true' === $this->attribute['normal_image'];
+			$hidden_image    = $image_mechanism && 0 <= $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 			$content .=
 			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . ' style="background-image: url(' . esc_url( $image ) . ')">

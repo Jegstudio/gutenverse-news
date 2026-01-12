@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS\Block;
 
 use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
+use GUTENVERSE\NEWS\Util\Options;
 use GUTENVERSE\NEWS\Util\Svg_Icons;
 
 /**
@@ -352,9 +353,9 @@ abstract class Block_View_Abstract {
 			&& ( 'true' === $this->attribute['force_normal_image_load']
 				|| 'yes' === $this->attribute['force_normal_image_load'] )
 		) {
-			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size );
+			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, true );
 		}
-		return apply_filters( 'gvnews_image_thumbnail', $post_id, $size );
+		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, false );
 	}
 
 	/**
@@ -577,6 +578,7 @@ abstract class Block_View_Abstract {
 			$this->meta_settings,
 			$meta_settings
 		);
+		$this->skip_lazy     = 'lazy_load' === Options::get_instance()->get_block_option( 'image_loading', 'lazy_load' );
 	}
 
 	/**

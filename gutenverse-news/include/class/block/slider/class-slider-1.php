@@ -26,21 +26,15 @@ class Slider_1 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	public function content( $results ) {
-		$content = '';
+		$content   = '';
+		$skip_lazy = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_mechanism   = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ? 'gvnews_single_image_owl' : 'gvnews_single_image_lazy_owl';
-			if ( 'gvnews_single_image_owl' === $image_mechanism && 0 >= $key ) {
-				if ( $this->manager->get_current_width() > 8 ) {
-					$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-1140x570' );
-				} else {
-					$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-750x375' );
-				}
-			} elseif ( $this->manager->get_current_width() > 8 ) {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-1140x570' );
+			if ( $this->manager->get_current_width() > 8 ) {
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-1140x570', $skip_lazy );
 			} else {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-750x375' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-750x375', $skip_lazy );
 			}
 
 			$content .=
@@ -72,13 +66,14 @@ class Slider_1 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	public function carousel( $results ) {
-		$content = '';
+		$content   = '';
+		$skip_lazy = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
 		foreach ( $results as $key => $post ) {
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			if ( $this->manager->get_current_width() > 8 ) {
-				$image = apply_filters( 'gvnews_single_image_lazy_owl', $post_thumbnail_id, 'gvnews-350x250' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $skip_lazy );
 			} else {
-				$image = apply_filters( 'gvnews_single_image_lazy_owl', $post_thumbnail_id, 'gvnews-120x86' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-120x86', $skip_lazy );
 			}
 
 			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . "\">{$image}</a></div></div>";

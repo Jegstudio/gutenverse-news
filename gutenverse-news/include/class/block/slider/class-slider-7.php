@@ -40,7 +40,7 @@ class Slider_7 extends Slider_View_Abstract {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
 			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$hidden_image    = $image_mechanism && 0 <= $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 			$read_more       = ! $this->attribute['disable_readmore'] ? '<a href="' . esc_url( get_the_permalink( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
 
 			$content .=

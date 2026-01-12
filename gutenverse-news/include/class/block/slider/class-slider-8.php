@@ -29,15 +29,10 @@ class Slider_8 extends Slider_View_Abstract {
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_mechanism   = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ? 'gvnews_single_image_owl' : 'gvnews_single_image_lazy_owl';
-			if ( 'gvnews_single_image_owl' === $image_mechanism ) {
-				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250' );
-			} else {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-350x250' );
-			}
-
-			$content .=
-			'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
+			$skip_lazy         = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
+			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $skip_lazy );
+			$content           .=
+				'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\">
                         {$image}
@@ -87,9 +82,9 @@ class Slider_8 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'items'      => esc_attr( $number_item ),
-					'autoplay'   => esc_attr( $attr['enable_autoplay'] ),
-					'delay'      => esc_attr( $autoplay_delay ),
+					'items'           => esc_attr( $number_item ),
+					'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+					'delay'           => esc_attr( $autoplay_delay ),
 					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
 					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
 					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),

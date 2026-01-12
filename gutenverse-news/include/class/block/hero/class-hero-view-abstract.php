@@ -75,9 +75,8 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 	 * @return string
 	 */
 	public function get_thumbnail( $id, $size ) {
-		$prioritize = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-		$image      = Image_Background_Load::get_instance();
-		return $image->single_hero_image( $id, $size, $prioritize );
+		$prioritize = isset( $this->attribute['normal_image'] ) && 'true' === $this->attribute['normal_image'];
+		return Image_Background_Load::get_instance()->single_hero_image( $id, $size, $prioritize );
 	}
 
 	/**
