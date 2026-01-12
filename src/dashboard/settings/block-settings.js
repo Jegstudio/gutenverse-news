@@ -7,30 +7,29 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
     const { block_settings = {}, features = [] } = settingValues;
     const {
         date_type = 'published',
+        image_load = 'normal',
     } = block_settings;
 
     const updateValue = (id, value) => {
         updateSettingValues('block_settings', id, value);
     };
 
-    const additionalMenu = [];
-
     return <>
         <div className="template-tab-body" style={{ paddingTop: '10px' }}>
             <ControlSelect
-                id={'date_type'}
-                title={__('Post Date Type', '--gctd--')}
+                id={'image_load'}
+                title={__('Image Load', '--gctd--')}
                 description={__('Pick time Unit', '--gctd--')}
-                value={date_type}
+                value={image_load}
                 updateValue={updateValue}
                 options={[
                     {
-                        label: __('Published', '--gctd--'),
-                        value: 'published'
+                        label: __('Normal Load', '--gctd--'),
+                        value: 'normal'
                     },
                     {
-                        label: __('Modified', '--gctd--'),
-                        value: 'modified'
+                        label: __('Lazy Load', '--gctd--'),
+                        value: 'lazy_load'
                     }
                 ]}
             />
