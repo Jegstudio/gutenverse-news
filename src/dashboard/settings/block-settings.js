@@ -6,8 +6,7 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
     /* option default value */
     const { block_settings = {}, features = [] } = settingValues;
     const {
-        date_type = 'published',
-        image_load = 'normal',
+        image_load = 'lazy_load',
     } = block_settings;
 
     const updateValue = (id, value) => {
@@ -19,7 +18,7 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
             <ControlSelect
                 id={'image_load'}
                 title={__('Image Load', '--gctd--')}
-                description={__('Pick time Unit', '--gctd--')}
+                description={__('Default image load mechanism on Gutenverse News Post Blocks. if you choose the Lazy Load option, you can enable the "Use Normal Image Load" option on the spesific block.', '--gctd--')}
                 value={image_load}
                 updateValue={updateValue}
                 options={[
