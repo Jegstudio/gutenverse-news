@@ -48,7 +48,7 @@ class Slider_7 extends Slider_View_Abstract {
 					' . $hidden_image . '
                     ' . gvnews_edit_post( $post->ID ) . '
                     <div class="gvnews_slide_image" style="background-image: url(' . esc_url( $image ) . ')">
-                		<a href="' . esc_url( get_the_permalink( $post ) ) . "\"></a>
+                		<a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\"></a>
 					</div>
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
@@ -56,7 +56,7 @@ class Slider_7 extends Slider_View_Abstract {
 	                            {$primary_category}
 	                        </div>
 	                        <h2 class=\"gvnews_post_title\">
-	                            <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+	                            <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
 	                        </h2>
 	                        <div class="gvnews_post_excerpt">
 			                    <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>

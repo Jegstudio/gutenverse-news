@@ -46,11 +46,11 @@ class Module_3 extends Module_View_Abstract {
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2', $post->ID ) . '>
                 <div class="gvnews_thumb">
                     ' . $edit . '
-                    <a href="' . esc_url( $permalink ) . '">' . $thumbnail . '</a>
+                    <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
                 </div>
                 <div class="gvnews_postblock_content">
                     <h3 class="gvnews_post_title">
-                        <a href="' . esc_url( $permalink ) . '">' . esc_attr( $title ) . '</a>
+                        <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . esc_attr( $title ) . '</a>
                     </h3>
                     ' . $this->post_meta_1( $post, false, $is_feed ) . '
                     <div class="gvnews_post_excerpt">

@@ -46,14 +46,14 @@ class Module_13 extends Module_View_Abstract {
 		$output =
 		'<div class="gvnews_thumb">
                 ' . gvnews_edit_post( $post->ID ) . '
-                <a href="' . $permalink . '">' . $this->get_thumbnail( $post->ID, $image_size ) . "</a>
+                <a href="' . $permalink . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $this->get_thumbnail( $post->ID, $image_size ) . "</a>
                 <div class=\"gvnews_post_category\">
                     <span>{$this->get_primary_category($post->ID)}</span>
                 </div>
             </div>
             <div class=\"gvnews_postblock_content\">
                 <h3 class=\"gvnews_post_title\">
-                    <a href=\"" . $permalink . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                    <a href=\"" . $permalink . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                 </h3>
                 ' . $this->post_meta_1( $post ) . '
                 <div class="gvnews_post_excerpt">

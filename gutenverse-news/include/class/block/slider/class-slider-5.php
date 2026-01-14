@@ -46,7 +46,7 @@ class Slider_5 extends Slider_View_Abstract {
                                 {$primary_category}
                             </div>
                             <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h2>
                             {$this->render_meta($post)}
                         </div>

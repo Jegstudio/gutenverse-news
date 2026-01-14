@@ -49,16 +49,16 @@ class Module_12 extends Module_View_Abstract {
                     <div class="gvnews_inner_post">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
                                 <span>
-                                    <a href=\"" . get_category_link( $primary_category ) . '">' . get_cat_name( $primary_category ) . "</a>
+                                    <a href=\"" . get_category_link( $primary_category ) . '" aria-label="' . esc_attr( get_cat_name( $primary_category ) ) . '">' . get_cat_name( $primary_category ) . "</a>
                                 </span>
                             </div>
                             <h3 class=\"gvnews_post_title\">
-                                <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h3>
                             {$post_meta}
                         </div>

@@ -41,8 +41,8 @@ class Module_27 extends Module_View_Abstract {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
-		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
 		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$category  = '<a href="' . get_category_link( $category ) . '" aria-label="' . esc_attr( get_cat_name( $category ) ) . '">' . get_cat_name( $category ) . '</a>';
 		$excerpt   = 1 === $type ? null :
 			'<div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
@@ -56,13 +56,13 @@ class Module_27 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_4', $post_id ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">{$thumbnail}</a>
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_category\">
                             <span>{$category}</span>
                         </div>
-                        <h3 class=\"gvnews_post_title\"><a href=\"{$permalink}\" >" . esc_attr( get_the_title( $post ) ) . "</a></h3>
+                        <h3 class=\"gvnews_post_title\"><a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\" >" . esc_attr( get_the_title( $post ) ) . "</a></h3>
                         {$post_meta}
                         {$excerpt}
                     </div>

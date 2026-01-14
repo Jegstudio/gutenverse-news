@@ -39,12 +39,12 @@ class Module_26 extends Module_View_Abstract {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
 		$category  = gvnews_get_primary_category( $post_id );
-		$category  = '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>';
 		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$category  = '<a href="' . get_category_link( $category ) . '" aria-label="' . esc_attr( get_cat_name( $category ) ) . '">' . get_cat_name( $category ) . '</a>';
 
 		// author detail.
 		$author      = $post->post_author;
-		$author_text = '<div class="gvnews_meta_author"><span class="label">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . get_author_posts_url( $author ) . '">' . get_the_author_meta( 'display_name', $author ) . '</a></div>';
+		$author_text = '<div class="gvnews_meta_author"><span class="label">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . get_author_posts_url( $author ) . '" aria-label="' . esc_attr( get_the_author_meta( 'display_name', $author ) ) . '">' . get_the_author_meta( 'display_name', $author ) . '</a></div>';
 
 		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
@@ -57,12 +57,12 @@ class Module_26 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_9', $post_id ) . ">
                     <header class=\"gvnews_postblock_heading\">
                         <div class=\"gvnews_post_category\"><span>{$category}</span></div>
-                        <h3 class=\"gvnews_post_title\"><a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a></h3>
+                        <h3 class=\"gvnews_post_title\"><a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
                         {$post_meta}
                     </header>
                     <div class=\"gvnews_thumb\"> 
                         " . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">{$thumbnail}</a> 
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a> 
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_excerpt\">
@@ -74,7 +74,7 @@ class Module_26 extends Module_View_Abstract {
                     </div>
                     <div class=\"gvnews_meta_footer clearfix\">
                         {$author_text}
-                        <div class=\"gvnews_meta_comment\">{$icon_comment} <a href=\"" . gvnews_get_respond_link( $post_id ) . '">' . gvnews_get_comments_number( $post_id ) . ' ' . esc_html__( 'Comments', 'gutenverse-news' ) . '</a></div>
+                        <div class=\"gvnews_meta_comment\">{$icon_comment} <a href=\"" . gvnews_get_respond_link( $post_id ) . '" aria-label="' . esc_attr__( 'Comments', 'gutenverse-news' ) . '">' . gvnews_get_comments_number( $post_id ) . ' ' . esc_html__( 'Comments', 'gutenverse-news' ) . '</a></div>
                     </div>
                 </article>';
 	}

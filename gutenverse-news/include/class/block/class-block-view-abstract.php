@@ -372,7 +372,7 @@ abstract class Block_View_Abstract {
 			$category = get_category( $cat_id );
 			if ( $category && ( isset( $category->slug ) && isset( $category->name ) ) ) {
 				$class    = 'class="category-' . esc_attr( $category->slug ) . '"';
-				$category = '<a href="' . esc_url( get_category_link( $cat_id ) ) . "\" {$class}>" . esc_attr( $category->name ) . '</a>';
+				$category = '<a aria-label="' . esc_attr( $category->name ) . '" href="' . esc_url( get_category_link( $cat_id ) ) . "\" {$class}>" . esc_attr( $category->name ) . '</a>';
 			}
 		}
 
@@ -616,7 +616,7 @@ abstract class Block_View_Abstract {
 	public function get_meta_date( $post ) {
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
 			$icon = Svg_Icons::render_svg_icon( 'far fa-clock' );
-			return '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+			return '<div class="gvnews_meta_date"><a aria-label="' . esc_attr( $this->format_date( $post ) ) . '" href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
 		}
 		return '';
 	}
@@ -631,7 +631,7 @@ abstract class Block_View_Abstract {
 		if ( $this->meta_settings['meta_comment'] && 'false' !== $this->meta_settings['meta_comment'] ) {
 			$comment = gvnews_get_comments_number( $post->ID );
 			$icon    = Svg_Icons::render_svg_icon( 'far fa-comment' );
-			return '<div class="gvnews_meta_comment"><a href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon . ' ' . esc_attr( $comment ) . ' </a></div>';
+			return '<div class="gvnews_meta_comment"><a aria-label="' . esc_attr__( 'Comments', 'gutenverse-news' ) . '" href="' . esc_attr( gvnews_get_respond_link( $post->ID ) ) . '" >' . $icon . ' ' . esc_attr( $comment ) . ' </a></div>';
 		}
 		return '';
 	}
@@ -659,14 +659,14 @@ abstract class Block_View_Abstract {
 					'<div class="gvnews_author_avatar">
 						' . get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) . '
 					</div>' : '';
-				return '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
+				return '<div class="gvnews_meta_author">' . $author_avatar . '<span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a aria-label="' . esc_attr( $author_name ) . '" href="' . esc_url( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
 			} else {
 				$author_url  = gvnews_get_rss_post_id( $author ) ? $post->post_author_url : get_author_posts_url( $author );
 				$author_name = gvnews_get_rss_post_id( $author ) ? $post->post_author_name : get_the_author_meta( 'display_name', $author );
 				if ( empty( $author_name ) ) {
 					return '';
 				}
-				return '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
+				return '<div class="gvnews_meta_author"><span class="by">' . esc_html__( 'by', 'gutenverse-news' ) . '</span> <a aria-label="' . esc_attr( $author_name ) . '" href="' . esc_attr( $author_url ) . '">' . esc_attr( $author_name ) . '</a></div>';
 			}
 		}
 		return '';

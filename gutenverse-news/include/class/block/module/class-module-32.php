@@ -54,11 +54,11 @@ class Module_32 extends Module_View_Abstract {
 								<span>{$this->get_primary_category($post_id)}</span>
 							</div>
 							<h3 class=\"gvnews_post_title\">
-								<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
+								<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
 							</h3>
 						</header>
 						<div class=\"gvnews_thumb\">
-							<a href=\"{$permalink}\">{$thumbnail}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a>
 						</div>
 						<div class=\"gvnews_postblock_content\">
 							<div class=\"gvnews_post_excerpt\">

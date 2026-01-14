@@ -34,20 +34,6 @@ class Module_18 extends Module_View_Abstract {
 	 */
 	protected $attribute;
 
-	// /**
-	//  * Method get_thumbnail
-	//  *
-	//  * @param integer $post_id post id.
-	//  * @param string  $size    size.
-	//  *
-	//  * @return string
-	//  */
-	// public function get_thumbnail( $post_id, $size ) {
-	// 	return isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ?
-	// 	Image_Normal_Load::get_instance()->image_thumbnail_unwrap( $post_id, $size ) :
-	// 	apply_filters( 'gvnews_image_thumbnail_unwrap', $post_id, $size );
-	// }
-
 	/**
 	 * Method render_block_type_1
 	 *
@@ -63,13 +49,13 @@ class Module_18 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_8', $post_id ) . ">
 					<div class=\"gvnews_postblock_heading\">
 						<h3 class=\"gvnews_post_title\">
-							<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
 						</h3>
 					</div>
 					<div class="gvnews_postblock_content">
 						<div class="gvnews_thumb">
 							' . gvnews_edit_post( $post_id ) . "
-							<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
 						</div>
 						" . $this->post_meta_1( $post ) . '
 					</div>
