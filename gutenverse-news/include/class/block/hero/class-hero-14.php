@@ -30,7 +30,7 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_1
 	 *
-	 * @param array $post post.
+	 * @param object $post post.
 	 *
 	 * @return string
 	 */
@@ -38,7 +38,7 @@ class Hero_14 extends Hero_View_Abstract {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
-			$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
+			$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>' : '';
 
 			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">

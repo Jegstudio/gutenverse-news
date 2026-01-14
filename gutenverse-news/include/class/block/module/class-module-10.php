@@ -35,7 +35,7 @@ class Module_10 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$post_id   = $post->ID;
-		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_4', $post_id ) . ">
                     <header class=\"gvnews_postblock_heading\">

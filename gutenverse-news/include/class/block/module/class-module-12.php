@@ -38,7 +38,7 @@ class Module_12 extends Module_View_Abstract {
 		$primary_category = gvnews_get_primary_category( $post_id );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
-		$read_more        = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more        = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 		$post_meta        = 'gvnews_col_1o3' === $column_class ? $this->post_meta_3( $post ) : $this->post_meta_1( $post ) . '
                                 <div class="gvnews_post_excerpt">
                                     <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>

@@ -43,7 +43,7 @@ class Module_1 extends Module_View_Abstract {
 		$permalink = esc_url( get_the_permalink( $post ) );
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
-		$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
+		$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" " . 'aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>' : '';
 		return '<div class="gvnews_thumb">
 					' . gvnews_edit_post( $post_id ) . '
 					<a href="' . $permalink . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $this->get_thumbnail( $post_id, $image_size ) . '</a>

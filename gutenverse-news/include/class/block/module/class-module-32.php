@@ -44,7 +44,7 @@ class Module_32 extends Module_View_Abstract {
 		$thumbnail       = $this->get_thumbnail( $post_id, $image_size );
 		$box_shadow_flag = isset( $this->attribute['box_shadow'] ) && $this->attribute['box_shadow'] ? 'box_shadow' : '';
 		$permalink       = esc_url( get_the_permalink( $post ) );
-		$read_more       = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more       = $this->attribute['disable_readmore'] ? '' : " <a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post ' . $box_shadow_flag, $post_id ) . '>
 					<div class="box_wrap">

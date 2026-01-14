@@ -57,7 +57,7 @@ class Module_38 extends Module_View_Abstract {
 							{$this->post_meta_3( $post )}
 						</div>
 						<div class=\"gvnews_readmore_arrow\">
-							<a href=\"{$permalink}\">{$icon_arrow_right}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\">{$icon_arrow_right}<span class=\"screen-reader-text\">" . esc_html__( 'Read more about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . "</span></a>
 						</div>
 					</div>
 				</article>";
