@@ -36,7 +36,7 @@ class Module_28 extends Module_View_Abstract {
                     <div class="gvnews_postblock_content">
 						' . $icon_html . '
                         <h3 class="gvnews_post_title">
-                            <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                         </h3>
                         {$date}
                     </div>

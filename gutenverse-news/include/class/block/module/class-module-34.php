@@ -49,14 +49,14 @@ class Module_34 extends Module_View_Abstract {
                     <div class="box_wrap">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id, 'right' ) . "
-                            <a href=\"{$permalink}\">{$thumbnail}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a>
                             <div class=\"gvnews_post_category\">
                                 <span>{$this->get_primary_category($post_id)}</span>
                             </div>
                         </div>
                         <div class=\"gvnews_postblock_content {$this->postblock_content_no_linear_bg()} \">
                             <h3 class=\"gvnews_post_title\">
-                                <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h3>
                             {$this->post_meta_2($post)}
                         </div>
