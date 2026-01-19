@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -136,6 +137,9 @@ class Hero extends Grab {
 		foreach ( $this->attributes['heroItemOverlay'] as $index => $item ) {
 			$number                                        = $index + 1;
 			$options[ 'hero_item_' . $number . '_enable' ] = $item['overlayEnable'];
+		}
+		if ( isset( $this->attributes['imageLoad'] ) ) {
+			$options['image_load'] = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], $this->attributes['imageLoad'] );
 		}
 		return $this->get_module( $options );
 	}

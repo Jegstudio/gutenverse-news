@@ -450,6 +450,10 @@
         },
         "readmoreButtonMargin": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {
