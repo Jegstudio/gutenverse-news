@@ -1,11 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { IconSVGControl, RangeControl, TextControl } from 'gutenverse-core/controls';
+import { IconSVGControl, RangeControl, SelectControl, TextControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from '../../../utils/helper';
 
 export const contentPanel = props => {
     const {
         templateType,
-        enableExcerpt = true
+        enableExcerpt = true,
+        imageLoad = '',
     } = props;
+
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, false);
 
     const withListIcon = ['template_1', 'template_16', 'template_24'].includes(templateType);
     return [
@@ -33,6 +37,22 @@ export const contentPanel = props => {
             label: __('Item List Icon', 'gutenverse-news'),
             description: __('Choose icon for post list icon.', 'gutenverse-news'),
             component: IconSVGControl
+        },
+        {
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
     ];
 };
