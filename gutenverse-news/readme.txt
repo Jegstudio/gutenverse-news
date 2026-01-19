@@ -146,6 +146,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 3.1.1-dev =
 ##### Changes
 * Remove default additional margin on all Module Block
+* Changed Use Normal Load option with Image Load option on some blocks
+* Changed Use Normal Load option name with Load Image Immediately on some blocks to more easily understand the function of that option
 ##### Improvements
 * Add post item gap option on all Module Block
 * Add item gap on User List block
