@@ -683,6 +683,10 @@
         "cardPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

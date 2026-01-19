@@ -665,6 +665,10 @@
             "type": "string",
             "default": 30,
             "copyStyle": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

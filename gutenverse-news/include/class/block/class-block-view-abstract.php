@@ -10,7 +10,6 @@
 namespace GUTENVERSE\NEWS\Block;
 
 use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
-use GUTENVERSE\NEWS\Util\Options;
 use GUTENVERSE\NEWS\Util\Svg_Icons;
 
 /**
@@ -348,14 +347,7 @@ abstract class Block_View_Abstract {
 	 * @return mixed|string
 	 */
 	public function get_thumbnail( $post_id, $size ) {
-		if (
-			isset( $this->attribute['force_normal_image_load'] )
-			&& ( 'true' === $this->attribute['force_normal_image_load']
-				|| 'yes' === $this->attribute['force_normal_image_load'] )
-		) {
-			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, true );
-		}
-		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, false );
+		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'] );
 	}
 
 	/**

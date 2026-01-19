@@ -722,6 +722,10 @@
         "gutterWidth": {
             "type": "string",
             "default": 30
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

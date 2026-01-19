@@ -9,8 +9,6 @@
 
 namespace GUTENVERSE\NEWS\Util\Image;
 
-use GUTENVERSE\NEWS\Util\Options;
-
 /**
  * Image_Normal_Load
  *
@@ -26,19 +24,6 @@ class Image_Normal_Load implements Image_Interface {
 	 */
 	private static $instance;
 
-	/**
-	 * Use normal load
-	 *
-	 * @var bool
-	 */
-	protected $use_normal_load = false;
-
-	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		$this->use_normal_load = 'normal' === Options::get_instance()->get_block_option( 'image_load', 'lazy_load' );
-	}
 
 	/**
 	 * Get instance
@@ -128,21 +113,14 @@ class Image_Normal_Load implements Image_Interface {
 	 *
 	 * @param string $id   id.
 	 * @param string $size size.
-	 * @param bool   $skip_lazy the skip lazyload image.
+	 * @param string $image_load image load type.
 	 *
 	 * @return string
 	 */
-	public function image_thumbnail( $id, $size, $skip_lazy = false ) {
-		if ( $skip_lazy || $this->use_normal_load ) {
-			$image_attr = array(
-				'loading'       => 'eager',
-				'fetchpriority' => 'high',
-			);
-		} else {
-			$image_attr = array(
-				'loading' => 'lazy',
-			);
-		}
+	public function image_thumbnail( $id, $size, $image_load = 'lazy' ) {
+		$image_attr = array(
+			'loading' => $image_load,
+		);
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 		$size       = apply_filters( 'gvnews_use_custom_image', $size );
@@ -166,26 +144,19 @@ class Image_Normal_Load implements Image_Interface {
 	 *
 	 * @param string $id   id.
 	 * @param string $size size.
-	 * @param bool   $skip_lazy the skip lazyload image.
+	 * @param string $image_load image load type.
 	 *
 	 * @return string
 	 */
-	public function owl_single_image( $id, $size, $skip_lazy = false ) {
-		if ( $skip_lazy || $this->use_normal_load ) {
-			$image_attr = array(
-				'loading'       => 'eager',
-				'fetchpriority' => 'high',
-			);
-		} else {
-			$image_attr = array(
-				'loading' => 'lazy',
-			);
-		}
+	public function owl_single_image( $id, $size, $image_load = 'lazy' ) {
+		$image_attr = array(
+			'loading' => $image_load,
+		);
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 
 		$thumbnail  = '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">';
-		$thumbnail .= wp_get_attachment_image( $id, $size, $image_attr );
+		$thumbnail .= wp_get_attachment_image( $id, $size, false, $image_attr );
 		$thumbnail .= '</div>';
 
 		return $thumbnail;

@@ -662,6 +662,10 @@
         },
         "mainAdditionalGap": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

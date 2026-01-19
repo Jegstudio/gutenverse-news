@@ -586,7 +586,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'date_format_custom'           => isset( $_REQUEST['data']['attribute']['date_format_custom'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['date_format_custom'] ) ) : '',
 							'excerpt_length'               => isset( $_REQUEST['data']['attribute']['excerpt_length'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_length'] ) ) : '',
 							'excerpt_ellipsis'             => isset( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ) : '',
-							'force_normal_image_load'      => isset( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['force_normal_image_load'] ) ) : '',
+							'image_load'                   => isset( $_REQUEST['data']['attribute']['image_load'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['image_load'] ) ) : '',
 							'pagination_mode'              => isset( $_REQUEST['data']['attribute']['pagination_mode'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_mode'] ) ) : '',
 							'pagination_nextprev_showtext' => isset( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ) : '',
 							'pagination_number_post'       => isset( $_REQUEST['data']['attribute']['pagination_number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_number_post'] ) ) : '',

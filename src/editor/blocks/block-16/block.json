@@ -747,6 +747,10 @@
         "mainItemSelector": {
             "type": "string",
             "default": ".gvnews_postblock .gvnews_postbig > .gvnews_post"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

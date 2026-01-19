@@ -660,18 +660,6 @@
             "type": "object",
             "copyStyle": true
         },
-        "cardBorder": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "cardBorderResponsive": {
-            "type": "object",
-            "copyStyle": true
-        },
-        "cardPadding": {
-            "type": "object",
-            "copyStyle": true
-        },
         "rowItemGap": {
             "type": "object"
         },
@@ -681,6 +669,10 @@
         "postItemGrid": {
             "type": "boolean",
             "default": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

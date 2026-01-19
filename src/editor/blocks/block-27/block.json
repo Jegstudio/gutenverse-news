@@ -715,6 +715,10 @@
         "postItemGrid": {
             "type": "boolean",
             "default": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {
