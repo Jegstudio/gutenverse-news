@@ -30,8 +30,8 @@ export const sliderPanel = (props) => {
         },
         {
             id: 'normalImage',
-            label: __('Use Normal Image Load', 'gutenverse-news'),
-            description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
+            label: __('Load Image Immediately', 'gutenverse-news'),
+            description: __('enable this option to load image on this block immediately and optimize Largest Contentful Paint (LCP) if this block is at the top of your site.', 'gutenverse-news'),
             component: CheckboxControl
         },
         {

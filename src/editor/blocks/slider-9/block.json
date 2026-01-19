@@ -275,6 +275,10 @@
         },
         "categoryButtonMargin": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

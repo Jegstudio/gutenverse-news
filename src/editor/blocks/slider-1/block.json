@@ -373,6 +373,10 @@
         },
         "borderResponsiveButtonHover": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

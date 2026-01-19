@@ -31,8 +31,7 @@ class Slider_3 extends Slider_View_Abstract {
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$skip_lazy         = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504', $skip_lazy );
+			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504', $this->attribute['image_load'] );
 			$content          .=
 				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '

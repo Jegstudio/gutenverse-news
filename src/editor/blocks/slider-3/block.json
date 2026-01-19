@@ -275,6 +275,10 @@
         },
         "containerPadding": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
         }
     },
     "supports": {

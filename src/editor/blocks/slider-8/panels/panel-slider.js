@@ -1,15 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, IconSVGControl, RangeControl } from 'gutenverse-core/controls';
+import { CheckboxControl, IconSVGControl, RangeControl , SelectControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from "../../../utils/helper";
+
+
 
 export const sliderPanel = (props) => {
     const {
         autoplay,
-        sliderType,
         hideNavigationButton,
         alwaysShowNavigationButton,
-        hideImageNavigation,
-        elementId,
-    } = props;
+        normalImage,
+        imageLoad = "",} = props;
+
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
     return [
         {
             id: 'ncolumn',
@@ -34,10 +37,20 @@ export const sliderPanel = (props) => {
             step: 500,
         },
         {
-            id: 'normalImage',
-            label: __('Use Normal Image Load', 'gutenverse-news'),
-            description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
-            component: CheckboxControl
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
         {
             id: 'hideNavigationButton',

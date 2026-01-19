@@ -33,8 +33,7 @@ class Slider_6 extends Slider_View_Abstract {
 			} else {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
-			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$hidden_image = $this->attribute['normal_image'] && 0 === $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 			$content .=
 			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . ' style="background-image: url(' . esc_url( $image ) . ')">
@@ -96,11 +95,11 @@ class Slider_6 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay'     => esc_attr( $attr['enable_autoplay'] ),
-					'delay'        => esc_attr( $autoplay_delay ),
-					'hover-action' => esc_attr( $attr['enable_hover_action'] ),
-					'nav-prev'     => $nav_prev,
-					'nav-next'     => $nav_next,
+					'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+					'delay'           => esc_attr( $autoplay_delay ),
+					'hover-action'    => esc_attr( $attr['enable_hover_action'] ),
+					'nav-prev'        => $nav_prev,
+					'nav-next'        => $nav_next,
 					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
 					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
 					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
