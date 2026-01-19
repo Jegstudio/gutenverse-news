@@ -63,5 +63,11 @@ export const generalPanel = (props) => {
             label: __('Only First Page', 'gutenverse-news'),
             description: __('Enable this option if you want to show this hero only on the first page.', 'gutenverse-news'),
         },
+        {
+            id: 'normalImage',
+            label: __('Load Image Immediately', 'gutenverse-news'),
+            description: __('enable this option to load image on this block immediately and optimize Largest Contentful Paint (LCP) if this block is at the top of your site.', 'gutenverse-news'),
+            component: CheckboxControl
+        },
     ];
 };

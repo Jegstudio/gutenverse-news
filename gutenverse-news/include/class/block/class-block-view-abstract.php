@@ -575,7 +575,6 @@ abstract class Block_View_Abstract {
 			$this->meta_settings,
 			$meta_settings
 		);
-		$this->skip_lazy     = 'lazy_load' === Options::get_instance()->get_block_option( 'image_loading', 'lazy_load' );
 	}
 
 	/**

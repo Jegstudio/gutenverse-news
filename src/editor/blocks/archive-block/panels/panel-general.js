@@ -1,10 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from '../../../utils/helper';
 
 export const generalPanel = (props) => {
     const {
-        boxed
+        boxed,
+        imageLoad = '',
     } = props;
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, false);
+
     return [
         {
             id: 'numberPost',
@@ -48,6 +52,22 @@ export const generalPanel = (props) => {
             component: CheckboxControl,
             label: __('Only First Page', 'gutenverse-news'),
             description: __('Enable this option if you want to show this block only on the first page.', 'gutenverse-news'),
+        },
+        {
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
     ];
 };

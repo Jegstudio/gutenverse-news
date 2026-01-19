@@ -249,6 +249,10 @@
         },
         "borderResponsiveItemThird": {
             "type": "object"
+        },
+        "normalImage": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

@@ -200,6 +200,11 @@ class Archive extends Grab {
 					}
 				}
 			}
+			if ( $this->attributes['normalImage'] ) {
+				$attr['normal_image'] = 'true';
+			} else {
+				$attr['normal_image'] = 'false';
+			}
 		}
 		return $attr;
 	}
@@ -221,6 +226,7 @@ class Archive extends Grab {
 			$attr['first_page']         = $this->attributes['firstPage'];
 			$attr['column_width']       = $this->attributes['columnWidth'];
 			$attr['gutter_width']       = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
+			$attr['image_load']         = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
 		}
 		return $attr;
 	}

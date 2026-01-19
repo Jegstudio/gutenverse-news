@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Archive;
 
+use Gutenverse\Framework\Options;
+
 /**
  * Archive_Block
  *
@@ -49,6 +51,7 @@ class Archive_Block extends Archive_View_Abstract {
 
 		$attr['pagination_mode'] = 'disable';
 		$attr['results']         = $result;
+		$attr['image_load']      = Options::get_instance()->get_image_load( 'normal', false, $attr['image_load'] );
 
 		return $instance->build_module( $attr );
 	}
