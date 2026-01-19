@@ -40,15 +40,6 @@ class Dashboard {
 			true
 		);
 
-		$include = ( include GUTENVERSE_NEWS_DIR . '/lib/dependencies/dashboard.asset.php' )['dependencies'];
-		wp_enqueue_script(
-			'gutenverse-news-dashboard',
-			GUTENVERSE_NEWS_URL . '/assets/js/dashboard.js',
-			$include,
-			GUTENVERSE_NEWS_VERSION,
-			true
-		);
-
 		wp_localize_script( 'gutenverse-news-blocks', 'GVNewsConfig', $this->gvnews_config() );
 
 		wp_enqueue_style(
