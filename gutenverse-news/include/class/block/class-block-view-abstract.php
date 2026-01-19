@@ -343,10 +343,15 @@ abstract class Block_View_Abstract {
 	 *
 	 * @param integer $post_id post id.
 	 * @param string  $size size.
+	 * @param bool    $force_lazy_load force lazy load.
 	 *
 	 * @return mixed|string
 	 */
-	public function get_thumbnail( $post_id, $size ) {
+	public function get_thumbnail( $post_id, $size, $force_lazy_load = false ) {
+		/* need to lazy load the hidden element like some of carousel items that not visible on first time load */
+		if ( $force_lazy_load ) {
+			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, 'lazy' );
+		}
 		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'] );
 	}
 
