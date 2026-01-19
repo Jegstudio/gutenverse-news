@@ -50,7 +50,7 @@ class Module_35 extends Module_View_Abstract {
 		$class           = $box_shadow_flag;
 		$postformat_icon = null;
 		$edit_position   = null;
-		$read_more       = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more       = $this->attribute['disable_readmore'] ? '' : " <a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 		if ( $this->is_thumbnail_landscape( $post_id ) ) {
 			$pl              = ' gvnews_pl_md_5 ';
 			$class           = $additional_class;
@@ -63,14 +63,14 @@ class Module_35 extends Module_View_Abstract {
                     {$postformat_icon}
                     <div class=\"gvnews_thumb\">
                         " . gvnews_edit_post( $post_id, $edit_position ) . "
-                        <a href=\"{$permalink}\">" . $thumbnail . "</a>
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . "</a>
                         <div class=\"gvnews_post_category\">
                             <span>{$this->get_primary_category($post_id)}</span>
                         </div>
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                         </h3>
                         <div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>

@@ -36,7 +36,7 @@ class Newsticker extends Block_View_Abstract {
 		$output =
 		"<div {$class}>
                 <span>
-                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
+                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
                 </span>
 					$meta_date
             </div>";
@@ -99,11 +99,11 @@ class Newsticker extends Block_View_Abstract {
                     </div>
                 </div>
 				<div class=\"gvnews_news_ticker_control\">
-					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\">" . $prev_icon_html . "</div>
-					<span class=\"nav-separator\"></span>
-					<div class=\"gvnews_news_ticker_next gvnews_news_ticker_arrow\">" . $next_icon_html . "</div>
+					<div class=\"gvnews_news_ticker_prev gvnews_news_ticker_arrow\" aria-label=\"" . esc_html__( 'previous slide', 'gutenverse-news' ) . '">' . $prev_icon_html . '</div>
+					<span class="nav-separator"></span>
+					<div class="gvnews_news_ticker_next gvnews_news_ticker_arrow" aria-label="' . esc_html__( 'next slide', 'gutenverse-news' ) . '">' . $next_icon_html . '</div>
                 </div>
-            </div>";
+            </div>';
 
 		return $output;
 	}

@@ -52,7 +52,7 @@ class Slider_9 extends Slider_View_Abstract {
                                 </div>
                                 {$this->render_meta( $post )}
                                 <h2 class=\"gvnews_post_title\">
-                                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                                 </h2>
                             </div>
                         </div>
@@ -65,12 +65,12 @@ class Slider_9 extends Slider_View_Abstract {
 			$thumb .=
 				"<article data-index='{$index}' " . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post->ID ) . '>
                     <div class="gvnews_thumb">
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $thumbnail . '</a>
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . '</a>
                     </div>
                     <div class="gvnews_postblock_content">
                         ' . $this->post_meta_2( $post ) . '
                         <h3 class="gvnews_post_title">
-                            <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                            <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                         </h3>
                     </div>
                 </article>';

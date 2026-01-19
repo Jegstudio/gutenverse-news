@@ -44,14 +44,14 @@ class Slider_1 extends Slider_View_Abstract {
 			$content .=
 				'<div class="gvnews_slide_item">
                     ' . gvnews_edit_post( $post->ID ) . '
-                    <a href="' . get_permalink( $post ) . "\" class=\"gvnews_slide_img\">{$image}</a>
+                    <a href="' . get_permalink( $post ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_slide_img\">{$image}</a>
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">
                                 {$primary_category}
                             </div>
                             <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h2>
                             {$this->render_meta( $post )}
                         </div>
@@ -80,7 +80,7 @@ class Slider_1 extends Slider_View_Abstract {
 				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-120x86', $image_load );
 			}
 
-			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . "\">{$image}</a></div></div>";
+			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$image}</a></div></div>";
 		}
 
 		return $content;

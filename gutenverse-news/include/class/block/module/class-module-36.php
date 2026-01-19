@@ -43,14 +43,14 @@ class Module_36 extends Module_View_Abstract {
 						<div class="box_wrap">
 							<div class="gvnews_thumb">
 								' . gvnews_edit_post( $post->ID ) . '
-								<a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $thumbnail . "</a>
+								<a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . "</a>
 								<div class=\"gvnews_post_category\">
 									<span>{$primary_category}</span>
 								</div>
 							</div>
 							<div class=\"gvnews_postblock_content\">
 								<h3 class=\"gvnews_post_title\">
-									<a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+									<a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
 								</h3>
 								' . $this->post_meta_3( $post ) . '
 								<div class="gvnews_post_excerpt">
@@ -76,7 +76,7 @@ class Module_36 extends Module_View_Abstract {
 						</div>
 						<div class=\"gvnews_postblock_content\">
 							<h3 class=\"gvnews_post_title\">
-								<a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+								<a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
 							</h3>
 							<div class="gvnews_post_excerpt">
 								<p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>

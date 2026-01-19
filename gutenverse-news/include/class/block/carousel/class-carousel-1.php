@@ -37,10 +37,10 @@ class Carousel_1 extends Carousel_View_Abstract {
 				<article ' . gvnews_post_class( 'gvnews_post', $post->ID ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post->ID ) . '
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\">$image</a>
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">$image</a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
-                        <h3 class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
+                        <h3 class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
                         {$post_meta}
                     </div>
 				</article>

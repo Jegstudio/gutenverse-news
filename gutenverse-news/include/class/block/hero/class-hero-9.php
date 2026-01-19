@@ -48,13 +48,13 @@ class Hero_9 extends Hero_View_Abstract {
                             ' . gvnews_edit_post( $post_id ) . "
                             <span class=\"gvnews_postformat_icon\"></span>
                             <div class=\"gvnews_thumb\">
-                                <a href=\"{$permalink}\" >{$image}</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$image}</a>
                             </div>
                             <div class=\"gvnews_postblock_content\">
                                 <div class=\"gvnews_post_category\">{$primary_category}</div>
                                 <div class=\"gvnews_post_info\">
                                     <h2 class=\"gvnews_post_title\">
-                                        <a href=\"{$permalink}\" >" . esc_attr( get_the_title( $post ) ) . "</a>
+                                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . esc_attr( get_the_title( $post ) ) . "</a>
                                     </h2>
                                     {$this->post_meta_2($post)}
                                 </div>

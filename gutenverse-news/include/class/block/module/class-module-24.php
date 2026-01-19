@@ -41,7 +41,7 @@ class Module_24 extends Module_View_Abstract {
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$title            = "<h3 class=\"gvnews_post_title\">
-                                    <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
+                                    <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
                               </h3>';
 
 		return 1 === $type ?
@@ -49,7 +49,7 @@ class Module_24 extends Module_View_Abstract {
                     <div class="box_wrap">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             {$title}

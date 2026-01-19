@@ -34,7 +34,7 @@ class Slider_8 extends Slider_View_Abstract {
 			$content          .=
 				'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
-                    <a href="' . esc_url( get_the_permalink( $post ) ) . "\">
+                    <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
                         {$image}
                     </a>
                     <div class=\"gvnews_item_caption\">
@@ -43,7 +43,7 @@ class Slider_8 extends Slider_View_Abstract {
                                 {$primary_category}
                             </div>
                             <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                             </h2>
                             {$this->render_meta($post)}
                         </div>

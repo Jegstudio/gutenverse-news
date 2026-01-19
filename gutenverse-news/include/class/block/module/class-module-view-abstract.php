@@ -181,8 +181,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 
 			$output =
 				'<div class="gvnews_block_nav ' . esc_attr( $additional_class ) . '">
-                    <a href="#" class="prev ' . esc_attr( $prev ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
-                    <a href=\"#\" class=\"next " . esc_attr( $next ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
+                    <a href="#" class="prev ' . esc_attr( $prev ) . '" aria-label="' . esc_html__( 'Previous', 'gutenverse-news' ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
+                    <a href=\"#\" class=\"next " . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Next', 'gutenverse-news' ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
                 </div>";
 		}
 
@@ -190,7 +190,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$next   = $next ? '' : 'disabled';
 			$output =
 				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
-                    <a href="#" class="' . esc_attr( $next ) . '" data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
+                    <a href="#" class="' . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
                 </div>';
 		}
 
@@ -310,7 +310,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			 *
 			 * @since 3.0.0
 			 */
-			$page_links[] = '<a class="page_nav prev" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['prev_text'] ) . '</span></a>';
+			$page_links[] = '<a class="page_nav prev" aria-label="' . esc_html__( 'Previous Page', 'gutenverse-news' ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['prev_text'] ) . '</span></a>';
 		endif;
 		for ( $n = 1; $n <= $total; $n++ ) :
 			if ( $n === $current ) :
@@ -327,7 +327,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				/**
 				 * This filter is documented in wp-includes/general-template.php
 				 */
-				$page_links[] = "<a class='page_number' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
+				$page_links[] = "<a class='page_number' aria-label='" . esc_attr( sprintf( __( 'Page %s', 'gutenverse-news' ), number_format_i18n( $n ) ) ) . "' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
 				$dots         = true;
 			elseif ( $dots && ! $args['show_all'] ) :
 				$page_links[] = '<span class="page_number dots">&hellip;</span>';
@@ -345,7 +345,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			/**
 			 * This filter is documented in wp-includes/general-template.php
 			 */
-			$page_links[] = '<a class="page_nav next" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['next_text'] ) . '</span></a>';
+			$page_links[] = '<a class="page_nav next" aria-label="' . esc_html__( 'Next Page', 'gutenverse-news' ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . esc_html( $args['next_text'] ) . '</span></a>';
 		endif;
 
 		switch ( $args['type'] ) {
@@ -430,7 +430,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 			$heading_icon = $this->render_icon( $icon_type, $icon, $icon_svg );
 
 			$heading_title = "<span>{$heading_icon}{$attr['first_title']}{$subtitle}</span>";
-			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}'>{$heading_title}</a>" : $heading_title;
+			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}' aria-label='" . esc_attr( $attr['first_title'] ) . "'>{$heading_title}</a>" : $heading_title;
 			$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";
 		}
 
@@ -450,7 +450,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $categories as $category ) {
 					$cat = get_category( trim( $category ) );
 					if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
-						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
+						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" aria-label=\"" . esc_attr( $cat->name ) . "\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
 					}
 				}
 			}
@@ -467,7 +467,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					$author_id   = trim( $author );
 					$author_url  = get_author_posts_url( $author_id );
 					$author_name = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" aria-label=\"" . esc_attr( $author_name ) . "\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
@@ -485,14 +485,14 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $tags as $tag ) {
 					$tag_object = get_tag( trim( $tag ) );
 					if ( $tag_object ) {
-						$sub_cat .= '<li><a class="subclass-filter" href="#" data-type="tag" data-id="' . $tag_object->term_id . '">' . $tag_object->name . '</a></li>';
+						$sub_cat .= '<li><a class="subclass-filter" href="#" aria-label="' . esc_attr( $tag_object->name ) . '" data-type="tag" data-id="' . $tag_object->term_id . '">' . $tag_object->name . '</a></li>';
 					}
 				}
 			}
 		}
 
 		if ( ! empty( $sub_cat ) ) {
-			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
+			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" aria-label=\"" . esc_attr( $attr['header_filter_text'] ) . "\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
 			$sub_cat =
 				"<div class=\"gvnews_subcat okayNav loaded\">
                     <ul class=\"gvnews_subcat_list\">
