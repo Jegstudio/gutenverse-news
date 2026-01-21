@@ -50,7 +50,7 @@ class Archive_Hero extends StyleAbstract {
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews-archive-hero .gvnews_heroblock:hover",
 				),
 				'advance'     => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews-archive-hero .gvnews_heroblock",
-				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews-archive-hero .gvnews_heroblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews-archive-hero .gvnews_heroblock",
 			)
 		);
