@@ -253,6 +253,10 @@
         "normalImage": {
             "type": "boolean",
             "default": false
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         }
     },
     "supports": {

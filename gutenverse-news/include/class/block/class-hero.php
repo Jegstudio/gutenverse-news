@@ -75,6 +75,7 @@ class Hero extends Grab {
 				'meta_author' => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
 
 			),
+			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {
