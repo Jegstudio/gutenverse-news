@@ -431,7 +431,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 
 			$heading_title = "<span>{$heading_icon}{$attr['first_title']}{$subtitle}</span>";
 			$heading_title = ! empty( $attr['url'] ) ? "<a href='{$attr['url']}' aria-label='" . esc_attr( $attr['first_title'] ) . "'>{$heading_title}</a>" : $heading_title;
-			$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";
+			$heading_tag   = $attr['header_html_tag'];
+			$heading_title = "<{$heading_tag} class=\"gvnews_block_title\">{$heading_title}</{$heading_tag}>";
 		}
 
 		// Sub Cat Filtering.
@@ -614,6 +615,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'list_icon_svg'                => isset( $_REQUEST['data']['attribute']['list_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon_svg'] ) ) : '',
 							'meta_settings'                => $meta_settings,
 							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
+							'post_title_html_tag'          => isset( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ) : 'h3',
 						),
 				);
 

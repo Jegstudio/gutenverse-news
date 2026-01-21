@@ -52,9 +52,9 @@ class Module_13 extends Module_View_Abstract {
                 </div>
             </div>
             <div class=\"gvnews_postblock_content\">
-                <h3 class=\"gvnews_post_title\">
+                <{$this->post_title_tag} class=\"gvnews_post_title\">
                     <a href=\"" . $permalink . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                </h3>
+                </' . $this->post_title_tag . '>
                 ' . $this->post_meta_1( $post ) . '
                 <div class="gvnews_post_excerpt">
                     <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'

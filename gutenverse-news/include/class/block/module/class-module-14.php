@@ -51,9 +51,9 @@ class Module_14 extends Module_View_Abstract {
                         <div class=\"gvnews_post_category\">
                             <span>{$this->get_primary_category($post_id)}</span>
                         </div>
-                        <h3 class=\"gvnews_post_title\">
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
                             <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                        </h3>
+                        </' . $this->post_title_tag . '>
                         ' . $this->post_meta_3( $post ) . '
                     </div>';
 

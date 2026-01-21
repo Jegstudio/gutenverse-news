@@ -17,6 +17,7 @@ const Block36Columns = (props) => {
         page = 1,
         isLoadMore = false,
         imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -46,7 +47,7 @@ const Block36Columns = (props) => {
                         </div>
                     </div>
                     <div className="gvnews_postblock_content">
-                        {props.title && <PostTitle post={post} />}
+                        {props.title && <PostTitle post={post} attr={attr}/>}
                         <PostExcerpt post={post} attr={attr} />
                         <MetaModule1 post={post} attr={attr} />
                     </div>
@@ -65,6 +66,7 @@ const Block36Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

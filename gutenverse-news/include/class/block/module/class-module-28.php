@@ -35,9 +35,9 @@ class Module_28 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post->ID ) . '>
                     <div class="gvnews_postblock_content">
 						' . $icon_html . '
-                        <h3 class="gvnews_post_title">
+                        <' . $this->post_title_tag . ' class="gvnews_post_title">
                             <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+                        </{$this->post_title_tag}>
                         {$date}
                     </div>
                 </article>";

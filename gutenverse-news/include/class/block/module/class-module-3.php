@@ -49,9 +49,9 @@ class Module_3 extends Module_View_Abstract {
                     <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
                 </div>
                 <div class="gvnews_postblock_content">
-                    <h3 class="gvnews_post_title">
+                    <' . $this->post_title_tag . ' class="gvnews_post_title">
                         <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . esc_attr( $title ) . '</a>
-                    </h3>
+                    </' . $this->post_title_tag . '>
                     ' . $this->post_meta_1( $post, false, $is_feed ) . '
                     <div class="gvnews_post_excerpt">
                         <p>' . $excerpt . '</p>

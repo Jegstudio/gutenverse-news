@@ -89,6 +89,13 @@ abstract class Block_View_Abstract {
 	);
 
 	/**
+	 * Post title tag.
+	 *
+	 * @var string
+	 */
+	protected $post_title_tag = 'h3';
+
+	/**
 	 * Additional class
 	 *
 	 * @var string
@@ -552,12 +559,13 @@ abstract class Block_View_Abstract {
 	 * @return array
 	 */
 	public function get_attribute( $attr ) {
-		$this->attribute     = wp_parse_args( $attr, $this->options );
-		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
-		$this->meta_settings = array_merge(
+		$this->attribute      = wp_parse_args( $attr, $this->options );
+		$meta_settings        = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
+		$this->meta_settings  = array_merge(
 			$this->meta_settings,
 			$meta_settings
 		);
+		$this->post_title_tag = $attr['post_title_html_tag'];
 		return $this->attribute;
 	}
 
@@ -569,12 +577,13 @@ abstract class Block_View_Abstract {
 	 * @return void
 	 */
 	public function set_attribute( $attr ) {
-		$this->attribute     = $attr;
-		$meta_settings       = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
-		$this->meta_settings = array_merge(
+		$this->attribute      = $attr;
+		$meta_settings        = isset( $attr['meta_settings'] ) ? $attr['meta_settings'] : array();
+		$this->meta_settings  = array_merge(
 			$this->meta_settings,
 			$meta_settings
 		);
+		$this->post_title_tag = $attr['post_title_html_tag'];
 	}
 
 	/**

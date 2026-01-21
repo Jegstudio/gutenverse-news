@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { AlertControl, BoxShadowControl, BorderControl, DimensionControl, IconSVGControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl } from 'gutenverse-core/controls';
+import { AlertControl, BoxShadowControl, BorderControl, DimensionControl, IconSVGControl, TextControl, ColorControl, ImageRadioControl, TypographyControl, SwitchControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
 import { handleColor } from 'gutenverse-core/styling';
 
@@ -255,6 +255,38 @@ export const headerSettingsPanel = (props) => {
             label: __('URL Title', 'gutenverse-news'),
             description: __('Insert URL of heading title.', 'gutenverse-news'),
             component: TextControl,
+        },
+        {
+            id: 'headerHtmlTag',
+            label: __('HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the block header.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
         },
     ];
 };

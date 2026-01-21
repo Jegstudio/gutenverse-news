@@ -180,6 +180,8 @@ class Block extends Grab {
 			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : array(),
 			'gutter_width'                 => isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30,
 			'image_load'                   => $image_load,
+			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
+			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
 		$sccontent  = '';
 

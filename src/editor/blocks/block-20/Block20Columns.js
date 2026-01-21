@@ -16,6 +16,7 @@ const Block20Columns = props => {
         metaDateFormatCustom,
         blockWidth,
         imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -47,7 +48,8 @@ const Block20Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         let limit = blockWidth == 8 ? 2 : 3;
         let start = blockWidth == 4 ? 1 : 0;

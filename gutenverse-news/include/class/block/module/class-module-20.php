@@ -37,9 +37,9 @@ class Module_20 extends Module_View_Abstract {
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$content          = "<div class=\"gvnews_postblock_content\">
-                                    <h3 class=\"gvnews_post_title\">
+                                    <{$this->post_title_tag} class=\"gvnews_post_title\">
                                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                                    </h3>
+                                    </{$this->post_title_tag}>
                                     {$this->post_meta_2($post)}
                                 </div>";
 

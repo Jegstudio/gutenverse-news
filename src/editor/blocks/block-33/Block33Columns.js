@@ -23,6 +23,7 @@ const Block33Columns = (props) => {
         attributes,
         gutterWidth,
         rowItemGap,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -85,6 +86,7 @@ const Block33Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];
