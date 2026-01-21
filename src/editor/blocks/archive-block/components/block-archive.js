@@ -30,6 +30,7 @@ const BlockArchive = (props) => {
         masonryReload,
         gutterWidth,
         rowItemGap,
+        postTitleHtmlTag
     } = props;
 
     const metaSettings = {
@@ -164,6 +165,7 @@ const BlockArchive = (props) => {
                     renderedImageSizeMain,
                     gutterWidth,
                     rowItemGap,
+                    postTitleHtmlTag
                 }}
             />
         );
@@ -185,7 +187,8 @@ const BlockArchive = (props) => {
         readmoreButtonDisabled,
         gutenversePreviewBlock,
         renderedImageSizeMain,
-        masonryReload
+        masonryReload,
+        postTitleHtmlTag
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;

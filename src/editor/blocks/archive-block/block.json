@@ -390,6 +390,10 @@
         "imageLoad": {
             "type": "string",
             "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
         }
     },
     "supports": {

@@ -227,6 +227,7 @@ class Archive extends Grab {
 			$attr['column_width']       = $this->attributes['columnWidth'];
 			$attr['gutter_width']       = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
 			$attr['image_load']         = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
+			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2';
 		}
 		return $attr;
 	}

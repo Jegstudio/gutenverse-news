@@ -13,7 +13,38 @@ export const contentPanel = props => {
 
     const withListIcon = ['template_1', 'template_16', 'template_24'].includes(templateType);
     return [
-
+        {
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
+        },
         {
             id: 'excerptLength',
             show: enableExcerpt === true,
