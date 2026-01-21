@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from './positioning-style';
 
 const getSliderStyle = (elementId, attributes, data = []) => {
     const {
@@ -8,6 +9,7 @@ const getSliderStyle = (elementId, attributes, data = []) => {
     } = attributes;
     data = getNavigationStyle(elementId, attributes, data);
     data = getDotStyle(elementId, attributes, data);
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
 
     /**
      * Panel General
