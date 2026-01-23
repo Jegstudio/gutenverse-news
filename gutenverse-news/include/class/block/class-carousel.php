@@ -133,6 +133,7 @@ class Carousel extends Grab {
 				'meta_date' => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
 			),
 			'image_load'               => $image_load,
+			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 		);
 
 		$content = $this->get_module( $attr );

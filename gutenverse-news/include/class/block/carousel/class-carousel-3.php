@@ -40,7 +40,7 @@ class Carousel_3 extends Carousel_View_Abstract {
                     </div>
                     <div class=\"overlay_content\">
                         <div class=\"gvnews_postblock_content\">
-                            <h3 class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a></h3>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a></' . $this->post_title_tag . '>
                             ' . $this->post_meta_2( $post ) . '
                         </div>
                     </div>
