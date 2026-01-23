@@ -62,6 +62,7 @@ const Slider2Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        postTitleHtmlTag = 'h2'
     } = attributes;
 
     const metaSettings = {
@@ -139,7 +140,8 @@ const Slider2Block = compose(
                 type: props.metaDateType,
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const content = [];
         if (props.postData && props.moduleOption) {
@@ -279,6 +281,7 @@ const Slider2Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

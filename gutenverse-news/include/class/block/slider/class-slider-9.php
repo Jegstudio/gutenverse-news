@@ -51,9 +51,9 @@ class Slider_9 extends Slider_View_Abstract {
                                     {$primary_category}
                                 </div>
                                 {$this->render_meta( $post )}
-                                <h2 class=\"gvnews_post_title\">
+                                <{$this->post_title_tag} class=\"gvnews_post_title\">
                                     <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                                </h2>
+                                </' . $this->post_title_tag . '>
                             </div>
                         </div>
                     </div>
@@ -69,9 +69,9 @@ class Slider_9 extends Slider_View_Abstract {
                     </div>
                     <div class="gvnews_postblock_content">
                         ' . $this->post_meta_2( $post ) . '
-                        <h3 class="gvnews_post_title">
+                        <' . $this->post_title_tag . ' class="gvnews_post_title">
                             <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                        </h3>
+                        </' . $this->post_title_tag . '>
                     </div>
                 </article>';
 			++$index;
