@@ -17,10 +17,12 @@ const Block14Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         imageSizeMain = {},
-        imageSizeSecond = {}
+        imageSizeSecond = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props => {
         const { attr, post, index = 'x' } = props;
@@ -31,9 +33,9 @@ const Block14Columns = props => {
                     <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize} />
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
-                        <h3 className="gvnews_post_title">
+                        <PostTitleTag className="gvnews_post_title">
                             <a>{post.title && post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </PostTitleTag>
                         {attr.option && !attr.option.meta_show && <MetaModule3 {...props} />}
                     </div>
                 </Fragment>
@@ -44,9 +46,9 @@ const Block14Columns = props => {
                     <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize} />
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
-                        <h3 className="gvnews_post_title">
+                        <PostTitleTag className="gvnews_post_title">
                             <a>{post.title && post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </PostTitleTag>
                         {attr.option && !attr.option.meta_show && <MetaModule3 {...props} />}
                     </div>
                 </article>

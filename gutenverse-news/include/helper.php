@@ -211,10 +211,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			 * @since 3.0.0
 			 */
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$next_prev_button .= '<a class="page_nav prev" aria-label="' . esc_attr__( 'Previous Page', 'gutenverse-news' ) . '" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 			} else {
 				$page_links   = array();
-				$page_links[] = '<a class="nav-item page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$page_links[] = '<a class="nav-item page_nav prev" aria-label="' . esc_attr__( 'Previous Page', 'gutenverse-news' ) . '" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 				if ( 'left' === $args['pagination_align'] ) {
 					$page_links[] = $paging_text;
 				}
@@ -233,7 +233,7 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				$link .= $args['add_fragment'];
 
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = "<a class='nav-item page_number' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
+				$page_links[] = "<a class='nav-item page_number' aria-label='" . esc_attr( sprintf( __( 'Page %s', 'gutenverse-news' ), number_format_i18n( $n ) ) ) . "' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
 				$dots         = true;
 			elseif ( $dots && ! $args['show_all'] ) :
 				$page_links[] = '<span class="nav-item page_number dots">' . __( '&hellip;', 'gutenverse-news' ) . '</span>';
@@ -249,10 +249,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			$link .= $args['add_fragment'];
 
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
+				$next_prev_button .= '<a class="page_nav next" aria-label="' . esc_attr__( 'Next Page', 'gutenverse-news' ) . '" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			} else {
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
+				$page_links[] = '<a class="nav-item page_nav next" aria-label="' . esc_attr__( 'Next Page', 'gutenverse-news' ) . '" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			}
 		endif;
 

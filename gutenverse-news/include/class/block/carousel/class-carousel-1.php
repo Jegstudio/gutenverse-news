@@ -21,25 +21,26 @@ class Carousel_1 extends Carousel_View_Abstract {
 	 * Method content
 	 *
 	 * @param array $results results.
+	 * @param int   $normal_load_max normal load max.
 	 *
 	 * @return string
 	 */
-	public function content( $results ) {
+	public function content( $results, $normal_load_max ) {
 
 		$content = '';
 		foreach ( $results as $key => $post ) {
 			$post_meta = $this->post_meta_2( $post );
 
-			$image    = $this->get_thumbnail( $post->ID, 'gvnews-350x250' );
+			$image    = $this->get_thumbnail( $post->ID, 'gvnews-350x250', ( $key >= $normal_load_max && 0 !== $normal_load_max ) );
 			$content .=
 			'<div class="gvnews_post_wrapper">
 				<article ' . gvnews_post_class( 'gvnews_post', $post->ID ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post->ID ) . '
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\">$image</a>
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">$image</a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
-                        <h3 class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></{$this->post_title_tag}>
                         {$post_meta}
                     </div>
 				</article>
@@ -60,16 +61,12 @@ class Carousel_1 extends Carousel_View_Abstract {
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
 			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
-			$content = $this->content( $result );
+			$number_item = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
+			$content     = $this->content( $result, $number_item );
 			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 			$width          = $this->manager->get_current_width();
 			$autoplay_delay = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
-			$number_item    = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
 			$margin         = isset( $attr['margin']['size'] ) ? $attr['margin']['size'] : $attr['margin'];
-
-			// Bypass lazyload tinyslider.
-			$image_normal_load = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$lazyload          = $image_normal_load;
 
 			$data_attr = gvnews_build_data_attr(
 				array(
@@ -78,7 +75,7 @@ class Carousel_1 extends Carousel_View_Abstract {
 					'delay'    => esc_attr( $autoplay_delay ),
 					'items'    => esc_attr( $number_item ),
 					'margin'   => esc_attr( $margin ),
-					'lazyload' => esc_attr( $lazyload ),
+					'lazyload' => esc_attr( $attr['normal_image'] ),
 				)
 			);
 

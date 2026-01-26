@@ -64,6 +64,18 @@ gulp.task('blocks', function () {
         .pipe(gulp.dest('gutenverse-news/assets/css/'));
 });
 
+
+gulp.task('blocks-editor', function () {
+    return gulp
+        .src([path.resolve(__dirname, './src/assets/scss/editor.scss')])
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(postCSSOptions))
+        .pipe(concat('blocks-editor-styles.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('gutenverse-news/assets/css/'));
+});
+
 gulp.task('downgrade-plugin', function () {
     return gulp
         .src([path.resolve(__dirname, './src/assets/scss/downgrade-plugin.scss')])
@@ -100,7 +112,7 @@ gulp.task('minify-tns', function () {
         .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
 });
 
-gulp.task('build-process', gulp.parallel('blocks', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
+gulp.task('build-process', gulp.parallel('blocks', 'blocks-editor', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
 
 gulp.task('build', gulp.series('build-process'));
 
@@ -109,7 +121,7 @@ const watchProcess = (basePath = '.') => {
         `${basePath}/src/**/*.scss`,
         `${basePath}/src/frontend/okaynav/*.js`,
         `${basePath}/src/frontend/tiny-slider/*.js`,
-    ], gulp.parallel(['blocks', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
+    ], gulp.parallel(['blocks', 'blocks-editor', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
 };
 
 gulp.task(

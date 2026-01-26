@@ -65,6 +65,7 @@ const Slider1Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        postTitleHtmlTag = 'h2'
     } = attributes;
 
     const metaSettings = {
@@ -162,7 +163,8 @@ const Slider1Block = compose(
                 type: props.metaDateType,
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const content = [];
         const slider = [];
@@ -332,6 +334,7 @@ const Slider1Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

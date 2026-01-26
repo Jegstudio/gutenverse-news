@@ -151,10 +151,12 @@ class GutenverseFirstSlider {
                 onInit: function (info) {
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
+                        u(info.nextButton).attr('aria-label', 'next slide');
                         u(info.nextButton).html(renderIcon(finalNextIcon, iconNextType, iconNextSVG));
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
+                        u(info.prevButton).attr('aria-label', 'previous slide');
                         u(info.prevButton).html(renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG));
                     }
                 },
@@ -186,10 +188,12 @@ class GutenverseFirstSlider {
                 onInit: (info) => {
                     if ('undefined' !== typeof info.nextButton) {
                         u(info.nextButton).addClass('tns-next');
+                        u(info.nextButton).attr('aria-label', 'next slide');
                         u(info.nextButton).html(renderIcon(finalNextIcon, iconNextType, iconNextSVG));
                     }
                     if ('undefined' !== typeof info.prevButton) {
                         u(info.prevButton).addClass('tns-prev');
+                        u(info.prevButton).attr('aria-label', 'previous slide');
                         u(info.prevButton).html(renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG));
                     }
                     this.setCurrentThumbnail(info);
@@ -249,10 +253,12 @@ class GutenverseSliderModule {
             onInit: function (info) {
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
+                    u(info.nextButton).attr('aria-label', 'next slide');
                     u(info.nextButton).html(`<span class="tns-nav-text">${navNext}</span>` + renderIcon(nextClass, nextClassType, nextClassSvg));
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
+                    u(info.prevButton).attr('aria-label', 'previous slide');
                     u(info.prevButton).html(renderIcon(prevClass, prevClassType, prevClassSvg) + `<span class="tns-nav-text">${navPrev}</span>`);
                 }
             },
@@ -406,10 +412,12 @@ class GutenverseSliderModule {
                 this.setNavCenter(sliderDefault.container, wrapper);
                 if ('undefined' !== typeof info.nextButton) {
                     u(info.nextButton).addClass('tns-next');
+                    u(info.nextButton).attr('aria-label', 'next slide');
                     u(info.nextButton).html(renderIcon(nextClass, nextClassType, nextClassSvg));
                 }
                 if ('undefined' !== typeof info.prevButton) {
                     u(info.prevButton).addClass('tns-prev');
+                    u(info.prevButton).attr('aria-label', 'previous slide');
                     u(info.prevButton).html(renderIcon(prevClass, prevClassType, prevClassSvg));
                 }
             };

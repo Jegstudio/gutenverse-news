@@ -62,8 +62,10 @@ const BlockColumns = (props) => {
         adsData = false,
         readmoreButtonDisabled,
         renderedImageSizeMain,
+        gutterWidth,
+        rowItemGap,
+        postTitleHtmlTag
     } = props;
-    
     const columns = [
         {
             id: '1',
@@ -317,7 +319,10 @@ const BlockColumns = (props) => {
                     overlay,
                     postBulk,
                     readmoreButtonDisabled,
-                    imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 })
+                    imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 },),
+                    gutterWidth,
+                    rowItemGap,
+                    postTitleHtmlTag
                 });
             }
         });
@@ -339,6 +344,7 @@ const BlockColumns = (props) => {
                     adsData: adsData,
                     readmoreButtonDisabled,
                     imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 }),
+                    postTitleHtmlTag
                 });
             }
         });

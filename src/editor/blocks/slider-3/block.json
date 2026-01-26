@@ -275,6 +275,14 @@
         },
         "containerPadding": {
             "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         }
     },
     "supports": {

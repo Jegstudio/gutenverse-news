@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -75,11 +76,6 @@ class Slider extends Grab {
 				$excltag .= ',' . $cat['value'];
 			}
 		}
-		if ( $this->attributes['normalImage'] ) {
-			$normimage = 'true';
-		} else {
-			$normimage = 'false';
-		}
 		foreach ( $this->attributes['includeAuthor'] as $cat ) {
 			if ( '' === $inclaut ) {
 				$inclaut = $cat['value'];
@@ -90,7 +86,8 @@ class Slider extends Grab {
 		if ( isset( $this->attributes['showDate'] ) && $this->attributes['showDate'] ) {
 			$enbdate = true;
 		}
-		$attr = array(
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '' );
+		$attr       = array(
 			'post_type'                => $this->attributes['postType'],
 			'content_type'             => $this->attributes['contentType'],
 			'number_post'              => $this->attributes['numberPost'],
@@ -109,7 +106,6 @@ class Slider extends Grab {
 			'date_format_custom'       => $this->attributes['metaDateFormatCustom'],
 			'excerpt_length'           => $this->attributes['excerptLength'],
 			'excerpt_ellipsis'         => $this->attributes['excerptEllipsis'],
-			'force_normal_image_load'  => $normimage,
 			'el_id'                    => '',
 			'el_class'                 => '',
 			'scheme'                   => '',
@@ -145,6 +141,9 @@ class Slider extends Grab {
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
+			'image_load'               => $image_load,
+			'normal_image'             => $this->attributes['normalImage'],
+			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 		);
 
 		$content = $this->get_module( $attr );

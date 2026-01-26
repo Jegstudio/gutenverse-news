@@ -21,7 +21,10 @@ const Block32Columns = (props) => {
         isLoadMore = false,
         readmoreButtonDisabled = false,
         imageSizeMain = {},
+        rowItemGap,
+        gutterWidth,
         attributes,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -30,7 +33,7 @@ const Block32Columns = (props) => {
         if (node) {
             shuffleInstance.current = new Shuffle(node, {
                 itemSelector: '.gvnews_post',
-                gutterWidth: 30,
+                gutterWidth: gutterWidth ? parseInt(gutterWidth) : 30,
                 speed: 0
             });
         } else {
@@ -39,19 +42,29 @@ const Block32Columns = (props) => {
         }
     }, []);
 
+    const onImageLoad = useCallback(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.layout();
+        }
+    }, []);
+
     useEffect(() => {
         if (shuffleInstance.current) {
+            shuffleInstance.current.options.gutterWidth = gutterWidth ? parseInt(gutterWidth) : 30;
             shuffleInstance.current.resetItems();
             shuffleInstance.current.update();
         }
     }, [
         blockWidth,
         attributes,
-        postData
+        gutterWidth,
+        postData,
+        rowItemGap
     ]);
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
@@ -61,12 +74,12 @@ const Block32Columns = (props) => {
                     <header className="gvnews_postblock_heading">
                         {<MetaCategory {...props} />}
                         {post.title && (
-                            <h3 className="gvnews_post_title">
+                            <PostTitleTag className="gvnews_post_title">
                                 <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                            </h3>
+                            </PostTitleTag>
                         )}
                     </header>
-                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} />}
+                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} onLoad={onImageLoad} />}
                     <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
@@ -83,7 +96,7 @@ const Block32Columns = (props) => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            },
+            }
         };
 
         const rows = [];

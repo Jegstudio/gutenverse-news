@@ -49,6 +49,13 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 	protected static $result = array();
 
 	/**
+	 * Number of skipped posts.
+	 *
+	 * @var mixed
+	 */
+	protected static $skipped_post = 0;
+
+	/**
 	 * Method get_term
 	 *
 	 * @return object
@@ -149,6 +156,7 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 			if ( isset( $number_post['size'] ) ) {
 				$number_post = $number_post['size'];
 			}
+			$number_post = $number_post + self::$skipped_post;
 
 			$result['result'] = $number_post ? array_slice( $result['result'], self::$index, $number_post ) : array_slice( $result['result'], self::$index );
 
@@ -157,6 +165,18 @@ abstract class Archive_View_Abstract extends Block_View_Abstract {
 			}
 		}
 
+		$this->set_skipped_post( 0 );
+
 		return $result;
+	}
+	/**
+	 * Set number of skipped post becasue only first page option
+	 *
+	 * @param int     $skipped Number of skipped posts.
+	 * @param boolean $add Adding or forece set the value.
+	 * @return void
+	 */
+	protected function set_skipped_post( $skipped, $add = false ) {
+		self::$skipped_post = $add ? self::$skipped_post + $skipped : $skipped;
 	}
 }

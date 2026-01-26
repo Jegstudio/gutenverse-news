@@ -68,7 +68,8 @@ const Slider5Block = compose(
         nextButtonIconSVG,
         prevButtonIcon,
         prevButtonIconType,
-        prevButtonIconSVG
+        prevButtonIconSVG,
+        postTitleHtmlTag = 'h2'
     } = attributes;
 
     const metaSettings = {
@@ -141,7 +142,8 @@ const Slider5Block = compose(
                 type: props.metaDateType,
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const content = [];
         if (props.postData && props.moduleOption) {
@@ -300,7 +302,8 @@ const Slider5Block = compose(
         nextButtonIconSVG,
         prevButtonIcon,
         prevButtonIconType,
-        prevButtonIconSVG
+        prevButtonIconSVG,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

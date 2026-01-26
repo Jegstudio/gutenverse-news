@@ -2,68 +2,26 @@ import { __ } from '@wordpress/i18n';
 import {
     BorderControl,
     BorderResponsiveControl,
+    CheckboxControl,
+    ColorControl,
     DimensionControl,
+    RangeControl,
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const cardStylePanelModule = (props) => {
     const {
         elementId,
-        hasSecondClass = false,
-        switcher,
-        setSwitcher,
-        mainThumbnailClass,
-        secondThumbnailClass,
-        hasGap = {
-            main: false,
-            second: false
-        }
+        blockType = '3',
+        cardUseBorder = true,
     } = props;
     const device = getDeviceType();
-
+    const useLine = blockType === '7' && !cardUseBorder;
     return [
-        // Main
-        // TODO: Add width control
-        // {
-        //     id: 'cardWidth',
-        //     label: __('Width', 'gutenverse'),
-        //     show: (switcher.cardType === 'main' || !switcher.cardType),
-        //     component: SizeControl,
-        //     allowDeviceControl: true,
-        //     units: {
-        //         px: {
-        //             text: 'px',
-        //             min: 1,
-        //             max: 500,
-        //             step: 1
-        //         },
-        //         '%': {
-        //             text: '%',
-        //             min: 1,
-        //             max: 100,
-        //             step: 1
-        //         },
-        //     },
-        //     liveStyle: [
-        //         {
-        //             'type': 'unitPoint',
-        //             'id': 'cardWidth',
-        //             'properties': [
-        //                 {
-        //                     'name': 'width',
-        //                     'valueType': 'direct'
-        //                 }
-        //             ],
-        //             'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass}`,
-        //             'responsive': true
-        //         }
-        //     ]
-        // },
         {
             id: 'cardPadding',
             component: DimensionControl,
             allowDeviceControl: true,
-            show: (switcher.cardType === 'main' || !switcher.cardType),
             label: __('Padding', 'gutenverse-news'),
             position: ['top', 'right', 'bottom', 'left'],
             units: {
@@ -86,15 +44,58 @@ export const cardStylePanelModule = (props) => {
             },
         },
         {
+            id: 'cardUseBorder',
+            label: __('Use Border', 'gutenverse-news'),
+            component: CheckboxControl,
+            show: blockType === '7',
+        },
+        {
+            id: 'cardLineThick',
+            label: __('Line Thick', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            show: useLine,
+            min: 1,
+            max: 30,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'cardLineThick',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_pl_lg_6:not(:last-of-type)`,
+                    'properties': [
+                        {
+                            'name': 'border-width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px;',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        },
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'cardLineColor',
+            label: __('Line Color', 'gutenverse-news'),
+            component: ColorControl,
+            show: useLine,
+        },
+        {
             id: 'cardBorder',
             component: BorderControl,
-            show: (switcher.cardType === 'main' || !switcher.cardType) && device === 'Desktop',
+            show: !useLine && device === 'Desktop',
             label: __('Border', 'gutenverse-news'),
         },
         {
             id: 'cardBorderResponsive',
             component: BorderResponsiveControl,
-            show: (switcher.cardType === 'main' || !switcher.cardType) && device !== 'Desktop',
+            show: !useLine && device !== 'Desktop',
             label: __('Border', 'gutenverse-news'),
             allowDeviceControl: true,
         },

@@ -16,9 +16,11 @@ const Block12Columns = props => {
         metaDateFormatCustom,
         imageSizeMain = {},
         readmoreButtonDisabled = false,
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props=>{
         const {post, attr, index = 'x' } = props;
@@ -28,9 +30,9 @@ const Block12Columns = props => {
                     <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
-                        <h3 className="gvnews_post_title">
+                        <PostTitleTag className="gvnews_post_title">
                             <a>{post.title && post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </PostTitleTag>
                         {attr.option && !attr.option.meta_show && ( props.blockWidth == 4 ? <MetaModule3 {...props}/> : <MetaModule1 {...props}/>)}
                         {props.blockWidth != 4 && <div className="gvnews_post_excerpt">
                             <p>
@@ -55,7 +57,8 @@ const Block12Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

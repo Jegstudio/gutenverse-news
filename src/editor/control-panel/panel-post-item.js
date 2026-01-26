@@ -46,7 +46,7 @@ export const multiPostItemPanel = (props) => {
         {
             id: 'rowItemGap',
             label: __('Post Lists Row Gap', 'gutenverse-news'),
-            description: __('Row gap between post list and the margin bottom on all post lists', 'gutenverse-news'),
+            description: __('Row gap between post lists', 'gutenverse-news'),
             component: RangeControl,
             unit: 'px',
             min: 1,
@@ -61,7 +61,7 @@ export const multiPostItemPanel = (props) => {
                     'selector': `.${elementId} .gvnews_posts`,
                     'properties': [
                         {
-                            'name': 'margin-bottom',
+                            'name': 'row-gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {
@@ -69,9 +69,17 @@ export const multiPostItemPanel = (props) => {
                                     'type': 'direct',
                                 }
                             }
-                        },
+                        }
+                    ],
+                },
+                {
+                    'type': 'plain',
+                    'id': 'rowItemGap',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock_1 .gvnews_block_container`,
+                    'properties': [
                         {
-                            'name': 'row-gap',
+                            'name': 'gap',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {
@@ -191,7 +199,7 @@ export const postItemPanel = (props) => {
                     'type': 'plain',
                     'id': 'rowItemGap',
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_posts .gvnews_post`,
+                    'selector': `.${elementId} .gvnews_posts .gvnews_post:not(:last-of-type)`,
                     'properties': [
                         {
                             'name': 'margin-bottom',
@@ -212,13 +220,48 @@ export const postItemPanel = (props) => {
 
 export const postItemGridPanel = (props) => {
 
-    const { elementId } = props;
+    const {
+        elementId,
+        mainContent = ''
+    } = props;
 
     return [
         {
+            id: 'mainItemGap',
+            label: __('Main Item gap', 'gutenverse-news'),
+            description: __('Gap between the main post and the lists of posts', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            show: mainContent.length > 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'mainItemGap',
+                    'responsive': true,
+                    'selector': `.${elementId} ${mainContent}`,
+                    'properties': [
+                        {
+                            'name': 'margin-bottom',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
             id: 'rowItemGap',
             label: __('Row Item Gap', 'gutenverse-news'),
-            description: __('Bottom gap between row post lists', 'gutenverse-news'),
+            description: __('Row gap beteen your post lists', 'gutenverse-news'),
             component: RangeControl,
             unit: 'px',
             min: 1,
@@ -249,7 +292,7 @@ export const postItemGridPanel = (props) => {
         {
             id: 'columnItemGap',
             label: __('Column Item Gap', 'gutenverse-news'),
-            description: __('Bottom gap between column post lists', 'gutenverse-news'),
+            description: __('Column gap beteen your post lists', 'gutenverse-news'),
             component: RangeControl,
             unit: 'px',
             min: 1,
@@ -276,6 +319,39 @@ export const postItemGridPanel = (props) => {
                     ],
                 }
             ]
+        },
+    ]
+}
+
+
+export const postItemMasonryPanel = (props) => {
+
+    const {
+        elementId,
+    } = props;
+
+    return [
+        {
+            id: 'rowItemGap',
+            label: __('Row Item Gap', 'gutenverse-news'),
+            description: __('Row gap beteen your post lists', 'gutenverse-news'),
+            component: RangeControl,
+            unit: 'px',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+        },
+        {
+            id: 'gutterWidth',
+            label: __('Post Lists Column Gap', 'gutenverse-news'),
+            description: __('The column gap between post lists', 'gutenverse-news'),
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            step: 1,
+            isParseFloat: false,
+            allowDeviceControl: false,
         },
     ]
 }
