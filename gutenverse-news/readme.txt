@@ -144,6 +144,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.1.2-dev =
+##### Improvements
+* Add post title html tag option on all post blocks
+* Add header html tag option on Header block and all Module blocks 
 
 = 3.1.1 =
 ##### Changes
