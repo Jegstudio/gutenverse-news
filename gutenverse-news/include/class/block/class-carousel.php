@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -75,11 +76,6 @@ class Carousel extends Grab {
 				$excltag .= ',' . $cat['value'];
 			}
 		}
-		if ( $this->attributes['normalImage'] ) {
-			$normimage = 'true';
-		} else {
-			$normimage = 'false';
-		}
 		foreach ( $this->attributes['includeAuthor'] as $cat ) {
 			if ( '' === $inclaut ) {
 				$inclaut = $cat['value'];
@@ -93,7 +89,8 @@ class Carousel extends Grab {
 		if ( '' === $this->attributes['gvnewsModule'] ) {
 			return false;
 		}
-		$attr = array(
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], $this->attributes['imageLoad'] );
+		$attr       = array(
 			'post_type'                => $this->attributes['postType'],
 			'content_type'             => $this->attributes['contentType'],
 			'number_post'              => $this->attributes['numberPost'],
@@ -112,7 +109,7 @@ class Carousel extends Grab {
 			'date_format_custom'       => $this->attributes['metaDateFormatCustom'],
 			'excerpt_length'           => $this->attributes['excerptLength'],
 			'excerpt_ellipsis'         => $this->attributes['excerptEllipsis'],
-			'force_normal_image_load'  => $normimage,
+			'normal_image'             => $this->attributes['normalImage'],
 			'el_id'                    => '',
 			'el_class'                 => '',
 			'scheme'                   => '',
@@ -136,6 +133,8 @@ class Carousel extends Grab {
 				'meta_date'   => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
 				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
+			'image_load'               => $image_load,
+			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 		);
 
 		$content = $this->get_module( $attr );

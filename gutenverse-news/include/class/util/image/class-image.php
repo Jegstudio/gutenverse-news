@@ -59,7 +59,7 @@ class Image {
 	private function __construct() {
 		$this->setup_image_size();
 
-		add_action( 'wp_loaded', array( $this, 'image_hook' ) );
+		// add_action( 'wp_loaded', array( $this, 'image_hook' ) );
 
 		add_action( 'after_setup_theme', array( $this, 'generate_image' ), 99 );
 	}
@@ -80,18 +80,18 @@ class Image {
 	 */
 	public function image_hook() {
 
-		$image = Image_Normal_Load::get_instance();
+		// $image = Image_Normal_Load::get_instance();
 
-		add_filter( 'gvnews_image_thumbnail', array( $image, 'image_thumbnail' ), null, 2 );
-		add_filter( 'gvnews_image_thumbnail_unwrap', array( $image, 'image_thumbnail_unwrap' ), null, 2 );
-		add_filter( 'gvnews_image_lazy_owl', array( $image, 'owl_lazy_image' ), null, 2 );
-		add_filter( 'gvnews_single_image_lazy_owl', array( $image, 'owl_lazy_single_image' ), null, 2 );
+		// add_filter( 'gvnews_image_thumbnail', array( $image, 'image_thumbnail' ), null, 2 );
+		// add_filter( 'gvnews_image_thumbnail_unwrap', array( $image, 'image_thumbnail_unwrap' ), null, 2 );
+		// add_filter( 'gvnews_image_lazy_owl', array( $image, 'owl_lazy_image' ), null, 2 );
+		// add_filter( 'gvnews_single_image_lazy_owl', array( $image, 'owl_lazy_single_image' ), null, 2 );
 
-		add_filter( 'gvnews_single_image_unwrap', array( $image, 'single_image_unwrap' ), null, 2 );
-		add_filter( 'gvnews_single_image_owl', array( $image, 'owl_single_image' ), null, 2 );
+		// add_filter( 'gvnews_single_image_unwrap', array( $image, 'single_image_unwrap' ), null, 2 );
+		// add_filter( 'gvnews_single_image_owl', array( $image, 'owl_single_image' ), null, 2 );
 
-		add_filter( 'gvnews_single_image', array( $image, 'single_image' ), null, 3 );
-		add_filter( 'image_size_names_choose', array( $this, 'custom_size' ) );
+		// add_filter( 'gvnews_single_image', array( $image, 'single_image' ), null, 3 );
+		// add_filter( 'image_size_names_choose', array( $this, 'custom_size' ) );
 	}
 
 	/**

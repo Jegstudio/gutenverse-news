@@ -64,12 +64,14 @@ const Carousel1Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
+        postTitleHtmlTag = 'h3'
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
     };
+    const TitleTag = postTitleHtmlTag;
 
     const moduleOption = {
         ...defaultOptions,
@@ -129,9 +131,9 @@ const Carousel1Block = compose(
                         </a>
                     </div>
                     <div className="gvnews_postblock_content">
-                        <h3 className="gvnews_post_title">
+                        <TitleTag className="gvnews_post_title">
                             <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </TitleTag>
                         <SliderMeta {...props} date />
                     </div>
                 </article>
@@ -312,6 +314,7 @@ const Carousel1Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

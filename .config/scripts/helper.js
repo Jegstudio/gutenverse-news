@@ -20,6 +20,9 @@ const helper = {
 		'featured-video': {
 			import: path.resolve( __dirname, "../../src/helper/featured-video.js" )
 		},
+		// "dashboard": {
+		// 	import: path.resolve(__dirname, "../../src/dashboard/index.js"),
+		// },
 	},
 	externals: {
 		...externals,
@@ -49,6 +52,14 @@ const helper = {
 							},
 							{
 								source: "./build/downgrade-plugin.asset.php*",
+								destination: "./gutenverse-news/lib/dependencies/",
+							},
+							{
+								source: "./build/dashboard.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/dashboard.asset.php*",
 								destination: "./gutenverse-news/lib/dependencies/",
 							},
 						],

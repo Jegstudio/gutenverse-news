@@ -303,5 +303,32 @@ class User_List extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['rowItemGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_userlist ul",
+					'property'       => function ( $value ) {
+						return "row-gap: {$value}px;";
+					},
+					'value'          => $this->attrs['rowItemGap'],
+					'device_control' => true,
+				)
+			);
+
+		}
+
+		if ( isset( $this->attrs['columnItemGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_userlist ul",
+					'property'       => function ( $value ) {
+						return "column-gap: {$value}px;";
+					},
+					'value'          => $this->attrs['columnItemGap'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 }

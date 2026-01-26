@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS;
 
 use GUTENVERSE\NEWS\Style\Archive;
+use GUTENVERSE\NEWS\Style\Archive_Block;
 use GUTENVERSE\NEWS\Style\Archive_Description;
 use GUTENVERSE\NEWS\Style\Archive_Hero;
 use GUTENVERSE\NEWS\Style\Archive_Pagination;
@@ -18,6 +19,12 @@ use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\Hero_14;
+use GUTENVERSE\NEWS\Style\Module_13;
+use GUTENVERSE\NEWS\Style\Module_19;
+use GUTENVERSE\NEWS\Style\Module_20;
+use GUTENVERSE\NEWS\Style\Module_24;
+use GUTENVERSE\NEWS\Style\Module_32;
+use GUTENVERSE\NEWS\Style\Module_7;
 use GUTENVERSE\NEWS\Style\News_Ticker;
 use GUTENVERSE\NEWS\Style\Post_Author;
 use GUTENVERSE\NEWS\Style\Post_Breadcrumb;
@@ -75,6 +82,27 @@ class Style_Generator {
 				case 'gutenverse/news-block-link' === $name:
 					$instance = new Block_Link( $attrs, $name );
 					break;
+				case 'gutenverse/news-block-13' === $name:
+					$instance = new Module_13( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-19' === $name:
+					$instance = new Module_19( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-20' === $name:
+					$instance = new Module_20( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-24' === $name:
+					$instance = new Module_24( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-32' === $name:
+				case 'gutenverse/news-block-33' === $name:
+				case 'gutenverse/news-block-34' === $name:
+				case 'gutenverse/news-block-35' === $name:
+					$instance = new Module_32( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-7' === $name:
+					$instance = new Module_7( $attrs, $name );
+					break;
 				case stristr( $name, 'gutenverse/news-block' ):
 					$instance = new Block( $attrs, $name );
 					break;
@@ -104,6 +132,10 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-archive-hero' === $name:
 					$instance = new Archive_Hero( $attrs, $name );
+					break;
+
+				case 'gutenverse/news-archive-block' === $name:
+					$instance = new Archive_Block( $attrs, $name );
 					break;
 				case 'gutenverse/news-archive-description' === $name:
 					$instance = new Archive_Description( $attrs, $name );

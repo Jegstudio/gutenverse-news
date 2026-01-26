@@ -711,6 +711,34 @@
             "type": "object",
             "copyStyle": true
         },
+        "rowItemGap": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardUseBorder": {
+            "type": "boolean",
+            "default": true
+        },
+        "cardLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardLineColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
         "showMetaReview": {
             "type": "boolean"
         }

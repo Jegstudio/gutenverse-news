@@ -90,6 +90,7 @@ export const panelList = () => {
                 initialOpen: false,
                 pro: true
             },
-        ]
+        ],
+        ['postTitleHtmlTag']
     );
 };

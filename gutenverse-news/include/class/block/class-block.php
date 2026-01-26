@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -99,11 +100,7 @@ class Block extends Grab {
 				$excltag .= ',' . $cat['value'];
 			}
 		}
-		if ( $this->attributes['normalImage'] ) {
-			$normimage = 'true';
-		} else {
-			$normimage = 'false';
-		}
+
 		foreach ( $this->attributes['includeAuthor'] as $cat ) {
 			if ( '' === $inclaut ) {
 				$inclaut = $cat['value'];
@@ -114,7 +111,8 @@ class Block extends Grab {
 		if ( isset( $this->attributes['showDate'] ) && $this->attributes['showDate'] ) {
 			$enbdate = true;
 		}
-		$attr      = array(
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], $this->attributes['imageLoad'] );
+		$attr       = array(
 			'first_title'                  => $this->attributes['title'],
 			'second_title'                 => $this->attributes['second_title'],
 			'url'                          => $this->attributes['url_title'],
@@ -147,7 +145,6 @@ class Block extends Grab {
 			'date_format_custom'           => $this->attributes['metaDateFormatCustom'],
 			'excerpt_length'               => $this->attributes['excerptLength'],
 			'excerpt_ellipsis'             => $this->attributes['excerptEllipsis'],
-			'force_normal_image_load'      => $normimage,
 			'pagination_mode'              => $this->attributes['paginationMode'],
 			'pagination_nextprev_showtext' => $this->attributes['showNavText'],
 			'pagination_number_post'       => $this->attributes['paginationPost'],
@@ -181,9 +178,13 @@ class Block extends Grab {
 			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
 			'icon_type'                    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
 			'icon_svg'                     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
-			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : [],
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : array(),
+			'gutter_width'                 => isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30,
+			'image_load'                   => $image_load,
+			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
+			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
-		$sccontent = '';
+		$sccontent  = '';
 
 		return $this->get_module( $attr, $sccontent );
 	}

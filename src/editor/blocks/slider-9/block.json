@@ -276,6 +276,14 @@
         "categoryButtonMargin": {
             "type": "object"
         },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
         "showMetaReview": {
             "type": "boolean"
         },

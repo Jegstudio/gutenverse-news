@@ -46,7 +46,7 @@
             "type": "object"
         }, 
         "margin": {
-            "type": "number"
+            "type": "object"
         },
         "padding": {
             "type": "object"

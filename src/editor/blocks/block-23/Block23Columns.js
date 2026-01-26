@@ -16,6 +16,7 @@ const Block23Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -26,7 +27,7 @@ const Block23Columns = props => {
             <>
                 <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
                 <div className="gvnews_postblock_content">
-                    {post.title && <PostTitle post={post} />}
+                    {post.title && <PostTitle post={post} attr={attr}/>}
                     {post.excerpt && <PostExcerpt post={post} attr={attr}/>}
                     {attr.option && <MetaModule3 {...props} />}
                 </div>
@@ -43,7 +44,8 @@ const Block23Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

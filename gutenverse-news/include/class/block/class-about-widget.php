@@ -94,7 +94,7 @@ class About_Widget extends Grab {
 		$src    = 'data-src="' . apply_filters( 'gvnews_about_block_data_src', esc_url( $aboutimgdarkmode ) . '" ' );
 		$srcset = 'data-srcset="' . apply_filters( 'gvnews_about_block_data_srcset', esc_url( $aboutimgdarkmode ) . ' 1x, ' . esc_url( $aboutimgdarkmoderetina ) . ' 2x"' );
 
-		$footer_logo = ! empty( $aboutimg ) && ! empty( $aboutimgretina ) ? '<a class="footer_logo" href="' . esc_url( home_url_multilang( '/' ) ) . '">
+		$footer_logo = ! empty( $aboutimg ) && ! empty( $aboutimgretina ) ? '<a class="footer_logo" href="' . esc_url( home_url_multilang( '/' ) ) . '" aria-label="' . esc_attr( get_bloginfo( 'name' ) ) . '">
 			<img class="lazyload"
 					src="' . gvnews_default_empty_image( '' ) . '" ' . gvnews_sanitize_output( $src ) . ' ' . gvnews_sanitize_output( $srcset ) .
 		' alt="' . get_bloginfo( 'name' ) . '" ' . gvnews_sanitize_output( $datasrclight ) . ' ' . apply_filters( 'gvnews_about_block_data_img_alt', gvnews_sanitize_output( $datasrcsetlight ) ) .

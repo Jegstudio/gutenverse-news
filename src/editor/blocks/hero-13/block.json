@@ -344,8 +344,9 @@
         "borderItem": {
             "type": "object"
         },
-        "borderItem": {
-            "type": "object"
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         },
         "showMetaReview": {
             "type": "boolean"

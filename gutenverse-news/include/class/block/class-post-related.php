@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Util\Single\Single_Post;
 use GUTENVERSE\NEWS\Block\Post_Guten;
 
@@ -87,6 +88,9 @@ class Post_Related extends Post_Guten {
 			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
 			'list_icon_type'               => isset( $this->attributes['listIconType'] ) ? $this->attributes['listIconType'] : 'icon',
 			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
+			'image_load'                   => Options::get_instance()->get_image_load( 'normal', false, $this->attributes['imageLoad'] ),
+			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
+			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
 
 		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );

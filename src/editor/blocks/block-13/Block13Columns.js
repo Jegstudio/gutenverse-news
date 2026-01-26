@@ -18,6 +18,7 @@ const Block13Columns = props => {
         imageSizeMain = {},
         imageSizeSecond = {},
         readmoreButtonDisabled = false,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -53,7 +54,8 @@ const Block13Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 
@@ -87,7 +89,8 @@ const Block13Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
         const rows2 = [];
@@ -132,7 +135,8 @@ const Block13Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
         const rows2 = [];

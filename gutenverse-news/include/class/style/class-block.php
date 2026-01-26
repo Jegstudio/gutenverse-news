@@ -595,10 +595,26 @@ class Block extends StyleAbstract {
 	/**
 	 * Generate style block post item style.
 	 */
-	private function post_item_style() {
+	public function post_item_style() {
 		$post_item_grid = isset( $this->attrs['postItemGrid'] ) ? $this->attrs['postItemGrid'] : false;
 
 		if ( $post_item_grid ) {
+
+			if ( isset( $this->attrs['mainItemGap'] ) ) {
+				$main_item_selector = isset( $this->attrs['mainItemSelector'] ) ? $this->attrs['mainItemSelector'] : '.gvnews_block_container > .gvnews_post';
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} {$main_item_selector}",
+						'property'       => function ( $value ) {
+								return "margin-bottom: {$value}px;";
+						},
+						'value'          => $this->attrs['mainItemGap'],
+						'device_control' => true,
+					)
+				);
+			}
+
 			if ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(
 					array(
@@ -613,9 +629,9 @@ class Block extends StyleAbstract {
 
 				$this->inject_style(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts",
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
 						'property'       => function ( $value ) {
-							return "margin-bottom: {$value}px;";
+							return "margin-top: {$value}px;";
 						},
 						'value'          => $this->attrs['rowItemGap'],
 						'device_control' => true,
@@ -638,6 +654,18 @@ class Block extends StyleAbstract {
 
 			if ( isset( $this->attrs['secondListSelector'] ) ) {
 				$second_list_selector = isset( $this->attrs['secondListSelector'] ) ? $this->attrs['secondListSelector'] : 'gvnews_postblock .gvnews_posts .gvnews_postsmall:first-of-type';
+				if ( isset( $this->attrs['rowItemGap'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_postblock_1 .gvnews_block_container",
+							'property'       => function ( $value ) {
+								return "gap: {$value}px;";
+							},
+							'value'          => $this->attrs['rowItemGap'],
+							'device_control' => true,
+						)
+					);
+				}
 
 				if ( isset( $this->attrs['columnItemGapSecond'] ) ) {
 					$this->inject_style(
@@ -669,11 +697,10 @@ class Block extends StyleAbstract {
 
 				}
 			}
-		} else {
-			if ( isset( $this->attrs['rowItemGap'] ) ) {
+		} elseif ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts .gvnews_post",
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_posts .gvnews_post:not(:last-of-type)",
 						'property'       => function ( $value ) {
 							return "margin-bottom: {$value}px;";
 						},
@@ -681,7 +708,17 @@ class Block extends StyleAbstract {
 						'device_control' => true,
 					)
 				);
-			}
+
+				$this->inject_style(
+					array(
+						'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
+						'property'       => function ( $value ) {
+							return "margin-top: {$value}px;";
+						},
+						'value'          => $this->attrs['rowItemGap'],
+						'device_control' => true,
+					)
+				);
 		}
 	}
 
@@ -711,7 +748,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationWrapperMargin'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_block_navigation",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_block_navigation",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'margin' );
 					},
@@ -1915,7 +1952,7 @@ class Block extends StyleAbstract {
 	/**
 	 * Generate card style.
 	 */
-	private function generate_card_style() {
+	protected function generate_card_style() {
 		$str                   = explode( '\\', $this->attrs['gvnewsModule'] );
 		$gvnews_module         = end( $str );
 		$modules_with_box_wrap = array(
@@ -1969,18 +2006,24 @@ class Block extends StyleAbstract {
 
 		// If raw is an array, prefix each item
 		if ( is_array( $raw ) ) {
-			$parts = array_map( function ( $p ) use ( $base ) {
-				return trim( $base . ' ' . $p );
-			}, $raw );
+			$parts = array_map(
+				function ( $p ) use ( $base ) {
+					return trim( $base . ' ' . $p );
+				},
+				$raw
+			);
 
 			return implode( ', ', $parts );
 		}
 
 		// Split by comma, trim and prefix each selector with base
 		$parts = array_map( 'trim', explode( ',', $raw ) );
-		$parts = array_map( function ( $p ) use ( $base ) {
-			return "{$base} {$p}";
-		}, $parts );
+		$parts = array_map(
+			function ( $p ) use ( $base ) {
+				return "{$base} {$p}";
+			},
+			$parts
+		);
 
 		return implode( ', ', $parts );
 	}

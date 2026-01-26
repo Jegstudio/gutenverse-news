@@ -722,6 +722,25 @@
             "type": "object",
             "copyStyle": true
         },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "gutterWidth": {
+            "type": "string",
+            "default": 30
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
         "showMetaReview": {
             "type": "boolean"
         }
