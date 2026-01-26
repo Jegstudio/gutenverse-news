@@ -143,6 +143,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 3.1.2-dev =
+
 = 3.1.1 =
 ##### Changes
 * Remove default additional margin on all Module Block
