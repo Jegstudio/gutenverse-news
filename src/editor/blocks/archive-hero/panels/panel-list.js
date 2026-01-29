@@ -79,22 +79,19 @@ export const panelList = () => {
             title: __('Display', 'gutenverse'),
             initialOpen: false,
             panelArray: responsivePanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Positioning', 'gutenverse'),
             initialOpen: false,
             panelArray: positioningPanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Animation Effects', 'gutenverse'),
             initialOpen: false,
-            panelArray: (props) => animationPanel({
-                ...props,
-                styleId: 'archive-pagination-animation'
-            }),
-            tabRole: TabStyle
+            panelArray: animationPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Spacing', 'gutenverse'),

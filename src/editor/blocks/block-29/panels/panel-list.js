@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, responsivePanel, conditionPanel, animationPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { paginationPanel } from '../../../control-panel/panel-pagination';
@@ -130,7 +130,7 @@ export const panelList = () =>
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: responsivePanel,
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
             {
                 title: __('Spacing', 'gutenverse-news'),
@@ -141,7 +141,12 @@ export const panelList = () =>
                 }),
                 tabRole: TabSetting
             },
-            // Pro
+            {
+                title: __('Animation Effects', 'gutenverse'),
+                initialOpen: false,
+                panelArray: animationPanel,
+                tabRole: TabSetting
+            },
             {
                 title: __('Condition', 'gutenverse-news'),
                 initialOpen: false,

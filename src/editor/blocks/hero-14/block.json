@@ -458,6 +458,10 @@
         "postTitleHtmlTag": {
             "type": "string",
             "default": "h3"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

@@ -96,6 +96,7 @@ class Grab {
 	public function render_frontend() {
 		$element_id      = $this->get_element_id();
 		$display_classes = $this->set_display_classes();
+		$animation_class = $this->set_animation_classes();
 		$extra_classes   = ' ';
 		if ( isset( $this->attributes['widthClass'] ) && $this->attributes['widthClass'] ) {
 			$extra_classes .= $this->attributes['widthClass'];
@@ -103,7 +104,7 @@ class Grab {
 		if ( isset( $this->attributes['extraClass'] ) && $this->attributes['extraClass'] ) {
 			$extra_classes .= $this->attributes['extraClass'];
 		}
-		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper">' . $this->render_content() . '</div>';
+		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper guten-element ' . $animation_class . '">' . $this->render_content() . '</div>';
 	}
 
 	/**
@@ -333,5 +334,46 @@ class Grab {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Animation classes
+	 *
+	 * @return string
+	 */
+	protected function set_animation_classes() {
+		$animation_classes = ' ';
+
+		if ( ! isset( $this->attributes ['animation'] ) ) {
+			return '';
+		}
+
+		$is_animation = false;
+
+		if ( isset( $this->attributes ['animation']['type'] ) ) {
+			$is_animation = ( ! empty( $this->attributes ['animation']['type']['Desktop'] ) && 'none' !== $this->attributes ['animation']['type']['Desktop'] ) || ( ! empty( $this->attributes ['animation']['type']['Tablet'] ) && 'none' !== $this->attributes ['animation']['type']['Tablet'] ) || ( ! empty( $this->attributes ['animation']['type']['Mobile'] ) && 'none' !== $this->attributes ['animation']['type']['Mobile'] );
+		}
+
+		if ( $is_animation ) {
+			$animation_classes .= 'animated guten-element-hide ';
+		}
+
+		if ( isset( $this->attributes ['animation']['duration'] ) && 'normal' !== $this->attributes ['animation']['duration'] ) {
+			$animation_classes .= "{$this->attributes ['animation']['duration']} ";
+		}
+
+		if ( ! empty( $this->attributes ['animation']['type']['Desktop'] ) && 'none' !== $this->attributes ['animation']['type']['Desktop'] ) {
+			$animation_classes .= "desktop-{$this->attributes ['animation']['type']['Desktop']} ";
+		}
+
+		if ( ! empty( $this->attributes ['animation']['type']['Tablet'] ) && 'none' !== $this->attributes ['animation']['type']['Tablet'] ) {
+			$animation_classes .= "desktop-{$this->attributes ['animation']['type']['Tablet']} ";
+		}
+
+		if ( ! empty( $this->attributes ['animation']['type']['Mobile'] ) && 'none' !== $this->attributes ['animation']['type']['Mobile'] ) {
+			$animation_classes .= "desktop-{$this->attributes ['animation']['type']['Mobile']} ";
+		}
+
+		return esc_attr( $animation_classes );
 	}
 }

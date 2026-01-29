@@ -350,6 +350,10 @@
         "postTitleHtmlTag": {
             "type": "string",
             "default": "h2"
+        },
+        "animation": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {

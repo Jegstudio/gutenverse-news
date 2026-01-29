@@ -77,6 +77,11 @@
         },
         "textAlign": {
             "type": "string"
+        },
+        "animation": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
         }
     },
     "supports": {
