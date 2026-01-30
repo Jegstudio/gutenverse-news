@@ -930,28 +930,6 @@ if ( ! function_exists( 'gvnews_get_post_date' ) ) {
 	}
 }
 
-/* Start Post Meta Global Fucntion */
-if ( ! function_exists( 'gvnews_get_meta' ) ) {
-	/**
-	 * Method gvnews_get_meta
-	 *
-	 * @param integer $id id.
-	 * @param string  $meta_name meta name.
-	 * @param integer $default default.
-	 *
-	 * @return string
-	 */
-	function gvnews_get_meta( $id, $meta_name, $default = false ) {
-		if ( strpos( $meta_name, '.' ) !== false ) {
-			$meta_key = explode( '.', $meta_name );
-			$meta     = get_post_meta( $id, $meta_key[0], true );
-			return isset( $meta_key[1] ) && isset( $meta[ $meta_key[1] ] ) ? ( new \GUTENVERSE\NEWS\Metabox\Metabox() )->parse_meta_value( $meta_key[0], $meta_key[1], $meta[ $meta_key[1] ] ) : $default;
-
-		} else {
-			return get_post_meta( $id, $meta_name, true );
-		}
-	}
-}
 /* End Post Meta Global Fucntion */
 
 /**
