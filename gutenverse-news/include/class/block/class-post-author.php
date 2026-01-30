@@ -72,11 +72,11 @@ class Post_Author extends Post_Guten {
 		$display_classes = $this->set_display_classes();
 		$custom_classes  = $this->get_custom_classes();
 		$avatar_position = ' avatar-' . $this->attributes['avatarPosition'] . ' ';
-
+		$animation_class = $this->set_animation_classes();
 		return '<div class="' .
 			$element_id .
 			$display_classes .
-			// $animation_class .
+			$animation_class .
 			$custom_classes .
 			'gvnews-post-author guten-element
 							' . $avatar_position . '" 

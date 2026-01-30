@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, conditionPanel, responsivePanel, animationPanel } from 'gutenverse-core/controls';
 import { TabStyle, TabSetting } from 'gutenverse-core/controls';
 import { stylePanel } from './panel-style';
 import { applyFilters } from '@wordpress/hooks';
@@ -25,7 +25,12 @@ export const panelList = () => {
                 }),
                 tabRole: TabSetting
             },
-            // Style
+            {
+                title: __('Animation Effects', 'gutenverse'),
+                initialOpen: false,
+                panelArray: animationPanel,
+                tabRole: TabSetting
+            },
             {
                 title: __('Style', 'gutenverse-news'),
                 initialOpen: false,
