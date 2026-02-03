@@ -29,7 +29,8 @@ const HeroArchiveComponent = (props) => {
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
-        postTitleHtmlTag = 'h2'
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -159,6 +160,10 @@ const HeroArchiveComponent = (props) => {
     };
 
     useEffect(() => {
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetBlock();
     }, [
         dateFormat,
@@ -168,7 +173,8 @@ const HeroArchiveComponent = (props) => {
         showMeta,
         showMetaDate,
         showMetaAuthor,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {
