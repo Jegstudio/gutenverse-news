@@ -275,14 +275,6 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
-			'gutenverse-news-frontend-featured-video-script',
-			GUTENVERSE_NEWS_URL . '/assets/js/frontend/featured-video.js',
-			array( 'gutenverse-frontend-event' ),
-			GUTENVERSE_NEWS_VERSION,
-			true
-		);
-
-		wp_register_script(
 			'gutenverse-news-frontend-featured-gallery-script',
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/featured-gallery.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),

@@ -17,12 +17,6 @@ const helper = {
 		"downgrade-plugin": {
 			import: path.resolve(__dirname, "../../src/wizard/downgrade-plugin.js"),
 		},
-		'featured-video': {
-			import: path.resolve( __dirname, "../../src/helper/featured-video.js" )
-		},
-		// "dashboard": {
-		// 	import: path.resolve(__dirname, "../../src/dashboard/index.js"),
-		// },
 	},
 	externals: {
 		...externals,
