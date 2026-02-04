@@ -57,6 +57,7 @@ class Hero_14 extends StyleAbstract {
 		}
 
 		$this->generate_main_container();
+		$this->no_content_style();
 	}
 
 	/**
@@ -729,6 +730,62 @@ class Hero_14 extends StyleAbstract {
 					)
 				);
 			}
+		}
+	}
+
+	private function no_content_style() {
+		if ( isset( $this->attrs['noContentTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['noContentTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['noContentColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentBackground'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_empty_module", $this->attrs['noContentBackground'] );
+		}
+
+		if ( isset( $this->attrs['noContentBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['noContentBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['noContentPadding'],
+					'device_control' => true,
+				)
+			);
 		}
 	}
 }
