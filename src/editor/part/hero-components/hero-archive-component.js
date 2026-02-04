@@ -158,7 +158,7 @@ const HeroArchiveComponent = (props) => {
                 />
             );
         } else {
-            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
     };
 
