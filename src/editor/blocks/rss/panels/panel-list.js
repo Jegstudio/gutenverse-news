@@ -56,12 +56,6 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
-                title: __('Header Filter Dropdown', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: HeaderFilterDropdownPanel,
-                tabRole: TabStyle
-            },
-            {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
