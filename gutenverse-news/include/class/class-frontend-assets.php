@@ -275,6 +275,14 @@ class Frontend_Assets {
 		);
 
 		wp_register_script(
+			'gutenverse-news-frontend-featured-gallery-script',
+			GUTENVERSE_NEWS_URL . '/assets/js/frontend/featured-gallery.js',
+			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
+			GUTENVERSE_NEWS_VERSION,
+			true
+		);
+
+		wp_register_script(
 			'gvnews-deprecated-blocks',
 			GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js',
 			array( 'wp-api-fetch' ),
@@ -318,6 +326,7 @@ class Frontend_Assets {
 			'post-tag',
 			'post-title',
 			'social-author-icon',
+			'user-list',
 		);
 
 		foreach ( $modules as $module ) {

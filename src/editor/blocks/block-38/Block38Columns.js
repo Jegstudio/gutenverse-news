@@ -18,6 +18,7 @@ const Block38Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -31,7 +32,7 @@ const Block38Columns = (props) => {
                 <div className="box_wrap">
                     <MetaCategory {...props} />
                     <div className="gvnews_postblock_content">
-                        {post.title && <PostTitle post={post} />}
+                        {post.title && <PostTitle post={post} attr={attr}/>}
                         {post.excerpt && <PostExcerpt post={post} attr={attr} />}
                         {attr.option && <MetaModule3 {...props} />}
                     </div>
@@ -55,6 +56,7 @@ const Block38Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

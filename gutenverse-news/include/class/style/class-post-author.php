@@ -267,7 +267,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['bioSpaceBottom'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-desc",
+					'selector'       => ".{$this->element_id}.gvnews-post-author .gvnews-author-content p.gvnews-author-desc",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'margin-bottom' );
 					},

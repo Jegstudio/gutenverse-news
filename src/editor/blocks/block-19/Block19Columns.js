@@ -17,9 +17,11 @@ const Block19Columns = props => {
         blockWidth,
         imageSizeMain = {},
         imageSizeSecond = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props=>{
         const {attr, post, index = 'x'} = props;
@@ -28,9 +30,9 @@ const Block19Columns = props => {
             <>
                 <ThumbModule size={715} cat={false} post={post} imageSize={imageSize}/>
                 <div className="gvnews_postblock_content">
-                    <h3 className="gvnews_post_title">
+                    <PostTitleTag className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                    </h3>
+                    </PostTitleTag>
                     {attr.option && !attr.option.meta_show && <MetaModule2 {...props}/>}
                 </div>
             </>

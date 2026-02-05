@@ -48,16 +48,16 @@ class Module_38 extends Module_View_Abstract {
 							<span>{$this->get_primary_category( $post_id )}</span>
 						</div>
 						<div class=\"gvnews_postblock_content\">
-							<h3 class=\"gvnews_post_title\">
-								<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
-							</h3>
+							<{$this->post_title_tag} class=\"gvnews_post_title\">
+								<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+							</' . $this->post_title_tag . '>
 							<div class="gvnews_post_excerpt">
 								<p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
 							</div>
 							{$this->post_meta_3( $post )}
 						</div>
 						<div class=\"gvnews_readmore_arrow\">
-							<a href=\"{$permalink}\">{$icon_arrow_right}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\">{$icon_arrow_right}<span class=\"screen-reader-text\">" . esc_html__( 'Read more about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . "</span></a>
 						</div>
 					</div>
 				</article>";
@@ -100,11 +100,7 @@ class Module_38 extends Module_View_Abstract {
 					{$content}
 					{$this->get_content_after( $attr )}
 				</div>
-				<div class=\"gvnews_block_navigation\">
-					{$this->get_navigation_before( $attr )}
-					{$navigation}
-					{$this->get_navigation_after( $attr )}
-				</div>";
+				{$navigation}";
 	}
 
 	/**

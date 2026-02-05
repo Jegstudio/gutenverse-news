@@ -116,7 +116,7 @@ class Post_Meta extends Post_Guten {
 		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
 
 		return '<div class="gvnews-meta-comment meta-items ' . $is_last_item . '">
-					<a href="' . esc_url( gvnews_get_respond_link() ) . '">' . $icon_comment . ' ' . esc_html( gvnews_get_comments_number() ) . '</a>
+					<a aria-label="' . esc_attr__( 'Comments', 'gutenverse-news' ) . '" href="' . esc_url( gvnews_get_respond_link() ) . '">' . $icon_comment . ' ' . esc_html( gvnews_get_comments_number() ) . '</a>
 				</div>';
 	}
 
@@ -151,7 +151,7 @@ class Post_Meta extends Post_Guten {
 		$date        = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
 		$show_prefix = isset( $this->attributes['datePrefix'] ) && $this->attributes['datePrefix'] ? ' with-prefix' : '';
 		return '<div class="gvnews-meta-date meta-items ' . $is_last_item . $show_prefix . '">' .
-			'<a href="#">' . $date . '</a>' .
+			'<a aria-label="' . esc_attr( $date ) . '" href="#">' . $date . '</a>' .
 			'</div>';
 	}
 

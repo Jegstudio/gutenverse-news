@@ -233,6 +233,12 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
         }
     },
     "supports": {
@@ -243,6 +249,7 @@
         "list"
     ],
     "style": [
-        "gutenverse-news-frontend-blocks-style"
+        "gutenverse-news-frontend-blocks-style",
+        "gutenverse-news-frontend-user-list-style"
     ]
 }

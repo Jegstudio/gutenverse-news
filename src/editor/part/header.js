@@ -83,11 +83,12 @@ function HeadTitle(props) {
     const icon = props.icon || '';
     const iconType = props.iconType || 'icon';
     const iconSVG = props.iconSVG || '';
+    const TitleTag = props.headerHtmlTag || 'h3';
 
     const finalIcon = (iconType === 'svg' && !iconSVG) ? '' : icon;
 
     return (
-        <h3 className="gvnews_block_title">
+        <TitleTag className="gvnews_block_title">
             <span>
                 {renderIcon(finalIcon, iconType, iconSVG)}
                 {props.title}
@@ -95,7 +96,7 @@ function HeadTitle(props) {
                     &nbsp;{props.second_title}
                 </strong>}
             </span>
-        </h3>
+        </TitleTag>
     );
 }
 

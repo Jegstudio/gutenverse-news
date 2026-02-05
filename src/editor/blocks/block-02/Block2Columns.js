@@ -18,6 +18,7 @@ const Block2Columns = props => {
         imageSizeMain = {},
         imageSizeSecond = {},
         readmoreButtonDisabled = false,
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -50,7 +51,8 @@ const Block2Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 
@@ -83,7 +85,8 @@ const Block2Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

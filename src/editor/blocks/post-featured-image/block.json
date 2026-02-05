@@ -19,7 +19,7 @@
         },
         "gallerySize": {
             "type": "string",
-            "default": ""
+            "default": "1140x570"
         },
         "column": {
             "type": "object",
@@ -162,5 +162,8 @@
         "image",
         "thumbnail"
     ],
-    "style": ["gutenverse-news-frontend-post-featured-image-style"]
+    "style": [
+        "gutenverse-news-frontend-blocks-style",
+        "gutenverse-news-frontend-post-featured-image-style"
+    ]
 }

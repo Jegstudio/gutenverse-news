@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,6 +142,24 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 3.1.2-dev =
+##### Improvements
+* Add post title html tag option on all post blocks
+* Add header html tag option on Header block and all Module blocks 
+
+= 3.1.1 =
+##### Changes
+* Remove default additional margin on all Module Block
+* Changed Use Normal Load option with Image Load option on some blocks
+* Changed Use Normal Load option name with Load Image Immediately on some blocks to more easily understand the function of that option
+##### Improvements
+* Add post item gap option on all Module Block
+* Add item gap on User List block
+* Add aria-label attribute on navigation button and anchor link on all blocks
+##### Bug Fixes
+* Fix the meta icon color option not working on Archive Block and Post Related Block
+* Fix Space Bottom option not working on Biography Style on Author Box block
 
 = 3.1.0 =
 ##### Improvements

@@ -5,6 +5,7 @@ import { cardStyleModule } from './panel-style/style-card';
 import { contentContainerStyle } from './panel-style/style-content-container';
 import { thumbnailAndOverlayStyle } from './panel-style/style-thumbnail';
 import { titleContainerStyle } from './panel-style/style-title-container';
+import { postItemStyle } from './panel-style/style-post-item';
 
 const getBlockStyle = (elementId, attributes) => {
     const {
@@ -26,15 +27,16 @@ const getBlockStyle = (elementId, attributes) => {
     data = contentContainerStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
     data = titleContainerStyle(elementId, attributes, data);
+    data = postItemStyle(elementId, attributes, data);
 
-        /**
-         * Panel Design
-         */
-        isNotEmpty(attributes['titleTypography']) && data.push({
-            'type': 'typography',
-            'id': 'titleTypography',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
-        });
+    /**
+     * Panel Design
+     */
+    isNotEmpty(attributes['titleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'titleTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
+    });
 
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
         'type': 'typography',
@@ -365,7 +367,7 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaColorHover']) && data.push({
             'type': 'color',
             'id': 'metaColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:not(.gvnews_meta_author):hover a`,
             'properties': [
                 {
                     'name': 'color',
@@ -376,7 +378,10 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -388,7 +393,7 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColorHover']) && data.push({
             'type': 'color',
             'id': 'metaIconColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover svg`,
             'properties': [
                 {
                     'name': 'color',

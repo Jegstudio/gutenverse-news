@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { NumberControl, RangeControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
-import { applyFilters } from '@wordpress/hooks';
 
 export const filterPanel = ({ postType }) => {
 

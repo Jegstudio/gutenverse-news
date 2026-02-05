@@ -319,6 +319,10 @@
         },
         "containerPadding": {
             "type": "object"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         }
     },
     "supports": {

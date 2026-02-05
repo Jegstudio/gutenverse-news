@@ -28,7 +28,8 @@ const HeroArchiveComponent = (props) => {
     const {
         showMeta = true,
         showMetaDate = true,
-        showMetaAuthor = true
+        showMetaAuthor = true,
+        postTitleHtmlTag = 'h2'
     } = attributes;
 
     const metaSettings = {
@@ -122,6 +123,7 @@ const HeroArchiveComponent = (props) => {
                     format: dateFormat,
                     custom: dateFormatCustom,
                 },
+                postTitleHtmlTag,
             };
             const rows = [];
             for (let i = 0; i < sliderItem; i++) {
@@ -165,7 +167,8 @@ const HeroArchiveComponent = (props) => {
         heroType,
         showMeta,
         showMetaDate,
-        showMetaAuthor
+        showMetaAuthor,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

@@ -359,14 +359,9 @@
         "borderItemThird": {
             "type": "object"
         },
-        "borderItem": {
-            "type": "object"
-        },
-        "borderItemSecond": {
-            "type": "object"
-        },
-        "borderItemThird": {
-            "type": "object"
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         },
         "showMetaReview": {
             "type": "boolean"

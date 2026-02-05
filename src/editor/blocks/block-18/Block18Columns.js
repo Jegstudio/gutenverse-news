@@ -15,11 +15,12 @@ const Block18Columns = props => {
         metaDateFormat,
         metaDateFormatCustom,
         imageSizeMain = {},
-        blockWidth
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props => {
         const { post, attr, index = 'x' } = props;
@@ -29,9 +30,9 @@ const Block18Columns = props => {
         return (
             <article className={`gvnews_post gvnews_pl_lg_8 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_heading">
-                    <h3 className="gvnews_post_title">
+                    <PostTitleTag className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                    </h3>
+                    </PostTitleTag>
                 </div>
                 <div className="gvnews_postblock_content">
                     <div className="gvnews_thumb">

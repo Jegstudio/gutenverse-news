@@ -25,13 +25,6 @@ class Module_37 extends Module_View_Abstract {
 	public $main_thumbnail_class = 'gvnews_post';
 
 	/**
-	 * Construct
-	 */
-	public function __construct() {
-		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
-		parent::__construct();
-	}
-	/**
 	 * Method render_block_type_1
 	 *
 	 * @param object $post       post.
@@ -48,15 +41,15 @@ class Module_37 extends Module_View_Abstract {
 					<div class='box_wrap'>
 						<div class=\"gvnews_thumb\">
 							" . gvnews_edit_post( $post_id ) . "
-							<a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
 							<div class=\"gvnews_post_category\">
 								<span>{$this->get_primary_category($post_id)}</span>
 							</div>
 						</div>
 						<div class=\"gvnews_postblock_content\">
-							<h3 class=\"gvnews_post_title\">
-								<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-							</h3>
+							<{$this->post_title_tag} class=\"gvnews_post_title\">
+								<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+							</{$this->post_title_tag}>
 							{$this->post_meta_2($post)}
 						</div>
 					</div>
@@ -103,11 +96,7 @@ class Module_37 extends Module_View_Abstract {
 					{$content}
 					{$this->get_content_after($attr)}
 				</div>
-				<div class=\"gvnews_block_navigation\">
-					{$this->get_navigation_before($attr)}
-					{$navigation}
-					{$this->get_navigation_after($attr)}
-				</div>";
+				{$navigation}";
 	}
 
 	/**
@@ -139,16 +128,4 @@ class Module_37 extends Module_View_Abstract {
 		return $this->build_column( $result );
 	}
 
-	/**
-	 * Method custom_module_column_class
-	 *
-	 * @param string $column_class column class.
-	 * @return string
-	 */
-	public function custom_module_column_class( $column_class ) {
-		if ( 'auto' === $this->attribute['column_width'] ) {
-			$column_class = 'gvnews_col_3o3';
-		}
-		return $column_class;
-	}
 }

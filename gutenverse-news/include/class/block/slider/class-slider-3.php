@@ -31,17 +31,11 @@ class Slider_3 extends Slider_View_Abstract {
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_mechanism   = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ? 'gvnews_single_image_owl' : 'gvnews_single_image_lazy_owl';
-			if ( 'gvnews_single_image_owl' === $image_mechanism ) {
-				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504' );
-			} else {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-360x504' );
-			}
-
-			$content .=
+			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504', $this->attribute['image_load'] );
+			$content          .=
 				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
-                    <a href="' . esc_url( get_the_permalink( $post ) ) . "\">
+                    <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
                         {$image}
                     </a>
                     <div class=\"gvnews_slide_caption\">
@@ -49,9 +43,9 @@ class Slider_3 extends Slider_View_Abstract {
                             <div class=\"gvnews_post_category\">
                                 {$primary_category}
                             </div>
-                            <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                            </h2>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                            </' . $this->post_title_tag . '>
                             <p class="gvnews_post_excerpt"> ' . esc_attr( $this->get_excerpt( $post ) ) . " </p>
                             {$this->render_meta( $post )}
                         </div>

@@ -250,6 +250,14 @@
         "borderResponsiveItemThird": {
             "type": "object"
         },
+        "normalImage": {
+            "type": "boolean",
+            "default": false
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
         "borderItem": {
             "type": "object"
         },

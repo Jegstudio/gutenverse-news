@@ -27,15 +27,15 @@ class Archive_Hero extends Archive_View_Abstract {
 	 */
 	public function render_module( $attr, $column_class ) {
 
-		if ( $attr['first_page'] && gvnews_get_post_current_page() > 1 ) {
-			return false;
-		}
-
 		$name     = 'GUTENVERSE\NEWS\Block\Hero\Hero_' . $attr['hero_type'];
 		$instance = null;
 		if ( method_exists( $name, 'get_instance' ) ) {
 			$instance = call_user_func( array( $name, 'get_instance' ) );
 			$instance->set_attribute( $attr );
+		}
+		if ( $attr['first_page'] && gvnews_get_post_current_page() > 1 ) {
+			$this->set_skipped_post( (int) $instance->get_number_post(), true );
+			return false;
 		}
 		$result        = $this->get_result( $attr, $instance->get_number_post() );
 		$column_class  = $this->get_module_column_class( $attr );

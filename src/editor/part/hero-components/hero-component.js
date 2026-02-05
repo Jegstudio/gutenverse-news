@@ -51,6 +51,7 @@ const HeroComponent = (props) => {
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13'),
+        postTitleHtmlTag = 'h2',
         showMetaReview = false,
     } = attributes;
 
@@ -171,6 +172,7 @@ const HeroComponent = (props) => {
                     format: dateFormat,
                     custom: dateFormatCustom,
                 },
+                postTitleHtmlTag,
             };
             const rows = [];
             const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
@@ -227,6 +229,7 @@ const HeroComponent = (props) => {
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        postTitleHtmlTag,
         showMetaReview,
     ]);
 

@@ -289,6 +289,30 @@ const getCarouselStyle = (elementId, attributes) => {
         });
     }
 
+    /*  review meta style */
+    isNotEmpty(attributes['postReviewMetaStarColor']) && data.push({
+        'type': 'color',
+        'id': 'postReviewMetaStarColor',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review .gutenverse-icon-svg svg`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+    isNotEmpty(attributes['postReviewMetaStarSize']) && data.push({
+        'type': 'unitPoint',
+        'id': 'postReviewMetaStarSize',
+        'selector': `.${elementId} .gvnews_post_meta>div.gvnews_meta_post_review .gutenverse-icon-svg svg`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     return data;
 };
 
