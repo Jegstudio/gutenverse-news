@@ -156,7 +156,13 @@ const getBlockStyle = (elementId, attributes) => {
         ],
         'responsive': true,
         'selector': `.${elementId} .gvnews_block_heading`,
-    }); 
+    });
+
+    isNotEmpty(attributes['headerTextTypography']) && data.push({
+        'type': 'typography',
+        'id': 'headerTextTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title`,
+    });
 
     /**
      * Panel Border
