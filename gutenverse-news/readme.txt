@@ -147,6 +147,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Improvements
 * Add post title html tag option on all post blocks
 * Add header html tag option on Header block and all Module blocks 
+* Add options to style the “no content” state on all Hero, Slider and Carousel blocks
 
 = 3.1.1 =
 ##### Changes
