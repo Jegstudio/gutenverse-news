@@ -7,6 +7,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { carouselDesignPanel } from '../../../control-panel/panel-design';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -52,6 +53,12 @@ export const panelList = () => {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
+                tabRole: TabStyle
+            },
+            {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
                 tabRole: TabStyle
             },
             {
