@@ -9,7 +9,7 @@ import { getModuleOptions } from '../../utils/helper';
 const defaultOptions = getModuleOptions();
 
 const HeroArchiveComponent = (props) => {
-    const { heroType, numberPostShow, heroSliderRef } = props;
+    const { heroType, numberPostShow } = props;
     const {
         sliderItem,
         numberPost = numberPostShow * 2,
@@ -52,7 +52,6 @@ const HeroArchiveComponent = (props) => {
     const [postData, setPostData] = useState(false);
     const [postsLimit, setPostsLimit] = useState(16);
     const [overlay, setOverlay] = useState(false);
-    const [shouldInitSlider, setShouldInitSlider] = useState(false);
     const [blockContent, setBlockContent] = useState(false);
 
 
@@ -191,8 +190,6 @@ const HeroArchiveComponent = (props) => {
         <>
             {blockContent ? blockContent : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {shouldInitSlider && window.gvnewsHeroSlider(heroSliderRef.current)}
-            {shouldInitSlider && setShouldInitSlider(false)}
         </>
     );
 };
