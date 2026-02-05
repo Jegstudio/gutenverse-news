@@ -143,6 +143,7 @@ class Slider extends Grab {
 			'image_load'               => $image_load,
 			'normal_image'             => $this->attributes['normalImage'],
 			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
+			'hide_image_navigation'    => isset( $this->attributes['hideImageNavigation'] ) ? $this->attributes['hideImageNavigation'] : false,
 		);
 
 		$content = $this->get_module( $attr );

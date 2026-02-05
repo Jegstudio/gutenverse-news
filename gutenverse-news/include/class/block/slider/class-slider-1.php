@@ -124,12 +124,20 @@ class Slider_1 extends Slider_View_Abstract {
 				)
 			);
 
+			$additional_attrs = '';
+
+			$hide_image_navigation = isset( $attr['hide_image_navigation'] ) ? $attr['hide_image_navigation'] : false;
+
+			if ( $hide_image_navigation ) {
+				$additional_attrs .= ' style="display: none;"';
+			}
+
 			$output =
 				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">
                     <div class=\"gvnews_slider_type_1 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>
-                    <div class=\"gvnews_slider_thumbnail_wrapper\">
+                    <div class=\"gvnews_slider_thumbnail_wrapper\" {$additional_attrs}>
                         <div class=\"gvnews_slider_thumbnail\">
                             {$slider}
                         </div>
