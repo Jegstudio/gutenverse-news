@@ -193,10 +193,8 @@ const PostMeta = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews-post-meta-inner">
-                {MetaLeftElement()}
-                {MetaRightElement()}
-            </div>
+            {MetaLeftElement()}
+            {MetaRightElement()}
         </div>
     </>;
 });
