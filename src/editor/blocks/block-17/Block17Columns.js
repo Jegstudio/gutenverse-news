@@ -16,10 +16,12 @@ const Block17Columns = props => {
         metaDateFormatCustom,
         blockWidth,
         imageSizeMain = {},
-        imageSizeSecond = {}
+        imageSizeSecond = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     function RenderBlock1(props) {
         const { attr, post, index = 'x' } = props;
@@ -53,9 +55,9 @@ const Block17Columns = props => {
             <article className={aclass}>
                 <ThumbModule size={715} cat={1 === props.type ? true : false} post={post} imageSize={props.imageSize} />
                 <div className="gvnews_postblock_content">
-                    <h3 className="gvnews_post_title">
+                    <PostTitleTag className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                    </h3>
+                    </PostTitleTag>
                     {1 === props.type ? <PostMeta /> : (attr.option && !attr.option.meta_show && <MetaModule2 {...props} />)}
                 </div>
             </article>

@@ -2,10 +2,11 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 import { MetaModule1, MetaModule2, MetaModule3, MetaCategory } from './meta';
 
 const PostTitle = (props) => {
+    const TitleTag = props.attr?.titleTag || 'h3';
     return (
-        <h3 property="headline" className="gvnews_post_title">
+        <TitleTag property="headline" className="gvnews_post_title">
             <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-        </h3>
+        </TitleTag>
     );
 };
 

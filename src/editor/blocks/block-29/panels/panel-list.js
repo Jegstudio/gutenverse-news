@@ -12,6 +12,7 @@ import { paginationStylePanel } from '../../../control-panel/panel-pagination-st
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { postItemPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () =>
     applyFilters(
@@ -77,6 +78,12 @@ export const panelList = () =>
                         },
                     ]
                 }),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Post Item', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: postItemPanel,
                 tabRole: TabStyle
             },
             {

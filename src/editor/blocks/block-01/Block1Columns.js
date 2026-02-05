@@ -21,7 +21,8 @@ const Block1Columns = props => {
         readmoreButtonDisabled = false,
         listIcon = '',
         listIconType = 'icon',
-        listIconSVG = ''
+        listIconSVG = '',
+        postTitleHtmlTag = 'h3'
     } = props;
 
     const RenderBlock1 = props=>{
@@ -81,7 +82,8 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({datas = [], isLoadMoreAnimation = false}) => {
@@ -113,7 +115,8 @@ const Block1Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {
@@ -123,7 +126,7 @@ const Block1Columns = props => {
                     rows.push(<RenderBlock2 isLoadMoreAnimation={isLoadMoreAnimation} index={i + 1}  key={datas[i]} attr={attr} post={datas[i]} imageSize={imageSizeSecond}/>);
                 }
             }
-            return <div className={'gvnews_posts gvnews-posts-row'}>
+            return <div className={'gvnews_posts'}>
                 <article className={`gvnews_post gvnews_pl_lg_1 col-sm-6 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
                     {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={imageSizeMain}/>}
                 </article>
@@ -145,7 +148,8 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {
@@ -161,7 +165,7 @@ const Block1Columns = props => {
                 }
             }
 
-            return <div className="gvnews_posts gvnews-posts-row">
+            return <div className="gvnews_posts">
                 <article className={`gvnews_post gvnews_pl_lg_1 col-sm-4 ${isLoadMoreAnimation ? 'gvnews_ajax_loaded anim_0' : ''}`}>
                     {datas.length > 0 && <RenderBlock1 key={datas[0].id} attr={attr} post={datas[0]} imageSize={imageSizeMain}/>}
                 </article>

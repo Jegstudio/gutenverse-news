@@ -620,6 +620,18 @@
         "cardBorderResponsive": {
             "type": "object",
             "copyStyle": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
         }
     },
     "supports": {

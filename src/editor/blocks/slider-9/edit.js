@@ -64,6 +64,8 @@ const Slider9Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -117,6 +119,7 @@ const Slider9Block = compose(
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const TitleTag = postTitleHtmlTag;
 
     function RenderContent(props) {
         return (
@@ -135,9 +138,9 @@ const Slider9Block = compose(
                 <ThumbModule size={715} cat={false} post={props.post} />
                 <div className="gvnews_postblock_content">
                     <MetaModule2 {...props} />
-                    <h3 className="gvnews_post_title">
+                    <TitleTag className="gvnews_post_title">
                         <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                    </h3>
+                    </TitleTag>
                 </div>
             </article>
         );
@@ -152,7 +155,8 @@ const Slider9Block = compose(
                 type: props.metaDateType,
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag,
         };
         const content = [];
         const slider = [];
@@ -287,6 +291,12 @@ const Slider9Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -302,6 +312,8 @@ const Slider9Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {

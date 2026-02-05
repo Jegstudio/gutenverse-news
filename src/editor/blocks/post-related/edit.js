@@ -96,7 +96,9 @@ const PostRelated = compose(
         readmoreButtonDisabled = false,
         gutenversePreviewBlock = '',
         renderedImageSizeMain,
-        renderedImageSizeSecond
+        renderedImageSizeSecond,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
 
 
@@ -347,6 +349,7 @@ const PostRelated = compose(
                     readmoreButtonDisabled,
                     imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 360, width: 180, dimension: 500 }), // default value from edit module 1
                     imageSizeSecond: getImageSizeDetail(renderedImageSizeSecond, { height: 120, width: 86, dimension: 715 }),
+                    postTitleHtmlTag,
                 };
 
                 switch (templateType) {
@@ -483,6 +486,7 @@ const PostRelated = compose(
         gutenversePreviewBlock,
         renderedImageSizeMain,
         renderedImageSizeSecond,
+        postTitleHtmlTag,
     ]);
 
     const headerData = {
@@ -494,6 +498,7 @@ const PostRelated = compose(
         headerAuthor,
         headerTag,
         headerDefault,
+        headerHtmlTag
     };
 
     const paginationData = {

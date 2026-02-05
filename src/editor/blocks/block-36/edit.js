@@ -23,6 +23,7 @@ const Block36Block = compose(
             panelList={panelList}
             defaultImageSizeMain={{ height: 350, width: 350, dimension: 1000, class: 'default' }}
             mainThumbnailClass={'gvnews_pl_md_5'}
+            checkLandscapeThumbnail={true}
         />;
     } else {
         return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;

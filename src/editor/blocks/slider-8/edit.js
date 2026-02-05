@@ -71,6 +71,8 @@ const Slider8Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
+        postTitleHtmlTag,
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -125,6 +127,7 @@ const Slider8Block = compose(
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const TitleTag = postTitleHtmlTag;
 
     function RenderContent(props) {
         return (
@@ -136,9 +139,9 @@ const Slider8Block = compose(
                     <div className="gvnews_item_caption">
                         <div className="gvnews_caption_container">
                             <MetaCategory post={props.post} />
-                            <h2 className="gvnews_post_title">
+                            <TitleTag className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                            </h2>
+                            </TitleTag>
                             <SliderMeta {...props} date blockType="slider-8" />
                         </div>
                     </div>
@@ -305,6 +308,12 @@ const Slider8Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -323,6 +332,8 @@ const Slider8Block = compose(
         showMetaAuthor,
         nextButtonIcon,
         prevButtonIcon,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {

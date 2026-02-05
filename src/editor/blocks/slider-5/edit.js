@@ -68,7 +68,9 @@ const Slider5Block = compose(
         nextButtonIconSVG,
         prevButtonIcon,
         prevButtonIconType,
-        prevButtonIconSVG
+        prevButtonIconSVG,
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -141,7 +143,8 @@ const Slider5Block = compose(
                 type: props.metaDateType,
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const content = [];
         if (props.postData && props.moduleOption) {
@@ -279,6 +282,12 @@ const Slider5Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -300,7 +309,9 @@ const Slider5Block = compose(
         nextButtonIconSVG,
         prevButtonIcon,
         prevButtonIconType,
-        prevButtonIconSVG
+        prevButtonIconSVG,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {

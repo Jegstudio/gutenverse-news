@@ -40,7 +40,7 @@ class Post_Author extends Post_Guten {
 
 		$block = '<div class="gvnews-author-content">
 					<' . $this->attributes['titleTag'] . ' class="gvnews-author-name">
-						<a href="' . esc_url( $author['url'] ) . '">' . esc_html( $author['name'] ) . '</a>
+						<a href="' . esc_url( $author['url'] ) . '" aria-label="' . esc_attr( $author['name'] ) . '">' . esc_html( $author['name'] ) . '</a>
 					</' . $this->attributes['titleTag'] . '>
 					<p class="gvnews-author-desc">' . esc_html( $author['desc'] ) . '</p>
 					<div class="gvnews-author-socials">' .
@@ -98,7 +98,7 @@ class Post_Author extends Post_Guten {
 
 			if ( '' !== $url ) {
 				$social_elements .=
-					'<a href="' . $url . '" class="' . $social . '">
+					'<a href="' . $url . '" class="' . $social . '" aria-label="' . esc_attr( $social ) . '">
 					<div class="gutenverse-icon-svg">
 						' . $icon . '
 					</div>

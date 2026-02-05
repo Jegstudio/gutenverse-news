@@ -37,6 +37,13 @@ class Editor_Assets {
 			array(),
 			GUTENVERSE_NEWS_VERSION
 		);
+
+		wp_enqueue_style(
+			'gvnews-gutenverse-editor-blocks-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/blocks-editor-styles.css',
+			array(),
+			GUTENVERSE_NEWS_VERSION
+		);
 	}
 
 	/**

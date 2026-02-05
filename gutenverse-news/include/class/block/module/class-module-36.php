@@ -25,13 +25,6 @@ class Module_36 extends Module_View_Abstract {
 	public $main_thumbnail_class = 'gvnews_pl_md_5';
 
 	/**
-	 * Construct
-	 */
-	public function __construct() {
-		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
-		parent::__construct();
-	}
-	/**
 	 * Method render_block_type_1
 	 *
 	 * @param object $post       post.
@@ -50,15 +43,15 @@ class Module_36 extends Module_View_Abstract {
 						<div class="box_wrap">
 							<div class="gvnews_thumb">
 								' . gvnews_edit_post( $post->ID ) . '
-								<a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $thumbnail . "</a>
+								<a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . "</a>
 								<div class=\"gvnews_post_category\">
 									<span>{$primary_category}</span>
 								</div>
 							</div>
 							<div class=\"gvnews_postblock_content\">
-								<h3 class=\"gvnews_post_title\">
-									<a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-								</h3>
+								<{$this->post_title_tag} class=\"gvnews_post_title\">
+									<a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+								</' . $this->post_title_tag . '>
 								' . $this->post_meta_3( $post ) . '
 								<div class="gvnews_post_excerpt">
 									<p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
@@ -82,9 +75,9 @@ class Module_36 extends Module_View_Abstract {
 							</div>
 						</div>
 						<div class=\"gvnews_postblock_content\">
-							<h3 class=\"gvnews_post_title\">
-								<a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-							</h3>
+							<{$this->post_title_tag} class=\"gvnews_post_title\">
+								<a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+							</' . $this->post_title_tag . '>
 							<div class="gvnews_post_excerpt">
 								<p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
 							</div>
@@ -155,11 +148,7 @@ class Module_36 extends Module_View_Abstract {
 					{$content}
 					{$this->get_content_after($attr)}
 				</div>
-				<div class=\"gvnews_block_navigation\">
-					{$this->get_navigation_before($attr)}
-					{$navigation}
-					{$this->get_navigation_after($attr)}
-				</div>";
+				{$navigation}";
 	}
 
 	/**
@@ -199,16 +188,4 @@ class Module_36 extends Module_View_Abstract {
 		return ( ( isset( $thumb_data[1] ) && isset( $thumb_data[2] ) ) && ( $thumb_data[1] < $thumb_data[2] ) ) ? false : true;
 	}
 
-	/**
-	 * Method custom_module_column_class
-	 *
-	 * @param string $column_class column class.
-	 * @return string
-	 */
-	public function custom_module_column_class( $column_class ) {
-		if ( 'auto' === $this->attribute['column_width'] ) {
-			$column_class = 'gvnews_col_3o3';
-		}
-		return $column_class;
-	}
 }

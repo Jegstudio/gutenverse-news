@@ -63,6 +63,7 @@ const Hero14Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         readmoreButtonDisabled = false,
+        postTitleHtmlTag = 'h3'
     } = attributes;
 
     const metaSettings = {
@@ -146,6 +147,7 @@ const Hero14Block = compose(
                 format: props.metaDateFormat,
                 custom: props.metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];
@@ -279,7 +281,8 @@ const Hero14Block = compose(
         showMeta,
         showMetaDate,
         showMetaAuthor,
-        readmoreButtonDisabled
+        readmoreButtonDisabled,
+        postTitleHtmlTag
     ]);
 
     return (

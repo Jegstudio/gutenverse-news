@@ -15,6 +15,7 @@ const Block29Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -46,6 +47,7 @@ const Block29Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

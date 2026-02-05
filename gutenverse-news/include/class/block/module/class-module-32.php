@@ -18,19 +18,19 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_32 extends Module_View_Abstract {
 
 	/**
+	 * Additional class
+	 *
+	 * @var string
+	 */
+	protected $additional_class = 'disable-fade-up';
+
+	/**
 	 * This variable for consume block style
 	 *
 	 * @var string
 	 */
 	public $main_thumbnail_class = 'box_wrap';
 
-	/**
-	 * Construct
-	 */
-	public function __construct() {
-		add_filter( 'gvnews_custom_module_column_class', array( $this, 'custom_module_column_class' ) );
-		parent::__construct();
-	}
 	/**
 	 * Method render_block_type_1
 	 *
@@ -44,7 +44,7 @@ class Module_32 extends Module_View_Abstract {
 		$thumbnail       = $this->get_thumbnail( $post_id, $image_size );
 		$box_shadow_flag = isset( $this->attribute['box_shadow'] ) && $this->attribute['box_shadow'] ? 'box_shadow' : '';
 		$permalink       = esc_url( get_the_permalink( $post ) );
-		$read_more       = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more       = $this->attribute['disable_readmore'] ? '' : " <a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post ' . $box_shadow_flag, $post_id ) . '>
 					<div class="box_wrap">
@@ -53,12 +53,12 @@ class Module_32 extends Module_View_Abstract {
 							<div class=\"gvnews_post_category\">
 								<span>{$this->get_primary_category($post_id)}</span>
 							</div>
-							<h3 class=\"gvnews_post_title\">
-								<a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-							</h3>
+							<{$this->post_title_tag} class=\"gvnews_post_title\">
+								<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+							</{$this->post_title_tag}>
 						</header>
 						<div class=\"gvnews_thumb\">
-							<a href=\"{$permalink}\">{$thumbnail}</a>
+							<a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a>
 						</div>
 						<div class=\"gvnews_postblock_content\">
 							<div class=\"gvnews_post_excerpt\">
@@ -111,11 +111,7 @@ class Module_32 extends Module_View_Abstract {
 					{$content}
 					{$this->get_content_after($attr)}
 				</div>
-				<div class=\"gvnews_block_navigation\">
-					{$this->get_navigation_before($attr)}
-					{$navigation}
-					{$this->get_navigation_after($attr)}
-				</div>";
+				{$navigation}";
 	}
 
 	/**
@@ -144,18 +140,5 @@ class Module_32 extends Module_View_Abstract {
 	 */
 	public function render_column_alt( $result, $column_class ) {
 		return $this->build_column( $result );
-	}
-
-	/**
-	 * Method custom_module_column_class
-	 *
-	 * @param string $column_class column class.
-	 * @return string
-	 */
-	public function custom_module_column_class( $column_class ) {
-		if ( 'auto' === $this->attribute['column_width'] ) {
-			$column_class = 'gvnews_col_3o3';
-		}
-		return $column_class;
 	}
 }

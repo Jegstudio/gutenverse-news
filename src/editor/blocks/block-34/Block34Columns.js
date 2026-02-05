@@ -20,6 +20,9 @@ const Block34Columns = (props) => {
         isLoadMore = false,
         imageSizeMain = {},
         attributes,
+        rowItemGap,
+        gutterWidth,
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -28,7 +31,7 @@ const Block34Columns = (props) => {
         if (node) {
             shuffleInstance.current = new Shuffle(node, {
                 itemSelector: '.gvnews_post',
-                gutterWidth: 30,
+                gutterWidth: gutterWidth ? parseInt(gutterWidth) : 30,
                 speed: 0
             });
         } else {
@@ -37,15 +40,25 @@ const Block34Columns = (props) => {
         }
     }, []);
 
+
+    const onImageLoad = useCallback(() => {
+        if (shuffleInstance.current) {
+            shuffleInstance.current.layout();
+        }
+    }, []);
+
     useEffect(() => {
         if (shuffleInstance.current) {
+            shuffleInstance.current.options.gutterWidth = gutterWidth ? parseInt(gutterWidth) : 30;
             shuffleInstance.current.resetItems();
             shuffleInstance.current.update();
         }
     }, [
         blockWidth,
         attributes,
-        postData
+        postData,
+        rowItemGap,
+        gutterWidth
     ]);
 
     const postDataLen = postData.length;
@@ -56,7 +69,7 @@ const Block34Columns = (props) => {
         return (
             <article className={`gvnews_post gvnews_pl_md_box ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={1000} cat={true} post={post} imageSize={imageSizeMain} />
+                    <ThumbModule size={1000} cat={true} post={post} imageSize={imageSizeMain} onLoad={onImageLoad} />
                     <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={post} attr={attr} panelAttr={attributes} />
                 </div>
             </article>
@@ -73,6 +86,7 @@ const Block34Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

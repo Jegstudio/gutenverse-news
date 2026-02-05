@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Slider;
 
+use Gutenverse\Framework\Options;
+
 /**
  * Slider_1
  *
@@ -26,35 +28,31 @@ class Slider_1 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	public function content( $results ) {
-		$content = '';
+		$content    = '';
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attribute['normal_image'], $this->attribute['image_load'] );
+
 		foreach ( $results as $key => $post ) {
+			$image_load        = $key > 0 ? 'lazy' : $image_load;
 			$primary_category  = $this->get_primary_category( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_mechanism   = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] ) ? 'gvnews_single_image_owl' : 'gvnews_single_image_lazy_owl';
-			if ( 'gvnews_single_image_owl' === $image_mechanism && 0 >= $key ) {
-				if ( $this->manager->get_current_width() > 8 ) {
-					$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-1140x570' );
-				} else {
-					$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-750x375' );
-				}
-			} elseif ( $this->manager->get_current_width() > 8 ) {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-1140x570' );
+			if ( $this->manager->get_current_width() > 8 ) {
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-1140x570', $image_load );
 			} else {
-				$image = apply_filters( $image_mechanism, $post_thumbnail_id, 'gvnews-750x375' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-750x375', $image_load );
 			}
 
 			$content .=
 				'<div class="gvnews_slide_item">
                     ' . gvnews_edit_post( $post->ID ) . '
-                    <a href="' . get_permalink( $post ) . "\" class=\"gvnews_slide_img\">{$image}</a>
+                    <a href="' . get_permalink( $post ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_slide_img\">{$image}</a>
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">
                                 {$primary_category}
                             </div>
-                            <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" >' . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h2>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             {$this->render_meta( $post )}
                         </div>
                     </div>
@@ -72,16 +70,17 @@ class Slider_1 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	public function carousel( $results ) {
-		$content = '';
+		$content    = '';
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attribute['normal_image'], $this->attribute['image_load'] );
 		foreach ( $results as $key => $post ) {
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			if ( $this->manager->get_current_width() > 8 ) {
-				$image = apply_filters( 'gvnews_single_image_lazy_owl', $post_thumbnail_id, 'gvnews-350x250' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $image_load );
 			} else {
-				$image = apply_filters( 'gvnews_single_image_lazy_owl', $post_thumbnail_id, 'gvnews-120x86' );
+				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-120x86', $image_load );
 			}
 
-			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . "\">{$image}</a></div></div>";
+			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$image}</a></div></div>";
 		}
 
 		return $content;

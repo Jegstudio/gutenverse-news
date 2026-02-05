@@ -5,6 +5,7 @@ import { cardStyleModule } from './panel-style/style-card';
 import { contentContainerStyle } from './panel-style/style-content-container';
 import { thumbnailAndOverlayStyle } from './panel-style/style-thumbnail';
 import { titleContainerStyle } from './panel-style/style-title-container';
+import { postItemStyle } from './panel-style/style-post-item';
 
 const getBlockStyle = (elementId, attributes) => {
     const {
@@ -26,15 +27,16 @@ const getBlockStyle = (elementId, attributes) => {
     data = contentContainerStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
     data = titleContainerStyle(elementId, attributes, data);
+    data = postItemStyle(elementId, attributes, data);
 
-        /**
-         * Panel Design
-         */
-        isNotEmpty(attributes['titleTypography']) && data.push({
-            'type': 'typography',
-            'id': 'titleTypography',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
-        });
+    /**
+     * Panel Design
+     */
+    isNotEmpty(attributes['titleTypography']) && data.push({
+        'type': 'typography',
+        'id': 'titleTypography',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post .gvnews_post_title`,
+    });
 
     isNotEmpty(attributes['secondTitleTypography']) && data.push({
         'type': 'typography',

@@ -7,6 +7,7 @@ import { MetaModule2, MetaModule3, MetaCategory } from '../meta';
  * @returns
  */
 const HeroElement = ({ index, margin, post, attr }) => {
+    const TitleTag = attr?.postTitleHtmlTag || 'h2';
     return (
         <article className={`gvnews_post gvnews_hero_item_${index + 1}`}>
             <div className="gvnews_block_container">
@@ -25,9 +26,9 @@ const HeroElement = ({ index, margin, post, attr }) => {
                 <div className="gvnews_postblock_content">
                     <MetaCategory post={post} />
                     <div className="gvnews_post_info">
-                        <h2 className="gvnews_post_title">
+                        <TitleTag className="gvnews_post_title">
                             <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h2>
+                        </TitleTag>
                         <div className="gvnews_post_meta">
                             {index === 0 ? <MetaModule3 post={post} attr={attr} /> : <MetaModule2 post={post} attr={attr} />}
                         </div>

@@ -678,6 +678,31 @@
         "cardPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "postItemGrid": {
+            "type": "boolean",
+            "default": true
+        },
+        "mainAdditionalGap": {
+            "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
         }
     },
     "supports": {

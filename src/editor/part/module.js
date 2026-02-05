@@ -39,6 +39,10 @@ const BlockModule = compose(
         defaultImageSizeSecond = {},
         mainThumbnailClass,
         secondThumbnailClass,
+        useDedicatedStyle = false,
+        dedicatedStyle = () => [],
+        isMasonry = false,
+        checkLandscapeThumbnail = false
     } = props;
 
     const {
@@ -97,7 +101,22 @@ const BlockModule = compose(
         renderedImageSizeMain,
         renderedImageSizeSecond,
         gutenversePreviewBlock = '',
+        gutterWidth = 30,
+        rowItemGap,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
+
+    useEffect(() => {
+        if (isMasonry) {
+            setTimeout(() => {
+                setMasonryReload(!masonryReload);
+            }, 300);
+        }
+    }, [
+        gutterWidth,
+        rowItemGap
+    ]);
 
     const metaSettings = {
         meta_show: showMeta,
@@ -121,12 +140,20 @@ const BlockModule = compose(
     useDynamicStyle(
         elementId,
         attributes,
-        (elementId, attributes) => getBlockStyle(
-            elementId,
-            attributes,
-            mainThumbnailClass,
-            secondThumbnailClass,
-        ),
+        (elementId, attributes) => {
+            if (useDedicatedStyle) {
+                return dedicatedStyle(
+                    elementId,
+                    attributes,
+                );
+            }
+            return getBlockStyle(
+                elementId,
+                attributes,
+                mainThumbnailClass,
+                secondThumbnailClass,
+            );
+        },
         elementRef
     );
 
@@ -155,6 +182,7 @@ const BlockModule = compose(
         totalPage: 1,
     });
     const [forceReload, setForceReload] = useState(false);
+    const [masonryReload, setMasonryReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
     const [postLoaded, setPostLoaded] = useState(0);
     const [postStart, setPostStart] = useState(0);
@@ -278,6 +306,7 @@ const BlockModule = compose(
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
             postOffset: postStart,
             advancedResponse: true,
+            checkLandscapeThumbnail,
         };
         if (activeFilter['value'] != -100) {
             switch (activeType) {
@@ -349,6 +378,9 @@ const BlockModule = compose(
                 metaCommentIconType,
                 metaCommentIconSVG,
                 attributes,
+                gutterWidth,
+                rowItemGap,
+                postTitleHtmlTag,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -379,7 +411,9 @@ const BlockModule = compose(
         metaCommentIcon,
         metaCommentIconType,
         metaCommentIconSVG,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        masonryReload,
+        postTitleHtmlTag,
     ]);
 
     const blockProps = useBlockProps({
@@ -405,6 +439,7 @@ const BlockModule = compose(
         headerAuthor,
         headerTag,
         headerDefault,
+        headerHtmlTag,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
             setActiveFilter({ value, label });
@@ -450,7 +485,7 @@ const BlockModule = compose(
         </InspectorControls>}
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isMasonry ? 'disable-fade-up' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}

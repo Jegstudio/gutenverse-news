@@ -98,6 +98,7 @@ class Archive extends Grab {
 				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 			),
+			'post_title_html_tag'   => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
 
 		$attr = $this->archive_title( $attr );
@@ -200,6 +201,12 @@ class Archive extends Grab {
 					}
 				}
 			}
+			if ( $this->attributes['normalImage'] ) {
+				$attr['normal_image'] = 'true';
+			} else {
+				$attr['normal_image'] = 'false';
+			}
+			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2';
 		}
 		return $attr;
 	}
@@ -212,14 +219,17 @@ class Archive extends Grab {
 	 */
 	private function archive_block( $attr ) {
 		if ( 'gutenverse/news-archive-block' === $this->name ) {
-			$attr['block_type']         = $this->attributes['blockType'];
-			$attr['number_post']        = $this->attributes['numberPost'];
-			$attr['excerpt_length']     = $this->attributes['excerptLength'];
-			$attr['excerpt_ellipsis']   = $this->attributes['excerptEllipsis'];
-			$attr['date_format']        = $this->attributes['dateFormat'];
-			$attr['date_format_custom'] = $this->attributes['dateFormatCustom'];
-			$attr['first_page']         = $this->attributes['firstPage'];
-			$attr['column_width']       = $this->attributes['columnWidth'];
+			$attr['block_type']          = $this->attributes['blockType'];
+			$attr['number_post']         = $this->attributes['numberPost'];
+			$attr['excerpt_length']      = $this->attributes['excerptLength'];
+			$attr['excerpt_ellipsis']    = $this->attributes['excerptEllipsis'];
+			$attr['date_format']         = $this->attributes['dateFormat'];
+			$attr['date_format_custom']  = $this->attributes['dateFormatCustom'];
+			$attr['first_page']          = $this->attributes['firstPage'];
+			$attr['column_width']        = $this->attributes['columnWidth'];
+			$attr['gutter_width']        = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
+			$attr['image_load']          = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
+			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3';
 		}
 		return $attr;
 	}

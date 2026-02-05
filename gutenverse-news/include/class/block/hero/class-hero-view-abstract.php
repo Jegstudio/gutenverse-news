@@ -67,17 +67,17 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
-	 * Method get_thumbnail
+	 * Get thumbnail
 	 *
-	 * @param integer $id   id.
+	 * @param integer $post_id post id.
 	 * @param string  $size size.
+	 * @param bool    $force_lazy_load force lazy load.
 	 *
-	 * @return string
+	 * @return mixed|string
 	 */
-	public function get_thumbnail( $id, $size ) {
-		$prioritize = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-		$image      = Image_Background_Load::get_instance();
-		return $image->single_hero_image( $id, $size, $prioritize );
+	public function get_thumbnail( $post_id, $size, $force_lazy_load = false ) {
+		$prioritize = isset( $this->attribute['normal_image'] ) && 'true' === $this->attribute['normal_image'];
+		return Image_Background_Load::get_instance()->single_hero_image( $post_id, $size, $prioritize );
 	}
 
 	/**
@@ -96,7 +96,7 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 			$meta_settings
 		);
 		$this->margin        = isset( $attr['hero_margin']['size'] ) ? $attr['hero_margin']['size'] : $attr['hero_margin'];
-		$content             = $this->render_output_loop( $result );
+		$content             = ! empty( $result ) ? $this->render_output_loop( $result ) : $this->empty_content();
 		$name                = strtolower( substr( $attr['short_code'], strrpos( $attr['short_code'], '_' ) + 1 ) );
 		$data_attr           = $this->data_attr( $attr );
 

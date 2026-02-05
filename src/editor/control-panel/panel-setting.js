@@ -1,12 +1,49 @@
 import { __ } from '@wordpress/i18n';
-import { IconSVGControl, SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
+import { IconSVGControl, SelectControl, TextControl, RangeControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from "../utils/helper";
 
 export const settingPanel = (props, withListIcon = false) => {
     const {
         enableExcerpt,
+        normalImage,
+        imageLoad = '',
     } = props;
 
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
+
     return [
+        {
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
+        },
         {
             id: 'excerptLength',
             show: enableExcerpt === true,
@@ -25,10 +62,20 @@ export const settingPanel = (props, withListIcon = false) => {
             component: TextControl,
         },
         {
-            id: 'normalImage',
-            label: __('Use Normal Image Load', 'gutenverse-news'),
-            description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
-            component: CheckboxControl
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
         {
             id: 'listIcon',
