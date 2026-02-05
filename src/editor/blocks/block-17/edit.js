@@ -20,7 +20,7 @@ const Block17Block = compose(
         panelList={panelList}
         freeModule={true}
         defaultImageSizeMain={{ height: 1140, width: 570, dimension: 500 }}
-        defaultImageSizeSecond={{ height: 360, width: 180, dimension: 500 }}
+        defaultImageSizeSecond={{ height: 120, width: 86, dimension: 715 }}
         mainThumbnailClass={'gvnews_pl_md_1'}
         secondThumbnailClass={'gvnews_pl_sm'}
     />;

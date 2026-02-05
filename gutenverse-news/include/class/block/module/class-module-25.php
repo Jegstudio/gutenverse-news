@@ -35,19 +35,19 @@ class Module_25 extends Module_View_Abstract {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
-		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more = $this->attribute['disable_readmore'] ? '' : "<a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . ">
                     <div class=\"gvnews_postblock_heading\">
-                        <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                        </{$this->post_title_tag}>
                         {$this->post_meta_1($post)}
                     </div>
                     <div class=\"bottom-content\">
                         <div class=\"gvnews_thumb\">
                             " . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">{$thumbnail}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_excerpt\">
@@ -99,11 +99,7 @@ class Module_25 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

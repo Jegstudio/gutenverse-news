@@ -298,8 +298,22 @@
         "borderResponsiveMainThumbnail": {
             "type": "object"
         },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
         "showMetaReview": {
             "type": "boolean"
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
         }
     },
     "supports": {

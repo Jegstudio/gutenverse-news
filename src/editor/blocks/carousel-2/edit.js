@@ -65,6 +65,7 @@ const Carousel2Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
+        postTitleHtmlTag = 'h3',
         showMetaReview = false,
     } = attributes;
 
@@ -81,6 +82,8 @@ const Carousel2Block = compose(
             ...metaSettings
         }
     };
+    const TitleTag = postTitleHtmlTag;
+
 
     const firstRender = useRef(true);
     const blockRef = useRef(null);
@@ -123,7 +126,7 @@ const Carousel2Block = compose(
         const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 120, width: 86, dimension: 715 });
         return (
             <div className="gvnews_post_wrapper">
-                <article className="gvnews_post">
+                <article className={`gvnews_post format-${props.post.format}`}>
                     <div className="gvnews_thumb">
                         <a>
                             <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
@@ -134,9 +137,9 @@ const Carousel2Block = compose(
                     <div className="overlay_content">
                         <div className="gvnews_postblock_content">
                             <MetaCategory {...props} />
-                            <h3 className="gvnews_post_title">
+                            <TitleTag className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                            </h3>
+                            </TitleTag>
                             <SliderMeta {...props} date />
                         </div>
                     </div>
@@ -318,6 +321,7 @@ const Carousel2Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
+        postTitleHtmlTag,
         showMetaReview,
     ]);
 

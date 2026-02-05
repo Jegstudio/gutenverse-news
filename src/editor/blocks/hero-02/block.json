@@ -358,11 +358,9 @@
         "borderItemSecond": {
             "type": "object"
         },
-        "borderItem": {
-            "type": "object"
-        },
-        "borderItemSecond": {
-            "type": "object"
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         },
         "showMetaReview": {
             "type": "boolean"

@@ -39,25 +39,24 @@ class Slider_7 extends Slider_View_Abstract {
 			} else {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
-			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
-			$read_more       = ! $this->attribute['disable_readmore'] ? '<a href="' . esc_url( get_the_permalink( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>' : '';
+			$hidden_image = $this->attribute['normal_image'] && 0 === $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$read_more    = ! $this->attribute['disable_readmore'] ? '<a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>' : '';
 
 			$content .=
 				'<div ' . gvnews_post_class( 'gvnews_slide_item clearfix', $post->ID ) . '>
 					' . $hidden_image . '
                     ' . gvnews_edit_post( $post->ID ) . '
                     <div class="gvnews_slide_image" style="background-image: url(' . esc_url( $image ) . ')">
-                		<a href="' . esc_url( get_the_permalink( $post ) ) . "\"></a>
+                		<a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\"></a>
 					</div>
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                         	<div class=\"gvnews_post_category\">
 	                            {$primary_category}
 	                        </div>
-	                        <h2 class=\"gvnews_post_title\">
-	                            <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-	                        </h2>
+	                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+	                            <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+	                        </' . $this->post_title_tag . '>
 	                        <div class="gvnews_post_excerpt">
 			                    <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>
 			                </div>

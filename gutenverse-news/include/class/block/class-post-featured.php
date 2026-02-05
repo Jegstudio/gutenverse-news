@@ -35,7 +35,11 @@ class Post_Featured extends Post_Guten {
 
 		if ( 1 === $current_page ) {
 			ob_start();
-			$single->feature_post_1( 'gvnews-' . esc_attr( $this->attributes['imageSize'] ), 'gvnews-' . esc_attr( $this->attributes['gallerySize'] ), null, );
+			$single->feature_post_1(
+				'gvnews-' . esc_attr( $this->attributes['imageSize'] ),
+				'gvnews-' . esc_attr( $this->attributes['gallerySize'] ),
+				null
+			);
 			return ob_get_clean();
 		}
 	}

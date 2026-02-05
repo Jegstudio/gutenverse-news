@@ -27,6 +27,10 @@ const BlockArchive = (props) => {
         readmoreButtonDisabled,
         gutenversePreviewBlock = '',
         renderedImageSizeMain,
+        masonryReload,
+        gutterWidth,
+        rowItemGap,
+        postTitleHtmlTag
     } = props;
 
     const metaSettings = {
@@ -159,6 +163,9 @@ const BlockArchive = (props) => {
                     overlay,
                     readmoreButtonDisabled,
                     renderedImageSizeMain,
+                    gutterWidth,
+                    rowItemGap,
+                    postTitleHtmlTag
                 }}
             />
         );
@@ -179,7 +186,9 @@ const BlockArchive = (props) => {
         showMetaComment,
         readmoreButtonDisabled,
         gutenversePreviewBlock,
-        renderedImageSizeMain
+        renderedImageSizeMain,
+        masonryReload,
+        postTitleHtmlTag
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;

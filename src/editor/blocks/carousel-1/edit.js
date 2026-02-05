@@ -64,12 +64,14 @@ const Carousel1Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
+        postTitleHtmlTag = 'h3'
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
     };
+    const TitleTag = postTitleHtmlTag;
 
     const moduleOption = {
         ...defaultOptions,
@@ -120,7 +122,7 @@ const Carousel1Block = compose(
         const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 120, width: 86, dimension: 715 });
         return (
             <div className="gvnews_post_wrapper">
-                <article className="gvnews_post">
+                <article className={`gvnews_post format-${props.post.format}`}>
                     <div className="gvnews_thumb">
                         <a>
                             <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
@@ -129,9 +131,9 @@ const Carousel1Block = compose(
                         </a>
                     </div>
                     <div className="gvnews_postblock_content">
-                        <h3 className="gvnews_post_title">
+                        <TitleTag className="gvnews_post_title">
                             <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </TitleTag>
                         <SliderMeta {...props} date />
                     </div>
                 </article>
@@ -312,6 +314,7 @@ const Carousel1Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {

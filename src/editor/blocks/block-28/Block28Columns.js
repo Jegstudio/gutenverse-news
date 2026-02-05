@@ -18,7 +18,8 @@ const Block28Columns = (props) => {
         isLoadMore = false,
         listIcon = '',
         listIconType = 'icon',
-        listIconSVG = ''
+        listIconSVG = '',
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -55,6 +56,7 @@ const Block28Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

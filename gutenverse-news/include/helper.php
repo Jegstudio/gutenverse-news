@@ -211,10 +211,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			 * @since 3.0.0
 			 */
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$next_prev_button .= '<a class="page_nav prev" aria-label="' . esc_attr__( 'Previous Page', 'gutenverse-news' ) . '" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 			} else {
 				$page_links   = array();
-				$page_links[] = '<a class="nav-item page_nav prev" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
+				$page_links[] = '<a class="nav-item page_nav prev" aria-label="' . esc_attr__( 'Previous Page', 'gutenverse-news' ) . '" data-id="' . ( $current - 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_icon . '<span class="navtext">' . $args['prev_text'] . '</span></a>';
 				if ( 'left' === $args['pagination_align'] ) {
 					$page_links[] = $paging_text;
 				}
@@ -233,7 +233,7 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 				$link .= $args['add_fragment'];
 
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = "<a class='nav-item page_number' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
+				$page_links[] = "<a class='nav-item page_number' aria-label='" . esc_attr( sprintf( __( 'Page %s', 'gutenverse-news' ), number_format_i18n( $n ) ) ) . "' data-id='{$n}' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . '</a>';
 				$dots         = true;
 			elseif ( $dots && ! $args['show_all'] ) :
 				$page_links[] = '<span class="nav-item page_number dots">' . __( '&hellip;', 'gutenverse-news' ) . '</span>';
@@ -249,10 +249,10 @@ if ( ! function_exists( 'gvnews_paging_navigation' ) ) {
 			$link .= $args['add_fragment'];
 
 			if ( $is_type_3 ) {
-				$next_prev_button .= '<a class="page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
+				$next_prev_button .= '<a class="page_nav next" aria-label="' . esc_attr__( 'Next Page', 'gutenverse-news' ) . '" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			} else {
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = '<a class="nav-item page_nav next" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
+				$page_links[] = '<a class="nav-item page_nav next" aria-label="' . esc_attr__( 'Next Page', 'gutenverse-news' ) . '" data-id="' . ( $current + 1 ) . '" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '"><span class="navtext">' . $args['next_text'] . '</span>' . $next_icon . '</a>';
 			}
 		endif;
 
@@ -930,28 +930,6 @@ if ( ! function_exists( 'gvnews_get_post_date' ) ) {
 	}
 }
 
-/* Start Post Meta Global Fucntion */
-if ( ! function_exists( 'gvnews_get_meta' ) ) {
-	/**
-	 * Method gvnews_get_meta
-	 *
-	 * @param integer $id id.
-	 * @param string  $meta_name meta name.
-	 * @param integer $default default.
-	 *
-	 * @return string
-	 */
-	function gvnews_get_meta( $id, $meta_name, $default = false ) {
-		if ( strpos( $meta_name, '.' ) !== false ) {
-			$meta_key = explode( '.', $meta_name );
-			$meta     = get_post_meta( $id, $meta_key[0], true );
-			return isset( $meta_key[1] ) && isset( $meta[ $meta_key[1] ] ) ? ( new \GUTENVERSE\NEWS\Metabox\Metabox() )->parse_meta_value( $meta_key[0], $meta_key[1], $meta[ $meta_key[1] ] ) : $default;
-
-		} else {
-			return get_post_meta( $id, $meta_name, true );
-		}
-	}
-}
 /* End Post Meta Global Fucntion */
 
 /**
@@ -1433,6 +1411,55 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 		$allowedtags['bdi']   = array_merge( isset( $allowedtags['bdi'] ) ? $allowedtags['bdi'] : array(), array() );
 
 		return $allowedtags;
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_image_dimension_by_name' ) ) {
+	/**
+	 * Get Image Dimension by Name
+	 *
+	 * @param string $name name.
+	 *
+	 * @return float
+	 */
+	function gvnews_get_image_dimension_by_name( $name ) {
+		$size = explode( '-', $name );
+		$size = explode( 'x', $size[1] );
+		return gvnews_get_image_dimension_by_size( $size[0], $size[1] );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_image_dimension_by_size' ) ) {
+	/**
+	 * Get Image Dimension by Size
+	 *
+	 * @param int $width width.
+	 * @param int $height height.
+	 *
+	 * @return float
+	 */
+	function gvnews_get_image_dimension_by_size( $width, $height ) {
+		return round( $height / $width * 1000 );
+	}
+}
+
+if ( ! function_exists( 'gvnews_get_image_src' ) ) {
+	/**
+	 * Get Image Src
+	 *
+	 * @param int    $id id.
+	 * @param string $size size.
+	 *
+	 * @return bool
+	 */
+	function gvnews_get_image_src( $id, $size = 'full' ) {
+		if ( ! empty( $id ) && ( ctype_digit( strval( $id ) ) || is_int( $id ) ) ) {
+			$image = wp_get_attachment_image_src( $id, $size );
+
+			return $image[0];
+		}
+
+		return false;
 	}
 }
 

@@ -276,8 +276,22 @@
         "categoryButtonMargin": {
             "type": "object"
         },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
         "showMetaReview": {
             "type": "boolean"
+        },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
         }
     },
     "supports": {

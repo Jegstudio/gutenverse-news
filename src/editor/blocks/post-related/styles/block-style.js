@@ -2,6 +2,7 @@ import { isNotEmpty } from 'gutenverse-core/helper';
 import { contentContainerStyle } from './panel-styles/style-content-container';
 import { thumbnailAndOverlayStyle } from './panel-styles/style-thumbnail';
 import { cardStyleModule } from './panel-styles/style-card';
+import { postItemStyle } from './panel-styles/style-post-item';
 
 const getSecondTypographySelector = (templateType) => {
     switch (templateType) {
@@ -46,6 +47,7 @@ const getBlockStyle = (elementId, attributes) => {
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
     data = contentContainerStyle(elementId, attributes, data);
     data = cardStyleModule(elementId, attributes, data);
+    data = postItemStyle(elementId, attributes, data);
 
     /**
      * Panel Header
@@ -466,7 +468,7 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaColorHover']) && data.push({
             'type': 'color',
             'id': 'metaColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:not(.gvnews_meta_author):hover a`,
             'properties': [
                 {
                     'name': 'color',
@@ -477,7 +479,10 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColor']) && data.push({
             'type': 'color',
             'id': 'metaIconColor',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fa,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .far,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta .fas,
+                        .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta svg`,
             'properties': [
                 {
                     'name': 'color',
@@ -489,7 +494,7 @@ const getBlockStyle = (elementId, attributes) => {
         isNotEmpty(attributes['metaIconColorHover']) && data.push({
             'type': 'color',
             'id': 'metaIconColorHover',
-            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas`,
+            'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fa ,.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .far , .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover .fas, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_meta>div:hover svg`,
             'properties': [
                 {
                     'name': 'color',
