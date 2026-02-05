@@ -392,10 +392,16 @@
         "paginationBtnWidth": {
             "type": "object"
         },
+        "paginationNumberBtnWidth": {
+            "type": "object"
+        },
         "paginationBtnIconSize": {
             "type": "object"
         },
         "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationNumberBtnHeight": {
             "type": "object"
         },
         "paginationBtnColor": {
@@ -560,7 +566,6 @@
         "borderResponsiveSecondThumbnail": {
             "type": "object"
         },
-
         "overlayBackgroundMain": {
             "type": "object"
         },
@@ -573,7 +578,6 @@
         "overlayOpacitySecond": {
             "type": "object"
         },
-
         "contentAlign": {
             "type": "object",
             "copyStyle": true
@@ -610,7 +614,6 @@
             "type": "object",
             "copyStyle": true
         },
-
         "contentAlignSecond": {
             "type": "object",
             "copyStyle": true
@@ -647,7 +650,6 @@
             "type": "object",
             "copyStyle": true
         },
-
         "cardBorder": {
             "type": "object",
             "copyStyle": true

@@ -29,11 +29,15 @@ export const paginationPanel = (props) => {
                     label: __('Autoload on Scroll', 'gutenverse-news'),
                     value: 'scrollload'
                 },
+                {
+                    label: __('Number'),
+                    value: 'number'
+                },
             ],
         },
         {
             id: 'showNavText',
-            show: paginationMode === 'nextprev',
+            show: paginationMode === 'nextprev' || paginationMode === 'number',
             label: __('Show Navigation Text', 'gutenverse-news'),
             description: __('Show previous and next text.', 'gutenverse-news'),
             component: CheckboxControl

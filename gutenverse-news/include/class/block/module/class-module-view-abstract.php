@@ -155,20 +155,22 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	 * @param bool|false $next       next.
 	 * @param bool|false $prev       prev.
 	 * @param int        $total_page total page.
+	 * @param bool       $from_ajax  from ajax.
 	 *
 	 * @return string
 	 */
-	public function render_navigation( $attr, $next = false, $prev = false, $total_page = 1 ) {
+	public function render_navigation( $attr, $next = false, $prev = false, $total_page = 1, $from_ajax = false ) {
 		$output           = '';
 		$additional_class = $next || $prev ? '' : 'inactive';
 
 		if ( 'disable' === $attr['pagination_mode'] ) {
 			return '';
-		}
-
-		if ( 'nextprev' === $attr['pagination_mode'] ) {
+		}else if ( 'nextprev' === $attr['pagination_mode'] || 'number' === $attr['pagination_mode'] ) {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
+
+			$is_number = 'number' === $attr['pagination_mode'];
+			$numbers   = '';
 
 			$prev_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-left' );
 			$next_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
@@ -179,14 +181,39 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . ' ' . $next_text;
 			}
 
+			if ( $is_number ) {
+				$additional_class .= ' number';
+				$current_page      = isset( $attr['paged'] ) ? ( int ) $attr['paged'] : 1;
+				$min_page          = max( $current_page - 1, 2);
+				$max_page          = min( $current_page + 1, $total_page - 1 );
+
+				$is_current = 1 === $current_page ? 'current' : '';
+				$numbers   .= '<a href="#" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' 1" data-page="1">1</a>';
+
+				if ( $min_page > 2 ) {
+					$numbers .= '<span class="pagination-elipsis">...</span>';
+				}
+
+				for ( $i = $min_page; $i <= $max_page; $i++ ) {
+					$is_current = $i === $current_page ? 'current' : '';
+					$numbers   .= '<a href="#" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' ' . esc_attr( $i ) . '" data-page="' . esc_attr( $i ) . "\">{$i}</a>";
+				}
+
+				if ( $max_page < $total_page - 1 ) {
+					$numbers .= '<span class="pagination-elipsis">...</span>';
+				}
+
+				$is_current = $total_page === $current_page ? 'current' : '';
+				$numbers   .= '<a href="#" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' ' . esc_attr( $total_page ) . '" data-page="' . esc_attr( $total_page ) . "\">{$total_page}</a>";
+			}
+
 			$output =
 				'<div class="gvnews_block_nav ' . esc_attr( $additional_class ) . '">
                     <a href="#" class="prev ' . esc_attr( $prev ) . '" aria-label="' . esc_html__( 'Previous', 'gutenverse-news' ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
+					{$numbers}
                     <a href=\"#\" class=\"next " . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Next', 'gutenverse-news' ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
                 </div>";
-		}
-
-		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
+		} else if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next   = $next ? '' : 'disabled';
 			$output =
 				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
@@ -200,6 +227,14 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$page   = $this->get_current_page();
 				$output = $this->render_normal_navigation( $attr, $total_page, $page );
 			}
+		}
+
+		if ( $from_ajax ) {
+			return "
+				{$this->get_navigation_before($attr)}
+                {$output}
+                {$this->get_navigation_after($attr)}
+			";
 		}
 
 		return "<div class=\"gvnews_block_navigation\">
@@ -623,6 +658,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$query_param  = $this->build_ajax_query( $attr );
 				$results      = $this->build_query( $query_param );
 				$this->set_attribute( $attr['attribute'] );
+				$pagination   = '';
 
 				$content = $this->empty_content();
 				if ( ! empty( $results['result'] ) ) {
@@ -632,11 +668,17 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					}
 				}
 
+				if ( 'number' === $attr['attribute']['pagination_mode'] ) {
+					$pagination = $this->render_navigation( array_merge( $attr['attribute'], array ( 'paged' => $attr['current_page'] ) ), $results['next'], $results['prev'], $results['total_page'], true );
+				}
+
 				wp_send_json(
 					array(
-						'content' => $content,
-						'next'    => $results['next'],
-						'prev'    => $results['prev'],
+						'content'    => $content,
+						'next'       => $results['next'],
+						'prev'       => $results['prev'],
+						'total_page' => $results['total_page'],
+						'pagination' => $pagination,
 					)
 				);
 			}

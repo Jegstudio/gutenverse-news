@@ -517,7 +517,7 @@ class Block_Query {
 	 * @return int
 	 */
 	private static function count_total_page( $total, $curpage = 1, $offset = 0, $perpage = 0, $perpage_ajax = 0 ) {
-		$remain = (int) $total - ( (int) $offset + (int) $perpage );
+		$remain = (int) $total - ( (int) $offset + (int) $perpage_ajax );
 
 		if ( $remain > 0 ) {
 			while ( $remain > 0 ) {

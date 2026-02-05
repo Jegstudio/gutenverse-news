@@ -53,7 +53,7 @@ export const paginationStylePanel = (props) => {
         },
     ];
 
-    if (paginationMode === 'nextprev') {
+    if (paginationMode === 'nextprev' || paginationMode === 'number') {
         btnAlignOpts = [
             ...btnAlignOpts,
             {
@@ -111,7 +111,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnGap',
             label: __('Gap', 'gutenverse-news'),
             component: SizeControl,
-            show: (paginationMode !== 'disable' && paginationMode !== '') && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && (paginationWrapperAlign?.[device] !== 'space-between'),
             units: {
                 px: {
                     text: 'px',
@@ -141,32 +141,32 @@ export const paginationStylePanel = (props) => {
             id: 'paginationDisableSeparator',
             label: __('Disable Separator', 'gutenverse-news'),
             component: CheckboxControl,
-            show: (paginationMode !== 'disable' && paginationMode !== '') && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && (paginationWrapperAlign?.[device] !== 'space-between'),
         },
         {
             id: 'paginationSeparatorStyle',
             label: __('Separator Style', 'gutenverse-news'),
             component: SelectControl,
-            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && (paginationWrapperAlign?.[device] !== 'space-between'),
             options: [
                 {
-                    label: __( 'Default', 'gutenverse-news' ),
+                    label: __('Default', 'gutenverse-news'),
                     value: '',
                 },
                 {
-                    label: __( 'Solid', 'gutenverse-news' ),
+                    label: __('Solid', 'gutenverse-news'),
                     value: 'solid',
                 },
                 {
-                    label: __( 'Double', 'gutenverse-news' ),
+                    label: __('Double', 'gutenverse-news'),
                     value: 'double',
                 },
                 {
-                    label: __( 'Dotted', 'gutenverse-news' ),
+                    label: __('Dotted', 'gutenverse-news'),
                     value: 'dotted',
                 },
                 {
-                    label: __( 'Dashed', 'gutenverse-news' ),
+                    label: __('Dashed', 'gutenverse-news'),
                     value: 'dashed',
                 },
             ]
@@ -174,7 +174,7 @@ export const paginationStylePanel = (props) => {
         {
             id: 'paginationSeparatorColor',
             component: ColorControl,
-            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && (paginationWrapperAlign?.[device] !== 'space-between'),
             label: __('Separator Color', 'gutenverse-news'),
             liveStyle: [
                 {
@@ -203,7 +203,7 @@ export const paginationStylePanel = (props) => {
                     unit: 'px',
                 },
             },
-            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && ( paginationWrapperAlign?.[device] !== 'space-between' ),
+            show: (paginationMode !== 'disable' && paginationMode !== '') && !paginationDisableSeparator && (paginationWrapperAlign?.[device] !== 'space-between'),
             liveStyle: [
                 {
                     'type': 'unitPoint',
@@ -229,7 +229,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
-            show: (paginationMode === 'loadmore' || paginationMode === 'scrollload') || (paginationMode === 'nextprev' && showNavText),
+            show: (paginationMode === 'loadmore' || paginationMode === 'scrollload') || ((paginationMode === 'nextprev' || paginationMode === 'number') && showNavText),
             liveStyle: [
                 {
                     'type': 'typography',
@@ -242,7 +242,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnIconSize',
             label: __('Icon Size', 'gutenverse-news'),
             component: SizeControl,
-            show: paginationMode === 'nextprev',
+            show: paginationMode === 'nextprev' || paginationMode === 'number',
             units: {
                 px: {
                     text: 'px',
@@ -272,7 +272,7 @@ export const paginationStylePanel = (props) => {
             label: __('Icon Spacing', 'gutenverse-news'),
             component: SizeControl,
             allowDeviceControl: true,
-            show: paginationMode === 'nextprev' && showNavText,
+            show: (paginationMode === 'nextprev' || paginationMode === 'number') && showNavText,
             units: {
                 px: {
                     text: 'px',
@@ -384,9 +384,83 @@ export const paginationStylePanel = (props) => {
             ]
         },
         {
+            id: 'paginationNumberBtnWidth',
+            label: __('Number Width', 'gutenverse-news'),
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 1000,
+                    step: 1,
+                    unit: 'px',
+                },
+                ['%']: {
+                    text: '%',
+                    min: 30,
+                    max: 100,
+                    step: 1,
+                    unit: '%',
+                },
+                vh: {
+                    text: 'vh',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'vh',
+                },
+            },
+            component: SizeControl,
+            show: paginationMode === 'number',
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'paginationNumberBtnWidth',
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'direct',
+                        }
+                    ],
+                    'responsive': true,
+                }
+            ]
+        },
+        {
+            id: 'paginationNumberBtnHeight',
+            label: __('Number Height', 'gutenverse-news'),
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'px',
+                },
+            },
+            component: SizeControl,
+            show: paginationMode === 'number',
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'paginationNumberBtnHeight',
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav.number a`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'direct',
+                        }
+                    ],
+                    'responsive': true,
+                }
+            ]
+        },
+        {
             id: '__paginationBtnHover',
             component: SwitchControl,
-            options: paginationMode === 'nextprev' ? nextPrevBtnSwitchOpts : btnSwitchOpts,
+            options: (paginationMode === 'nextprev' || paginationMode === 'number') ? nextPrevBtnSwitchOpts : btnSwitchOpts,
             show: paginationMode !== 'disable' && paginationMode !== '',
             onChange: ({ __paginationBtnHover }) => setSwitcher({ ...switcher, state: __paginationBtnHover })
         },
@@ -413,7 +487,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnBackground',
             component: BackgroundControl,
             show: (!switcher.__paginationBtnHover || switcher.__paginationBtnHover === 'normal') && (paginationMode !== 'disable' && paginationMode !== ''),
-            options: ['default','gradient'],
+            options: ['default', 'gradient'],
             liveStyle: [
                 {
                     'type': 'background',
@@ -478,7 +552,7 @@ export const paginationStylePanel = (props) => {
                 {
                     'type': 'color',
                     'id': 'paginationBtnHoverColor',
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.current):not(.disabled):hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination.current`,
                     'properties': [
                         {
                             'name': 'color',
@@ -492,12 +566,12 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnHoverBackground',
             component: BackgroundControl,
             show: switcher.__paginationBtnHover === 'hover' && (paginationMode !== 'disable' && paginationMode !== ''),
-            options: ['default','gradient'],
+            options: ['default', 'gradient'],
             liveStyle: [
                 {
                     'type': 'background',
                     'id': 'paginationBtnHoverBackground',
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.current):not(.disabled):hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination.current`,
                 }
             ]
         },
@@ -510,7 +584,7 @@ export const paginationStylePanel = (props) => {
                 {
                     'type': 'border',
                     'id': 'paginationBtnHoverBorder',
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.current):not(.disabled):hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination.current`,
                 }
             ]
         },
@@ -525,7 +599,7 @@ export const paginationStylePanel = (props) => {
                     'id': 'paginationBtnHoverBorderResponsive',
                     'type': 'borderResponsive',
                     'responsive': true,
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.current):not(.disabled):hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination.current`,
                 }
             ]
         },
@@ -544,7 +618,7 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'id': 'paginationBtnHoverBoxShadow',
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover`,
+                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.current):not(.disabled):hover, .${elementId} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination.current`,
                 }
             ]
         },
@@ -571,7 +645,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnDisableBackground',
             component: BackgroundControl,
             show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
-            options: ['default','gradient'],
+            options: ['default', 'gradient'],
             liveStyle: [
                 {
                     'type': 'background',

@@ -345,10 +345,16 @@
         "paginationBtnWidth": {
             "type": "object"
         },
+        "paginationNumberBtnWidth": {
+            "type": "object"
+        },
         "paginationBtnIconSize": {
             "type": "object"
         },
         "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationNumberBtnHeight": {
             "type": "object"
         },
         "paginationBtnColor": {
@@ -620,6 +626,10 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"]
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ]
 }

@@ -452,7 +452,7 @@ const BlockModule = compose(
     const paginationData = {
         paginationMode,
         showNavText,
-        nextPrevTotalPagination,
+        nextPrevTotalPagination: { ...nextPrevTotalPagination, page },
         onPageChange: (amount, loadClass) => {
             const final = Math.max(page + amount, 1);
             setIsLoaded(false);

@@ -348,10 +348,16 @@
         "paginationBtnWidth": {
             "type": "object"
         },
+        "paginationNumberBtnWidth": {
+            "type": "object"
+        },
         "paginationBtnIconSize": {
             "type": "object"
         },
         "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationNumberBtnHeight": {
             "type": "object"
         },
         "paginationBtnColor": {
