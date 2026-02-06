@@ -532,6 +532,45 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
         'selector': `.${elementId} .gvnews_postblock:hover`,
     });
 
+    if (isNotEmpty(attributes['rowItemGap'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_posts .gvnews_post:not(:last-of-type)`,
+            'properties': [
+                {
+                    'name': 'margin-bottom',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+            ],
+        });
+        data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .gvnews_block_navigation`,
+            'properties': [
+                {
+                    'name': 'margin-top',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+            ],
+        });
+    }
+
     data = headerFilterStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = cardStyleModule(elementId, attributes, data, mainThumbnailClass);

@@ -273,6 +273,10 @@
         "backgroundHover": {
             "type": "object",
             "default": {}
+        },
+        "rowItemGap": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
