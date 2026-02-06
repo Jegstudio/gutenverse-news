@@ -60,6 +60,7 @@ const RssBlock = compose(
         headerHtmlTag,
         postTitleHtmlTag,
         renderedImageSizeMain,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const elementRef = useRef(null);
@@ -164,6 +165,10 @@ const RssBlock = compose(
     ]);
 
     useEffect(() => {
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length) {
             const attr = {
                 option: moduleOption,
@@ -191,6 +196,8 @@ const RssBlock = compose(
                     {content}
                 </div>
             </div>);
+        } else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
     }, [
         postData,
@@ -201,7 +208,8 @@ const RssBlock = compose(
         metaDateFormat,
         metaDateFormatCustom,
         postTitleHtmlTag,
-        renderedImageSizeMain
+        renderedImageSizeMain,
+        gutenversePreviewBlock
     ]);
     const isDeprecated = !gutenverseProActive;
 
