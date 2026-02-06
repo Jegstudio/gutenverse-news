@@ -152,18 +152,6 @@ export const panelList = () => {
                 panelArray: responsivePanel,
                 tabRole: TabStyle
             },
-            {
-                title: __('Border', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: borderPanel,
-                tabRole: TabStyle
-            },
-            {
-                title: __('Display', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: responsivePanel,
-                tabRole: TabStyle
-            },
         ]
     );
 };
