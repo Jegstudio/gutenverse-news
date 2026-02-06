@@ -73,7 +73,7 @@ const RssBlock = compose(
     );
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(elementId, attributes, (elementId, attributes) => getBlockStyle(elementId, attributes, 'gvnews_pl_md_2'), elementRef);
 
     useEffect(() => {
         if (elementRef) {
