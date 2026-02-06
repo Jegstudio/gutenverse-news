@@ -520,6 +520,18 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
             break;
     }
 
+    isNotEmpty(attributes['background']) && data.push({
+        'type': 'background',
+        'id': 'background',
+        'selector': `.${elementId} .gvnews_postblock`,
+    });
+
+    isNotEmpty(attributes['backgroundHover']) && data.push({
+        'type': 'background',
+        'id': 'backgroundHover',
+        'selector': `.${elementId} .gvnews_postblock:hover`,
+    });
+
     data = headerFilterStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = cardStyleModule(elementId, attributes, data, mainThumbnailClass);

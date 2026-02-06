@@ -265,6 +265,14 @@
         "loadLimit": {
             "type": "number",
             "default": 0
+        },
+        "background": {
+            "type": "object",
+            "default": {}
+        },
+        "backgroundHover": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
