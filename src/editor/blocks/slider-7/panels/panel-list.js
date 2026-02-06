@@ -8,6 +8,7 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { applyFilters } from '@wordpress/hooks';
 import { designPanel } from './panel-design';
 import { navigationButtonStylePanel } from '../../../control-panel/panel-navigation-button-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -44,6 +45,12 @@ export const panelList = () => {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
                 tabRole: TabStyle
             },
             {

@@ -11,6 +11,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { styleHero } from './panel-hero-style';
 import { mainCategoryStylePanel, sideCategoryStylePanel } from './panel-category-label';
 import { mainContainerPanel } from "./panel-container";
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -68,6 +69,12 @@ export const panelList = () => {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
                 tabRole: TabStyle
             },
             {
