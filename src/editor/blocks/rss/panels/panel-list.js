@@ -13,6 +13,7 @@ import { cardStylePanelModule } from '../../../control-panel/panel-card-style-mo
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { paginationStylePanel } from '../../../control-panel/panel-pagination-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { paginationPanel } from '../../../control-panel/panel-pagination';
 
 export const panelList = () => {
     return applyFilters(
@@ -31,6 +32,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: generalPanel,
                 tabRole: TabSetting,
+            },
+            {
+                title: __('Pagination', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: paginationPanel,
+                tabRole: TabSetting
             },
             {
                 title: __('Spacing', 'gutenverse-news'),
