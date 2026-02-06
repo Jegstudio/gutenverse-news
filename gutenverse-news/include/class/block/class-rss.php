@@ -71,6 +71,7 @@ class Rss extends Grab {
 				'column_width'        => $this->attributes['columnWidth'],
 				'header_html_tag'     => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
 				'post_title_html_tag' => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+				'renderedImageSizeMain' => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : 'default',
 			);
 		}
 

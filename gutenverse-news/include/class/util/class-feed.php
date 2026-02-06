@@ -196,7 +196,7 @@ class Feed {
 			return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $attachment_image ? $attachment_image : $this->featured ) . '</div>';
 		}
 
-		return $this->featured;
+		return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $this->featured ) . '</div>';
 	}
 
 	/**
