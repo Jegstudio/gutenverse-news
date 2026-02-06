@@ -16,7 +16,7 @@ import getBlockStyle from './styles/block-style';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
-import { getParentColumnWidth } from '../../utils/helper';
+import { getImageSizeDetail, getParentColumnWidth } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
@@ -59,6 +59,7 @@ const RssBlock = compose(
         metaDateType,
         headerHtmlTag,
         postTitleHtmlTag,
+        renderedImageSizeMain,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -176,10 +177,11 @@ const RssBlock = compose(
                 titleTag: postTitleHtmlTag
             };
             const limit = postData.length < numberPost ? postData.length : numberPost;
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 });
             const content = postData.map((post, index) => {
                 if (index < limit) {
                     return <article key={index} className="gvnews_post gvnews_pl_md_2">
-                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} />}
+                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />}
                         <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;
                 }
@@ -200,7 +202,8 @@ const RssBlock = compose(
         excerptEllipsis,
         metaDateFormat,
         metaDateFormatCustom,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        renderedImageSizeMain
     ]);
     const isDeprecated = !gutenverseProActive;
 
