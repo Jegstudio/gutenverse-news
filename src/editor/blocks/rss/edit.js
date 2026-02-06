@@ -188,9 +188,7 @@ const RssBlock = compose(
             });
             setBlock(<div className={`gvnews_postblock_3 gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''}`}>
                 <div className="gvnews_posts gvnews_block_container">
-                    <div className="gvnews_post">
-                        {content}
-                    </div>
+                    {content}
                 </div>
             </div>);
         }
