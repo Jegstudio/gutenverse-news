@@ -522,6 +522,7 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
 
     data = headerFilterStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
+    data = cardStyleModule(elementId, attributes, data, mainThumbnailClass);
 
     return data;
 };
@@ -813,5 +814,42 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClas
 
     return data;
 };
+
+const cardStyleModule = (elementId, attributes, data, mainThumbnailClass) => {
+    const str = attributes['gvnewsModule'].split('\\');
+    const gvnewsModule = str[str.length - 1];
+    const modulesWithBoxWrap = ['Module_32', 'Module_33', 'Module_34', 'Module_35', 'Module_36', 'Module_37', 'Module_39'];
+    const selector = modulesWithBoxWrap.includes(gvnewsModule) ?
+        `.${elementId} .gvnews_postblock .gvnews_post .box_wrap` :
+        `.${elementId} .gvnews_postblock .gvnews_post:not(.gvnews_pl_xs_2)`;
+
+    // Main
+    isNotEmpty(attributes['cardBorder']) && data.push({
+        'type': 'border',
+        'id': 'cardBorder',
+        'selector': selector,
+    });
+    isNotEmpty(attributes['cardBorderResponsive']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'cardBorderResponsive',
+        'responsive': true,
+        'selector': selector,
+    });
+    isNotEmpty(attributes['cardPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'cardPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': selector,
+    });
+
+    return data;
+};
+
 
 export default getBlockStyle;
