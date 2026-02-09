@@ -230,7 +230,7 @@ const RssBlock = compose(
             </>
         )}
         <div  {...blockProps}>
-            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} `}>
+            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} gvnews_postblock`}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}
                 {isDeprecated && <UpgradeProOverlay />}
