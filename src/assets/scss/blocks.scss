@@ -2424,6 +2424,7 @@
 .gvnews_postblock {
   /*margin-bottom: 20px;*/
   position: relative;
+  overflow: hidden;
 
   &.loaded {
     z-index: 2;
