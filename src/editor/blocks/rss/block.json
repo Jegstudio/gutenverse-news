@@ -250,22 +250,6 @@
             "type": "object",
             "copyStyle": true
         },
-        "paginationMode": {
-            "type": "string",
-            "default": "disable"
-        },
-        "showNavText": {
-            "type": "boolean",
-            "default": false
-        },
-        "paginationPost": {
-            "type": "string",
-            "default": 3
-        },
-        "loadLimit": {
-            "type": "number",
-            "default": 0
-        },
         "background": {
             "type": "object",
             "default": {}
