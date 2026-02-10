@@ -7,6 +7,8 @@ import { styleHero } from '../../../control-panel/panel-herostyle';
 import { sliderHero } from '../../../control-panel/panel-heroslider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 
 export const panelList = () => {
     return [
@@ -14,6 +16,12 @@ export const panelList = () => {
             title: __('Hero Setting', 'gutenverse-news'),
             initialOpen: false,
             panelArray: settingHero,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaPanel(props, ['date', 'author', 'review']),
             tabRole: TabSetting
         },
         {
@@ -31,7 +39,13 @@ export const panelList = () => {
         {
             title: __('Hero Style', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: styleHero,
+            panelArray: (props) => styleHero(props, 2),
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaStylePanel(props, ['date', 'author'], true),
             tabRole: TabStyle
         },
         {
@@ -51,7 +65,7 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: (props) => borderPanel({
                 ...props,
-                selector: [ `.${props.elementId} .gvnews_heroblock` ],
+                selector: [`.${props.elementId} .gvnews_heroblock`],
             }),
             tabRole: TabStyle
         },
@@ -68,7 +82,7 @@ export const panelList = () => {
                 ...props,
                 styleId: 'block-1-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Condition', 'gutenverse-news'),

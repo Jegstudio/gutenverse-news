@@ -114,6 +114,129 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId}.gvnews-post-meta`,
     });
 
+
+    isNotEmpty(attributes['forceColumnLeft']) && data.push({
+        'type': 'plain',
+        'id': 'forceColumnLeft',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-left`,
+        'properties': [
+            {
+                'name': 'flex-direction',
+                'valueType': 'static',
+                'staticValue': 'column',
+            },
+            {
+                'name': 'align-items',
+                'valueType': 'static',
+                'staticValue': 'flex-start',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['forceColumnLeft']) && attributes['forceColumnLeft'] && data.push({
+        'type': 'plain',
+        'id': 'forceColumnLeft',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-left`,
+        'properties': [
+            {
+                'name': 'flex-direction',
+                'valueType': 'static',
+                'staticValue': 'column',
+            },
+            {
+                'name': 'align-items',
+                'valueType': 'static',
+                'staticValue': 'flex-start',
+            }
+        ],
+    });
+
+
+    isNotEmpty(attributes['authorHideMobile']) && attributes['authorHideMobile'] && data.push({
+        'type': 'plain',
+        'id': 'authorHideMobile',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-part .gvnews-meta-author`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'static',
+                'staticValue': 'none',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['dateHideMobile']) && attributes['dateHideMobile'] && data.push({
+        'type': 'plain',
+        'id': 'dateHideMobile',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-part .gvnews-meta-date`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'static',
+                'staticValue': 'none',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['categoryHideMobile']) && attributes['categoryHideMobile'] && data.push({
+        'type': 'plain',
+        'id': 'categoryHideMobile',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-part .gvnews-meta-category`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'static',
+                'staticValue': 'none',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['commentHideMobile']) && attributes['commentHideMobile'] && data.push({
+        'type': 'plain',
+        'id': 'commentHideMobile',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-part .gvnews-meta-comment`,
+        'properties': [
+            {
+                'name': 'display',
+                'valueType': 'static',
+                'staticValue': 'none',
+            }
+        ],
+    });
+
+
+    isNotEmpty(attributes['forceColumnRight']) && attributes['forceColumnRight'] && data.push({
+        'type': 'plain',
+        'id': 'forceColumnRight',
+        'responsive': false,
+        'specificDevice': 'Mobile',
+        'selector': `.${elementId}.gvnews-post-meta .meta-right`,
+        'properties': [
+            {
+                'name': 'flex-direction',
+                'valueType': 'static',
+                'staticValue': 'column',
+            },
+            {
+                'name': 'align-items',
+                'valueType': 'static',
+                'staticValue': 'flex-start',
+            }
+        ],
+    });
+
     return data;
 };
 

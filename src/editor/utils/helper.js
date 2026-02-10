@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
+import { getDevice, isNotEmpty } from 'gutenverse-core/helper';
 
 const createChunks = (datas, chunkSize) => {
     const result = [];
@@ -197,4 +198,51 @@ const getModuleOptions = () => {
     };
 };
 
-export { createChunks, searchPosts, searchPages, searchCategory, searchAuthor, searchTag, searchCustomPostTemplate, getParentColumnWidth, getModuleOptions, gutenverseProActive };
+const getImageSizeDetail = (name, def = {}) => {
+    const imageSizes = window.GVNewsConfig.imageSizes;
+    return imageSizes[name] ? imageSizes[name] : def;
+};
+const defImageLoad = {
+    eager: {
+        label: 'Normal Load',
+        value: 'eager',
+    },
+    lazy: {
+        label: 'Lazy Load',
+        value: 'lazy',
+    }
+};
+
+/**
+ * 
+ * @param {string} imageLoad ImageLoad attribute
+ * @param {boolean} isLazy old lazyLoad attribute
+ * @returns {Object}
+ */
+export const getDefaultImageLoad = (imageLoad = '', isNormal = false) => {
+    if (imageLoad.length > 1) {
+        return defImageLoad[imageLoad]
+    }
+    if (isNormal) {
+        return defImageLoad.eager
+    }
+    const {
+        defaultImageLoad = 'eager'
+    } = window['GutenverseConfig'];
+    return defImageLoad[defaultImageLoad];
+}
+
+
+export {
+    createChunks,
+    searchPosts,
+    searchPages,
+    searchCategory,
+    searchAuthor,
+    searchTag,
+    searchCustomPostTemplate,
+    getParentColumnWidth,
+    getModuleOptions,
+    gutenverseProActive,
+    getImageSizeDetail,
+};

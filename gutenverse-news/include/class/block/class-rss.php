@@ -113,7 +113,7 @@ class Rss extends Grab {
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		return ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() );
 	}
 }

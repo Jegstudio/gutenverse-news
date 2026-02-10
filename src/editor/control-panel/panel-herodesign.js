@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { NumberControl } from 'gutenverse-core/controls';
+import { applyFilters } from '@wordpress/hooks';
 
 export const designHero = (props) => {
     const {
@@ -48,5 +49,6 @@ export const designHero = (props) => {
             forceType: 'string',
 
         },
+        ...applyFilters('gvnews.panel.heroDesign', [], props)
     ];
 };

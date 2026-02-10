@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-archive-block",
     "title": "Archive Block",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "Display your posts on the archive page with a Module-style block.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -169,6 +169,234 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaComment": {
+            "type": "boolean",
+            "default": true
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "categoryButtonTypography": {
+            "type": "object"
+        },
+        "categoryButtonBackground": {
+            "type": "object"
+        },
+        "categoryButtonBackgroundHover": {
+            "type": "object"
+        },
+        "categoryButtonColor": {
+            "type": "object"
+        },
+        "categoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonBorder": {
+            "type": "object"
+        },
+        "categoryButtonBorderHover": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadow": {
+            "type": "object"
+        },
+        "categoryButtonBoxShadowHover": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardBorderResponsive": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "mainClass": {
+            "type": "string",
+            "default": "gvnews_pl_md_2"
+        },
+        "borderMainThumbnail": {
+            "type":"object"
+        },
+        "borderResponsiveMainThumbnail": {
+            "type":"object"
+        },
+        "renderedImageSizeMain":{
+            "type":"string",
+            "default":"default"
+        },
+        "overlayBackgroundMain": {
+            "type":"object"
+        },
+        "overlayOpacityMain": {
+            "type":"object"
+        },
+        "contentAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentAlignVertical":{
+            "type": "object",
+            "copyStyle": true            
+        },
+        "contentContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentBorderResponsive": {
+            "type": "object",
+            "migrate": {
+                "attr": "contentBorder",
+                "type": "border"
+            },
+            "copyStyle": true
+        },
+        "contentContainerShadow": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerAlign": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerMargin": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "titleContainerPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "rowItemGap": {
+            "type": "object"
+        },
+        "columnItemGap": {
+            "type": "object"
+        },
+        "mainItemGap": {
+            "type": "object"
+        },
+        "gutterWidth": {
+            "type": "string",
+            "default": 30
+        },
+        "cardUseBorder": {
+            "type": "boolean",
+            "default": true
+        },
+        "cardLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "cardLineColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "showMetaReview":{
+            "type": "boolean"
         }
     },
     "supports": {
@@ -178,5 +406,11 @@
         "single",
         "archive",
         "block"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

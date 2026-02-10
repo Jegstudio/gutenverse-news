@@ -2,29 +2,45 @@ import ThumbModule from '../../part/thumbnail';
 import { MetaModule1, MetaModule3, MetaCategory } from '../../part/meta';
 
 const Block12Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+        readmoreButtonDisabled = false,
+        postTitleHtmlTag = 'h3',
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props=>{
         const {post, attr, index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_lg_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <div className="gvnews_inner_post">
-                    <ThumbModule size={715} cat={false} post={post}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
-                        <h3 className="gvnews_post_title">
+                        <PostTitleTag className="gvnews_post_title">
                             <a>{post.title && post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h3>
+                        </PostTitleTag>
                         {attr.option && !attr.option.meta_show && ( props.blockWidth == 4 ? <MetaModule3 {...props}/> : <MetaModule1 {...props}/>)}
                         {props.blockWidth != 4 && <div className="gvnews_post_excerpt">
                             <p>
                                 {post.excerpt.replace('&hellip;','').split(' ').splice(0,attr.length).join(' ') + attr.elipsis}
                             </p>
-                            <a className="gvnews_readmore">
+                            {!readmoreButtonDisabled && <a className="gvnews_readmore">
                                 {attr.option.string && attr.option.string.read_more}
-                            </a>
+                            </a>}
                         </div>}
                     </div>
                 </div>
@@ -41,7 +57,8 @@ const Block12Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

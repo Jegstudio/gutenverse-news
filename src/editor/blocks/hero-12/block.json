@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-12",
     "title": "Hero 12",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
-    "description": "Your Block description.",
+    "description": "[PRO] Display your posts in fancy way with Hero block.",
     "category": "gvnews-hero",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "attributes": {
@@ -288,14 +288,91 @@
         "categoryButtonBoxShadowHover": {
             "type": "object"
         },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "selectorSecond": {
+            "type": "string",
+            "default": ".gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5)"
+        },
+        "selectorThrid": {
+            "type": "string",
+            "default": ".gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3)"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItemThird": {
+            "type": "object"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

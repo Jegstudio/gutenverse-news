@@ -112,7 +112,7 @@ class Image_Background_Load implements Image_Interface {
 		$post_thumbnail_id = get_post_thumbnail_id( $id );
 		$image             = $this->get_image_url( $post_thumbnail_id, $size );
 
-		$hidden_image = $prioritize ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+		$hidden_image = $prioritize ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 		$thumbnail = '<div class="thumbnail-container thumbnail-background" data-src="' . esc_url( $image ) . '" >
                         <div class="lazyloaded" data-src="' . esc_url( $image ) . "\" style=\"background-image: url($image)\">{$hidden_image}</div>
@@ -167,7 +167,7 @@ class Image_Background_Load implements Image_Interface {
 	 *
 	 * @return string
 	 */
-	public function image_thumbnail( $id, $size ) {
+	public function image_thumbnail( $id, $size, $skip_lazy = false ) {
 		$image_size = Image::get_instance()->get_image_size( $size );
 
 		$additional_class  = '';
@@ -196,7 +196,7 @@ class Image_Background_Load implements Image_Interface {
 	 *
 	 * @return string
 	 */
-	public function owl_single_image( $id, $size ) {
+	public function owl_single_image( $id, $size, $skip_lazy = false ) {
 		$image_size = Image::get_instance()->get_image_size( $size );
 
 		$image     = $this->get_image_url( $id, $size );
@@ -245,8 +245,8 @@ class Image_Background_Load implements Image_Interface {
 	public function owl_lazy_image( $id, $size ) {
 		$image_size = Image::get_instance()->get_image_size( $size );
 
-		$additional_class = '';
-		$image = '';
+		$additional_class  = '';
+		$image             = '';
 		$post_thumbnail_id = '';
 
 		if ( ! has_post_thumbnail( $id ) ) {

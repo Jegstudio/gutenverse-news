@@ -3,17 +3,28 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { panelList } from './panels/panel-list';
 import Block7Columns from './Block7Columns';
 import BlockModule from '../../part/module';
+import dedicatedStyle from './styles/block-style';
+
 
 const Block7Block = compose(
     withPartialRender,
     withPassRef
 )((props) => {
     const columnAttr = {
-        block       : Block7Columns,
-        blockWidth  : 12,
+        block: Block7Columns,
+        blockWidth: 12,
     };
     const moduleName = '7';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        defaultImageSizeMain={{ height: 350, width: 180, dimension: 500 }}
+        useDedicatedStyle={true}
+        dedicatedStyle={dedicatedStyle}
+    />;
 });
 
 export default Block7Block;

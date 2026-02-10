@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-prev-next",
     "title": "Post Next Prev",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Prev_Next",
-    "description": "Your Block description.",
+    "description": "Display the next and previous posts on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -119,6 +119,13 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "widthMode": {
+            "type": "boolean",
+            "default": false
+        },
+        "gap": {
+            "type": "string"
         }
     },
     "supports": {
@@ -130,5 +137,7 @@
         "post",
         "prev",
         "next"
-    ]
+    ],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-post-prev-next-style"]
 }

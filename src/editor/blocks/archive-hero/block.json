@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-archive-hero",
     "title": "Archive Hero",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "Display your posts on the archive page with a Hero-style block.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -180,15 +180,118 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItemThird": {
+            "type": "object"
+        },
+        "borderResponsiveItem": {
+            "type": "object"
+        },
+        "borderResponsiveItemSecond": {
+            "type": "object"
+        },
+        "borderResponsiveItemThird": {
+            "type": "object"
+        },
+        "normalImage": {
+            "type": "boolean",
+            "default": false
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "borderItemSecond": {
+            "type": "object"
+        },
+        "borderItemThird": {
+            "type": "object"
+        },
+        "borderResponsiveItem": {
+            "type": "object"
+        },
+        "borderResponsiveItemSecond": {
+            "type": "object"
+        },
+        "borderResponsiveItemThird": {
+            "type": "object"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
-        "className": false,
-        "inserter": false
+        "className": false
     },
     "keywords": [
         "single",
         "archive",
         "hero"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-hero-slider-script"
     ]
 }

@@ -30,6 +30,7 @@ class Archive_Desc extends Archive_View_Abstract {
 		$term = $this->get_term();
 		$desc = isset( $term->description ) ? $term->description : '';
 
-		return '<h2>' . esc_attr( $desc ) . '</h2>';
+		$tag  = isset( $attr['tagType'] ) ? $attr['tagType'] : 'h2';
+		return '<' . $tag . ' class="archive-desc">' . esc_attr( $desc ) . '</' . $tag . '>';
 	}
 }

@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-slider-2",
     "title": "Slider 2",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Slider",
-    "description": "Your Block description.",
+    "description": "[PRO] Displaying your post list with a pre-designed slider block.",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "category": "gvnews-slider",
     "attributes": {
@@ -245,11 +245,92 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "dotGap": {
+            "type": "object"
+        },
+        "alwaysShowDot": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideDot": {
+            "type": "boolean",
+            "default": false
+        },
+        "dotNormalColor": {
+            "type": "object"
+        },
+        "dotBorderNormalColor": {
+            "type": "object"
+        },
+        "dotNormalSize": {
+            "type": "object"
+        },
+        "dotHoverColor": {
+            "type": "object"
+        },
+        "dotBorderHoverColor": {
+            "type": "object"
+        },
+        "dotHoverSize": {
+            "type": "object"
+        },
+        "dotActiveColor": {
+            "type": "object"
+        },
+        "dotBorderActiveColor": {
+            "type": "object"
+        },
+        "dotActiveSize": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "containerWidth": {
+            "type": "object"
+        },
+        "containerPadding": {
+            "type": "object"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-slider-script"]
 }

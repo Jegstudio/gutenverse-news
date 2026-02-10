@@ -1,25 +1,27 @@
 .gvnews-block.gvnews-block-wrapper .gvnews_prevnext_post {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	margin-bottom: 30px;
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
 	padding: 20px 0;
 
-	&:before {
-		content: " ";
-		display: table;
-	}
+	// &:before {
+	// 	content: " ";
+	// 	display: table;
+	// }
 
-	&:after {
-		content: " ";
-		display: table;
-		clear: both;
-	}
+	// &:after {
+	// 	content: " ";
+	// 	display: table;
+	// 	clear: both;
+	// }
 
 	a {
 		display: block;
 		float: left;
 		width: 50%;
-		padding-right: 20px;
 
 		&.next-post {
 			float: right;
@@ -43,6 +45,6 @@
 		transition: 0.3s ease;
 	}
 	a:hover .post-title {
-		border-left-color: var(--wp--preset--color--accent, #f70d28);
+		border-left-color: #f70d28;
 	}
 }

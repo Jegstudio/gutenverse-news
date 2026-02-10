@@ -15,14 +15,15 @@ import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getModuleOptions } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Slider8Block = compose(
     withPartialRender,
@@ -61,9 +62,34 @@ const Slider8Block = compose(
         autoplay,
         ncolumn,
         autoplayDelay,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
+        postTitleHtmlTag
     } = attributes;
 
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
     const elementRef = useRef(null);
+    const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
@@ -100,6 +126,7 @@ const Slider8Block = compose(
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const TitleTag = postTitleHtmlTag;
 
     function RenderContent(props) {
         return (
@@ -111,10 +138,10 @@ const Slider8Block = compose(
                     <div className="gvnews_item_caption">
                         <div className="gvnews_caption_container">
                             <MetaCategory post={props.post} />
-                            <h2 className="gvnews_post_title">
+                            <TitleTag className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                            </h2>
-                            <SliderMeta {...props} date />
+                            </TitleTag>
+                            <SliderMeta {...props} date blockType="slider-8" />
                         </div>
                     </div>
                 </div>
@@ -140,7 +167,19 @@ const Slider8Block = compose(
             }
         }
         return (
-            <div className="gvnews_slider_type_8 gvnews_slider" data-items={sliderColumn} data-autoplay={autoplay ? true : ''} data-delay={sliderDelay}>
+            <div
+                ref={blockRef}
+                className="gvnews_slider_type_8 gvnews_slider"
+                data-items={sliderColumn}
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
+                data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
+            >
                 {content}
             </div>
         );
@@ -156,7 +195,7 @@ const Slider8Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
                 <div key={Math.random().toString(36).substring(2)} className={'gvnews_slider_wrapper gvnews_slider_type_8_wrapper'}>
                     <RenderColumn {...moduleData} />
@@ -241,7 +280,7 @@ const Slider8Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -265,14 +304,13 @@ const Slider8Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -282,46 +320,38 @@ const Slider8Block = compose(
         autoplay,
         sliderDelay,
         sliderColumn,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        nextButtonIcon,
+        prevButtonIcon,
+        postTitleHtmlTag
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
-        if ('function' === typeof window.gvnews.slider && postData.length > 0 && block) {
-            const gvnewsLibrary = window.gvnews.library;
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
-                target = iframe.contentDocument;
-            }
-            var slider = target.querySelectorAll(`.${elementId} .gvnews_slider_wrapper .gvnews_slider`);
-            if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele) {
-                    window.gvnews.slider({
-                        container: ele,
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
         }
     }, [block]);
 
     return (
         <>
             {isDeprecated ? (
-                <PanelDeprecated title="Slider 8" />
+                <PanelUpgradePro title="Slider 8" />
             ) : (
                 <>
                     <CopyElementToolbar {...props} />
                     <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
                 </>
             )}
 
@@ -330,7 +360,7 @@ const Slider8Block = compose(
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
                     {(overlay && !firstRender.current) && <ModuleOverlay />}
-                    {isDeprecated && <DeprecatedOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

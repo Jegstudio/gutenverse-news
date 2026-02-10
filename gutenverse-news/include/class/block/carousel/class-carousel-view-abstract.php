@@ -35,18 +35,14 @@ abstract class Carousel_View_Abstract extends Block_View_Abstract {
 	}
 
 	/**
-	 * Method post_meta
+	 * Method main_custom_image_size
 	 *
-	 * @param object $post post.
-	 *
-	 * @return string
+	 * @param mixed $size size.
+	 * @return mixed
 	 */
-	public function post_meta( $post ) {
-		$output  = '<div class="gvnews_post_meta">';
-		$output .= '<div class="gvnews_meta_date"><a href="' . esc_url( get_the_permalink( $post ) ) . '" ><i class="fas fa-clock"></i> ' . $this->format_date( $post ) . '</a></div>';
-		$output .= '</div>';
-
-		return $output;
+	public function main_custom_image_size( $size ) {
+		$size = ! empty( $this->attribute['renderedImageSizeMain'] ) && 'default' !== $this->attribute['renderedImageSizeMain'] ? $this->attribute['renderedImageSizeMain'] : $size;
+		return $size;
 	}
 
 	/**

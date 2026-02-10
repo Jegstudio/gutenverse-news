@@ -1,8 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, SelectControl, TypographyControl } from 'gutenverse-core/controls';
 
-export const designPanel = () => {
-
+export const designPanel = (props) => {
+    const {
+        blockType = '3'
+    } = props;
     return [
         {
             id: 'columnWidth',
@@ -35,16 +37,32 @@ export const designPanel = () => {
             component: TypographyControl,
         },
         {
-            id: 'metaTypography',
-            label: __('Meta Typography', 'gutenverse-news'),
-            description: __('This option will change your meta typography.', 'gutenverse-news'),
+            id: 'secondTitleTypography',
+            label: __('Second List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
+            show: '14' === blockType,
             component: TypographyControl,
         },
         {
             id: 'contentTypography',
-            label: __('Post Content Typography', 'gutenverse-news'),
-            description: __('This option will change your content typography.', 'gutenverse-news'),
+            label: __('Content Typography', 'gutenverse-news'),
+            description: __('This option will change your post excerpt and read more button typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'aHover',
+            label: __('Accent Color & Link Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'excerptColor',
+            label: __('Excerpt Color', 'gutenverse-news'),
+            component: ColorControl,
         },
     ];
 };

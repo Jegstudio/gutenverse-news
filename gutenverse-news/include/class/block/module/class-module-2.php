@@ -17,6 +17,18 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_2 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_2';
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $second_thumbnail_class = 'gvnews_pl_sm';
 
 	/**
 	 * Method render_block_type_1
@@ -29,24 +41,25 @@ class Module_2 extends Module_View_Abstract {
 	public function render_block_type_1( $post, $image_size ) {
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
+		$read_more = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 
 		return '<div class="gvnews_thumb">
                     ' . gvnews_edit_post( $post_id, 'right' ) . "
-                    <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                    <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                     <div class=\"gvnews_post_category\">
                         <span>{$this->get_primary_category($post_id)}</span>
                     </div>
                 </div>
                 <div class=\"gvnews_postblock_content\">
-                    <h3 class=\"gvnews_post_title\">
-                        <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                    </h3>
+                    <{$this->post_title_tag} class=\"gvnews_post_title\">
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                    </{$this->post_title_tag}>
                     {$this->post_meta_1($post)}
                     <div class=\"gvnews_post_excerpt\">
                         <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                        <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+                        {$read_more}
                     </div>
-                </div>';
+                </div>";
 	}
 
 
@@ -66,14 +79,14 @@ class Module_2 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post_id ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
                             {$this->get_thumbnail($post_id,$image_size)}
                         </a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
-                        <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                        </{$this->post_title_tag}>
                         {$this->post_meta_2($post)}
                     </div>
                 </article>";
@@ -89,13 +102,16 @@ class Module_2 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function build_column( $results, $column_class, $is_ajax ) {
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$first_block = $this->render_block_type_1( $results[0], 'gvnews-350x250' );
-
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 		$second_block = '';
 		$size         = count( $results );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block_type_2( $results[ $i ], 'gvnews-120x86' );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		if ( $is_ajax ) {
 			return $second_block;
@@ -135,11 +151,7 @@ class Module_2 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

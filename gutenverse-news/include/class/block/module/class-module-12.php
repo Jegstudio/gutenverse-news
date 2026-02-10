@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_12 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_card';
 
 	/**
 	 * Method render_block_type_1
@@ -32,27 +38,28 @@ class Module_12 extends Module_View_Abstract {
 		$primary_category = gvnews_get_primary_category( $post_id );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
+		$read_more        = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 		$post_meta        = 'gvnews_col_1o3' === $column_class ? $this->post_meta_3( $post ) : $this->post_meta_1( $post ) . '
                                 <div class="gvnews_post_excerpt">
                                     <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                                    <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
-                                </div>';
+                        			{$read_more}
+                                </div>";
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_card' . $additional_class, $post_id ) . '>
                     <div class="gvnews_inner_post">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
                                 <span>
-                                    <a href=\"" . get_category_link( $primary_category ) . '">' . get_cat_name( $primary_category ) . "</a>
+                                    <a href=\"" . get_category_link( $primary_category ) . '" aria-label="' . esc_attr( get_cat_name( $primary_category ) ) . '">' . get_cat_name( $primary_category ) . "</a>
                                 </span>
                             </div>
-                            <h3 class=\"gvnews_post_title\">
-                                <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h3>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             {$post_meta}
                         </div>
                     </div>
@@ -79,9 +86,11 @@ class Module_12 extends Module_View_Abstract {
 			$image_size = 'gvnews-1140x570';
 		}
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], $image_size, $column_class );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}
@@ -104,11 +113,7 @@ class Module_12 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

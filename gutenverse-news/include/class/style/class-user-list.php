@@ -213,7 +213,7 @@ class User_List extends StyleAbstract {
 		if ( isset( $this->attrs['metaColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gutenverse.{$this->element_id} .gvnews_userlist .gvnews_subscribe_count, .gutenverse.{$this->element_id} .gvnews_userlist .follow-wrapper a, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a i",
+					'selector'       => ".gutenverse.{$this->element_id} .gvnews_userlist .gvnews_subscribe_count, .gutenverse.{$this->element_id} .gvnews_userlist .follow-wrapper a, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a i, .gutenverse.{$this->element_id} .gvnews_userlist .gvnews_userlist-socials a svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -300,6 +300,33 @@ class User_List extends StyleAbstract {
 					},
 					'value'          => $this->attrs['subBtnBdHv'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['rowItemGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_userlist ul",
+					'property'       => function ( $value ) {
+						return "row-gap: {$value}px;";
+					},
+					'value'          => $this->attrs['rowItemGap'],
+					'device_control' => true,
+				)
+			);
+
+		}
+
+		if ( isset( $this->attrs['columnItemGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_userlist ul",
+					'property'       => function ( $value ) {
+						return "column-gap: {$value}px;";
+					},
+					'value'          => $this->attrs['columnItemGap'],
+					'device_control' => true,
 				)
 			);
 		}

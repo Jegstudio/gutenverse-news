@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-skew",
     "title": "Hero Skew",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
-    "description": "Your Block description.",
+    "description": "[PRO] Display your posts in fancy way with Hero block.",
     "category": "gvnews-hero",
     "attributes": {
         "elementId": {
@@ -39,11 +39,14 @@
         },
         "heroItemOverlay": {
             "type": "array",
-            "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }]
+            "default": [
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                }
+            ]
         },
         "postOffset": {
             "type": "string",
@@ -284,11 +287,62 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "borderItem": {
+            "type": "object"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h2"
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

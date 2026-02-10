@@ -11,27 +11,6 @@ const helper = {
 	mode: "development",
 	devtool: "source-map",
 	entry: {
-		helper: {
-			import: path.resolve(__dirname, "../../src/helper/index.js"),
-		},
-		backend: {
-			import: path.resolve(__dirname, "../../src/helper/backend.js"),
-		},
-		tinyslider: {
-			import: path.resolve(__dirname, "../../src/helper/tiny-slider.js"),
-		},
-		newsticker: {
-			import: path.resolve(__dirname, "../../src/helper/newsticker.js"),
-		},
-		slider: {
-			import: path.resolve(__dirname, "../../src/helper/block-slider.js"),
-		},
-		carousel: {
-			import: path.resolve(__dirname, "../../src/helper/block-carousel.js"),
-		},
-		hero: {
-			import: path.resolve(__dirname, "../../src/helper/gvnewshero.js"),
-		},
 		"deprecated-block": {
 			import: path.resolve(__dirname, "../../src/helper/deprecated-block.js"),
 		},
@@ -58,70 +37,6 @@ const helper = {
 					onEnd: {
 						copy: [
 							{
-								source: "./.config/vendor/scripts/*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/helper.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/helper.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/backend.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/backend.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/tinyslider.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/tinyslider.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/newsticker.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/newsticker.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/slider.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/slider.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/carousel.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/carousel.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/hero.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/hero.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./src/helper/isotope.js",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
 								source: "./build/deprecated-block.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
@@ -131,6 +46,14 @@ const helper = {
 							},
 							{
 								source: "./build/downgrade-plugin.asset.php*",
+								destination: "./gutenverse-news/lib/dependencies/",
+							},
+							{
+								source: "./build/dashboard.js*",
+								destination: "./gutenverse-news/assets/js/",
+							},
+							{
+								source: "./build/dashboard.asset.php*",
 								destination: "./gutenverse-news/lib/dependencies/",
 							},
 						],

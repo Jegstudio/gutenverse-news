@@ -46,16 +46,16 @@ class Hero_Skew extends Hero_View_Abstract {
                         <div class=\"gvnews_block_container\">
                             <span class=\"gvnews_postformat_icon\"></span>
                             <div class=\"gvnews_thumb\">
-                                <a href=\"{$permalink}\" >{$this->get_thumbnail($post->ID, 'gvnews-featured-750')}</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post->ID, 'gvnews-featured-750')}</a>
                             </div>
                             <div class=\"gvnews_postblock_content\">
                                 <div class=\"gvnews_post_category\">
                                     {$this->get_primary_category($post_id)}
                                 </div>
                                 <div class=\"gvnews_post_info\">
-                                    <h2 class=\"gvnews_post_title\">
-                                        <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                                    </h2>
+                                    <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . esc_attr( get_the_title( $post ) ) . "</a>
+                                    </{$this->post_title_tag}>
                                     {$this->post_meta_2($post)}
                                 </div>
                             </div>

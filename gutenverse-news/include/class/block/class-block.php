@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -99,11 +100,7 @@ class Block extends Grab {
 				$excltag .= ',' . $cat['value'];
 			}
 		}
-		if ( $this->attributes['normalImage'] ) {
-			$normimage = 'true';
-		} else {
-			$normimage = 'false';
-		}
+
 		foreach ( $this->attributes['includeAuthor'] as $cat ) {
 			if ( '' === $inclaut ) {
 				$inclaut = $cat['value'];
@@ -114,7 +111,8 @@ class Block extends Grab {
 		if ( isset( $this->attributes['showDate'] ) && $this->attributes['showDate'] ) {
 			$enbdate = true;
 		}
-		$attr      = array(
+		$image_load = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], $this->attributes['imageLoad'] );
+		$attr       = array(
 			'first_title'                  => $this->attributes['title'],
 			'second_title'                 => $this->attributes['second_title'],
 			'url'                          => $this->attributes['url_title'],
@@ -147,7 +145,6 @@ class Block extends Grab {
 			'date_format_custom'           => $this->attributes['metaDateFormatCustom'],
 			'excerpt_length'               => $this->attributes['excerptLength'],
 			'excerpt_ellipsis'             => $this->attributes['excerptEllipsis'],
-			'force_normal_image_load'      => $normimage,
 			'pagination_mode'              => $this->attributes['paginationMode'],
 			'pagination_nextprev_showtext' => $this->attributes['showNavText'],
 			'pagination_number_post'       => $this->attributes['paginationPost'],
@@ -166,18 +163,38 @@ class Block extends Grab {
 			'compatible_column_notice'     => '',
 			'show_date'                    => $enbdate,
 			'short_code'                   => $this->attributes['gvnewsModule'],
+			'renderedImageSizeMain'        => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : '',
+			'renderedImageSizeSecond'      => isset( $this->attributes['renderedImageSizeSecond'] ) ? $this->attributes['renderedImageSizeSecond'] : '',
+			'disable_readmore'             => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'                => array(
+				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
+			),
+			'list_icon'                    => isset( $this->attributes['listIcon'] ) ? $this->attributes['listIcon'] : '',
+			'list_icon_type'               => isset( $this->attributes['listIconType'] ) ? $this->attributes['listIconType'] : 'icon',
+			'list_icon_svg'                => isset( $this->attributes['listIconSVG'] ) ? $this->attributes['listIconSVG'] : '',
+			'icon_type'                    => isset( $this->attributes['iconType'] ) ? $this->attributes['iconType'] : 'icon',
+			'icon_svg'                     => isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '',
+			'content_container_background' => isset( $this->attributes['contentContainerBackground'] ) ? $this->attributes['contentContainerBackground'] : array(),
+			'gutter_width'                 => isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30,
+			'image_load'                   => $image_load,
+			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
+			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
-		$sccontent = '';
+		$sccontent  = '';
 
 		return $this->get_module( $attr, $sccontent );
 	}
 
 	/**
-	 * Check if this block is already deprecated.
+	 * Check if this block is Pro.
 	 *
 	 * @return boolean
 	 */
-	public function check_deprecated() {
+	public function check_pro() {
 		$deprecated = array(
 			'GUTENVERSE\NEWS\Block\Module\Module_10',
 			'GUTENVERSE\NEWS\Block\Module\Module_11',
@@ -186,11 +203,9 @@ class Block extends Grab {
 			'GUTENVERSE\NEWS\Block\Module\Module_14',
 			'GUTENVERSE\NEWS\Block\Module\Module_15',
 			'GUTENVERSE\NEWS\Block\Module\Module_16',
-			'GUTENVERSE\NEWS\Block\Module\Module_17',
 			'GUTENVERSE\NEWS\Block\Module\Module_18',
 			'GUTENVERSE\NEWS\Block\Module\Module_19',
 			'GUTENVERSE\NEWS\Block\Module\Module_20',
-			'GUTENVERSE\NEWS\Block\Module\Module_21',
 			'GUTENVERSE\NEWS\Block\Module\Module_22',
 			'GUTENVERSE\NEWS\Block\Module\Module_23',
 			'GUTENVERSE\NEWS\Block\Module\Module_24',

@@ -353,12 +353,14 @@ class Module_Query {
 			}
 		}
 
+		$result = apply_filters( 'gvnews_default_query_result', $result );
 		wp_reset_postdata();
 
 		if ( isset( $attr['content_type'] ) && 'post' === $attr['content_type'] ) {
 			gvnews_remove_filters( 'posts_join', array( __CLASS__, 'join_only_post' ) );
 			gvnews_remove_filters( 'posts_where', array( __CLASS__, 'where_only_post' ) );
 		}
+
 		return array(
 			'result'     => $result,
 			'next'       => self::has_next_page( $query->found_posts, $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),

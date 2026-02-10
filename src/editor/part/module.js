@@ -13,13 +13,14 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from '../control-panel/panel-styles/block-style';
 import { useSelect } from '@wordpress/data';
-import { getModuleOptions, getParentColumnWidth } from '../utils/helper';
+import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../utils/helper';
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const BlockModule = compose(
     withPartialRender,
@@ -33,11 +34,22 @@ const BlockModule = compose(
         moduleName,
         columnAttr,
         panelList,
+        freeModule = false,
+        defaultImageSizeMain = {},
+        defaultImageSizeSecond = {},
+        mainThumbnailClass,
+        secondThumbnailClass,
+        useDedicatedStyle = false,
+        dedicatedStyle = () => [],
+        isMasonry = false,
+        checkLandscapeThumbnail = false
     } = props;
 
     const {
         elementId,
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -70,12 +82,82 @@ const BlockModule = compose(
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
+        paginationWrapperAlign,
+        paginationDisableSeparator,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        showMetaComment = true,
+        showMetaReview = false,
+        readmoreButtonDisabled = false,
+        listIcon = '',
+        listIconType = 'icon',
+        listIconSVG = '',
+        metaDateIcon = '',
+        metaDateIconType = 'icon',
+        metaDateIconSVG = '',
+        metaCommentIcon = '',
+        metaCommentIconType = 'icon',
+        metaCommentIconSVG = '',
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        gutenversePreviewBlock = '',
+        gutterWidth = 30,
+        rowItemGap,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
 
+    useEffect(() => {
+        if (isMasonry) {
+            setTimeout(() => {
+                setMasonryReload(!masonryReload);
+            }, 300);
+        }
+    }, [
+        gutterWidth,
+        rowItemGap
+    ]);
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_comment: showMetaComment,
+        meta_author: showMetaAuthor,
+        meta_review: showMetaReview
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
     const elementRef = useRef(null);
+    const device = getDeviceType();
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(
+        elementId,
+        attributes,
+        (elementId, attributes) => {
+            if (useDedicatedStyle) {
+                return dedicatedStyle(
+                    elementId,
+                    attributes,
+                );
+            }
+            return getBlockStyle(
+                elementId,
+                attributes,
+                mainThumbnailClass,
+                secondThumbnailClass,
+            );
+        },
+        elementRef
+    );
 
     const {
         getBlock,
@@ -102,10 +184,11 @@ const BlockModule = compose(
         totalPage: 1,
     });
     const [forceReload, setForceReload] = useState(false);
+    const [masonryReload, setMasonryReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
     const [postLoaded, setPostLoaded] = useState(0);
     const [postStart, setPostStart] = useState(0);
-    const [postPaginationLoaded, setPostPaginationLoaded] = useState(0);
+    const [postPaginationLoaded, setPostPaginationLoaded] = useState(paginationPost);
     const [block, setBlock] = useState(<ModuleSkeleton />);
     const ColumnBlock = columnAttr.block;
     const firstRender = useIsFirstRender();
@@ -139,6 +222,18 @@ const BlockModule = compose(
     }, [postOffset]);
 
     useEffect(() => {
+        if (showNavText && paginationMode === 'nextprev' && !paginationWrapperAlign?.[device] && !paginationDisableSeparator) {
+            let ovr = {
+                ...attributes,
+                paginationWrapperAlign: { ...paginationWrapperAlign },
+                paginationDisableSeparator: true
+            };
+            ovr['paginationWrapperAlign'][device] = 'start';
+            setAttributes(ovr);
+        }
+    }, [showNavText]);
+
+    useEffect(() => {
         if (paginationPost > 0) {
             setPostPaginationLoaded(parseInt(paginationPost));
         } else {
@@ -154,7 +249,7 @@ const BlockModule = compose(
             return;
         }
         getTrim([]);
-        setIsLoaded(false)
+        setIsLoaded(false);
         setPage(1);
         setForceReload(!forceReload);
     }, [
@@ -181,10 +276,6 @@ const BlockModule = compose(
         if (columnWidth == 'auto') {
             if (deviceType === 'Desktop') {
                 getWidth(getParentColumnWidth(getBlockRootClientId(props.clientId), getBlock));
-            } else if (deviceType === 'Tablet') {
-                getWidth(8);
-            } else {
-                getWidth(4);
             }
         } else {
             getWidth(columnWidth);
@@ -217,6 +308,7 @@ const BlockModule = compose(
             paginationMode: paginationMode === 'scrollload' ? 'loadmore' : paginationMode,
             postOffset: postStart,
             advancedResponse: true,
+            checkLandscapeThumbnail,
         };
         if (activeFilter['value'] != -100) {
             switch (activeType) {
@@ -255,7 +347,13 @@ const BlockModule = compose(
         if (firstRender) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length > 0) {
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, defaultImageSizeMain);
+            const imageSizeSecond = getImageSizeDetail(renderedImageSizeSecond, defaultImageSizeSecond);
             const allColumns = <ColumnBlock {...{
                 blockWidth,
                 excerptLength,
@@ -269,6 +367,22 @@ const BlockModule = compose(
                 numberPost: postLoaded,
                 paginationPost: postPaginationLoaded,
                 page,
+                imageSizeMain,
+                imageSizeSecond,
+                readmoreButtonDisabled,
+                listIcon,
+                listIconType,
+                listIconSVG,
+                metaDateIcon,
+                metaDateIconType,
+                metaDateIconSVG,
+                metaCommentIcon,
+                metaCommentIconType,
+                metaCommentIconSVG,
+                attributes,
+                gutterWidth,
+                rowItemGap,
+                postTitleHtmlTag,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -279,11 +393,30 @@ const BlockModule = compose(
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         metaDateType,
         metaDateFormat,
         metaDateFormatCustom,
         postData,
+        renderedImageSizeMain,
+        renderedImageSizeSecond,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        showMetaComment,
+        showMetaReview,
+        readmoreButtonDisabled,
+        listIcon,
+        listIconType,
+        listIconSVG,
+        metaDateIcon,
+        metaDateIconType,
+        metaDateIconSVG,
+        metaCommentIcon,
+        metaCommentIconType,
+        metaCommentIconSVG,
+        gutenversePreviewBlock,
+        masonryReload,
+        postTitleHtmlTag,
     ]);
 
     const blockProps = useBlockProps({
@@ -300,6 +433,8 @@ const BlockModule = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,
@@ -307,6 +442,7 @@ const BlockModule = compose(
         headerAuthor,
         headerTag,
         headerDefault,
+        headerHtmlTag,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
             setActiveFilter({ value, label });
@@ -331,12 +467,28 @@ const BlockModule = compose(
         }
     };
 
+    const theProps = {
+        ...props,
+        attributes: {
+            ...attributes,
+            mainThumbnailClass,
+            secondThumbnailClass
+        }
+    };
+
     return <>
         <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <BlockPanelController panelList={panelList} props={theProps} elementRef={elementRef} />
+        {!freeModule && <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>}
         <div {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className={`gvnews_postblock_${moduleName} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+                <div className={`gvnews_postblock_${moduleName} ${`gvnews_pagination_${paginationMode}`} subclass ${!isLoaded && (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') ? 'loading' : 'loaded'} ${loadClass} gvnews_postblock gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isMasonry ? 'disable-fade-up' : ''}`}>
                     <HeaderModule {...headerData} />
                     <div className="gvnews_block_container">
                         {block}

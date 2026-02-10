@@ -33,8 +33,7 @@ class Slider_5 extends Slider_View_Abstract {
 			} else {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
-			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$hidden_image = $this->attribute['normal_image'] && 0 === $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 			$content .=
 			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . ' style="background-image: url(' . esc_url( $image ) . ')">
@@ -45,9 +44,9 @@ class Slider_5 extends Slider_View_Abstract {
                             <div class=\"gvnews_post_category\">
                                 {$primary_category}
                             </div>
-                            <h2 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h2>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             {$this->render_meta($post)}
                         </div>
                     </div>
@@ -92,8 +91,14 @@ class Slider_5 extends Slider_View_Abstract {
 
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-					'delay'    => esc_attr( $autoplay_delay ),
+					'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+					'delay'           => esc_attr( $autoplay_delay ),
+					'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+					'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+					'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+					'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+					'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+					'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 				)
 			);
 

@@ -12,15 +12,17 @@ import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
 import { getModuleOptions, getParentColumnWidth, gutenverseProActive } from '../../utils/helper';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { useSelect } from '@wordpress/data';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
+import { getImageSizeDetail } from '../../utils/helper';
 
-const moduleOption = getModuleOptions();
+const defaultOptions = getModuleOptions();
 
 const Carousel3Block = compose(
     withPartialRender,
@@ -62,7 +64,39 @@ const Carousel3Block = compose(
         ncolumn,
         iMargin,
         columnWidth,
+        showMeta = true,
+        showMetaDate = true,
+        renderedImageSizeMain,
+        postTitleHtmlTag = 'h3',
+        showMetaReview,
     } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_review: showMetaReview,
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+    const TitleTag = postTitleHtmlTag;
+
+    const firstRender = useRef(true);
+    const blockRef = useRef(null);
+    const elementRef = useRef(null);
+    useEffect(() => {
+        if (elementRef) {
+            setBlockRef(elementRef);
+        }
+    }, [elementRef]);
+
+    useGenerateElementId(clientId, elementId, elementRef);
+    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
 
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
@@ -88,16 +122,6 @@ const Carousel3Block = compose(
     const [sliderDelay, setSliderDelay] = useState(0);
     const [sliderColumn, setSliderColumn] = useState(0);
 
-    const firstRender = useRef(true);
-    const elementRef = useRef(null);
-    useEffect(() => {
-        if (elementRef) {
-            setBlockRef(elementRef);
-        }
-    }, [elementRef]);
-
-    useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
     const deviceType = getDeviceType();
     const {
         getBlock,
@@ -108,51 +132,28 @@ const Carousel3Block = compose(
     );
 
     const initSlider = () => {
-        if ('function' === typeof window.gvnews.carousel && postData.length > 0 && block) {
-            let gvnewsLibrary = window.gvnews;
-            gvnewsLibrary = window.gvnews.library;
-            let target = document;
-            const iframe = document.querySelector('iframe[name="editor-canvas"]');
-            if(iframe) {
-                target = iframe.contentDocument;
-            }
-            var blockCarousel = target.querySelectorAll(`.${elementId} .gvnews_postblock_carousel`);
-
-            if (blockCarousel.length) {
-                gvnewsLibrary.forEach(blockCarousel, function (ele) {
-                    window.gvnews.carousel({
-                        container: ele,
-                        textDirection: 'ltr',
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
+        if (blockRef.current) {
+            window.gvnewsCarouselSlider(blockRef.current);
         }
     };
 
     function RenderContent(props) {
+        const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 350, dimension: 1000 });
         return (
             <div className="gvnews_post_wrapper">
-                <article className="gvnews_post">
+                <article className={`gvnews_post format-${props.post.format}`}>
                     <div className="gvnews_thumb">
                         <a>
-                            <div className="thumbnail-container size-1000">
+                            <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
                                 <img src={props.post.thumbnail.url} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />
                             </div>
                         </a>
                     </div>
                     <div className="overlay_content">
                         <div className="gvnews_postblock_content">
-                            <h3 className="gvnews_post_title">
+                            <TitleTag className="gvnews_post_title">
                                 <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                            </h3>
+                            </TitleTag>
                             <SliderMeta {...props} date />
                         </div>
                     </div>
@@ -195,13 +196,13 @@ const Carousel3Block = compose(
             metaDateFormat,
             metaDateFormatCustom,
         };
-        if(postData.length > 0) {
+        if (postData.length > 0) {
             setBlock(
-                <div key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '6' : '12'} ${showNav ? 'shownav' : ''}`}>
+                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_3 gvnews_postblock  gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '6' : '12'} ${showNav ? 'shownav' : ''}`}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
-        }else {
+        } else {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
         }
     }
@@ -301,7 +302,7 @@ const Carousel3Block = compose(
                 getTrim(parsed);
             }).finally(() => {
                 setOverlay(false);
-                if(firstRender.current) {
+                if (firstRender.current) {
                     firstRender.current = false;
                 }
             });
@@ -324,14 +325,13 @@ const Carousel3Block = compose(
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         resetblock();
     }, [
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -343,11 +343,16 @@ const Carousel3Block = compose(
         hoverEffect,
         sliderColumn,
         iMargin,
-        blockWidth
+        blockWidth,
+        showMeta,
+        showMetaDate,
+        renderedImageSizeMain,
+        postTitleHtmlTag,
+        showMetaReview,
     ]);
 
     useEffect(() => {
-        if(firstRender.current) {
+        if (firstRender.current) {
             return;
         }
         initSlider();
@@ -355,12 +360,12 @@ const Carousel3Block = compose(
 
     if (!gutenverseProActive) {
         return <>
-            <PanelDeprecated title="Carousel 3" />
+            <PanelUpgradePro title="Carousel 3" />
             <div  {...blockProps}>
                 <div className="gvnews-raw-wrapper gvnews-editor gvnews-deprecated-block">
                     <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                     {block}
-                    <DeprecatedOverlay />
+                    <UpgradeProOverlay />
                 </div>
             </div>
         </>;
@@ -368,6 +373,13 @@ const Carousel3Block = compose(
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        <InspectorControls>
+            {applyFilters(
+                'gutenverse.blocks-pro.upgrade-banner-professional',
+                null,
+                props
+            )}
+        </InspectorControls>
         <div  {...blockProps}>
             <div className="gvnews-raw-wrapper gvnews-editor">
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
