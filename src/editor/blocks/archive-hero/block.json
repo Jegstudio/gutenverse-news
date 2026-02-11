@@ -258,23 +258,25 @@
             "type": "string",
             "default": "h2"
         },
-        "borderItem": {
-            "type": "object"
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
         },
-        "borderItemSecond": {
-            "type": "object"
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
         },
-        "borderItemThird": {
-            "type": "object"
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
         },
-        "borderResponsiveItem": {
-            "type": "object"
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
         },
-        "borderResponsiveItemSecond": {
-            "type": "object"
-        },
-        "borderResponsiveItemThird": {
-            "type": "object"
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
         },
         "showMetaReview": {
             "type": "boolean"

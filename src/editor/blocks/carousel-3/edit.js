@@ -68,6 +68,7 @@ const Carousel3Block = compose(
         showMetaDate = true,
         renderedImageSizeMain,
         postTitleHtmlTag = 'h3',
+        gutenversePreviewBlock = '',
         showMetaReview,
     } = attributes;
 
@@ -328,6 +329,10 @@ const Carousel3Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -348,6 +353,7 @@ const Carousel3Block = compose(
         showMetaDate,
         renderedImageSizeMain,
         postTitleHtmlTag,
+        gutenversePreviewBlock,
         showMetaReview,
     ]);
 

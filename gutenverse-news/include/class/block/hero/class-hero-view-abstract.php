@@ -96,7 +96,7 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 			$meta_settings
 		);
 		$this->margin        = isset( $attr['hero_margin']['size'] ) ? $attr['hero_margin']['size'] : $attr['hero_margin'];
-		$content             = $this->render_output_loop( $result );
+		$content             = ! empty( $result ) ? $this->render_output_loop( $result ) : $this->empty_content();
 		$name                = strtolower( substr( $attr['short_code'], strrpos( $attr['short_code'], '_' ) + 1 ) );
 		$data_attr           = $this->data_attr( $attr );
 

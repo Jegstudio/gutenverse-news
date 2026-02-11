@@ -52,6 +52,7 @@ const HeroComponent = (props) => {
         showMetaDate = true,
         showMetaAuthor = (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13'),
         postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = '',
         showMetaReview = false,
     } = attributes;
 
@@ -213,6 +214,10 @@ const HeroComponent = (props) => {
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetBlock();
     }, [
         postData,
@@ -230,6 +235,7 @@ const HeroComponent = (props) => {
         showMetaDate,
         showMetaAuthor,
         postTitleHtmlTag,
+        gutenversePreviewBlock,
         showMetaReview,
     ]);
 
