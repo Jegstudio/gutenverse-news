@@ -121,6 +121,9 @@
         "likeIconSize": {
             "type":"object"
         },
+        "likeIconGap": {
+            "type": "object"
+        },
         "likeIconColor": {
             "type": "object"
         },
@@ -143,6 +146,9 @@
 
         "dislikeIconSize": {
             "type":"object"
+        },
+        "dislikeIconGap": {
+            "type": "object"
         },
         "dislikeIconColor": {
             "type": "object"
