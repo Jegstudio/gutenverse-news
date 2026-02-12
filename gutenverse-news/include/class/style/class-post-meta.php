@@ -565,6 +565,19 @@ class Post_Meta extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['likeIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a.thumb.like svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['likeIconGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['likeIconColor'] ) ) {
 			$this->inject_style(
 				array(
@@ -653,6 +666,19 @@ class Post_Meta extends Style_Abstract {
 						return $this->handle_unit_point( $value, 'width' );
 					},
 					'value'          => $this->attrs['dislikeIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['dislikeIconGap'],
 					'device_control' => true,
 				)
 			);
