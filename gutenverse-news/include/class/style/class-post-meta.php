@@ -555,9 +555,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} a.thumb.like i",
+					'selector'       => "{$base_selector} a.thumb.like svg",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'font-size' );
+						return $this->handle_unit_point( $value, 'width' );
 					},
 					'value'          => $this->attrs['likeIconSize'],
 					'device_control' => true,
@@ -568,9 +568,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
+					'selector'       => "{$base_selector} .thumb.like svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['likeIconColor'],
 					'device_control' => false,
@@ -648,9 +648,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.dislike i",
+					'selector'       => "{$base_selector} .thumb.dislike svg",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'font-size' );
+						return $this->handle_unit_point( $value, 'width' );
 					},
 					'value'          => $this->attrs['dislikeIconSize'],
 					'device_control' => true,
@@ -661,9 +661,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
+					'selector'       => "{$base_selector} .thumb.like svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['dislikeIconColor'],
 					'device_control' => false,
