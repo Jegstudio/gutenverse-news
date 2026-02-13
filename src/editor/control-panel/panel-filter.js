@@ -36,6 +36,14 @@ export const filterPanel = ({ postType }) => {
                     value: 'post',
                     label: __('Only Post', 'gutenverse-news')
                 },
+                {
+                    value: 'liked',
+                    label: __('Only Liked', 'gutenverse-news')
+                },
+                {
+                    value: 'disliked',
+                    label: __('Only Disliked', 'gutenverse-news')
+                }
             ]
         },
         {
