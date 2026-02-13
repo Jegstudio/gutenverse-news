@@ -75,7 +75,8 @@ const Slider7Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
-        postTitleHtmlTag = 'h2'
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -330,6 +331,12 @@ const Slider7Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         blockWidth,
@@ -355,7 +362,8 @@ const Slider7Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {
