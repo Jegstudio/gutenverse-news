@@ -27,7 +27,7 @@ export const filterPanel = ({ postType }) => {
             label: __('Content Type', 'gutenverse-news'),
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: SelectControl,
-            options: [
+            options: applyFilters('gvnews.panel.options.contentType', [
                 {
                     value: '',
                     label: __('All', 'gutenverse-news')
@@ -37,14 +37,16 @@ export const filterPanel = ({ postType }) => {
                     label: __('Only Post', 'gutenverse-news')
                 },
                 {
-                    value: 'liked',
-                    label: __('Only Liked', 'gutenverse-news')
+                    value: '',
+                    label: __('Only Liked', 'gutenverse-news'),
+                    pro: true
                 },
                 {
-                    value: 'disliked',
-                    label: __('Only Disliked', 'gutenverse-news')
+                    value: '',
+                    label: __('Only Disliked', 'gutenverse-news'),
+                    pro: true
                 }
-            ]
+            ], postType)
         },
         {
             id: 'numberPost',
