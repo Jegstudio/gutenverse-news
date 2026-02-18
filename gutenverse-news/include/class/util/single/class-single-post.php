@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Util\Single;
 
+use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
+
 /**
  * Single_Post
  *
@@ -179,6 +181,7 @@ class Single_Post {
 	 * @return string
 	 */
 	public function get_gallery_thumbnail_size() {
+		$image_size = apply_filters( 'gvnews_metabox_override_value', 'crop-500', 'image_size' );
 		return $this->get_featured_post_image_size( $image_size );
 	}
 
@@ -193,12 +196,12 @@ class Single_Post {
 	 * @return void
 	 */
 	public function feature_post_1( $image_size = null, $gallery_size = null, $id = null, $class = null ) {
-		if ( null === $image_size ) {
+		if ( is_null( $image_size ) ) {
 			$image_size = $this->get_single_thumbnail_size();
 		}
 		$output = $this->featured_image( $image_size, $id, $class );
 
-		echo wp_kses( $output, wp_kses_allowed_html() );
+		echo gvnews_sanitize_output( $output );
 	}
 
 	/**
@@ -213,7 +216,7 @@ class Single_Post {
 	public function featured_image( $size, $id = null, $class = null ) {
 		$output = "<div {$id} class=\"gvnews_featured featured_image {$class}\">";
 
-		$image_src = $this->get_featured_image_src( 'full' );
+		// $image_src = $this->get_featured_image_src( 'full' );
 
 		if ( has_post_thumbnail() ) {
 			$output .= \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail_unwrap( $this->post_id, $size );

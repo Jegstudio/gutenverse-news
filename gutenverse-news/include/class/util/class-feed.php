@@ -59,6 +59,13 @@ class Feed {
 	public $post_author_name;
 
 	/**
+	 * RSS Feed Post Author  URL
+	 *
+	 * @var string
+	 */
+	public $post_author_url;
+
+	/**
 	 * RSS Feed Post Published Date
 	 *
 	 * @var integer
@@ -108,6 +115,7 @@ class Feed {
 		$this->permalink        = $feed_object->get_link();
 		$this->description      = $this->excerpt( $feed_object->get_description(), isset( $attr['excerpt_length'] ) ? $attr['excerpt_length'] : 20 );
 		$this->post_author_name = isset( $feed_object->get_author()->name ) ? $feed_object->get_author()->name : '';
+		$this->post_author_url  = isset( $this->permalink ) ? $this->permalink : '#';
 		$this->publish_date     = $feed_object->get_date( 'U' );
 		$this->update_date      = $feed_object->get_updated_date( 'U' );
 		$this->featured         = $attr['thumbnail'] ? $this->thumbnail( $feed_object ) : '';

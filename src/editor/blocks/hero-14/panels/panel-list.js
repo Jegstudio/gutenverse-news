@@ -6,6 +6,12 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { readmoreStylePanel } from '../../../control-panel/panel-readmore-style';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { styleHero } from './panel-hero-style';
+import { mainCategoryStylePanel, sideCategoryStylePanel } from './panel-category-label';
+import { mainContainerPanel } from "./panel-container";
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -18,15 +24,57 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date', 'author', 'review']),
+                tabRole: TabSetting
+            },
+            {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: filterHero,
                 tabRole: TabSetting
             },
             {
+                title: __('Hero Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => styleHero(props, 3),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date', 'author'], true),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Main Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: mainContainerPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Main Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: mainCategoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Side Category Label', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: sideCategoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
                 tabRole: TabStyle
             },
             {
@@ -47,7 +95,7 @@ export const panelList = () => {
             {
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: responsivePanel
+                panelArray: responsivePanel,
             },
             {
                 title: __('Spacing', 'gutenverse-news'),
@@ -56,7 +104,7 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-1-advance',
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
             {
                 title: __('Condition', 'gutenverse-news'),

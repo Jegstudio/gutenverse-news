@@ -4,14 +4,8 @@ import { applyFilters } from '@wordpress/hooks';
 
 const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData }) => {
     /* option default value */
-    const { block_settings = {} } = settingValues;
+    const { block_settings = {}, features = [] } = settingValues;
     const {
-        meta_show = true,
-        meta_author = true,
-        meta_date = true,
-        meta_comment = true,
-        meta_rating = true,
-        meta_views = true,
         date_type = 'published',
     } = block_settings;
 
@@ -21,40 +15,8 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
 
     const additionalMenu = [];
 
-    return <div>
+    return <>
         <div className="template-tab-body" style={{ paddingTop: '10px' }}>
-            <ControlCheckbox
-                id={'meta_show'}
-                title={__('Show Block Meta', '--gctd--')}
-                description={__('Show meta for block.', '--gctd--')}
-                value={meta_show}
-                updateValue={updateValue}
-            />
-            {meta_show && <>
-                <ControlCheckbox
-                    id={'meta_author'}
-                    title={__('Show Block Meta - Author', '--gctd--')}
-                    description={__('Show author on meta block.', '--gctd--')}
-                    value={meta_author}
-                    updateValue={updateValue}
-                />
-                <ControlCheckbox
-                    id={'meta_date'}
-                    title={__('Show Block Meta - Date', '--gctd--')}
-                    description={__('Show date on meta block.', '--gctd--')}
-                    value={meta_date}
-                    updateValue={updateValue}
-                />
-                <ControlCheckbox
-                    id={'meta_comment'}
-                    title={__('Show Block Meta - Comment', '--gctd--')}
-                    description={__('Show comment icon on meta block.', '--gctd--')}
-                    value={meta_comment}
-                    updateValue={updateValue}
-                />
-                {applyFilters('gutenverse.dashboard.news.block', additionalMenu, { block_settings: block_settings, updateValue: updateValue })}
-            </>}
-
             <ControlSelect
                 id={'date_type'}
                 title={__('Post Date Type', '--gctd--')}
@@ -80,7 +42,7 @@ const BlockSettings = ({ settingValues, updateSettingValues, saving, saveData })
                 {__('Save Changes', '--gctd--')}
             </div>}
         </div>
-    </div>;
+    </>;
 };
 
 export default BlockSettings;

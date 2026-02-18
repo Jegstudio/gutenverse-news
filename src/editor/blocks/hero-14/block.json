@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-hero-14",
     "title": "Hero 14",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Hero",
-    "description": "Your Block description.",
+    "description": "[PRO] Display your posts in fancy way with Hero block.",
     "category": "gvnews-hero",
     "editorStyle": "gvnews-gutenverse-editor-style",
     "attributes": {
@@ -40,23 +40,32 @@
         },
         "heroItemOverlay": {
             "type": "array",
-            "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            },{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }]
+            "default": [
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                }
+            ]
         },
         "postOffset": {
             "type": "string",
@@ -256,9 +265,6 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "excerptColor": {
-            "type": "object"
-        },
         "enableExcerpt": {
             "type": "boolean",
             "default": true
@@ -321,14 +327,174 @@
         "categoryButtonBoxShadowHover": {
             "type": "object"
         },
+        "postReviewMetaStarColor": {
+            "type": "object"
+        },
+        "postReviewMetaStarSize": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "showMeta": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "showMetaAuthor": {
+            "type": "boolean",
+            "default": true
+        },
+        "typographyMetaAuthor": {
+            "type": "object"
+        },
+        "metaAuthorColor": {
+            "type": "object"
+        },
+        "metaAuthorColorHover": {
+            "type": "object"
+        },
+        "titleColorHover": {
+            "type": "object"
+        },
+        "typographyMeta": {
+            "type": "object"
+        },
+        "metaColor": {
+            "type": "object"
+        },
+        "metaColorHover": {
+            "type": "object"
+        },
+        "metaIconColorHover": {
+            "type": "object"
+        },
+        "metaIconColor": {
+            "type": "object"
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "typography": {
+            "type": "object"
+        },
+        "secondTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleTypography": {
+            "type": "object"
+        },
+        "thridTitleColor": {
+            "type": "object"
+        },
+        "thridTitleColorHover": {
+            "type": "object"
+        },
+        "thridMetaColor": {
+            "type": "object"
+        },
+        "thridMetaIconColor": {
+            "type": "object"
+        },
+        "thridMetaColorHover": {
+            "type": "object"
+        },
+        "thridMetaIconColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonDisabled": {
+            "type": "boolean"
+        },
+        "sideCategoryButtonTypography": {
+            "type": "object"
+        },
+        "sideCategoryButtonColor": {
+            "type": "object"
+        },
+        "sideCategoryButtonColorHover": {
+            "type": "object"
+        },
+        "categoryButtonPadding": {
+            "type": "object"
+        },
+        "categoryButtonMargin": {
+            "type": "object"
+        },
+        "mainContainerBackground": {
+            "type": "object"
+        },
+        "mainContainerMargin": {
+            "type": "object"
+        },
+        "mainContainerPadding": {
+            "type": "object"
+        },
+        "mainContainerBorder": {
+            "type": "object"
+        },
+        "mainContainerBoxShadow": {
+            "type": "object"
+        },
+        "excerptTypography": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
+        },
+        "secondTitleColor": {
+            "type": "object"
+        },
+        "secondTitleColorHover": {
+            "type": "object"
+        },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
+        },
+        "imageLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "showMetaReview": {
+            "type": "boolean"
         }
     },
     "supports": {
         "className": false,
         "inserter": false
     },
-    "keywords": []
+    "keywords": [],
+    "gutenversePro": true,
+    "style": ["gutenverse-news-frontend-blocks-style"],
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
 }

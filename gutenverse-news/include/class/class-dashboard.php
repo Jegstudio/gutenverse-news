@@ -20,6 +20,7 @@ class Dashboard {
 	 */
 	public function __construct() {
 		add_filter( 'gutenverse_dashboard_config', array( $this, 'dashboard_config' ) );
+		add_filter( 'gutenverse_settings_data', array( $this, 'merge_settings_data' ) );
 		add_filter( 'gutenverse_include_dashboard', array( $this, 'enqueue_scripts' ) );
 		add_filter( 'gutenverse_settings_data', array( $this, 'merge_settings_data' ) );
 	}
@@ -79,7 +80,7 @@ class Dashboard {
 			'name'           => GUTENVERSE_NEWS_NAME,
 			'version'        => GUTENVERSE_NEWS_VERSION,
 			'currentNotice'  => GUTENVERSE_NEWS_NOTICE_VERSION,
-			'noticeVersions' => array( '3.0.0' ),
+			'noticeVersions' => array( '3.1.0' ),
 		);
 
 		return $config;

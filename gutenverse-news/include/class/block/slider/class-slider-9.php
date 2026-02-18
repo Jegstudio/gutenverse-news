@@ -9,6 +9,8 @@
 
 namespace GUTENVERSE\NEWS\Block\Slider;
 
+use GUTENVERSE\NEWS\Util\Svg_Icons;
+
 /**
  * Slider_9
  *
@@ -36,11 +38,10 @@ class Slider_9 extends Slider_View_Abstract {
 			} else {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-750x375' );
 			}
-			$image_mechanism = isset( $this->attribute['force_normal_image_load'] ) && ( 'true' === $this->attribute['force_normal_image_load'] || 'yes' === $this->attribute['force_normal_image_load'] );
-			$hidden_image    = $image_mechanism && 0 <= $key ? '<img class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
+			$hidden_image = 'eager' === $this->attribute['image_load'] && 0 === $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
 
 			$content .=
-			'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . " style=\"background-image: url({$image})\">
+				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . " style=\"background-image: url({$image})\">
 					{$hidden_image}
                     " . gvnews_edit_post( $post->ID ) . "
                     <div class=\"gvnews_slide_wrapper\">
@@ -49,10 +50,10 @@ class Slider_9 extends Slider_View_Abstract {
                                 <div class=\"gvnews_post_category\">
                                     {$primary_category}
                                 </div>
-                                {$this->render_meta($post)}
-                                <h2 class=\"gvnews_post_title\">
-                                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                                </h2>
+                                {$this->render_meta( $post )}
+                                <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                                </' . $this->post_title_tag . '>
                             </div>
                         </div>
                     </div>
@@ -62,15 +63,15 @@ class Slider_9 extends Slider_View_Abstract {
 			$additional_class = ( ! has_post_thumbnail( $post->ID ) ) ? ' no_thumbnail' : '';
 
 			$thumb .=
-			"<article data-index='{$index}' " . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post->ID ) . '>
+				"<article data-index='{$index}' " . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post->ID ) . '>
                     <div class="gvnews_thumb">
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . $thumbnail . '</a>
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . '</a>
                     </div>
                     <div class="gvnews_postblock_content">
                         ' . $this->post_meta_2( $post ) . '
-                        <h3 class="gvnews_post_title">
-                            <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                        </h3>
+                        <' . $this->post_title_tag . ' class="gvnews_post_title">
+                            <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                        </' . $this->post_title_tag . '>
                     </div>
                 </article>';
 			++$index;
@@ -113,7 +114,7 @@ class Slider_9 extends Slider_View_Abstract {
 			);
 
 			$output =
-			'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$wrapper_classes}\">
+				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$wrapper_classes}\">
                     <div class=\"gvnews_slider_type_9 gvnews_slider slider-carousel\" {$data_attr}>
                         {$content['content']}
                     </div>
@@ -143,10 +144,13 @@ class Slider_9 extends Slider_View_Abstract {
 		$time    = $this->format_date( $post );
 		$comment = get_comments_number( $post );
 
+		$icon_date    = Svg_Icons::render_svg_icon( 'fas fa-clock' );
+		$icon_comment = Svg_Icons::render_svg_icon( 'fas fa-comments' );
+
 		$output =
-		'<div class="gvnews_post_meta">
-				<span class="gvnews_meta_date"><i class="fas fa-clock"></i>' . esc_attr( $time ) . '</span>
-				<span class="gvnews_meta_comment"><i class="fa fa-comments"></i> ' . esc_attr( $comment ) . '</span>
+			'<div class="gvnews_post_meta">
+				<span class="gvnews_meta_date">' . $icon_date . ' ' . esc_attr( $time ) . '</span>
+				<span class="gvnews_meta_comment">' . $icon_comment . ' ' . esc_attr( $comment ) . '</span>
 			</div>';
 
 		return $output;

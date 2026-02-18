@@ -409,39 +409,28 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_post_author( $request ) {
-		$attr         = $request->get_param( 'attr' );
-		$social_array = $this->declare_socials();
-		if ( is_array( $attr['author'] ) ) {
-			$data = array();
-			foreach ( $attr['author'] as $author ) {
-				if ( is_array( $author ) ) {
-					$user = get_user_by( 'login', $author['value'] );
+		$attr = $request->get_param( 'attr' );
+		$data = array();
 
-					if ( isset( $user->ID ) ) {
-						foreach ( $social_array as $key => $value ) {
-							if ( get_the_author_meta( $key, $user->ID ) ) {
-									$meta[] = array(
-										'key'   => get_the_author_meta( $key, $user->ID ),
-										'value' => $value,
-									);
-							}
-						}
-						if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
-							$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
-						} else {
-							$name = get_the_author_meta( 'display_name', $user->ID );
-						}
-						$data[] = array(
-							'ID'     => $user->ID,
-							'name'   => $name,
-							'avatar' => get_avatar_url( $user->ID, 80 ),
-							'role'   => $user->roles[0],
-							'desc'   => get_the_author_meta( 'description', $user->ID ),
-							'meta'   => $meta,
-						);
-					}
-				}
+		if ( ! is_array( $attr['author'] ) ) {
+			return wp_json_encode( $data );
+		}
+
+		$author_id = $attr['author'][0];
+		$user      = get_user_by( 'id', $author_id );
+		if ( isset( $user->ID ) ) {
+			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
+				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
+			} else {
+				$name = get_the_author_meta( 'display_name', $user->ID );
 			}
+			$data[] = array(
+				'ID'     => $user->ID,
+				'name'   => $name,
+				'avatar' => get_avatar_url( $user->ID, 80 ),
+				'role'   => $user->roles[0],
+				'desc'   => get_the_author_meta( 'description', $user->ID ),
+			);
 		}
 		return wp_json_encode( $data );
 	}
@@ -571,20 +560,10 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_author( $attributes ) {
-		$data         = array();
-		$users        = get_users();
-		$social_array = $this->declare_socials();
-		$name         = '';
+		$data  = array();
+		$users = get_users();
+		$name  = '';
 		foreach ( $users as $user ) {
-			$meta = false;
-			foreach ( $social_array as $key => $value ) {
-				if ( get_the_author_meta( $key, $user->ID ) ) {
-					$meta[] = array(
-						'key'   => get_the_author_meta( $key, $user->ID ),
-						'value' => $value,
-					);
-				}
-			}
 			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
 				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
 			} else {
@@ -596,7 +575,6 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta,
 			);
 		}
 
@@ -735,6 +713,8 @@ class Api {
 			$advanced_response = isset( $attributes['advancedResponse'] );
 		}
 
+		$check_landscape_thumbnail = isset( $attributes['checkLandscapeThumbnail'] ) ? $attributes['checkLandscapeThumbnail'] : false;
+
 		$data = $advanced_response ? array(
 			'result'     => array(),
 			'next'       => $result['next'] ?? false,
@@ -758,36 +738,42 @@ class Api {
 				$excerpt = $post->post_content;
 			}
 
-			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
-			$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
-			$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
-			$excerpt           = wp_trim_words( $excerpt, 200, null );
+			$post_thumbnail_id   = get_post_thumbnail_id( $post->ID );
+			$excerpt             = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
+			$excerpt             = wp_trim_words( $excerpt, 200, null );
+			$landscape_thumbnail = false;
+			if ( $check_landscape_thumbnail ) {
+				$thumb_data          = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+				$landscape_thumbnail = ( ( isset( $thumb_data[1] ) && isset( $thumb_data[2] ) ) && ( $thumb_data[1] < $thumb_data[2] ) ) ? false : true;
+			}
 
 			$final_data = array(
 				'id'        => $post->ID,
 				'title'     => html_entity_decode( get_the_title( $post->ID ) ),
+				'format'    => get_post_format( $post->ID ),
 				'thumbnail' => array(
 					'id'      => get_post_thumbnail_id( $post->ID ),
 					'url'     => get_the_post_thumbnail_url( $post->ID ),
-					'padding' => $padding,
 				),
-				'category'  => array(
+				'category'           => array(
 					'id'   => $cat_id,
 					'name' => $category,
 				),
-				'date'      => array(
+				'date'               => array(
 					'published' => get_post_timestamp( $post->ID, 'date' ),
 					'modified'  => get_post_timestamp( $post->ID, 'modified' ),
 				),
-				'excerpt'   => $excerpt,
-				'author'    => array(
+				'excerpt'            => $excerpt,
+				'author'             => array(
 					'id'     => $post->post_author,
 					'name'   => get_the_author_meta( 'display_name', $post->post_author ),
 					'avatar' => get_avatar_url( $post->post_author, array( 'size' => 75 ) ),
 				),
-				'comment'   => get_comments_number( $post->ID ),
+				'comment'            => get_comments_number( $post->ID ),
+				'landscapeThumbnail' => $landscape_thumbnail,
 			);
+
+			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', [], $post ) );
 
 			if ( $advanced_response ) {
 				$data['result'][] = $final_data;
@@ -878,37 +864,6 @@ class Api {
 		}
 
 		return wp_json_encode( $result );
-	}
-
-	/**
-	 * Method declare_socials
-	 *
-	 * @return array
-	 */
-	public function declare_socials() {
-		$social_array = array(
-			'url'        => 'fa-globe',
-			'facebook'   => 'fa-facebook-official',
-			'twitter'    => 'fa-twitter',
-			'linkedin'   => 'fa-linkedin',
-			'pinterest'  => 'fa-pinterest',
-			'behance'    => 'fa-behance',
-			'github'     => 'fa-github',
-			'flickr'     => 'fa-flickr',
-			'tumblr'     => 'fa-tumblr',
-			'dribbble'   => 'fa-dribbble',
-			'soundcloud' => 'fa-soundcloud',
-			'instagram'  => 'fa-instagram',
-			'vimeo'      => 'fa-vimeo',
-			'youtube'    => 'fa-youtube-play',
-			'vk'         => 'fa-vk',
-			'reddit'     => 'fa-reddit',
-			'weibo'      => 'fa-weibo',
-			'rss'        => 'fa-rss',
-			'twitch'     => 'fa-twitch',
-		);
-
-		return $social_array;
 	}
 
 	/**

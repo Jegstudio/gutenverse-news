@@ -18,6 +18,20 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_35 extends Module_View_Abstract {
 
 	/**
+	 * Additional class
+	 *
+	 * @var string
+	 */
+	protected $additional_class = 'disable-fade-up';
+
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_5';
+
+	/**
 	 * Method render_block_type_1
 	 *
 	 * @param object $post       post.
@@ -36,7 +50,7 @@ class Module_35 extends Module_View_Abstract {
 		$class           = $box_shadow_flag;
 		$postformat_icon = null;
 		$edit_position   = null;
-		$readmore        = "<a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>';
+		$read_more       = $this->attribute['disable_readmore'] ? '' : " <a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
 		if ( $this->is_thumbnail_landscape( $post_id ) ) {
 			$pl              = ' gvnews_pl_md_5 ';
 			$class           = $additional_class;
@@ -49,18 +63,18 @@ class Module_35 extends Module_View_Abstract {
                     {$postformat_icon}
                     <div class=\"gvnews_thumb\">
                         " . gvnews_edit_post( $post_id, $edit_position ) . "
-                        <a href=\"{$permalink}\">" . $thumbnail . "</a>
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . "</a>
                         <div class=\"gvnews_post_category\">
                             <span>{$this->get_primary_category($post_id)}</span>
                         </div>
                     </div>
                     <div class=\"gvnews_postblock_content\">
-                        <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
-                        </h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                        </' . $this->post_title_tag . '>
                         <div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                            {$readmore}
+                            {$read_more}
                         </div>
                     </div>
                     {$this->post_meta_1($post)}
@@ -79,7 +93,7 @@ class Module_35 extends Module_View_Abstract {
 		$first_block = '';
 		$size        = count( $results );
 		for ( $i = 0; $i < $size; $i++ ) {
-			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-featured-750' );
+			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-350x350' );
 		}
 
 		return $first_block;
@@ -96,18 +110,19 @@ class Module_35 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		remove_filter( 'gvnews_custom_thumbnail_class', array( $this, 'thumbnail_container_class_default' ) );
 
 		return "<div class=\"gvnews_block_container\">
                     {$this->get_content_before($attr)}
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

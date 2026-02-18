@@ -8,6 +8,9 @@ import { sliderHero } from '../../../control-panel/panel-heroslider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { applyFilters } from '@wordpress/hooks';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -17,6 +20,12 @@ export const panelList = () => {
                 title: __('Hero Setting', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: settingHero,
+                tabRole: TabSetting
+            },
+            {
+                title: __('Meta Settings', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaPanel(props, ['date', 'review']),
                 tabRole: TabSetting
             },
             {
@@ -34,7 +43,13 @@ export const panelList = () => {
             {
                 title: __('Hero Style', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: styleHero,
+                panelArray: (props) => styleHero(props, 3),
+                tabRole: TabStyle
+            },
+            {
+                title: __('Meta Style', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => metaStylePanel(props, ['date'], true),
                 tabRole: TabStyle
             },
             {
@@ -47,6 +62,12 @@ export const panelList = () => {
                 title: __('Category Label', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: categoryStylePanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
                 tabRole: TabStyle
             },
             {
@@ -71,7 +92,7 @@ export const panelList = () => {
                     ...props,
                     styleId: 'block-1-advance',
                 }),
-                tabRole: TabStyle
+                tabRole: TabSetting
             },
             {
                 title: __('Condition', 'gutenverse-news'),

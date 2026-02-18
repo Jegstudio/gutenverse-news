@@ -17,6 +17,18 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_14 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_lg_box';
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $second_thumbnail_class = 'gvnews_pl_md_1';
 
 	/**
 	 * Method render_block_type
@@ -33,15 +45,15 @@ class Module_14 extends Module_View_Abstract {
 
 		$content = '<div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_category\">
                             <span>{$this->get_primary_category($post_id)}</span>
                         </div>
-                        <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
-                        </h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                        </' . $this->post_title_tag . '>
                         ' . $this->post_meta_3( $post ) . '
                     </div>';
 
@@ -65,13 +77,17 @@ class Module_14 extends Module_View_Abstract {
 			$image_size = 'gvnews-1140x570';
 		}
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$first_block = $this->render_block_type( $results[0], $image_size, 1 );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		$second_block = '';
 		$size         = count( $results );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 		for ( $i = 1; $i < $size; $i++ ) {
 			$second_block .= $this->render_block_type( $results[ $i ], 'gvnews-360x180', 2 );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'second_custom_image_size' ) );
 
 		return '<div class="gvnews_posts_wrap">
                     <div class="gvnews_postbig">
@@ -122,11 +138,7 @@ class Module_14 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

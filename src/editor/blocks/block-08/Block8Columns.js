@@ -2,7 +2,21 @@ import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 
 const Block8Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page, isLoadMore = false,  moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -10,7 +24,7 @@ const Block8Columns = props => {
         const { index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ThumbModule size={500} cat={true} post={props.post}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
                 <ContentModule title={true} meta={3} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
         );
@@ -25,7 +39,8 @@ const Block8Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

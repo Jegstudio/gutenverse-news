@@ -46,6 +46,8 @@
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.37.5",
     "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
     "gulp-wp-pot": "^2.5.0",
     "gulp-zip": "6.0.0",
     "path": "^0.12.7"
@@ -54,6 +56,8 @@
     "@svgr/webpack": "^7.0.0",
     "classnames": "^2.5.1",
     "gutenverse-core": "file:gutenverse-core",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "shufflejs": "^6.1.2",
+    "tiny-slider": "^2.9.4"
   }
 }

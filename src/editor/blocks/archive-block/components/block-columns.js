@@ -1,3 +1,8 @@
+
+import { getImageSizeDetail } from '../../../utils/helper';
+/**
+ * MODULE OPTIONS
+ */
 import Block1Columns from '../../block-01/Block1Columns';
 import Block2Columns from '../../block-02/Block2Columns';
 import Block3Columns from '../../block-03/Block3Columns';
@@ -55,6 +60,11 @@ const BlockColumns = (props) => {
         overlay,
         postBulk,
         adsData = false,
+        readmoreButtonDisabled,
+        renderedImageSizeMain,
+        gutterWidth,
+        rowItemGap,
+        postTitleHtmlTag
     } = props;
     const columns = [
         {
@@ -308,6 +318,11 @@ const BlockColumns = (props) => {
                     metaDateFormatCustom,
                     overlay,
                     postBulk,
+                    readmoreButtonDisabled,
+                    imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 },),
+                    gutterWidth,
+                    rowItemGap,
+                    postTitleHtmlTag
                 });
             }
         });
@@ -327,6 +342,9 @@ const BlockColumns = (props) => {
                     overlay,
                     postBulk,
                     adsData: adsData,
+                    readmoreButtonDisabled,
+                    imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 }),
+                    postTitleHtmlTag
                 });
             }
         });

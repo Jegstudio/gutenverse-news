@@ -1,13 +1,15 @@
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { useEffect, useRef, useState }  from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { ModuleOverlay, ModuleSkeleton } from '../placeholder';
 import HeroViewComponent from './hero-view-component';
 import HeroContentWrapperComponent from './hero-content-wrapper';
 import { getModuleOptions } from '../../utils/helper';
 
+const defaultOptions = getModuleOptions();
+
 const HeroArchiveComponent = (props) => {
-    const { heroType, numberPostShow, columnWidth, heroSliderRef } = props;
+    const { heroType, numberPostShow } = props;
     const {
         sliderItem,
         numberPost = numberPostShow * 2,
@@ -20,51 +22,66 @@ const HeroArchiveComponent = (props) => {
         autoplayDelay,
         heroMargin,
         heightDesktop,
+        attributes,
     } = props;
 
-    const [postBulk, getPost] = useState(false);
-    const [blockWidth, getWidth] = useState(8);
-    const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(16);
+    const {
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
+    } = attributes;
+
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor && (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13')
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
+
+    const [rawPosts, setRawPosts] = useState(false);
+    const [postData, setPostData] = useState(false);
+    const [postsLimit, setPostsLimit] = useState(16);
     const [overlay, setOverlay] = useState(false);
-    const [slider, initSlider] = useState(false);
-    const [block, setBlock] = useState(false);
-    const moduleOption = useRef(null);
-    const postCount = useRef(0);
+    const [blockContent, setBlockContent] = useState(false);
+
 
     useEffect(() => {
-        if (columnWidth == 'auto') {
-            // todo add auto width detection?
-            getWidth(8);
-        } else {
-            getWidth(columnWidth);
+        let offset = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
+        let itemsToDisplay = parseInt(sliderItem * numberPostShow);
+        let totalAvailablePosts = parseInt(moduleOption.option.post_count);
+
+        if (!rawPosts || !rawPosts.length) {
+            setPostData(false);
+            return;
         }
-    }, [columnWidth]);
 
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(sliderItem * numberPostShow);
-        let count = parseInt(postCount.current);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost * sliderItem);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                if (count > off) {
-                    loadMore(loadPost * sliderItem);
-                } else {
-                    if (count != postCount.current) {
-                        loadMore(count);
-                    }
-                }
-                getTrim(false);
+        const rawPostsSlice = rawPosts.slice(offset, parseInt(itemsToDisplay + offset));
+        if (rawPostsSlice.length) {
+            if (rawPostsSlice.length < itemsToDisplay && postsLimit <= totalAvailablePosts) {
+                setPostsLimit(postsLimit * sliderItem);
             }
+            setPostData(rawPostsSlice);
         } else {
-            getTrim(false);
+            if (totalAvailablePosts > offset) {
+                setPostsLimit(postsLimit * sliderItem);
+            } else {
+                if (totalAvailablePosts != moduleOption.option.post_count) {
+                    setPostsLimit(totalAvailablePosts);
+                }
+            }
+            setPostData(false);
         }
-    }, [numberPost, postBulk, postOffset, sliderItem]);
+    }, [numberPost, rawPosts, postOffset, sliderItem]);
 
     // useEffect(() => {
     //     apiFetch({
@@ -80,23 +97,18 @@ const HeroArchiveComponent = (props) => {
 
     useEffect(() => {
 
-        if (moduleOption.current == null) {
-            moduleOption.current = getModuleOptions();
-            postCount.current = moduleOption.current.option.post_count.publish;
-        }
-
-        postBulk ? setOverlay(true) : null;
+        rawPosts ? setOverlay(true) : null;
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-posts-archive'),
             method: 'POST',
             data: {
                 attr: {
-                    numberPost: loadPost,
+                    numberPost: postsLimit,
                 },
             },
         })
             .then((data) => {
-                getPost(JSON.parse(data));
+                setRawPosts(JSON.parse(data));
             })
             .catch((e) => {
                 console.error(e.message);
@@ -104,16 +116,17 @@ const HeroArchiveComponent = (props) => {
             .finally(() => {
                 setOverlay(false);
             });
-    }, [loadPost]);
+    }, [postsLimit]);
 
     const resetBlock = () => {
-        if (postData && postData.length && moduleOption.current) {
+        if (postData && postData.length) {
             const attr = {
-                option: moduleOption.current,
+                option: moduleOption,
                 date: {
                     format: dateFormat,
                     custom: dateFormatCustom,
                 },
+                postTitleHtmlTag,
             };
             const rows = [];
             for (let i = 0; i < sliderItem; i++) {
@@ -131,30 +144,43 @@ const HeroArchiveComponent = (props) => {
                     />
                 );
             }
-            setBlock(
+            setBlockContent(
                 <HeroViewComponent
                     {...{
                         rows,
                         heroType,
                         heroStyle,
                         enableslider,
-                        blockWidth,
                         autoplay,
                         autoplayDelay,
                     }}
                 />
             );
-        } else if (postBulk && moduleOption.current) {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.current.string.no_content}</div>);
+        } else {
+            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
     };
 
     useEffect(() => {
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetBlock();
-    }, [blockWidth, moduleOption, dateFormat, dateFormatCustom, heroStyle, heroType]);
+    }, [
+        dateFormat,
+        dateFormatCustom,
+        heroStyle,
+        heroType,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
+    ]);
 
     useEffect(() => {
-        setBlock(false);
+        setBlockContent(false);
         setTimeout(function () {
             resetBlock();
         });
@@ -162,11 +188,8 @@ const HeroArchiveComponent = (props) => {
 
     return (
         <>
-            {block ? block : <ModuleSkeleton />}
+            {blockContent ? blockContent : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && gvnews.hero.init(heroSliderRef.current)}
-            {slider && gvnews.hero.heroSlider(heroSliderRef.current)}
-            {slider && initSlider(false)}
         </>
     );
 };

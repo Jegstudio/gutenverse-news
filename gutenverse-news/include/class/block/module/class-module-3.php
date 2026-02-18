@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_3 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_2';
 
 	/**
 	 * Method render_block_type_1
@@ -27,8 +33,10 @@ class Module_3 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post, $image_size ) {
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$is_feed   = gvnews_get_rss_post_id( $post->ID );
 		$thumbnail = $is_feed ? $post->get_thumbnail( $image_size ) : $this->get_thumbnail( $post->ID, $image_size );
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$title     = $is_feed ? $post->title : get_the_title( $post->ID );
 		$permalink = $is_feed ? $post->permalink : get_the_permalink( $post->ID );
 		$edit      = $is_feed ? '' : gvnews_edit_post( $post->ID );
@@ -38,12 +46,12 @@ class Module_3 extends Module_View_Abstract {
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2', $post->ID ) . '>
                 <div class="gvnews_thumb">
                     ' . $edit . '
-                    <a href="' . esc_url( $permalink ) . '">' . $thumbnail . '</a>
+                    <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
                 </div>
                 <div class="gvnews_postblock_content">
-                    <h3 class="gvnews_post_title">
-                        <a href="' . esc_url( $permalink ) . '">' . esc_attr( $title ) . '</a>
-                    </h3>
+                    <' . $this->post_title_tag . ' class="gvnews_post_title">
+                        <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . esc_attr( $title ) . '</a>
+                    </' . $this->post_title_tag . '>
                     ' . $this->post_meta_1( $post, false, $is_feed ) . '
                     <div class="gvnews_post_excerpt">
                         <p>' . $excerpt . '</p>
@@ -164,11 +172,7 @@ class Module_3 extends Module_View_Abstract {
                 {$content}
                 {$this->get_content_after($attr)}
             </div>
-            <div class=\"gvnews_block_navigation\">
-                {$this->get_navigation_before($attr)}
-                {$navigation}
-                {$this->get_navigation_after($attr)}
-            </div>";
+            {$navigation}";
 	}
 
 	/**

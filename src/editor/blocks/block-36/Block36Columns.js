@@ -1,5 +1,6 @@
 import ThumbModule from '../../part/thumbnail';
-import { ContentModule } from '../../part/post';
+import { ContentModule, PostExcerpt, PostTitle } from '../../part/post';
+import { MetaModule1 } from "../../part/meta";
 
 const Block36Columns = (props) => {
     const {
@@ -15,6 +16,8 @@ const Block36Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -22,11 +25,32 @@ const Block36Columns = (props) => {
 
     const RenderBlock1 = (props) => {
         const { post, attr, index = 'x' } = props;
+        const { landscapeThumbnail } = post;
+        if (landscapeThumbnail) {
+            return (
+                <article className={`gvnews_post gvnews_pl_md_5 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+                    <div className="box_wrap">
+                        <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} landscapeThumbnail={landscapeThumbnail} />
+                        <ContentModule cat={false} title={true} meta={3} read={false} excerpt={true} post={post} attr={attr} />
+                    </div>
+                </article>
+            );
+
+        }
         return (
-            <article className={`gvnews_post gvnews_pl_md_5 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
+            <article className={`gvnews_post gvnews_pl_md_box format-standard ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={715} cat={true} post={post} />
-                    <ContentModule cat={false} title={true} meta={3} read={false} excerpt={true} post={post} attr={attr} />
+                    <span className="gvnews_postformat_icon"></span>
+                    <div className="gvnews_thumb" style={{ backgroundImage: `url(${post.thumbnail.url})` }}>
+                        <div className="gvnews_post_category">
+                            <span><a href='javascript:void(0);'>{post.category.name}</a></span>
+                        </div>
+                    </div>
+                    <div className="gvnews_postblock_content">
+                        {props.title && <PostTitle post={post} attr={attr}/>}
+                        <PostExcerpt post={post} attr={attr} />
+                        <MetaModule1 post={post} attr={attr} />
+                    </div>
                 </div>
             </article>
         );
@@ -42,6 +66,7 @@ const Block36Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];

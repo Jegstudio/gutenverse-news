@@ -16,7 +16,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  * @author Jegstudio
  */
 class Module_21 extends Module_View_Abstract {
-
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_sm';
 	/**
 	 * Method render_block_type_1
 	 *
@@ -33,12 +38,12 @@ class Module_21 extends Module_View_Abstract {
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post_id ) . '>
                     <div class="gvnews_thumb">
                         ' . gvnews_edit_post( $post_id ) . "
-                        <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                        <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                     </div>
                     <div class=\"gvnews_postblock_content\">
-                        <h3 class=\"gvnews_post_title\">
-                            <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                        </{$this->post_title_tag}>
                         {$this->post_meta_2($post)}
                     </div>
                 </article>";
@@ -72,18 +77,17 @@ class Module_21 extends Module_View_Abstract {
 	public function render_output( $attr, $column_class ) {
 		$results    = isset( $attr['results'] ) ? $attr['results'] : $this->build_query( $attr );
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
-		$content    = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
+		$content = ! empty( $results['result'] ) ? $this->render_column( $results['result'], $column_class ) : $this->empty_content();
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
                     {$this->get_content_before($attr)}
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

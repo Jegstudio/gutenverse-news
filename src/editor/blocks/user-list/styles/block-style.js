@@ -377,6 +377,45 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.${elementId} .gvnews_userlist`,
     });
 
+    if (isNotEmpty(attributes['rowItemGap'])) {
+        data.push({
+            'type': 'plain',
+            'id': 'rowItemGap',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_userlist ul`,
+            'properties': [
+                {
+                    'name': 'row-gap',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                },
+            ],
+        });
+    }
+    isNotEmpty(attributes['columnItemGap']) && data.push({
+        'type': 'plain',
+        'id': 'columnItemGap',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_userlist ul`,
+        'properties': [
+            {
+                'name': 'column-gap',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
     return data;
 };
 

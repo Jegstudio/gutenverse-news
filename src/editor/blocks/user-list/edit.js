@@ -13,11 +13,11 @@ import { addQueryArgs } from '@wordpress/url';
 import { RawHTML } from '@wordpress/element';
 import { ModuleSkeleton } from '../../part/placeholder';
 import HeaderModule from '../../part/header';
-import { withCopyElementToolbar } from 'gutenverse-core/hoc';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
+import { CopyElementToolbar, Instagram } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import { FacebookIcon, SiteIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../../utils/social-icons';
 
 const UserlistBlock = compose(
     withPartialRender,
@@ -32,6 +32,8 @@ const UserlistBlock = compose(
     const {
         elementId,
         icon,
+        iconType = 'icon',
+        iconSVG = '',
         title,
         second_title,
         headerType,
@@ -183,11 +185,6 @@ const UserlistBlock = compose(
                     desc.push(<span className="gvnews_userlist-desc">{props.desc.split(' ').splice(0, props.attr.length).join(' ') + '...'}</span>);
                 }
             }
-            if (!hideSocial && props.meta) {
-                for (let i = 0; i < props.meta.length; i++) {
-                    social.push(<div className="gvnews_userlist-socials"><a><i className={`fa ${props.meta[i].value}`}></i></a></div>);
-                }
-            }
         }
         return (
             <li>
@@ -199,7 +196,15 @@ const UserlistBlock = compose(
                         <a className="gvnews_userlist-name">{props.name}</a>
                         {sub}
                         {desc}
-                        {social}
+                        {!hideSocial && (
+                            <div className="gvnews_userlist-socials">
+                                <a href="javascript:void(0);" className="url"><SiteIcon /></a>
+                                <a href="javascript:void(0);" className="url"><FacebookIcon /></a>
+                                <a href="javascript:void(0);" className="url"><TwitterIcon /></a>
+                                <a href="javascript:void(0);" className="url"><LinkedinIcon /></a>
+                                <a href="javascript:void(0);" className="url"><InstagramIcon /></a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </li>
@@ -232,6 +237,8 @@ const UserlistBlock = compose(
 
     const headerData = {
         icon,
+        iconType,
+        iconSVG,
         title,
         second_title,
         headerType,

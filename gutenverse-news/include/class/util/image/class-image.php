@@ -59,7 +59,7 @@ class Image {
 	private function __construct() {
 		$this->setup_image_size();
 
-		add_action( 'wp_loaded', array( $this, 'image_hook' ) );
+		// add_action( 'wp_loaded', array( $this, 'image_hook' ) );
 
 		add_action( 'after_setup_theme', array( $this, 'generate_image' ), 99 );
 	}
@@ -80,18 +80,18 @@ class Image {
 	 */
 	public function image_hook() {
 
-		$image = Image_Normal_Load::get_instance();
+		// $image = Image_Normal_Load::get_instance();
 
-		add_filter( 'gvnews_image_thumbnail', array( $image, 'image_thumbnail' ), null, 2 );
-		add_filter( 'gvnews_image_thumbnail_unwrap', array( $image, 'image_thumbnail_unwrap' ), null, 2 );
-		add_filter( 'gvnews_image_lazy_owl', array( $image, 'owl_lazy_image' ), null, 2 );
-		add_filter( 'gvnews_single_image_lazy_owl', array( $image, 'owl_lazy_single_image' ), null, 2 );
+		// add_filter( 'gvnews_image_thumbnail', array( $image, 'image_thumbnail' ), null, 2 );
+		// add_filter( 'gvnews_image_thumbnail_unwrap', array( $image, 'image_thumbnail_unwrap' ), null, 2 );
+		// add_filter( 'gvnews_image_lazy_owl', array( $image, 'owl_lazy_image' ), null, 2 );
+		// add_filter( 'gvnews_single_image_lazy_owl', array( $image, 'owl_lazy_single_image' ), null, 2 );
 
-		add_filter( 'gvnews_single_image_unwrap', array( $image, 'single_image_unwrap' ), null, 2 );
-		add_filter( 'gvnews_single_image_owl', array( $image, 'owl_single_image' ), null, 2 );
+		// add_filter( 'gvnews_single_image_unwrap', array( $image, 'single_image_unwrap' ), null, 2 );
+		// add_filter( 'gvnews_single_image_owl', array( $image, 'owl_single_image' ), null, 2 );
 
-		add_filter( 'gvnews_single_image', array( $image, 'single_image' ), null, 3 );
-		add_filter( 'image_size_names_choose', array( $this, 'custom_size' ) );
+		// add_filter( 'gvnews_single_image', array( $image, 'single_image' ), null, 3 );
+		// add_filter( 'image_size_names_choose', array( $this, 'custom_size' ) );
 	}
 
 	/**
@@ -117,98 +117,19 @@ class Image {
 	 * @return string
 	 */
 	public function get_image_size( $size ) {
+		if ( strpos( apply_filters( 'gvnews_use_custom_image', $size ), 'gvnews-' ) !== false ) {
+			$size = apply_filters( 'gvnews_use_custom_image', $size );
+		}
 		return $this->image_size[ $size ];
 	}
 
 	/**
-	 * Method setup_image_size
+	 * Method get_image_size
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function setup_image_size() {
-		$this->image_size = array(
-			// dimension : 0.5.
-			$this->prefix . '360x180'       => array(
-				'width'     => 360,
-				'height'    => 180,
-				'crop'      => true,
-				'dimension' => 500,
-			),
-			$this->prefix . '750x375'       => array(
-				'width'     => 750,
-				'height'    => 375,
-				'crop'      => true,
-				'dimension' => 500,
-			),
-			$this->prefix . '1140x570'      => array(
-				'width'     => 1140,
-				'height'    => 570,
-				'crop'      => true,
-				'dimension' => 500,
-			),
-
-			// dimension : 0.715.
-			$this->prefix . '120x86'        => array(
-				'width'     => 120,
-				'height'    => 86,
-				'crop'      => true,
-				'dimension' => 715,
-			),
-			$this->prefix . '350x250'       => array(
-				'width'     => 350,
-				'height'    => 250,
-				'crop'      => true,
-				'dimension' => 715,
-			),
-			$this->prefix . '750x536'       => array(
-				'width'     => 750,
-				'height'    => 536,
-				'crop'      => true,
-				'dimension' => 715,
-			),
-			$this->prefix . '1140x815'      => array(
-				'width'     => 1140,
-				'height'    => 815,
-				'crop'      => true,
-				'dimension' => 715,
-			),
-
-			// dimension.
-			$this->prefix . '360x504'       => array(
-				'width'     => 360,
-				'height'    => 504,
-				'crop'      => true,
-				'dimension' => 1400,
-			),
-
-			// dimension 1.
-			$this->prefix . '75x75'         => array(
-				'width'     => 75,
-				'height'    => 75,
-				'crop'      => true,
-				'dimension' => 1000,
-			),
-			$this->prefix . '350x350'       => array(
-				'width'     => 350,
-				'height'    => 350,
-				'crop'      => true,
-				'dimension' => 1000,
-			),
-
-			// featured post.
-			$this->prefix . 'featured-750'  => array(
-				'width'     => 750,
-				'height'    => 0,
-				'crop'      => true,
-				'dimension' => 1000,
-			),
-			$this->prefix . 'featured-1140' => array(
-				'width'     => 1140,
-				'height'    => 0,
-				'crop'      => true,
-				'dimension' => 1000,
-			),
-		);
+	public function get_image_sizes() {
+		return $this->image_size;
 	}
 
 	/**
@@ -222,6 +143,117 @@ class Image {
 		}
 	}
 
+	// ///////////////////
+	// PRIVATE FUNCTION //
+	// ///////////////////
+
+	/**
+	 * Method setup_image_size
+	 *
+	 * @return void
+	 */
+	private function setup_image_size() {
+		$this->image_size = array(
+			// dimension : 0.5.
+			$this->prefix . '360x180'   => array(
+				'width'        => 360,
+				'height'       => 180,
+				'crop'         => true,
+				'dimension'    => 500,
+				'display_name' => 'Landscape (2:1) - 360x180',
+			),
+			$this->prefix . '750x375'   => array(
+				'width'        => 750,
+				'height'       => 375,
+				'crop'         => true,
+				'dimension'    => 500,
+				'display_name' => 'Landscape (2:1) - 750x375',
+			),
+			$this->prefix . '1140x570'  => array(
+				'width'        => 1140,
+				'height'       => 570,
+				'crop'         => true,
+				'dimension'    => 500,
+				'display_name' => 'Landscape (2:1) - 1140x570',
+			),
+
+			// dimension : 0.715.
+			$this->prefix . '120x86'    => array(
+				'width'        => 120,
+				'height'       => 86,
+				'crop'         => true,
+				'dimension'    => 715,
+				'display_name' => 'Landscape (7:5) - 120x86',
+			),
+			$this->prefix . '350x250'   => array(
+				'width'        => 350,
+				'height'       => 250,
+				'crop'         => true,
+				'dimension'    => 715,
+				'display_name' => 'Landscape (7:5) - 350x250',
+			),
+			$this->prefix . '750x536'   => array(
+				'width'        => 750,
+				'height'       => 536,
+				'crop'         => true,
+				'dimension'    => 715,
+				'display_name' => 'Landscape (7:5) - 750x536',
+			),
+			$this->prefix . '1140x815'  => array(
+				'width'        => 1140,
+				'height'       => 815,
+				'crop'         => true,
+				'dimension'    => 715,
+				'display_name' => 'Landscape (7:5) - 1140x815',
+			),
+			$this->prefix . '1200x800'  => array(
+				'width'        => 1200,
+				'height'       => 800,
+				'crop'         => true,
+				'dimension'    => 667,
+				'display_name' => 'Landscape (3:2) - 1200x800',
+			),
+
+			// dimension.
+			$this->prefix . '360x504'   => array(
+				'width'        => 360,
+				'height'       => 504,
+				'crop'         => true,
+				'dimension'    => 1400,
+				'display_name' => 'Potrait (5:7) - 360x504',
+			),
+			$this->prefix . '1200x1600' => array(
+				'width'        => 1200,
+				'height'       => 1600,
+				'crop'         => true,
+				'dimension'    => 1333,
+				'display_name' => 'Potrait (3:4) - 1200x1600',
+			),
+
+			// dimension 1.
+			$this->prefix . '75x75'         => array(
+				'width'        => 75,
+				'height'       => 75,
+				'crop'         => true,
+				'dimension'    => 1000,
+				'display_name' => 'Square (1:1) - 75x75',
+			),
+			$this->prefix . '350x350'   => array(
+				'width'        => 350,
+				'height'       => 350,
+				'crop'         => true,
+				'dimension'    => 1000,
+				'display_name' => 'Square (1:1) - 350x350',
+			),
+			$this->prefix . '1024x1024' => array(
+				'width'        => 1024,
+				'height'       => 1024,
+				'crop'         => true,
+				'dimension'    => 1000,
+				'display_name' => 'Square (1:1) - 1024x1024',
+			),
+		);
+	}
 
 	/**
 	 * Parse image size.
@@ -230,7 +262,7 @@ class Image {
 	 *
 	 * @return array
 	 */
-	public function parse_size( $string ) {
+	private function parse_size( $string ) {
 		$size = array();
 
 		if ( ! is_array( $string ) && substr( $string, 0, strlen( $this->prefix ) ) === $this->prefix ) {
@@ -259,7 +291,6 @@ class Image {
 		return $size;
 	}
 
-
 	/**
 	 * Create a new image by cropping the original image based on given size.
 	 *
@@ -271,7 +302,7 @@ class Image {
 	 * @param  boolean $crop   crop.
 	 * @return array
 	 */
-	public function make_image( $id, $width, $height = 999999, $crop = false ) {
+	private function make_image( $id, $width, $height = 999999, $crop = false ) {
 		$image  = get_attached_file( $id );
 		$editor = wp_get_image_editor( $image );
 

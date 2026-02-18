@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-rss",
     "title": "RSS Block",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Rss",
-    "description": "Your Block description.",
+    "description": "[PRO] Display RSS Feed using the Feed URL.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {
@@ -177,6 +177,14 @@
         "condition": {
             "type": "object",
             "default": {}
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
         }
     },
     "supports": {
@@ -186,5 +194,12 @@
     "keywords": [
         "post",
         "rss"
-    ]
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-blocks-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
+    ],
+    "gutenversePro": true
 }

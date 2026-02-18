@@ -8,12 +8,9 @@ import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
-import PanelDeprecated from '../../panels/panel-deprecated';
-import DeprecatedOverlay from '../../part/deprecated-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { CopyElementToolbar } from 'gutenverse-core/components';
-import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -23,7 +20,7 @@ const ArchiveHero = compose(
         attributes,
         clientId,
         setBlockRef,
-        isSelected
+        isSelected,
     } = props;
 
     const {
@@ -57,21 +54,15 @@ const ArchiveHero = compose(
         ref: elementRef
     });
 
-    const isDeprecated = !gutenverseProActive;
-    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     return (
         <>
-            {isDeprecated ? (
-                <PanelDeprecated title="Archive Hero" />
-            ) : (
-                <>
-                    <CopyElementToolbar {...props} />
-                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-                </>
-            )}
+            <CopyElementToolbar {...props} />
+            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            <InspectorControls>
+            </InspectorControls>
             <div {...blockProps}>
-                <div className={wrapperClass}>
+                <div className="gvnews-raw-wrapper gvnews-editor">
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -90,9 +81,9 @@ const ArchiveHero = compose(
                             autoplayDelay: 1000,
                             heroMargin,
                             heightDesktop: heroHeightDesktop,
+                            attributes,
                         }}
                     />
-                    {isDeprecated && <DeprecatedOverlay />}
                 </div>
             </div>
         </>

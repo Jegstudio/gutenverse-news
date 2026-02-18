@@ -17,6 +17,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_15 extends Module_View_Abstract {
 
+	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_box';
 
 	/**
 	 * Method render_block_type_1
@@ -35,15 +41,15 @@ class Module_15 extends Module_View_Abstract {
                     <div class="box_wrap">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id, 'right' ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                             <div class=\"gvnews_post_category\">
                                 <span>{$this->get_primary_category($post_id)}</span>
                             </div>
                         </div>
                         <div class=\"gvnews_postblock_content\">
-                            <h3 class=\"gvnews_post_title\">
-                                <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h3>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             {$this->post_meta_2($post)}
                         </div>
                     </div>
@@ -60,9 +66,11 @@ class Module_15 extends Module_View_Abstract {
 	public function build_column( $results ) {
 		$first_block = '';
 		$size        = count( $results );
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		for ( $i = 0; $i < $size; $i++ ) {
 			$first_block .= $this->render_block_type_1( $results[ $i ], 'gvnews-350x250' );
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return $first_block;
 	}
@@ -85,11 +93,7 @@ class Module_15 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

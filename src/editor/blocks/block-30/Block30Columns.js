@@ -15,6 +15,9 @@ const Block30Columns = (props) => {
         paginationPost = numberPost,
         page = 1,
         isLoadMore = false,
+        readmoreButtonDisabled = false,
+        imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
 
     const postDataLen = postData.length;
@@ -24,8 +27,8 @@ const Block30Columns = (props) => {
         const { post, attr, index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_lg_7 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ThumbModule cat={true} size={715} post={post} />
-                <ContentModule meta={3} title={true} excerpt={true} read={true} post={post} attr={attr} />
+                <ThumbModule cat={true} size={715} post={post} imageSize={imageSizeMain} />
+                <ContentModule meta={3} title={true} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr} />
             </article>
         );
     };
@@ -40,6 +43,7 @@ const Block30Columns = (props) => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
 
         const rows = [];
