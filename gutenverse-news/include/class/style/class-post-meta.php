@@ -551,6 +551,20 @@ class Post_Meta extends Style_Abstract {
 	private function like_dislike_button() {
 		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta .meta-items.gvnews-like-dislike-button";
 
+		// gap between like and dislike button
+		if ( isset( $this->attrs['likeDislikeGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'gap' );
+					},
+					'value'          => $this->attrs['likeDislikeGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		// Like Panel.
 		if ( isset( $this->attrs['likeIconSize'] ) ) {
 			$this->inject_style(
