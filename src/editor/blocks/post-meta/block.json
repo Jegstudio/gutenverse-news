@@ -274,6 +274,9 @@
         },
         "datePrefixColor": {
             "type": "object"
+        },
+        "likeDislikeGap": {
+            "type": "object"
         }
     },
     "supports": {
