@@ -2,16 +2,15 @@ import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
-// import getBlockStyle from '../../control-panel/hero-style';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 
 const ArchiveHero = compose(
     withPartialRender,
@@ -21,7 +20,7 @@ const ArchiveHero = compose(
         attributes,
         clientId,
         setBlockRef,
-        isSelected
+        isSelected,
     } = props;
 
     const {
@@ -55,12 +54,15 @@ const ArchiveHero = compose(
         ref: elementRef
     });
 
+
     return (
         <>
             <CopyElementToolbar {...props} />
             <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            <InspectorControls>
+            </InspectorControls>
             <div {...blockProps}>
-                <div className="guten-raw-wrapper gvnews-editor">
+                <div className="gvnews-raw-wrapper gvnews-editor">
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -79,6 +81,7 @@ const ArchiveHero = compose(
                             autoplayDelay: 1000,
                             heroMargin,
                             heightDesktop: heroHeightDesktop,
+                            attributes,
                         }}
                     />
                 </div>

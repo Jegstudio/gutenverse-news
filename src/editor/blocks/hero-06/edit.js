@@ -1,16 +1,20 @@
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
-import { BlockPanelController } from 'gutenverse-core/controls';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import { compose } from '@wordpress/compose';
 import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { HeroHandler } from '../../part/hero';
 import getHeroStyle from '../../control-panel/panel-styles/hero-style';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 
 const Hero1Block = compose(
@@ -19,6 +23,7 @@ const Hero1Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         setBlockRef,
         clientId,
         isSelected
@@ -73,13 +78,29 @@ const Hero1Block = compose(
             'gvnews-block-wrapper', 'gvnews-hero-6', elementId, animationClass, displayClass),
         ref: elementRef,
     });
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     return (
         <>
-            <CopyElementToolbar {...props} />
-            <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+            {isDeprecated ? (
+                <PanelUpgradePro title="Hero 6" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
+                </>
+            )}
+
             <div {...blockProps}>
-                <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className={wrapperClass}>
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <HeroHandler
                         {...{
@@ -110,8 +131,11 @@ const Hero1Block = compose(
                             autoplayDelay,
                             heroMargin,
                             heightDesktop,
+                            attributes,
+                            setAttributes,
                         }}
                     />
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
         </>

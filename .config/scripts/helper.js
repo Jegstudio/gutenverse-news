@@ -1,36 +1,21 @@
-const rules                             = require( "gutenverse-core/.config/rules" );
-const path                              = require( "path" );
-const FileManagerPlugin                 = require( "filemanager-webpack-plugin" );
-const { output }                        = require( "../config.js" );
-const { stats, plugins }                = require( "gutenverse-core/.config/config" );
-const { externals, coreExternals }      = require( "gutenverse-core/.config/externals" );
-const DependencyExtractionWebpackPlugin = require( "@wordpress/dependency-extraction-webpack-plugin" );
+const rules = require("gutenverse-core/.config/rules");
+const path = require("path");
+const FileManagerPlugin = require("filemanager-webpack-plugin");
+const { output } = require("../config.js");
+const { stats, plugins } = require("gutenverse-core/.config/config");
+const { externals, coreExternals } = require("gutenverse-core/.config/externals");
+const DependencyExtractionWebpackPlugin = require("@wordpress/dependency-extraction-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helper = {
 	mode: "development",
 	devtool: "source-map",
 	entry: {
-		helper: {
-			import: path.resolve( __dirname, "../../src/helper/index.js" ),
+		"deprecated-block": {
+			import: path.resolve(__dirname, "../../src/helper/deprecated-block.js"),
 		},
-		backend: {
-			import: path.resolve( __dirname, "../../src/helper/backend.js" ),
-		},
-		tinyslider: {
-			import: path.resolve( __dirname, "../../src/helper/tiny-slider.js" ),
-		},
-		newsticker: {
-			import: path.resolve( __dirname, "../../src/helper/newsticker.js" ),
-		},
-		slider: {
-			import: path.resolve( __dirname, "../../src/helper/block-slider.js" ),
-		},
-		carousel: {
-			import: path.resolve( __dirname, "../../src/helper/block-carousel.js" ),
-		},
-		hero: {
-			import: path.resolve( __dirname, "../../src/helper/gvnewshero.js" ),
+		"downgrade-plugin": {
+			import: path.resolve(__dirname, "../../src/wizard/downgrade-plugin.js"),
 		},
 	},
 	externals: {
@@ -52,68 +37,24 @@ const helper = {
 					onEnd: {
 						copy: [
 							{
-								source: "./.config/vendor/scripts/*",
+								source: "./build/deprecated-block.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
 							{
-								source: "./build/helper.js*",
+								source: "./build/downgrade-plugin.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
 							{
-								source: "./build/helper.asset.php*",
+								source: "./build/downgrade-plugin.asset.php*",
 								destination: "./gutenverse-news/lib/dependencies/",
 							},
 							{
-								source: "./build/backend.js*",
+								source: "./build/dashboard.js*",
 								destination: "./gutenverse-news/assets/js/",
 							},
 							{
-								source: "./build/backend.asset.php*",
+								source: "./build/dashboard.asset.php*",
 								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/tinyslider.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/tinyslider.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/newsticker.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/newsticker.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/slider.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/slider.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/carousel.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/carousel.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./build/hero.js*",
-								destination: "./gutenverse-news/assets/js/",
-							},
-							{
-								source: "./build/hero.asset.php*",
-								destination: "./gutenverse-news/lib/dependencies/",
-							},
-							{
-								source: "./src/helper/isotope.js",
-								destination: "./gutenverse-news/assets/js/",
 							},
 						],
 					},

@@ -1,0 +1,386 @@
+.gutenverse-panel.deprecated>h2>button:after {
+    align-items: center;
+    background: #FFFBEF;
+    border: 1px solid #EEBC0D;
+    border-radius: 2px;
+    color: #1E1E1E;
+    font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    content: "DEPRECATED";
+    padding: 4px 6px;
+    margin-left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gvnews-deprecated-block {
+    position: relative;
+    min-height: 190px;
+    margin: 10px 0;
+
+    .deprecated-block-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        letter-spacing: 0;
+        right: 0;
+        top: 0;
+        z-index: 9998;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: #000000A6;
+        backdrop-filter: blur(10px);
+        color: #fff;
+        font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        font-weight: 400;
+        flex-direction: column;
+        font-size: 16px;
+        min-height: 190px;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            svg {
+                width: 18px;
+            }
+        }
+
+        a {
+            font-weight: 500;
+            font-style: Medium;
+            font-size: 14px;
+            color: #fff !important;
+            border: 1px solid #FFFFFFBF;
+            padding: 12px 24px;
+            border-radius: 5px;
+            background: #FFFFFF14;
+            transition: background-color .5s ease, border-color .5s ease;
+            margin-top: 25px;
+            line-height: 1;
+
+            &:hover {
+                color: #011627 !important;
+                background: #FFFFFF;
+                border-color: #FFFFFF;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .note {
+            margin-top: 6px;
+            font-weight: 400;
+            font-size: 12px;
+        }
+    }
+}
+
+.gvnews-deprecated-block .deprecated-block-content.upgrade-to-pro .note {
+    position: absolute;
+    bottom: 16px;
+
+}
+
+.gutenverse-panel-wrapper {
+    .deprecated-blocks-panel {
+        margin: 16px;
+        padding: 16px;
+        border: 1px solid #EEBC0D;
+        background: #FFFBEF;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        border-radius: 5px;
+
+        .deprecated-icon {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .deprecated-desc {
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h5 {
+                font-weight: 700;
+            }
+
+            h5,
+            p {
+                font-size: 12px;
+                margin: 0;
+            }
+
+            a {
+                font-weight: 500;
+                color: #3B57F7;
+            }
+        }
+    }
+
+}
+
+.gutenverse-control-wrapper {
+
+    &.gutenverse-control-image-radio {
+        .control-body {
+            label {
+                &.locked {
+                    position: relative;
+
+                    img {
+                        filter: grayscale(80%);
+                    }
+
+                    .locked-overlay {
+                        position: absolute;
+                        position: absolute;
+                        bottom: 2px;
+                        left: 2px;
+                        letter-spacing: 0;
+                        right: 2px;
+                        top: 2px;
+                        z-index: 9998;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        background: #0000001A;
+
+                        .deprecated-warning {
+                            border: 1px solid #EEBC0D;
+                            padding: 5px;
+                            background: #FFFBEF;
+                            border-radius: 2px;
+                            box-shadow: 0px 2px 18px 0px #00000052;
+                        }
+
+                        .pro-warning {
+                            line-height: 1;
+                            color: #E32D64;
+                            background: #FFDBDE;
+                            padding: 2px 5px;
+                            font-family: "Heebo";
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 100%;
+                            letter-spacing: 7%;
+                            border-radius: 2px;
+                            border: 1px solid #E32D64;
+                            box-shadow: 0px 2px 18px 0px #00000052;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+.gvnews-deprecated-modal {
+    display: none;
+
+    body.gvnews-deprecated-popup & {
+        display: block;
+    }
+
+    .gvnews-deprecated-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+
+        .gvnews-deprecated-box {
+            background: #fff;
+            border-radius: 8px;
+            max-width: 523px;
+            padding: 40px 48px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+            .gvnews-popup-close {
+                padding: 0;
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                border: none;
+                background: none;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .gvnews-deprecated-text {
+                font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+                font-weight: 400;
+                color: #53585C;
+                font-size: 16px;
+
+                ul {
+                    list-style-type: disc;
+                }
+
+                .blocks-deprecated-text {
+                    display: none;
+                }
+
+                .options-deprecated-text {
+                    display: none;
+                }
+
+                h2 {
+                    margin: 16px 0;
+                    font-weight: 700;
+                    font-size: 22px;
+                }
+
+                p,
+                ul {
+                    margin-bottom: 16px;
+                    font-size: 16px;
+                }
+
+                li {
+                    font-weight: 500;
+                    color: #212121;
+                    margin-bottom: 0;
+                }
+
+                .gvnews-deprecated-actions {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 40px;
+
+                    .gvnews-btn {
+                        font-size: 14px;
+                        padding: 6px 12px;
+                        border-radius: 5px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        text-decoration: none;
+                        transition: background-color .5s ease
+                    }
+
+                    .gvnews-replace-btn {
+                        background-color: #3B57F7;
+                        color: #fff;
+                        border: none;
+
+
+
+                        &:hover {
+                            background: #2435EC;
+                            box-shadow: 0px 8px 44px 0px #FFFFFF1F;
+                        }
+
+                    }
+
+                    .gvnews-dwongrade-btn {
+                        background-color: #fff;
+                        border: 1px solid #3B57F7;
+                        color: #3B57F7;
+
+                        &:hover {
+                            background: #3B57F7;
+                            color: #fff;
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+.gvnews-deprecated-notice {
+    #gvnews-deprecated-notice {
+        position: absolute;
+        top: 32px;
+        left: 0;
+        right: 0;
+        display: block;
+
+        .notice-wrapper {
+            display: flex !important;
+            gap: 14px;
+            flex-direction: row;
+            align-items: flex-start;
+            background: #FFFBEF;
+            border-left: 4px solid #EEBC0D;
+            padding: 16px;
+            position: relative;
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+            p {
+                font-size: 13px;
+                margin: 0;
+                color: #1E1E1E;
+
+                b {
+                    font-weight: 700;
+                }
+            }
+
+            a {
+                color: #3B57F7;
+                font-weight: 500;
+                margin-top: 14px;
+                display: inline-block;
+                line-height: 1;
+            }
+
+            .gvnews-notice-close {
+                position: absolute;
+                right: 12px;
+                top: 12px;
+                padding: 4.47px;
+                border: none;
+                background: none;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .wp-site-blocks {
+        margin-top: 142.19px;
+    }
+}
+
+#gvnews-deprecated-notice {
+    display: none;
+}
+
+
+.block-editor-page .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text ul {
+    margin-left: 40px;
+}
+
+body.gvnews-deprecated-options .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .options-deprecated-text {
+    display: block;
+}
+
+body.gvnews-deprecated-blocks .gvnews-deprecated-modal .gvnews-deprecated-backdrop .gvnews-deprecated-box .gvnews-deprecated-text .blocks-deprecated-text {
+    display: block;
+}

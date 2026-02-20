@@ -1,14 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, TextControl, BackgroundControl } from 'gutenverse-core/controls';
-import { handleBackground } from 'gutenverse-core/styling';
+import { SelectControl, CheckboxControl, RangeControl, TextControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const sliderPanel = (props) => {
     const {
-        elementId,
         autoplay,
-        metaDateFormat,
-        overlayOption,
         columnWidth,
+        sliderType,
+        hideNavigationButton,
+        alwaysShowNavigationButton,
+        hideImageNavigation,
+        elementId
     } = props;
     return [
         {
@@ -26,67 +27,42 @@ export const sliderPanel = (props) => {
             step: 500,
         },
         {
-            id: 'metaDateFormat',
-            label: __('Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            component: SelectControl,
-            options: [
-                {
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                    value: 'ago'
-                },
-                {
-                    label: __('Wordpress Default Format', 'gutenverse-news'),
-                    value: 'default'
-                },
-                {
-                    label: __('Custom Format', 'gutenverse-news'),
-                    value: 'custom'
-                },
-            ],
-        },
-        {
-            id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
-            label: __('Custom Format', 'gutenverse-news'),
-            description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
-            component: TextControl,
-        },
-        {
             id: 'normalImage',
-            label: __('Use Normal Image Load', 'gutenverse-news'),
-            description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
+            label: __('Load Image Immediately', 'gutenverse-news'),
+            description: __('enable this option to load image on this block immediately and optimize Largest Contentful Paint (LCP) if this block is at the top of your site.', 'gutenverse-news'),
             component: CheckboxControl
         },
         {
-            id: 'overlayOption',
-            label: __('Overlay Option', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
             component: SelectControl,
             options: [
                 {
-                    label: __('Gradient Overlay', 'gutenverse-news'),
-                    value: 'gradient'
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
                 },
                 {
-                    label: __('No Overlay', 'gutenverse-news'),
-                    value: 'no'
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
                 },
             ],
-        },
-        {
-            id: 'overrideOverlay',
-            show: overlayOption == 'gradient',
-            allowDeviceControl: true,
-            options: ['gradient'],
-            component: BackgroundControl,
-            style: [
-                {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_6_wrapper:not(.no-overlay) .gvnews_slider_type_6 .gvnews_slide_item:before`,
-                    hasChild: true,
-                    render: value => handleBackground(value)
-                }
-            ]
         },
         {
             id: 'excerptLength',
@@ -134,6 +110,18 @@ export const sliderPanel = (props) => {
                     label: __('Right', 'gutenverse-news')
                 },
             ]
+        },
+        {
+            id: 'nextButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Next', 'gutenverse-news'),
+            component: IconSVGControl,
+        },
+        {
+            id: 'prevButtonIcon',
+            show: !hideNavigationButton,
+            label: __('Icon Previous', 'gutenverse-news'),
+            component: IconSVGControl
         },
     ];
 };

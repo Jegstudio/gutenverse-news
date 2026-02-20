@@ -9,6 +9,7 @@
 
 namespace GUTENVERSE\NEWS\Block;
 
+use Gutenverse\Framework\Options;
 use GUTENVERSE\NEWS\Block\Grab;
 
 /**
@@ -47,6 +48,13 @@ class Hero extends Grab {
 			'excerpt_color'            => '',
 			'css'                      => '',
 			'compatible_column_notice' => '',
+			'include_post'             => '',
+			'exclude_post'             => '',
+			'include_category'         => '',
+			'exclude_category'         => '',
+			'include_tag'              => '',
+			'exclude_tag'              => '',
+			'include_author'           => '',
 			'hero_margin'              => $this->attributes['heroMargin'],
 			'hero_style'               => 'gvnews_hero_style_' . $this->attributes['heroStyle'],
 			'hero_height_desktop'      => $this->attributes['heightDesktop'],
@@ -60,6 +68,14 @@ class Hero extends Grab {
 			'hero_slider_delay'        => $this->attributes['autoplayDelay'],
 			'hero_slider_auto_play'    => $this->attributes['autoplay'],
 			'short_code'               => $this->attributes['gvnewsModule'],
+			'disable_readmore'         => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'meta_settings'            => array(
+				'show_meta'   => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'   => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author' => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
+			),
+			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {
@@ -123,6 +139,32 @@ class Hero extends Grab {
 			$number                                        = $index + 1;
 			$options[ 'hero_item_' . $number . '_enable' ] = $item['overlayEnable'];
 		}
+		if ( isset( $this->attributes['imageLoad'] ) ) {
+			$options['image_load'] = Options::get_instance()->get_image_load( 'normal', $this->attributes['normalImage'], $this->attributes['imageLoad'] );
+		}
 		return $this->get_module( $options );
+	}
+	/**
+	 * Check if this block is Pro.
+	 *
+	 * @return boolean
+	 */
+	public function check_pro() {
+		$deprecated = array(
+			'GUTENVERSE\NEWS\Block\Hero\Hero_6',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_7',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_8',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_9',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_10',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_11',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_12',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_13',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_14',
+			'GUTENVERSE\NEWS\Block\Hero\Hero_Skew',
+		);
+		if ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() && in_array( $this->attributes['gvnewsModule'], $deprecated ) ) {
+			return true;
+		}
+		return false;
 	}
 }

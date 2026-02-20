@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
+import { designPanel } from './panel-design';
 import { headerPanel } from './panel-header';
 import { filterPanel } from './panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -12,6 +13,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: generalPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Design', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: designPanel,
+            tabRole: TabStyle
         },
         {
             title: __('Header', 'gutenverse-news'),
@@ -46,7 +53,12 @@ export const panelList = () => {
                 ...props,
                 styleId: 'block-1-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
+        }, {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         }
     ];
 };

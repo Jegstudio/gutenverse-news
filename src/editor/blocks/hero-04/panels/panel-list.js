@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from '../../../control-panel/panel-herosetting';
 import { designHero } from '../../../control-panel/panel-herodesign';
@@ -7,6 +7,9 @@ import { styleHero } from '../../../control-panel/panel-herostyle';
 import { sliderHero } from '../../../control-panel/panel-heroslider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { metaPanel } from '../../../control-panel/panel-meta';
+import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return [
@@ -14,6 +17,12 @@ export const panelList = () => {
             title: __('Hero Setting', 'gutenverse-news'),
             initialOpen: false,
             panelArray: settingHero,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Meta Settings', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaPanel(props, ['date', 'author', 'review']),
             tabRole: TabSetting
         },
         {
@@ -31,7 +40,13 @@ export const panelList = () => {
         {
             title: __('Hero Style', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: styleHero,
+            panelArray: (props) => styleHero(props, 2),
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => metaStylePanel(props, ['date', 'author'], true),
             tabRole: TabStyle
         },
         {
@@ -47,11 +62,17 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Border', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => borderPanel({
                 ...props,
-                selector: [ `.${props.elementId} .gvnews_heroblock` ],
+                selector: [`.${props.elementId} .gvnews_heroblock`],
             }),
             tabRole: TabStyle
         },
@@ -68,7 +89,13 @@ export const panelList = () => {
                 ...props,
                 styleId: 'block-1-advance',
             }),
-            tabRole: TabStyle
-        }
+            tabRole: TabSetting
+        },
+        {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
+        },
     ];
 };

@@ -47,28 +47,30 @@ class Rss extends Grab {
 			);
 		} else {
 			$attr = array(
-				'short_code'         => $this->attributes['gvnewsModule'],
-				'first_title'        => $this->attributes['title'],
-				'second_title'       => $this->attributes['second_title'],
-				'url'                => $this->attributes['url_title'],
-				'header_type'        => $this->attributes['headerType'],
-				'header_icon'        => $this->attributes['icon'],
-				'feed_url'           => $this->attributes['feedurl'],
-				'thumbnail'          => $this->attributes['thumb'],
-				'fallback'           => $this->attributes['fallback'],
-				'fallimage'          => isset( $this->attributes['fallbackimg']['id'] ) ? $this->attributes['fallbackimg']['id'] : '',
-				'number_post'        => $this->attributes['numberPost'],
-				'boxed'              => $this->attributes['enableBoxed'],
-				'boxed_shadow'       => $this->attributes['enableBoxed'] ? $this->attributes['enableBoxShadow'] : false,
-				'excerpt_length'     => $this->attributes['excerptLength'],
-				'excerpt_ellipsis'   => $this->attributes['excerptEllipsis'],
-				'date_format'        => $this->attributes['metaDateFormat'],
-				'date_format_custom' => $this->attributes['metaDateFormatCustom'],
-				'video_duration'     => true,
-				'post_meta_style'    => 'style_2',
-				'author_avatar'      => true,
-				'more_menu'          => true,
-				'column_width'       => $this->attributes['columnWidth'],
+				'short_code'          => $this->attributes['gvnewsModule'],
+				'first_title'         => $this->attributes['title'],
+				'second_title'        => $this->attributes['second_title'],
+				'url'                 => $this->attributes['url_title'],
+				'header_type'         => $this->attributes['headerType'],
+				'header_icon'         => $this->attributes['icon'],
+				'feed_url'            => $this->attributes['feedurl'],
+				'thumbnail'           => $this->attributes['thumb'],
+				'fallback'            => $this->attributes['fallback'],
+				'fallimage'           => isset( $this->attributes['fallbackimg']['id'] ) ? $this->attributes['fallbackimg']['id'] : '',
+				'number_post'         => $this->attributes['numberPost'],
+				'boxed'               => $this->attributes['enableBoxed'],
+				'boxed_shadow'        => $this->attributes['enableBoxed'] ? $this->attributes['enableBoxShadow'] : false,
+				'excerpt_length'      => $this->attributes['excerptLength'],
+				'excerpt_ellipsis'    => $this->attributes['excerptEllipsis'],
+				'date_format'         => $this->attributes['metaDateFormat'],
+				'date_format_custom'  => $this->attributes['metaDateFormatCustom'],
+				'video_duration'      => true,
+				'post_meta_style'     => 'style_2',
+				'author_avatar'       => true,
+				'more_menu'           => true,
+				'column_width'        => $this->attributes['columnWidth'],
+				'header_html_tag'     => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
+				'post_title_html_tag' => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 			);
 		}
 
@@ -106,5 +108,14 @@ class Rss extends Grab {
 				return $instance->build_module( $attr );
 			}
 		}
+	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_pro() {
+		return ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() );
 	}
 }

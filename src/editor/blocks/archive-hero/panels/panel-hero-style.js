@@ -1,11 +1,35 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { handleBackground } from 'gutenverse-core/styling';
-import { CheckboxControl, BackgroundControl } from 'gutenverse-core/controls';
+import {
+    CheckboxControl,
+    ColorControl,
+    BackgroundControl,
+    TypographyControl,
+    SwitchControl,
+    BorderControl,
+    BorderResponsiveControl,
+    HeadingControl
+} from 'gutenverse-core/controls';
+import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const heroStylePanel = (props) => {
-    const { elementId, heroType } = props;
+    const {
+        elementId,
+        heroType,
+        switcher,
+        setSwitcher,
+    } = props;
+
     const heroTypes = [1, 2, 3, 4, 5, 6, 7];
+    const device = getDeviceType();
     let itemAmount;
+    let typeCount = 1;
+
+    if (['1', '3', '12'].includes(heroType)) {
+        typeCount = 3;
+    } else if (['2', '4', '5', '6', '10', '11'].includes(heroType)) {
+        typeCount = 2;
+    }
 
     if (['13'].includes(heroType)) {
         itemAmount = 1;
@@ -23,7 +47,132 @@ export const heroStylePanel = (props) => {
         itemAmount = 8;
     }
 
-    let heroItemOption = [];
+    const swicthValues = () => {
+        const result = [
+            {
+                label: __('First', 'gutenverse-news'),
+                value: 'first'
+            },
+        ];
+        if (typeCount >= 2) {
+            result.push({
+                label: __('Second', 'gutenverse-news'),
+                value: 'second'
+            });
+        }
+        if (typeCount >= 3) {
+            result.push({
+                label: __('Third', 'gutenverse-news'),
+                value: 'third'
+            });
+        }
+        return result;
+    }
+    const switchDescription = () => {
+        if (typeCount >= 3) {
+            return __('First styling applies to all items. Second styling overrides it for items of the second and third types. Third styling overrides for items of the third type.', 'gutenverse-news');
+        }
+        if (typeCount >= 2) {
+            return __('First styling applies to all items. Second styling overrides it for items of the second types.', 'gutenverse-news');
+        }
+        return '';
+    }
+
+    let heroItemOption = [
+        {
+            id: 'titleColor',
+            label: __('Title Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'titleColorHover',
+            label: __('Title Color Hover', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: '__typeCount',
+            component: SwitchControl,
+            show: typeCount > 1,
+            options: swicthValues(),
+            onChange: ({ __typeCount }) => setSwitcher({ ...switcher, typeCount: __typeCount }),
+            description: switchDescription(),
+        },
+        // First Item
+        {
+            id: 'titleTypography',
+            show: switcher.typeCount === 'first' || !switcher.typeCount,
+            label: __('Title Typography', 'gutenverse-news'),
+            description: __('This option will change your title typography.', 'gutenverse-news'),
+            component: TypographyControl,
+        },
+        {
+            id: 'borderItem',
+            show: switcher.typeCount === 'first' || !switcher.typeCount && device === 'Desktop',
+            label: __('Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderResponsiveItem',
+            show: switcher.typeCount === 'first' || !switcher.typeCount && device !== 'Desktop',
+            label: __('Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
+        },
+        // Second Item
+        {
+            id: 'secondTitleTypography',
+            label: __('Second List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
+            show: switcher.typeCount === 'second',
+            component: TypographyControl,
+        },
+        {
+            id: 'borderItemSecond',
+            show: switcher.typeCount === 'second' && device === 'Desktop',
+            label: __('Second Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderResponsiveItemSecond',
+            show: switcher.typeCount === 'second' && device !== 'Desktop',
+            label: __('Second Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
+        },
+        // Third Item
+        {
+            id: 'thridTitleTypography',
+            label: __('Thrid List Title Typography', 'gutenverse-news'),
+            description: __('This option will override the post title typography setting on the thrid list.', 'gutenverse-news'),
+            show: switcher.typeCount === 'third',
+            component: TypographyControl,
+        },
+        {
+            id: 'borderItemThird',
+            show: switcher.typeCount === 'third' && device === 'Desktop',
+            label: __('Third Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderControl,
+        },
+        {
+            id: 'borderResponsiveItemThird',
+            show: switcher.typeCount === 'third' && device !== 'Desktop',
+            label: __('Third Border Item', 'gutenverse-news'),
+            description: __('This option will change your border item.', 'gutenverse-news'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
+        },
+        // End Switcher
+        {
+            id: '__overlayHeader',
+            label: __('Hero Style Overlay', 'gutenverse-news'),
+            component: HeadingControl,
+        },
+    ];
     heroTypes.map((type) => {
         heroItemOption = [
             ...heroItemOption,

@@ -9,11 +9,19 @@ const Block8Block = compose(
     withPassRef
 )((props) => {
     const columnAttr = {
-        block       : Block8Columns,
-        blockWidth  : 12,
+        block: Block8Columns,
+        blockWidth: 12,
     };
     const moduleName = '8';
-    return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+    return <BlockModule
+        columnAttr={columnAttr}
+        moduleName={moduleName}
+        {...props}
+        panelList={panelList}
+        freeModule={true}
+        defaultImageSizeMain={{ height: 350, width: 180, dimension: 500 }}
+        mainThumbnailClass={'gvnews_pl_md_1'}
+    />;
 });
 
 export default Block8Block;

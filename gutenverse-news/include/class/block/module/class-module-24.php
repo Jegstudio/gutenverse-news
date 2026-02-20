@@ -18,6 +18,12 @@ namespace GUTENVERSE\NEWS\Block\Module;
 class Module_24 extends Module_View_Abstract {
 
 	/**
+	 * This variable for consume block style
+	 *
+	 * @var string
+	 */
+	public $main_thumbnail_class = 'gvnews_pl_md_box';
+	/**
 	 * Method render_block_type
 	 *
 	 * @param object  $post       post.
@@ -27,19 +33,23 @@ class Module_24 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
+		$icon             = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
+		$icon_type        = isset( $this->attribute['list_icon_type'] ) ? $this->attribute['list_icon_type'] : 'icon';
+		$icon_svg         = isset( $this->attribute['list_icon_svg'] ) ? $this->attribute['list_icon_svg'] : '';
+		$icon_html        = $this->render_icon( $icon_type, $icon, $icon_svg );
 		$post_id          = $post->ID;
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
-		$title            = "<h3 class=\"gvnews_post_title\">
-                                    <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . '</a>
-                              </h3>';
+		$title            = "<{$this->post_title_tag} class=\"gvnews_post_title\">
+                                    <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                              </' . $this->post_title_tag . '>';
 
 		return 1 === $type ?
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box' . $additional_class, $post_id ) . '>
                     <div class="box_wrap">
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">{$this->get_thumbnail($post_id,$image_size)}</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             {$title}
@@ -49,7 +59,7 @@ class Module_24 extends Module_View_Abstract {
                 </article>" :
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post_id ) . ">
                     <div class=\"gvnews_postblock_content\">
-						<i class='fas fa-caret-right'></i>
+						" . $icon_html . "
                         {$title}
                     </div>
                 </article>";
@@ -139,22 +149,20 @@ class Module_24 extends Module_View_Abstract {
 
 		$navigation = $this->render_navigation( $attr, $results['next'], $results['prev'], $results['total_page'] );
 
+		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		if ( ! empty( $results['result'] ) ) {
 			$content = $this->render_column( $results['result'], $column_class );
 		} else {
 			$content = $this->empty_content();
 		}
+		remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 
 		return "<div class=\"gvnews_block_container\">
                 {$this->get_content_before($attr)}
                 {$content}
                 {$this->get_content_after($attr)}
             </div>
-            <div class=\"gvnews_block_navigation\">
-                {$this->get_navigation_before($attr)}
-                {$navigation}
-                {$this->get_navigation_after($attr)}
-            </div>";
+            {$navigation}";
 	}
 
 	/**

@@ -1,20 +1,23 @@
 import { compose } from '@wordpress/compose';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import { ModuleOverlay } from '../../part/placeholder';
-import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const PostPrevNext = compose(
     withPartialRender,
@@ -77,11 +80,11 @@ const PostPrevNext = compose(
     useEffect(() => {
         if (prevNextData.previous || prevNextData.next) {
             setContent(<>
-                {prevNextData.previous && <a href="javascript:void(0);"  className="post prev-post">
+                {prevNextData.previous && <a href="javascript:void(0);" className="post prev-post">
                     <span className="caption">{__('Previous Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.previous.title}</h3>
                 </a>}
-                {prevNextData.next && <a href="javascript:void(0);"  className="post next-post">
+                {prevNextData.next && <a href="javascript:void(0);" className="post next-post">
                     <span className="caption">{__('Next Post', 'gutenverse-news')}</span>
                     <h3 className="post-title">{prevNextData.next.title}</h3>
                 </a>}
@@ -100,17 +103,36 @@ const PostPrevNext = compose(
         }
     }, [prevNextData]);
 
-    return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews_custom_prev_next_wrapper gvnews_prev_next_container">
-                <div className="gvnews_prevnext_post">
-                    {content ? content : <ModuleOverlay />}
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews_custom_prev_next_wrapper gvnews_prev_next_container${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelUpgradePro title="Post Next Prev" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
+                </>
+            )}
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews_prevnext_post">
+                        {content ? content : <ModuleOverlay />}
+                    </div>
+                    {isDeprecated && <UpgradeProOverlay />}
                 </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default PostPrevNext;

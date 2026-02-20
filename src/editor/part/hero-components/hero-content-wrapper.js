@@ -13,11 +13,15 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
     let index = 0;
     let limit = numberPostShow;
     let pagination = parentIndex + 1;
+    const useOnlyDate = ['7', '8', '9', '10', '11', '12', 'skew'].includes(heroType);
 
     if (['1', '2', '3', '4', '5', '6', '10', '11', '12'].includes(heroType)) {
-        for (let i = parentIndex; i < limit; i++) {
+        for (let i = parentIndex; i < (limit + parentIndex); i++) {
             let off = pagination * numberPostShow - numberPostShow + index;
-            let item = <HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />;
+            if (!postData[off]) {
+                break;
+            }
+            let item = <HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} onlyDate={useOnlyDate} />;
             if (i === parentIndex) {
                 firstBlock.push(item);
             } else {
@@ -32,9 +36,12 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
             </>
         );
     } else {
-        for (let i = parentIndex; i < limit; i++) {
+        for (let i = parentIndex; i < (limit + parentIndex); i++) {
             let off = pagination * numberPostShow - numberPostShow + index;
-            secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />);
+            if (!postData[off]) {
+                break;
+            }
+            secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} onlyDate={useOnlyDate} />);
             index++;
         }
         content = secondBlock;

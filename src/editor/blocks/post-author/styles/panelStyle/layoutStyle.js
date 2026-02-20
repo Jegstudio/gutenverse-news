@@ -41,7 +41,13 @@ const layoutStye = (props) => {
         'properties': [
             {
                 'name': 'width',
-                'valueType': 'direct'
+                'valueType': 'pattern',
+                'pattern': '{value} !important',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
             }
         ],
         'selector': selector,

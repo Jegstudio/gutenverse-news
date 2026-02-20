@@ -46,7 +46,7 @@ interface Image_Interface {
 	 *
 	 * @return string
 	 */
-	public function image_thumbnail( $id, $size );
+	public function image_thumbnail( $id, $size, $skip_lazy = false );
 
 	/**
 	 * Method owl_single_image
@@ -56,7 +56,7 @@ interface Image_Interface {
 	 *
 	 * @return string
 	 */
-	public function owl_single_image( $id, $size );
+	public function owl_single_image( $id, $size, $skip_lazy = false );
 
 	/**
 	 * Method owl_lazy_single_image

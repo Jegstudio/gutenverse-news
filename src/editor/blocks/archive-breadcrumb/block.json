@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-archive-breadcrumb",
     "title": "Archive Breadcrumb",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "This block is deprecated and will be removed in the future.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -41,11 +41,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -99,10 +99,20 @@
         },
         "zIndex": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
-        "className": false
+        "className": false,
+        "inserter": false
     },
-    "keywords": ["single", "archive", "breadcrumb"]
+    "keywords": [
+        "single",
+        "archive",
+        "breadcrumb"
+    ],
+    "gvnewsRemoved": true
 }

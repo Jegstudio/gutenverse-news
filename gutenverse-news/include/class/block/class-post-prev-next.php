@@ -54,7 +54,7 @@ class Post_Prev_Next extends Post_Guten {
 			$href     = esc_url( get_permalink( $prev_post->ID ) );
 			$title    = wp_kses_post( get_the_title( $prev_post->ID ) );
 			$content .= '
-			<a href="' . $href . '" class="post prev-post">
+			<a href="' . $href . '" class="post prev-post" aria-label="' . esc_attr__( 'Previous Post', 'gutenverse-news' ) . '">
 				<span class="caption">Previous Post</span>
 				<h3 class="post-title">' . $title . '</h3>
 			</a>
@@ -65,12 +65,21 @@ class Post_Prev_Next extends Post_Guten {
 			$href     = esc_url( get_permalink( $next_post->ID ) );
 			$title    = wp_kses_post( get_the_title( $next_post->ID ) );
 			$content .= '
-			<a href="' . $href . '" class="post next-post">
+			<a href="' . $href . '" class="post next-post" aria-label="' . esc_attr__( 'Next Post', 'gutenverse-news' ) . '">
 				<span class="caption">Next Post</span>
 				<h3 class="post-title">' . $title . '</h3>
 			</a>
 			';
 		}
 		return $content;
+	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_pro() {
+		return ( current_user_can( 'edit_pages' ) && ! gutenverse_pro_active() );
 	}
 }

@@ -70,9 +70,12 @@ class Archive extends Grab {
 		}
 
 		$classes = 'gutenverse gvnews-' . $block_type . $classes . ' ' . $this->get_element_id();
+		if ( $this->is_deprecated || $this->is_pro_block ) {
+			$classes .= ' gvnews-deprecated-block';
+		}
 
 		return '<div ' . $id . ' class="' . $classes . ' ' . esc_attr( $this->attributes['elClass'] ) . '" ' . $data . '>'
-					. $inner .
+					. $inner . $this->render_overlay() .
 				'</div>';
 	}
 
@@ -85,8 +88,18 @@ class Archive extends Grab {
 		$name       = str_replace( 'GUTENVERSE\NEWS\Block\Archive\Archive_', 'gutenverse/news-archive-', $this->attributes['gvnewsModule'] );
 		$this->name = strtolower( $name );
 		$attr       = array(
-			'short_code' => $this->attributes['gvnewsModule'],
-			'el_class'   => $this->attributes['elClass'],
+			'short_code'            => $this->attributes['gvnewsModule'],
+			'el_class'              => $this->attributes['elClass'],
+			'disable_readmore'      => isset( $this->attributes['readmoreButtonDisabled'] ) ? $this->attributes['readmoreButtonDisabled'] : false,
+			'renderedImageSizeMain' => isset( $this->attributes['renderedImageSizeMain'] ) ? $this->attributes['renderedImageSizeMain'] : 'default',
+			'meta_settings'         => array(
+				'show_meta'    => isset( $this->attributes['showMeta'] ) ? $this->attributes['showMeta'] : true,
+				'meta_date'    => isset( $this->attributes['showMetaDate'] ) ? $this->attributes['showMetaDate'] : true,
+				'meta_author'  => isset( $this->attributes['showMetaAuthor'] ) ? $this->attributes['showMetaAuthor'] : true,
+				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
+				'meta_review'  => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
+			),
+			'post_title_html_tag'   => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 		);
 
 		$attr = $this->archive_title( $attr );
@@ -126,6 +139,8 @@ class Archive extends Grab {
 			$attr['pagination_align']    = $this->attributes['paginationAlign'];
 			$attr['pagination_navtext']  = $this->attributes['paginationNavtext'];
 			$attr['pagination_pageinfo'] = $this->attributes['paginationPageinfo'];
+			$attr['prev_text']           = isset( $this->attributes['paginationPrevText'] ) ? $this->attributes['paginationPrevText'] : esc_html__( 'Previous', 'gutenverse-news' );
+			$attr['next_text']           = isset( $this->attributes['paginationNextText'] ) ? $this->attributes['paginationNextText'] : esc_html__( 'Next', 'gutenverse-news' );
 		}
 		return $attr;
 	}
@@ -187,6 +202,12 @@ class Archive extends Grab {
 					}
 				}
 			}
+			if ( $this->attributes['normalImage'] ) {
+				$attr['normal_image'] = 'true';
+			} else {
+				$attr['normal_image'] = 'false';
+			}
+			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2';
 		}
 		return $attr;
 	}
@@ -199,15 +220,30 @@ class Archive extends Grab {
 	 */
 	private function archive_block( $attr ) {
 		if ( 'gutenverse/news-archive-block' === $this->name ) {
-			$attr['block_type']         = $this->attributes['blockType'];
-			$attr['number_post']        = $this->attributes['numberPost'];
-			$attr['excerpt_length']     = $this->attributes['excerptLength'];
-			$attr['excerpt_ellipsis']   = $this->attributes['excerptEllipsis'];
-			$attr['date_format']        = $this->attributes['dateFormat'];
-			$attr['date_format_custom'] = $this->attributes['dateFormatCustom'];
-			$attr['first_page']         = $this->attributes['firstPage'];
-			$attr['column_width']       = $this->attributes['columnWidth'];
+			$attr['block_type']          = $this->attributes['blockType'];
+			$attr['number_post']         = $this->attributes['numberPost'];
+			$attr['excerpt_length']      = $this->attributes['excerptLength'];
+			$attr['excerpt_ellipsis']    = $this->attributes['excerptEllipsis'];
+			$attr['date_format']         = $this->attributes['dateFormat'];
+			$attr['date_format_custom']  = $this->attributes['dateFormatCustom'];
+			$attr['first_page']          = $this->attributes['firstPage'];
+			$attr['column_width']        = $this->attributes['columnWidth'];
+			$attr['gutter_width']        = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
+			$attr['image_load']          = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
+			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3';
 		}
 		return $attr;
+	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		if ( current_user_can( 'edit_pages' ) && ( 'GUTENVERSE\NEWS\Block\Archive\Archive_Title' === $this->attributes['gvnewsModule'] || 'GUTENVERSE\NEWS\Block\Archive\Archive_Breadcrumb' === $this->attributes['gvnewsModule'] ) ) {
+			return true;
+		}
+		return false;
 	}
 }

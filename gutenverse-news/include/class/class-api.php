@@ -146,6 +146,134 @@ class Api {
 				'permission_callback' => 'gutenverse_permission_check_author',
 			)
 		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'downgradePlugin',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'downgrade_plugin' ),
+				'permission_callback' => array( $this, 'permission_install_plugin' ),
+			)
+		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'dismissNotice',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'dismiss_notice' ),
+				'permission_callback' => array( $this, 'edit_pages' ),
+			)
+		);
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function downgrade_plugin( $request ) {
+		$nonce               = $request->get_param( 'nonce' );
+		$disable_auto_update = $request->get_param( 'disableAutoUpdate' );
+		try {
+			if ( ! wp_verify_nonce( $nonce, 'gvnews_downgrade' ) ) {
+				throw new \Exception( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
+			}
+
+			$slug     = 'gutenverse-news';
+			$file_url = 'https://downloads.wordpress.org/plugin/gutenverse-news.2.0.1.zip';
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+			$plugin_dir  = WP_PLUGIN_DIR . '/' . $slug;
+			$plugin_file = $slug . '/' . $slug . '.php';
+
+			/* Deactive Plugin */
+			$active_plugins = get_option( 'active_plugins' );
+			foreach ( $active_plugins as $plugin ) {
+				if ( strpos( $plugin, $slug . '/' ) === 0 ) {
+					$plugin_file = $plugin;
+					deactivate_plugins( $plugin );
+					break;
+				}
+			}
+
+			/* Remove current plugin file. */
+			if ( is_dir( $plugin_dir ) ) {
+				global $wp_filesystem;
+				WP_Filesystem();
+				$wp_filesystem->delete( $plugin_dir, true );
+			} else {
+				throw new \Exception( __( 'Gutenverse News plugin directory not found', 'gutenverse-news' ) );
+			}
+
+			/* Download old version pluign zip */
+			$tmp_file = download_url( $file_url );
+			if ( is_wp_error( $tmp_file ) ) {
+				throw new \Exception( __( 'Faild when trying to download Gutenverse News plugin.', 'gutenverse-news' ) );
+			}
+
+			/* Extract plugin file */
+			$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
+			wp_delete_file( $tmp_file );
+
+			if ( is_wp_error( $result ) ) {
+				throw new \Exception( __( 'Faild to extract plugin file.', 'gutenverse-news' ) );
+			}
+
+			/* Activate old versuin plugin */
+			$activation_result = activate_plugin( $plugin_file );
+
+			if ( is_wp_error( $activation_result ) ) {
+				throw new \Exception( 'Plugin extracted, but failed to activate: ' . $activation_result->get_error_message() );
+			}
+
+			/* Deactive auto update if needed */
+			if ( $disable_auto_update ) {
+				$auto_updates = get_site_option( 'auto_update_plugins', array() );
+				$filtered     = array_filter(
+					$auto_updates,
+					function ( $item ) use ( $plugin_file ) {
+						return $item !== $plugin_file;
+					}
+				);
+				if ( $filtered !== $auto_updates ) {
+					update_site_option( 'auto_update_plugins', array_values( $filtered ) );
+				}
+			}
+		} catch ( \Exception $e ) {
+			return $this->response_error( $e->getMessage() );
+		}
+
+		return $this->response_success( __( 'Downgrade Gutenverse News plugin success.', 'gutenverse-news' ) );
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function dismiss_notice( $request ) {
+		$nonce = sanitize_text_field( $request->get_param( 'nonce' ) );
+		if ( ! wp_verify_nonce( $nonce, 'gvnews_dismiss_notice' ) ) {
+			return $this->response_error( esc_html__( 'Faild when vertify request nonce.', 'gutenverse-news' ) );
+		}
+		$notice = sanitize_text_field( $request->get_param( 'notice' ) );
+
+		if ( 'deprecated_gutenverse_news' === $notice ) {
+			set_transient( 'deprecated_gutenverse_news_dismissed', 'dismissed', DAY_IN_SECONDS );
+		}
+		return $this->response_success( 'sucess' );
 	}
 
 
@@ -281,39 +409,28 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_post_author( $request ) {
-		$attr         = $request->get_param( 'attr' );
-		$social_array = $this->declare_socials();
-		if ( is_array( $attr['author'] ) ) {
-			$data = array();
-			foreach ( $attr['author'] as $author ) {
-				if ( is_array( $author ) ) {
-					$user = get_user_by( 'login', $author['value'] );
+		$attr = $request->get_param( 'attr' );
+		$data = array();
 
-					if ( isset( $user->ID ) ) {
-						foreach ( $social_array as $key => $value ) {
-							if ( get_the_author_meta( $key, $user->ID ) ) {
-									$meta[] = array(
-										'key'   => get_the_author_meta( $key, $user->ID ),
-										'value' => $value,
-									);
-							}
-						}
-						if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
-							$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
-						} else {
-							$name = get_the_author_meta( 'display_name', $user->ID );
-						}
-						$data[] = array(
-							'ID'     => $user->ID,
-							'name'   => $name,
-							'avatar' => get_avatar_url( $user->ID, 80 ),
-							'role'   => $user->roles[0],
-							'desc'   => get_the_author_meta( 'description', $user->ID ),
-							'meta'   => $meta,
-						);
-					}
-				}
+		if ( ! is_array( $attr['author'] ) ) {
+			return wp_json_encode( $data );
+		}
+
+		$author_id = $attr['author'][0];
+		$user      = get_user_by( 'id', $author_id );
+		if ( isset( $user->ID ) ) {
+			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
+				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
+			} else {
+				$name = get_the_author_meta( 'display_name', $user->ID );
 			}
+			$data[] = array(
+				'ID'     => $user->ID,
+				'name'   => $name,
+				'avatar' => get_avatar_url( $user->ID, 80 ),
+				'role'   => $user->roles[0],
+				'desc'   => get_the_author_meta( 'description', $user->ID ),
+			);
 		}
 		return wp_json_encode( $data );
 	}
@@ -426,6 +543,8 @@ class Api {
 		global $wp_roles;
 		if ( ! isset( $wp_roles ) ) {
 			$roles = new \WP_Roles();
+		} else {
+			$roles = $wp_roles;
 		}
 		$all_roles      = $roles->roles;
 		$editable_roles = apply_filters( 'editable_roles', $all_roles );
@@ -441,20 +560,10 @@ class Api {
 	 * @return JSON
 	 */
 	public function get_author( $attributes ) {
-		$data         = array();
-		$users        = get_users();
-		$social_array = $this->declare_socials();
-		$name         = '';
+		$data  = array();
+		$users = get_users();
+		$name  = '';
 		foreach ( $users as $user ) {
-			$meta = false;
-			foreach ( $social_array as $key => $value ) {
-				if ( get_the_author_meta( $key, $user->ID ) ) {
-					$meta[] = array(
-						'key'   => get_the_author_meta( $key, $user->ID ),
-						'value' => $value,
-					);
-				}
-			}
 			if ( get_user_meta( $user->ID, 'first_name', true ) || get_user_meta( $user->ID, 'last_name', true ) ) {
 				$name = get_user_meta( $user->ID, 'first_name', true ) . ' ' . get_user_meta( $user->ID, 'last_name', true );
 			} else {
@@ -466,7 +575,6 @@ class Api {
 				'avatar' => get_avatar( $user->ID, 500 ),
 				'role'   => $user->roles[0],
 				'desc'   => get_the_author_meta( 'description', $user->ID ),
-				'meta'   => $meta,
 			);
 		}
 
@@ -594,12 +702,18 @@ class Api {
 			$attr['post_offset'] = sanitize_text_field( $attributes['postOffset'] );
 		}
 
+		if ( isset( $attributes['dateQuery'] ) ) {
+			$attr['date_query'] = $attributes['dateQuery'];
+		}
+
 		$result = Module_Query::do_query( $attr );
 
 		$advanced_response = false;
 		if ( isset( $attributes['advancedResponse'] ) ) {
 			$advanced_response = isset( $attributes['advancedResponse'] );
 		}
+
+		$check_landscape_thumbnail = isset( $attributes['checkLandscapeThumbnail'] ) ? $attributes['checkLandscapeThumbnail'] : false;
 
 		$data = $advanced_response ? array(
 			'result'     => array(),
@@ -624,36 +738,42 @@ class Api {
 				$excerpt = $post->post_content;
 			}
 
-			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image_size        = wp_get_attachment_image_src( $post_thumbnail_id, 'gvnews-featured-750' );
-			$padding           = ! empty( $image_size[1] ) ? round( $image_size[2] / $image_size[1] * 100, 3 ) : '';
-			$excerpt           = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
-			$excerpt           = wp_trim_words( $excerpt, 200, null );
+			$post_thumbnail_id   = get_post_thumbnail_id( $post->ID );
+			$excerpt             = preg_replace( '/\[[^\]]+\]/', '', $excerpt );
+			$excerpt             = wp_trim_words( $excerpt, 200, null );
+			$landscape_thumbnail = false;
+			if ( $check_landscape_thumbnail ) {
+				$thumb_data          = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+				$landscape_thumbnail = ( ( isset( $thumb_data[1] ) && isset( $thumb_data[2] ) ) && ( $thumb_data[1] < $thumb_data[2] ) ) ? false : true;
+			}
 
 			$final_data = array(
 				'id'        => $post->ID,
 				'title'     => html_entity_decode( get_the_title( $post->ID ) ),
+				'format'    => get_post_format( $post->ID ),
 				'thumbnail' => array(
 					'id'      => get_post_thumbnail_id( $post->ID ),
 					'url'     => get_the_post_thumbnail_url( $post->ID ),
-					'padding' => $padding,
 				),
-				'category'  => array(
+				'category'           => array(
 					'id'   => $cat_id,
 					'name' => $category,
 				),
-				'date'      => array(
+				'date'               => array(
 					'published' => get_post_timestamp( $post->ID, 'date' ),
 					'modified'  => get_post_timestamp( $post->ID, 'modified' ),
 				),
-				'excerpt'   => $excerpt,
-				'author'    => array(
+				'excerpt'            => $excerpt,
+				'author'             => array(
 					'id'     => $post->post_author,
 					'name'   => get_the_author_meta( 'display_name', $post->post_author ),
 					'avatar' => get_avatar_url( $post->post_author, array( 'size' => 75 ) ),
 				),
-				'comment'   => get_comments_number( $post->ID ),
+				'comment'            => get_comments_number( $post->ID ),
+				'landscapeThumbnail' => $landscape_thumbnail,
 			);
+
+			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', [], $post ) );
 
 			if ( $advanced_response ) {
 				$data['result'][] = $final_data;
@@ -747,37 +867,6 @@ class Api {
 	}
 
 	/**
-	 * Method declare_socials
-	 *
-	 * @return array
-	 */
-	public function declare_socials() {
-		$social_array = array(
-			'url'        => 'fa-globe',
-			'facebook'   => 'fa-facebook-official',
-			'twitter'    => 'fa-twitter',
-			'linkedin'   => 'fa-linkedin',
-			'pinterest'  => 'fa-pinterest',
-			'behance'    => 'fa-behance',
-			'github'     => 'fa-github',
-			'flickr'     => 'fa-flickr',
-			'tumblr'     => 'fa-tumblr',
-			'dribbble'   => 'fa-dribbble',
-			'soundcloud' => 'fa-soundcloud',
-			'instagram'  => 'fa-instagram',
-			'vimeo'      => 'fa-vimeo',
-			'youtube'    => 'fa-youtube-play',
-			'vk'         => 'fa-vk',
-			'reddit'     => 'fa-reddit',
-			'weibo'      => 'fa-weibo',
-			'rss'        => 'fa-rss',
-			'twitch'     => 'fa-twitch',
-		);
-
-		return $social_array;
-	}
-
-	/**
 	 * Method php_function_caller
 	 *
 	 * @param array $attributes attributes.
@@ -785,5 +874,50 @@ class Api {
 	 * @return void
 	 */
 	public function php_function_caller( $attributes ) {
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
+	public function permission_install_plugin() {
+		return current_user_can( 'install_plugins' );
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @return boolean
+	 */
+	public function edit_pages() {
+		return current_user_can( 'edit_pages' );
+	}
+
+	/**
+	 * Return error response
+	 *
+	 * @param string $message Error message.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_error( $message ) {
+		return new \WP_REST_Response(
+			array(
+				'message' => $message,
+			),
+			500
+		);
+	}
+
+	/**
+	 * Return success response
+	 *
+	 * @param array $args args.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function response_success( $args ) {
+		return new \WP_REST_Response( $args, 200 );
 	}
 }

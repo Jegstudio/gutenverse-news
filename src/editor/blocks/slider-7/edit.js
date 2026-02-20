@@ -1,11 +1,9 @@
+import { __ } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
@@ -15,13 +13,18 @@ import { SliderCaption } from '../../part/slider';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { useSelect } from '@wordpress/data';
 import { getModuleOptions, getParentColumnWidth } from '../../utils/helper';
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
-const moduleOption = getModuleOptions();
-const postCount = moduleOption ? moduleOption.option.post_count.publish : 0;
+const defaultOptions = getModuleOptions();
 
 const Slider7Block = compose(
     withPartialRender,
@@ -29,6 +32,7 @@ const Slider7Block = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         isSelected,
         clientId,
         setBlockRef
@@ -61,9 +65,36 @@ const Slider7Block = compose(
         autoplayDelay,
         overlayOption,
         fimagePosition,
+        showMeta = true,
+        showMetaDate = true,
+        showMetaAuthor = true,
+        readmoreButtonDisabled = false,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
+    const metaSettings = {
+        meta_show: showMeta,
+        meta_date: showMetaDate,
+        meta_author: showMetaAuthor
+    };
+
+    const moduleOption = {
+        ...defaultOptions,
+        option: {
+            ...defaultOptions.option,
+            ...metaSettings
+        }
+    };
+
     const elementRef = useRef(null);
+    const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
@@ -85,35 +116,113 @@ const Slider7Block = compose(
     const animationClass = useAnimationEditor(attributes);
     const displayClass = useDisplayEditor(attributes);
     const deviceType = getDeviceType();
+    const blockProps = useBlockProps({
+        className: classnames(
+            'gvnews-block',
+            'gvnews-block-wrapper',
+            'gvnews-element-full',
+            'gvnews-slider-7',
+            elementId,
+            animationClass,
+            displayClass,
+        ),
+        ref: elementRef
+    });
 
-    const [postBulk, getPost] = useState(false);
     const [blockWidth, getWidth] = useState(8);
     const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(15);
     const [overlay, setOverlay] = useState(false);
+    const [block, setBlock] = useState(<ModuleSkeleton />);
+    const [postLoaded, setPostLoaded] = useState(5);
+    const [postStart, setPostStart] = useState(0);
+    const [sliderDelay, setSliderDelay] = useState(0);
 
-    useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(numberPost);
-        let count = parseInt(postCount);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost + 15);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                count > off ? loadMore(loadPost + 15) : count != postCount ? loadMore(count) : null;
-                getTrim(false);
+    const firstRender = useRef(true);
+    const isDeprecated = !gutenverseProActive;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+
+    function RenderContent(props) {
+        return (
+            <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
+                {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
+                <div className="gvnews_slide_image" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}></div>
+                <SliderCaption
+                    {...props}
+                    excerpt
+                    navigation
+                    withElipsis={true}
+                    withMeta={false}
+                    withReadmore={!readmoreButtonDisabled}
+                    nextButtonIcon={nextButtonIcon}
+                    nextButtonIconType={nextButtonIconType}
+                    nextButtonIconSVG={nextButtonIconSVG}
+                    prevButtonIcon={prevButtonIcon}
+                    prevButtonIconType={prevButtonIconType}
+                    prevButtonIconSVG={prevButtonIconSVG}
+                />
+            </div>
+        );
+    }
+
+    function RenderColumn(props) {
+        const attr = {
+            option: props.moduleOption,
+            length: props.excerptLength,
+            elipsis: props.excerptEllipsis,
+            date: {
+                type: props.metaDateType,
+                format: props.metaDateFormat,
+                custom: props.metaDateFormatCustom,
+            },
+            titleTag: postTitleHtmlTag
+        };
+        const content = [];
+        if (props.postData && props.moduleOption) {
+            for (let i = 0; i < props.postData.length; i++) {
+                content.push(<RenderContent attr={attr} index={i} post={props.postData[i]} />);
             }
-        } else {
-            getTrim(false);
         }
-    }, [
-        numberPost,
-        postBulk,
-        postOffset
-    ]);
+
+        return (
+            <div
+                ref={blockRef}
+                className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`}
+                data-autoplay={autoplay ? true : ''}
+                data-delay={sliderDelay}
+                data-nav-prev={__('prev', 'gutenverse-news')}
+                data-nav-next={__('next', 'gutenverse-news')}
+                data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
+                data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
+            >
+                {content}
+            </div>
+        );
+    }
+
+    function resetblock() {
+        const moduleData = {
+            excerptLength,
+            excerptEllipsis,
+            moduleOption,
+            postData,
+            metaDateType,
+            metaDateFormat,
+            metaDateFormatCustom,
+        };
+        if (postData.length > 0) {
+            setBlock(
+                <div key={Math.random().toString(36).substring(2)} className={`gvnews_slider_wrapper gvnews_slider_type_7_wrapper ${overlayOption == 'no' ? 'no-overlay' : ''}`}>
+                    <RenderColumn {...moduleData} />
+                </div>
+            );
+        } else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        }
+    }
 
     useEffect(() => {
         if (columnWidth == 'auto') {
@@ -133,35 +242,75 @@ const Slider7Block = compose(
     ]);
 
     useEffect(() => {
-        postBulk ? setOverlay(true) : null;
-        let attr = {
-            contentType,
-            uniqueContent,
-            includeOnly,
-            postType,
-            numberPost: loadPost,
-            includePost,
-            excludePost,
-            includeCategory,
-            excludeCategory,
-            includeAuthor,
-            includeTag,
-            excludeTag,
-            sortBy,
-        };
-        apiFetch({
-            path: addQueryArgs('/gvnews-client/v1/get-post'),
-            method: 'POST',
-            data: {
-                attr: attr
-            }
-        }).then((data) => {
-            getPost(JSON.parse(data));
-        }).catch((e) => {
-            console.error(e.message);
-        }).finally(() => {
-            setOverlay(false);
-        });
+        if (numberPost > 0) {
+            setPostLoaded(parseInt(numberPost));
+        } else {
+            setAttributes({
+                ...attributes,
+                numberPost: 5
+            });
+        }
+    }, [numberPost]);
+
+    useEffect(() => {
+        if (postOffset >= 0) {
+            setPostStart(parseInt(postOffset));
+        } else {
+            setAttributes({
+                ...attributes,
+                postOffset: 0
+            });
+        }
+    }, [postOffset]);
+
+    useEffect(() => {
+        if (autoplayDelay >= 1000) {
+            setSliderDelay(parseInt(autoplayDelay));
+        } else {
+            setAttributes({
+                ...attributes,
+                autoplayDelay: 2000
+            });
+        }
+    }, [autoplayDelay]);
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setOverlay(true);
+            let attr = {
+                contentType,
+                uniqueContent,
+                includeOnly,
+                postType,
+                numberPost: postLoaded,
+                includePost,
+                excludePost,
+                includeCategory,
+                excludeCategory,
+                includeAuthor,
+                includeTag,
+                excludeTag,
+                sortBy,
+                postOffset: postStart,
+            };
+            apiFetch({
+                path: addQueryArgs('/gvnews-client/v1/get-post'),
+                method: 'POST',
+                data: {
+                    attr: attr
+                }
+            }).then((data) => {
+                const parsed = JSON.parse(data);
+                getTrim(parsed);
+            }).finally(() => {
+                setOverlay(false);
+                if (firstRender.current) {
+                    firstRender.current = false;
+                }
+            });
+        }, 300);
+
+        return () => clearTimeout(timeoutID);
     }, [
         contentType,
         includeOnly,
@@ -174,88 +323,25 @@ const Slider7Block = compose(
         includeTag,
         excludeTag,
         sortBy,
-        loadPost
+        postLoaded,
+        postStart,
     ]);
 
-    const blockProps = useBlockProps({
-        className: classnames(
-            'gvnews-block',
-            'gvnews-block-wrapper',
-            'gvnews-element-full',
-            'gvnews-slider-7',
-            elementId,
-            animationClass,
-            displayClass,
-        ),
-        ref: elementRef
-    });
-
-    const moduleData = {
-        blockWidth,
-        excerptLength,
-        excerptEllipsis,
-        moduleOption,
-        postData,
-        metaDateType,
-        metaDateFormat,
-        metaDateFormatCustom,
-    };
-
-    function RenderContent(props) {
-        return (
-            <div className="gvnews_slide_item" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}>
-                {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
-                <div className="gvnews_slide_image" style={{ backgroundImage: 'url(' + props.post.thumbnail.url + ')' }}></div>
-                <SliderCaption {...props} excerpt navigation withElipsis={false} withMeta={false} withReadmore={true} />
-            </div>
-        );
-    }
-
-    function RenderColumn(props) {
-        const attr = {
-            option: props.moduleOption,
-            length: props.excerptLength,
-            elipsis: props.excerptEllipsis,
-            date: {
-                type: props.metaDateType,
-                format: props.metaDateFormat,
-                custom: props.metaDateFormatCustom,
-            }
-        };
-        const content = [];
-        if (props.postData && props.moduleOption) {
-            for (let i = 0; i < props.postData.length; i++) {
-                content.push(<RenderContent attr={attr} index={i} post={props.postData[i]} />);
-            }
-        }
-
-        return (
-            <div className={`gvnews_slider_type_7 gvnews_slider gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 featured-${fimagePosition}`} data-autoplay={autoplay ? true : ''} data-delay={autoplayDelay} data-nav-prev={'PREV'} data-nav-next={'NEXT'}>
-                {content}
-            </div>
-        );
-    }
-
-    const [block, setBlock] = useState(false);
-    function resetblock() {
-        setBlock(
-            <div className={`gvnews_slider_wrapper gvnews_slider_type_7_wrapper ${overlayOption == 'no' ? 'no-overlay' : ''}`}>
-                {postData ? <RenderColumn {...moduleData} /> : postBulk ? <div className="gvnews_empty_module">{moduleOption.string.no_content}</div> : <ModuleSkeleton />}
-                {overlay && <ModuleOverlay />}
-            </div>
-        );
-    }
-
     useEffect(() => {
-        setBlock(false);
-        setTimeout(function () {
-            resetblock();
-        }, 100);
+        if (firstRender.current) {
+            return;
+        }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
+        resetblock();
     }, [
         blockWidth,
         excerptLength,
         excerptEllipsis,
-        moduleOption,
         postData,
         metaDateType,
         metaDateFormat,
@@ -263,44 +349,60 @@ const Slider7Block = compose(
         overlay,
         showNav,
         autoplay,
-        autoplayDelay,
+        sliderDelay,
         overlayOption,
         fimagePosition,
+        showMeta,
+        showMetaDate,
+        showMetaAuthor,
+        readmoreButtonDisabled,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
-    if ('function' === typeof gvnews.slider && postData && !overlay) {
-        setTimeout(function () {
-            let gvnewsLibrary = window.gvnews;
-            gvnewsLibrary = gvnews.library;
-            var slider = document.querySelectorAll('.gvnews_slider_wrapper .gvnews_slider');
-            if (slider.length) {
-                gvnewsLibrary.forEach(slider, function (ele, i) {
-                    gvnews.slider({
-                        container: ele,
-                        onInit: function (info) {
-                            if ('undefined' !== typeof info.nextButton) {
-                                gvnewsLibrary.addClass(info.nextButton, 'tns-next');
-                            }
-                            if ('undefined' !== typeof info.prevButton) {
-                                gvnewsLibrary.addClass(info.prevButton, 'tns-prev');
-                            }
-                        },
-                    });
-                });
-            }
-        }, 1000);
-    }
+    useEffect(() => {
+        if (firstRender.current) {
+            return;
+        }
+        if (blockRef.current) {
+            window.gvnewsSliderModule(blockRef.current);
+        }
+    }, [block]);
 
-    return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
-        <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
-                <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
-                {block ? block : 'loading'}
+    return (
+        <>
+            {isDeprecated ? (
+                <PanelUpgradePro title="Slider 7" />
+            ) : (
+                <>
+                    <CopyElementToolbar {...props} />
+                    <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                    <InspectorControls>
+                        {applyFilters(
+                            'gutenverse.blocks-pro.upgrade-banner-professional',
+                            null,
+                            props
+                        )}
+                    </InspectorControls>
+                </>
+            )}
+
+            <div {...blockProps}>
+                <div className={wrapperClass}>
+                    <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
+                    {block}
+                    {(overlay && !firstRender.current) && <ModuleOverlay />}
+                    {isDeprecated && <UpgradeProOverlay />}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 });
 
 export default Slider7Block;

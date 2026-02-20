@@ -1,12 +1,47 @@
 import { __ } from '@wordpress/i18n';
 import { TextControl, CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from '../../../utils/helper';
 
 export const generalPanel = (props) => {
     const {
         boxed,
-        dateFormat
+        imageLoad = '',
     } = props;
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, false);
+
     return [
+        {
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
+        },
         {
             id: 'numberPost',
             component: RangeControl,
@@ -45,40 +80,26 @@ export const generalPanel = (props) => {
             description: __('Define excerpt ellipsis', 'gutenverse-news'),
         },
         {
-            id: 'dateFormat',
-            component: SelectControl,
-            label: __('Content Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
-            options: [
-                {
-                    value: 'ago',
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                },
-                {
-                    value: 'default',
-                    label: __('WordPress Default Format', 'gutenverse-news'),
-                },
-                {
-                    value: 'custom',
-                    label: __('Custom Format', 'gutenverse-news'),
-                },
-            ],
-        },
-        {
-            show: dateFormat === 'custom',
-            id: 'dateFormatCustom',
-            component: TextControl,
-            label: __('Custom Date Format', 'gutenverse-news'),
-            description: __(
-                'Please write custom date format for your module, for more detail about how to write date format, you can refer to this <a href="https://codex.wordpress.org/Formatting_Date_and_Time" target="_blank">link</a>.',
-                'gutenverse-news'
-            ),
-        },
-        {
             id: 'firstPage',
             component: CheckboxControl,
             label: __('Only First Page', 'gutenverse-news'),
             description: __('Enable this option if you want to show this block only on the first page.', 'gutenverse-news'),
+        },
+        {
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
     ];
 };

@@ -190,6 +190,7 @@ class Block_Query {
 
 				if ( self::stil_has_post( count( $inc_args['post__in'] ), $args['paged'], $args['offset'] ) ) {
 					$included_posts         = new \WP_Query( $inc_args );
+					$args['posts_per_page'] = (int) $args['posts_per_page'];
 					$args['posts_per_page'] = $args['posts_per_page'] - count( $included_posts->posts );
 					$args['offset']         = 0;
 				} else {
@@ -292,6 +293,12 @@ class Block_Query {
 				);
 			}
 
+			if ( 'most_like' === $attr['sort_by'] ) {
+				$args['orderby']  = 'meta_value_num';
+				$args['meta_key'] = 'gvnews_like_counter';
+				$args['order']    = 'DESC';
+			}
+
 			if ( 'post__in' === $attr['sort_by'] ) {
 				$args['orderby'] = 'post__in';
 			}
@@ -309,6 +316,7 @@ class Block_Query {
 		if ( isset( $attr['s'] ) ) {
 			$args['s'] = $attr['s'];
 		}
+
 		// date.
 		if ( isset( $attr['date_query'] ) ) {
 			$args['date_query'] = $attr['date_query'];
@@ -329,7 +337,7 @@ class Block_Query {
 			foreach ( $included_posts->posts as $post ) {
 				$result[] = $post;
 			}
-			if ( count( $included_posts->posts ) < $args['posts_per_page'] ) {
+			if ( (int) $args['posts_per_page'] === count( $query->posts ) ) {
 				foreach ( $query->posts as $post ) {
 					$result[] = $post;
 				}

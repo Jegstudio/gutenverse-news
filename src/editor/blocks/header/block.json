@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-header",
     "title": "Header",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Header",
-    "description": "Your Block description.",
+    "description": "Pre-designed heading block.",
     "category": "gvnews-element",
     "attributes": {
         "elementId": {
@@ -16,6 +16,13 @@
         "icon": {
             "type": "string",
             "default": ""
+        },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconSVG": {
+            "type": "string"
         },
         "title": {
             "type": "string",
@@ -126,6 +133,10 @@
         },
         "positioningBottom": {
             "type": "object"
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
     "supports": {
@@ -133,5 +144,8 @@
     },
     "keywords": [
         "header"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style"
     ]
 }

@@ -17,19 +17,6 @@ namespace GUTENVERSE\NEWS\Block\Module;
  */
 class Module_28 extends Module_View_Abstract {
 
-
-	/**
-	 * Method set_content_setting_option
-	 *
-	 * @return void
-	 */
-	public function set_content_setting_option() {
-		$this->options['show_date']          = '';
-		$this->options['date_format']        = 'default';
-		$this->options['date_format_custom'] = 'Y/m/d';
-		$this->options['excerpt_length']     = 20;
-	}
-
 	/**
 	 * Method render_block
 	 *
@@ -38,15 +25,19 @@ class Module_28 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block( $post ) {
-		$attr = $this->attribute;
-		$date = isset( $attr['show_date'] ) && $attr['show_date'] ? $this->post_meta_2( $post ) : '';
+		$date      = $this->post_meta_2( $post );
+		$icon      = isset( $this->attribute['list_icon'] ) ? ( $this->attribute['list_icon'] ) : 'fas fa-caret-right';
+		$icon_type = isset( $this->attribute['list_icon_type'] ) ? $this->attribute['list_icon_type'] : 'icon';
+		$icon_svg  = isset( $this->attribute['list_icon_svg'] ) ? $this->attribute['list_icon_svg'] : '';
+
+		$icon_html = $this->render_icon( $icon_type, $icon, $icon_svg );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_xs_4', $post->ID ) . '>
                     <div class="gvnews_postblock_content">
-						<i class="fas fa-caret-right"></i>
-                        <h3 class="gvnews_post_title">
-                            <a href="' . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+						' . $icon_html . '
+                        <' . $this->post_title_tag . ' class="gvnews_post_title">
+                            <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                        </{$this->post_title_tag}>
                         {$date}
                     </div>
                 </article>";
@@ -88,11 +79,7 @@ class Module_28 extends Module_View_Abstract {
                     {$content}
                     {$this->get_content_after($attr)}
                 </div>
-                <div class=\"gvnews_block_navigation\">
-                    {$this->get_navigation_before($attr)}
-                    {$navigation}
-                    {$this->get_navigation_after($attr)}
-                </div>";
+                {$navigation}";
 	}
 
 	/**

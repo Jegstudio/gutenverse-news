@@ -3,7 +3,21 @@ import { ContentModule } from '../../part/post';
 import ThumbModule from '../../part/thumbnail';
 
 const Block21Columns = props => {
-    const {postData, numberPost, paginationPost = numberPost, page = 1, isLoadMore = false, moduleOption, excerptLength, excerptEllipsis, metaDateType, metaDateFormat, metaDateFormatCustom} = props;
+    const {
+        postData,
+        numberPost,
+        paginationPost = numberPost,
+        page = 1,
+        isLoadMore = false,
+        moduleOption,
+        excerptLength,
+        excerptEllipsis,
+        metaDateType,
+        metaDateFormat,
+        metaDateFormatCustom,
+        imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
+    } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -11,7 +25,7 @@ const Block21Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                {<ThumbModule size={715} cat={false} post={post} />}
+                {<ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />}
                 <ContentModule
                     title={true}
                     meta={2}
@@ -33,6 +47,7 @@ const Block21Columns = props => {
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
             },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 

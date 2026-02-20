@@ -10,6 +10,7 @@
 namespace GUTENVERSE\NEWS\Block\Hero;
 
 use GUTENVERSE\NEWS\Block\Hero\Hero_View_Abstract;
+use GUTENVERSE\NEWS\Util\Image\Image_Normal_Load;
 
 /**
  * Hero_14
@@ -30,7 +31,7 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_1
 	 *
-	 * @param array $post post.
+	 * @param object $post post.
 	 *
 	 * @return string
 	 */
@@ -38,28 +39,29 @@ class Hero_14 extends Hero_View_Abstract {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
+			$read_more = ! $this->attribute['disable_readmore'] ? "<a href=\"{$permalink}\" aria-label=\"" . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>' : '';
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_7', $post_id ) . '>
+			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\">" . apply_filters( 'gvnews_image_thumbnail', $post_id, 'gvnews-750x536' ) . "</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-750x536', $this->attribute['image_load'] ) . "</a>
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
                             </div>
                         </div>
                         <div class=\"gvnews_postblock_content\">
-                            <h2 class=\"gvnews_post_title\">
-                                <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h2>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             <div class=\"gvnews_post_meta\">
                                 {$this->post_meta_3($post)}
                             </div>
                             <div class=\"gvnews_post_excerpt\">
                                 <p>" . esc_attr( $this->get_excerpt( $post ) ) . "</p>
-                                <a href=\"{$permalink}\" class=\"gvnews_readmore\">" . esc_html__( 'Read more', 'gutenverse-news' ) . '</a>
+								{$read_more}
                             </div>
                         </div>
-                    </article>';
+                    </article>";
 		}
 		return '<article class="gvnews_post gvnews_pl_md_box gvnews_hero_empty">
                     <div class="gvnews_block_container"></div>
@@ -69,22 +71,23 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_2
 	 *
-	 * @param object $post post.
+	 * @param object  $post post.
+	 * @param integer $index index.
 	 *
 	 * @return string
 	 */
-	public function render_block_type_2( $post ) {
+	public function render_block_type_2( $post, $index ) {
 		if ( $post ) {
 			$post_id = $post->ID;
 
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm_2', $post_id ) . ">
+			return '<article ' . gvnews_post_class( 'gvnews_post left gvnews_pl_sm_2 gvnews_hero_item_' . $index, $post_id ) . ">
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
                             </div>
-                            <h3 class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                            </h3>
+                            <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
+                            </{$this->post_title_tag}>
                             {$this->post_meta_2($post)}
                         </div>
                     </article>";
@@ -97,25 +100,25 @@ class Hero_14 extends Hero_View_Abstract {
 	/**
 	 * Method render_block_type_3
 	 *
-	 * @param object $post post.
+	 * @param object  $post post.
+	 * @param integer $index index.
 	 *
 	 * @return string
 	 */
-	public function render_block_type_3( $post ) {
+	public function render_block_type_3( $post, $index ) {
 		if ( $post ) {
 			$post_id   = $post->ID;
 			$permalink = esc_url( get_the_permalink( $post ) );
-
-			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box', $post_id ) . '>
+			return '<article ' . gvnews_post_class( 'gvnews_post right gvnews_pl_md_box gvnews_hero_item_' . $index, $post_id ) . '>
                         <div class="box_wrap">
                             <div class="gvnews_thumb">
                                 ' . gvnews_edit_post( $post_id ) . "
-                                <a href=\"{$permalink}\">" . apply_filters( 'gvnews_image_thumbnail', $post_id, 'gvnews-350x250' ) . "</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-350x250', $this->attribute['image_load'] ) . "</a>
                             </div>
                             <div class=\"gvnews_postblock_content\">
-                                <h3 class=\"gvnews_post_title\">
-                                    <a href=\"{$permalink}\">" . esc_attr( get_the_title( $post ) ) . "</a>
-                                </h3>
+                                <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                    <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . esc_attr( get_the_title( $post ) ) . "</a>
+                                </{$this->post_title_tag}>
                                 {$this->post_meta_2($post)}
                             </div>
                         </div>
@@ -144,9 +147,9 @@ class Hero_14 extends Hero_View_Abstract {
 			if ( $i < 1 ) {
 				$first_block .= $this->render_block_type_1( $item );
 			} elseif ( $i < 5 ) {
-				$second_block .= $this->render_block_type_2( $item );
+				$second_block .= $this->render_block_type_2( $item, $i );
 			} else {
-				$third_block .= $this->render_block_type_3( $item );
+				$third_block .= $this->render_block_type_3( $item, ( $i - 4 ) );
 			}
 		}
 
@@ -208,7 +211,7 @@ class Hero_14 extends Hero_View_Abstract {
 				$class = 'class="category-' . esc_attr( $category->slug ) . '"';
 			}
 
-			$category = '<a href="' . esc_url( get_category_link( $cat_id ) ) . "\" {$inline_style} {$class}>" . esc_attr( $category->name ) . '</a>';
+			$category = '<a href="' . esc_url( get_category_link( $cat_id ) ) . "\" aria-label=\"" . esc_attr( $category->name ) . "\" {$inline_style} {$class}>" . esc_attr( $category->name ) . '</a>';
 		}
 
 		return $category;

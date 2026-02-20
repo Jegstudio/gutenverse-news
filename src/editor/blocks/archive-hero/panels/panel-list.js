@@ -1,12 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, animationPanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
-import { designPanel } from './panel-design';
+import { advancePanel, animationPanel, backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { heroDesignPanel } from './panel-hero-design';
 import { heroStylePanel } from './panel-hero-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { typePanel } from './panel-type';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
+import { metaPanel } from './panel-meta';
+import { metaStylePanel } from './panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return [
@@ -23,10 +25,10 @@ export const panelList = () => {
             tabRole: TabSetting
         },
         {
-            title: __('Hero Design', 'gutenverse-news'),
+            title: __('Meta Settings', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: heroDesignPanel,
-            tabRole: TabStyle
+            panelArray: metaPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Hero Style', 'gutenverse-news'),
@@ -35,15 +37,27 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
-            title: __('Design', 'gutenverse-news'),
+            title: __('Hero Design', 'gutenverse-news'),
             initialOpen: false,
-            panelArray: designPanel,
+            panelArray: heroDesignPanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('Meta Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: metaStylePanel,
             tabRole: TabStyle
         },
         {
             title: __('Category Label', 'gutenverse-news'),
             initialOpen: false,
             panelArray: categoryStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
             tabRole: TabStyle
         },
         {
@@ -96,7 +110,12 @@ export const panelList = () => {
                 ...props,
                 styleId: 'archive-pagination-advance',
             }),
-            tabRole: TabStyle
+            tabRole: TabSetting
+        }, {
+            title: __('Condition', 'gutenverse-news'),
+            panelArray: conditionPanel,
+            initialOpen: false,
+            pro: true
         }
-    ];
+    ]
 };

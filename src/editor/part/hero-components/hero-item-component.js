@@ -6,9 +6,10 @@ import { MetaModule2, MetaModule3, MetaCategory } from '../meta';
  * @param { index, margin, post, attr } param0
  * @returns
  */
-const HeroElement = ({ index, margin, post, attr }) => {
+const HeroElement = ({ index, margin, post, attr, onlyDate = false }) => {
+    const TitleTag = attr?.postTitleHtmlTag || 'h2';
     return (
-        <article className={`gvnews_post gvnews_hero_item_${index + 1}`}>
+        <article className={`gvnews_post format-${post.format} gvnews_hero_item_${index + 1}`}>
             <div className="gvnews_block_container">
                 <span className="gvnews_postformat_icon"></span>
                 <div className="gvnews_thumb">
@@ -25,11 +26,11 @@ const HeroElement = ({ index, margin, post, attr }) => {
                 <div className="gvnews_postblock_content">
                     <MetaCategory post={post} />
                     <div className="gvnews_post_info">
-                        <h2 className="gvnews_post_title">
+                        <TitleTag className="gvnews_post_title">
                             <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                        </h2>
+                        </TitleTag>
                         <div className="gvnews_post_meta">
-                            {index === 0 ? <MetaModule3 post={post} attr={attr} /> : <MetaModule2 post={post} attr={attr} />}
+                            {index === 0 && !onlyDate ? <MetaModule3 post={post} attr={attr} /> : <MetaModule2 post={post} attr={attr} />}
                         </div>
                     </div>
                 </div>
@@ -58,11 +59,11 @@ const HeroEmpty = ({ index, margin }) => {
  * @param {index, margin, post, attr} param0
  * @returns {JSX.Element}
  */
-const HeroItemComponent = ({ index, margin, post, attr }) => {
+const HeroItemComponent = ({ index, margin, post, attr, onlyDate = false }) => {
     if (!post) {
         return <HeroEmpty {...{ index, margin }} />;
     }
-    return <HeroElement {...{ index, margin, post, attr }} />;
+    return <HeroElement {...{ index, margin, post, attr, onlyDate }} />;
 };
 
 export default HeroItemComponent;

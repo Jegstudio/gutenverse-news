@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-archive-description",
     "title": "Archive Description",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Archive",
-    "description": "Your Block description.",
+    "description": "Show archive description on archive page.",
     "category": "gvnews-archive",
     "attributes": {
         "elementId": {
@@ -16,21 +16,9 @@
         "textColor": {
             "type": "object"
         },
-        "scheme": {
-            "type": "string",
-            "default": ""
-        },
         "elClass": {
             "type": "string",
             "default": ""
-        },
-        "column": {            
-            "type": "object",
-            "default": {}
-        },
-        "columnWidth": {
-            "type": "string",
-            "default": 12
         },
         "descTypography": {
             "type": "object",
@@ -44,11 +32,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -60,28 +48,15 @@
         },
         "boxShadowHover": {
             "type": "object"
-        }, 
+        },
         "margin": {
-            "type": "number",
-            "default": 20
-        },
-        "enableAutoplay": {
-            "type": "boolean",
-            "default": false
-        },
-        "autoplayDelay": {
-            "type": "number",
-            "default": 3000
+            "type": "object"
         },
         "padding": {
             "type": "object"
         },
         "zIndex": {
             "type": "object"
-        },
-        "animation": {
-            "type": "object",
-            "default": {}
         },
         "hideDesktop": {
             "type": "boolean"
@@ -92,29 +67,16 @@
         "hideMobile": {
             "type": "boolean"
         },
-        "positioningType": {
-            "type": "object"
+        "condition": {
+            "type": "object",
+            "default": {}
         },
-        "positioningWidth": {
-            "type": "object"
+        "tagType": {
+            "type": "string",
+            "default": "h2"
         },
-        "positioningAlign": {
-            "type": "object"
-        },
-        "positioningLocation": {
+        "textAlign": {
             "type": "string"
-        },
-        "positioningLeft": {
-            "type": "object"
-        },
-        "positioningRight": {
-            "type": "object"
-        },
-        "positioningTop": {
-            "type": "object"
-        },
-        "positioningBottom": {
-            "type": "object"
         }
     },
     "supports": {

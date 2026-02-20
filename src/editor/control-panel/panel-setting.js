@@ -1,40 +1,49 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
+import { applyFilters } from '@wordpress/hooks';
+import { IconSVGControl, SelectControl, TextControl, RangeControl } from 'gutenverse-core/controls';
+import { getDefaultImageLoad } from "../utils/helper";
 
-export const settingPanel = (props) => {
+export const settingPanel = (props, withListIcon = false) => {
     const {
-        metaDateFormat,
         enableExcerpt,
-        enableDateFormat = true,
+        normalImage,
+        imageLoad = '',
     } = props;
+
+    const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
+
     return [
         {
-            id: 'metaDateFormat',
-            show: enableDateFormat === true,
-            label: __('Date Format', 'gutenverse-news'),
-            description: __('Choose which date format you want to use.', 'gutenverse-news'),
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
             component: SelectControl,
             options: [
                 {
-                    label: __('Relative Date/Time Format (ago)', 'gutenverse-news'),
-                    value: 'ago'
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
                 },
                 {
-                    label: __('Wordpress Default Format', 'gutenverse-news'),
-                    value: 'default'
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
                 },
                 {
-                    label: __('Custom Format', 'gutenverse-news'),
-                    value: 'custom'
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
                 },
             ],
-        },
-        {
-            id: 'metaDateFormatCustom',
-            show: metaDateFormat === 'custom',
-            label: __('Custom Format', 'gutenverse-news'),
-            description: __('Please write custom date format for your module, for more detail about how to write date format.', 'gutenverse-news'),
-            component: TextControl,
         },
         {
             id: 'excerptLength',
@@ -54,10 +63,28 @@ export const settingPanel = (props) => {
             component: TextControl,
         },
         {
-            id: 'normalImage',
-            label: __('Use Normal Image Load', 'gutenverse-news'),
-            description: __('Force it to use normal load image and optimize Largest Contentful Paint (LCP) when using this element at the top of your site.', 'gutenverse-news'),
-            component: CheckboxControl
+            id: 'imageLoad',
+            label: __('Image Load', 'gutenverse'),
+            component: SelectControl,
+            defaultValue: defaultImageLoad,
+            options: [
+                {
+                    label: __('Normal Load', 'gutenverse'),
+                    value: 'eager'
+                },
+                {
+                    label: __('Lazy Load', 'gutenverse'),
+                    value: 'lazy'
+                },
+            ],
         },
+        {
+            id: 'listIcon',
+            show: withListIcon,
+            label: __('Item List Icon', 'gutenverse-news'),
+            description: __('Choose icon for post list icon.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
+        ...applyFilters('gvnews.panel.contentSetting', [], props)
     ];
 };

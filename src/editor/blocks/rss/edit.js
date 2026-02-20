@@ -3,26 +3,27 @@ import { useState, useEffect, Fragment } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
-import { BlockPanelController } from 'gutenverse-core/controls';
-import { panelList } from './panels/panel-list';
 import { useAnimationEditor } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
-import { RawHTML } from '@wordpress/element';
 import HeaderModule from '../../part/header';
 import { ContentModule } from '../../part/post';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
 import { getParentColumnWidth } from '../../utils/helper';
-
+import PanelUpgradePro from '../../panels/panel-upgrade-pro';
+import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
+import { BlockPanelController } from 'gutenverse-core/controls';
+import { panelList } from './panels/panel-list';
+import { gutenverseProActive } from '../../utils/helper';
+import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
+import { applyFilters } from '@wordpress/hooks';
 
 const RssBlock = compose(
     withPartialRender,
@@ -55,7 +56,9 @@ const RssBlock = compose(
         metaDateFormatCustom,
         enableBoxed,
         enableBoxShadow,
-        metaDateType
+        metaDateType,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -124,6 +127,7 @@ const RssBlock = compose(
         title,
         second_title,
         headerType,
+        headerHtmlTag,
     };
 
     const blockProps = useBlockProps({
@@ -168,7 +172,8 @@ const RssBlock = compose(
                     type: metaDateType,
                     format: metaDateFormat,
                     custom: metaDateFormatCustom,
-                }
+                },
+                titleTag: postTitleHtmlTag
             };
             const limit = postData.length < numberPost ? postData.length : numberPost;
             const content = postData.map((post, index) => {
@@ -194,16 +199,32 @@ const RssBlock = compose(
         excerptLength,
         excerptEllipsis,
         metaDateFormat,
-        metaDateFormatCustom
+        metaDateFormatCustom,
+        postTitleHtmlTag
     ]);
+    const isDeprecated = !gutenverseProActive;
 
     return <>
-        <CopyElementToolbar {...props} />
-        <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+        {isDeprecated ? (
+            <PanelUpgradePro title="RSS" />
+        ) : (
+            <>
+                <CopyElementToolbar {...props} />
+                <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
+                <InspectorControls>
+                    {applyFilters(
+                        'gutenverse.blocks-pro.upgrade-banner-professional',
+                        null,
+                        props
+                    )}
+                </InspectorControls>
+            </>
+        )}
         <div  {...blockProps}>
-            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''}`}>
+            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} `}>
                 <HeaderModule {...headerData} />
                 {block ? block : <ModuleSkeleton />}
+                {isDeprecated && <UpgradeProOverlay />}
             </div>
         </div>
     </>;

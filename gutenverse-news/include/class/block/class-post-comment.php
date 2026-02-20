@@ -57,7 +57,7 @@ class Post_Comment extends Post_Guten {
 
 				echo "<span class='comment-login'>" .
 					sprintf(
-						gvnews_print_translation( "Please <a href='%s' class='%s'>login</a> to join discussion", 'gutenverse-news', 'please_login_join_discussion' ),
+						gvnews_print_translation( "Please <a href='%s' class='%s' aria-label='login'>login</a> to join discussion", 'gutenverse-news', 'please_login_join_discussion' ),
 						wp_login_url( esc_url( gvnews_home_url_multilang( '/' ) ), false ),
 						''
 					)
@@ -106,5 +106,14 @@ class Post_Comment extends Post_Guten {
 		}
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * Check if this block is already deprecated.
+	 *
+	 * @return boolean
+	 */
+	public function check_deprecated() {
+		return current_user_can( 'edit_pages' );
 	}
 }

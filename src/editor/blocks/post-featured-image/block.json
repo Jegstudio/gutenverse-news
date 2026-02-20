@@ -1,9 +1,9 @@
 {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "gutenverse/news-post-featured",
-    "title": "Post Featured Image",
+    "title": "Advanced Post Featured Image",
     "class_callback": "\\GUTENVERSE\\NEWS\\Block\\Post_Featured",
-    "description": "Your Block description.",
+    "description": "Display the post’s featured image on the single post page.",
     "category": "gvnews-single-post",
     "attributes": {
         "elementId": {
@@ -13,15 +13,15 @@
             "type": "string",
             "default": "GUTENVERSE\\NEWS\\Block\\Single\\Post\\Post_Feature"
         },
-       "imageSize": {
+        "imageSize": {
             "type": "string",
             "default": "750x375"
-       },
-       "gallerySize": {
-            "type": "string",
-            "default": ""
         },
-        "column": {            
+        "gallerySize": {
+            "type": "string",
+            "default": "1140x570"
+        },
+        "column": {
             "type": "object",
             "default": {}
         },
@@ -38,11 +38,11 @@
             "type": "object",
             "copyStyle": true
         },
-		"backgroundTransition": {
-			"type": "object",
-			"copyStyle": true,
-			"default": {}
-		},
+        "backgroundTransition": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {}
+        },
         "border": {
             "type": "object"
         },
@@ -140,9 +140,17 @@
         "imageBoxShadowHover": {
             "type": "object",
             "default": {}
+        },
+        "condition": {
+            "type": "object",
+            "default": {}
         }
     },
-    "usesContext": [ "postId", "postType", "queryId" ],
+    "usesContext": [
+        "postId",
+        "postType",
+        "queryId"
+    ],
     "supports": {
         "className": false
     },
@@ -153,5 +161,9 @@
         "featured",
         "image",
         "thumbnail"
+    ],
+    "style": [
+        "gutenverse-news-frontend-blocks-style",
+        "gutenverse-news-frontend-post-featured-image-style"
     ]
 }

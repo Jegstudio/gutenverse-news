@@ -27,7 +27,7 @@ export const generalPanel = (props) => {
             component: ImageRadioControl,
             options: [
                 {
-                    image: <img src={`${imgDir}/content-3.png`}/>,
+                    image: <img src={`${imgDir}/content-3.png`} />,
                     value: '3'
                 },
             ],
@@ -60,6 +60,38 @@ export const generalPanel = (props) => {
             min: 1,
             max: 100,
             step: 1
+        },
+        {
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
         },
         {
             id: 'enableBoxed',
