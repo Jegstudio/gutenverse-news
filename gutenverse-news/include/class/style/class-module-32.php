@@ -48,20 +48,9 @@ class Module_32 extends Block {
 		if ( isset( $this->attrs['gutterWidth'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock.gvnews_col_3o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post",
+					'selector'       => ".{$this->element_id}",
 					'property'       => function ( $value ) {
-						return "width : calc((100% - (2 * {$value}px)) / 3);";
-					},
-					'value'          => $this->attrs['gutterWidth'],
-					'device_control' => true,
-				)
-			);
-
-			$this->inject_style(
-				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock.gvnews_col_2o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post",
-					'property'       => function ( $value ) {
-						return "width : calc((100% - {$value}px) / 2);";
+						return "--gvnews-gutter-width: {$value}px;";
 					},
 					'value'          => $this->attrs['gutterWidth'],
 					'device_control' => true,
