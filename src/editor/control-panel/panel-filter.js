@@ -3,8 +3,48 @@ import { NumberControl, RangeControl, SelectSearchControl, SelectControl, Checkb
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
 import { applyFilters } from '@wordpress/hooks';
 
-export const filterPanel = ({ postType }) => {
 
+const contentFilter = [
+    {
+        value: '',
+        label: __('All', 'gutenverse-news')
+    },
+    {
+        value: 'post',
+        label: __('Only Post', 'gutenverse-news')
+    },
+];
+
+export const filterPanel = (props, isModule = false) => {
+    const { postType = 'post' } = props;
+
+    const moduleContentFilter = applyFilters('gvnews.panel.options.contentType', [
+        {
+            value: '',
+            label: __('All', 'gutenverse-news')
+        },
+        {
+            value: 'post',
+            label: __('Only Post', 'gutenverse-news')
+        },
+        {
+            value: '',
+            label: __('Only Liked', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Disliked', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Unlocked', 'gutenverse-news'),
+            pro: true
+        },
+
+    ], postType);
+    
     return [
         {
             id: 'postType',
@@ -27,26 +67,7 @@ export const filterPanel = ({ postType }) => {
             label: __('Content Type', 'gutenverse-news'),
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: SelectControl,
-            options: applyFilters('gvnews.panel.options.contentType', [
-                {
-                    value: '',
-                    label: __('All', 'gutenverse-news')
-                },
-                {
-                    value: 'post',
-                    label: __('Only Post', 'gutenverse-news')
-                },
-                {
-                    value: '',
-                    label: __('Only Liked', 'gutenverse-news'),
-                    pro: true
-                },
-                {
-                    value: '',
-                    label: __('Only Disliked', 'gutenverse-news'),
-                    pro: true
-                }
-            ], postType)
+            options: isModule ? moduleContentFilter : contentFilter
         },
         {
             id: 'numberPost',
