@@ -143,6 +143,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 3.1.3 [DEV] =
+##### Bug Fixes
+* Fix responsive design issue on Module 20, 32, 33, 34, 35
+
 = 3.1.2 =
 ##### Improvements
 * Add post title html tag option on all post blocks
