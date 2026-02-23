@@ -114,13 +114,17 @@ class Image_Normal_Load implements Image_Interface {
 	 * @param string $id   id.
 	 * @param string $size size.
 	 * @param string $image_load image load type.
+	 * @param string $fetch_priority_hight fetch priority hight.
 	 *
 	 * @return string
 	 */
-	public function image_thumbnail( $id, $size, $image_load = 'lazy' ) {
+	public function image_thumbnail( $id, $size, $image_load = 'lazy', $fetch_priority_hight = false ) {
 		$image_attr = array(
 			'loading' => $image_load,
 		);
+		if ( $fetch_priority_hight && 'lazy' !== $image_load ) {
+			$image_attr['fetchpriority'] = 'high';
+		}
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 		$size       = apply_filters( 'gvnews_use_custom_image', $size );
@@ -145,13 +149,17 @@ class Image_Normal_Load implements Image_Interface {
 	 * @param string $id   id.
 	 * @param string $size size.
 	 * @param string $image_load image load type.
+	 * @param string $fetch_priority_hight fetch priority hight.
 	 *
 	 * @return string
 	 */
-	public function owl_single_image( $id, $size, $image_load = 'lazy' ) {
+	public function owl_single_image( $id, $size, $image_load = 'lazy', $fetch_priority_hight = false ) {
 		$image_attr = array(
 			'loading' => $image_load,
 		);
+		if ( $fetch_priority_hight && 'lazy' !== $image_load ) {
+			$image_attr['fetchpriority'] = 'high';
+		}
 
 		$image_size = Image::get_instance()->get_image_size( $size );
 

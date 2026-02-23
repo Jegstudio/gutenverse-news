@@ -325,6 +325,9 @@
         "noContentPadding": {
             "type": "object",
             "copyStyle": true
+        },
+        "fetchPriorityHigh": {
+            "type": "boolean"
         }
     },
     "supports": {

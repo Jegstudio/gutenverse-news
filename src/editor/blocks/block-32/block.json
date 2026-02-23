@@ -734,6 +734,9 @@
         "postTitleHtmlTag": {
             "type": "string",
             "default": "h3"
+        },
+        "fetchPriorityHigh": {
+            "type": "boolean"
         }
     },
     "supports": {
