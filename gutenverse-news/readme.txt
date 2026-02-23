@@ -144,6 +144,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.1.3 [DEV] =
+##### Improvements
+* Add fetch priority high option on all post blocks
 ##### Bug Fixes
 * Fix responsive design issue on Module 20, 32, 33, 34, 35
 
