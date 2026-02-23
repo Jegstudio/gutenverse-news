@@ -65,6 +65,7 @@ const Slider9Block = compose(
         showMetaDate = true,
         showMetaAuthor = true,
         postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = '',
         showMetaReview = false,
     } = attributes;
 
@@ -292,6 +293,12 @@ const Slider9Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -308,6 +315,7 @@ const Slider9Block = compose(
         showMetaDate,
         showMetaAuthor,
         postTitleHtmlTag,
+        gutenversePreviewBlock,
         showMetaReview,
     ]);
 

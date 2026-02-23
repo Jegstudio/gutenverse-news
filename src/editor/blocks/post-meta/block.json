@@ -112,7 +112,84 @@
             "type": "object"
         },
         "commentColorHover": {
+            "type":"object"
+        },
+        "showType": {
+            "type": "string",
+            "default": "both"
+        },
+        "likeIconSize": {
+            "type":"object"
+        },
+        "likeIconGap": {
             "type": "object"
+        },
+        "likeIconColor": {
+            "type": "object"
+        },
+        "likeCountTypography": {
+            "type": "object"
+        },
+        "likeCountColor": {
+            "type": "object"
+        },
+        "likeBackground": {
+            "type":"object",
+            "default": {}
+        },
+        "likeMargin": {
+            "type": "object"
+        },
+        "likePadding": {
+            "type": "object"
+        },
+
+        "dislikeIconSize": {
+            "type":"object"
+        },
+        "dislikeIconGap": {
+            "type": "object"
+        },
+        "dislikeIconColor": {
+            "type": "object"
+        },
+        "dislikeCountTypography": {
+            "type": "object"
+        },
+        "dislikeCountColor": {
+            "type": "object"
+        },
+        "dislikeMargin": {
+            "type": "object"
+        },
+        "dislikePadding": {
+            "type": "object"
+        },
+        "dislikeBackground": {
+            "type":"object",
+            "default": {}
+        },
+        "bookmarkIconSize": {
+            "type":"object"
+        },
+        "bookmarkIconColor": {
+            "type":"object"
+        },
+        "wordsPerMinute": {
+            "type":"number",
+            "default": 300
+        },
+        "calculationMethod": {
+            "type":"string",
+            "default":"str_word_count"
+        },
+        "readingTimeTextColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "readingTimeTextTypography": {
+            "type": "object",
+            "copyStyle": true
         },
         "condition": {
             "type": "object",
@@ -196,6 +273,9 @@
             "type": "object"
         },
         "datePrefixColor": {
+            "type": "object"
+        },
+        "likeDislikeGap": {
             "type": "object"
         }
     },

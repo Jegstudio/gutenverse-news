@@ -293,6 +293,12 @@ class Block_Query {
 				);
 			}
 
+			if ( 'most_like' === $attr['sort_by'] ) {
+				$args['orderby']  = 'meta_value_num';
+				$args['meta_key'] = 'gvnews_like_counter';
+				$args['order']    = 'DESC';
+			}
+
 			if ( 'post__in' === $attr['sort_by'] ) {
 				$args['orderby'] = 'post__in';
 			}

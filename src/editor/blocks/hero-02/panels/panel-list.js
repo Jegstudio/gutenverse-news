@@ -9,6 +9,7 @@ import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return [
@@ -58,6 +59,12 @@ export const panelList = () => {
             title: __('Category Label', 'gutenverse-news'),
             initialOpen: false,
             panelArray: categoryStylePanel,
+            tabRole: TabStyle
+        },
+        {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
             tabRole: TabStyle
         },
         {

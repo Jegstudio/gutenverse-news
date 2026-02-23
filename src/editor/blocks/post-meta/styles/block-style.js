@@ -1,5 +1,6 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { applyFilters } from '@wordpress/hooks';
 import layoutStye from './panelStyle/style-layout';
 import authorStyle from './panelStyle/style-author';
 import categoryStyle from './panelStyle/style-category';
@@ -20,6 +21,10 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundSelector: `.${elementId}.gvnews-post-meta.gvnews-block`,
         backgroundHoverSelector: `.${elementId}.gvnews-post-meta.gvnews-block:hover`,
     });
+    data = applyFilters(
+        'gvnews.post-meta.blockStyle',
+        {attributes, data, elementId},
+    ).data;
 
     /**
      * Panel Border

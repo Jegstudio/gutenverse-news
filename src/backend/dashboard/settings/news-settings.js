@@ -23,7 +23,7 @@ export const NewsSettings = (props) => {
         case 'additional_features':
             const updateGVNewsFeatures = (value) => {
                 updateSettingValues('gvnews_settings', 'features', value);
-            }
+            };
             return <AdditionalFeatures  {...props} settingValues={gvnews_settings} updateSettingValues={updateGVNewsFeatures} />;
         default:
             break;

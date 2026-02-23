@@ -65,17 +65,27 @@ class Post_Meta extends Post_Guten {
 		if ( empty( $meta ) ) {
 			return '';
 		}
-		switch ( $meta ) {
-			case 'author':
-				return $this->render_author( $is_last_item );
-			case 'category':
-				return $this->render_category( $is_last_item );
-			case 'comment':
-				return $this->render_comment( $is_last_item );
-			case 'date':
-				return $this->render_date( $is_last_item );
+		$meta_components = array(
+			'author'   => $this->render_author( $is_last_item ),
+			'category' => $this->render_category( $is_last_item ),
+			'comment'  => $this->render_comment( $is_last_item ),
+			'date'     => $this->render_date( $is_last_item ),
+		);
+		$meta_components = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes );
+		if ( isset( $meta_components[ $meta ] ) ) {
+			$element          = $meta_components[ $meta ];
+			$additional_class = '';
+			if ( isset( $element['element'] ) ) {
+				$additional_class = $element['additional_class'];
+				$element          = $element['element'];
+			}
+			return '<div class="meta-items ' . $is_last_item . ' ' . $additional_class . '">'
+				. $element .
+			'</div>';
 		}
 	}
+
+	// === PRIVATE ===
 
 	/**
 	 * Method render_category
@@ -151,7 +161,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	protected function is_last_item( $index, $array_length ) {
+	private function is_last_item( $index, $array_length ) {
 		if ( $index === $array_length - 1 ) {
 			return 'is-last-item';
 		}

@@ -64,7 +64,8 @@ const Carousel1Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
-        postTitleHtmlTag = 'h3'
+        postTitleHtmlTag = 'h3',
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const metaSettings = {
@@ -296,6 +297,10 @@ const Carousel1Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -314,7 +319,8 @@ const Carousel1Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {

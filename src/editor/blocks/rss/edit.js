@@ -56,7 +56,9 @@ const RssBlock = compose(
         metaDateFormatCustom,
         enableBoxed,
         enableBoxShadow,
-        metaDateType
+        metaDateType,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -125,6 +127,7 @@ const RssBlock = compose(
         title,
         second_title,
         headerType,
+        headerHtmlTag,
     };
 
     const blockProps = useBlockProps({
@@ -169,7 +172,8 @@ const RssBlock = compose(
                     type: metaDateType,
                     format: metaDateFormat,
                     custom: metaDateFormatCustom,
-                }
+                },
+                titleTag: postTitleHtmlTag
             };
             const limit = postData.length < numberPost ? postData.length : numberPost;
             const content = postData.map((post, index) => {
@@ -195,7 +199,8 @@ const RssBlock = compose(
         excerptLength,
         excerptEllipsis,
         metaDateFormat,
-        metaDateFormatCustom
+        metaDateFormatCustom,
+        postTitleHtmlTag
     ]);
     const isDeprecated = !gutenverseProActive;
 
