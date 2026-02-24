@@ -43,7 +43,7 @@ export const panelList = () => {
             {
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: filterPanel,
+                panelArray: (props) => filterPanel(props, true),
                 tabRole: TabSetting
             },
             {

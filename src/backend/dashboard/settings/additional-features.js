@@ -7,7 +7,7 @@ import { useState } from '@wordpress/element';
 
 const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveData, setPopupActive, setInstallPopup }) => {
 
-    const [features, setFeatures] = useState(settingValues.features || [])
+    const [features, setFeatures] = useState(settingValues.features || []);
     const updateValue = (id, value) => {
         let newFeatures = [...features];
         if (!value) {
@@ -64,6 +64,12 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             id: 'like_dislike_button',
             title: 'Like & Dislike Post',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            icon: <IconPaywallSVG />,
+        }, 
+        {
+            id: 'post_autoload',
+            title: __('Post Autoload', 'gutenverse-news'),
+            desc: __('Automatically load the next post when the user reaches the end of the current post.', 'gutenverse-news'),
             icon: <IconPaywallSVG />,
         },
         {
