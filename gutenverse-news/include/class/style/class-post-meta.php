@@ -784,14 +784,14 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function bookmark_style() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container i";
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container svg";
 
 		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $base_selector,
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px;";
+						return "width: {$value}px;";
 					},
 					'value'          => $this->attrs['bookmarkIconSize'],
 					'device_control' => true,

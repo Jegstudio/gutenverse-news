@@ -67,6 +67,17 @@ export const panelList = () => {
                 },
                 tabRole: TabStyle,
             },
+            {
+                title: __('Bookmark Style', 'gutenverse-news'),
+                id: 'bookmarkStyle',
+                initialOpen: false,
+                panelArray: () => {
+                    return [{
+                        component: LockedProPanel,
+                    }];
+                },
+                tabRole: TabStyle,
+            },
         ]
     );
 
