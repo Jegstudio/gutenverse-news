@@ -65,22 +65,20 @@ class Post_Meta extends Post_Guten {
 		if ( empty( $meta ) ) {
 			return '';
 		}
-		switch ( $meta ) {
-			case 'author':
-				return $this->render_author( $is_last_item );
-			case 'category':
-				return $this->render_category( $is_last_item );
-			case 'comment':
-				return $this->render_comment( $is_last_item );
-			case 'date':
-				return $this->render_date( $is_last_item );
-		}
-
-		$meta_hook = apply_filters( 'gvnews_post_meta_components', array(), $this->attributes );
-		if ( isset( $meta_hook[ $meta ] ) ) {
-			$element          = isset( $meta_hook[ $meta ]['element'] ) ? $meta_hook[ $meta ]['element'] : '';
-			$additional_class = isset( $meta_hook[ $meta ]['additional_class'] ) ? $meta_hook[ $meta ]['additional_class'] : '';
-
+		$meta_components = array(
+			'author'   => $this->render_author( $is_last_item ),
+			'category' => $this->render_category( $is_last_item ),
+			'comment'  => $this->render_comment( $is_last_item ),
+			'date'     => $this->render_date( $is_last_item ),
+		);
+		$meta_components = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes );
+		if ( isset( $meta_components[ $meta ] ) ) {
+			$element          = $meta_components[ $meta ];
+			$additional_class = '';
+			if ( isset( $element['element'] ) ) {
+				$additional_class = $element['additional_class'];
+				$element          = $element['element'];
+			}
 			return '<div class="meta-items ' . $is_last_item . ' ' . $additional_class . '">'
 				. $element .
 			'</div>';
@@ -96,7 +94,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	private function render_category( $is_last_item ) {
+	public function render_category( $is_last_item ) {
 		return '<div class="gvnews-meta-category meta-items ' . $is_last_item . '">
                 <span>
                     <span class="meta-text">' . esc_html__( 'in', 'gutenverse-news' ) . '</span>
@@ -112,7 +110,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	private function render_comment( $is_last_item ) {
+	public function render_comment( $is_last_item ) {
 		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
 
 		return '<div class="gvnews-meta-comment meta-items ' . $is_last_item . '">
@@ -127,7 +125,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	private function render_author( $is_last_item ) {
+	public function render_author( $is_last_item ) {
 		global $post;
 		$avatar = isset( $this->attributes['showAvatar'] ) && $this->attributes['showAvatar'] ? get_avatar( get_the_author_meta( 'ID', $post->post_author ), 80, null, get_the_author_meta( 'display_name', $post->post_author ) ) : '';
 		return '<div class="gvnews-meta-author meta-items ' . $is_last_item . '">' .
@@ -146,7 +144,7 @@ class Post_Meta extends Post_Guten {
 	 *
 	 * @return string
 	 */
-	private function render_date( $is_last_item ) {
+	public function render_date( $is_last_item ) {
 		global $post;
 		$date        = gutenverse_get_post_date( $post, 'default', $this->attributes['postDate'], '' );
 		$show_prefix = isset( $this->attributes['datePrefix'] ) && $this->attributes['datePrefix'] ? ' with-prefix' : '';

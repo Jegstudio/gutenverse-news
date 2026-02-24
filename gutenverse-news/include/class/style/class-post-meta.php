@@ -62,6 +62,8 @@ class Post_Meta extends Style_Abstract {
 	 */
 	public function generate() {
 		$this->like_dislike_button();
+		$this->bookmark_style();
+		$this->reading_time();
 
 		$this->author_style();
 		$this->date_style();
@@ -546,17 +548,46 @@ class Post_Meta extends Style_Abstract {
 	 *
 	 * @return void
 	 */
-	public function like_dislike_button() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-like-dislike-button";
+	private function like_dislike_button() {
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta .meta-items.gvnews-like-dislike-button";
+
+		// gap between like and dislike button
+		if ( isset( $this->attrs['likeDislikeGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'gap' );
+					},
+					'value'          => $this->attrs['likeDislikeGap'],
+					'device_control' => true,
+				)
+			);
+		}
 
 		// Like Panel.
-		if ( isset( $this->attrs['likeIconTypography'] ) ) {
-			$this->inject_typography(
+		if ( isset( $this->attrs['likeIconSize'] ) ) {
+			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
-					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['likeIconTypography'],
-					'device_control' => false,
+					'selector'       => "{$base_selector} a.thumb.like svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['likeIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a.thumb.like svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['likeIconGap'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -564,9 +595,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
+					'selector'       => "{$base_selector} .thumb.like svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['likeIconColor'],
 					'device_control' => false,
@@ -641,13 +672,28 @@ class Post_Meta extends Style_Abstract {
 		}
 
 		// Dislike Panel.
-		if ( isset( $this->attrs['dislikeIconTypography'] ) ) {
-			$this->inject_typography(
+		if ( isset( $this->attrs['dislikeIconSize'] ) ) {
+			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
-					'property'       => function ( $value ) {},
-					'value'          => $this->attrs['dislikeIconTypography'],
-					'device_control' => false,
+					'selector'       => "{$base_selector} .thumb.dislike svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['dislikeIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['dislikeIconGap'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -655,9 +701,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like i",
+					'selector'       => "{$base_selector} .thumb.like svg",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['dislikeIconColor'],
 					'device_control' => false,
@@ -727,6 +773,75 @@ class Post_Meta extends Style_Abstract {
 					},
 					'value'          => $this->attrs['dislikePadding'],
 					'device_control' => true,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Bookmark Style.
+	 *
+	 * @return void
+	 */
+	private function bookmark_style() {
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container svg";
+
+		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return "width: {$value}px;";
+					},
+					'value'          => $this->attrs['bookmarkIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bookmarkIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Reading Time Style
+	 *
+	 * @return void
+	 */
+	private function reading_time() {
+		$selector = '.' . $this->element_id . ' .gvnews-reading-time';
+
+		if ( isset( $this->attrs['readingTimeTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['readingTimeTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['readingTimeTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['readingTimeTextTypography'],
+					'device_control' => false,
 				)
 			);
 		}

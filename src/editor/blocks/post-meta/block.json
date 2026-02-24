@@ -118,8 +118,11 @@
             "type": "string",
             "default": "both"
         },
-        "likeIconTypography": {
+        "likeIconSize": {
             "type":"object"
+        },
+        "likeIconGap": {
+            "type": "object"
         },
         "likeIconColor": {
             "type": "object"
@@ -141,8 +144,11 @@
             "type": "object"
         },
 
-        "dislikeIconTypography": {
+        "dislikeIconSize": {
             "type":"object"
+        },
+        "dislikeIconGap": {
+            "type": "object"
         },
         "dislikeIconColor": {
             "type": "object"
@@ -160,7 +166,30 @@
             "type": "object"
         },
         "dislikeBackground": {
+            "type":"object",
+            "default": {}
+        },
+        "bookmarkIconSize": {
             "type":"object"
+        },
+        "bookmarkIconColor": {
+            "type":"object"
+        },
+        "wordsPerMinute": {
+            "type":"number",
+            "default": 300
+        },
+        "calculationMethod": {
+            "type":"string",
+            "default":"str_word_count"
+        },
+        "readingTimeTextColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "readingTimeTextTypography": {
+            "type": "object",
+            "copyStyle": true
         },
         "condition": {
             "type": "object",
@@ -244,6 +273,9 @@
             "type": "object"
         },
         "datePrefixColor": {
+            "type": "object"
+        },
+        "likeDislikeGap": {
             "type": "object"
         }
     },

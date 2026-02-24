@@ -1,16 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { CheckboxControl, SelectControl, SelectSearchControl, TextControl } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
-import { applyFilters } from '@wordpress/hooks';
 
-export const generalPanel = (props) => {
-
-    const {
-        metaLeft,
-        metaRight,
-    } = props;
-
-    const listSearch = [
+const searchMeta = input => new Promise(resolve => {
+    return resolve([
         {
             label: __('Author', 'gutenverse-news'),
             value: 'author'
@@ -26,17 +19,18 @@ export const generalPanel = (props) => {
         {
             label: __('Comment', 'gutenverse-news'),
             value: 'comment'
-        },
-    ];
+        }
 
-    const searchMeta = input => new Promise(resolve => {
-        return resolve(applyFilters(
-            'gvnews.post-meta.panel.general.searchOption',
-            listSearch
-        ));
-    });
+    ].filter(item => item.label.toLowerCase().includes(input.toLowerCase())));
+});
 
-    const controls = [
+export const generalPanel = (props) => {
+    const {
+        metaLeft,
+        metaRight,
+    } = props;
+
+    return [
         {
             id: 'metaLeft',
             label: __('Left Meta Element', 'gutenverse'),
@@ -88,10 +82,4 @@ export const generalPanel = (props) => {
             show: (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'date')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'date'))
         },
     ];
-
-    return applyFilters(
-        'gvnews.post-meta.panel.general',
-        controls,
-        props
-    );
 };
