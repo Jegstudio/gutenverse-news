@@ -819,12 +819,10 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function reading_time() {
-		$selector = '.' . $this->element_id . ' .gvnews-reading-time';
-
 		if ( isset( $this->attrs['readingTimeTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => ".guten-element.{$this->element_id} .gvnews-reading-time",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -837,7 +835,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['readingTimeTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => $selector,
+					'selector'       => ".guten-element.{$this->element_id} .gvnews-reading-time",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['readingTimeTextTypography'],

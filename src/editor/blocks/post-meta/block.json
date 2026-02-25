@@ -277,6 +277,14 @@
         },
         "likeDislikeGap": {
             "type": "object"
+        },
+        "readingTimePrefix": {
+            "type": "string",
+            "default": "Reading Time:"
+        },
+        "readingTimeSuffix": {
+            "type": "string",
+            "default": "mins read"
         }
     },
     "supports": {
