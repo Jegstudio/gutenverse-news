@@ -78,12 +78,6 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
         },
-        {
-            id: 'post_donation',
-            title: 'Post Donation',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
-            icon: <IconPaywallSVG />,
-        },
     ]
 
     return (
