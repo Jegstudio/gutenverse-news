@@ -15,8 +15,10 @@ const contentFilter = [
     },
 ];
 
+const advanceFilter = ['bookmark', 'liked', 'disliked', 'unlockedPost'];
+
 export const filterPanel = (props, isModule = false) => {
-    const { postType = 'post' } = props;
+    const { postType = 'post', contentType = '' } = props;
 
     const moduleContentFilter = applyFilters('gvnews.panel.options.contentType', [
         {
@@ -44,10 +46,12 @@ export const filterPanel = (props, isModule = false) => {
         },
         {
             value: '',
-            label: __('Bookmark', 'gutenverse-news'),
+            label: __('Only Bookmarked', 'gutenverse-news'),
             pro: true
         }
     ], postType);
+
+    const isAdvanceFilter = isModule && postType === 'post' && advanceFilter.includes(contentType);
 
     return [
         {
@@ -71,6 +75,7 @@ export const filterPanel = (props, isModule = false) => {
             label: __('Content Type', 'gutenverse-news'),
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: SelectControl,
+            show: postType === 'post',
             options: isModule ? moduleContentFilter : contentFilter
         },
         {
@@ -90,7 +95,8 @@ export const filterPanel = (props, isModule = false) => {
             component: RangeControl,
             min: 0,
             step: 1,
-            isParseFloat: false
+            isParseFloat: false,
+            show: !isAdvanceFilter
         },
         {
             id: 'uniqueContent',
@@ -126,7 +132,8 @@ export const filterPanel = (props, isModule = false) => {
                     label: __('Unique Content - Group 5', 'gutenverse-news'),
                     pro: true
                 }
-            ])
+            ]),
+            show: !isAdvanceFilter
         },
         {
             id: 'includePost',
@@ -136,13 +143,15 @@ export const filterPanel = (props, isModule = false) => {
             - You can also directly insert your post id, and click enter to add it on the list.`, 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: 'post' === postType ? searchPosts : searchPages
+            onSearch: 'post' === postType ? searchPosts : searchPages,
+            show: !isAdvanceFilter
         },
         {
             id: 'includeOnly',
             label: __('Include Only', 'gutenverse-news'),
             description: __('Check this option to only display included post id.', 'gutenverse-news'),
-            component: CheckboxControl
+            component: CheckboxControl,
+            show: !isAdvanceFilter
         },
         {
             id: 'excludePost',
@@ -152,7 +161,8 @@ export const filterPanel = (props, isModule = false) => {
             - You can also directly insert your post id, and click enter to add it on the list.`, 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: 'post' === postType ? searchPosts : searchPages
+            onSearch: 'post' === postType ? searchPosts : searchPages,
+            show: !isAdvanceFilter
         },
         {
             id: 'includeCategory',
@@ -160,7 +170,8 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Choose which category you want to show on this module.', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: searchCategory
+            onSearch: searchCategory,
+            show: !isAdvanceFilter
         },
         {
             id: 'excludeCategory',
@@ -168,7 +179,8 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Choose excluded category for this modules.', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: searchCategory
+            onSearch: searchCategory,
+            show: !isAdvanceFilter
         },
         {
             id: 'includeAuthor',
@@ -176,7 +188,8 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Write to search post author.', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: searchAuthor
+            onSearch: searchAuthor,
+            show: !isAdvanceFilter
         },
         {
             id: 'includeTag',
@@ -184,7 +197,8 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Write to search post tag.', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: searchTag
+            onSearch: searchTag,
+            show: !isAdvanceFilter
         },
         {
             id: 'excludeTag',
@@ -192,7 +206,8 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Write to search post tag.', 'gutenverse-news'),
             component: SelectSearchControl,
             isMulti: true,
-            onSearch: searchTag
+            onSearch: searchTag,
+            show: !isAdvanceFilter
         },
         {
             id: 'sortBy',
@@ -285,7 +300,8 @@ export const filterPanel = (props, isModule = false) => {
                     }
                 ],
                 postType
-            )
+            ),
+            show: !isAdvanceFilter
         },
     ];
 };
