@@ -619,9 +619,10 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 						),
 				);
 
-				$column_class = $attr['attribute']['column_class'];
-				$query_param  = $this->build_ajax_query( $attr );
-				$results      = $this->build_query( $query_param );
+				$column_class                             = $attr['attribute']['column_class'];
+				$attr['attribute']['fetch_priority_high'] = false;
+				$query_param                              = $this->build_ajax_query( $attr );
+				$results                                  = $this->build_query( $query_param );
 				$this->set_attribute( $attr['attribute'] );
 
 				$content = $this->empty_content();
