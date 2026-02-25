@@ -282,7 +282,18 @@
             "type": "string",
             "default": "Donate",
             "copyStyle": true
-        }
+        },
+		"donationIcon": {
+			"type": "string",
+			"default": "fa-solid fa-circle-dollar-to-slot"
+		},
+		"donationIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"donationIconSVG": {
+			"type": "string"
+		}
     },
     "supports": {
         "className": false
