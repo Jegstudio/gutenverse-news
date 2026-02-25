@@ -277,6 +277,11 @@
         },
         "likeDislikeGap": {
             "type": "object"
+        },
+        "donationText": {
+            "type": "string",
+            "default": "Donate",
+            "copyStyle": true
         }
     },
     "supports": {
