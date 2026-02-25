@@ -285,7 +285,7 @@
         },
 		"donationIcon": {
 			"type": "string",
-			"default": "fa-solid fa-circle-dollar-to-slot"
+			"default": "fas fa-donate"
 		},
 		"donationIconType": {
 			"type": "string",
