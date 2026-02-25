@@ -76,7 +76,13 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             title: __('Post Autoload', 'gutenverse-news'),
             desc: __('Automatically load the next post when the user reaches the end of the current post.', 'gutenverse-news'),
             icon: <IconPaywallSVG />,
-        }
+        },
+        {
+            id: 'bookmark',
+            title: 'Bookmark Post',
+            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            icon: <IconPaywallSVG />,
+        },
     ];
 
     return (
