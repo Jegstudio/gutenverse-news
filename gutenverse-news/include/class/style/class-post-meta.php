@@ -69,6 +69,7 @@ class Post_Meta extends Style_Abstract {
 		$this->date_style();
 		$this->category_style();
 		$this->comment_style();
+		$this->post_donation();
 
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
@@ -841,6 +842,35 @@ class Post_Meta extends Style_Abstract {
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['readingTimeTextTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	private function post_donation() {
+		$selector = '.' . $this->element_id . ' .gvnews_meta_donation span';
+
+		if ( isset( $this->attrs['donationTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['donationTextTypography'],
 					'device_control' => false,
 				)
 			);
