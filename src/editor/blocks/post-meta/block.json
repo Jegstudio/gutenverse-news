@@ -283,6 +283,11 @@
             "default": "Donate",
             "copyStyle": true
         },
+		"donationShowIcon": {
+			"type": "boolean",
+			"default": true,
+			"copyStyle": true
+		},
 		"donationIcon": {
 			"type": "string",
 			"default": "fas fa-donate"
