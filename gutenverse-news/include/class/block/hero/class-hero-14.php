@@ -44,7 +44,7 @@ class Hero_14 extends Hero_View_Abstract {
 			return '<article ' . gvnews_post_class( 'gvnews_post center gvnews_pl_lg_7', $post_id ) . '>
                         <div class="gvnews_thumb">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-750x536', $this->attribute['image_load'] ) . "</a>
+                            <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-750x536', $this->attribute['image_load'], $this->attribute['fetch_priority_high'] ) . "</a>
                             <div class=\"gvnews_post_category\">
                                 {$this->get_primary_category($post_id)}
                             </div>
@@ -113,7 +113,7 @@ class Hero_14 extends Hero_View_Abstract {
                         <div class="box_wrap">
                             <div class="gvnews_thumb">
                                 ' . gvnews_edit_post( $post_id ) . "
-                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">" . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-350x250', $this->attribute['image_load'] ) . "</a>
+                                <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . Image_Normal_Load::get_instance()->image_thumbnail( $post_id, 'gvnews-350x250', $this->attribute['image_load'], $this->attribute['fetch_priority_high'] ) . "</a>
                             </div>
                             <div class=\"gvnews_postblock_content\">
                                 <{$this->post_title_tag} class=\"gvnews_post_title\">
