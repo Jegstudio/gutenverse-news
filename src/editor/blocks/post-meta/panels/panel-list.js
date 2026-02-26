@@ -84,6 +84,17 @@ export const panelList = () => {
                 },
                 tabRole: TabStyle,
             },
+            {
+                title: __('Post Donation Style', 'gutenverse-news'),
+                id: 'postDonationStyle',
+                initialOpen: false,
+                panelArray: () => {
+                    return [{
+                        component: LockedProPanel,
+                    }];
+                },
+                tabRole: TabStyle,
+            },
         ]
     );
 
