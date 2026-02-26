@@ -298,6 +298,12 @@
 		},
 		"donationIconSVG": {
 			"type": "string"
+		},
+		"donationTextTypography": {
+			"type": "object"
+		},
+		"donationTextColor": {
+			"type": "object"
 		}
     },
     "supports": {
