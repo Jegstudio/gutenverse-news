@@ -37,7 +37,7 @@ class Post_Author extends Post_Guten {
 			'url'  => get_author_posts_url( $author_id ),
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
-		$add       = apply_filters( 'gvnews_post_author_components', '', $author );
+		$add       = apply_filters( 'gvnews_post_author_components', '', $this->attributes );
 
 		$block = '<div class="gvnews-author-content">
 					<' . $this->attributes['titleTag'] . ' class="gvnews-author-name">
