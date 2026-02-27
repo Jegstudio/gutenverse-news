@@ -5,7 +5,8 @@ import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
 import { useState } from '@wordpress/element';
 
-const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveData, setPopupActive, setInstallPopup }) => {
+const AdditionalFeatures = (props) => {
+    const { settingValues, updateSettingValues, saving, setPopupActive, setInstallPopup, setToast, setShowToast } = props;
 
     const [features, setFeatures] = useState(settingValues.features || []);
     const updateValue = (id, value) => {
@@ -31,9 +32,21 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
                 features: features
             }
         }).then((response) => {
+            setToast({
+                status: 'success',
+                message: __('Settings Saved Successfully!', '--gctd--')
+            })
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 2000);
             updateSettingValues(features);
         }).catch((err) => {
             console.log(err);
+            setToast({
+                status: 'failed',
+                message: __('Settings Saved Failed!', '--gctd--')
+            });
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 5000);
         });
     };
 
@@ -65,7 +78,7 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             title: 'Like & Dislike Post',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
-        }, 
+        },
         {
             id: 'post_autoload',
             title: __('Post Autoload', 'gutenverse-news'),
