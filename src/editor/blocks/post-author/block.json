@@ -213,7 +213,43 @@
         },
         "bioSpaceBottom": {
             "type": "object"
-        }
+        },
+        "hideDonation": {
+            "type": "boolean",
+            "default": false
+        },
+        "donationText": {
+            "type": "string",
+            "default": "Donate",
+            "copyStyle": true
+        },
+		"donationShowIcon": {
+			"type": "boolean",
+			"default": false,
+			"copyStyle": true
+		},
+        "donationIconPosition": {
+			"type": "string",
+			"default": "before",
+			"copyStyle": true
+		},
+		"donationIcon": {
+			"type": "string",
+			"default": "fas fa-donate"
+		},
+		"donationIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"donationIconSVG": {
+			"type": "string"
+		},
+		"donationTextTypography": {
+			"type": "object"
+		},
+		"donationTextColor": {
+			"type": "object"
+		}
     },
     "supports": {
         "className": false
