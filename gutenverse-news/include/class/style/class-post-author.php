@@ -223,6 +223,8 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
+
+		$this->post_donation_style();
 	}
 
 	/**
@@ -490,6 +492,35 @@ class Post_Author extends Style_Abstract {
 						return $this->handle_color( $value, 'fill' );
 					},
 					'value'          => $this->attrs['socialIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	private function post_donation_style() {
+		$selector = '.' . $this->element_id . ' .gvnews-post-donation-submit span';
+
+		if ( isset( $this->attrs['donationTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => $selector,
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['donationTextTypography'],
 					'device_control' => false,
 				)
 			);
