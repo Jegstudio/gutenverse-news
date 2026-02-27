@@ -20,7 +20,8 @@ const PostAuthor = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes
     } = props;
 
     const {
@@ -73,7 +74,7 @@ const PostAuthor = compose(
         </div>
     }
 
-    const additionals = applyFilters('gvnews.post-author.components', [], attributes);
+    const additionals = applyFilters('gvnews.post-author.components', [], attributes, setAttributes);
 
 
     return <>
