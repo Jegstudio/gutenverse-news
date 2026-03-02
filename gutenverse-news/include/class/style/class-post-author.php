@@ -499,12 +499,12 @@ class Post_Author extends Style_Abstract {
 	}
 
 	private function post_donation_style() {
-		$selector = '.' . $this->element_id . ' .gvnews-post-donation-submit span';
+		$base_selector = '.' . $this->element_id . ' .gvnews-post-donation-submit';
 
 		if ( isset( $this->attrs['donationTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => $base_selector . ' span',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -517,11 +517,97 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => $selector,
+					'selector'       => $base_selector . ' span',
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['donationTextTypography'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationBgColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['donationBgColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationBorder'] ) ) {
+			$this->handle_border( 'donationBorder', $base_selector );
+		}
+
+		if ( isset( $this->attrs['donationBoxShadow'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['donationBoxShadow'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationTextColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector . ':hover',
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationBgColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector . ':hover',
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['donationBgColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationBorderHover'] ) ) {
+			$this->handle_border( 'donationBorderHover', $base_selector . ':hover' );
+		}
+
+		if ( isset( $this->attrs['donationBoxShadowHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector . ':hover',
+					'property'       => function ( $value ) {
+						return $this->handle_box_shadow( $value );
+					},
+					'value'          => $this->attrs['donationBoxShadowHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationPaddingButton'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['donationPaddingButton'],
+					'device_control' => true,
 				)
 			);
 		}
