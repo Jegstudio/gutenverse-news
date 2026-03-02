@@ -247,9 +247,33 @@
 		"donationTextTypography": {
 			"type": "object"
 		},
-		"donationTextColor": {
-			"type": "object"
-		}
+        "donationTextColor": {
+            "type": "object"
+        },
+        "donationBgColor": {
+            "type": "object"
+        },
+        "donationBorder": {
+            "type": "object"
+        },
+        "donationBoxShadow": {
+            "type": "object"
+        },
+        "donationTextColorHover": {
+            "type": "object"
+        },
+        "donationBgColorHover": {
+            "type": "object"
+        },
+        "donationBorderHover": {
+            "type": "object"
+        },
+        "donationBoxShadowHover": {
+            "type": "object"
+        },
+        "donationPaddingButton": {
+            "type": "object"
+        }
     },
     "supports": {
         "className": false
