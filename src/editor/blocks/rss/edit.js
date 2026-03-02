@@ -171,7 +171,13 @@ const RssBlock = compose(
         }
         if (postData.length) {
             const attr = {
-                option: moduleOption,
+                option: {
+                    ...moduleOption,
+                    option: {
+                        ...moduleOption?.option,
+                        meta_comment: false, //hide comment in rss block
+                    }
+                },
                 length: excerptLength,
                 elipsis: excerptEllipsis,
                 date: {
