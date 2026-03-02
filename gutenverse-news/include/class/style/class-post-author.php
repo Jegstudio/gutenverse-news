@@ -559,7 +559,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationTextColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector . ':hover',
+					'selector'       => $base_selector . ':hover span',
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
