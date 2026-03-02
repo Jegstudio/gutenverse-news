@@ -51,6 +51,7 @@ export const panelList = () => {
                 initialOpen: true,
                 panelArray: (props) => headerStylesPanel({
                     ...props,
+                    isFeed: true,
                 }),
                 tabRole: TabStyle
             },
