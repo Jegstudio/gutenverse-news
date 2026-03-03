@@ -540,7 +540,16 @@ class Post_Author extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['donationBorder'] ) ) {
-			$this->handle_border( 'donationBorder', $base_selector );
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['donationBorder'],
+					'device_control' => true,
+				)
+			);
 		}
 
 		if ( isset( $this->attrs['donationBoxShadow'] ) ) {
@@ -583,7 +592,16 @@ class Post_Author extends Style_Abstract {
 		}
 
 		if ( isset( $this->attrs['donationBorderHover'] ) ) {
-			$this->handle_border( 'donationBorderHover', $base_selector . ':hover' );
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['donationBorderHover'],
+					'device_control' => true,
+				)
+			);
 		}
 
 		if ( isset( $this->attrs['donationBoxShadowHover'] ) ) {
