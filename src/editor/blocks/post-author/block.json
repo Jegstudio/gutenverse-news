@@ -273,6 +273,18 @@
         },
         "donationPaddingButton": {
             "type": "object"
+        },
+        "donationIconGap": {
+            "type": "object"
+        },
+        "donationIconSize": {
+            "type": "object"
+        },
+        "donationIconColor": {
+            "type": "object"
+        },
+        "donationIconColorHover": {
+            "type": "object"
         }
     },
     "supports": {
