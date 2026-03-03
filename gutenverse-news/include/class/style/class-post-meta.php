@@ -849,12 +849,12 @@ class Post_Meta extends Style_Abstract {
 	}
 
 	private function author_donation() {
-		$selector = '.' . $this->element_id . ' .gvnews_meta_donation span';
+		$base_selector = '.' . $this->element_id . ' .gvnews_meta_donation';
 
 		if ( isset( $this->attrs['donationTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => "{$base_selector} span",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -864,14 +864,103 @@ class Post_Meta extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['donationTextColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a:hover .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['donationTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => $selector,
+					'selector'       =>  "{$base_selector} span",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['donationTextTypography'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'icon' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'svg' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+		
+		if ( isset( $this->attrs['donationIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['donationIconGap'],
+					'device_control' => true,
 				)
 			);
 		}
