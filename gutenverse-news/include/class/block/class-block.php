@@ -183,6 +183,7 @@ class Block extends Grab {
 			'image_load'                   => $image_load,
 			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
 			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+			'fetch_priority_high'          => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 		);
 		$sccontent  = '';
 

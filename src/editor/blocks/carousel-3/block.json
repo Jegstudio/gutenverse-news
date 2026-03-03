@@ -326,6 +326,9 @@
             "type": "object",
             "copyStyle": true
         },
+        "fetchPriorityHigh": {
+            "type": "boolean"
+        },
         "showMetaReview": {
             "type": "boolean"
         },

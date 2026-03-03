@@ -696,6 +696,9 @@
             "type": "string",
             "default": "h3"
         },
+        "fetchPriorityHigh": {
+            "type": "boolean"
+        },
         "postReviewMetaStarColor": {
             "type": "object"
         },

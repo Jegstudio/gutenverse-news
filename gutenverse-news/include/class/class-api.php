@@ -166,6 +166,79 @@ class Api {
 				'permission_callback' => array( $this, 'edit_pages' ),
 			)
 		);
+
+		register_rest_route(
+			self::ENDPOINT,
+			'installAdditionalPlugin',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'install_additional_plugin' ),
+				'permission_callback' => array( $this, 'permission_install_plugin' ),
+			)
+		);
+	}
+
+	/**
+	 * Downgrade plugin handle.
+	 *
+	 * @param object $request request.
+	 *
+	 *  @return \WP_REST_Response
+	 *
+	 *  @throws \Exception Request error message.
+	 */
+	public function install_additional_plugin( $request ) {
+		$file_url = $request->get_param( 'url' );
+		try {
+			if ( ! isset( $file_url ) ) {
+				throw new \Exception( esc_html__( 'Cannot get plugin URL.' ) );
+			}
+
+			$slug = 'gutenverse-news-essential';
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+			$plugin_file = $slug . '/' . $slug . '.php';
+
+			/* Check if plugin is already installed, skip download & extract */
+			if ( ! file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
+				/* Download plugin zip */
+				$tmp_file = download_url( $file_url );
+				if ( is_wp_error( $tmp_file ) ) {
+					throw new \Exception( __( 'Faild when trying to download Gutenverse News Essential plugin.', 'gutenverse-news' ) );
+				}
+
+				/* Extract plugin file */
+				$result = unzip_file( $tmp_file, WP_PLUGIN_DIR );
+				wp_delete_file( $tmp_file );
+
+				if ( is_wp_error( $result ) ) {
+					throw new \Exception( __( 'Faild to extract plugin file.', 'gutenverse-news' ) );
+				}
+
+				/* After extraction, scan to find the actual plugin file (directory name in zip may differ) */
+				wp_cache_delete( 'plugins', 'plugins' );
+				$all_plugins = get_plugins();
+				foreach ( array_keys( $all_plugins ) as $found_plugin ) {
+					if ( strpos( $found_plugin, $slug . '/' ) === 0 ) {
+						$plugin_file = $found_plugin;
+						break;
+					}
+				}
+			}
+
+			/* Activate plugin */
+			$activation_result = activate_plugin( $plugin_file );
+
+			if ( is_wp_error( $activation_result ) ) {
+				throw new \Exception( 'Plugin installed, but failed to activate: ' . $activation_result->get_error_message() );
+			}
+		} catch ( \Exception $e ) {
+			return $this->response_error( $e->getMessage() );
+		}
+
+		return $this->response_success( __( 'Install and Activate Gutenverse News Essential plugin success.', 'gutenverse-news' ) );
 	}
 
 	/**
@@ -748,12 +821,12 @@ class Api {
 			}
 
 			$final_data = array(
-				'id'        => $post->ID,
-				'title'     => html_entity_decode( get_the_title( $post->ID ) ),
-				'format'    => get_post_format( $post->ID ),
-				'thumbnail' => array(
-					'id'      => get_post_thumbnail_id( $post->ID ),
-					'url'     => get_the_post_thumbnail_url( $post->ID ),
+				'id'                 => $post->ID,
+				'title'              => html_entity_decode( get_the_title( $post->ID ) ),
+				'format'             => get_post_format( $post->ID ),
+				'thumbnail'          => array(
+					'id'  => get_post_thumbnail_id( $post->ID ),
+					'url' => get_the_post_thumbnail_url( $post->ID ),
 				),
 				'category'           => array(
 					'id'   => $cat_id,
@@ -773,7 +846,7 @@ class Api {
 				'landscapeThumbnail' => $landscape_thumbnail,
 			);
 
-			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', [], $post ) );
+			$final_data = array_merge( $final_data, apply_filters( 'gvnews_api_response_filter', array(), $post ) );
 
 			if ( $advanced_response ) {
 				$data['result'][] = $final_data;

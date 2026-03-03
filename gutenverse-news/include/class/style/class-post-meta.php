@@ -784,14 +784,14 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function bookmark_style() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container i";
+		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container svg";
 
 		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => $base_selector,
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px;";
+						return "width: {$value}px;";
 					},
 					'value'          => $this->attrs['bookmarkIconSize'],
 					'device_control' => true,
@@ -819,12 +819,10 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function reading_time() {
-		$selector = '.' . $this->element_id . ' .gvnews-reading-time';
-
 		if ( isset( $this->attrs['readingTimeTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $selector,
+					'selector'       => ".guten-element.{$this->element_id} .gvnews-reading-time",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -837,7 +835,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['readingTimeTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => $selector,
+					'selector'       => ".guten-element.{$this->element_id} .gvnews-reading-time",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['readingTimeTextTypography'],

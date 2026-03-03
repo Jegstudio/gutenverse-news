@@ -65,13 +65,14 @@ class Post_Meta extends Post_Guten {
 		if ( empty( $meta ) ) {
 			return '';
 		}
+		$post_id         = ! empty( $this->context['postId'] ) ? esc_html( $this->context['postId'] ) : get_the_ID();
 		$meta_components = array(
 			'author'   => $this->render_author( $is_last_item ),
 			'category' => $this->render_category( $is_last_item ),
 			'comment'  => $this->render_comment( $is_last_item ),
 			'date'     => $this->render_date( $is_last_item ),
 		);
-		$meta_components = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes );
+		$meta_components = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes, $post_id );
 		if ( isset( $meta_components[ $meta ] ) ) {
 			$element          = $meta_components[ $meta ];
 			$additional_class = '';
