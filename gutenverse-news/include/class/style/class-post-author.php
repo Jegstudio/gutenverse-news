@@ -679,5 +679,31 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['donationIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a:hover .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 }
