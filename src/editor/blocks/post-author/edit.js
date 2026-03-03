@@ -74,7 +74,7 @@ const PostAuthor = compose(
         </div>
     }
 
-    const additionals = applyFilters('gvnews.post-author.components', [], attributes, setAttributes);
+    const additionals = applyFilters('gvnews.post-author.components', [], attributes);
 
 
     return <>
