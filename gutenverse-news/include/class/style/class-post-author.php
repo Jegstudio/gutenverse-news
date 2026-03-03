@@ -629,5 +629,55 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'icon' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'svg' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+		
+		if ( isset( $this->attrs['donationIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['donationIconGap'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 }
