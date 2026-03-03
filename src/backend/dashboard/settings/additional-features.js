@@ -79,8 +79,8 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
             icon: <IconPaywallSVG />,
         },
         {
-            id: 'post_donation',
-            title: 'Post Donation',
+            id: 'author_donation',
+            title: 'Author Donation',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
         },
