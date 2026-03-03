@@ -328,6 +328,18 @@
         },
         "fetchPriorityHigh": {
             "type": "boolean"
+        },
+        "useResponsiveItem": {
+            "type": "boolean"
+        },
+        "responsiveItem": {
+            "type": "object",
+            "copyStyle": true,
+            "default": {
+                "Desktop": 3,
+                "Tablet": 2,
+                "Mobile": 1
+            }
         }
     },
     "supports": {

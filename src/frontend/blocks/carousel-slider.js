@@ -137,6 +137,21 @@ class GutenverseCarouselModule {
             }
         };
 
+        const useResponsive = options?.useResponsive ? options.useResponsive : ('undefined' === typeof carouselDefault.container.dataset.useResponsive ? false : carouselDefault.container.dataset.useResponsive);
+
+        const responsiveItem = options?.responsiveItem ? options.responsiveItem : ('undefined' === typeof carouselDefault.container.dataset.responsiveItem ? false : carouselDefault.container.dataset.responsiveItem);
+
+        if (useResponsive) {
+            carouselDefault.items = responsiveItem.Desktop;
+            carouselDefault.responsive = {
+                0: { items: options?.mobileItem ? options.mobileItem : ('undefined' === typeof carouselDefault.container.dataset.mobileItem ? 1 : carouselDefault.container.dataset.mobileItem) },
+                768: { items: options?.tabletItem ? options.tabletItem : ('undefined' === typeof carouselDefault.container.dataset.tabletItem ? 2 : carouselDefault.container.dataset.tabletItem) },
+                1024: { items: options?.desktopItem ? options.desktopItem : ('undefined' === typeof carouselDefault.container.dataset.desktopItem ? 3 : carouselDefault.container.dataset.desktopItem) },
+            };
+            return { carouselType: true, carouselDefault };
+
+        }
+
         /*** Postblock Carousel 1 ***/
         if (u(this.block).hasClass('gvnews_postblock_carousel_1')) {
             return this.carousel_1(carouselDefault);
@@ -161,6 +176,11 @@ class GutenverseCarouselModule {
                 let container = u(carousel).find('.gvnews_carousel_post');
                 if (container.length) {
                     let { carouselType, carouselDefault } = this.getDefaultOption(this.options, container);
+                    console.log('INIT CAROUSEL------');
+                    console.log(carouselType);
+                    console.log(carouselDefault);
+                    console.log('e o INIT CAROUSEL------');
+
 
                     if (carouselType) {
                         let carouselSlider = window.tns(carouselDefault);
@@ -187,8 +207,8 @@ class GutenverseCarouselModule {
         });
     }
 
-    window.gvnewsCarouselSlider = (element) => {
-        new GutenverseCarouselModule(element);
+    window.gvnewsCarouselSlider = (element, options = {}) => {
+        new GutenverseCarouselModule(element, options);
     };
 })();
 

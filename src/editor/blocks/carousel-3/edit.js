@@ -69,6 +69,8 @@ const Carousel3Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag = 'h3',
         gutenversePreviewBlock = '',
+        useResponsiveItem,
+        responsiveItem,
     } = attributes;
 
     const metaSettings = {
@@ -132,7 +134,17 @@ const Carousel3Block = compose(
 
     const initSlider = () => {
         if (blockRef.current) {
-            window.gvnewsCarouselSlider(blockRef.current);
+            if (useResponsiveItem && responsiveItem.Desktop) {
+                window.gvnewsCarouselSlider(blockRef.current,
+                    {
+                        useResponsive: useResponsiveItem,
+                        desktopItem: responsiveItem.Desktop,
+                        tabletItem: responsiveItem.Tablet,
+                        mobileItem: responsiveItem.Mobile
+                    });
+            } else {
+                window.gvnewsCarouselSlider(blockRef.current);
+            }
         }
     };
 
@@ -351,7 +363,9 @@ const Carousel3Block = compose(
         showMetaDate,
         renderedImageSizeMain,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        useResponsiveItem,
+        responsiveItem,
     ]);
 
     useEffect(() => {
