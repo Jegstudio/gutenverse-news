@@ -499,12 +499,12 @@ class Post_Author extends Style_Abstract {
 	}
 
 	private function author_donation_style() {
-		$base_selector = '.' . $this->element_id . ' .gvnews-author-donation-submit';
+		$base_selector = ".{$this->element_id} .gvnews-author-donation-submit";
 
 		if ( isset( $this->attrs['donationTextColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector . ' span',
+					'selector'       => "{$base_selector} span",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -517,7 +517,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationTextTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => $base_selector . ' span',
+					'selector'       => "{$base_selector} span",
 					'property'       => function ( $value ) {
 					},
 					'value'          => $this->attrs['donationTextTypography'],
@@ -568,7 +568,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationTextColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector . ':hover span',
+					'selector'       => "{$base_selector}:hover span",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -581,7 +581,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationBgColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector . ':hover',
+					'selector'       => "{$base_selector}:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -607,7 +607,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationBoxShadowHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector . ':hover',
+					'selector'       => "{$base_selector}:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
