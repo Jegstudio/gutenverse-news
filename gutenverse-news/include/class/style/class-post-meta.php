@@ -69,7 +69,7 @@ class Post_Meta extends Style_Abstract {
 		$this->date_style();
 		$this->category_style();
 		$this->comment_style();
-		$this->post_donation();
+		$this->author_donation();
 
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
@@ -848,7 +848,7 @@ class Post_Meta extends Style_Abstract {
 		}
 	}
 
-	private function post_donation() {
+	private function author_donation() {
 		$selector = '.' . $this->element_id . ' .gvnews_meta_donation span';
 
 		if ( isset( $this->attrs['donationTextColor'] ) ) {

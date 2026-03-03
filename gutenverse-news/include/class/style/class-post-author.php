@@ -224,7 +224,7 @@ class Post_Author extends Style_Abstract {
 			);
 		}
 
-		$this->post_donation_style();
+		$this->author_donation_style();
 	}
 
 	/**
@@ -498,7 +498,7 @@ class Post_Author extends Style_Abstract {
 		}
 	}
 
-	private function post_donation_style() {
+	private function author_donation_style() {
 		$base_selector = '.' . $this->element_id . ' .gvnews-post-donation-submit';
 
 		if ( isset( $this->attrs['donationTextColor'] ) ) {
