@@ -214,7 +214,7 @@
         "bioSpaceBottom": {
             "type": "object"
         },
-        "hideDonation": {
+        "showDonation": {
             "type": "boolean",
             "default": false
         },
