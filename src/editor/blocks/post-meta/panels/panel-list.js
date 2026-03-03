@@ -85,8 +85,8 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
-                title: __('Post Donation Style', 'gutenverse-news'),
-                id: 'postDonationStyle',
+                title: __('Author Donation Style', 'gutenverse-news'),
+                id: 'authorDonationStyle',
                 initialOpen: false,
                 panelArray: () => {
                     return [{
