@@ -42,12 +42,21 @@ class Module_3 extends Module_View_Abstract {
 		$edit      = $is_feed ? '' : gvnews_edit_post( $post->ID );
 		$excerpt   = $is_feed ? $post->description : $this->get_excerpt( $post );
 
+		// logic for visibility thumbnail block in rss feed if thumbnail is enabled
+		$show_thumbnail = ! ($is_feed && empty( $this->attribute['thumbnail'] ));
+		$thumbnail_html = '';
+		if ( $show_thumbnail ) {
+    		$thumbnail_html = '<div class="gvnews_thumb">
+                ' . $edit . '
+                <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
+            </div>';
+		}
+
 		$output =
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2', $post->ID ) . '>
-                <div class="gvnews_thumb">
-                    ' . $edit . '
-                    <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
-                </div>
+                '.
+				$thumbnail_html
+				.'
                 <div class="gvnews_postblock_content">
                     <' . $this->post_title_tag . ' class="gvnews_post_title">
                         <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . esc_attr( $title ) . '</a>
