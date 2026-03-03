@@ -62,7 +62,7 @@ class Module_27 extends Module_View_Abstract {
                         <div class=\"gvnews_post_category\">
                             <span>{$category}</span>
                         </div>
-                        <h3 class=\"gvnews_post_title\"><a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\" >" . esc_attr( get_the_title( $post ) ) . "</a></h3>
+                        <{$this->post_title_tag} class=\"gvnews_post_title\"><a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\" >" . esc_attr( get_the_title( $post ) ) . "</a></{$this->post_title_tag}>
                         {$post_meta}
                         {$excerpt}
                     </div>

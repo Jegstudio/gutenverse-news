@@ -21,7 +21,8 @@ const Block1Columns = props => {
         readmoreButtonDisabled = false,
         listIcon = '',
         listIconType = 'icon',
-        listIconSVG = ''
+        listIconSVG = '',
+        postTitleHtmlTag = 'h3'
     } = props;
 
     const RenderBlock1 = props=>{
@@ -81,7 +82,8 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({datas = [], isLoadMoreAnimation = false}) => {
@@ -113,7 +115,8 @@ const Block1Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {
@@ -145,7 +148,8 @@ const Block1Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
 
         const RenderColumn = ({ datas = [], isLoadMoreAnimation = false }) => {

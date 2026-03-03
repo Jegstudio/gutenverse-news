@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { IconSVGControl, SelectControl, TextControl, RangeControl } from 'gutenverse-core/controls';
+import { IconSVGControl, SelectControl, TextControl, RangeControl, CheckboxControl } from 'gutenverse-core/controls';
 import { getDefaultImageLoad } from "../utils/helper";
 
 export const settingPanel = (props, withListIcon = false) => {
@@ -12,6 +12,38 @@ export const settingPanel = (props, withListIcon = false) => {
     const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
 
     return [
+        {
+            id: 'postTitleHtmlTag',
+            label: __('Post Title HTML Tag', 'gutenverse-news'),
+            description: __('Choose HTML tag for the post title.', 'gutenverse-news'),
+            component: SelectControl,
+            options: [
+                {
+                    label: __('H1', 'gutenverse-news'),
+                    value: 'h1'
+                },
+                {
+                    label: __('H2', 'gutenverse-news'),
+                    value: 'h2'
+                },
+                {
+                    label: __('H3', 'gutenverse-news'),
+                    value: 'h3'
+                },
+                {
+                    label: __('H4', 'gutenverse-news'),
+                    value: 'h4'
+                },
+                {
+                    label: __('H5', 'gutenverse-news'),
+                    value: 'h5'
+                },
+                {
+                    label: __('H6', 'gutenverse-news'),
+                    value: 'h6'
+                },
+            ],
+        },
         {
             id: 'excerptLength',
             show: enableExcerpt === true,
@@ -44,6 +76,13 @@ export const settingPanel = (props, withListIcon = false) => {
                     value: 'lazy'
                 },
             ],
+        },
+        {
+            id: 'fetchPriorityHigh',
+            show: (imageLoad === 'eager' || defaultImageLoad.value === 'eager'),
+            label: __('Fetch Priority High', 'gutenverse-news'),
+            description: __('Signals the browser to prioritize fetching this image. Use this only for the LCP (Largest Contentful Paint) element.', 'gutenverse-news'),
+            component: CheckboxControl,
         },
         {
             id: 'listIcon',

@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.1.0
+Stable tag: 3.1.4-dev
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,7 +143,23 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.1.1-dev =
+= 3.1.4 [DEV] =
+##### Improvements
+* Remove additional margin on "no content" state,
+
+= 3.1.3 =
+##### Improvements
+* Add fetch priority high option on all post blocks
+##### Bug Fixes
+* Fix responsive design issue on Module 20, 32, 33, 34, 35
+
+= 3.1.2 =
+##### Improvements
+* Add post title html tag option on all post blocks
+* Add header html tag option on Header block and all Module blocks 
+* Add options to style the “no content” state on all Hero, Slider and Carousel blocks
+
+= 3.1.1 =
 ##### Changes
 * Remove default additional margin on all Module Block
 * Changed Use Normal Load option with Image Load option on some blocks

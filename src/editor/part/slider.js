@@ -1,3 +1,4 @@
+import { __ } from '@wordpress/i18n';
 import { MetaAuthor, MetaCategory } from './meta';
 import { formatDateString, timeDifference } from '../utils/date-util';
 import { renderIcon } from 'gutenverse-core/helper';
@@ -6,14 +7,15 @@ const clockSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 
 const SliderCaption = (props) => {
     const { withElipsis = true, withMeta = true, withReadmore = false} = props;
+    const TitleTag = props.attr?.titleTag || 'h3';
 
     return (
         <div className="gvnews_slide_caption">
             <div className="gvnews_caption_container">
                 <MetaCategory post={props.post} />
-                <h2 className="gvnews_post_title">
+                <TitleTag className="gvnews_post_title">
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
-                </h2>
+                </TitleTag>
                 {props.excerpt && <p className="gvnews_post_excerpt">{props.post.excerpt
                     .replace('&hellip;', '')
                     .split(' ')
@@ -21,7 +23,7 @@ const SliderCaption = (props) => {
                     .join(' ') + (withElipsis ? props.attr.elipsis : '')}</p>}
                 {props.post && withMeta && <SliderMeta {...props} />}
                 {withReadmore && <a href="javascript:void(0);" className="gvnews_readmore">
-                    Read more
+                    {__('Read more', 'gutenverse-news')}
                 </a>}
             </div>
             {props.navigation && <div className="gvnews_block_nav">
@@ -41,10 +43,10 @@ const SliderCaption = (props) => {
                         <>
                             <a className="prev">
                                 {renderIcon(finalPrevIcon, iconPrevType, iconPrevSVG)}
-                                <span>prev</span>
+                                <span>{__('prev', 'gutenverse-news')}</span>
                             </a>
                             <a className="next">
-                                <span>next</span>
+                                <span>{__('next', 'gutenverse-news')}</span>
                                 {renderIcon(finalNextIcon, iconNextType, iconNextSVG)}
                             </a>
                         </>

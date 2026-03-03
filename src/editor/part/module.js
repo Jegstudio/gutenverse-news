@@ -103,6 +103,8 @@ const BlockModule = compose(
         gutenversePreviewBlock = '',
         gutterWidth = 30,
         rowItemGap,
+        headerHtmlTag,
+        postTitleHtmlTag,
     } = attributes;
 
     useEffect(() => {
@@ -378,6 +380,7 @@ const BlockModule = compose(
                 attributes,
                 gutterWidth,
                 rowItemGap,
+                postTitleHtmlTag,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -410,6 +413,7 @@ const BlockModule = compose(
         metaCommentIconSVG,
         gutenversePreviewBlock,
         masonryReload,
+        postTitleHtmlTag,
     ]);
 
     const blockProps = useBlockProps({
@@ -435,6 +439,7 @@ const BlockModule = compose(
         headerAuthor,
         headerTag,
         headerDefault,
+        headerHtmlTag,
         onSubCatChange: (value, type, label) => {
             setIsLoaded(false);
             setActiveFilter({ value, label });

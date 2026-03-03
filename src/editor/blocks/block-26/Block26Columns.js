@@ -19,9 +19,11 @@ const Block26Columns = props => {
         blockWidth,
         readmoreButtonDisabled = false,
         imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const PostTitleTag = postTitleHtmlTag;
 
     const RenderBlock1 = props=>{
         const {attr, post, index='x'} = props;
@@ -29,9 +31,9 @@ const Block26Columns = props => {
             <article className={`gvnews_post gvnews_pl_lg_9 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_heading">
                     {<MetaCategory {...props} />}
-                    {post.title && <h3 property="headline" className="gvnews_post_title">
+                    {post.title && <PostTitleTag property="headline" className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>
-                    </h3>}
+                    </PostTitleTag>}
                     {attr.option && <MetaModule3 {...props}/>}
                 </div>
                 <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />

@@ -50,6 +50,7 @@ const ArchiveBlock = compose(
         renderedImageSizeMain,
         gutterWidth = 30,
         rowItemGap,
+        postTitleHtmlTag = 'h3',
     } = attributes;
 
     const [masonryReload, setMasonryReload] = useState(false);
@@ -139,6 +140,7 @@ const ArchiveBlock = compose(
         masonryReload,
         gutterWidth,
         rowItemGap,
+        postTitleHtmlTag
     };
 
     return (

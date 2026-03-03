@@ -64,6 +64,7 @@ const BlockColumns = (props) => {
         renderedImageSizeMain,
         gutterWidth,
         rowItemGap,
+        postTitleHtmlTag
     } = props;
     const columns = [
         {
@@ -321,6 +322,7 @@ const BlockColumns = (props) => {
                     imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 },),
                     gutterWidth,
                     rowItemGap,
+                    postTitleHtmlTag
                 });
             }
         });
@@ -342,6 +344,7 @@ const BlockColumns = (props) => {
                     adsData: adsData,
                     readmoreButtonDisabled,
                     imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 }),
+                    postTitleHtmlTag
                 });
             }
         });

@@ -7,6 +7,7 @@ import { designPanel } from './panel-design';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
 
@@ -56,6 +57,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Border', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => borderPanel({
@@ -89,6 +96,7 @@ export const panelList = () => {
                 initialOpen: false,
                 pro: true
             },
-        ]
+        ],
+        ['postTitleHtmlTag', 'fetchPriorityHigh']
     );
 };

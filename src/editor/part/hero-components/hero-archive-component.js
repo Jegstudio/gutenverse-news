@@ -9,7 +9,7 @@ import { getModuleOptions } from '../../utils/helper';
 const defaultOptions = getModuleOptions();
 
 const HeroArchiveComponent = (props) => {
-    const { heroType, numberPostShow, heroSliderRef } = props;
+    const { heroType, numberPostShow } = props;
     const {
         sliderItem,
         numberPost = numberPostShow * 2,
@@ -28,7 +28,9 @@ const HeroArchiveComponent = (props) => {
     const {
         showMeta = true,
         showMetaDate = true,
-        showMetaAuthor = true
+        showMetaAuthor = true,
+        postTitleHtmlTag = 'h2',
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -46,38 +48,40 @@ const HeroArchiveComponent = (props) => {
     };
 
 
-    const [postBulk, getPost] = useState(false);
-    const [postData, getTrim] = useState(false);
-    const [loadPost, loadMore] = useState(16);
+    const [rawPosts, setRawPosts] = useState(false);
+    const [postData, setPostData] = useState(false);
+    const [postsLimit, setPostsLimit] = useState(16);
     const [overlay, setOverlay] = useState(false);
-    const [slider, initSlider] = useState(false);
-    const [block, setBlock] = useState(false);
+    const [blockContent, setBlockContent] = useState(false);
 
 
     useEffect(() => {
-        let off = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
-        let num = parseInt(sliderItem * numberPostShow);
-        let count = parseInt(moduleOption.option.post_count);
-        if (postBulk && postBulk.length) {
-            if (postBulk.slice(off, num + off).length) {
-                if (postBulk.slice(off, num + off).length < num && loadPost <= count) {
-                    loadMore(loadPost * sliderItem);
-                }
-                getTrim(postBulk.slice(off, parseInt(num + off)));
-            } else {
-                if (count > off) {
-                    loadMore(loadPost * sliderItem);
-                } else {
-                    if (count != moduleOption.option.post_count) {
-                        loadMore(count);
-                    }
-                }
-                getTrim(false);
-            }
-        } else {
-            getTrim(false);
+        let offset = !isNaN(parseInt(postOffset)) ? parseInt(postOffset) : 0;
+        let itemsToDisplay = parseInt(sliderItem * numberPostShow);
+        let totalAvailablePosts = parseInt(moduleOption.option.post_count);
+
+        if (!rawPosts || !rawPosts.length) {
+            setPostData(false);
+            return;
         }
-    }, [numberPost, postBulk, postOffset, sliderItem]);
+
+        const rawPostsSlice = rawPosts.slice(offset, parseInt(itemsToDisplay + offset));
+        if (rawPostsSlice.length) {
+            if (rawPostsSlice.length < itemsToDisplay && postsLimit <= totalAvailablePosts) {
+                setPostsLimit(postsLimit * sliderItem);
+            }
+            setPostData(rawPostsSlice);
+        } else {
+            if (totalAvailablePosts > offset) {
+                setPostsLimit(postsLimit * sliderItem);
+            } else {
+                if (totalAvailablePosts != moduleOption.option.post_count) {
+                    setPostsLimit(totalAvailablePosts);
+                }
+            }
+            setPostData(false);
+        }
+    }, [numberPost, rawPosts, postOffset, sliderItem]);
 
     // useEffect(() => {
     //     apiFetch({
@@ -93,18 +97,18 @@ const HeroArchiveComponent = (props) => {
 
     useEffect(() => {
 
-        postBulk ? setOverlay(true) : null;
+        rawPosts ? setOverlay(true) : null;
         apiFetch({
             path: addQueryArgs('/gvnews-client/v1/get-posts-archive'),
             method: 'POST',
             data: {
                 attr: {
-                    numberPost: loadPost,
+                    numberPost: postsLimit,
                 },
             },
         })
             .then((data) => {
-                getPost(JSON.parse(data));
+                setRawPosts(JSON.parse(data));
             })
             .catch((e) => {
                 console.error(e.message);
@@ -112,7 +116,7 @@ const HeroArchiveComponent = (props) => {
             .finally(() => {
                 setOverlay(false);
             });
-    }, [loadPost]);
+    }, [postsLimit]);
 
     const resetBlock = () => {
         if (postData && postData.length) {
@@ -122,6 +126,7 @@ const HeroArchiveComponent = (props) => {
                     format: dateFormat,
                     custom: dateFormatCustom,
                 },
+                postTitleHtmlTag,
             };
             const rows = [];
             for (let i = 0; i < sliderItem; i++) {
@@ -139,7 +144,7 @@ const HeroArchiveComponent = (props) => {
                     />
                 );
             }
-            setBlock(
+            setBlockContent(
                 <HeroViewComponent
                     {...{
                         rows,
@@ -151,12 +156,16 @@ const HeroArchiveComponent = (props) => {
                     }}
                 />
             );
-        } else if (postBulk && moduleOption) {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.string.no_content}</div>);
+        } else {
+            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
     };
 
     useEffect(() => {
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlockContent(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetBlock();
     }, [
         dateFormat,
@@ -165,11 +174,13 @@ const HeroArchiveComponent = (props) => {
         heroType,
         showMeta,
         showMetaDate,
-        showMetaAuthor
+        showMetaAuthor,
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {
-        setBlock(false);
+        setBlockContent(false);
         setTimeout(function () {
             resetBlock();
         });
@@ -177,10 +188,8 @@ const HeroArchiveComponent = (props) => {
 
     return (
         <>
-            {block ? block : <ModuleSkeleton />}
+            {blockContent ? blockContent : <ModuleSkeleton />}
             {overlay && <ModuleOverlay />}
-            {slider && window.gvnewsHeroSlider(heroSliderRef.current)}
-            {slider && initSlider(false)}
         </>
     );
 };

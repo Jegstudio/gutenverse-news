@@ -20,6 +20,7 @@ const Block24Columns = props => {
         listIconType = 'icon',
         listIconSVG = '',
         imageSizeMain = {},
+        postTitleHtmlTag = 'h3',
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -43,7 +44,7 @@ const Block24Columns = props => {
             <article className={`gvnews_post gvnews_pl_xs_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="gvnews_postblock_content">
                     {renderIcon(finalListIcon, listIconType, listIconSVG)}
-                    {props.post.title && <PostTitle post={props.post} />}
+                    {props.post.title && <PostTitle post={props.post} attr={props.attr}/>}
                 </div>
             </article>
         );
@@ -58,7 +59,8 @@ const Block24Columns = props => {
                 type : metaDateType,
                 format : metaDateFormat,
                 custom : metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
 
@@ -87,7 +89,8 @@ const Block24Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
         const rows2 = [];
@@ -124,7 +127,8 @@ const Block24Columns = props => {
                 type: metaDateType,
                 format: metaDateFormat,
                 custom: metaDateFormatCustom,
-            }
+            },
+            titleTag: postTitleHtmlTag
         };
         const rows = [];
         const rows2 = [];

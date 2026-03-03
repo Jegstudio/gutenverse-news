@@ -39,9 +39,9 @@ class Module_25 extends Module_View_Abstract {
 
 		return '<article ' . gvnews_post_class( 'gvnews_post', $post_id ) . ">
                     <div class=\"gvnews_postblock_heading\">
-                        <h3 class=\"gvnews_post_title\">
+                        <{$this->post_title_tag} class=\"gvnews_post_title\">
                             <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
-                        </h3>
+                        </{$this->post_title_tag}>
                         {$this->post_meta_1($post)}
                     </div>
                     <div class=\"bottom-content\">

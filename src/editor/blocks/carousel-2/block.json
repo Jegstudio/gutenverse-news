@@ -335,6 +335,33 @@
             "type": "string",
             "default": ""
         },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "noContentTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBackground": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentBorder": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "noContentPadding": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "fetchPriorityHigh": {
+            "type": "boolean"
+        },
         "positioningType": {
             "type": "object"
         },

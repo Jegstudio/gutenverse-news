@@ -40,9 +40,9 @@ class Module_24 extends Module_View_Abstract {
 		$post_id          = $post->ID;
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
-		$title            = "<h3 class=\"gvnews_post_title\">
+		$title            = "<{$this->post_title_tag} class=\"gvnews_post_title\">
                                     <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                              </h3>';
+                              </' . $this->post_title_tag . '>';
 
 		return 1 === $type ?
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_box' . $additional_class, $post_id ) . '>

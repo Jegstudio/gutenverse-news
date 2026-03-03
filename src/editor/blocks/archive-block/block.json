@@ -391,6 +391,13 @@
             "type": "string",
             "default": ""
         },
+        "postTitleHtmlTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "fetchPriorityHigh": {
+            "type": "boolean"
+        },
         "flexAlignSelf": {
             "type": "object",
             "default": {},
