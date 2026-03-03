@@ -95,21 +95,10 @@ class Post_Meta extends Post_Guten {
 	 * @return string
 	 */
 	public function render_category( $is_last_item ) {
-		$categories          = apply_filters( 'gvnews_post_meta_category', get_the_category() );
-		$category_components = array();
-		foreach ( $categories as $category ) {
-			$link = get_term_link( $category );
-
-			$category_components[] = '
-				<a href="' . $link . '" rel="category tag">
-					' . esc_html( $category->name ) . '
-				</a>
-			';
-		}
 		return '<div class="gvnews-meta-category meta-items ' . $is_last_item . '">
                 <span>
                     <span class="meta-text">' . esc_html__( 'in', 'gutenverse-news' ) . '</span>
-                    ' . implode( '<span class="category-separator">, </span>', $category_components ) . ' 
+                    ' . get_the_category_list( '<span class="category-separator">, </span>' ) . ' 
                 </span>
             </div>';
 	}
