@@ -361,6 +361,10 @@
         },
         "fetchPriorityHigh": {
             "type": "boolean"
+        },
+        "responsiveItem": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
