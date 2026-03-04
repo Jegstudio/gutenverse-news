@@ -142,7 +142,7 @@ const Carousel3Block = compose(
 
     const initSlider = () => {
         if (blockRef.current) {
-            if ((columnWidth === '8' || columnWidth === '4')) {
+            if ((columnWidth !== '12')) {
                 window.gvnewsCarouselSlider(blockRef.current);
             } else {
                 window.gvnewsCarouselSlider(blockRef.current,

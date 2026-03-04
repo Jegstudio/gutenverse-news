@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl, TypographyControl, ColorControl } from 'gutenverse-core/controls';
 
 export const designPanel = (props) => {
-    const { columnWidth } = props;
     return [
         {
             id: 'columnWidth',
@@ -27,7 +26,6 @@ export const designPanel = (props) => {
                     label: __('12  Column Design ( 3 Block )', 'gutenverse-news')
                 },
             ],
-            show: (columnWidth === '8' || columnWidth === '4'),
         },
         {
             id: 'typography',

@@ -62,7 +62,7 @@ class Carousel_3 extends Carousel_View_Abstract {
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
 			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
-			$use_responsive_item = isset( $attr['column_width'] ) && ( 'auto' === $attr['column_width'] || '12' === $attr['column_width'] ) ? true : false;
+			$use_responsive_item = isset( $attr['column_width'] ) && '12' === $attr['column_width'] ? true : false;
 			$number_item         = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
 			$content             = $this->content( $result, $number_item );
 			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
