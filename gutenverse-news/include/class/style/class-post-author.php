@@ -670,9 +670,9 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'selector'       => "{$base_selector}",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'margin-right' );
+						return $this->handle_unit_point( $value, 'gap' );
 					},
 					'value'          => $this->attrs['donationIconGap'],
 					'device_control' => true,
