@@ -696,7 +696,7 @@ class Post_Author extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} a:hover .gvnews-icon-wrapper",
+					'selector'       => "{$base_selector}:hover .gvnews-icon-wrapper",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
