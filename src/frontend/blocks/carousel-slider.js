@@ -176,11 +176,6 @@ class GutenverseCarouselModule {
                 let container = u(carousel).find('.gvnews_carousel_post');
                 if (container.length) {
                     let { carouselType, carouselDefault } = this.getDefaultOption(this.options, container);
-                    console.log('INIT CAROUSEL------');
-                    console.log(carouselType);
-                    console.log(carouselDefault);
-                    console.log('e o INIT CAROUSEL------');
-
 
                     if (carouselType) {
                         let carouselSlider = window.tns(carouselDefault);
