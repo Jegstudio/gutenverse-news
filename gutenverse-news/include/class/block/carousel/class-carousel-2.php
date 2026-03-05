@@ -79,9 +79,9 @@ class Carousel_2 extends Carousel_View_Abstract {
 					'margin'         => esc_attr( $margin ),
 					'lazyload'       => esc_attr( $attr['normal_image'] ),
 					'use-responsive' => true,
-					'desktop-item'   => isset( $responsive_item['Desktop'] ) ? esc_attr( $responsive_item['Desktop'] ) : $number_item,
-					'tablet-item'    => isset( $responsive_item['Tablet'] ) ? esc_attr( $responsive_item['Tablet'] ) : 2,
-					'mobile-item'    => isset( $responsive_item['Mobile'] ) ? esc_attr( $responsive_item['Mobile'] ) : 1,
+					'desktop-item'   => ! empty( $responsive_item['Desktop'] ) ? esc_attr( $responsive_item['Desktop'] ) : $number_item,
+					'tablet-item'    => ! empty( $responsive_item['Tablet'] ) ? esc_attr( $responsive_item['Tablet'] ) : 2,
+					'mobile-item'    => ! empty( $responsive_item['Mobile'] ) ? esc_attr( $responsive_item['Mobile'] ) : 1,
 				)
 			);
 

@@ -64,10 +64,10 @@ class Carousel_1 extends Carousel_View_Abstract {
 			$number_item = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
 			$content     = $this->content( $result, $number_item );
 			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
-			$autoplay_delay = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
-			$margin         = isset( $attr['margin']['size'] ) ? $attr['margin']['size'] : $attr['margin'];
-
-			$data_attr = gvnews_build_data_attr(
+			$autoplay_delay  = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
+			$margin          = isset( $attr['margin']['size'] ) ? $attr['margin']['size'] : $attr['margin'];
+			$responsive_item = isset( $attr['responsive_item'] ) ? $attr['responsive_item'] : array();
+			$data_attr       = gvnews_build_data_attr(
 				array(
 					'nav'            => esc_attr( $attr['show_nav'] ),
 					'autoplay'       => esc_attr( $attr['enable_autoplay'] ),
@@ -76,9 +76,9 @@ class Carousel_1 extends Carousel_View_Abstract {
 					'margin'         => esc_attr( $margin ),
 					'lazyload'       => esc_attr( $attr['normal_image'] ),
 					'use-responsive' => true,
-					'desktop-item'   => isset( $responsive_item['Desktop'] ) ? esc_attr( $responsive_item['Desktop'] ) : $number_item,
-					'tablet-item'    => isset( $responsive_item['Tablet'] ) ? esc_attr( $responsive_item['Tablet'] ) : 2,
-					'mobile-item'    => isset( $responsive_item['Mobile'] ) ? esc_attr( $responsive_item['Mobile'] ) : 1,
+					'desktop-item'   => ! empty( $responsive_item['Desktop'] ) ? esc_attr( $responsive_item['Desktop'] ) : $number_item,
+					'tablet-item'    => ! empty( $responsive_item['Tablet'] ) ? esc_attr( $responsive_item['Tablet'] ) : 2,
+					'mobile-item'    => ! empty( $responsive_item['Mobile'] ) ? esc_attr( $responsive_item['Mobile'] ) : 1,
 				)
 			);
 
