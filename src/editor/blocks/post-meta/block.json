@@ -306,10 +306,22 @@
 			"type": "object"
 		},
         "donationIconGap": {
-            "type": "object"
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 5,
+                    "unit": "px"
+                }
+            }
         },
         "donationIconSize": {
-            "type": "object"
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 20,
+                    "unit": "px"
+                }
+            }
         },
         "donationIconColor": {
             "type": "object"
