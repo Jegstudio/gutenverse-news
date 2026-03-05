@@ -85,30 +85,28 @@ class Rss extends Grab {
 		$mod      = gvnews_get_view_class_from_shortcode( $name );
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
+		$attr['pagination_mode'] = 'disable';
+		$attr['post_offset']     = 0;
+		$attr['results']         = array(
+			'result'     => array(),
+			'next'       => false,
+			'prev'       => false,
+			'total_page' => 1,
+		);
+
 		$feed = fetch_feed( esc_url( $this->attributes['feedurl'] ) );
 
 		if ( ! is_wp_error( $feed ) ) {
 			$posts = $feed->get_items( 0, $this->attributes['numberPost'] );
 
 			if ( $posts ) {
-				$result = array(
-					'result' => array(),
-				);
-
 				foreach ( $posts as $post ) {
-					$result['result'][] = new Feed( $post, $attr );
+					$attr['results']['result'][] = new Feed( $post, $attr );
 				}
-
-				$result['next']       = false;
-				$result['prev']       = false;
-				$result['total_page'] = 1;
-
-				$attr['pagination_mode'] = 'disable';
-				$attr['results']         = $result;
-
-				return $instance->build_module( $attr );
 			}
 		}
+
+		return $instance->build_module( $attr );
 	}
 
 	/**
