@@ -61,7 +61,13 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadow": {

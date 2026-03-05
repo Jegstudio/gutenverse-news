@@ -226,10 +226,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
