@@ -136,4 +136,14 @@
         }
     }
 
+    .gvnews_postblock {
+        &.gvnews_col_3o3 .gvnews_posts_masonry {
+            .gvnews_posts.shuffle {
+                .gvnews_post {
+                    width: calc((100% - var(--gvnews-gutter-width)) / 2);
+                }
+            }
+        }
+    }
+
 }

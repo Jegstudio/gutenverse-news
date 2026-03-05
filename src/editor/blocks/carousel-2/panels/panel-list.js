@@ -98,6 +98,6 @@ export const panelList = () => {
                 pro: true
             },
         ],
-        ['postTitleHtmlTag']
+        ['postTitleHtmlTag', 'fetchPriorityHigh']
     );
 };
