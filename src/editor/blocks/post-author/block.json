@@ -285,6 +285,15 @@
         },
         "donationIconColorHover": {
             "type": "object"
+        },
+        "donationSpaceTop": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 10,
+                    "unit": "px"
+                }
+            }
         }
     },
     "supports": {
