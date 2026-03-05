@@ -705,5 +705,18 @@ class Post_Author extends Style_Abstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['donationSpaceTop'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $base_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-top' );
+					},
+					'value'          => $this->attrs['donationSpaceTop'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 }
