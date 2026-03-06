@@ -69,6 +69,7 @@ const Carousel3Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag = 'h3',
         gutenversePreviewBlock = '',
+        responsiveItem,
     } = attributes;
 
     const metaSettings = {
@@ -91,6 +92,15 @@ const Carousel3Block = compose(
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
+        }
+
+        if (!responsiveItem) {
+            setAttributes({
+                ...attributes,
+                responsiveItem: {
+                    Desktop: ncolumn,
+                }
+            });
         }
     }, [elementRef]);
 
@@ -132,7 +142,18 @@ const Carousel3Block = compose(
 
     const initSlider = () => {
         if (blockRef.current) {
-            window.gvnewsCarouselSlider(blockRef.current);
+            if ((columnWidth !== '12')) {
+                window.gvnewsCarouselSlider(blockRef.current);
+            } else {
+                window.gvnewsCarouselSlider(blockRef.current,
+                    {
+                        useResponsive: true,
+                        desktopItem: responsiveItem?.Desktop ? responsiveItem?.Desktop : ncolumn,
+                        tabletItem: responsiveItem?.Tablet ? responsiveItem?.Tablet : 2,
+                        mobileItem: responsiveItem?.Mobile ? responsiveItem?.Mobile : 1
+                    });
+
+            }
         }
     };
 
@@ -351,7 +372,8 @@ const Carousel3Block = compose(
         showMetaDate,
         renderedImageSizeMain,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        responsiveItem,
     ]);
 
     useEffect(() => {

@@ -25,7 +25,7 @@ export const designPanel = (props) => {
                     value: '12',
                     label: __('12  Column Design ( 3 Block )', 'gutenverse-news')
                 },
-            ]
+            ],
         },
         {
             id: 'typography',

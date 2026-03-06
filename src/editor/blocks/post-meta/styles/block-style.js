@@ -5,6 +5,7 @@ import authorStyle from './panelStyle/style-author';
 import categoryStyle from './panelStyle/style-category';
 import commentStyle from './panelStyle/style-comment';
 import dateStyle from './panelStyle/style-date';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -20,6 +21,7 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundSelector: `.${elementId}.gvnews-post-meta.gvnews-block`,
         backgroundHoverSelector: `.${elementId}.gvnews-post-meta.gvnews-block:hover`,
     });
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
 
     /**
      * Panel Border
