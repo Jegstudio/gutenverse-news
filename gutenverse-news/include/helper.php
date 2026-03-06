@@ -915,7 +915,7 @@ if ( ! function_exists( 'gvnews_get_post_date' ) ) {
 	 * @return string
 	 */
 	function gvnews_get_post_date( $format = '', $post = null ) {
-		$publish_date                = isset( $post->publish_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->publish_date ) : get_the_date( $format, $post );
+		$publish_date                = isset( $post->publish_date ) ? gmdate( $format ? $format : get_option( 'date_format' ), $post->publish_date ) : get_the_date( $format, $post );
 		$modified_date               = isset( $post->update_date ) ? gmdate( $format ? $format : 'Y-m-d', $post->update_date ) : get_the_modified_date( $format, $post );
 		$publish_date_number_format  = isset( $post->publish_date ) ? gmdate( 'Y-m-d', $post->publish_date ) : get_the_date( 'Y-m-d', $post );
 		$modified_date_number_format = isset( $post->update_date ) ? gmdate( 'Y-m-d', $post->update_date ) : get_the_modified_date( 'Y-m-d', $post );

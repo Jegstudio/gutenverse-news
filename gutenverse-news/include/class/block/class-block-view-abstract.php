@@ -508,7 +508,7 @@ abstract class Block_View_Abstract {
 		if ( $this->meta_settings['show_meta'] && 'false' !== $this->meta_settings['show_meta'] ) {
 			$output .= '<div class="gvnews_post_meta">';
 			$output .= $this->get_meta_author( $post, $avatar );
-			$output .= $this->get_meta_date( $post );
+			$output .= $this->get_meta_date( $post, $feed );
 			$output .= ! $feed ? $this->get_meta_comment( $post ) : '';
 			$output .= '</div>';
 
@@ -618,12 +618,16 @@ abstract class Block_View_Abstract {
 	 * Get post meta date.
 	 *
 	 * @param object $post WP Post objcet.
+	 * @param boolean $feed is feed.
 	 * @return string
 	 */
-	public function get_meta_date( $post ) {
+	public function get_meta_date( $post, $feed = false ) {
+		$custom_date = $feed ? $post->publish_date : null;
+		$permalink   = $feed ? $post->permalink : get_the_permalink( $post );
+
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
 			$icon = Svg_Icons::render_svg_icon( 'far fa-clock' );
-			return '<div class="gvnews_meta_date"><a aria-label="' . esc_attr( $this->format_date( $post ) ) . '" href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+			return '<div class="gvnews_meta_date"><a aria-label="' . esc_attr( $this->format_date( $post, $custom_date ) ) . '" href="' . esc_url( $permalink ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post, $custom_date ) ) . '</a></div>';
 		}
 		return '';
 	}
