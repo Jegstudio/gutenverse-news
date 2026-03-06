@@ -60,6 +60,12 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
+            title: __('Positioning', 'gutenverse'),
+            initialOpen: false,
+            panelArray: positioningPanel,
+            tabRole: TabSetting
+        },
+        {
             title: __('Spacing', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => advancePanel({
