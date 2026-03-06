@@ -197,11 +197,11 @@ const RssBlock = compose(
                     </article>;
                 }
             });
-            setBlock(<div className={`gvnews_postblock_3 gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''}`}>
-                <div className="gvnews_posts gvnews_block_container">
+            setBlock(
+                <div className="gvnews_posts">
                     {content}
                 </div>
-            </div>);
+            );
         } else {
             setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
@@ -236,10 +236,14 @@ const RssBlock = compose(
             </>
         )}
         <div  {...blockProps}>
-            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} gvnews_postblock`}>
-                <HeaderModule {...headerData} />
-                {block ? block : <ModuleSkeleton />}
-                {isDeprecated && <UpgradeProOverlay />}
+            <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className={`gvnews_postblock_3 ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+                    <HeaderModule {...headerData} />
+                    <div className="gvnews_block_container">
+                        {block ? block : <ModuleSkeleton />}
+                        {isDeprecated && <UpgradeProOverlay />}
+                    </div>
+                </div>
             </div>
         </div>
     </>;
