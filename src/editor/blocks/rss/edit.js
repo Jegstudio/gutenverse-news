@@ -191,7 +191,7 @@ const RssBlock = compose(
             const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 });
             const content = postData.map((post, index) => {
                 if (index < limit) {
-                    return <article key={index} className="gvnews_post gvnews_pl_md_2">
+                    return <article key={index} className={`gvnews_post gvnews_pl_md_2 ${post?.thumbnail?.url ? '' : 'no_thumbnail'}`}>
                         {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />}
                         <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;

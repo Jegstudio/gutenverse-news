@@ -50,7 +50,7 @@ class Module_3 extends Module_View_Abstract {
             </div>' : '';
 
 		$output =
-		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2', $post->ID ) . '>
+		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2' . ( ! $show_thumbnail ? ' no_thumbnail' : '' ), $post->ID ) . '>
                 '.
 				$thumbnail_html
 				.'
