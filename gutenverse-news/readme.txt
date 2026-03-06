@@ -145,7 +145,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 = 3.1.4 [DEV] =
 ##### Improvements
-* Remove additional margin on "no content" state,
+* Remove additional margin on "no content" state
+* Remove aria-hidden attribute on slider blocks to prevent accessibility issues
 
 = 3.1.3 =
 ##### Improvements
