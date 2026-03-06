@@ -880,7 +880,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'selector'       => "{$base_selector} svg, {$base_selector} i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -893,7 +893,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} a:hover .gvnews-icon-wrapper",
+					'selector'       => "{$base_selector} a:hover svg, {$base_selector} a:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -918,7 +918,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconSize'] ) && 'icon' === $this->attrs['donationIconType'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper i",
+					'selector'       => "{$base_selector} i",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'font-size' );
 					},
@@ -931,20 +931,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconSize'] ) && 'svg' === $this->attrs['donationIconType'] ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
+					'selector'       => "{$base_selector} svg",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
-					},
-					'value'          => $this->attrs['donationIconSize'],
-					'device_control' => true,
-				)
-			);
-
-			$this->inject_style(
-				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper svg",
-					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'height' );
+						return $this->handle_unit_point( $value, 'width' ) . $this->handle_unit_point( $value, 'height' );
 					},
 					'value'          => $this->attrs['donationIconSize'],
 					'device_control' => true,
@@ -955,7 +944,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['donationIconGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .gvnews-icon-wrapper",
+					'selector'       => "{$base_selector} svg, {$base_selector} i",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'margin-right' );
 					},
