@@ -44,13 +44,10 @@ class Module_3 extends Module_View_Abstract {
 
 		// logic for visibility thumbnail block in rss feed if thumbnail is enabled
 		$show_thumbnail = ! ($is_feed && empty( $this->attribute['thumbnail'] ));
-		$thumbnail_html = '';
-		if ( $show_thumbnail ) {
-    		$thumbnail_html = '<div class="gvnews_thumb">
+		$thumbnail_html = $show_thumbnail ? '<div class="gvnews_thumb">
                 ' . $edit . '
                 <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
-            </div>';
-		}
+            </div>' : '';
 
 		$output =
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2', $post->ID ) . '>
