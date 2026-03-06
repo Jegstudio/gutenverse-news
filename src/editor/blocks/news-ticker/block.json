@@ -408,5 +408,8 @@
 	],
 	"viewScript": [
 		"gutenverse-news-frontend-newsticker-script"
+	],
+	"usesContext": [
+		"gutenverse/flexDirection"
 	]
 }

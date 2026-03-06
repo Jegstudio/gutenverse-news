@@ -301,28 +301,28 @@
             "default": "gvnews_pl_md_2"
         },
         "borderMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
         "borderResponsiveMainThumbnail": {
-            "type":"object"
+            "type": "object"
         },
-        "renderedImageSizeMain":{
-            "type":"string",
-            "default":"default"
+        "renderedImageSizeMain": {
+            "type": "string",
+            "default": "default"
         },
         "overlayBackgroundMain": {
-            "type":"object"
+            "type": "object"
         },
         "overlayOpacityMain": {
-            "type":"object"
+            "type": "object"
         },
         "contentAlign": {
             "type": "object",
             "copyStyle": true
         },
-        "contentAlignVertical":{
+        "contentAlignVertical": {
             "type": "object",
-            "copyStyle": true            
+            "copyStyle": true
         },
         "contentContainerBackground": {
             "type": "object",
@@ -448,5 +448,8 @@
     ],
     "style": [
         "gutenverse-news-frontend-blocks-style"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }

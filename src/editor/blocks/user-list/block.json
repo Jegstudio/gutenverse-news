@@ -287,5 +287,8 @@
     "style": [
         "gutenverse-news-frontend-blocks-style",
         "gutenverse-news-frontend-user-list-style"
-    ]
+    ],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

@@ -328,5 +328,8 @@
     ],
     "viewScript": [
         "gutenverse-news-frontend-hero-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }

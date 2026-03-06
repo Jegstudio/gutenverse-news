@@ -468,5 +468,8 @@
     "keywords": [],
     "gutenversePro": true,
     "style": ["gutenverse-news-frontend-blocks-style"],
-    "viewScript": ["gutenverse-news-frontend-slider-script"]
+    "viewScript": ["gutenverse-news-frontend-slider-script"],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

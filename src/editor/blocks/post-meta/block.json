@@ -276,5 +276,8 @@
     ],
     "style": [
         "gutenverse-news-frontend-post-meta-style"
-    ]
+    ],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

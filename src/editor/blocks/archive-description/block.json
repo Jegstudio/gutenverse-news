@@ -146,5 +146,8 @@
         "single",
         "archive",
         "description"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }

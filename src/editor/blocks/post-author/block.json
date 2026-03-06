@@ -256,5 +256,8 @@
         "author",
         "author box"
     ],
-    "style": ["gutenverse-news-frontend-post-author-style"]
+    "style": ["gutenverse-news-frontend-post-author-style"],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

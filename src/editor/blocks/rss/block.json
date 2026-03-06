@@ -237,5 +237,8 @@
     "style": [
         "gutenverse-news-frontend-blocks-style"
     ],
-    "gutenversePro": true
+    "gutenversePro": true,
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

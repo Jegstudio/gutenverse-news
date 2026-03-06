@@ -711,5 +711,8 @@
     ],
     "style": [
         "gutenverse-news-frontend-blocks-style"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }
