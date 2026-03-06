@@ -149,6 +149,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Remove aria-hidden attribute on slider blocks to prevent accessibility issues
 * Add responsive value on number of column option on Carousel blocks
 
+##### Bug Fixes
+* Fix responsive border issue on all blocks
+
 = 3.1.3 =
 ##### Improvements
 * Add fetch priority high option on all post blocks
