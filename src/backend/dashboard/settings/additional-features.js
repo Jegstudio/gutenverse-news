@@ -58,25 +58,25 @@ const AdditionalFeatures = (props) => {
         {
             id: 'paywall',
             title: 'Paywall',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Restrict your premium content to subscribers only or you can allowing user to read yur premium content by unlcok post sytem.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'view_counter',
             title: 'View Counter',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Add view counter on your posts and allowing you to show most popular posts on your site.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'post_review',
             title: 'Post Review',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Create a review type post and allowing you to filter list posts based on review score.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'like_dislike_button',
             title: 'Like & Dislike Post',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Add like and dislike features on your posts.',
             icon: <IconPaywallSVG />,
         },
         {
@@ -88,26 +88,19 @@ const AdditionalFeatures = (props) => {
         {
             id: 'bookmark',
             title: 'Bookmark Post',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Allowing users to save their favorite posts with a bookmark button.',
             icon: <IconPaywallSVG />,
         },
     ];
 
     return (
         <div>
-            <div className="template-tab-body additional-features" style={{ paddingTop: '30px' }}>
+            <div className="template-tab-body additional-features">
                 {featureList.map((feature) => (
                     <Feature key={feature.id} {...feature} updateValue={updateValue} value={features.includes(feature.id)} showUpgradePopup={showUpgradePopup} setInstallPopup={setInstallPopup} />
                 ))}
             </div>
             <SaveButton saving={saving} updateFeatures={updateFeatures} showUpgradePopup={showUpgradePopup} setInstallPopup={setInstallPopup} />
-            {/* <div className="actions">
-                {saving ? <div className="gutenverse-button">
-                    {__('Saving...', '--gctd--')}
-                </div> : <div className="gutenverse-button" onClick={() => updateFeatures()}>
-                    {__('Save Changes', '--gctd--')}
-                </div>}
-            </div> */}
         </div>
     );
 };
