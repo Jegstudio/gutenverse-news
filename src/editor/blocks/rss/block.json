@@ -278,6 +278,12 @@
             "type": "boolean",
             "default": true
         },
+        "typography": {
+            "type": "object"
+        },
+        "typographyContent": {
+            "type": "object"
+        },
         "typographyMeta": {
             "type": "object"
         },
@@ -322,6 +328,15 @@
         "headerMargin": {
             "type": "object",
             "copyStyle": true
+        },
+        "titleColor": {
+            "type": "object"
+        },
+        "aHover": {
+            "type": "object"
+        },
+        "excerptColor": {
+            "type": "object"
         }
     },
     "supports": {
