@@ -119,10 +119,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -185,6 +191,36 @@
         "postTitleHtmlTag": {
             "type": "string",
             "default": "h3"
+        },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
         },
         "renderedImageSizeMain": {
             "type": "string",
@@ -373,5 +409,8 @@
     "style": [
         "gutenverse-news-frontend-blocks-style"
     ],
-    "gutenversePro": true
+    "gutenversePro": true,
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
     secondThumbnailClass = null) => {
@@ -12,6 +13,9 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
         // split by comma, trim each part, prefix with base, then join back with comma
         return raw.split(',').map(part => `${base} ${part.trim()}`).join(', ');
     };
+
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
 
     /**
      * Panel Design

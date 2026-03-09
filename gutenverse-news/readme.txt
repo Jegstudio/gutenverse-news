@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.1.4-dev
+Stable tag: 3.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,10 +143,14 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.1.4 [DEV] =
+= 3.1.5 =
 ##### Improvements
 * Remove additional margin on "no content" state
 * Remove aria-hidden attribute on slider blocks to prevent accessibility issues
+* Add responsive value on number of column option on Carousel blocks
+
+##### Bug Fixes
+* Fix responsive border issue on all blocks
 
 = 3.1.3 =
 ##### Improvements
