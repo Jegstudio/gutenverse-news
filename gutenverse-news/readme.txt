@@ -148,6 +148,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Remove additional margin on "no content" state
 * Remove aria-hidden attribute on slider blocks to prevent accessibility issues
 * Add responsive value on number of column option on Carousel blocks
+* Add more styling option on RSS block
 
 ##### Bug Fixes
 * Fix responsive border issue on all blocks
