@@ -118,30 +118,6 @@ export const panelList = () => {
             tabRole: TabStyle,
         },
         {
-            title: __('Author Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleAuthorPanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Date Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleDatePanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Category Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleCategoryPanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Comment Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleCommentPanel,
-            tabRole: TabStyle,
-        },
-        {
             title: __('Background', 'gutenverse-news'),
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
