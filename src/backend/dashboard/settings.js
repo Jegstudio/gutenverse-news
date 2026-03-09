@@ -27,7 +27,7 @@ export const loadSettings = () => {
                     },
                     {
                         id: 'additional_features',
-                        title: 'Addiitonal Features',
+                        title: 'Additional Features',
                         pro: true,
                         withAccess: true
                     }

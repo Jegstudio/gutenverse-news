@@ -369,7 +369,7 @@ abstract class Block_View_Abstract {
 		if ( $force_lazy_load ) {
 			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, 'lazy' );
 		}
-		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'] );
+		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'], $this->attribute['fetch_priority_high'] );
 	}
 
 	/**

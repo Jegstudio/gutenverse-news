@@ -732,6 +732,9 @@
             "type": "string",
             "default": "h3"
         },
+        "fetchPriorityHigh": {
+            "type": "boolean"
+        },
         "showMetaReview": {
             "type": "boolean"
         }

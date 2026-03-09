@@ -41,7 +41,7 @@ class Module_33 extends Module_View_Abstract {
 	 */
 	public function render_block_type_1( $post, $image_size ) {
 		$post_id         = $post->ID;
-		$thumbnail       = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $image_size );
+		$thumbnail       = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $image_size, $this->attribute['image_load'], $this->attribute['fetch_priority_high'] );
 		$box_shadow_flag = isset( $this->attribute['box_shadow'] ) && $this->attribute['box_shadow'] ? 'box_shadow' : '';
 		$permalink       = esc_url( get_the_permalink( $post ) );
 		$read_more       = $this->attribute['disable_readmore'] ? '' : ' <a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';

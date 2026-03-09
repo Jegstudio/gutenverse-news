@@ -41,7 +41,7 @@ class Module_34 extends Module_View_Abstract {
 	 */
 	public function render_block_type_1( $post, $image_size ) {
 		$post_id          = $post->ID;
-		$thumbnail        = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $image_size );
+		$thumbnail        = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $image_size, $this->attribute['image_load'], $this->attribute['fetch_priority_high'] );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
 
@@ -134,5 +134,4 @@ class Module_34 extends Module_View_Abstract {
 	public function render_column_alt( $result, $column_class ) {
 		return $this->build_column( $result );
 	}
-
 }

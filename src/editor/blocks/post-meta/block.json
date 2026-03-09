@@ -278,6 +278,14 @@
         "likeDislikeGap": {
             "type": "object"
         },
+        "readingTimePrefix": {
+            "type": "string",
+            "default": "Reading Time:"
+        },
+        "readingTimeSuffix": {
+            "type": "string",
+            "default": "mins read"
+        },
         "donationText": {
             "type": "string",
             "default": "Donate",
@@ -350,5 +358,8 @@
     ],
     "style": [
         "gutenverse-news-frontend-post-meta-style"
+    ],
+    "usesContext": [
+        "postId"
     ]
 }
