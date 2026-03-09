@@ -7,13 +7,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
 
     let data = [];
 
-    const getSelector = (selector, def) => {
-        const base = `.gvnews-block.gvnews-block-wrapper.${elementId}`;
-        const raw = attributes[selector] ? attributes[selector] : def;
-        // split by comma, trim each part, prefix with base, then join back with comma
-        return raw.split(',').map(part => `${base} ${part.trim()}`).join(', ');
-    };
-
     data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
 
 
@@ -26,17 +19,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post .gvnews_post_title`,
     });
 
-    isNotEmpty(attributes['secondTitleTypography']) && data.push({
-        'type': 'typography',
-        'id': 'secondTitleTypography',
-        'selector': getSelector('selectorSecondTitleTypography', '.gvnews_pl_sm .gvnews_post_title'),
-    });
-
-    isNotEmpty(attributes['thridTitleTypography']) && data.push({
-        'type': 'typography',
-        'id': 'thridTitleTypography',
-        'selector': getSelector('selectorThridTitleTypography', '.gvnews_pl_xs_2 .gvnews_post_title'),
-    });
 
     isNotEmpty(attributes['typographyContent']) && data.push({
         'type': 'typography',
@@ -50,7 +32,7 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
     isNotEmpty(attributes['titleColor']) && data.push({
         'type': 'color',
         'id': 'titleColor',
-        'selector': getSelector('selectorTitleColor', '.gvnews_postblock .gvnews_post_title a'),
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_title a`,
         'properties': [
             {
                 'name': 'color',
@@ -79,18 +61,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
         'type': 'color',
         'id': 'excerptColor',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock .gvnews_post_excerpt`,
-        'properties': [
-            {
-                'name': 'color',
-                'valueType': 'direct'
-            }
-        ],
-    });
-
-    isNotEmpty(attributes['listIconColor']) && data.push({
-        'type': 'color',
-        'id': 'listIconColor',
-        'selector': getSelector('selectorIconList', '.gvnews_pl_xs_2>i, .gvnews_pl_xs_2>.gutenverse-icon-svg svg'),
         'properties': [
             {
                 'name': 'color',
@@ -373,21 +343,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
             });
             break;
 
-
-        case 'heading_3':
-            isNotEmpty(attributes['headerFilterLineColor']) && data.push({
-                'type': 'color',
-                'id': 'headerFilterLineColor',
-                'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_3 .gvnews_subcat_list li a.current`,
-                'properties': [
-                    {
-                        'name': 'border-color',
-                        'valueType': 'direct'
-                    }
-                ],
-            });
-            break;
-
         case 'heading_5':
             isNotEmpty(attributes['headerLineThick']) && data.push({
                 'type': 'plain',
@@ -575,7 +530,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
         });
     }
 
-    data = headerFilterStyle(elementId, attributes, data);
     data = thumbnailAndOverlayStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     data = cardStyleModule(elementId, attributes, data, mainThumbnailClass);
     data = contentContainerStyle(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
@@ -585,218 +539,6 @@ const getBlockStyle = (elementId, attributes, mainThumbnailClass = null,
     return data;
 };
 
-const headerFilterStyle = (elementId, attributes, data) => {
-
-    const {
-        headerCategory,
-        headerAuthor,
-        headerTag,
-    } = attributes;
-    const withHeaderFilter = isNotEmpty(headerCategory) || isNotEmpty(headerAuthor) || isNotEmpty(headerTag);
-
-    if (withHeaderFilter) {
-
-        isNotEmpty(attributes['filterDowndownTypography']) && data.push({
-            'type': 'typography',
-            'id': 'filterDowndownTypography',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
-        });
-
-        isNotEmpty(attributes['filterDowndownWrapperBackground']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownWrapperBackground',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDropdownItemPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'filterDropdownItemPadding',
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
-        });
-
-        isNotEmpty(attributes['filterDropdownWrapperPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'filterDropdownWrapperPadding',
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
-        });
-
-        isNotEmpty(attributes['filterDropdownWrapperBorder']) && data.push({
-            'type': 'border',
-            'id': 'filterDropdownWrapperBorder',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
-        });
-
-
-        isNotEmpty(attributes['filterDropdownBoxShadow']) && data.push({
-            'type': 'boxShadow',
-            'id': 'filterDropdownBoxShadow',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible`,
-            'properties': [
-                {
-                    'name': 'box-shadow',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownColor']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownColor',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownColorHover']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownColorHover',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownColorActive']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownColorActive',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
-            'properties': [
-                {
-                    'name': 'color',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownItemBackground']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownItemBackground',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownItemBackgroundHover']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownItemBackgroundHover',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDowndownItemBackgroundActive']) && data.push({
-            'type': 'color',
-            'id': 'filterDowndownItemBackgroundActive',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDropdownToogleColor']) && data.push({
-            'type': 'color',
-            'id': 'filterDropdownToogleColor',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle span`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDropdownToogleColorHover']) && data.push({
-            'type': 'color',
-            'id': 'filterDropdownToogleColorHover',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle:hover span`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDropdownToogleColorActive']) && data.push({
-            'type': 'color',
-            'id': 'filterDropdownToogleColorActive',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__menu-toggle.icon--active span`,
-            'properties': [
-                {
-                    'name': 'background',
-                    'valueType': 'direct'
-                }
-            ],
-        });
-
-        isNotEmpty(attributes['filterDropdownItemBorder']) && data.push({
-            'type': 'border',
-            'id': 'filterDropdownItemBorder',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter`,
-        });
-        isNotEmpty(attributes['filterDropdownItemBorderHover']) && data.push({
-            'type': 'border',
-            'id': 'filterDropdownItemBorderHover',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter:hover`,
-        });
-        isNotEmpty(attributes['filterDropdownItemBorderActive']) && data.push({
-            'type': 'border',
-            'id': 'filterDropdownItemBorderActive',
-            'selector': `.${elementId} .gvnews_subcat .okayNav__nav--invisible .subclass-filter.current`,
-        });
-
-        isNotEmpty(attributes['headerFilterPadding']) && data.push({
-            'type': 'dimension',
-            'id': 'headerFilterPadding',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'padding',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_block_heading .gvnews_subcat`,
-        });
-    }
-    return data;
-
-};
 
 const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClass, secondThumbnailClass) => {
     // Panel Thumbnail
