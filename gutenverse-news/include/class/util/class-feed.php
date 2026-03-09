@@ -244,4 +244,13 @@ class Feed {
 
 		return false;
 	}
+
+	/**
+	 * Check if need to render thumbnail or not.
+	 *
+	 * @return boolean
+	 */
+	public function is_render_thumb() {
+		return ! empty( $this->featured ) ? true : $this->attr['fallback'];
+	}
 }

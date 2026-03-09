@@ -43,7 +43,7 @@ class Module_3 extends Module_View_Abstract {
 		$excerpt   = $is_feed ? $post->description : $this->get_excerpt( $post );
 
 		// logic for visibility thumbnail block in rss feed if thumbnail is enabled
-		$show_thumbnail = ! ($is_feed && empty( $this->attribute['thumbnail'] ));
+		$show_thumbnail = $is_feed ? $post->is_render_thumb() : true;
 		$thumbnail_html = $show_thumbnail ? '<div class="gvnews_thumb">
                 ' . $edit . '
                 <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
@@ -51,9 +51,9 @@ class Module_3 extends Module_View_Abstract {
 
 		$output =
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2' . ( ! $show_thumbnail ? ' no_thumbnail' : '' ), $post->ID ) . '>
-                '.
+                ' .
 				$thumbnail_html
-				.'
+				. '
                 <div class="gvnews_postblock_content">
                     <' . $this->post_title_tag . ' class="gvnews_post_title">
                         <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . esc_attr( $title ) . '</a>
