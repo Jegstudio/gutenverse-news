@@ -8,6 +8,7 @@ export const thumbnailSettingPanel = (props) => {
         switcher,
         setSwitcher,
         thumb = true,
+        skipThumbnailSize = false,
     } = props;
 
     if (!thumb) {
@@ -56,7 +57,7 @@ export const thumbnailSettingPanel = (props) => {
         // Main Thumbnail
         {
             id: 'renderedImageSizeMain',
-            show: !switcher.state || switcher.state === 'main',
+            show: !skipThumbnailSize && (!switcher.state || switcher.state === 'main'),
             label: __('Rendered Image Size', 'gutenverse-news'),
             description: hasSecondImageSize ? __('Choose the image size that you want to rendered in main thumbnail in this module.', 'gutenverse-news') : '',
             component: SelectControl,

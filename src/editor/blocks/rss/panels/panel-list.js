@@ -73,7 +73,10 @@ export const panelList = () => {
             {
                 title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: thumbnailSettingPanel,
+                panelArray: (props) => thumbnailSettingPanel({
+                    ...props,
+                    skipThumbnailSize: true
+                }),
                 tabRole: TabStyle,
             },
             {
