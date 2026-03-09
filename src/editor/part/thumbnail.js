@@ -1,15 +1,42 @@
 import { MetaCategory } from './meta';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const ThumbModule = (props) => {
     const imageSize = props.imageSize ? props.imageSize : {};
-    const onLoad = props.onLoad || (() => {});
-    return <div className="gvnews_thumb">
+    const onLoad = props.onLoad || (() => { });
+    const {
+        overlayIconData = {
+            show: false,
+            gallery: {
+                icon: '',
+                type: 'icon',
+                svg: '',
+            },
+            video: {
+                icon: '',
+                type: 'icon',
+                svg: '',
+            },
+        },
+        post = {}
+    } = props;
+    const { format = 'standard' } = post;
+
+    let withOverlayIcon = overlayIconData.show;
+    if (format === 'standard') withOverlayIcon = false;
+    const type = overlayIconData[format]?.type || 'icon';
+    const icon = overlayIconData[format]?.icon || '';
+    const svg = overlayIconData[format]?.svg || '';
+    if (type === 'svg' && !svg) withOverlayIcon = false;
+    if (type === 'icon' && !icon) withOverlayIcon = false;
+
+    return <div className={`gvnews_thumb ${withOverlayIcon ? 'with-overlay-icon' : ''}`}>
         <a href="javascript:void(0)">
             <div className={`${props.classes}  thumbnail-container size-${imageSize.dimension ? imageSize.dimension : props.size} ${imageSize.class ? imageSize.class : ''}`}>
-                {props.post.thumbnail.url &&
+                {post.thumbnail.url &&
                     <>
                         <img
-                            src={props.post.thumbnail.url}
+                            src={post.thumbnail.url}
                             style={{
                                 objectFit: 'cover',
                                 verticalAlign: 'middle',
@@ -26,7 +53,13 @@ const ThumbModule = (props) => {
                 }
             </div>
         </a>
-        {props.cat && props.post.category.name && <MetaCategory {...props} />}
+        {props.cat && post.category.name && <MetaCategory {...props} />}
+        {
+            withOverlayIcon &&
+            <div className="gvnews-thumb-overlay-icon">
+                {renderIcon(icon, type, svg)}
+            </div>
+        }
     </div>;
 };
 

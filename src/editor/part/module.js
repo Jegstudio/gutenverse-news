@@ -106,7 +106,28 @@ const BlockModule = compose(
         rowItemGap,
         headerHtmlTag,
         postTitleHtmlTag,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     useEffect(() => {
         if (isMasonry) {
@@ -383,6 +404,7 @@ const BlockModule = compose(
                 gutterWidth,
                 rowItemGap,
                 postTitleHtmlTag,
+                overlayIconData,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -417,6 +439,13 @@ const BlockModule = compose(
         gutenversePreviewBlock,
         masonryReload,
         postTitleHtmlTag,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     const blockProps = useBlockProps({

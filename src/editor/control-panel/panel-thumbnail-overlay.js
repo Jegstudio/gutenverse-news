@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { BackgroundControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { applyFilters } from '@wordpress/hooks';
 
 export const thumbnailOverlayPanel = (props) => {
     const {
@@ -11,7 +12,7 @@ export const thumbnailOverlayPanel = (props) => {
         secondThumbnailClass
     } = props;
 
-    return [
+    return applyFilters('gvnews.panel.thumbnailOverlay', [
         {
             id: '__thumbnailType',
             show: hasSecondImageSize,
@@ -106,5 +107,5 @@ export const thumbnailOverlayPanel = (props) => {
                 }
             ]
         },
-    ];
+    ], props);
 };

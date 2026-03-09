@@ -112,6 +112,13 @@ abstract class Block_View_Abstract {
 	protected $block_options;
 
 	/**
+	 * Post format icon
+	 *
+	 * @var array
+	 */
+	private $post_format_icon = array();
+
+	/**
 	 * Get instance
 	 *
 	 * @return ModuleViewAbstract
@@ -124,6 +131,42 @@ abstract class Block_View_Abstract {
 		}
 
 		return self::$instance[ $class ];
+	}
+
+	/**
+	 * Get overlay icon
+	 *
+	 * @param int $post_id post id.
+	 *
+	 * @return string
+	 */
+	public function get_overlay_icon( $post_id ) {
+		if ( ! $this->post_format_icon['show'] ) {
+			return array(
+				'with_overlay_icon' => '',
+				'overlay_icon'      => '',
+			);
+		}
+		$post_type = get_post_type( $post_id );
+		// Post Format.
+		if ( $post_type && post_type_supports( $post_type, 'post-formats' ) ) {
+			$post_format = get_post_format( $post_id );
+
+			$icon      = isset( $this->post_format_icon[ $post_format ]['icon'] ) ? $this->post_format_icon[ $post_format ]['icon'] : '';
+			$icon_type = isset( $this->post_format_icon[ $post_format ]['type'] ) ? $this->post_format_icon[ $post_format ]['type'] : 'icon';
+			$icon_svg  = isset( $this->post_format_icon[ $post_format ]['svg'] ) ? $this->post_format_icon[ $post_format ]['svg'] : '';
+			$the_icon  = gvnews_render_icon( $icon_type, $icon, $icon_svg );
+			if ( null !== $the_icon ) {
+				return array(
+					'with_overlay_icon' => ' with-overlay-icon',
+					'overlay_icon'      => '<div class="gvnews-thumb-overlay-icon">' . $the_icon . '</div>',
+				);
+			}
+		}
+		return array(
+			'with_overlay_icon' => '',
+			'overlay_icon'      => '',
+		);
 	}
 
 	/**
@@ -579,6 +622,21 @@ abstract class Block_View_Abstract {
 			$meta_settings
 		);
 		$this->post_title_tag = $attr['post_title_html_tag'];
+
+		$this->post_format_icon = array(
+			'show'    => isset( $attr['show_post_format_icon'] ) ? $attr['show_post_format_icon'] : false,
+			'gallery' => array(
+				'icon' => isset( $attr['gallery_format_icon'] ) ? $attr['gallery_format_icon'] : '',
+				'type' => isset( $attr['gallery_format_icon_type'] ) ? $attr['gallery_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['gallery_format_icon_svg'] ) ? $attr['gallery_format_icon_svg'] : '',
+			),
+			'video'   => array(
+				'icon' => isset( $attr['video_format_icon'] ) ? $attr['video_format_icon'] : '',
+				'type' => isset( $attr['video_format_icon_type'] ) ? $attr['video_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['video_format_icon_svg'] ) ? $attr['video_format_icon_svg'] : '',
+			),
+		);
+
 		return $this->attribute;
 	}
 
