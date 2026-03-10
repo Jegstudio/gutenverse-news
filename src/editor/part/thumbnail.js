@@ -1,3 +1,4 @@
+import { gvnewsEssentialsActive } from "../utils/helper";
 import { MetaCategory } from './meta';
 import { renderIcon } from 'gutenverse-core/helper';
 
@@ -22,7 +23,7 @@ const ThumbModule = (props) => {
     } = props;
     const { format = 'standard' } = post;
 
-    let withOverlayIcon = overlayIconData.show;
+    let withOverlayIcon = overlayIconData.show && gvnewsEssentialsActive;
     if (format === 'standard') withOverlayIcon = false;
     const type = overlayIconData[format]?.type || 'icon';
     const icon = overlayIconData[format]?.icon || '';

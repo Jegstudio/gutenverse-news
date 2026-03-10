@@ -147,25 +147,14 @@ abstract class Block_View_Abstract {
 				'overlay_icon'      => '',
 			);
 		}
-		$post_type = get_post_type( $post_id );
-		// Post Format.
-		if ( $post_type && post_type_supports( $post_type, 'post-formats' ) ) {
-			$post_format = get_post_format( $post_id );
-
-			$icon      = isset( $this->post_format_icon[ $post_format ]['icon'] ) ? $this->post_format_icon[ $post_format ]['icon'] : '';
-			$icon_type = isset( $this->post_format_icon[ $post_format ]['type'] ) ? $this->post_format_icon[ $post_format ]['type'] : 'icon';
-			$icon_svg  = isset( $this->post_format_icon[ $post_format ]['svg'] ) ? $this->post_format_icon[ $post_format ]['svg'] : '';
-			$the_icon  = gvnews_render_icon( $icon_type, $icon, $icon_svg );
-			if ( null !== $the_icon ) {
-				return array(
-					'with_overlay_icon' => ' with-overlay-icon',
-					'overlay_icon'      => '<div class="gvnews-thumb-overlay-icon">' . $the_icon . '</div>',
-				);
-			}
-		}
-		return array(
-			'with_overlay_icon' => '',
-			'overlay_icon'      => '',
+		return apply_filters(
+			'gvnews_thumb_overlay_icon',
+			array(
+				'with_overlay_icon' => '',
+				'overlay_icon'      => '',
+			),
+			$post_id,
+			$this->post_format_icon
 		);
 	}
 
