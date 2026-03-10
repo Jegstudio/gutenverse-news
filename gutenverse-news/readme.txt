@@ -152,6 +152,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Bug Fixes
 * Fix responsive border issue on all blocks
+* Fix thumbnail overlay option issue on editor
 
 = 3.1.3 =
 ##### Improvements
