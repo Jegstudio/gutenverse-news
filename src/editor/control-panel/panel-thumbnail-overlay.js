@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { BackgroundControl, RangeControl, SwitchControl, AlertControl } from 'gutenverse-core/controls';
 
 export const thumbnailOverlayPanel = (props) => {
     const {
@@ -8,8 +8,21 @@ export const thumbnailOverlayPanel = (props) => {
         setSwitcher,
         elementId,
         mainThumbnailClass,
-        secondThumbnailClass
+        secondThumbnailClass,
+        thumb = true,
     } = props;
+
+    if (!thumb) {
+        return [
+            {
+                id: '__itemShowedThumbnail',
+                component: AlertControl,
+                children: <>
+                    <span>{__('You need to turn on "Enable Thumbnail" to use this feature.', 'gutenverse-news')}</span>
+                </>
+            },
+        ];
+    }
 
     return [
         {

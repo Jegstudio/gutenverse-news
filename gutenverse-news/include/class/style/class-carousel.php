@@ -34,9 +34,9 @@ class Carousel extends StyleAbstract {
 					'normal' => ".{$this->element_id} .gvnews_postblock",
 					'hover'  => ".{$this->element_id} .gvnews_postblock:hover",
 				),
-				'positioning' => null,
 				'animation'   => null,
 				'advance'     => ".{$this->element_id} .gvnews_postblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}

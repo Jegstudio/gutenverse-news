@@ -35,15 +35,16 @@ class News_Ticker extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".{$this->element_id} .gvnews_breakingnews",
 					'hover'  => ".{$this->element_id} .gvnews_breakingnews:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id} .gvnews_breakingnews",
 					'hover'  => ".{$this->element_id} .gvnews_breakingnews:hover",
 				),
-				'advance'    => ".{$this->element_id} .gvnews_breakingnews",
+				'advance'     => ".{$this->element_id} .gvnews_breakingnews",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}

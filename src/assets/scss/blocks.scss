@@ -1051,7 +1051,6 @@
   text-align: center;
   padding-bottom: 20px;
   border: 1px solid #eee;
-  margin-bottom: 20px;
   padding-top: 20px;
   background: #fafafa;
 }
@@ -2479,6 +2478,7 @@
 .gvnews_postblock {
   /*margin-bottom: 20px;*/
   position: relative;
+  overflow: hidden;
 
   &.loaded {
     z-index: 2;
@@ -5709,7 +5709,6 @@
   text-align: center;
   padding-bottom: 20px;
   border: 1px solid #eee;
-  margin-bottom: 20px;
   padding-top: 20px;
   background: #fafafa;
 }
@@ -12427,6 +12426,8 @@ span.gvnews-category {
 
 .gvnews_search_result .gvnews_pl_xs_3.no_thumbnail .gvnews_postblock_content,
 .gvnews_sidefeed .gvnews_pl_xs_3.no_thumbnail .gvnews_postblock_content,
+.gvnews_pl_md_2.no_thumbnail .gvnews_postblock_content,
+.gvnews_pl_md_3.no_thumbnail .gvnews_postblock_content,
 .gvnews_pl_sm.no_thumbnail .gvnews_postblock_content {
   margin-left: 0;
 }

@@ -219,10 +219,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -378,6 +384,60 @@
             "type": "object",
             "copyStyle": true
         },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
         "showMetaReview": {
             "type": "boolean"
         }
@@ -387,5 +447,8 @@
     },
     "keywords": [],
     "style": ["gutenverse-news-frontend-blocks-style"],
-    "viewScript": ["gutenverse-news-frontend-hero-slider-script"]
+    "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }

@@ -154,6 +154,7 @@ export const headerStylesPanel = (props) => {
         headerCategory,
         headerAuthor,
         headerTag,
+        isFeed = false,
     } = props;
 
     const withText = isNotEmpty(title) || isNotEmpty(second_title);
@@ -416,6 +417,7 @@ export const headerStylesPanel = (props) => {
             component: DimensionControl,
             allowDeviceControl: true,
             position: ['right', 'left'],
+            show: !isFeed,
             units: {
                 px: {
                     text: 'px',
