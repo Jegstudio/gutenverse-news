@@ -37,6 +37,7 @@ class Post_Author extends Post_Guten {
 			'url'  => get_author_posts_url( $author_id ),
 			'desc' => get_the_author_meta( 'description', $author_id ),
 		);
+		$add       = apply_filters( 'gvnews_post_author_components', '', $this->attributes );
 
 		$block = '<div class="gvnews-author-content">
 					<' . $this->attributes['titleTag'] . ' class="gvnews-author-name">
@@ -44,8 +45,10 @@ class Post_Author extends Post_Guten {
 					</' . $this->attributes['titleTag'] . '>
 					<p class="gvnews-author-desc">' . esc_html( $author['desc'] ) . '</p>
 					<div class="gvnews-author-socials">' .
-			$this->generate_social_element( $author_id ) .
-			'</div>
+					$this->generate_social_element( $author_id ) .
+					'</div>
+					' . $add . '
+
 				</div>';
 
 		if ( 'left' === $this->attributes['avatarPosition'] || 'top' === $this->attributes['avatarPosition'] ) {

@@ -22,6 +22,12 @@ export const panelList = () => {
                 tabRole: TabSetting
             },
             {
+                title: __('Design', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: designPanel,
+                tabRole: TabStyle,
+            },
+            {
                 title: __('Author Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: styleAuthorPanel,
@@ -78,6 +84,17 @@ export const panelList = () => {
                 },
                 tabRole: TabStyle,
             },
+            {
+                title: __('Author Donation Style', 'gutenverse-news'),
+                id: 'authorDonationStyle',
+                initialOpen: false,
+                panelArray: () => {
+                    return [{
+                        component: LockedProPanel,
+                    }];
+                },
+                tabRole: TabStyle,
+            },
         ]
     );
 
@@ -98,30 +115,6 @@ export const panelList = () => {
             title: __('Design', 'gutenverse-news'),
             initialOpen: false,
             panelArray: designPanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Author Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleAuthorPanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Date Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleDatePanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Category Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleCategoryPanel,
-            tabRole: TabStyle,
-        },
-        {
-            title: __('Comment Style', 'gutenverse-news'),
-            initialOpen: false,
-            panelArray: styleCommentPanel,
             tabRole: TabStyle,
         },
         {

@@ -65,7 +65,7 @@ class Dashboard {
 	 */
 	public function gvnews_config() {
 		$config['gutenversePro'] = gutenverse_pro_active();
-		return $config;
+		return apply_filters( 'gvnews_dashboard_config', $config );
 	}
 
 

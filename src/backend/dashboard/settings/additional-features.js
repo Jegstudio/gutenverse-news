@@ -5,7 +5,8 @@ import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
 import { useState } from '@wordpress/element';
 
-const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveData, setPopupActive, setInstallPopup }) => {
+const AdditionalFeatures = (props) => {
+    const { settingValues, updateSettingValues, saving, setPopupActive, setInstallPopup, setToast, setShowToast } = props;
 
     const [features, setFeatures] = useState(settingValues.features || []);
     const updateValue = (id, value) => {
@@ -31,9 +32,21 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
                 features: features
             }
         }).then((response) => {
+            setToast({
+                status: 'success',
+                message: __('Settings Saved Successfully!', '--gctd--')
+            })
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 2000);
             updateSettingValues(features);
         }).catch((err) => {
             console.log(err);
+            setToast({
+                status: 'failed',
+                message: __('Settings Saved Failed!', '--gctd--')
+            });
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 5000);
         });
     };
 
@@ -45,27 +58,28 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
         {
             id: 'paywall',
             title: 'Paywall',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Restrict your premium content to subscribers only or you can allowing user to read yur premium content by unlcok post sytem.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'view_counter',
             title: 'View Counter',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Add view counter on your posts and allowing you to show most popular posts on your site.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'post_review',
             title: 'Post Review',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Create a review type post and allowing you to filter list posts based on review score.',
             icon: <IconPaywallSVG />,
         },
         {
             id: 'like_dislike_button',
             title: 'Like & Dislike Post',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Add like and dislike features on your posts.',
             icon: <IconPaywallSVG />,
-        }, {
+        },
+        {
             id: 'post_split',
             title: 'Post Split',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
@@ -80,6 +94,12 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
         {
             id: 'bookmark',
             title: 'Bookmark Post',
+            desc: 'Allowing users to save their favorite posts with a bookmark button.',
+            icon: <IconPaywallSVG />,
+        },
+        {
+            id: 'author_donation',
+            title: 'Author Donation',
             desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
             icon: <IconPaywallSVG />,
         },
@@ -87,19 +107,12 @@ const AdditionalFeatures = ({ settingValues, updateSettingValues, saving, saveDa
 
     return (
         <div>
-            <div className="template-tab-body additional-features" style={{ paddingTop: '30px' }}>
+            <div className="template-tab-body additional-features">
                 {featureList.map((feature) => (
                     <Feature key={feature.id} {...feature} updateValue={updateValue} value={features.includes(feature.id)} showUpgradePopup={showUpgradePopup} setInstallPopup={setInstallPopup} />
                 ))}
             </div>
             <SaveButton saving={saving} updateFeatures={updateFeatures} showUpgradePopup={showUpgradePopup} setInstallPopup={setInstallPopup} />
-            {/* <div className="actions">
-                {saving ? <div className="gutenverse-button">
-                    {__('Saving...', '--gctd--')}
-                </div> : <div className="gutenverse-button" onClick={() => updateFeatures()}>
-                    {__('Save Changes', '--gctd--')}
-                </div>}
-            </div> */}
         </div>
     );
 };

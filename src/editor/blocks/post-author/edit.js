@@ -11,6 +11,7 @@ import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
 import getBlockStyle from './styles/block-style';
 import { FacebookIcon, SiteIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../../utils/social-icons';
+import { applyFilters } from '@wordpress/hooks';
 
 const PostAuthor = compose(
     withPartialRender,
@@ -19,7 +20,8 @@ const PostAuthor = compose(
     const {
         attributes,
         clientId,
-        setBlockRef
+        setBlockRef,
+        setAttributes
     } = props;
 
     const {
@@ -72,6 +74,9 @@ const PostAuthor = compose(
         </div>
     }
 
+    const additionals = applyFilters('gvnews.post-author.components', [], attributes);
+
+
     return <>
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
@@ -89,6 +94,7 @@ const PostAuthor = compose(
                     <a href="javascript:void(0);" className="url"><LinkedinIcon /></a>
                     <a href="javascript:void(0);" className="url"><InstagramIcon /></a>
                 </div>
+                {additionals}
             </div>
             {(avatarPosition === 'right' || avatarPosition === 'bottom') && <AvatarImage />}
         </div>

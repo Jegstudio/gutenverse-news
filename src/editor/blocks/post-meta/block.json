@@ -285,6 +285,60 @@
         "readingTimeSuffix": {
             "type": "string",
             "default": "mins read"
+        },
+        "donationText": {
+            "type": "string",
+            "default": "Donate",
+            "copyStyle": true
+        },
+		"donationShowIcon": {
+			"type": "boolean",
+			"default": true,
+			"copyStyle": true
+		},
+		"donationIcon": {
+			"type": "string",
+			"default": "fas fa-donate"
+		},
+		"donationIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"donationIconSVG": {
+			"type": "string"
+		},
+		"donationTextTypography": {
+			"type": "object"
+		},
+		"donationTextColor": {
+			"type": "object"
+		},
+        "donationIconGap": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 5,
+                    "unit": "px"
+                }
+            }
+        },
+        "donationIconSize": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 20,
+                    "unit": "px"
+                }
+            }
+        },
+        "donationIconColor": {
+            "type": "object"
+        },
+        "donationIconColorHover": {
+            "type": "object"
+        },
+        "donationTextColorHover": {
+            "type": "object"
         }
     },
     "supports": {

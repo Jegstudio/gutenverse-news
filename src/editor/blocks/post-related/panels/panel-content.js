@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { IconSVGControl, RangeControl, SelectControl, TextControl } from 'gutenverse-core/controls';
+import { IconSVGControl, CheckboxControl, RangeControl, SelectControl, TextControl } from 'gutenverse-core/controls';
 import { getDefaultImageLoad } from '../../../utils/helper';
 
 export const contentPanel = props => {
@@ -84,6 +84,13 @@ export const contentPanel = props => {
                     value: 'lazy'
                 },
             ],
+        },
+        {
+            id: 'fetchPriorityHigh',
+            show: (imageLoad === 'eager' || defaultImageLoad.value === 'eager'),
+            label: __('Fetch Priority High', 'gutenverse-news'),
+            description: __('Signals the browser to prioritize fetching this image. Use this only for the LCP (Largest Contentful Paint) element.', 'gutenverse-news'),
+            component: CheckboxControl,
         },
     ];
 };

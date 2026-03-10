@@ -99,6 +99,10 @@
         "positioningBottom": {
             "type": "object"
         },
+        "showDonationButton": {
+            "type": "boolean",
+            "default": false
+        },
         "condition": {
             "type": "object",
             "default": {}
@@ -209,6 +213,99 @@
         },
         "bioSpaceBottom": {
             "type": "object"
+        },
+        "showDonation": {
+            "type": "boolean",
+            "default": false
+        },
+        "donationText": {
+            "type": "string",
+            "default": "Donate",
+            "copyStyle": true
+        },
+		"donationShowIcon": {
+			"type": "boolean",
+			"default": false,
+			"copyStyle": true
+		},
+        "donationIconPosition": {
+			"type": "string",
+			"default": "before",
+			"copyStyle": true
+		},
+		"donationIcon": {
+			"type": "string",
+			"default": "fas fa-donate"
+		},
+		"donationIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"donationIconSVG": {
+			"type": "string"
+		},
+		"donationTextTypography": {
+			"type": "object"
+		},
+        "donationTextColor": {
+            "type": "object"
+        },
+        "donationBgColor": {
+            "type": "object"
+        },
+        "donationBorder": {
+            "type": "object"
+        },
+        "donationBoxShadow": {
+            "type": "object"
+        },
+        "donationTextColorHover": {
+            "type": "object"
+        },
+        "donationBgColorHover": {
+            "type": "object"
+        },
+        "donationBorderHover": {
+            "type": "object"
+        },
+        "donationBoxShadowHover": {
+            "type": "object"
+        },
+        "donationPaddingButton": {
+            "type": "object"
+        },
+        "donationIconGap": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 5,
+                    "unit": "px"
+                }
+            }
+        },
+        "donationIconSize": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 20,
+                    "unit": "px"
+                }
+            }
+        },
+        "donationIconColor": {
+            "type": "object"
+        },
+        "donationIconColorHover": {
+            "type": "object"
+        },
+        "donationSpaceTop": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 10,
+                    "unit": "px"
+                }
+            }
         }
     },
     "supports": {

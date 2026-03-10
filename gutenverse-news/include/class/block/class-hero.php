@@ -76,6 +76,7 @@ class Hero extends Grab {
 				'meta_review' => isset( $this->attributes['showMetaReview'] ) ? $this->attributes['showMetaReview'] : false,
 			),
 			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
+			'fetch_priority_high'      => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {

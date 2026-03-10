@@ -69,6 +69,7 @@ class Post_Meta extends Style_Abstract {
 		$this->date_style();
 		$this->category_style();
 		$this->comment_style();
+		$this->author_donation();
 
 		if ( isset( $this->attrs['margin'] ) ) {
 			$this->inject_style(
@@ -840,6 +841,113 @@ class Post_Meta extends Style_Abstract {
 					},
 					'value'          => $this->attrs['readingTimeTextTypography'],
 					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	private function author_donation() {
+		$base_selector = '.' . $this->element_id . ' .gvnews_meta_donation';
+
+		if ( isset( $this->attrs['donationTextColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationTextColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationTextColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} svg, {$base_selector} i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} a:hover svg, {$base_selector} a:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['donationIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationTextTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       =>  "{$base_selector} span",
+					'property'       => function ( $value ) {
+					},
+					'value'          => $this->attrs['donationTextTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'icon' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['donationIconSize'] ) && 'svg' === $this->attrs['donationIconType'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' ) . $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['donationIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+		
+		if ( isset( $this->attrs['donationIconGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} svg, {$base_selector} i",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'margin-right' );
+					},
+					'value'          => $this->attrs['donationIconGap'],
+					'device_control' => true,
 				)
 			);
 		}
