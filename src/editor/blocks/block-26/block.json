@@ -554,7 +554,7 @@
             "type": "object"
         },
         "overlayOpacityMain": {
-            "type": "object"
+            "type": "string"
         },
         "contentAlign": {
             "type": "object",

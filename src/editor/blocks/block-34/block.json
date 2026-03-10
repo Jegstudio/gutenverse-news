@@ -505,7 +505,7 @@
             "type": "object"
         },
         "overlayOpacityMain": {
-            "type": "object"
+            "type": "string"
         },
         "contentAlign": {
             "type": "object",
@@ -730,7 +730,7 @@
     "style": [
         "gutenverse-news-frontend-blocks-style"
     ],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

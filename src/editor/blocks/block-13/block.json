@@ -575,13 +575,13 @@
             "type": "object"
         },
         "overlayOpacityMain": {
-            "type": "object"
+            "type": "string"
         },
         "overlayBackgroundSecond": {
             "type": "object"
         },
         "overlayOpacitySecond": {
-            "type": "object"
+            "type": "string"
         },
         "contentAlign": {
             "type": "object",
