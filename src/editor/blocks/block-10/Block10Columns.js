@@ -18,6 +18,7 @@ const Block10Columns = props => {
         imageSizeMain = {},
         readmoreButtonDisabled = false,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -33,7 +34,7 @@ const Block10Columns = props => {
                     </PostTitleTag>
                     {props.attr.option && !props.attr.option.meta_show && <MetaModule1 {...props}/>}
                 </header>
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                 <ContentModule title={false} meta={false} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </article>
         );

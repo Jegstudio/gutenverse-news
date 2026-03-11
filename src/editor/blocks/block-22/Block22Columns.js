@@ -16,6 +16,7 @@ const Block22Columns = props => {
         metaDateFormatCustom,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -24,7 +25,7 @@ const Block22Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
+                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                 <ContentModule title={true} meta={2} excerpt={false} post={post} attr={attr}/>
             </>
         );

@@ -18,6 +18,7 @@ const Block17Columns = props => {
         imageSizeMain = {},
         imageSizeSecond = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -53,7 +54,7 @@ const Block17Columns = props => {
 
         return (
             <article className={aclass}>
-                <ThumbModule size={715} cat={1 === props.type ? true : false} post={post} imageSize={props.imageSize} />
+                <ThumbModule size={715} cat={1 === props.type ? true : false} post={post} imageSize={props.imageSize}  overlayIconData={overlayIconData} />
                 <div className="gvnews_postblock_content">
                     <PostTitleTag className="gvnews_post_title">
                         <a>{post.title.replace(/&#8217;/g, '\'')}</a>

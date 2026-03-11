@@ -7,7 +7,8 @@ import {
     RepeaterControl,
     HeadingControl,
     SwitchControl,
-    BorderResponsiveControl
+    BorderResponsiveControl,
+    IconSVGControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -15,6 +16,7 @@ export const styleHero = (props, typeCount = 1) => {
     const {
         switcher,
         setSwitcher,
+        showPostFormatIcon = false,
     } = props;
     let numberItem = 0;
     const device = getDeviceType();
@@ -131,6 +133,25 @@ export const styleHero = (props, typeCount = 1) => {
             id: '__overlayHeader',
             label: __('Hero Style Overlay', 'gutenverse-news'),
             component: HeadingControl,
+        },
+        {
+            id: 'showPostFormatIcon',
+            label: __('Show Post Format Icon', 'gutenverse'),
+            component: CheckboxControl,
+        },
+        {
+            id: 'galleryFormatIcon',
+            show: showPostFormatIcon,
+            label: __('Gallery Icon', 'gutenverse-news'),
+            description: __('Choose icon for gallery post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
+        {
+            id: 'videoFormatIcon',
+            show: showPostFormatIcon,
+            label: __('Video Icon', 'gutenverse-news'),
+            description: __('Choose icon for video post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
         },
         {
             id: 'heroItemOverlay',

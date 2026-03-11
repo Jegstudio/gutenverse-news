@@ -17,6 +17,7 @@ const Block37Columns = (props) => {
         isLoadMore = false,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
 
     const postDataLen = postData.length;
@@ -27,7 +28,7 @@ const Block37Columns = (props) => {
         return (
             <article className={`gvnews_post gvnews_pl_md_5 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
+                    <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                     <ContentModule cat={false} title={true} meta={2} read={false} excerpt={false} post={post} attr={attr} />
                 </div>
             </article>

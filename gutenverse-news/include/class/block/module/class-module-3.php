@@ -44,9 +44,11 @@ class Module_3 extends Module_View_Abstract {
 
 		// logic for visibility thumbnail block in rss feed if thumbnail is enabled
 		$show_thumbnail = $is_feed ? $post->is_render_thumb() : true;
-		$thumbnail_html = $show_thumbnail ? '<div class="gvnews_thumb">
+		$overlay_icon   = $this->get_overlay_icon( $post->ID );
+		$thumbnail_html = $show_thumbnail ? '<div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                 ' . $edit . '
                 <a href="' . esc_url( $permalink ) . '" aria-label="' . esc_attr( $title ) . '">' . $thumbnail . '</a>
+				' . $overlay_icon['overlay_icon'] . '
             </div>' : '';
 
 		$output =

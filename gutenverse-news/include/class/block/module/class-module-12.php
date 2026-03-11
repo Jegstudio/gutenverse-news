@@ -39,6 +39,7 @@ class Module_12 extends Module_View_Abstract {
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$read_more        = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
+		$overlay_icon     = $this->get_overlay_icon( $post_id );
 		$post_meta        = 'gvnews_col_1o3' === $column_class ? $this->post_meta_3( $post ) : $this->post_meta_1( $post ) . '
                                 <div class="gvnews_post_excerpt">
                                     <p>' . esc_attr( $this->get_excerpt( $post ) ) . "</p>
@@ -47,9 +48,10 @@ class Module_12 extends Module_View_Abstract {
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_card' . $additional_class, $post_id ) . '>
                     <div class="gvnews_inner_post">
-                        <div class="gvnews_thumb">
+                        <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
                             <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
+							{$overlay_icon['overlay_icon']}
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">

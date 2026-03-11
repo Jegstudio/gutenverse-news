@@ -17,6 +17,7 @@ const Block12Columns = props => {
         imageSizeMain = {},
         readmoreButtonDisabled = false,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -27,7 +28,7 @@ const Block12Columns = props => {
         return (
             <article className={`gvnews_post gvnews_pl_lg_card ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
                 <div className="gvnews_inner_post">
-                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <PostTitleTag className="gvnews_post_title">

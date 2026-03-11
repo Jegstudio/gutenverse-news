@@ -36,6 +36,7 @@ class Module_20 extends Module_View_Abstract {
 		$post_id          = $post->ID;
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
+		$overlay_icon     = $this->get_overlay_icon( $post_id );
 		$content          = "<div class=\"gvnews_postblock_content\">
                                     <{$this->post_title_tag} class=\"gvnews_post_title\">
                                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
@@ -45,9 +46,10 @@ class Module_20 extends Module_View_Abstract {
 
 		return 1 === $type ?
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post_id ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post_id ) . "
                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
+						{$overlay_icon['overlay_icon']}
                     </div>
                     {$content}
                 </article>" :

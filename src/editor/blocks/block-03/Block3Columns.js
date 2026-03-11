@@ -16,6 +16,7 @@ const Block3Columns = props => {
         metaDateFormatCustom,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -24,7 +25,7 @@ const Block3Columns = props => {
         const { index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_md_2 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ThumbModule size={715} cat={false} post={props.post} imageSize={imageSizeMain}/>
+                <ThumbModule size={715} cat={false} post={props.post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                 <ContentModule title={true} meta={1} excerpt={true} read={false} post={props.post} attr={props.attr}/>
             </article>
         );

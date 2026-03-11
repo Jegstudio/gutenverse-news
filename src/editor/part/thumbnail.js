@@ -23,15 +23,9 @@ const ThumbModule = (props) => {
     } = props;
     const { format = 'standard' } = post;
 
-    let withOverlayIcon = overlayIconData.show && gvnewsEssentialsActive;
-    if (format === 'standard') withOverlayIcon = false;
-    const type = overlayIconData[format]?.type || 'icon';
-    const icon = overlayIconData[format]?.icon || '';
-    const svg = overlayIconData[format]?.svg || '';
-    if (type === 'svg' && !svg) withOverlayIcon = false;
-    if (type === 'icon' && !icon) withOverlayIcon = false;
+    const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
 
-    return <div className={`gvnews_thumb ${withOverlayIcon ? 'with-overlay-icon' : ''}`}>
+    return <div className={`gvnews_thumb ${withIcon ? 'with-overlay-icon' : ''}`}>
         <a href="javascript:void(0)">
             <div className={`${props.classes}  thumbnail-container size-${imageSize.dimension ? imageSize.dimension : props.size} ${imageSize.class ? imageSize.class : ''}`}>
                 {post.thumbnail.url &&
@@ -56,12 +50,29 @@ const ThumbModule = (props) => {
         </a>
         {props.cat && post.category.name && <MetaCategory {...props} />}
         {
-            withOverlayIcon &&
+            withIcon &&
             <div className="gvnews-thumb-overlay-icon">
                 {renderIcon(icon, type, svg)}
             </div>
         }
     </div>;
 };
+
+export const getOverlayIconData = (overlayIconData, format) => {
+    let withOverlayIcon = overlayIconData.show && gvnewsEssentialsActive;
+    if (format === 'standard') withOverlayIcon = false;
+    const type = overlayIconData[format]?.type || 'icon';
+    const icon = overlayIconData[format]?.icon || '';
+    const svg = overlayIconData[format]?.svg || '';
+    if (type === 'svg' && !svg) withOverlayIcon = false;
+    if (type === 'icon' && !icon) withOverlayIcon = false;
+
+    return {
+        withIcon: withOverlayIcon,
+        type,
+        icon,
+        svg
+    }
+}
 
 export default ThumbModule;

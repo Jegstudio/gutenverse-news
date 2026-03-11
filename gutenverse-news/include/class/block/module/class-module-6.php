@@ -32,17 +32,19 @@ class Module_6 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post, $image_size ) {
-		$permalink = esc_url( get_the_permalink( $post ) );
-		$post_id   = $post->ID;
-		$read_more = $this->attribute['disable_readmore'] ? '' : ' <a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
+		$permalink    = esc_url( get_the_permalink( $post ) );
+		$post_id      = $post->ID;
+		$read_more    = $this->attribute['disable_readmore'] ? '' : ' <a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
+		$overlay_icon = $this->get_overlay_icon( $post_id );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_3', $post_id ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post_id, 'right' ) . "
                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         <div class=\"gvnews_post_category\">
                             <span>{$this->get_primary_category($post_id)}</span>
                         </div>
+						{$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <{$this->post_title_tag} class=\"gvnews_post_title\">

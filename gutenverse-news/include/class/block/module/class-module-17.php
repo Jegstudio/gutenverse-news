@@ -57,12 +57,14 @@ class Module_17 extends Module_View_Abstract {
 			$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 			$pl               = 'gvnews_post gvnews_pl_sm' . $additional_class;
 		}
+		$overlay_icon = $this->get_overlay_icon( $post_id );
 
 		return '<article ' . gvnews_post_class( $pl, $post_id ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post_id ) . "
                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
                         {$category}
+						{$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <{$this->post_title_tag} class=\"gvnews_post_title\">
