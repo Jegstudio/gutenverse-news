@@ -176,10 +176,58 @@
             "default": {}
         },
         "bookmarkIconSize": {
-            "type":"object"
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 20,
+                    "unit": "px"
+                }
+            }
         },
+		"bookmarkIcon": {
+			"type": "string",
+			"default": "far fa-bookmark",
+			"copyStyle": true
+		},
+		"bookmarkIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"bookmarkIconSVG": {
+			"type": "string"
+		},
+		"bookmarkIconActive": {
+			"type": "string",
+			"default": "fas fa-bookmark",
+			"copyStyle": true
+		},
+		"bookmarkIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"bookmarkIconActiveSVG": {
+			"type": "string"
+		},
         "bookmarkIconColor": {
-            "type":"object"
+            "type": "object"
+        },
+        "bookmarkIconColorHover": {
+            "type": "object"
+        },
+        "bookmarkIconBgColor": {
+            "type": "object"
+        },
+        "bookmarkIconBgColorHover": {
+            "type": "object"
+        },
+        "bookmarkIconPadding": {
+            "type": "object"
+        },
+        "bookmarkIconBorder": {
+            "type": "object"
+        },
+        "bookmarkIconBorderHover": {
+            "type": "object"
         },
         "wordsPerMinute": {
             "type":"number",
