@@ -786,14 +786,14 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function bookmark_style() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container svg";
+		$container_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container";	
 
 		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector,
+					'selector'       => "{$container_selector} svg, {$container_selector} i",
 					'property'       => function ( $value ) {
-						return "width: {$value}px;";
+						return $this->handle_unit_point( $value, 'height' ) . $this->handle_unit_point( $value, 'font-size' );
 					},
 					'value'          => $this->attrs['bookmarkIconSize'],
 					'device_control' => true,
@@ -804,12 +804,90 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['bookmarkIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector,
+					'selector'       => "{$container_selector} svg, {$container_selector} i",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['bookmarkIconColor'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover svg, {$container_selector}:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bookmarkIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBgColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['bookmarkIconBgColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBgColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['bookmarkIconBgColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['bookmarkIconPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['bookmarkIconBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBorderHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['bookmarkIconBorderHover'],
+					'device_control' => true,
 				)
 			);
 		}
