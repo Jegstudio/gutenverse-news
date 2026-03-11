@@ -54,6 +54,13 @@ const HeroComponent = (props) => {
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = '',
         showMetaReview = false,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
     const metaSettings = {
@@ -68,6 +75,20 @@ const HeroComponent = (props) => {
         option: {
             ...defaultOptions.option,
             ...metaSettings
+        }
+    };
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
         }
     };
 
@@ -174,6 +195,7 @@ const HeroComponent = (props) => {
                     custom: dateFormatCustom,
                 },
                 postTitleHtmlTag,
+                overlayIconData,
             };
             const rows = [];
             const maxSliderItem = Math.ceil((postData ? postData.length : 0) / numberPostShow);
@@ -237,6 +259,13 @@ const HeroComponent = (props) => {
         postTitleHtmlTag,
         gutenversePreviewBlock,
         showMetaReview,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     useEffect(() => {

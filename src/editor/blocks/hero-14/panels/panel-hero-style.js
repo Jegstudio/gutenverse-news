@@ -1,10 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, SwitchControl, TypographyControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, SwitchControl, TypographyControl, IconSVGControl } from 'gutenverse-core/controls';
 
-export const styleHero = (props, typeCount = 1) => {
+export const styleHero = (props, typeCount = 1, hero14 = false) => {
     const {
         switcher,
         setSwitcher,
+        showPostFormatIcon = false
     } = props;
 
     const isNormal = !switcher.heroStyle || switcher.heroStyle === 'normal';
@@ -35,6 +36,26 @@ export const styleHero = (props, typeCount = 1) => {
             label: __('Excerpt Typography', 'gutenverse-news'),
             description: __('This option will change your post excerpt typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'showPostFormatIcon',
+            label: __('Show Post Format Icon', 'gutenverse'),
+            component: CheckboxControl,
+            show: hero14,
+        },
+        {
+            id: 'galleryFormatIcon',
+            show: showPostFormatIcon && hero14,
+            label: __('Gallery Icon', 'gutenverse-news'),
+            description: __('Choose icon for gallery post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
+        {
+            id: 'videoFormatIcon',
+            show: showPostFormatIcon && hero14,
+            label: __('Video Icon', 'gutenverse-news'),
+            description: __('Choose icon for video post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
         },
         {
             id: '__heroStyleHover',

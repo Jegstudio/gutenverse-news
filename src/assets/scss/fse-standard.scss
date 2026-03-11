@@ -42,6 +42,21 @@
     }
 }
 
+.gvnews_heroblock.gvnews_heroblock_skew {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            transform: skewX(7deg);
+            right: 30px;
+        }
+
+        &.gvnews_hero_item_2 {
+            .gvnews-thumb-overlay-icon {
+                margin-right: 8%;
+            }
+        }
+    }
+}
+
 .gvnews_heroblock_1 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,
 .gvnews_heroblock_13 .gvnews_post.gvnews_post .gvnews-thumb-overlay-icon,
 .gvnews_heroblock_2 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,

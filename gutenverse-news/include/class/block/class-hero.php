@@ -77,6 +77,13 @@ class Hero extends Grab {
 			),
 			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 			'fetch_priority_high'      => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
+			'show_post_format_icon'    => isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false,
+			'gallery_format_icon'      => isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '',
+			'gallery_format_icon_type' => isset( $this->attributes['galleryFormatIconType'] ) ? $this->attributes['galleryFormatIconType'] : 'icon',
+			'gallery_format_icon_svg'  => isset( $this->attributes['galleryFormatIconSVG'] ) ? $this->attributes['galleryFormatIconSVG'] : '',
+			'video_format_icon'        => isset( $this->attributes['videoFormatIcon'] ) ? $this->attributes['videoFormatIcon'] : '',
+			'video_format_icon_type'   => isset( $this->attributes['videoFormatIconType'] ) ? $this->attributes['videoFormatIconType'] : 'icon',
+			'video_format_icon_svg'    => isset( $this->attributes['videoFormatIconSVG'] ) ? $this->attributes['videoFormatIconSVG'] : '',
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {
