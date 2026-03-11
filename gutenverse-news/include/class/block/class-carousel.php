@@ -136,6 +136,7 @@ class Carousel extends Grab {
 			'image_load'               => $image_load,
 			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
 			'fetch_priority_high'      => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
+			'responsive_item'          => isset( $this->attributes['responsiveItem'] ) ? $this->attributes['responsiveItem'] : array(),
 		);
 
 		$content = $this->get_module( $attr );

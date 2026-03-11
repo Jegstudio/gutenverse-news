@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from "./positioning-style";
 import { applyFilters } from '@wordpress/hooks';
 
 const getBlockStyle = (
@@ -1266,6 +1267,8 @@ const getBlockStyle = (
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
     data = noContentStyle(elementId, attributes, data);
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
     if (!skipped.includes('cardStyle')) {
         data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     }

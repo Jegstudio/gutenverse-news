@@ -31,3 +31,7 @@ npm run production
 This command will package your plugin for distribution, ensuring that it is optimized and ready for deployment.
 
 Thank you for using Gutenverse News Plugin! If you have any questions or encounter any issues, please refer to the documentation or reach out to our support team for assistance.
+
+
+## Notes
+- We remove default aria-hidden attribute on tiny slider script to prevent accessibility issues, in the future if want to update the tiny slider script, remember to check the aria-hidden attribute. You can check this commit SHA `f58c056fec9d149bedd6b838c6d7cdde9890b8f0`

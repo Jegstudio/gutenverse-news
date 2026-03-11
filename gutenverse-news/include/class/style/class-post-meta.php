@@ -45,14 +45,15 @@ class Post_Meta extends Style_Abstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}

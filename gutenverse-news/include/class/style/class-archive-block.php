@@ -41,15 +41,16 @@ class Archive_Block extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
 					'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
 				),
-				'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'advance'     => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 
 			)
 		);

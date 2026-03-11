@@ -193,10 +193,10 @@ class Feed {
 		if ( ! $this->featured && $this->attr['fallback'] ) {
 			$attachment_image    = wp_get_attachment_image( $fallimage, $size );
 			$this->thumbnail_url = wp_get_attachment_url( $fallimage );
-			return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $attachment_image ? $attachment_image : $this->featured ) . '</div>';
+			return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $attachment_image ? $attachment_image : $this->featured ) . '<div class="gvnews-thumb-overlay"></div></div>';
 		}
 
-		return $this->featured;
+		return '<div class="thumbnail-container size-' . esc_attr( $image_size['dimension'] ) . ' ">' . ( $this->featured ) . '<div class="gvnews-thumb-overlay"></div></div>';
 	}
 
 	/**
@@ -243,5 +243,14 @@ class Feed {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if need to render thumbnail or not.
+	 *
+	 * @return boolean
+	 */
+	public function is_render_thumb() {
+		return ! empty( $this->featured ) ? true : $this->attr['fallback'];
 	}
 }

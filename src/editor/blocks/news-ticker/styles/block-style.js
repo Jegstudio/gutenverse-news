@@ -1,7 +1,10 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
+
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
 
     isNotEmpty(attributes['border']) && data.push({
         'type': 'border',

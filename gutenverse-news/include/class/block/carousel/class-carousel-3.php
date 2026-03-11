@@ -62,22 +62,31 @@ class Carousel_3 extends Carousel_View_Abstract {
 	public function render_element( $result, $attr ) {
 		if ( ! empty( $result ) ) {
 			add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
-			$number_item = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
-			$content     = $this->content( $result, $number_item );
+			$use_responsive_item = isset( $attr['column_width'] ) && '12' === $attr['column_width'] ? true : false;
+			$number_item         = isset( $attr['number_item']['size'] ) ? $attr['number_item']['size'] : $attr['number_item'];
+			$content             = $this->content( $result, $number_item );
 			remove_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
-			$width            = isset( $attr['column_width'] ) && 'auto' !== $attr['column_width'] ? $attr['column_width'] : $this->manager->get_current_width();
 			$additional_class = $attr['show_nav'] ? 'shownav' : '';
 			$autoplay_delay   = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
 			$margin           = isset( $attr['margin']['size'] ) ? $attr['margin']['size'] : $attr['margin'];
-
+			$responsive_item  = isset( $attr['responsive_item'] ) ? $attr['responsive_item'] : array();
+			if ( $use_responsive_item ) {
+				$width = 12;
+			} else {
+				$width = isset( $attr['column_width'] ) && 'auto' !== $attr['column_width'] ? $attr['column_width'] : $this->manager->get_current_width();
+			}
 			$data_attr = gvnews_build_data_attr(
 				array(
-					'nav'      => esc_attr( $attr['show_nav'] ),
-					'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-					'delay'    => esc_attr( $autoplay_delay ),
-					'items'    => esc_attr( $number_item ),
-					'margin'   => esc_attr( $margin ),
-					'lazyload' => esc_attr( $attr['normal_image'] ),
+					'nav'            => esc_attr( $attr['show_nav'] ),
+					'autoplay'       => esc_attr( $attr['enable_autoplay'] ),
+					'delay'          => esc_attr( $autoplay_delay ),
+					'items'          => esc_attr( $number_item ),
+					'margin'         => esc_attr( $margin ),
+					'lazyload'       => esc_attr( $attr['normal_image'] ),
+					'use-responsive' => esc_attr( $use_responsive_item ),
+					'desktop-item'   => ! empty( $responsive_item['Desktop'] ) ? esc_attr( $responsive_item['Desktop'] ) : $number_item,
+					'tablet-item'    => ! empty( $responsive_item['Tablet'] ) ? esc_attr( $responsive_item['Tablet'] ) : 2,
+					'mobile-item'    => ! empty( $responsive_item['Mobile'] ) ? esc_attr( $responsive_item['Mobile'] ) : 1,
 				)
 			);
 

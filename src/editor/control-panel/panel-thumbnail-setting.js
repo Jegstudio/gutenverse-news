@@ -1,13 +1,27 @@
 import { __ } from '@wordpress/i18n';
-import { BorderControl, BorderResponsiveControl, SelectControl, SwitchControl } from 'gutenverse-core/controls';
+import { BorderControl, BorderResponsiveControl, SelectControl, SwitchControl, AlertControl } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const thumbnailSettingPanel = (props) => {
     const {
         hasSecondImageSize = false,
         switcher,
-        setSwitcher
+        setSwitcher,
+        thumb = true,
+        skipThumbnailSize = false,
     } = props;
+
+    if (!thumb) {
+        return [
+            {
+                id: '__itemShowedThumbnail',
+                component: AlertControl,
+                children: <>
+                    <span>{__('You need to turn on "Enable Thumbnail" to use this feature.', 'gutenverse-news')}</span>
+                </>
+            },
+        ];
+    }
 
     const device = getDeviceType();
 
@@ -43,7 +57,7 @@ export const thumbnailSettingPanel = (props) => {
         // Main Thumbnail
         {
             id: 'renderedImageSizeMain',
-            show: !switcher.state || switcher.state === 'main',
+            show: !skipThumbnailSize && (!switcher.state || switcher.state === 'main'),
             label: __('Rendered Image Size', 'gutenverse-news'),
             description: hasSecondImageSize ? __('Choose the image size that you want to rendered in main thumbnail in this module.', 'gutenverse-news') : '',
             component: SelectControl,

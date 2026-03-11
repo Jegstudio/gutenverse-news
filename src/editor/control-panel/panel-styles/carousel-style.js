@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from "./positioning-style";
 
 const getCarouselStyle = (elementId, attributes) => {
     let data = [];
@@ -8,6 +9,8 @@ const getCarouselStyle = (elementId, attributes) => {
 
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
     data = noContentStyle(elementId, attributes, data);
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
     /**
      * Panel Border
      */

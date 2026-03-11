@@ -50,7 +50,7 @@ class Archive_Description extends StyleAbstract {
 					'hover'  => ".{$this->element_id}.gvnews-archive-desc .archive-desc:hover",
 				),
 				'advance'     => ".{$this->element_id}.gvnews-archive-desc .archive-desc",
-				'positioning' => ".{$this->element_id}.gvnews-archive-desc .archive-desc",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => ".{$this->element_id}.gvnews-archive-desc .archive-desc",
 			)
 		);

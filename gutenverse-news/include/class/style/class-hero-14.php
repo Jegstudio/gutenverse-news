@@ -31,11 +31,12 @@ class Hero_14 extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'border'  => array(
+				'border'      => array(
 					'normal' => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
 					'hover'  => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost:hover",
 				),
-				'advance' => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
+				'advance'     => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 
 			)
 		);

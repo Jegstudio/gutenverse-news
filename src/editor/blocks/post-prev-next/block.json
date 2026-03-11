@@ -34,10 +34,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -126,6 +132,36 @@
         },
         "gap": {
             "type": "string"
+        },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
         }
     },
     "supports": {
@@ -139,5 +175,8 @@
         "next"
     ],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-post-prev-next-style"]
+    "style": ["gutenverse-news-frontend-post-prev-next-style"],
+	"usesContext": [
+		"gutenverse/flexDirection"
+	]
 }
