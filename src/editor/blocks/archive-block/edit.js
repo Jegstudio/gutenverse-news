@@ -51,6 +51,13 @@ const ArchiveBlock = compose(
         gutterWidth = 30,
         rowItemGap,
         postTitleHtmlTag = 'h3',
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
     const [masonryReload, setMasonryReload] = useState(false);
@@ -140,7 +147,14 @@ const ArchiveBlock = compose(
         masonryReload,
         gutterWidth,
         rowItemGap,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     };
 
     return (

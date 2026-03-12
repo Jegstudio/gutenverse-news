@@ -30,8 +30,29 @@ const BlockArchive = (props) => {
         masonryReload,
         gutterWidth,
         rowItemGap,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = props;
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const metaSettings = {
         meta_show: showMeta,
@@ -165,7 +186,8 @@ const BlockArchive = (props) => {
                     renderedImageSizeMain,
                     gutterWidth,
                     rowItemGap,
-                    postTitleHtmlTag
+                    postTitleHtmlTag,
+                    overlayIconData
                 }}
             />
         );
@@ -188,7 +210,14 @@ const BlockArchive = (props) => {
         gutenversePreviewBlock,
         renderedImageSizeMain,
         masonryReload,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     return <BlockWrapper {...{ ...props, block, blockWidth }} />;

@@ -911,6 +911,7 @@ class Api {
 				$result[] = array(
 					'id'        => $post->ID,
 					'title'     => html_entity_decode( get_the_title( $post->ID ) ),
+					'format'    => get_post_format( $post->ID ),
 					'thumbnail' => array(
 						'id'      => get_post_thumbnail_id( $post->ID ),
 						'url'     => get_the_post_thumbnail_url( $post->ID ),

@@ -15,15 +15,15 @@
             line-height: 1;
             pointer-events: none;
         }
+    }
 
-        .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay {
-            background: #000;
-            opacity: 0.3;
-            -webkit-transition: .3s ease;
-            transition: .3s ease;
-            z-index: 1;
-            pointer-events: none;
-        }
+    .with-overlay-icon .gvnews-thumb-overlay {
+        background: #000;
+        opacity: 0.3;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        z-index: 1;
+        pointer-events: none;
     }
 }
 
