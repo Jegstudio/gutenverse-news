@@ -65,3 +65,18 @@
 .gvnews_heroblock_6 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon {
     font-size: 30px;
 }
+
+.gvnews_postblock_carousel_2.gvnews_postblock {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: none;
+        }
+    }
+}
+
+.gvnews_postblock_carousel .gvnews_thumb .gvnews-thumb-overlay {
+    opacity: 0.3;
+}

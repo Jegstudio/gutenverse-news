@@ -403,6 +403,24 @@ class Carousel extends StyleAbstract {
 				)
 			);
 		}
+
+		$overlay_selector = 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ? ".{$this->element_id} .gvnews_postblock_carousel_2 .gvnews_thumb:before" : ".{$this->element_id} .gvnews_postblock .gvnews_post .gvnews_thumb .gvnews-thumb-overlay";
+		if ( isset( $this->attrs['overlayBackground'] ) ) {
+			$this->handle_background( $overlay_selector, $this->attrs['overlayBackground'] );
+		}
+
+		if ( isset( $this->attrs['overlayOpacity'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $overlay_selector,
+					'property'       => function ( $value ) {
+						return "opacity: {$value};";
+					},
+					'value'          => $this->attrs['overlayOpacity'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 	private function no_content_style() {

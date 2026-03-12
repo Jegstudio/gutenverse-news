@@ -11,6 +11,8 @@ import {
     IconSVGControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { gvnewsEssentialsActive } from '../utils/helper';
+
 
 export const styleHero = (props, typeCount = 1) => {
     const {
@@ -137,18 +139,19 @@ export const styleHero = (props, typeCount = 1) => {
         {
             id: 'showPostFormatIcon',
             label: __('Show Post Format Icon', 'gutenverse'),
+            show: gvnewsEssentialsActive,
             component: CheckboxControl,
         },
         {
             id: 'galleryFormatIcon',
-            show: showPostFormatIcon,
+            show: showPostFormatIcon && gvnewsEssentialsActive,
             label: __('Gallery Icon', 'gutenverse-news'),
             description: __('Choose icon for gallery post format overlay icon.', 'gutenverse-news'),
             component: IconSVGControl
         },
         {
             id: 'videoFormatIcon',
-            show: showPostFormatIcon,
+            show: showPostFormatIcon && gvnewsEssentialsActive,
             label: __('Video Icon', 'gutenverse-news'),
             description: __('Choose icon for video post format overlay icon.', 'gutenverse-news'),
             component: IconSVGControl

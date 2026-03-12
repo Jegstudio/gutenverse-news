@@ -122,3 +122,26 @@ export const thumbnailOverlayPanel = (props) => {
         },
     ], props);
 };
+
+
+
+export const carouselThumbnailOverlayPanel = (props) => {
+
+    return applyFilters('gvnews.panel.thumbnailOverlay', [
+        {
+            id: 'overlayBackground',
+            label: __('Overlay Background', 'gutenverse'),
+            component: BackgroundControl,
+            allowDeviceControl: false,
+            options: ['default', 'gradient'],
+        },
+        {
+            id: 'overlayOpacity',
+            label: __('Overlay Opacity', 'gutenverse'),
+            component: RangeControl,
+            min: 0,
+            max: 1,
+            step: 0.01,
+        },
+    ], props);
+};

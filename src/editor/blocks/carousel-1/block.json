@@ -392,6 +392,37 @@
         "responsiveItem": {
             "type": "object",
             "copyStyle": true
+        },
+        "showPostFormatIcon": {
+            "type": "boolean"
+        },
+        "galleryFormatIcon": {
+            "type": "string",
+            "default": "far fa-image"
+        },
+        "galleryFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "galleryFormatIconSVG": {
+            "type": "string"
+        },
+        "videoFormatIcon": {
+            "type": "string",
+            "default": "far fa-play-circle"
+        },
+        "videoFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "videoFormatIconSVG": {
+            "type": "string"
+        },
+        "overlayBackground": {
+            "type": "object"
+        },
+        "overlayOpacity": {
+            "type": "string"
         }
     },
     "supports": {

@@ -8,6 +8,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { carouselThumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
 export const panelList = () => {
 
@@ -48,6 +49,12 @@ export const panelList = () => {
                 title: __('Thumbnail', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: thumbnailSettingPanel,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: carouselThumbnailOverlayPanel,
                 tabRole: TabStyle,
             },
             {

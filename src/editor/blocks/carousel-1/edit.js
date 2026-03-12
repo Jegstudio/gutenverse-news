@@ -19,6 +19,8 @@ import { panelList } from './panels/panel-list';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 import { getImageSizeDetail } from '../../utils/helper';
+import { getOverlayIconData } from '../../part/thumbnail'
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -66,8 +68,29 @@ const Carousel1Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag = 'h3',
         gutenversePreviewBlock = '',
-        responsiveItem
+        responsiveItem,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const metaSettings = {
         meta_show: showMeta,
@@ -130,15 +153,26 @@ const Carousel1Block = compose(
 
     function RenderContent(props) {
         const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 120, width: 86, dimension: 715 });
+
+        const { format = 'standard' } = props.post;
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
+
         return (
             <div className="gvnews_post_wrapper">
-                <article className={`gvnews_post format-${props.post.format}`}>
-                    <div className="gvnews_thumb">
+                <article className={`gvnews_post format-${format}`}>
+                    <div className={`gvnews_thumb ${withIcon ? 'with-overlay-icon' : ''}`}>
                         <a>
                             <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
                                 <img src={props.post.thumbnail.url} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />
+                                <div className="gvnews-thumb-overlay"></div>
                             </div>
                         </a>
+                        {
+                            withIcon &&
+                            <div className="gvnews-thumb-overlay-icon">
+                                {renderIcon(icon, type, svg)}
+                            </div>
+                        }
                     </div>
                     <div className="gvnews_postblock_content">
                         <TitleTag className="gvnews_post_title">
@@ -336,7 +370,14 @@ const Carousel1Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag,
         gutenversePreviewBlock,
-        responsiveItem
+        responsiveItem,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     useEffect(() => {
