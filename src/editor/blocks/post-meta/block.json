@@ -149,6 +149,30 @@
         "likePadding": {
             "type": "object"
         },
+		"likeIcon": {
+			"type": "string",
+			"default": "far fa-thumbs-up",
+			"copyStyle": true
+		},
+		"likeIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"likeIconSVG": {
+			"type": "string"
+		},
+		"likeIconActive": {
+			"type": "string",
+			"default": "fas fa-thumbs-up",
+			"copyStyle": true
+		},
+		"likeIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"likeIconActiveSVG": {
+			"type": "string"
+		},
 
         "dislikeIconSize": {
             "type":"object"
@@ -175,6 +199,31 @@
             "type":"object",
             "default": {}
         },
+		"dislikeIcon": {
+			"type": "string",
+			"default": "far fa-thumbs-down",
+			"copyStyle": true
+		},
+		"dislikeIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"dislikeIconSVG": {
+			"type": "string"
+		},
+		"dislikeIconActive": {
+			"type": "string",
+			"default": "fas fa-thumbs-down",
+			"copyStyle": true
+		},
+		"dislikeIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"dislikeIconActiveSVG": {
+			"type": "string"
+		},
+
         "bookmarkIconSize": {
             "type": "object",
             "default": {
