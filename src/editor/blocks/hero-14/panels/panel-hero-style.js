@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, ColorControl, SwitchControl, TypographyControl, IconSVGControl } from 'gutenverse-core/controls';
+import { CheckboxControl, ColorControl, RangeControl, SwitchControl, TypographyControl, IconSVGControl } from 'gutenverse-core/controls';
+import { gvnewsEssentialsActive } from '../../../utils/helper';
 
-export const styleHero = (props, typeCount = 1, hero14 = false) => {
+export const styleHero = (props, typeCount = 1) => {
     const {
         switcher,
         setSwitcher,
@@ -39,20 +40,50 @@ export const styleHero = (props, typeCount = 1, hero14 = false) => {
         },
         {
             id: 'showPostFormatIcon',
+            show: gvnewsEssentialsActive,
             label: __('Show Post Format Icon', 'gutenverse'),
             component: CheckboxControl,
-            show: hero14,
+        },
+        {
+            id: 'overlayIconColor',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'overlayIconSizeMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Main Icon Size', 'gutenverse'),
+            description: __('This option will the post format icon size on the main content.', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+        },
+        {
+            id: 'overlayIconSizeSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Second Icon Size', 'gutenverse'),
+            description: __('This option will the post format icon size on the side content.', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
         },
         {
             id: 'galleryFormatIcon',
-            show: showPostFormatIcon && hero14,
+            show: gvnewsEssentialsActive && showPostFormatIcon,
             label: __('Gallery Icon', 'gutenverse-news'),
             description: __('Choose icon for gallery post format overlay icon.', 'gutenverse-news'),
             component: IconSVGControl
         },
         {
             id: 'videoFormatIcon',
-            show: showPostFormatIcon && hero14,
+            show: gvnewsEssentialsActive && showPostFormatIcon,
             label: __('Video Icon', 'gutenverse-news'),
             description: __('Choose icon for video post format overlay icon.', 'gutenverse-news'),
             component: IconSVGControl

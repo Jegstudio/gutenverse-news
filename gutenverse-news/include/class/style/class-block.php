@@ -1680,6 +1680,31 @@ class Block extends StyleAbstract {
 					)
 				);
 			}
+
+			if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+							return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeMain'],
+						'device_control' => true,
+					)
+				);
+			}
+			if ( isset( $this->attrs['overlayIconColorMain'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->main_thumbnail_class} .gvnews-thumb-overlay-icon",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['overlayIconColorMain'],
+							'device_control' => false,
+						)
+					);
+			}
 		}
 
 		if ( $this->second_thumbnail_class ) {
@@ -1698,6 +1723,32 @@ class Block extends StyleAbstract {
 						'device_control' => false,
 					)
 				);
+			}
+
+			if ( isset( $this->attrs['overlayIconSizeSecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+							return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeSecond'],
+						'device_control' => true,
+					)
+				);
+
+				if ( isset( $this->attrs['overlayIconColorSecond'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .{$this->second_thumbnail_class} .gvnews-thumb-overlay-icon",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['overlayIconColorSecond'],
+							'device_control' => false,
+						)
+					);
+				}
 			}
 		}
 	}

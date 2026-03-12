@@ -773,6 +773,9 @@
 .gvnews_pl_md_2,
 .gvnews_pl_md_3 {
   display: flex;
+  .gvnews_thumb {
+    height: fit-content;
+  }
 
   &.gvnews_pl_md_3 {
     flex-direction: row-reverse;

@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, RangeControl, SwitchControl, AlertControl } from 'gutenverse-core/controls';
+import { BackgroundControl, ColorControl, RangeControl, SwitchControl, AlertControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
+import { gvnewsEssentialsActive } from '../utils/helper';
 
 export const thumbnailOverlayPanel = (props) => {
     const {
@@ -11,6 +12,7 @@ export const thumbnailOverlayPanel = (props) => {
         mainThumbnailClass,
         secondThumbnailClass,
         thumb = true,
+        showPostFormatIcon = false
     } = props;
 
     if (!thumb) {
@@ -43,6 +45,37 @@ export const thumbnailOverlayPanel = (props) => {
             onChange: ({ __thumbnailType }) => setSwitcher({ ...switcher, state: __thumbnailType })
         },
         // Main Thumbnail
+        {
+            id: 'overlayIconSizeMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.state || switcher.state === 'main'),
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSizeMain',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'direct'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColorMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.state || switcher.state === 'main'),
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'overlayBackgroundMain',
             show: !switcher.state || switcher.state === 'main',
@@ -82,6 +115,43 @@ export const thumbnailOverlayPanel = (props) => {
             ]
         },
         // Second thumbnail
+        {
+            id: 'overlayIconSizeSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.state === 'second',
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSizeSecond',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColorSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.state === 'second',
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'overlayBackgroundSecond',
             show: switcher.state === 'second',

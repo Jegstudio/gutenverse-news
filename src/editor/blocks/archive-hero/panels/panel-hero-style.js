@@ -18,6 +18,7 @@ export const heroStylePanel = (props) => {
         heroType,
         switcher,
         setSwitcher,
+        showPostFormatIcon = false
     } = props;
 
     const heroTypes = [1, 2, 3, 4, 5, 6, 7];
@@ -98,6 +99,37 @@ export const heroStylePanel = (props) => {
             description: switchDescription(),
         },
         // First Item
+        {
+            id: 'overlayIconSizeMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.typeCount || switcher.typeCount === 'first'),
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSizeMain',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'direct'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColorMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.typeCount || switcher.typeCount === 'first'),
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'titleTypography',
             show: switcher.typeCount === 'first' || !switcher.typeCount,

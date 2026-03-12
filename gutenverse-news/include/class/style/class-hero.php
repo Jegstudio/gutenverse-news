@@ -540,6 +540,59 @@ class Hero extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['overlayIconColor'] ) ) {
+
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['overlayIconColor'],
+							'device_control' => false,
+						)
+					);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeMain'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeSecond'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector2} .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeSecond'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeThrid'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector3} .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeThrid'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 	/**

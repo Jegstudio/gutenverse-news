@@ -80,3 +80,9 @@
 .gvnews_postblock_carousel .gvnews_thumb .gvnews-thumb-overlay {
     opacity: 0.3;
 }
+
+.gvnews_post {
+    .gvnews-thumb-overlay-icon {
+        transition: all .3s;
+    }
+}
