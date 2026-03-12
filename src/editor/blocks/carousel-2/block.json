@@ -459,6 +459,12 @@
         },
         "overlayOpacity": {
             "type": "string"
+        },
+        "overlayBackgroundHover": {
+            "type": "object"
+        },
+        "overlayOpacityHover": {
+            "type": "string"
         }
     },
     "supports": {

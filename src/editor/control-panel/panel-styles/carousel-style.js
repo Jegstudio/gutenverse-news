@@ -351,6 +351,28 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
         ]
     });
 
+    if ("GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2" === gvnewsModule) {
+        isNotEmpty(attributes['overlayBackgroundHover']) && data.push({
+            'type': 'background',
+            'id': 'overlayBackgroundHover',
+            'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+
+        });
+        isNotEmpty(attributes['overlayOpacityHover']) && data.push({
+            'type': 'plain',
+            'id': 'overlayOpacityHover',
+            'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+            'properties': [
+                {
+                    'name': 'opacity',
+                    'valueType': 'direct'
+                }
+            ]
+        });
+    }
+
+
+
     return data;
 };
 

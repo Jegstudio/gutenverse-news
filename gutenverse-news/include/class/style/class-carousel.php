@@ -52,10 +52,33 @@ class Carousel extends StyleAbstract {
 
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
+			$this->generate_overlay_hover_style();
 		}
 		$this->generate_thumbnail_style();
 		$this->no_content_style();
 		do_action( 'gvnews_carousel_style', $this );
+	}
+
+	/**
+	 * Generate overlay hover style for carousel 2.
+	 */
+	private function generate_overlay_hover_style() {
+		if ( isset( $this->attrs['overlayBackgroundHover'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before", $this->attrs['overlayBackgroundHover'] );
+		}
+
+		if ( isset( $this->attrs['overlayOpacityHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before",
+					'property'       => function ( $value ) {
+						return "opacity: {$value};";
+					},
+					'value'          => $this->attrs['overlayOpacityHover'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 

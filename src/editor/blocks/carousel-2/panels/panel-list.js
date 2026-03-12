@@ -55,7 +55,8 @@ export const panelList = () => {
             {
                 title: __('Thumbnail Overlay', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: carouselThumbnailOverlayPanel,
+                panelArray: (props) => carouselThumbnailOverlayPanel(props, true),
+
                 tabRole: TabStyle,
             },
             {

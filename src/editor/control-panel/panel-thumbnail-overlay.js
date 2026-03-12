@@ -125,23 +125,86 @@ export const thumbnailOverlayPanel = (props) => {
 
 
 
-export const carouselThumbnailOverlayPanel = (props) => {
+export const carouselThumbnailOverlayPanel = (props, withHover = false) => {
+
+    const {
+        switcher,
+        setSwitcher,
+        elementId,
+    } = props;
+
 
     return applyFilters('gvnews.panel.thumbnailOverlay', [
+        {
+            id: '__thumbnaiOverlayHover',
+            show: withHover,
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                }
+            ],
+            onChange: ({ __thumbnaiOverlayHover }) => setSwitcher({ ...switcher, overlayHover: __thumbnaiOverlayHover })
+        },
         {
             id: 'overlayBackground',
             label: __('Overlay Background', 'gutenverse'),
             component: BackgroundControl,
+            show: !switcher.overlayHover || switcher.overlayHover === 'normal',
             allowDeviceControl: false,
             options: ['default', 'gradient'],
         },
         {
             id: 'overlayOpacity',
+            show: !switcher.overlayHover || switcher.overlayHover === 'normal',
             label: __('Overlay Opacity', 'gutenverse'),
             component: RangeControl,
             min: 0,
             max: 1,
             step: 0.01,
+        },
+        {
+            id: 'overlayBackgroundHover',
+            show: withHover && switcher.overlayHover === 'hover',
+            label: __('Overlay Background', 'gutenverse'),
+            component: BackgroundControl,
+            allowDeviceControl: false,
+            options: ['default', 'gradient'],
+            liveStyle: [
+                {
+                    'type': 'background',
+                    'id': 'overlayBackgroundHover',
+                    'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+                }
+            ]
+        },
+        {
+            id: 'overlayOpacityHover',
+            show: withHover && switcher.overlayHover === 'hover',
+            label: __('Overlay Opacity', 'gutenverse'),
+            component: RangeControl,
+            min: 0,
+            max: 1,
+            step: 0.01,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayOpacityHover',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+                    'properties': [
+                        {
+                            'name': 'opacity',
+                            'valueType': 'direct'
+                        }
+                    ]
+                }
+            ]
         },
     ], props);
 };
