@@ -765,6 +765,12 @@
         },
         "videoFormatIconSVG": {
             "type": "string"
+        },
+        "overlayIconSizeMain": {
+            "type": "object"
+        },
+        "overlayIconColorMain": {
+            "type": "object"
         }
     },
     "supports": {
