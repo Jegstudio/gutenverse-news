@@ -915,7 +915,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['bookmarkIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$container_selector} svg, {$container_selector} i",
+					'selector'       => "{$container_selector} svg, {$container_selector} svg *, {$container_selector} i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
@@ -928,7 +928,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['bookmarkIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$container_selector}:hover svg, {$container_selector}:hover i",
+					'selector'       => "{$container_selector}:hover svg, {$container_selector}:hover svg *, {$container_selector}:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
