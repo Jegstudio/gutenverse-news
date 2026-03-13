@@ -99,8 +99,29 @@ const PostRelated = compose(
         renderedImageSizeSecond,
         headerHtmlTag,
         postTitleHtmlTag,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const metaSettings = {
         meta_show: showMeta,
@@ -350,6 +371,7 @@ const PostRelated = compose(
                     imageSizeMain: getImageSizeDetail(renderedImageSizeMain, { height: 360, width: 180, dimension: 500 }), // default value from edit module 1
                     imageSizeSecond: getImageSizeDetail(renderedImageSizeSecond, { height: 120, width: 86, dimension: 715 }),
                     postTitleHtmlTag,
+                    overlayIconData,
                 };
 
                 switch (templateType) {
@@ -487,6 +509,13 @@ const PostRelated = compose(
         renderedImageSizeMain,
         renderedImageSizeSecond,
         postTitleHtmlTag,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     const headerData = {

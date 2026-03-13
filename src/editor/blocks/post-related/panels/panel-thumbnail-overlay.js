@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { BackgroundControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { BackgroundControl, ColorControl, RangeControl, SwitchControl } from 'gutenverse-core/controls';
+import { applyFilters } from '@wordpress/hooks';
+import { gvnewsEssentialsActive } from '../../../utils/helper';
 
 export const thumbnailOverlayPanel = (props) => {
     const {
@@ -8,10 +10,11 @@ export const thumbnailOverlayPanel = (props) => {
         setSwitcher,
         elementId,
         mainThumbnailClass,
-        secondThumbnailClass
+        secondThumbnailClass,
+        showPostFormatIcon = false
     } = props;
 
-    return [
+    return applyFilters('gvnews.panel.thumbnailOverlay', [
         {
             id: '__thumbnailType',
             show: hasSecondImageSize,
@@ -29,6 +32,37 @@ export const thumbnailOverlayPanel = (props) => {
             onChange: ({ __thumbnailType }) => setSwitcher({ ...switcher, state: __thumbnailType })
         },
         // Main Thumbnail
+        {
+            id: 'overlayIconSizeMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.state || switcher.state === 'main'),
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSizeMain',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'direct'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColorMain',
+            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.state || switcher.state === 'main'),
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'overlayBackgroundMain',
             show: !switcher.state || switcher.state === 'main',
@@ -69,6 +103,43 @@ export const thumbnailOverlayPanel = (props) => {
         },
         // Second thumbnail
         {
+            id: 'overlayIconSizeSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.state === 'second',
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSizeSecond',
+                    'responsive': true,
+                    'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColorSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.state === 'second',
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
             id: 'overlayBackgroundSecond',
             show: switcher.state === 'second',
             label: __('Overlay Background', 'gutenverse'),
@@ -106,5 +177,5 @@ export const thumbnailOverlayPanel = (props) => {
                 }
             ]
         },
-    ];
+    ], props);
 };

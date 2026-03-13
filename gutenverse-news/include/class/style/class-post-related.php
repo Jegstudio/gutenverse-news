@@ -1464,14 +1464,14 @@ class Post_Related extends Style_Abstract {
 	 */
 	private function generate_thumbnail_overlay_style() {
 		if ( isset( $this->attrs['mainClass'] ) ) {
-			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock {$this->attrs['mainClass']} .gvnews-thumb-overlay";
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock {$this->attrs['mainClass']}";
 			if ( isset( $this->attrs['overlayBackgroundMain'] ) ) {
-				$this->handle_background( $selector, $this->attrs['overlayBackgroundMain'] );
+				$this->handle_background( "{$selector} .gvnews-thumb-overlay", $this->attrs['overlayBackgroundMain'] );
 			}
 			if ( isset( $this->attrs['overlayOpacityMain'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => $selector,
+						'selector'       => "{$selector} .gvnews-thumb-overlay",
 						'property'       => function ( $value ) {
 							return "opacity: {$value};";
 						},
@@ -1480,21 +1480,72 @@ class Post_Related extends Style_Abstract {
 					)
 				);
 			}
+
+			if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => "{$selector} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+								return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeMain'],
+						'device_control' => true,
+					)
+				);
+			}
+			if ( isset( $this->attrs['overlayIconColorMain'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => "{$selector} .gvnews-thumb-overlay-icon",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['overlayIconColorMain'],
+							'device_control' => false,
+						)
+					);
+			}
 		}
 
 		if ( isset( $this->attrs['secondClass'] ) ) {
-			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock {$this->attrs['secondClass']} .gvnews-thumb-overlay";
+			$selector = ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock {$this->attrs['secondClass']}";
 			if ( isset( $this->attrs['overlayBackgroundSecond'] ) ) {
-				$this->handle_background( $selector, $this->attrs['overlayBackgroundSecond'] );
+				$this->handle_background( "{$selector} .gvnews-thumb-overlay", $this->attrs['overlayBackgroundSecond'] );
 			}
 			if ( isset( $this->attrs['overlayOpacitySecond'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => $selector,
+						'selector'       => "{$selector} .gvnews-thumb-overlay",
 						'property'       => function ( $value ) {
 							return "opacity: {$value};";
 						},
 						'value'          => $this->attrs['overlayOpacitySecond'],
+						'device_control' => false,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['overlayIconSizeSecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => "{$selector} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+								return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeSecond'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['overlayIconColorSecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => "{$selector} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+									return $this->handle_color( $value, 'color' );
+						},
+						'value'          => $this->attrs['overlayIconColorSecond'],
 						'device_control' => false,
 					)
 				);
