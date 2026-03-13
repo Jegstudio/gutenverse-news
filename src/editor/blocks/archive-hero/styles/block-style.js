@@ -28,6 +28,7 @@ const getBlockStyle = (elementId, attributes) => {
     const withSecondTypo = ['1', '2', '3', '4', '5', '6', '10', '11', '12', '14'].includes(heroType);
     const withThridTypo = ['1', '3', '12'].includes(heroType);
 
+    data = overlayStyle(elementId, attributes, data, heroType, withSecondTypo, withThridTypo);
 
     /**
      * Panel Background.
@@ -532,5 +533,79 @@ const noContentStyle = (elementId, attributes, data) => {
     return data;
 
 };
+
+const overlayStyle = (elementId, attributes, data, heroType, withSecondTypo, withThridTypo) => {
+
+    isNotEmpty(attributes['overlayIconColor']) && data.push({
+        'type': 'color',
+        'id': 'overlayIconColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeMain',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeSecond']) && withSecondTypo && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeSecond',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${getSecondTypographySelector(heroType)} .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeThrid']) && withThridTypo && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeThrid',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${'12' === heroType ? '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2 , .gvnews_hero_item_3) .gvnews-thumb-overlay-icon' : '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews-thumb-overlay-icon'}`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    return data;
+}
 
 export default getBlockStyle;

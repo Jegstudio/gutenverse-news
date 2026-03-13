@@ -261,6 +261,33 @@ class Archive_Hero extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['overlayIconColor'] ) ) {
+
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['overlayIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeMain'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( $with_second_typo ) {
 			$selector = $this->get_second_typography_selector( $this->attrs['heroType'] );
 			if ( isset( $this->attrs['secondTitleTypography'] ) ) {
@@ -292,6 +319,19 @@ class Archive_Hero extends StyleAbstract {
 						'skip_device'    => isset( $this->attrs['borderResponsiveItemSecond'] ) ? array(
 							'Desktop',
 						) : null,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['overlayIconSizeSecond'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+								return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeSecond'],
+						'device_control' => true,
 					)
 				);
 			}
@@ -328,6 +368,19 @@ class Archive_Hero extends StyleAbstract {
 						'skip_device'    => isset( $this->attrs['borderResponsiveItemThird'] ) ? array(
 							'Desktop',
 						) : null,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['overlayIconSizeThrid'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} {$selector} .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+							return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeThrid'],
+						'device_control' => true,
 					)
 				);
 			}

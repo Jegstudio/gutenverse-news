@@ -644,6 +644,20 @@ abstract class Block_View_Abstract {
 			$meta_settings
 		);
 		$this->post_title_tag = $attr['post_title_html_tag'];
+
+		$this->post_format_icon = array(
+			'show'    => isset( $attr['show_post_format_icon'] ) ? $attr['show_post_format_icon'] : false,
+			'gallery' => array(
+				'icon' => isset( $attr['gallery_format_icon'] ) ? $attr['gallery_format_icon'] : '',
+				'type' => isset( $attr['gallery_format_icon_type'] ) ? $attr['gallery_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['gallery_format_icon_svg'] ) ? $attr['gallery_format_icon_svg'] : '',
+			),
+			'video'   => array(
+				'icon' => isset( $attr['video_format_icon'] ) ? $attr['video_format_icon'] : '',
+				'type' => isset( $attr['video_format_icon_type'] ) ? $attr['video_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['video_format_icon_svg'] ) ? $attr['video_format_icon_svg'] : '',
+			),
+		);
 	}
 
 	/**

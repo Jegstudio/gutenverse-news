@@ -4,13 +4,16 @@ import {
     CheckboxControl,
     ColorControl,
     BackgroundControl,
+    IconSVGControl,
     TypographyControl,
     SwitchControl,
     BorderControl,
     BorderResponsiveControl,
-    HeadingControl
+    HeadingControl,
+    RangeControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { gvnewsEssentialsActive } from '../../../utils/helper';
 
 export const heroStylePanel = (props) => {
     const {
@@ -91,6 +94,32 @@ export const heroStylePanel = (props) => {
             component: ColorControl,
         },
         {
+            id: 'showPostFormatIcon',
+            label: __('Show Post Format Icon', 'gutenverse'),
+            show: gvnewsEssentialsActive,
+            component: CheckboxControl,
+        },
+        {
+            id: 'overlayIconColor',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
+            id: 'galleryFormatIcon',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Gallery Icon', 'gutenverse-news'),
+            description: __('Choose icon for gallery post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
+        {
+            id: 'videoFormatIcon',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Video Icon', 'gutenverse-news'),
+            description: __('Choose icon for video post format overlay icon.', 'gutenverse-news'),
+            component: IconSVGControl
+        },
+        {
             id: '__typeCount',
             component: SwitchControl,
             show: typeCount > 1,
@@ -109,20 +138,6 @@ export const heroStylePanel = (props) => {
             max: 100,
             step: 1,
             unit: 'px',
-            liveStyle: [
-                {
-                    'type': 'plain',
-                    'id': 'overlayIconSizeMain',
-                    'responsive': true,
-                    'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
-                    'properties': [
-                        {
-                            'name': 'font-size',
-                            'valueType': 'direct'
-                        }
-                    ]
-                }
-            ]
         },
         {
             id: 'overlayIconColorMain',
@@ -154,6 +169,17 @@ export const heroStylePanel = (props) => {
         },
         // Second Item
         {
+            id: 'overlayIconSizeSecond',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.typeCount === 'second',
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+        },
+        {
             id: 'secondTitleTypography',
             label: __('Second List Title Typography', 'gutenverse-news'),
             description: __('This option will override the post title typography setting on the second list.', 'gutenverse-news'),
@@ -176,6 +202,17 @@ export const heroStylePanel = (props) => {
             allowDeviceControl: true,
         },
         // Third Item
+        {
+            id: 'overlayIconSizeThrid',
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.typeCount === 'third',
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+        },
         {
             id: 'thridTitleTypography',
             label: __('Thrid List Title Typography', 'gutenverse-news'),

@@ -37,6 +37,18 @@ export const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
                 }
             ]
         });
+
+        isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+            'type': 'plain',
+            'id': 'overlayIconSizeMain',
+            'selector': `.${elementId} .gvnews_postblock ${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+            'properties': [
+                {
+                    'name': 'font-size',
+                    'valueType': 'direct'
+                }
+            ]
+        });
     }
     // Panel Thumbnail second
     if (isNotEmpty(secondThumbnailClass)) {
