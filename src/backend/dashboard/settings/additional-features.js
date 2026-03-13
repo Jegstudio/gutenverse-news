@@ -97,6 +97,12 @@ const AdditionalFeatures = (props) => {
             desc: 'Adding donation button on single post, to give donation to your post author',
             icon: <IconPaywallSVG />,
         },
+        {
+            id: 'ads',
+            title: 'Ads',
+            desc: 'Adding donation button on single post, to give donation to your post author',
+            icon: <IconPaywallSVG />,
+        },
     ]
 
     return (
