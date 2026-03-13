@@ -597,7 +597,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like svg, {$base_selector} .thumb.like i",
+					'selector'       => "{$base_selector} .thumb.like svg, {$base_selector} .thumb.like svg *, {$base_selector} .thumb.like i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
@@ -610,7 +610,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like:hover svg, {$base_selector} .thumb.like:hover i",
+					'selector'       => "{$base_selector} .thumb.like:hover svg, {$base_selector} .thumb.like:hover svg *, {$base_selector} .thumb.like:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
@@ -752,7 +752,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.dislike svg, {$base_selector} .thumb.dislike i",
+					'selector'       => "{$base_selector} .thumb.dislike svg, {$base_selector} .thumb.dislike svg *, {$base_selector} .thumb.dislike i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
@@ -765,7 +765,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.dislike:hover svg, {$base_selector} .thumb.dislike:hover i",
+					'selector'       => "{$base_selector} .thumb.dislike:hover svg, {$base_selector} .thumb.dislike:hover svg *, {$base_selector} .thumb.dislike:hover i",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
