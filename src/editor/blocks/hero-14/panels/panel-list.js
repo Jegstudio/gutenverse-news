@@ -38,7 +38,7 @@ export const panelList = () => {
             {
                 title: __('Hero Style', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => styleHero(props, 3),
+                panelArray: (props) => styleHero(props, 3, true),
                 tabRole: TabStyle
             },
             {

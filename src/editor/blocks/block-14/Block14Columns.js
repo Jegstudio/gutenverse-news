@@ -19,6 +19,7 @@ const Block14Columns = props => {
         imageSizeMain = {},
         imageSizeSecond = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -30,7 +31,7 @@ const Block14Columns = props => {
         if (1 === props.type) {
             block.push(
                 <Fragment key={post.id} >
-                    <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize} />
+                    <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize}  overlayIconData={overlayIconData} />
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <PostTitleTag className="gvnews_post_title">
@@ -43,7 +44,7 @@ const Block14Columns = props => {
         } else {
             block.push(
                 <article key={post.id} className={`gvnews_post gvnews_pl_md_1 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                    <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize} />
+                    <ThumbModule size={500} cat={false} post={post} imageSize={props.imageSize}  overlayIconData={overlayIconData} />
                     <div className="gvnews_postblock_content">
                         {<MetaCategory {...props} />}
                         <PostTitleTag className="gvnews_post_title">

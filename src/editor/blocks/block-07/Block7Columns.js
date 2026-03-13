@@ -17,6 +17,7 @@ const Block7Columns = props => {
         imageSizeMain = {},
         readmoreButtonDisabled = false,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -29,7 +30,7 @@ const Block7Columns = props => {
                 <PostTitleTag property="headline" className="gvnews_post_title">
                     <a>{props.post.title.replace(/&#8217;/g, '\'')}</a>
                 </PostTitleTag>
-                <ThumbModule size={500} cat={false} post={props.post} imageSize={imageSizeMain} />
+                <ThumbModule size={500} cat={false} post={props.post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                 <ContentModule title={false} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </article>
         );

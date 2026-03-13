@@ -29,14 +29,16 @@ class Carousel_3 extends Carousel_View_Abstract {
 		$content = '';
 		foreach ( $results as $key => $post ) {
 			$image            = $this->get_thumbnail( $post->ID, 'gvnews-75x75', ( $key >= $normal_load_max && 0 !== $normal_load_max ) );
+			$overlay_icon     = $this->get_overlay_icon( $post->ID );
 			$additional_class = '';
 
 			$content .=
 			'<div class="gvnews_post_wrapper">
 				<article ' . gvnews_post_class( 'gvnews_post' . $additional_class, $post->ID ) . '>
-                    ' . gvnews_edit_post( $post->ID ) . '
-                    <div class="gvnews_thumb">                        
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$image}</a>
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">                        
+                        ' . gvnews_edit_post( $post->ID ) . '
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . "\">{$image}</a>
+                        {$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"overlay_content\">
                         <div class=\"gvnews_postblock_content\">

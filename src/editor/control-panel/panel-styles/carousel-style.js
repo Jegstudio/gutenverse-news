@@ -321,6 +321,8 @@ const getCarouselStyle = (elementId, attributes) => {
 };
 
 const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
+    const { gvnewsModule = '' } = attributes;
+    const overlaySelector = "GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2" === gvnewsModule ? `.${elementId} .gvnews_postblock_carousel_2 .gvnews_thumb:before` : `.${elementId} .gvnews_postblock .gvnews_post .gvnews_thumb .gvnews-thumb-overlay`;
 
     isNotEmpty(attributes['borderMainThumbnail']) && data.push({
         'id': 'borderMainThumbnail',
@@ -332,15 +334,15 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
         'type': 'borderResponsive',
         'selector': `.${elementId} .gvnews_postblock .gvnews_thumb`,
     });
-    isNotEmpty(attributes['overlayBackgroundMain']) && data.push({
+    isNotEmpty(attributes['overlayBackground']) && data.push({
         'type': 'background',
-        'id': 'overlayBackgroundMain',
-        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+        'id': 'overlayBackground',
+        'selector': overlaySelector,
     });
-    isNotEmpty(attributes['overlayOpacityMain']) && data.push({
+    isNotEmpty(attributes['overlayOpacity']) && data.push({
         'type': 'plain',
-        'id': 'overlayOpacityMain',
-        'selector': `.${elementId} .gvnews_postblock .gvnews-thumb-overlay`,
+        'id': 'overlayOpacity',
+        'selector': overlaySelector,
         'properties': [
             {
                 'name': 'opacity',
@@ -348,6 +350,28 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
             }
         ]
     });
+
+    if ("GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2" === gvnewsModule) {
+        isNotEmpty(attributes['overlayBackgroundHover']) && data.push({
+            'type': 'background',
+            'id': 'overlayBackgroundHover',
+            'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+
+        });
+        isNotEmpty(attributes['overlayOpacityHover']) && data.push({
+            'type': 'plain',
+            'id': 'overlayOpacityHover',
+            'selector': `.${elementId} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before`,
+            'properties': [
+                {
+                    'name': 'opacity',
+                    'valueType': 'direct'
+                }
+            ]
+        });
+    }
+
+
 
     return data;
 };

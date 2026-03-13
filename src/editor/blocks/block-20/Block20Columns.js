@@ -17,7 +17,7 @@ const Block20Columns = props => {
         blockWidth,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
-    } = props;
+        overlayIconData = {}} = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
 
@@ -26,7 +26,7 @@ const Block20Columns = props => {
         if (1==props.type){
             return (
                 <article className={`gvnews_post ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''} gvnews_pl_sm`}>
-                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}/>
+                    <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                     <ContentModule title={true} meta={2} excerpt={false} read={false} post={post} attr={attr}/>
                 </article>
             );

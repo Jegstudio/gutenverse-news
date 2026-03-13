@@ -25,6 +25,7 @@ const Block32Columns = (props) => {
         gutterWidth,
         attributes,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -79,7 +80,7 @@ const Block32Columns = (props) => {
                             </PostTitleTag>
                         )}
                     </header>
-                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} onLoad={onImageLoad} />}
+                    {post.thumbnail.url && <ThumbModule size={1000} cat={false} post={post} imageSize={imageSizeMain} onLoad={onImageLoad}  overlayIconData={overlayIconData} />}
                     <ContentModule cat={false} title={false} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                     {attr.option && <MetaModule1 {...props} />}
                 </div>

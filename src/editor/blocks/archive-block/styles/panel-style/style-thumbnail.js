@@ -37,5 +37,36 @@ export const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
             ]
         });
     }
+
+    isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeMain',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconColorMain']) && data.push({
+        'type': 'color',
+        'id': 'overlayIconColorMain',
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon`,
+    });
     return data;
 }

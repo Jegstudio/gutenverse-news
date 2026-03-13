@@ -65,7 +65,28 @@ const Hero14Block = compose(
         readmoreButtonDisabled = false,
         postTitleHtmlTag = 'h3',
         showMetaReview = false,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const metaSettings = {
         meta_show: showMeta,
@@ -114,7 +135,7 @@ const Hero14Block = compose(
     function RenderBlock1(props) {
         return (
             <article className={'gvnews_post center gvnews_pl_lg_7'}>
-                <ThumbModule cat={true} size={715} post={props.post} />
+                <ThumbModule cat={true} size={715} post={props.post} overlayIconData={overlayIconData} />
                 <ContentModule meta={3} title={true} excerpt={true} read={!props.readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </article>
         );
@@ -132,7 +153,7 @@ const Hero14Block = compose(
         return (
             <article className={`gvnews_post right gvnews_pl_md_box gvnews_hero_item_${props.index}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={715} cat={false} post={props.post} />
+                    <ThumbModule size={715} cat={false} post={props.post} overlayIconData={overlayIconData} />
                     <ContentModule cat={false} meta={2} title={true} read={false} excerpt={false} post={props.post} attr={props.attr} />
                 </div>
             </article>
@@ -160,7 +181,7 @@ const Hero14Block = compose(
                 if (i < 5) {
                     rows.push(<RenderBlock2 attr={attr} post={props.postData[i]} index={i} />);
                 } else {
-                    rows2.push(<RenderBlock3 attr={attr} post={props.postData[i]} index={i-4} />);
+                    rows2.push(<RenderBlock3 attr={attr} post={props.postData[i]} index={i - 4} />);
                 }
             }
         }
@@ -285,7 +306,14 @@ const Hero14Block = compose(
         showMetaAuthor,
         showMetaReview,
         readmoreButtonDisabled,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     return (

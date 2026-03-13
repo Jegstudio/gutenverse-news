@@ -42,10 +42,12 @@ class Module_19 extends Module_View_Abstract {
 	public function render_block( $post, $image_size, $type = 1 ) {
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$additional_class = ( ! has_post_thumbnail( $post->ID ) ) ? ' no_thumbnail' : '';
+		$overlay_icon     = $this->get_overlay_icon( $post->ID );
 
-		$content = '<div class="gvnews_thumb">
+		$content = '<div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post->ID ) . '
                         <a href="' . $permalink . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $this->get_thumbnail( $post->ID, $image_size ) . '</a>
+						' . $overlay_icon['overlay_icon'] . '
                     </div>
                     <div class="gvnews_postblock_content">
                         <' . $this->post_title_tag . ' class="gvnews_post_title">

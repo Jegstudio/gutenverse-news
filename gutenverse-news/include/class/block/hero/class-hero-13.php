@@ -46,13 +46,14 @@ class Hero_13 extends Hero_View_Abstract {
 	 */
 	public function render_block_type_1( $post ) {
 		if ( $post ) {
-			$post_id   = $post->ID;
-			$permalink = esc_url( get_the_permalink( $post ) );
+			$post_id      = $post->ID;
+			$overlay_icon = $this->get_overlay_icon( $post_id );
+			$permalink    = esc_url( get_the_permalink( $post ) );
 
 			return '<article ' . gvnews_post_class( 'gvnews_post gvnews_hero_item_1', $post_id ) . '>
-                        <div class="gvnews_block_container">
+                        <div class="gvnews_block_container"' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <span class=\"gvnews_postformat_icon\"></span>
+							{$overlay_icon['overlay_icon']}
                             <div class=\"gvnews_thumb\">
                                 <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id, 'gvnews-featured-1140')}</a>
                             </div>

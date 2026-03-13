@@ -29,15 +29,17 @@ class Carousel_1 extends Carousel_View_Abstract {
 
 		$content = '';
 		foreach ( $results as $key => $post ) {
-			$post_meta = $this->post_meta_2( $post );
+			$post_meta    = $this->post_meta_2( $post );
+			$overlay_icon = $this->get_overlay_icon( $post->ID );
 
 			$image    = $this->get_thumbnail( $post->ID, 'gvnews-350x250', ( $key >= $normal_load_max && 0 !== $normal_load_max ) );
 			$content .=
 			'<div class="gvnews_post_wrapper">
 				<article ' . gvnews_post_class( 'gvnews_post', $post->ID ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post->ID ) . '
-                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">$image</a>
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . "\">$image</a>
+						{$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <{$this->post_title_tag} class=\"gvnews_post_title\"><a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></{$this->post_title_tag}>

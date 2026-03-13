@@ -21,6 +21,7 @@ const Block16Columns = props => {
         listIconType = 'icon',
         listIconSVG = '',
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -28,7 +29,7 @@ const Block16Columns = props => {
     const RenderBlock1 = props=>{
         return (
             <article className="gvnews_post gvnews_pl_lg_5">
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain}/>
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                 <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr}/>
             </article>
         );

@@ -20,6 +20,7 @@ const Block26Columns = props => {
         readmoreButtonDisabled = false,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -36,7 +37,7 @@ const Block26Columns = props => {
                     </PostTitleTag>}
                     {attr.option && <MetaModule3 {...props}/>}
                 </div>
-                <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
+                <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                 <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
                 <div className="gvnews_meta_footer">
                     {<MetaAuthor {...props} />}

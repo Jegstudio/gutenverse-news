@@ -231,6 +231,7 @@ export const getDefaultImageLoad = (imageLoad = '', isNormal = false) => {
     } = window['GutenverseConfig'];
     return defImageLoad[defaultImageLoad];
 }
+const gvnewsEssentialsActive = (window.GutenverseConfig && window.GutenverseConfig.gvnewsEssentials);
 
 
 export {
@@ -245,4 +246,5 @@ export {
     getModuleOptions,
     gutenverseProActive,
     getImageSizeDetail,
+    gvnewsEssentialsActive,
 };

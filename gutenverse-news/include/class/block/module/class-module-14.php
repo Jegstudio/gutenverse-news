@@ -40,12 +40,14 @@ class Module_14 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
-		$post_id   = $post->ID;
-		$permalink = esc_url( get_the_permalink( $post ) );
+		$post_id      = $post->ID;
+		$permalink    = esc_url( get_the_permalink( $post ) );
+		$overlay_icon = $this->get_overlay_icon( $post_id );
 
-		$content = '<div class="gvnews_thumb">
+		$content = '<div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         ' . gvnews_edit_post( $post_id ) . "
                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post_id,$image_size)}</a>
+						{$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_category\">

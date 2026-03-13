@@ -53,6 +53,7 @@ class Module_26 extends Module_View_Abstract {
 					</div>";
 
 		$icon_comment = Svg_Icons::render_svg_icon( 'far fa-comment' );
+		$overlay_icon = $this->get_overlay_icon( $post_id );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_lg_9', $post_id ) . ">
                     <header class=\"gvnews_postblock_heading\">
@@ -60,9 +61,10 @@ class Module_26 extends Module_View_Abstract {
                         <{$this->post_title_tag} class=\"gvnews_post_title\"><a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a></{$this->post_title_tag}>
                         {$post_meta}
                     </header>
-                    <div class=\"gvnews_thumb\"> 
+                    <div class=\"gvnews_thumb{$overlay_icon['with_overlay_icon']}\"> 
                         " . gvnews_edit_post( $post_id ) . "
                         <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$thumbnail}</a> 
+						{$overlay_icon['overlay_icon']}
                     </div>
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_excerpt\">
