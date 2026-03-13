@@ -47,7 +47,7 @@ class Hero_12 extends Hero_View_Abstract {
 			$image            = $this->get_thumbnail( $post_id, 'gvnews-featured-750' );
 
 			return '<article ' . gvnews_post_class( "gvnews_post gvnews_hero_item_{$index}", $post_id ) . '>
-                        <div class="gvnews_block_container"' . $overlay_icon['with_overlay_icon'] . '">
+                        <div class="gvnews_block_container' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
 							{$overlay_icon['overlay_icon']}
                             <div class=\"gvnews_thumb\">

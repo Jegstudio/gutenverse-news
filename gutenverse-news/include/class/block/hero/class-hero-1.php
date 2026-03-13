@@ -37,8 +37,8 @@ class Hero_1 extends Hero_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $index, $type = 1 ) {
-		$is_type_1    = 1 === $type;
-		$index        = $is_type_1 ? $index : $index + 1;
+		$is_type_1 = 1 === $type;
+		$index     = $is_type_1 ? $index : $index + 1;
 
 		if ( $post ) {
 			$post_id      = $post->ID;
@@ -48,7 +48,7 @@ class Hero_1 extends Hero_View_Abstract {
 			$image        = $index > 2 ? 'gvnews-350x250' : 'gvnews-featured-750';
 
 			return '<article ' . gvnews_post_class( "gvnews_post gvnews_hero_item_{$index}", $post_id ) . '>
-                        <div class="gvnews_block_container"' . $overlay_icon['with_overlay_icon'] . '">
+                        <div class="gvnews_block_container' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
 							{$overlay_icon['overlay_icon']}
                             <div class=\"gvnews_thumb\">

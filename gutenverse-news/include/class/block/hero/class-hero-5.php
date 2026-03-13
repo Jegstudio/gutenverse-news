@@ -48,7 +48,7 @@ class Hero_5 extends Hero_View_Abstract {
 			$meta      = $is_type_1 ? $this->post_meta_3( $post ) : $this->post_meta_2( $post );
 
 			return '<article ' . gvnews_post_class( "gvnews_post gvnews_hero_item_{$index}", $post_id ) . '>
-                        <div class="gvnews_block_container"' . $overlay_icon['with_overlay_icon'] . '">
+                        <div class="gvnews_block_container' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
 							{$overlay_icon['overlay_icon']}
                             <div class=\"gvnews_thumb\">
