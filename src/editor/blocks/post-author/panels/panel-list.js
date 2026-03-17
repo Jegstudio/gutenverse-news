@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, LockedProPanel, responsivePanel } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, LockedProPanel, responsivePanel, LockedNewsAuthorDonation } from 'gutenverse-core/controls';
 import { biographyStylePanel } from './panel-biography-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import layoutPanel from './panel-layout';
@@ -73,9 +73,10 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: () => {
                 return [{
-                    component: LockedProPanel,
+                    component: LockedNewsAuthorDonation,
                 }];
             },
+            pro: true,
             tabRole: TabStyle,
         },
         {
