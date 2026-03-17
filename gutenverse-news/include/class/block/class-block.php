@@ -191,6 +191,20 @@ class Block extends Grab {
 			'video_format_icon'            => isset( $this->attributes['videoFormatIcon'] ) ? $this->attributes['videoFormatIcon'] : '',
 			'video_format_icon_type'       => isset( $this->attributes['videoFormatIconType'] ) ? $this->attributes['videoFormatIconType'] : 'icon',
 			'video_format_icon_svg'        => isset( $this->attributes['videoFormatIconSVG'] ) ? $this->attributes['videoFormatIconSVG'] : '',
+			'adsPosition'                  => isset( $this->attributes['adsPosition'] ) ? $this->attributes['adsPosition'] : '1',
+			'adsRandomPosition'            => isset( $this->attributes['adsRandomPosition'] ) ? $this->attributes['adsRandomPosition'] : false,
+			'adsType'                      => isset( $this->attributes['adsType'] ) ? $this->attributes['adsType'] : 'disable',
+			'adsGooglePubID'               => isset( $this->attributes['adsGooglePubID'] ) ? $this->attributes['adsGooglePubID'] : '',
+			'adsGoogleSlotID'              => isset( $this->attributes['adsGoogleSlotID'] ) ? $this->attributes['adsGoogleSlotID'] : '',
+			'adsScript'                    => isset( $this->attributes['adsScript'] ) ? $this->attributes['adsScript'] : '',
+			'adsImage'                     => isset( $this->attributes['adsImage'] ) ? $this->attributes['adsImage'] : array(),
+			'adsImageEncoded'              => isset( $this->attributes['adsImage'] ) ? json_encode( $this->attributes['adsImage'] ) : '',
+			'adsImageLink'                 => isset( $this->attributes['adsImageLink'] ) ? $this->attributes['adsImageLink'] : '',
+			'adsImageOpenNewTab'           => isset( $this->attributes['adsImageOpenNewTab'] ) ? $this->attributes['adsImageOpenNewTab'] : false,
+			'adsShowText'                  => isset( $this->attributes['adsShowText'] ) ? $this->attributes['adsShowText'] : false,
+			'adsImageAlternateText'        => isset( $this->attributes['adsImageAlternateText'] ) ? $this->attributes['adsImageAlternateText'] : '',
+			'adsImageAriaLabel'            => isset( $this->attributes['adsImageAriaLabel'] ) ? $this->attributes['adsImageAriaLabel'] : '',
+			'adsImageFetchPriorityHigh'    => isset( $this->attributes['adsImageFetchPriorityHigh'] ) ? $this->attributes['adsImageFetchPriorityHigh'] : false,
 		);
 		$sccontent  = '';
 

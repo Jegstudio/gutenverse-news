@@ -775,6 +775,62 @@
         },
         "overlayIconColorMain": {
             "type": "object"
+        },
+        "adsPosition": {
+            "type": "string",
+            "default": "1"
+        },
+        "adsRandomPosition": {
+            "type": "boolean",
+            "default": false
+        },
+        "adsType": {
+            "type": "string",
+            "default": "disable"
+        },
+        "adsGooglePubID": {
+            "type": "string",
+            "default": ""
+        },
+        "adsGoogleSlotID": {
+            "type": "string",
+            "default": ""
+        },
+        "adsScript": {
+            "type": "string",
+            "default": ""
+        },
+        "adsImage": {
+            "type": "object",
+            "default": {}
+        },
+        "adsImageLink": {
+            "type": "string",
+            "default": ""
+        },
+        "adsImageNormalLoad": {
+            "type": "string",
+            "default": ""
+        },
+        "adsImageOpenNewTab": {
+            "type": "boolean",
+            "default": false
+        },
+        "adsShowText": {
+            "type": "boolean",
+            "default": false
+        },
+        "adsImageAlternateText": {
+            "type": "string",
+            "default": ""
+        },
+        "adsImageAriaLabel": {
+            "type": "string",
+            "default": ""
+        },
+        "adsImageFetchPriorityHigh": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

@@ -22,6 +22,18 @@ use GUTENVERSE\NEWS\Util\Svg_Icons;
 abstract class Module_View_Abstract extends Block_View_Abstract {
 
 	/**
+	 * Method post in different way
+	 *
+	 * @param string $wrapper wrapper.
+	 * @param string $type alternative type.
+	 * @param array  $attr alternative type.
+	 *
+	 * @return string
+	 */
+	public function render_post_alternative( $wrapper, $type, $attr ) {
+		return apply_filters( "gvnews_{$type}_module_post", '', $wrapper, $attr );
+	}
+	/**
 	 * Method render_module
 	 *
 	 * @param array  $attr         attribute attribute.
@@ -616,6 +628,19 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'meta_settings'                => $meta_settings,
 							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 							'post_title_html_tag'          => isset( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ) : 'h3',
+							'adsPosition'                  => isset( $_REQUEST['data']['attribute']['adsPosition'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsPosition'] ) ) : '1',
+							'adsRandomPosition'            => isset( $_REQUEST['data']['attribute']['adsRandomPosition'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsRandomPosition'] ) ) : false,
+							'adsType'                      => isset( $_REQUEST['data']['attribute']['adsType'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsType'] ) ) : 'disable',
+							'adsGooglePubID'               => isset( $_REQUEST['data']['attribute']['adsGooglePubID'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsGooglePubID'] ) ) : '',
+							'adsGoogleSlotID'              => isset( $_REQUEST['data']['attribute']['adsGoogleSlotID'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsGoogleSlotID'] ) ) : '',
+							'adsScript'                    => isset( $_REQUEST['data']['attribute']['adsScript'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsScript'] ) ) : '',
+							'adsImage'                     => isset( $_REQUEST['data']['attribute']['adsImageEncoded'] ) ? json_decode( sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageEncoded'] ) ), true ) : array(),
+							'adsImageLink'                 => isset( $_REQUEST['data']['attribute']['adsImageLink'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageLink'] ) ) : '',
+							'adsImageOpenNewTab'           => isset( $_REQUEST['data']['attribute']['adsImageOpenNewTab'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageOpenNewTab'] ) ) : false,
+							'adsShowText'                  => isset( $_REQUEST['data']['attribute']['adsShowText'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsShowText'] ) ) : false,
+							'adsImageAlternateText'        => isset( $_REQUEST['data']['attribute']['adsImageAlternateText'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageAlternateText'] ) ) : '',
+							'adsImageAriaLabel'            => isset( $_REQUEST['data']['attribute']['adsImageAriaLabel'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageAriaLabel'] ) ) : '',
+							'adsImageFetchPriorityHigh'    => isset( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ) : false,
 						),
 				);
 

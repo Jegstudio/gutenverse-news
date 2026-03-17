@@ -113,6 +113,21 @@ const BlockModule = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        adsType = 'disable',
+        adsPosition = 1,
+        adsRandomPosition = false,
+        adsGooglePubID = '',
+        adsGoogleSlotID = '',
+        adsImage = {},
+        adsImageLink = '',
+        adsImageAlternateText = '',
+        adsImageFetchPriorityHigh = false,
+        adsImageNormalLoad = '',
+        adsImageOpenNewTab = false,
+        adsImageAriaLabel = '',
+        adsScriptCode = '',
+        adsShortcode = '',
+        adsShowText = false,
     } = attributes;
 
     const overlayIconData = {
@@ -405,6 +420,23 @@ const BlockModule = compose(
                 rowItemGap,
                 postTitleHtmlTag,
                 overlayIconData,
+                adsSettings: {
+                    adsType,
+                    adsPosition,
+                    adsRandomPosition,
+                    adsGooglePubID,
+                    adsGoogleSlotID,
+                    adsImage,
+                    adsImageLink,
+                    adsImageAlternateText,
+                    adsImageFetchPriorityHigh,
+                    adsImageNormalLoad,
+                    adsImageOpenNewTab,
+                    adsImageAriaLabel,
+                    adsScriptCode,
+                    adsShortcode,
+                    adsShowText,
+                }
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -446,6 +478,21 @@ const BlockModule = compose(
         videoFormatIcon,
         videoFormatIconType,
         videoFormatIconSVG,
+        adsType,
+        adsPosition,
+        adsRandomPosition,
+        adsGooglePubID,
+        adsGoogleSlotID,
+        adsImage,
+        adsImageLink,
+        adsImageAlternateText,
+        adsImageFetchPriorityHigh,
+        adsImageNormalLoad,
+        adsImageOpenNewTab,
+        adsImageAriaLabel,
+        adsScriptCode,
+        adsShortcode,
+        adsShowText,
     ]);
 
     const blockProps = useBlockProps({

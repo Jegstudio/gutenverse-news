@@ -33,6 +33,13 @@ class Module_3 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post, $image_size ) {
+		if ( 'ads' === $post ) {
+			return $this->render_post_alternative(
+				'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2' ) . '>{replace_content}</article>',
+				'ads',
+				$this->attribute
+			);
+		}
 		add_filter( 'gvnews_use_custom_image', array( $this, 'main_custom_image_size' ) );
 		$is_feed   = gvnews_get_rss_post_id( $post->ID );
 		$thumbnail = $is_feed ? $post->get_thumbnail( $image_size ) : $this->get_thumbnail( $post->ID, $image_size );
@@ -192,6 +199,7 @@ class Module_3 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_column( $result, $column_class ) {
+		$result = apply_filters( 'gvnews_module_query_results', $result, $this->attribute );
 		switch ( $column_class ) {
 			case 'gvnews_col_1o3':
 				$content = $this->build_column_1( $result );
@@ -215,6 +223,7 @@ class Module_3 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_column_alt( $result, $column_class ) {
+		$result = apply_filters( 'gvnews_module_query_results', $result, $this->attribute );
 		switch ( $column_class ) {
 			case 'gvnews_col_1o3':
 				$content = $this->build_column_1_alt( $result );

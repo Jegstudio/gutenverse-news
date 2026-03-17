@@ -1,6 +1,7 @@
 import ThumbModule from '../../part/thumbnail';
 import { ContentModule } from '../../part/post';
 import { MetaModule1 } from '../../part/meta';
+import { applyFilters } from '@wordpress/hooks';
 
 const Block25Columns = props => {
     const {
@@ -18,7 +19,8 @@ const Block25Columns = props => {
         readmoreButtonDisabled = false,
         imageSizeMain,
         postTitleHtmlTag = 'h3',
-        overlayIconData = {}
+        overlayIconData = {},
+        adsSettings = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -34,8 +36,8 @@ const Block25Columns = props => {
                     </PostTitleTag>}
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
-                <div className='bottom-content'>
-                    <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
+                <div className="bottom-content">
+                    <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} overlayIconData={overlayIconData} />
                     <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr} />
                 </div>
             </article>
@@ -65,7 +67,12 @@ const Block25Columns = props => {
 
         return (
             <div className="gvnews_posts gvnews_load_more_flag">
-                {rows}
+                {applyFilters(
+                    'gutenverse-news.modules.render',
+                    rows,
+                    ({ children }) => <article className="gvnews_post">{children}</article>,
+                    adsSettings
+                )}
             </div>
         );
     };

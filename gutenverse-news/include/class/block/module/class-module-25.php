@@ -32,6 +32,13 @@ class Module_25 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type_1( $post, $image_size ) {
+		if ( 'ads' === $post ) {
+			return $this->render_post_alternative(
+				'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_2' ) . '>{replace_content}</article>',
+				'ads',
+				$this->attribute
+			);
+		}
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
 		$thumbnail = $this->get_thumbnail( $post_id, $image_size );
@@ -71,6 +78,7 @@ class Module_25 extends Module_View_Abstract {
 	 */
 	public function build_column( $results, $is_ajax ) {
 		$first_block = '';
+		$results     = apply_filters( 'gvnews_module_query_results', $results, $this->attribute );
 		$size        = count( $results );
 
 		for ( $i = 0; $i < $size; $i++ ) {
