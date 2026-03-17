@@ -199,10 +199,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -491,13 +497,13 @@
             "type": "object"
         },
         "overlayOpacityMain": {
-            "type": "object"
+            "type": "string"
         },
         "overlayBackgroundSecond": {
             "type": "object"
         },
         "overlayOpacitySecond": {
-            "type": "object"
+            "type": "string"
         },
         "contentAlign": {
             "type": "object",
@@ -713,8 +719,75 @@
         "fetchPriorityHigh": {
             "type": "boolean"
         },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
         "showMetaReview": {
             "type": "boolean"
+        },
+        "showPostFormatIcon": {
+            "type": "boolean"
+        },
+        "galleryFormatIcon": {
+            "type": "string",
+            "default": "far fa-image"
+        },
+        "galleryFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "galleryFormatIconSVG": {
+            "type": "string"
+        },
+        "videoFormatIcon": {
+            "type": "string",
+            "default": "far fa-play-circle"
+        },
+        "videoFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "videoFormatIconSVG": {
+            "type": "string"
+        },
+        "overlayIconSizeMain": {
+            "type": "object"
+        },
+        "overlayIconColorMain": {
+            "type": "object"
+        },
+        "overlayIconSizeSecond": {
+            "type": "object"
+        },
+        "overlayIconColorSecond": {
+            "type": "object"
         }
     },
     "supports": {
@@ -728,5 +801,8 @@
     ],
     "style": [
         "gutenverse-news-frontend-blocks-style"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }

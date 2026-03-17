@@ -30,13 +30,22 @@ const HeroArchiveComponent = (props) => {
         showMetaDate = true,
         showMetaAuthor = true,
         postTitleHtmlTag = 'h2',
-        gutenversePreviewBlock = ''
+        gutenversePreviewBlock = '',
+        showMetaReview = false,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
     const metaSettings = {
         meta_show: showMeta,
         meta_date: showMetaDate,
-        meta_author: showMetaAuthor && (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13')
+        meta_author: showMetaAuthor && (heroType === '1' || heroType === '2' || heroType === '3' || heroType === '4' || heroType === '5' || heroType === '6' || heroType === '13'),
+        meta_review: showMetaReview,
     };
 
     const moduleOption = {
@@ -44,6 +53,20 @@ const HeroArchiveComponent = (props) => {
         option: {
             ...defaultOptions.option,
             ...metaSettings
+        }
+    };
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
         }
     };
 
@@ -127,6 +150,7 @@ const HeroArchiveComponent = (props) => {
                     custom: dateFormatCustom,
                 },
                 postTitleHtmlTag,
+                overlayIconData
             };
             const rows = [];
             for (let i = 0; i < sliderItem; i++) {
@@ -176,7 +200,15 @@ const HeroArchiveComponent = (props) => {
         showMetaDate,
         showMetaAuthor,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        showMetaReview,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     useEffect(() => {

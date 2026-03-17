@@ -17,6 +17,7 @@ const Block23Columns = props => {
         metaDateFormatCustom,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -25,7 +26,7 @@ const Block23Columns = props => {
         const {post, attr} = props;
         return (
             <>
-                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain} />
+                <ThumbModule size={715} cat={true} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                 <div className="gvnews_postblock_content">
                     {post.title && <PostTitle post={post} attr={attr}/>}
                     {post.excerpt && <PostExcerpt post={post} attr={attr}/>}

@@ -112,6 +112,13 @@ abstract class Block_View_Abstract {
 	protected $block_options;
 
 	/**
+	 * Post format icon
+	 *
+	 * @var array
+	 */
+	private $post_format_icon = array();
+
+	/**
 	 * Get instance
 	 *
 	 * @return ModuleViewAbstract
@@ -124,6 +131,31 @@ abstract class Block_View_Abstract {
 		}
 
 		return self::$instance[ $class ];
+	}
+
+	/**
+	 * Get overlay icon
+	 *
+	 * @param int $post_id post id.
+	 *
+	 * @return string
+	 */
+	public function get_overlay_icon( $post_id ) {
+		if ( ! $this->post_format_icon['show'] ) {
+			return array(
+				'with_overlay_icon' => '',
+				'overlay_icon'      => '',
+			);
+		}
+		return apply_filters(
+			'gvnews_thumb_overlay_icon',
+			array(
+				'with_overlay_icon' => '',
+				'overlay_icon'      => '',
+			),
+			$post_id,
+			$this->post_format_icon
+		);
 	}
 
 	/**
@@ -519,7 +551,7 @@ abstract class Block_View_Abstract {
 			$output .= '<div class="gvnews_post_meta type-1">';
 			$output .= apply_filters( 'gvnews_meta', '', $post, $this->meta_settings );
 			$output .= $this->get_meta_author( $post, $avatar );
-			$output .= $this->get_meta_date( $post );
+			$output .= $this->get_meta_date( $post, $feed );
 			$output .= ! $feed ? $this->get_meta_comment( $post ) : '';
 			$output .= '</div>';
 
@@ -579,6 +611,21 @@ abstract class Block_View_Abstract {
 			$meta_settings
 		);
 		$this->post_title_tag = $attr['post_title_html_tag'];
+
+		$this->post_format_icon = array(
+			'show'    => isset( $attr['show_post_format_icon'] ) ? $attr['show_post_format_icon'] : false,
+			'gallery' => array(
+				'icon' => isset( $attr['gallery_format_icon'] ) ? $attr['gallery_format_icon'] : '',
+				'type' => isset( $attr['gallery_format_icon_type'] ) ? $attr['gallery_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['gallery_format_icon_svg'] ) ? $attr['gallery_format_icon_svg'] : '',
+			),
+			'video'   => array(
+				'icon' => isset( $attr['video_format_icon'] ) ? $attr['video_format_icon'] : '',
+				'type' => isset( $attr['video_format_icon_type'] ) ? $attr['video_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['video_format_icon_svg'] ) ? $attr['video_format_icon_svg'] : '',
+			),
+		);
+
 		return $this->attribute;
 	}
 
@@ -597,6 +644,20 @@ abstract class Block_View_Abstract {
 			$meta_settings
 		);
 		$this->post_title_tag = $attr['post_title_html_tag'];
+
+		$this->post_format_icon = array(
+			'show'    => isset( $attr['show_post_format_icon'] ) ? $attr['show_post_format_icon'] : false,
+			'gallery' => array(
+				'icon' => isset( $attr['gallery_format_icon'] ) ? $attr['gallery_format_icon'] : '',
+				'type' => isset( $attr['gallery_format_icon_type'] ) ? $attr['gallery_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['gallery_format_icon_svg'] ) ? $attr['gallery_format_icon_svg'] : '',
+			),
+			'video'   => array(
+				'icon' => isset( $attr['video_format_icon'] ) ? $attr['video_format_icon'] : '',
+				'type' => isset( $attr['video_format_icon_type'] ) ? $attr['video_format_icon_type'] : 'icon',
+				'svg'  => isset( $attr['video_format_icon_svg'] ) ? $attr['video_format_icon_svg'] : '',
+			),
+		);
 	}
 
 	/**
@@ -631,12 +692,16 @@ abstract class Block_View_Abstract {
 	 * Get post meta date.
 	 *
 	 * @param object $post WP Post objcet.
+	 * @param boolean $feed is feed.
 	 * @return string
 	 */
-	public function get_meta_date( $post ) {
+	public function get_meta_date( $post, $feed = false ) {
+		$custom_date = $feed ? $post->publish_date : null;
+		$permalink   = $feed ? $post->permalink : get_the_permalink( $post );
+
 		if ( $this->meta_settings['meta_date'] && 'false' !== $this->meta_settings['meta_date'] ) {
 			$icon = Svg_Icons::render_svg_icon( 'far fa-clock' );
-			return '<div class="gvnews_meta_date"><a aria-label="' . esc_attr( $this->format_date( $post ) ) . '" href="' . esc_url( get_the_permalink( $post ) ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post ) ) . '</a></div>';
+			return '<div class="gvnews_meta_date"><a aria-label="' . esc_attr( $this->format_date( $post, $custom_date ) ) . '" href="' . esc_url( $permalink ) . '">' . $icon . ' ' . esc_attr( $this->format_date( $post, $custom_date ) ) . '</a></div>';
 		}
 		return '';
 	}

@@ -43,10 +43,16 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "boxShadow": {
             "type": "object"
         },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadowHover": {
@@ -127,13 +133,23 @@
         "likeIconColor": {
             "type": "object"
         },
+        "likeIconColorHover": {
+            "type": "object"
+        },
         "likeCountTypography": {
             "type": "object"
         },
         "likeCountColor": {
             "type": "object"
         },
+        "likeCountColorHover": {
+            "type": "object"
+        },
         "likeBackground": {
+            "type":"object",
+            "default": {}
+        },
+        "likeBackgroundHover": {
             "type":"object",
             "default": {}
         },
@@ -143,6 +159,52 @@
         "likePadding": {
             "type": "object"
         },
+		"likeIcon": {
+			"type": "string",
+			"default": "far fa-thumbs-up",
+			"copyStyle": true
+		},
+		"likeIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"likeIconSVG": {
+			"type": "string"
+		},
+		"likeIconActive": {
+			"type": "string",
+			"default": "fas fa-thumbs-up",
+			"copyStyle": true
+		},
+		"likeIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"likeIconActiveSVG": {
+			"type": "string"
+		},
+        "likeBorder": {
+            "type": "object"
+        },
+		"likeBorderResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "likeBorder",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "likeBorderHover": {
+            "type": "object"
+        },
+		"likeBorderHoverResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "likeBorderHover",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
 
         "dislikeIconSize": {
             "type":"object"
@@ -153,10 +215,16 @@
         "dislikeIconColor": {
             "type": "object"
         },
+        "dislikeIconColorHover": {
+            "type": "object"
+        },
         "dislikeCountTypography": {
             "type": "object"
         },
         "dislikeCountColor": {
+            "type": "object"
+        },
+        "dislikeCountColorHover": {
             "type": "object"
         },
         "dislikeMargin": {
@@ -169,11 +237,110 @@
             "type":"object",
             "default": {}
         },
-        "bookmarkIconSize": {
-            "type":"object"
+        "dislikeBackgroundHover": {
+            "type":"object",
+            "default": {}
         },
+		"dislikeIcon": {
+			"type": "string",
+			"default": "far fa-thumbs-down",
+			"copyStyle": true
+		},
+		"dislikeIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"dislikeIconSVG": {
+			"type": "string"
+		},
+		"dislikeIconActive": {
+			"type": "string",
+			"default": "fas fa-thumbs-down",
+			"copyStyle": true
+		},
+		"dislikeIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"dislikeIconActiveSVG": {
+			"type": "string"
+		},
+        "dislikeBorder": {
+            "type": "object"
+        },
+		"dislikeBorderResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "dislikeBorder",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+        "dislikeBorderHover": {
+            "type": "object"
+        },
+		"dislikeBorderHoverResponsive": {
+			"type": "object",
+			"migrate": {
+				"attr": "dislikeBorderHover",
+				"type": "border"
+			},
+			"copyStyle": true
+		},
+
+        "bookmarkIconSize": {
+            "type": "object",
+            "default": {
+                "Desktop": {
+                    "point": 20,
+                    "unit": "px"
+                }
+            }
+        },
+		"bookmarkIcon": {
+			"type": "string",
+			"default": "far fa-bookmark",
+			"copyStyle": true
+		},
+		"bookmarkIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"bookmarkIconSVG": {
+			"type": "string"
+		},
+		"bookmarkIconActive": {
+			"type": "string",
+			"default": "fas fa-bookmark",
+			"copyStyle": true
+		},
+		"bookmarkIconActiveType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"bookmarkIconActiveSVG": {
+			"type": "string"
+		},
         "bookmarkIconColor": {
-            "type":"object"
+            "type": "object"
+        },
+        "bookmarkIconColorHover": {
+            "type": "object"
+        },
+        "bookmarkIconBgColor": {
+            "type": "object"
+        },
+        "bookmarkIconBgColorHover": {
+            "type": "object"
+        },
+        "bookmarkIconPadding": {
+            "type": "object"
+        },
+        "bookmarkIconBorder": {
+            "type": "object"
+        },
+        "bookmarkIconBorderHover": {
+            "type": "object"
         },
         "wordsPerMinute": {
             "type":"number",
@@ -275,6 +442,60 @@
         "datePrefixColor": {
             "type": "object"
         },
+        "positioningType": {
+            "type": "object"
+        },
+        "positioningWidth": {
+            "type": "object"
+        },
+        "positioningAlign": {
+            "type": "object"
+        },
+        "positioningLocation": {
+            "type": "string"
+        },
+        "positioningLeft": {
+            "type": "object"
+        },
+        "positioningRight": {
+            "type": "object"
+        },
+        "positioningTop": {
+            "type": "object"
+        },
+        "positioningBottom": {
+            "type": "object"
+        },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
         "likeDislikeGap": {
             "type": "object"
         },
@@ -359,7 +580,8 @@
     "style": [
         "gutenverse-news-frontend-post-meta-style"
     ],
-    "usesContext": [
+	"usesContext": [
+		"gutenverse/flexDirection",
         "postId"
-    ]
+	]
 }

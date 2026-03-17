@@ -31,11 +31,12 @@ class Hero_14 extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'border'  => array(
+				'border'      => array(
 					'normal' => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
 					'hover'  => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost:hover",
 				),
-				'advance' => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
+				'advance'     => ".gvnews-block-wrapper .{$this->element_id} .gvnews_heropost",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 
 			)
 		);
@@ -271,6 +272,45 @@ class Hero_14 extends StyleAbstract {
 					},
 					'value'          => $this->attrs['secondTitleColorHover'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconColor'] ) ) {
+					$this->inject_style(
+						array(
+							'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon",
+							'property'       => function ( $value ) {
+								return $this->handle_color( $value, 'color' );
+							},
+							'value'          => $this->attrs['overlayIconColor'],
+							'device_control' => false,
+						)
+					);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_postbig .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeMain'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeSecond'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_postsmall .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSizeSecond'],
+					'device_control' => true,
 				)
 			);
 		}

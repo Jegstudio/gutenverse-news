@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { sliderPanel } from './panel-slider';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -70,6 +70,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: responsivePanel,
                 tabRole: TabStyle
+            },
+            {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
             },
             {
                 title: __('Spacing', 'gutenverse-news'),

@@ -35,7 +35,7 @@ class Slider extends StyleAbstract {
 					'normal' => ".{$this->element_id} .gvnews_slider_wrapper",
 					'hover'  => ".{$this->element_id} .gvnews_slider_wrapper:hover",
 				),
-				'positioning' => null,
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => null,
 				'advance'     => ".{$this->element_id} .gvnews_slider_wrapper",
 			)

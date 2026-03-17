@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from "./positioning-style";
 import { applyFilters } from '@wordpress/hooks';
 
 const getHeroStyle = (elementId, attributes) => {
@@ -8,6 +9,9 @@ const getHeroStyle = (elementId, attributes) => {
         showMeta = true,
         showMetaAuthor = true,
     } = attributes;
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+    data = overlayStyle(elementId, attributes, data);
+
 
     if (isNotEmpty(attributes['heroMargin'])) {
         data.push({
@@ -622,5 +626,84 @@ const noContentStyle = (elementId, attributes, data) => {
     return data;
 
 };
+
+
+const overlayStyle = (elementId, attributes, data) => {
+
+    isNotEmpty(attributes['overlayIconColor']) && data.push({
+        'type': 'color',
+        'id': 'overlayIconColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeMain',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeSecond']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeSecond',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorSecond']) ?
+            attributes['selectorSecond'] + ' .gvnews-thumb-overlay-icon' :
+            '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1) .gvnews-thumb-overlay-icon'}`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeThrid']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeThrid',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} ${isNotEmpty(attributes['selectorThrid']) ?
+            attributes['selectorThrid'] + ' .gvnews-thumb-overlay-icon' :
+            '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_2) .gvnews-thumb-overlay-icon'}`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+    
+    return data;
+}
 
 export default getHeroStyle;

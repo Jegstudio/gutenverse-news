@@ -100,7 +100,13 @@ const AdditionalFeatures = (props) => {
         {
             id: 'author_donation',
             title: 'Author Donation',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Adding donation button on single post, to give donation to your post author',
+            icon: <IconPaywallSVG />,
+        },
+        {
+            id: 'ads',
+            title: 'Ads',
+            desc: 'Adding donation button on single post, to give donation to your post author',
             icon: <IconPaywallSVG />,
         },
     ];

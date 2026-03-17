@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from "./positioning-style";
 import { applyFilters } from '@wordpress/hooks';
 
 const getBlockStyle = (
@@ -1266,6 +1267,8 @@ const getBlockStyle = (
     data = titleContainerStyle(elementId, attributes, data);
     data = postItemStyle(elementId, attributes, data);
     data = noContentStyle(elementId, attributes, data);
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
     if (!skipped.includes('cardStyle')) {
         data = cardStyleModule(elementId, attributes, data, mainThumbnailClass, secondThumbnailClass);
     }
@@ -1803,6 +1806,39 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClas
                 }
             ]
         });
+
+        isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+            'type': 'plain',
+            'id': 'overlayIconSizeMain',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+            'properties': [
+                {
+                    'name': 'font-size',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        isNotEmpty(attributes['overlayIconColorMain']) && data.push({
+            'type': 'color',
+            'id': 'overlayIconColorMain',
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+        });
+
     }
 
     if (isNotEmpty(secondThumbnailClass)) {
@@ -1837,6 +1873,37 @@ const thumbnailAndOverlayStyle = (elementId, attributes, data, mainThumbnailClas
                     'valueType': 'direct'
                 }
             ]
+        });
+
+        isNotEmpty(attributes['overlayIconSizeSecond']) && data.push({
+            'type': 'plain',
+            'id': 'overlayIconSizeSecond',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
+            'properties': [
+                {
+                    'name': 'font-size',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['overlayIconColorSecond']) && data.push({
+            'type': 'color',
+            'id': 'overlayIconColorSecond',
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock .${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
         });
     }
 

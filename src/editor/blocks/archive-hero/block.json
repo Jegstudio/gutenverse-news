@@ -99,7 +99,13 @@
         "border": {
             "type": "object"
         },
+        "borderResponsive": {
+            "type": "object"
+        },
         "borderHover": {
+            "type": "object"
+        },
+        "borderHoverResponsive": {
             "type": "object"
         },
         "boxShadow": {
@@ -278,8 +284,75 @@
             "type": "object",
             "copyStyle": true
         },
+        "flexAlignSelf": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexCustomOrder": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSize": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeGrow": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
+        "flexSizeShrink": {
+            "type": "object",
+            "default": {},
+            "copyStyle": true
+        },
         "showMetaReview": {
             "type": "boolean"
+        },
+        "showPostFormatIcon": {
+            "type": "boolean"
+        },
+        "galleryFormatIcon": {
+            "type": "string",
+            "default": "far fa-image"
+        },
+        "galleryFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "galleryFormatIconSVG": {
+            "type": "string"
+        },
+        "videoFormatIcon": {
+            "type": "string",
+            "default": "far fa-play-circle"
+        },
+        "videoFormatIconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "videoFormatIconSVG": {
+            "type": "string"
+        },
+        "overlayIconSizeMain": {
+            "type": "object"
+        },
+        "overlayIconSizeSecond": {
+            "type": "object"
+        },
+        "overlayIconSizeThrid": {
+            "type": "object"
+        },
+        "overlayIconColor": {
+            "type": "object"
         }
     },
     "supports": {
@@ -295,5 +368,8 @@
     ],
     "viewScript": [
         "gutenverse-news-frontend-hero-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
     ]
 }

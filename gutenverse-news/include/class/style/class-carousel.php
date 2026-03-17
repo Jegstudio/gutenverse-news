@@ -34,9 +34,9 @@ class Carousel extends StyleAbstract {
 					'normal' => ".{$this->element_id} .gvnews_postblock",
 					'hover'  => ".{$this->element_id} .gvnews_postblock:hover",
 				),
-				'positioning' => null,
 				'animation'   => null,
 				'advance'     => ".{$this->element_id} .gvnews_postblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}
@@ -52,10 +52,33 @@ class Carousel extends StyleAbstract {
 
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
+			$this->generate_overlay_hover_style();
 		}
 		$this->generate_thumbnail_style();
 		$this->no_content_style();
 		do_action( 'gvnews_carousel_style', $this );
+	}
+
+	/**
+	 * Generate overlay hover style for carousel 2.
+	 */
+	private function generate_overlay_hover_style() {
+		if ( isset( $this->attrs['overlayBackgroundHover'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before", $this->attrs['overlayBackgroundHover'] );
+		}
+
+		if ( isset( $this->attrs['overlayOpacityHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock_carousel_2 .tns-item:hover .gvnews_thumb:before",
+					'property'       => function ( $value ) {
+						return "opacity: {$value};";
+					},
+					'value'          => $this->attrs['overlayOpacityHover'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 
@@ -400,6 +423,24 @@ class Carousel extends StyleAbstract {
 					'skip_device'    => isset( $this->attrs['border'] ) ? array(
 						'Desktop',
 					) : null,
+				)
+			);
+		}
+
+		$overlay_selector = 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ? ".{$this->element_id} .gvnews_postblock_carousel_2 .gvnews_thumb:before" : ".{$this->element_id} .gvnews_postblock .gvnews_post .gvnews_thumb .gvnews-thumb-overlay";
+		if ( isset( $this->attrs['overlayBackground'] ) ) {
+			$this->handle_background( $overlay_selector, $this->attrs['overlayBackground'] );
+		}
+
+		if ( isset( $this->attrs['overlayOpacity'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $overlay_selector,
+					'property'       => function ( $value ) {
+						return "opacity: {$value};";
+					},
+					'value'          => $this->attrs['overlayOpacity'],
+					'device_control' => true,
 				)
 			);
 		}

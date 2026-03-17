@@ -24,6 +24,7 @@ const Block33Columns = (props) => {
         gutterWidth,
         rowItemGap,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
 
     const shuffleInstance = useRef(null);
@@ -69,7 +70,7 @@ const Block33Columns = (props) => {
         return (
             <article className={`gvnews_post ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
                 <div className="box_wrap">
-                    <ThumbModule size={1000} cat={true} post={post} imageSize={imageSizeMain} onLoad={onImageLoad} />
+                    <ThumbModule size={1000} cat={true} post={post} imageSize={imageSizeMain} onLoad={onImageLoad}  overlayIconData={overlayIconData} />
                     <ContentModule cat={false} meta={2} title={true} read={!readmoreButtonDisabled} excerpt={true} post={post} attr={attr} />
                 </div>
             </article>

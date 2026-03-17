@@ -1,6 +1,6 @@
-
 import { MetaModule2, MetaModule3, MetaCategory } from '../meta';
-
+import { getOverlayIconData } from '../thumbnail';
+import { renderIcon } from 'gutenverse-core/helper';
 /**
  *
  * @param { index, margin, post, attr } param0
@@ -8,10 +8,20 @@ import { MetaModule2, MetaModule3, MetaCategory } from '../meta';
  */
 const HeroElement = ({ index, margin, post, attr, onlyDate = false }) => {
     const TitleTag = attr?.postTitleHtmlTag || 'h2';
+    const overlayIconData = attr?.overlayIconData || {};
+    const { format = 'standard' } = post;
+
+    const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
+
     return (
         <article className={`gvnews_post format-${post.format} gvnews_hero_item_${index + 1}`}>
-            <div className="gvnews_block_container">
-                <span className="gvnews_postformat_icon"></span>
+            <div className={`gvnews_block_container ${withIcon ? 'with-overlay-icon' : ''}`}>
+                {
+                    withIcon &&
+                    <div className="gvnews-thumb-overlay-icon">
+                        {renderIcon(icon, type, svg)}
+                    </div>
+                }
                 <div className="gvnews_thumb">
                     <a>
                         <div className="thumbnail-container thumbnail-background">

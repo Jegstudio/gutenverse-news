@@ -45,14 +45,15 @@ class Post_Meta extends Style_Abstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".guten-element.{$this->element_id}.gvnews-post-meta",
 					'hover'  => ".guten-element.{$this->element_id}.gvnews-post-meta:hover",
 				),
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}
@@ -570,9 +571,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} a.thumb.like svg",
+					'selector'       => "{$base_selector} a.thumb.like svg, {$base_selector} a.thumb.like i",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
+						return $this->handle_unit_point( $value, 'font-size' ) . $this->handle_unit_point( $value, 'height' );
 					},
 					'value'          => $this->attrs['likeIconSize'],
 					'device_control' => true,
@@ -583,7 +584,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} a.thumb.like svg",
+					'selector'       => "{$base_selector} a.thumb.like svg, {$base_selector} a.thumb.like i",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'margin-right' );
 					},
@@ -596,11 +597,24 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['likeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like svg",
+					'selector'       => "{$base_selector} .thumb.like svg, {$base_selector} .thumb.like svg *, {$base_selector} .thumb.like i",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'fill' );
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['likeIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like:hover svg, {$base_selector} .thumb.like:hover svg *, {$base_selector} .thumb.like:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['likeIconColorHover'],
 					'device_control' => false,
 				)
 			);
@@ -630,18 +644,54 @@ class Post_Meta extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['likeCountColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['likeCountColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['likeBackground'] ) ) {
 			$this->inject_style(
 				array(
 					'selector'       => "{$base_selector} .thumb.like",
-					'property'       => function ( $value ) use ( $base_selector ) {
-						return $this->handle_background(
-							"{$base_selector} .thumb.like",
-							$value,
-						);
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
 					},
 					'value'          => $this->attrs['likeBackground'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['likeBackgroundHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['likeBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.like",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['likeBorder'],
+					'device_control' => true,
 				)
 			);
 		}
@@ -676,9 +726,9 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.dislike svg",
+					'selector'       => "{$base_selector} .thumb.dislike svg, {$base_selector} .thumb.dislike i",
 					'property'       => function ( $value ) {
-						return $this->handle_unit_point( $value, 'width' );
+						return $this->handle_unit_point( $value, 'height' ) . $this->handle_unit_point( $value, 'font-size' );
 					},
 					'value'          => $this->attrs['dislikeIconSize'],
 					'device_control' => true,
@@ -689,7 +739,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.dislike svg",
+					'selector'       => "{$base_selector} .thumb.dislike svg, {$base_selector} .thumb.dislike i",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'margin-right' );
 					},
@@ -702,11 +752,24 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like svg",
+					'selector'       => "{$base_selector} .thumb.dislike svg, {$base_selector} .thumb.dislike svg *, {$base_selector} .thumb.dislike i",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'fill' );
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['dislikeIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike:hover svg, {$base_selector} .thumb.dislike:hover svg *, {$base_selector} .thumb.dislike:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dislikeIconColorHover'],
 					'device_control' => false,
 				)
 			);
@@ -726,7 +789,7 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikeCountColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like span",
+					'selector'       => "{$base_selector} .thumb.dislike span",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -736,17 +799,40 @@ class Post_Meta extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['dislikeCountColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike:hover span",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['dislikeCountColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['dislikeBackground'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like",
-					'property'       => function ( $value ) use ( $base_selector ) {
-						return $this->handle_background(
-							"{$base_selector} .thumb.like",
-							$value,
-						);
+					'selector'       => "{$base_selector} .thumb.dislike",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
 					},
 					'value'          => $this->attrs['dislikeBackground'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeBackgroundHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['dislikeBackgroundHover'],
 					'device_control' => false,
 				)
 			);
@@ -768,11 +854,37 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['dislikePadding'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => "{$base_selector} .thumb.like",
+					'selector'       => "{$base_selector} .thumb.dislike",
 					'property'       => function ( $value ) {
 						return $this->handle_dimension( $value, 'padding' );
 					},
 					'value'          => $this->attrs['dislikePadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['dislikeBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['dislikeBorderHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$base_selector} .thumb.dislike:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['dislikeBorderHover'],
 					'device_control' => true,
 				)
 			);
@@ -785,14 +897,14 @@ class Post_Meta extends Style_Abstract {
 	 * @return void
 	 */
 	private function bookmark_style() {
-		$base_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container svg";
+		$container_selector = ".guten-element.{$this->element_id}.gvnews-post-meta > div .meta-items.gvnews-bookmark a.bookmark-icon-container";	
 
 		if ( isset( $this->attrs['bookmarkIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector,
+					'selector'       => "{$container_selector} svg, {$container_selector} i",
 					'property'       => function ( $value ) {
-						return "width: {$value}px;";
+						return $this->handle_unit_point( $value, 'height' ) . $this->handle_unit_point( $value, 'font-size' );
 					},
 					'value'          => $this->attrs['bookmarkIconSize'],
 					'device_control' => true,
@@ -803,12 +915,90 @@ class Post_Meta extends Style_Abstract {
 		if ( isset( $this->attrs['bookmarkIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => $base_selector,
+					'selector'       => "{$container_selector} svg, {$container_selector} svg *, {$container_selector} i",
 					'property'       => function ( $value ) {
-						return $this->handle_color( $value, 'color' );
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['bookmarkIconColor'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover svg, {$container_selector}:hover svg *, {$container_selector}:hover i",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'fill' ) . $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['bookmarkIconColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBgColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['bookmarkIconBgColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBgColorHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['bookmarkIconBgColorHover'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['bookmarkIconPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['bookmarkIconBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['bookmarkIconBorderHover'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "{$container_selector}:hover",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['bookmarkIconBorderHover'],
+					'device_control' => true,
 				)
 			);
 		}

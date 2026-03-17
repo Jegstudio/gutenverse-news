@@ -45,14 +45,15 @@ class Post_Author extends Style_Abstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".{$this->element_id}.gvnews-post-author",
 					'hover'  => ".{$this->element_id}.gvnews-post-author:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id}.gvnews-post-author",
 					'hover'  => ".{$this->element_id}.gvnews-post-author:hover",
 				),
+				'positioning' => ".{$this->element_id}.gvnews-post-author",
 			)
 		);
 	}

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel, LockedProPanel, conditionPanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, responsivePanel, LockedProPanel, conditionPanel, positioningPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
@@ -9,6 +9,7 @@ import { carouselDesignPanel } from '../../../control-panel/panel-design';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { carouselThumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
 export const panelList = () => {
 
@@ -52,6 +53,13 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => carouselThumbnailOverlayPanel(props, true),
+
+                tabRole: TabStyle,
+            },
+            {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
@@ -85,6 +93,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
+            },
+            {
                 title: __('Spacing', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => advancePanel({
@@ -98,6 +112,6 @@ export const panelList = () => {
                 pro: true
             },
         ],
-        ['postTitleHtmlTag', 'fetchPriorityHigh']
+        ['postTitleHtmlTag', 'fetchPriorityHigh', 'responsiveItem']
     );
 };

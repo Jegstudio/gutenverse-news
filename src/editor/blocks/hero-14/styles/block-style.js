@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -7,6 +8,10 @@ const getBlockStyle = (elementId, attributes) => {
         showMeta = true,
         showMetaAuthor = true,
     } = attributes;
+
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+    data = overlayStyle(elementId, attributes, data);
+
 
     /**
      * Panel Border
@@ -732,5 +737,61 @@ const noContentStyle = (elementId, attributes, data) => {
     return data;
 
 };
+
+const overlayStyle = (elementId, attributes, data) => {
+
+    isNotEmpty(attributes['overlayIconColor']) && data.push({
+        'type': 'color',
+        'id': 'overlayIconColor',
+        'selector': `.${elementId} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeMain',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_postbig .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSizeSecond']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSizeSecond',
+        'responsive': true,
+        'selector': `.${elementId} .gvnews_postblock .gvnews_postsmall .gvnews_post .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
+    return data;
+}
+
 
 export default getBlockStyle;

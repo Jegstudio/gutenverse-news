@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, conditionPanel, LockedProPanel, responsivePanel } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, LockedProPanel, responsivePanel } from 'gutenverse-core/controls';
 import { biographyStylePanel } from './panel-biography-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import layoutPanel from './panel-layout';
@@ -23,6 +23,12 @@ export const panelList = () => {
             title: __('Display', 'gutenverse-news'),
             initialOpen: false,
             panelArray: responsivePanel,
+            tabRole: TabSetting
+        },
+        {
+            title: __('Positioning', 'gutenverse'),
+            initialOpen: false,
+            panelArray: positioningPanel,
             tabRole: TabSetting
         },
         {

@@ -18,6 +18,7 @@ const Block25Columns = props => {
         readmoreButtonDisabled = false,
         imageSizeMain,
         postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
@@ -34,7 +35,7 @@ const Block25Columns = props => {
                     {attr.option && <MetaModule1 {...props} />}
                 </div>
                 <div className='bottom-content'>
-                    <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain} />
+                    <ThumbModule size={500} cat={false} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
                     <ContentModule title={false} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr} />
                 </div>
             </article>

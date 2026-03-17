@@ -22,23 +22,24 @@ const Block1Columns = props => {
         listIcon = '',
         listIconType = 'icon',
         listIconSVG = '',
-        postTitleHtmlTag = 'h3'
+        postTitleHtmlTag = 'h3',
+        overlayIconData = {}
     } = props;
 
-    const RenderBlock1 = props=>{
+    const RenderBlock1 = props => {
         return (
             <>
-                <ThumbModule size={500} cat={true} post={props.post} imageSize={props.imageSize} />
+                <ThumbModule size={500} cat={true} post={props.post} imageSize={props.imageSize} overlayIconData={overlayIconData} />
                 <ContentModule title={true} meta={1} excerpt={true} read={!readmoreButtonDisabled} post={props.post} attr={props.attr} />
             </>
         );
     };
 
-    const RenderBlock2 = props=>{
+    const RenderBlock2 = props => {
         const { index = 'x', isLoadMoreAnimation = false } = props;
         return (
             <article className={`gvnews_post gvnews_pl_sm ${isLoadMoreAnimation  ? `gvnews_ajax_loaded anim_${index}` : ''} ${!props?.post?.thumbnail?.url ? 'no_thumbnail' : ''}`}>
-                <ThumbModule size={715} cat={false} post={props.post} imageSize={props.imageSize}/>
+                <ThumbModule size={715} cat={false} post={props.post} imageSize={props.imageSize} overlayIconData={overlayIconData} />
                 <ContentModule title={true} meta={2} excerpt={false} read={false} post={props.post} attr={props.attr}/>
             </article>
         );

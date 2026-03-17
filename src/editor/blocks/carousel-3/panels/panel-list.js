@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, LockedProPanel, responsivePanel, borderPanel, conditionPanel } from 'gutenverse-core/controls';
+import { advancePanel, LockedProPanel, responsivePanel, borderPanel, conditionPanel, positioningPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
@@ -8,6 +8,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { carouselThumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
 export const panelList = () => {
 
@@ -51,6 +52,12 @@ export const panelList = () => {
                 tabRole: TabStyle,
             },
             {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: carouselThumbnailOverlayPanel,
+                tabRole: TabStyle,
+            },
+            {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => metaStylePanel(props, ['date'], true, 'disable'),
@@ -78,6 +85,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
+            },
+            {
                 title: __('Spacing', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => advancePanel({
@@ -91,6 +104,6 @@ export const panelList = () => {
                 pro: true
             },
         ],
-        ['postTitleHtmlTag', 'fetchPriorityHigh']
+        ['postTitleHtmlTag', 'fetchPriorityHigh', 'responsiveItem']
     );
 };

@@ -21,6 +21,8 @@ import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 import { getImageSizeDetail } from '../../utils/helper';
+import { getOverlayIconData } from '../../part/thumbnail'
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -69,8 +71,30 @@ const Carousel3Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag = 'h3',
         gutenversePreviewBlock = '',
+        responsiveItem,
         showMetaReview,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
+
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const metaSettings = {
         meta_show: showMeta,
@@ -93,6 +117,15 @@ const Carousel3Block = compose(
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
+        }
+
+        if (!responsiveItem) {
+            setAttributes({
+                ...attributes,
+                responsiveItem: {
+                    Desktop: ncolumn,
+                }
+            });
         }
     }, [elementRef]);
 
@@ -134,21 +167,43 @@ const Carousel3Block = compose(
 
     const initSlider = () => {
         if (blockRef.current) {
-            window.gvnewsCarouselSlider(blockRef.current);
+            if ((columnWidth !== '12')) {
+                window.gvnewsCarouselSlider(blockRef.current);
+            } else {
+                window.gvnewsCarouselSlider(blockRef.current,
+                    {
+                        useResponsive: true,
+                        desktopItem: responsiveItem?.Desktop ? responsiveItem?.Desktop : ncolumn,
+                        tabletItem: responsiveItem?.Tablet ? responsiveItem?.Tablet : 2,
+                        mobileItem: responsiveItem?.Mobile ? responsiveItem?.Mobile : 1
+                    });
+
+            }
         }
     };
 
     function RenderContent(props) {
         const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 350, dimension: 1000 });
+
+        const { format = 'standard' } = props.post;
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
+
         return (
             <div className="gvnews_post_wrapper">
-                <article className={`gvnews_post format-${props.post.format}`}>
-                    <div className="gvnews_thumb">
+                <article className={`gvnews_post format-${format}`}>
+                    <div className={`gvnews_thumb ${withIcon ? 'with-overlay-icon' : ''}`}>
                         <a>
                             <div className={`thumbnail-container size-${imageSizeMain.dimension}`}>
                                 <img src={props.post.thumbnail.url} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />
+                                <div className="gvnews-thumb-overlay"></div>
                             </div>
                         </a>
+                        {
+                            withIcon &&
+                            <div className="gvnews-thumb-overlay-icon">
+                                {renderIcon(icon, type, svg)}
+                            </div>
+                        }
                     </div>
                     <div className="overlay_content">
                         <div className="gvnews_postblock_content">
@@ -354,7 +409,15 @@ const Carousel3Block = compose(
         renderedImageSizeMain,
         postTitleHtmlTag,
         gutenversePreviewBlock,
+        responsiveItem,
         showMetaReview,
+        showPostFormatIcon,
+        galleryFormatIcon,
+        galleryFormatIconType,
+        galleryFormatIconSVG,
+        videoFormatIcon,
+        videoFormatIconType,
+        videoFormatIconSVG,
     ]);
 
     useEffect(() => {

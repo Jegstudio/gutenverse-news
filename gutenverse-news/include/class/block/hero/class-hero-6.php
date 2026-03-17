@@ -41,8 +41,9 @@ class Hero_6 extends Hero_View_Abstract {
 		$index     = $is_type_1 ? $index : $index + 1;
 
 		if ( $post ) {
-			$post_id   = $post->ID;
-			$permalink = esc_url( get_the_permalink( $post ) );
+			$post_id      = $post->ID;
+			$overlay_icon = $this->get_overlay_icon( $post_id );
+			$permalink    = esc_url( get_the_permalink( $post ) );
 			$image     = 'full';
 			$meta      = $this->post_meta_2( $post );
 			if ( $is_type_1 ) {
@@ -51,9 +52,9 @@ class Hero_6 extends Hero_View_Abstract {
 			}
 
 			return '<article ' . gvnews_post_class( "gvnews_post gvnews_hero_item_{$index}", $post_id ) . '>
-                        <div class="gvnews_block_container">
+                        <div class="gvnews_block_container' . $overlay_icon['with_overlay_icon'] . '">
                             ' . gvnews_edit_post( $post_id ) . "
-                            <span class=\"gvnews_postformat_icon\"></span>
+							{$overlay_icon['overlay_icon']}
                             <div class=\"gvnews_thumb\">
                                 <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">{$this->get_thumbnail($post->ID,$image)}</a>
                             </div>

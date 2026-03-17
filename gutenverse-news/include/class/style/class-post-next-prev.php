@@ -62,7 +62,7 @@ class Post_Next_Prev extends Style_Abstract {
 					'normal' => $this->base_selector,
 					'hover'  => "{$this->base_selector}:hover",
 				),
-				'positioning' => null,
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => null,
 				'advance'     => $this->base_selector,
 				'mask'        => null,

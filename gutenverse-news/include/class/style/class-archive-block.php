@@ -41,15 +41,16 @@ class Archive_Block extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
 					'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
 				),
-				'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'advance'     => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 
 			)
 		);
@@ -253,6 +254,31 @@ class Archive_Block extends StyleAbstract {
 					)
 				);
 			}
+		}
+
+		if ( isset( $this->attrs['overlayIconSizeMain'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon",
+						'property'       => function ( $value ) {
+							return "font-size: {$value}px;";
+						},
+						'value'          => $this->attrs['overlayIconSizeMain'],
+						'device_control' => true,
+					)
+				);
+		}
+		if ( isset( $this->attrs['overlayIconColorMain'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['overlayIconColorMain'],
+					'device_control' => false,
+				)
+			);
 		}
 	}
 

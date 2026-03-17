@@ -37,6 +37,38 @@ export const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
                 }
             ]
         });
+
+        isNotEmpty(attributes['overlayIconSizeMain']) && data.push({
+            'type': 'plain',
+            'id': 'overlayIconSizeMain',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock ${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+            'properties': [
+                {
+                    'name': 'font-size',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+
+        isNotEmpty(attributes['overlayIconColorMain']) && data.push({
+            'type': 'color',
+            'id': 'overlayIconColorMain',
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock ${mainThumbnailClass} .gvnews-thumb-overlay-icon`,
+        });
     }
     // Panel Thumbnail second
     if (isNotEmpty(secondThumbnailClass)) {
@@ -71,6 +103,38 @@ export const thumbnailAndOverlayStyle = (elementId, attributes, data) => {
                     'valueType': 'direct'
                 }
             ]
+        });
+
+
+        isNotEmpty(attributes['overlayIconSizeSecond']) && data.push({
+            'type': 'plain',
+            'id': 'overlayIconSizeSecond',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews_postblock ${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
+            'properties': [
+                {
+                    'name': 'font-size',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct'
+                        }
+                    }
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['overlayIconColorSecond']) && data.push({
+            'type': 'color',
+            'id': 'overlayIconColorSecond',
+            'properties': [
+                {
+                    'name': 'color',
+                    'valueType': 'direct',
+                }
+            ],
+            'selector': `.${elementId} .gvnews_postblock ${secondThumbnailClass} .gvnews-thumb-overlay-icon`,
         });
     }
     return data;
