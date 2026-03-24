@@ -53,7 +53,7 @@ const AdditionalFeatures = (props) => {
     };
 
     const showUpgradePopup = (id, value) => {
-        setPopupActive(true);
+        setInstallPopup({ active: true, url: '' });
     };
 
     const featureList = [
