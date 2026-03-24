@@ -6,8 +6,7 @@ import { applyFilters } from '@wordpress/hooks';
 import { useState } from '@wordpress/element';
 
 const AdditionalFeatures = (props) => {
-    const { settingValues, updateSettingValues, saving, setPopupActive, setInstallPopup, setToast, setShowToast } = props;
-
+    const { settingValues, updateSettingValues, saving, setPopupActive, setInstallPopup, setToast, setShowToast, setSaving } = props;
     const [features, setFeatures] = useState(settingValues.features || []);
     const updateValue = (id, value) => {
         let newFeatures = [...features];
@@ -25,6 +24,7 @@ const AdditionalFeatures = (props) => {
     };
 
     const updateFeatures = () => {
+        setSaving(true);
         apiFetch({
             path: '/gvnews-essential/v1/activateFeature',
             method: 'POST',
@@ -32,6 +32,7 @@ const AdditionalFeatures = (props) => {
                 features: features
             }
         }).then((response) => {
+            setSaving(false);
             setToast({
                 status: 'success',
                 message: __('Settings Saved Successfully!', '--gctd--')
@@ -40,6 +41,7 @@ const AdditionalFeatures = (props) => {
             setTimeout(() => setShowToast(false), 2000);
             updateSettingValues(features);
         }).catch((err) => {
+            setSaving(false);
             console.log(err);
             setToast({
                 status: 'failed',
