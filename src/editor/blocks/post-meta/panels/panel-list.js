@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, LockedProPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel, LockedNewsLikeDislikeButton, LockedNewsReadingTime, LockedNewsBookmark, LockedNewsAuthorDonation } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { applyFilters } from '@wordpress/hooks';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -57,9 +57,10 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: () => {
                     return [{
-                        component: LockedProPanel,
+                        component: LockedNewsLikeDislikeButton,
                     }];
                 },
+                pro: true,
                 tabRole: TabStyle,
             },
             {
@@ -68,9 +69,10 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: () => {
                     return [{
-                        component: LockedProPanel,
+                        component: LockedNewsReadingTime,
                     }];
                 },
+                pro: true,
                 tabRole: TabStyle,
             },
             {
@@ -79,9 +81,10 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: () => {
                     return [{
-                        component: LockedProPanel,
+                        component: LockedNewsBookmark,
                     }];
                 },
+                pro: true,
                 tabRole: TabStyle,
             },
             {
@@ -90,9 +93,10 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: () => {
                     return [{
-                        component: LockedProPanel,
+                        component: LockedNewsAuthorDonation,
                     }];
                 },
+                pro: true,
                 tabRole: TabStyle,
             },
         ]
