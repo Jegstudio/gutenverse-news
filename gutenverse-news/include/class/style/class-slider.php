@@ -1158,6 +1158,19 @@ class Slider extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['hideImageNavigation'] ) && $this->attrs['hideImageNavigation'] ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slider_thumbnail_wrapper",
+					'property'       => function ( $value ) {
+						return 'display:none;';
+					},
+					'value'          => $this->attrs['hideImageNavigation'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 
 	/**
