@@ -9,14 +9,14 @@ import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import HeaderModule from '../../part/header';
 import { ContentModule } from '../../part/post';
-import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
+import { ModuleSkeleton } from '../../part/placeholder';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import getBlockStyle from './styles/block-style';
 import ThumbModule from '../../part/thumbnail';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { useSelect } from '@wordpress/data';
-import { getParentColumnWidth } from '../../utils/helper';
+import { getImageSizeDetail, getParentColumnWidth } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { BlockPanelController } from 'gutenverse-core/controls';
@@ -59,6 +59,8 @@ const RssBlock = compose(
         metaDateType,
         headerHtmlTag,
         postTitleHtmlTag,
+        renderedImageSizeMain,
+        gutenversePreviewBlock = '',
     } = attributes;
 
     const elementRef = useRef(null);
@@ -72,7 +74,7 @@ const RssBlock = compose(
     );
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+    useDynamicStyle(elementId, attributes, (elementId, attributes) => getBlockStyle(elementId, attributes, 'gvnews_pl_md_2'), elementRef);
 
     useEffect(() => {
         if (elementRef) {
@@ -163,9 +165,19 @@ const RssBlock = compose(
     ]);
 
     useEffect(() => {
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         if (postData.length) {
             const attr = {
-                option: moduleOption,
+                option: {
+                    ...moduleOption,
+                    option: {
+                        ...moduleOption?.option,
+                        meta_comment: false, //hide comment in rss block
+                    }
+                },
                 length: excerptLength,
                 elipsis: excerptEllipsis,
                 date: {
@@ -176,21 +188,22 @@ const RssBlock = compose(
                 titleTag: postTitleHtmlTag
             };
             const limit = postData.length < numberPost ? postData.length : numberPost;
+            const imageSizeMain = getImageSizeDetail(renderedImageSizeMain, { height: 350, width: 250, dimension: 715 });
             const content = postData.map((post, index) => {
                 if (index < limit) {
-                    return <article key={index} className="gvnews_post gvnews_pl_md_2">
-                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} />}
+                    return <article key={index} className={`gvnews_post gvnews_pl_md_2 ${post?.thumbnail?.url ? '' : 'no_thumbnail'}`}>
+                        {post?.thumbnail?.url && <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain} />}
                         <ContentModule title={true} meta={1} excerpt={true} read={false} post={post} attr={attr} />
                     </article>;
                 }
             });
-            setBlock(<div className={`gvnews_postblock_3 gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3 gvnews_postblock ${enableBoxed ? 'gvnews_pb_boxed' : ''}`}>
-                <div className="gvnews_posts gvnews_block_container">
-                    <div className="gvnews_post">
-                        {content}
-                    </div>
+            setBlock(
+                <div className="gvnews_posts">
+                    {content}
                 </div>
-            </div>);
+            );
+        } else {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
         }
     }, [
         postData,
@@ -200,7 +213,9 @@ const RssBlock = compose(
         excerptEllipsis,
         metaDateFormat,
         metaDateFormatCustom,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        renderedImageSizeMain,
+        gutenversePreviewBlock
     ]);
     const isDeprecated = !gutenverseProActive;
 
@@ -221,10 +236,14 @@ const RssBlock = compose(
             </>
         )}
         <div  {...blockProps}>
-            <div className={`gvnews-raw-wrapper gvnews-editor ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} `}>
-                <HeaderModule {...headerData} />
-                {block ? block : <ModuleSkeleton />}
-                {isDeprecated && <UpgradeProOverlay />}
+            <div className="gvnews-raw-wrapper gvnews-editor">
+                <div className={`gvnews_postblock_3 ${enableBoxed ? 'gvnews_pb_boxed' : ''} ${enableBoxed && enableBoxShadow ? 'gvnews_pb_boxed_shadow' : ''} ${isDeprecated ? 'gvnews-deprecated-block ' : ''} gvnews_postblock gvnews_module_hook gvnews_col_${blockWidth == 4 ? '1' : blockWidth == 8 ? '2' : '3'}o3`}>
+                    <HeaderModule {...headerData} />
+                    <div className="gvnews_block_container">
+                        {block ? block : <ModuleSkeleton />}
+                        {isDeprecated && <UpgradeProOverlay />}
+                    </div>
+                </div>
             </div>
         </div>
     </>;

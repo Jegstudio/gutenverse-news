@@ -99,6 +99,7 @@ class Archive extends Grab {
 				'meta_comment' => isset( $this->attributes['showMetaComment'] ) ? $this->attributes['showMetaComment'] : true,
 			),
 			'post_title_html_tag'   => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+			'fetch_priority_high'   => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 		);
 
 		$attr = $this->archive_title( $attr );
@@ -207,6 +208,7 @@ class Archive extends Grab {
 				$attr['normal_image'] = 'false';
 			}
 			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2';
+			$attr['fetch_priority_high'] = isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false;
 		}
 		return $attr;
 	}
@@ -230,6 +232,7 @@ class Archive extends Grab {
 			$attr['gutter_width']        = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
 			$attr['image_load']          = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
 			$attr['post_title_html_tag'] = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3';
+			$attr['fetch_priority_high'] = isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false;
 		}
 		return $attr;
 	}

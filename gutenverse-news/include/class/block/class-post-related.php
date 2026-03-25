@@ -90,6 +90,8 @@ class Post_Related extends Post_Guten {
 			'image_load'                   => Options::get_instance()->get_image_load( 'normal', false, $this->attributes['imageLoad'] ),
 			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
 			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+			'fetch_priority_high'          => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
+
 		);
 
 		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );

@@ -1,4 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from "./positioning-style";
 
 const getHeroStyle = (elementId, attributes) => {
     let data = [];
@@ -7,6 +8,8 @@ const getHeroStyle = (elementId, attributes) => {
         showMeta = true,
         showMetaAuthor = true,
     } = attributes;
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
 
     if (isNotEmpty(attributes['heroMargin'])) {
         data.push({

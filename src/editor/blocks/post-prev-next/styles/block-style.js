@@ -1,5 +1,6 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -11,6 +12,7 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundSelector: baseSelector,
         backgroundHoverSelector: `${baseSelector}:hover`
     });
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
 
     /**
      * Panel Style

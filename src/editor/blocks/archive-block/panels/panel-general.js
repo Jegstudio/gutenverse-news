@@ -101,5 +101,12 @@ export const generalPanel = (props) => {
                 },
             ],
         },
+        {
+            id: 'fetchPriorityHigh',
+            show: (imageLoad === 'eager' || defaultImageLoad.value === 'eager'),
+            label: __('Fetch Priority High', 'gutenverse-news'),
+            description: __('Signals the browser to prioritize fetching this image. Use this only for the LCP (Largest Contentful Paint) element.', 'gutenverse-news'),
+            component: CheckboxControl,
+        },
     ];
 };

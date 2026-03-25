@@ -1,10 +1,13 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
 
     const { paginationMode, paginationAlign } = attributes;
     const isType3 = paginationMode === 'nav_3';
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
     /**
      * Panel Design
      */
@@ -468,145 +471,6 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
-    /**
-     * Panel Positioning
-     */
-    isNotEmpty(attributes['positioningType']) && data.push(
-        {
-            'type': 'positioning',
-            'id': 'positioningType',
-            'selector': `.${elementId} .gvnews_navigation`,
-            'skipDeviceType': 'first',
-            'attributeType': 'type',
-            'multiAttr': {
-                'positioningType': attributes['positioningType'],
-                'inBlock': attributes['inBlock']
-            }
-        },
-    );
-
-    isNotEmpty(attributes['positioningType']) && isNotEmpty(attributes['positioningWidth']) && data.push(
-        {
-            'type': 'positioning',
-            'id': 'positioningType',
-            'selector': `.${elementId} .gvnews_navigation`,
-            'skipDeviceType': 'second',
-            'attributeType': 'type',
-            'multiAttr': {
-                'positioningWidth': attributes['positioningWidth'],
-                'positioningType': attributes['positioningType'],
-                'inBlock': attributes['inBlock']
-            }
-        }
-    );
-
-    isNotEmpty(attributes['positioningWidth']) && isNotEmpty(attributes['positioningType']) && data.push({
-        'type': 'positioning',
-        'id': 'positioningWidth',
-        'selector': `.${elementId} .gvnews_navigation`,
-        'skipDeviceType': 'first',
-        'attributeType': 'width',
-        'multiAttr': {
-            'positioningWidth': attributes['positioningWidth'],
-            'positioningType': attributes['positioningType'],
-            'inBlock': attributes['inBlock']
-        }
-    });
-
-    isNotEmpty(attributes['positioningAlign']) && data.push(
-        {
-            'type': 'plain',
-            'id': 'positioningAlign',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'align-self',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_navigation`,
-        },
-        {
-            'type': 'positioning',
-            'id': 'positioningAlign',
-            'properties': [
-                {
-                    'name': 'vertical-align',
-                    'valueType': 'direct'
-                }
-            ],
-            'attributeType': 'align',
-            'selector': `.${elementId} .gvnews_navigation`,
-        }
-    );
-
-    isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'plain',
-        'id': 'positioningLocation',
-        'properties': [
-            {
-                'name': 'position',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.${elementId} .gvnews_navigation`,
-    });
-
-    isNotEmpty(attributes['positioningLeft']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningLeft',
-        'properties': [
-            {
-                'name': 'left',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_navigation`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningRight']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningRight',
-        'properties': [
-            {
-                'name': 'right',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_navigation`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningTop']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningTop',
-        'properties': [
-            {
-                'name': 'top',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_navigation`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningBottom']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningBottom',
-        'properties': [
-            {
-                'name': 'bottom',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_navigation`,
-        'attributeType': 'custom',
-    });
 
     /**
      * Panel Spacing

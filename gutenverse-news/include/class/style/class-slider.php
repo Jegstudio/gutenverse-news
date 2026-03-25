@@ -35,7 +35,7 @@ class Slider extends StyleAbstract {
 					'normal' => ".{$this->element_id} .gvnews_slider_wrapper",
 					'hover'  => ".{$this->element_id} .gvnews_slider_wrapper:hover",
 				),
-				'positioning' => null,
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => null,
 				'advance'     => ".{$this->element_id} .gvnews_slider_wrapper",
 			)
@@ -1390,34 +1390,34 @@ class Slider extends StyleAbstract {
 	 * Generate slider 3 style.
 	 */
 	// private function slider_3_style() {
-	// 	if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
-	// 		return;
-	// 	}
+	// if ( ! stristr( $this->attrs['gvnewsModule'], 'Slider_3' ) ) {
+	// return;
+	// }
 
-	// 	if ( isset( $this->attrs['gapItem'] ) ) {
-	// 		$this->inject_style(
-	// 			array(
-	// 				'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
-	// 				'property'       => function ( $value ) {
-	// 					return "padding-right: {$value}px !important;";
-	// 				},
-	// 				'value'          => $this->attrs['gapItem'],
-	// 				'device_control' => true,
-	// 			)
-	// 		);
-	// 	}
+	// if ( isset( $this->attrs['gapItem'] ) ) {
+	// $this->inject_style(
+	// array(
+	// 'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+	// 'property'       => function ( $value ) {
+	// return "padding-right: {$value}px !important;";
+	// },
+	// 'value'          => $this->attrs['gapItem'],
+	// 'device_control' => true,
+	// )
+	// );
+	// }
 
-	// 	if ( isset( $this->attrs['itemWidth'] ) ) {
-	// 		$this->inject_style(
-	// 			array(
-	// 				'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
-	// 				'property'       => function ( $value ) {
-	// 					return $this->handle_unit_point( $value, 'width', true );
-	// 				},
-	// 				'value'          => $this->attrs['itemWidth'],
-	// 				'device_control' => true,
-	// 			)
-	// 		);
-	// 	}
+	// if ( isset( $this->attrs['itemWidth'] ) ) {
+	// $this->inject_style(
+	// array(
+	// 'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+	// 'property'       => function ( $value ) {
+	// return $this->handle_unit_point( $value, 'width', true );
+	// },
+	// 'value'          => $this->attrs['itemWidth'],
+	// 'device_control' => true,
+	// )
+	// );
+	// }
 	// }
 }

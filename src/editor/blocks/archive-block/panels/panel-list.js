@@ -141,11 +141,8 @@ export const panelList = () => {
         {
             title: __('Positioning', 'gutenverse'),
             initialOpen: false,
-            panelArray: (props) => positioningPanel({
-                ...props,
-                selector: `.${props.elementId}`
-            }),
-            tabRole: TabStyle
+            panelArray: positioningPanel,
+            tabRole: TabSetting
         },
         {
             title: __('Animation Effects', 'gutenverse'),

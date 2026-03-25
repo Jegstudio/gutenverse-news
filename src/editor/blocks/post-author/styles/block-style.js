@@ -6,6 +6,7 @@ import avatarStyle from './panelStyle/avatarStyle';
 import nameStyle from './panelStyle/nameStyle';
 import iconStyle from './panelStyle/iconStyle';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getBlockStyle = (elementId, attributes) => {
     let data = [];
@@ -22,6 +23,8 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundSelector: `.guten-element.${elementId}.gvnews-post-author`,
         backgroundHoverSelector: `.guten-element.${elementId}.gvnews-post-author:hover`,
     });
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
 
     /**
      * General Panel

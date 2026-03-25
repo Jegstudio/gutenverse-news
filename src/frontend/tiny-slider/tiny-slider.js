@@ -1168,10 +1168,6 @@ var tns = (function () {
                 addClass(item, 'tns-item');
                 if (!item.id) { item.id = slideId + '-item' + i; }
                 if (!carousel && animateNormal) { addClass(item, animateNormal); }
-                setAttrs(item, {
-                    'aria-hidden': 'true',
-                    'tabindex': '-1'
-                });
             });
 
             // ## clone slides
@@ -2380,17 +2376,12 @@ var tns = (function () {
             forEach(slideItems, function (item, i) {
                 // show slides
                 if (i >= start && i <= end) {
-                    if (hasAttr(item, 'aria-hidden')) {
-                        removeAttrs(item, ['aria-hidden', 'tabindex']);
+                    if (!hasClass(item, slideActiveClass)) {
                         addClass(item, slideActiveClass);
                     }
                     // hide slides
                 } else {
-                    if (!hasAttr(item, 'aria-hidden')) {
-                        setAttrs(item, {
-                            'aria-hidden': 'true',
-                            'tabindex': '-1'
-                        });
+                    if (hasClass(item, slideActiveClass)) {
                         removeClass(item, slideActiveClass);
                     }
                 }
