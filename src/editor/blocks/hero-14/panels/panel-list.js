@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from './panel-herosetting';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -11,6 +11,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { styleHero } from './panel-hero-style';
 import { mainCategoryStylePanel, sideCategoryStylePanel } from './panel-category-label';
 import { mainContainerPanel } from "./panel-container";
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -71,6 +72,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Read More Button', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: readmoreStylePanel,
@@ -89,6 +96,12 @@ export const panelList = () => {
                 title: __('Display', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: responsivePanel,
+            },
+            {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
             },
             {
                 title: __('Spacing', 'gutenverse-news'),

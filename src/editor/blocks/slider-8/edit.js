@@ -71,7 +71,8 @@ const Slider8Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock = ''
     } = attributes;
 
     const metaSettings = {
@@ -307,6 +308,12 @@ const Slider8Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(
+                <div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>
+            );
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -325,7 +332,8 @@ const Slider8Block = compose(
         showMetaAuthor,
         nextButtonIcon,
         prevButtonIcon,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock
     ]);
 
     useEffect(() => {

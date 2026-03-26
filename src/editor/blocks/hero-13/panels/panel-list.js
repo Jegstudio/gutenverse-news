@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, conditionPanel, responsivePanel } from 'gutenverse-core/controls';
+import { advancePanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { filterHero } from '../../../control-panel/panel-herofilter';
 import { settingHero } from '../../../control-panel/panel-herosetting';
 import { designHero } from '../../../control-panel/panel-herodesign';
@@ -10,6 +10,7 @@ import { categoryStylePanel } from '../../../control-panel/panel-category-style'
 import { applyFilters } from '@wordpress/hooks';
 import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return applyFilters(
@@ -64,6 +65,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Border', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => borderPanel({
@@ -77,6 +84,12 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: responsivePanel,
                 tabRole: TabStyle
+            },
+            {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
             },
             {
                 title: __('Spacing', 'gutenverse-news'),

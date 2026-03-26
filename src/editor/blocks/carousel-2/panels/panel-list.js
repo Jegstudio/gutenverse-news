@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, borderPanel, responsivePanel, LockedProPanel, conditionPanel } from 'gutenverse-core/controls';
-import { filterPanel } from '../../../control-panel/panel-filter';;
+import { advancePanel, borderPanel, responsivePanel, LockedProPanel, conditionPanel, positioningPanel } from 'gutenverse-core/controls';
+import { filterPanel } from '../../../control-panel/panel-filter';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 import { metaPanel } from '../../../control-panel/panel-meta';
@@ -8,6 +8,7 @@ import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { carouselDesignPanel } from '../../../control-panel/panel-design';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
 
@@ -63,6 +64,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('No Content', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: noContentPanel,
+                tabRole: TabStyle
+            },
+            {
                 title: __('Border', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => borderPanel({
@@ -78,6 +85,12 @@ export const panelList = () => {
                 tabRole: TabStyle
             },
             {
+                title: __('Positioning', 'gutenverse'),
+                initialOpen: false,
+                panelArray: positioningPanel,
+                tabRole: TabSetting
+            },
+            {
                 title: __('Spacing', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => advancePanel({
@@ -91,6 +104,6 @@ export const panelList = () => {
                 pro: true
             },
         ],
-        ['postTitleHtmlTag']
+        ['postTitleHtmlTag', 'fetchPriorityHigh', 'responsiveItem']
     );
 };

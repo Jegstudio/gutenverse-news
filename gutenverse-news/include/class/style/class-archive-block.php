@@ -41,15 +41,16 @@ class Archive_Block extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'background' => array(
+				'background'  => array(
 					'normal' => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
 					'hover'  => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock:hover",
 				),
-				'border'     => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
 				),
-				'advance'    => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'advance'     => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 
 			)
 		);
@@ -164,25 +165,15 @@ class Archive_Block extends StyleAbstract {
 			if ( isset( $this->attrs['gutterWidth'] ) ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_postblock.gvnews_col_3o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post",
+						'selector'       => ".{$this->element_id}",
 						'property'       => function ( $value ) {
-							return "width : calc((100% - (2 * {$value}px)) / 3);";
+							return "--gvnews-gutter-width: {$value}px;";
 						},
 						'value'          => $this->attrs['gutterWidth'],
 						'device_control' => true,
 					)
 				);
 
-				$this->inject_style(
-					array(
-						'selector'       => ".{$this->element_id} .gvnews_postblock.gvnews_col_2o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post",
-						'property'       => function ( $value ) {
-							return "width : calc((100% - {$value}px) / 2);";
-						},
-						'value'          => $this->attrs['gutterWidth'],
-						'device_control' => true,
-					)
-				);
 			}
 		} elseif ( isset( $this->attrs['rowItemGap'] ) ) {
 				$this->inject_style(

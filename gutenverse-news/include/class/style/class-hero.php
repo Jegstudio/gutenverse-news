@@ -30,11 +30,12 @@ class Hero extends StyleAbstract {
 
 		$this->set_feature(
 			array(
-				'border'  => array(
+				'border'      => array(
 					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
 					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock:hover",
 				),
-				'advance' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+				'advance'     => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_heroblock",
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
 	}
@@ -47,6 +48,7 @@ class Hero extends StyleAbstract {
 		$this->hero_14_style();
 		$this->title_meta_style();
 		$this->generate_design_style();
+		$this->no_content_style();
 
 		if ( isset( $this->attrs['heroItemOverlay'] ) && ( ! stristr( $this->attrs['gvnewsModule'], 'Hero_14' ) ) ) {
 			foreach ( $this->attrs['heroItemOverlay'] as $key => $local_attr ) {
@@ -806,6 +808,62 @@ class Hero extends StyleAbstract {
 					},
 					'value'          => $this->attrs['excerptColor'],
 					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	private function no_content_style() {
+		if ( isset( $this->attrs['noContentTypography'] ) ) {
+			$this->inject_typography(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {},
+					'value'          => $this->attrs['noContentTypography'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['noContentColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentBackground'] ) ) {
+			$this->handle_background( ".{$this->element_id} .gvnews_empty_module", $this->attrs['noContentBackground'] );
+		}
+
+		if ( isset( $this->attrs['noContentBorder'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_border_responsive( $value );
+					},
+					'value'          => $this->attrs['noContentBorder'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['noContentPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['noContentPadding'],
+					'device_control' => true,
 				)
 			);
 		}

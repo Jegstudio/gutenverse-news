@@ -8,6 +8,7 @@ import { typePanel } from './panel-type';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { metaPanel } from './panel-meta';
 import { metaStylePanel } from './panel-meta-style';
+import { noContentPanel } from '../../../control-panel/panel-no-content';
 
 export const panelList = () => {
     return [
@@ -54,6 +55,12 @@ export const panelList = () => {
             tabRole: TabStyle
         },
         {
+            title: __('No Content', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: noContentPanel,
+            tabRole: TabStyle
+        },
+        {
             title: __('Background', 'gutenverse'),
             initialOpen: false,
             panelArray: (props) => backgroundPanel({
@@ -79,13 +86,13 @@ export const panelList = () => {
             title: __('Display', 'gutenverse'),
             initialOpen: false,
             panelArray: responsivePanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Positioning', 'gutenverse'),
             initialOpen: false,
             panelArray: positioningPanel,
-            tabRole: TabStyle
+            tabRole: TabSetting
         },
         {
             title: __('Animation Effects', 'gutenverse'),

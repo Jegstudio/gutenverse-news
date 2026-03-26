@@ -64,7 +64,9 @@ const Carousel1Block = compose(
         showMeta = true,
         showMetaDate = true,
         renderedImageSizeMain,
-        postTitleHtmlTag = 'h3'
+        postTitleHtmlTag = 'h3',
+        gutenversePreviewBlock = '',
+        responsiveItem
     } = attributes;
 
     const metaSettings = {
@@ -88,6 +90,14 @@ const Carousel1Block = compose(
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
+        }
+        if (!responsiveItem) {
+            setAttributes({
+                ...attributes,
+                responsiveItem: {
+                    Desktop: ncolumn,
+                }
+            });
         }
     }, [elementRef]);
 
@@ -188,7 +198,13 @@ const Carousel1Block = compose(
 
     const initSlider = () => {
         if (blockRef.current) {
-            window.gvnewsCarouselSlider(blockRef.current);
+            window.gvnewsCarouselSlider(blockRef.current,
+                {
+                    useResponsive: true,
+                    desktopItem: responsiveItem?.Desktop ? responsiveItem?.Desktop : ncolumn,
+                    tabletItem: responsiveItem?.Tablet ? responsiveItem?.Tablet : 2,
+                    mobileItem: responsiveItem?.Mobile ? responsiveItem?.Mobile : 1
+                });
         }
     };
 
@@ -296,6 +312,10 @@ const Carousel1Block = compose(
         if (firstRender.current) {
             return;
         }
+        if (gutenversePreviewBlock === 'noContent') {
+            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            return;
+        }
         resetblock();
     }, [
         excerptLength,
@@ -314,7 +334,9 @@ const Carousel1Block = compose(
         showMeta,
         showMetaDate,
         renderedImageSizeMain,
-        postTitleHtmlTag
+        postTitleHtmlTag,
+        gutenversePreviewBlock,
+        responsiveItem
     ]);
 
     useEffect(() => {

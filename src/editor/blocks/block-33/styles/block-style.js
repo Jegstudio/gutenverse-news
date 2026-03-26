@@ -27,12 +27,12 @@ const dedicatedStyle = (elementId, attributes) => {
     isNotEmpty(attributes['gutterWidth']) && data.push({
         'type': 'plain',
         'id': 'gutterWidth',
-        'selector': `.${elementId} .gvnews_postblock.gvnews_col_3o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post`,
+        'selector': `.${elementId}`,
         'properties': [
             {
-                'name': 'width',
+                'name': '--gvnews-gutter-width',
                 'valueType': 'pattern',
-                'pattern': 'calc((100% - (2 * {value}px)) /3)',
+                'pattern': '{value}px',
                 'patternValues': {
                     'value': {
                         'type': 'direct'
@@ -42,23 +42,6 @@ const dedicatedStyle = (elementId, attributes) => {
         ]
     });
 
-    isNotEmpty(attributes['gutterWidth']) && data.push({
-        'type': 'plain',
-        'id': 'gutterWidth',
-        'selector': `.${elementId} .gvnews_postblock.gvnews_col_2o3 .gvnews_posts_masonry .gvnews_posts.shuffle .gvnews_post`,
-        'properties': [
-            {
-                'name': 'width',
-                'valueType': 'pattern',
-                'pattern': 'calc((100% - {value}px) /2)',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct'
-                    }
-                }
-            },
-        ]
-    });
 
     return data;
 };

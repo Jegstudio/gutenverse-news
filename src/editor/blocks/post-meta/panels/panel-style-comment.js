@@ -11,56 +11,52 @@ export const styleCommentPanel = (props) => {
         setSwitcher,
     } = props;
 
-    let itemsShowed = false;
-    const showControl = () => {
-        const show =  (isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'comment')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'comment'));
-        if (show) {
-            itemsShowed = true;
-        }
-        return show;
-    };
+
+    if ((isNotEmpty(metaLeft) && metaLeft.some(item => item.value === 'comment')) || (isNotEmpty(metaRight) && metaRight.some(item => item.value === 'comment'))) {
+        return [
+            {
+                id: 'commentTypography',
+                label: __('Comment Typography', 'gutenverse-news'),
+                component: TypographyControl
+            },
+            {
+                id: '__colorHover',
+                component: SwitchControl,
+                options: [
+                    {
+                        value: 'normal',
+                        label: 'Normal'
+                    },
+                    {
+                        value: 'hover',
+                        label: 'Hover'
+                    }
+                ],
+                onChange: ({ __colorHover }) => setSwitcher({ ...switcher, color: __colorHover })
+            },
+            {
+                id: 'commentColor',
+                label: __('Comment Color', 'gutenverse-news'),
+                show: (!switcher.color || switcher.color === 'normal'),
+                component: ColorControl,
+            },
+            {
+                id: 'commentColorHover',
+                label: __('Comment Color', 'gutenverse-news'),
+                show: switcher.color === 'hover',
+                component: ColorControl,
+            },
+        ];
+    }
 
     return [
         {
-            id: 'commentTypography',
-            label: __('Comment Typography', 'gutenverse-news'),
-            show: showControl(),
-            component: TypographyControl
-        },
-        {
-            id: '__colorHover',
-            component: SwitchControl,
-            options: [
-                {
-                    value: 'normal',
-                    label: 'Normal'
-                },
-                {
-                    value: 'hover',
-                    label: 'Hover'
-                }
-            ],
-            onChange: ({ __colorHover }) => setSwitcher({ ...switcher, color: __colorHover })
-        },
-        {
-            id: 'commentColor',
-            label: __('Comment Color', 'gutenverse-news'),
-            show: showControl() && (!switcher.color || switcher.color === 'normal'),
-            component: ColorControl,
-        },
-        {
-            id: 'commentColorHover',
-            label: __('Comment Color', 'gutenverse-news'),
-            show: showControl() && switcher.color === 'hover',
-            component: ColorControl,
-        },
-        {
             id: '__itemShowedComment',
-            show: !itemsShowed,
             component: AlertControl,
             children: <>
                 <span>{__('Please select at least one Comment element.', 'gutenverse-news')}</span>
             </>
         }
     ];
+
 };

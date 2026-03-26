@@ -1,5 +1,6 @@
 import { backgroundStyle } from 'gutenverse-core/controls';
 import { isNotEmpty } from 'gutenverse-core/helper';
+import { positioningStyle } from '../../../control-panel/panel-styles/positioning-style';
 
 const getPanelHeroStyle = (elementId, attributes) => {
     let data = [];
@@ -38,6 +39,9 @@ const getBlockStyle = (elementId, attributes) => {
         backgroundSelector: `.${elementId} .gvnews_heroblock`,
         backgroundHoverSelector: `.${elementId} .gvnews_heroblock:hover`,
     });
+
+    data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
+
 
     if (isNotEmpty(attributes['heroMargin'])) {
         data.push({
@@ -128,146 +132,6 @@ const getBlockStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
-    });
-
-    /**
-     * Panel Positioning
-     */
-    isNotEmpty(attributes['positioningType']) && data.push(
-        {
-            'type': 'positioning',
-            'id': 'positioningType',
-            'selector': `.${elementId} .gvnews_heroblock`,
-            'skipDeviceType': 'first',
-            'attributeType': 'type',
-            'multiAttr': {
-                'positioningType': attributes['positioningType'],
-                'inBlock': attributes['inBlock']
-            }
-        },
-    );
-
-    isNotEmpty(attributes['positioningType']) && isNotEmpty(attributes['positioningWidth']) && data.push(
-        {
-            'type': 'positioning',
-            'id': 'positioningType',
-            'selector': `.${elementId} .gvnews_heroblock`,
-            'skipDeviceType': 'second',
-            'attributeType': 'type',
-            'multiAttr': {
-                'positioningWidth': attributes['positioningWidth'],
-                'positioningType': attributes['positioningType'],
-                'inBlock': attributes['inBlock']
-            }
-        }
-    );
-
-    isNotEmpty(attributes['positioningWidth']) && isNotEmpty(attributes['positioningType']) && data.push({
-        'type': 'positioning',
-        'id': 'positioningWidth',
-        'selector': `.${elementId} .gvnews_heroblock`,
-        'skipDeviceType': 'first',
-        'attributeType': 'width',
-        'multiAttr': {
-            'positioningWidth': attributes['positioningWidth'],
-            'positioningType': attributes['positioningType'],
-            'inBlock': attributes['inBlock']
-        }
-    });
-
-    isNotEmpty(attributes['positioningAlign']) && data.push(
-        {
-            'type': 'plain',
-            'id': 'positioningAlign',
-            'responsive': true,
-            'properties': [
-                {
-                    'name': 'align-self',
-                    'valueType': 'direct'
-                }
-            ],
-            'selector': `.${elementId} .gvnews_heroblock`,
-        },
-        {
-            'type': 'positioning',
-            'id': 'positioningAlign',
-            'properties': [
-                {
-                    'name': 'vertical-align',
-                    'valueType': 'direct'
-                }
-            ],
-            'attributeType': 'align',
-            'selector': `.${elementId} .gvnews_heroblock`,
-        }
-    );
-
-    isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'plain',
-        'id': 'positioningLocation',
-        'properties': [
-            {
-                'name': 'position',
-                'valueType': 'direct'
-            }
-        ],
-        'selector': `.${elementId} .gvnews_heroblock`,
-    });
-
-    isNotEmpty(attributes['positioningLeft']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningLeft',
-        'properties': [
-            {
-                'name': 'left',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_heroblock`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningRight']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningRight',
-        'properties': [
-            {
-                'name': 'right',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_heroblock`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningTop']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningTop',
-        'properties': [
-            {
-                'name': 'top',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_heroblock`,
-        'attributeType': 'custom',
-    });
-
-    isNotEmpty(attributes['positioningBottom']) && isNotEmpty(attributes['positioningLocation']) && attributes['positioningLocation'] !== 'default' && data.push({
-        'type': 'positioning',
-        'id': 'positioningBottom',
-        'properties': [
-            {
-                'name': 'bottom',
-                'valueType': 'direct'
-            }
-        ],
-        'responsive': true,
-        'selector': `.${elementId} .gvnews_heroblock`,
-        'attributeType': 'custom',
     });
 
     /**
@@ -605,6 +469,8 @@ const getBlockStyle = (elementId, attributes) => {
         }
     }
 
+    data = noContentStyle(elementId, attributes, data);
+
     return data;
 };
 
@@ -618,6 +484,53 @@ const getSecondTypographySelector = (templateType) => {
             return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1, .gvnews_hero_item_4 , .gvnews_hero_item_5)';
     }
     return '.gvnews_heroblock .gvnews_post:not(.gvnews_hero_item_1)';
+};
+
+const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTypography']) && data.push({
+        'type': 'typography',
+        'id': 'noContentTypography',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentColor']) && data.push({
+        'type': 'color',
+        'id': 'noContentColor',
+        'selector': `.${elementId} .gvnews_empty_module`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['noContentBackground']) && data.push({
+        'type': 'background',
+        'id': 'noContentBackground',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentBorder']) && data.push({
+        'type': 'borderResponsive',
+        'id': 'noContentBorder',
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
+    isNotEmpty(attributes['noContentPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'noContentPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+    return data;
+
 };
 
 export default getBlockStyle;

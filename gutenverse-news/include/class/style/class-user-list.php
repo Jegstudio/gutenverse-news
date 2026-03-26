@@ -34,7 +34,7 @@ class User_List extends StyleAbstract {
 			array(
 				'background'  => null,
 				'border'      => null,
-				'positioning' => null,
+				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 				'animation'   => null,
 				'advance'     => null,
 			)
