@@ -4,6 +4,36 @@ import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } fro
 import { applyFilters } from '@wordpress/hooks';
 
 export const filterHero = ({ postType }) => {
+    const contentFilter = applyFilters('gvnews.panel.options.contentType', [
+        {
+            value: '',
+            label: __('All', 'gutenverse-news')
+        },
+        {
+            value: 'post',
+            label: __('Only Post', 'gutenverse-news')
+        },
+        {
+            value: '',
+            label: __('Only Gallery', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Video', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Standard Post', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Review', 'gutenverse-news'),
+            pro: true
+        }
+    ], postType, false);
 
     return [
         {
@@ -27,16 +57,7 @@ export const filterHero = ({ postType }) => {
             label: __('Content Type', 'gutenverse-news'),
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: SelectControl,
-            options: [
-                {
-                    value: '',
-                    label: __('All', 'gutenverse-news')
-                },
-                {
-                    value: 'post',
-                    label: __('Only Post', 'gutenverse-news')
-                },
-            ]
+            options: contentFilter
         },
         {
             id: 'postOffset',

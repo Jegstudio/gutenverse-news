@@ -4,21 +4,41 @@ import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } fro
 import { applyFilters } from '@wordpress/hooks';
 
 
-const contentFilter = [
-    {
-        value: '',
-        label: __('All', 'gutenverse-news')
-    },
-    {
-        value: 'post',
-        label: __('Only Post', 'gutenverse-news')
-    },
-];
-
 const advanceFilter = ['bookmark', 'liked', 'disliked', 'unlockedPost'];
 
 export const filterPanel = (props, isModule = false) => {
     const { postType = 'post', contentType = '' } = props;
+
+    const contentFilter = applyFilters('gvnews.panel.options.contentType', [
+        {
+            value: '',
+            label: __('All', 'gutenverse-news')
+        },
+        {
+            value: 'post',
+            label: __('Only Post', 'gutenverse-news')
+        },
+        {
+            value: '',
+            label: __('Only Gallery', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Video', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Standard Post', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Review', 'gutenverse-news'),
+            pro: true
+        }
+    ], postType, isModule);
 
     const moduleContentFilter = applyFilters('gvnews.panel.options.contentType', [
         {
@@ -28,6 +48,26 @@ export const filterPanel = (props, isModule = false) => {
         {
             value: 'post',
             label: __('Only Post', 'gutenverse-news')
+        },
+        {
+            value: '',
+            label: __('Only Gallery', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Video', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Standard Post', 'gutenverse-news'),
+            pro: true
+        },
+        {
+            value: '',
+            label: __('Only Review', 'gutenverse-news'),
+            pro: true
         },
         {
             value: '',
@@ -49,7 +89,7 @@ export const filterPanel = (props, isModule = false) => {
             label: __('Only Bookmarked', 'gutenverse-news'),
             pro: true
         }
-    ], postType);
+    ], postType, isModule);
 
     const isAdvanceFilter = isModule && postType === 'post' && advanceFilter.includes(contentType);
 
