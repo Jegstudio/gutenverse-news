@@ -18,8 +18,20 @@ export const paginationPanel = (props) => {
                     value: 'disable'
                 },
                 {
-                    label: __('Next Prev', 'gutenverse-news'),
+                    label: __('Next Prev (Normal)', 'gutenverse-news'),
+                    value: 'normal-nextprev'
+                },
+                {
+                    label: __('Number (Normal)'),
+                    value: 'normal-number'
+                },
+                {
+                    label: __('Next Prev (Ajax)', 'gutenverse-news'),
                     value: 'nextprev'
+                },
+                {
+                    label: __('Number (Ajax)'),
+                    value: 'number'
                 },
                 {
                     label: __('Load More', 'gutenverse-news'),
@@ -29,15 +41,11 @@ export const paginationPanel = (props) => {
                     label: __('Autoload on Scroll', 'gutenverse-news'),
                     value: 'scrollload'
                 },
-                {
-                    label: __('Number'),
-                    value: 'number'
-                },
             ],
         },
         {
             id: 'showNavText',
-            show: paginationMode === 'nextprev' || paginationMode === 'number',
+            show: paginationMode === 'nextprev' || paginationMode === 'number' || paginationMode === 'normal-nextprev' || paginationMode === 'normal-number',
             label: __('Show Navigation Text', 'gutenverse-news'),
             description: __('Show previous and next text.', 'gutenverse-news'),
             component: CheckboxControl

@@ -73,10 +73,10 @@ const PaginationModule = (props) => {
         return null;
     }
     const renderPagination = () => {
-        if (props.paginationMode === 'nextprev') {
+        if (props.paginationMode === 'nextprev' || props.paginationMode === 'normal-nextprev') {
             return <PervNext {...props} />;
         }
-        if (props.paginationMode === 'number') {
+        if (props.paginationMode === 'number'  || props.paginationMode === 'normal-number') {
             return <Number {...props} />;
         }
 

@@ -485,6 +485,10 @@ abstract class Block_View_Abstract {
 			$this->set_attribute( $attr );
 		}
 
+		if ( str_contains( $attr['pagination_mode'], 'normal' ) ) {
+			$attr['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' ) ) ?: 1;
+		}
+
 		$result = Block_Query::do_query( $attr );
 
 		if ( isset( $attr['unique_content'] ) && 'disable' !== $attr['unique_content'] ) {
