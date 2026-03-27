@@ -774,7 +774,7 @@ class Archive_Block extends StyleAbstract {
 		if ( isset( $this->attrs['contentTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt p,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt p,.gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['contentTypography'],
 					'device_control' => false,
@@ -784,7 +784,7 @@ class Archive_Block extends StyleAbstract {
 		if ( isset( $this->attrs['readmoreButtonTypography'] ) ) {
 			$this->inject_typography(
 				array(
-					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_readmore",
+					'selector' => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_excerpt .gvnews_readmore",
 					'value'    => $this->attrs['readmoreButtonTypography'],
 				)
 			);
