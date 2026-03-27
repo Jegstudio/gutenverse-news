@@ -153,6 +153,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Bug Fixes
 * Fix responsive border issue on all blocks
 * Fix thumbnail overlay option issue on editor
+* Fix navigation icon color not working in Slider 1 when using SVG icons
+* Fix Read More button typography being overridden by the Content Typography option on the Archive Block
 
 = 3.1.3 =
 ##### Improvements
