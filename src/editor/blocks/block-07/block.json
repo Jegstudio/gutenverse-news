@@ -824,6 +824,23 @@
             "type": "string",
             "default": "disable"
         },
+        "adsHideIfUnfilled": {
+            "type": "boolean",
+            "default": false
+        },
+        "adsResponsiveSize": {
+            "type": "boolean",
+            "default": true
+        },
+        "adsFixedWidth": {
+            "type": "object",
+            "default": {}
+        },
+        "adsFixedHeight": {
+            "type": "object",
+            "default": {}
+        },
+
         "adsGooglePubID": {
             "type": "string",
             "default": ""

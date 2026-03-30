@@ -1297,6 +1297,48 @@ const getBlockStyle = (
         ],
     });
 
+    if (attributes['adsType'] !== 'script' && attributes['adsType'] !== 'shortcode') {
+        isNotEmpty(attributes['adsFixedWidth']) && (!attributes['adsResponsiveSize'] || attributes['adsType'] !== 'google') && data.push({
+            'type': 'unitPoint',
+            'id': 'adsFixedWidth',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper.gvnews-fixed-width img`,
+            'properties': [
+                {
+                    'name': 'width',
+                    'valueType': 'direct'
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['adsFixedHeight']) && (!attributes['adsResponsiveSize'] || attributes['adsType'] !== 'google') && data.push(
+            {
+                'type': 'unitPoint',
+                'id': 'adsFixedHeight',
+                'responsive': true,
+                'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper img`,
+                'properties': [
+                    {
+                        'name': 'height',
+                        'valueType': 'direct'
+                    }
+                ],
+            },
+            {
+                'type': 'unitPoint',
+                'id': 'adsFixedHeight',
+                'responsive': true,
+                'selector': `.${elementId} .gvnews-ads-wrapper .gvnews-dummy-ads`,
+                'properties': [
+                    {
+                        'name': 'min-height',
+                        'valueType': 'direct'
+                    }
+                ],
+            },
+        );
+    }
+
     return [
         ...data,
         ...applyFilters(

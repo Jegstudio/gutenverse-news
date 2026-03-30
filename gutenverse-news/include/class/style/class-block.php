@@ -72,6 +72,8 @@ class Block extends StyleAbstract {
 		$this->no_content_style();
 		$this->generate_card_style();
 
+		do_action( 'gvnews_module_style', $this );
+
 		if ( isset( $this->attrs['enableBoxed'] ) ) {
 			if ( $this->attrs['enableBoxed'] ) {
 				$selectorbx = array(
