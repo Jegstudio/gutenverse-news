@@ -7,7 +7,9 @@ import { applyFilters } from '@wordpress/hooks';
 const advanceFilter = ['bookmark', 'liked', 'disliked', 'unlockedPost'];
 
 export const filterPanel = (props, isModule = false) => {
-    const { postType = 'post', contentType = '' } = props;
+    const { postType = 'post', contentType = '', context } = props;
+
+    let isInAccountPage = context && context['gutenverse-pro/account-page/activeMenu'] !== undefined;
 
     const contentFilter = applyFilters('gvnews.panel.options.contentType', [
         {
@@ -38,7 +40,7 @@ export const filterPanel = (props, isModule = false) => {
             label: __('Only Review', 'gutenverse-news'),
             pro: true
         }
-    ], postType, isModule);
+    ], postType, isModule, isInAccountPage);
 
     const moduleContentFilter = applyFilters('gvnews.panel.options.contentType', [
         {
@@ -69,27 +71,29 @@ export const filterPanel = (props, isModule = false) => {
             label: __('Only Review', 'gutenverse-news'),
             pro: true
         },
-        {
-            value: '',
-            label: __('Only Liked', 'gutenverse-news'),
-            pro: true
-        },
-        {
-            value: '',
-            label: __('Only Disliked', 'gutenverse-news'),
-            pro: true
-        },
-        {
-            value: '',
-            label: __('Only Unlocked', 'gutenverse-news'),
-            pro: true
-        },
-        {
-            value: '',
-            label: __('Only Bookmarked', 'gutenverse-news'),
-            pro: true
-        }
-    ], postType, isModule);
+        ...(isInAccountPage ? [
+            {
+                value: '',
+                label: __('Only Liked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Disliked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Unlocked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Bookmarked', 'gutenverse-news'),
+                pro: true
+            }
+        ] : [])
+    ], postType, isModule, isInAccountPage);
 
     const isAdvanceFilter = isModule && postType === 'post' && advanceFilter.includes(contentType);
 
