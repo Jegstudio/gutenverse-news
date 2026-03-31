@@ -92,7 +92,13 @@ const AdditionalFeatures = (props) => {
             title: 'Author Donation',
             desc: 'Adding donation button on single post, to give donation to your post author',
             icon: <IconDonationSVG />,
-        }
+        },
+        {
+            id: 'ads',
+            title: 'Ads',
+            desc: 'Adding ads to your article.',
+            icon: <IconDonationSVG />,
+        },
     ];
 
     return (
