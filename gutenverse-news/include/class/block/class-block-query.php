@@ -384,7 +384,7 @@ class Block_Query {
 	public static function where_only_post( $clause = '' ) {
 		global $wpdb;
 
-		$enable_review_key   = 'enable_review';
+		$enable_review_key   = 'gvnews_is_post_review';
 		$enable_review_value = '1';
 		$post_type           = 'post';
 		$post_status         = 'publish';

@@ -1,26 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { NumberControl, RangeControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
+import { RangeControl, SelectSearchControl, SelectControl, CheckboxControl } from 'gutenverse-core/controls';
 import { searchPosts, searchPages, searchCategory, searchAuthor, searchTag } from '../utils/helper';
 import { applyFilters } from '@wordpress/hooks';
 
 
-const contentFilter = [
-    {
-        value: '',
-        label: __('All', 'gutenverse-news')
-    },
-    {
-        value: 'post',
-        label: __('Only Post', 'gutenverse-news')
-    },
-];
-
 const advanceFilter = ['bookmark', 'liked', 'disliked', 'unlockedPost'];
 
 export const filterPanel = (props, isModule = false) => {
-    const { postType = 'post', contentType = '' } = props;
+    const { postType = 'post', contentType = '', context } = props;
 
-    const moduleContentFilter = applyFilters('gvnews.panel.options.contentType', [
+    let isInAccountPage = context && context['gutenverse-pro/account-page/activeMenu'] !== undefined;
+
+    const contentFilter = applyFilters('gvnews.panel.options.contentType', [
         {
             value: '',
             label: __('All', 'gutenverse-news')
@@ -31,25 +22,47 @@ export const filterPanel = (props, isModule = false) => {
         },
         {
             value: '',
-            label: __('Only Liked', 'gutenverse-news'),
+            label: __('Only Gallery', 'gutenverse-news'),
             pro: true
         },
         {
             value: '',
-            label: __('Only Disliked', 'gutenverse-news'),
+            label: __('Only Video', 'gutenverse-news'),
             pro: true
         },
         {
             value: '',
-            label: __('Only Unlocked', 'gutenverse-news'),
+            label: __('Only Standard Post', 'gutenverse-news'),
             pro: true
         },
         {
             value: '',
-            label: __('Only Bookmarked', 'gutenverse-news'),
+            label: __('Only Review', 'gutenverse-news'),
             pro: true
-        }
-    ], postType);
+        },
+        ...(isInAccountPage && isModule ? [
+            {
+                value: '',
+                label: __('Only Liked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Disliked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Unlocked', 'gutenverse-news'),
+                pro: true
+            },
+            {
+                value: '',
+                label: __('Only Bookmarked', 'gutenverse-news'),
+                pro: true
+            }
+        ] : [])
+    ], postType, isModule, isInAccountPage);
 
     const isAdvanceFilter = isModule && postType === 'post' && advanceFilter.includes(contentType);
 
@@ -76,7 +89,7 @@ export const filterPanel = (props, isModule = false) => {
             description: __('Choose which content type you want to filter.', 'gutenverse-news'),
             component: SelectControl,
             show: postType === 'post',
-            options: isModule ? moduleContentFilter : contentFilter
+            options: contentFilter
         },
         {
             id: 'numberPost',

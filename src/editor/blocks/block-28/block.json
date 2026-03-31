@@ -639,6 +639,7 @@
     "viewScript": ["gutenverse-news-frontend-blocks-script"],
     "style": ["gutenverse-news-frontend-blocks-style"],
 	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+		"gutenverse/flexDirection",
+        "gutenverse-pro/account-page/activeMenu"	
+    ]
 }
