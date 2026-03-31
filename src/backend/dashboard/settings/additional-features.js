@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { ControlCheckbox } from 'gutenverse-core/backend';
-import { IconPaywallSVG } from '../../../assets/dashboard-icons';
+import { IconBookmarkSVG, IconDonationSVG, IconLikeDislikeSVG, IconPaywallSVG, IconReviewSVG, IconViewCounterSVG } from '../../../assets/dashboard-icons';
 import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
 import { useState } from '@wordpress/element';
@@ -67,45 +67,33 @@ const AdditionalFeatures = (props) => {
             id: 'view_counter',
             title: 'View Counter',
             desc: 'Add view counter on your posts and allowing you to show most popular posts on your site.',
-            icon: <IconPaywallSVG />,
+            icon: <IconViewCounterSVG />,
         },
         {
             id: 'post_review',
             title: 'Post Review',
             desc: 'Create a review type post and allowing you to filter list posts based on review score.',
-            icon: <IconPaywallSVG />,
+            icon: <IconReviewSVG />,
         },
         {
             id: 'like_dislike_button',
             title: 'Like & Dislike Post',
             desc: 'Add like and dislike features on your posts.',
-            icon: <IconPaywallSVG />,
-        },
-        {
-            id: 'post_autoload',
-            title: __('Post Autoload', 'gutenverse-news'),
-            desc: __('Automatically load the next post when the user reaches the end of the current post.', 'gutenverse-news'),
-            icon: <IconPaywallSVG />,
+            icon: <IconLikeDislikeSVG />,
         },
         {
             id: 'bookmark',
             title: 'Bookmark Post',
             desc: 'Allowing users to save their favorite posts with a bookmark button.',
-            icon: <IconPaywallSVG />,
+            icon: <IconBookmarkSVG />,
         },
         {
             id: 'author_donation',
             title: 'Author Donation',
             desc: 'Adding donation button on single post, to give donation to your post author',
-            icon: <IconPaywallSVG />,
-        },
-        {
-            id: 'ads',
-            title: 'Ads',
-            desc: 'Adding donation button on single post, to give donation to your post author',
-            icon: <IconPaywallSVG />,
-        },
-    ]
+            icon: <IconDonationSVG />,
+        }
+    ];
 
     return (
         <div>
