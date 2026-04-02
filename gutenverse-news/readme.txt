@@ -144,6 +144,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.1.6-dev=
+##### Improvements
+* Compatibility with Dynamic Image Generator method in Gutenverse Pro
+
 ##### Bug Fixes
 * Fix navigation icon color not working in Slider 1 when using SVG icons
 * Fix Read More button typography being overridden by the Content Typography option on the Archive Block
