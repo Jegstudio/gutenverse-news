@@ -62,6 +62,7 @@ const AdditionalFeatures = (props) => {
             title: 'Paywall',
             desc: 'Restrict your premium content to subscribers only or you can allowing user to read yur premium content by unlcok post sytem.',
             icon: <IconPaywallSVG />,
+            requiredPlugins: [{ slug: 'woocommerce', name: 'WooCommerce' }],
         },
         {
             id: 'view_counter',
@@ -119,6 +120,7 @@ const SaveButton = (props) => {
 };
 
 const Feature = (props) => {
+    const [showNotice, setShowNotice] = useState(false);
 
     const FeatureCard = applyFilters('gutenverse.news.feature.card', () =>
         <div className="feature-card locked">
@@ -138,7 +140,7 @@ const Feature = (props) => {
                     updateValue={props.showUpgradePopup}
                 />
             </div>
-        </div>, props);
+        </div>, { ...props, showNotice, setShowNotice });
     return <FeatureCard />;
 };
 
