@@ -105,6 +105,12 @@ const BlockModule = compose(
         rowItemGap,
         headerHtmlTag,
         postTitleHtmlTag,
+        paginationPrevIcon,
+        paginationPrevIconType,
+        paginationPrevIconSVG,
+        paginationNextIcon,
+        paginationNextIconType,
+        paginationNextIconSVG,
     } = attributes;
 
     useEffect(() => {
@@ -461,6 +467,14 @@ const BlockModule = compose(
             if (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') {
                 setOverlay(true);
             }
+        },
+        icon: {
+            paginationPrevIcon,
+            paginationPrevIconType,
+            paginationPrevIconSVG,
+            paginationNextIcon,
+            paginationNextIconType,
+            paginationNextIconSVG,
         }
     };
 

@@ -165,20 +165,27 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 
 		if ( 'disable' === $attr['pagination_mode'] ) {
 			return '';
-		}else if ( str_contains( $attr['pagination_mode'], 'nextprev' ) || str_contains( $attr['pagination_mode'], 'number' ) ) {
+		}else if ( false !== strpos( $attr['pagination_mode'], 'nextprev' ) || false !== strpos( $attr['pagination_mode'], 'number' ) ) {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			$is_number    = str_contains( $attr['pagination_mode'], 'number' );
-			$is_normal    = str_contains( $attr['pagination_mode'], 'normal' );
+			$is_number    = false !== strpos( $attr['pagination_mode'], 'number' );
+			$is_normal    = false !== strpos( $attr['pagination_mode'], 'normal' );
 			$current_page = isset( $attr['paged'] ) ? ( int ) $attr['paged'] : 1;
 			if ( $is_normal ) {
 				$current_page = (int) ( ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' ) ) ?: '1' );
 			}
 			$numbers = '';
 
-			$prev_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-left' );
-			$next_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
+			$prev_icon      = $attr['pagination_prev_icon'] ?? 'fas fa-chevron-left';
+			$prev_icon_type = $attr['pagination_prev_icon_type'] ?? 'icon';
+			$prev_icon_svg  = $attr['pagination_prev_icon_svg'] ?? '';
+			$next_icon      = $attr['pagination_next_icon'] ?? 'fas fa-chevron-right';
+			$next_icon_type = $attr['pagination_next_icon_type'] ?? 'icon';
+			$next_icon_svg  = $attr['pagination_next_icon_svg'] ?? '';
+
+			$prev_text = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg );
+			$next_text = $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
 
 			if ( $attr['pagination_nextprev_showtext'] ) {
 				$additional_class .= ' showtext';
@@ -665,6 +672,12 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'meta_settings'                => $meta_settings,
 							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 							'post_title_html_tag'          => isset( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ) : 'h3',
+							'pagination_prev_icon'         => isset( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ) : 'fas fa-chevron-left',
+							'pagination_prev_icon_type'    => isset( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ) : 'icon',
+							'pagination_prev_icon_svg'     => isset( $_REQUEST['data']['attribute']['pagination_prev_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon_svg'] ) ) : '',
+							'pagination_next_icon'         => isset( $_REQUEST['data']['attribute']['pagination_next_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon'] ) ) : 'fas fa-chevron-left',
+							'pagination_next_icon_type'    => isset( $_REQUEST['data']['attribute']['pagination_next_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon_type'] ) ) : 'icon',
+							'pagination_next_icon_svg'     => isset( $_REQUEST['data']['attribute']['pagination_next_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon_svg'] ) ) : '',
 						),
 				);
 

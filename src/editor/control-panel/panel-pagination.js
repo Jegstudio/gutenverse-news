@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, NumberControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, NumberControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const paginationPanel = (props) => {
     const {
@@ -49,6 +49,18 @@ export const paginationPanel = (props) => {
             label: __('Show Navigation Text', 'gutenverse-news'),
             description: __('Show previous and next text.', 'gutenverse-news'),
             component: CheckboxControl
+        },
+        {
+            id: 'paginationPrevIcon',
+            label: __('Prev Icon', 'gutenverse-news'),
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore',
+            component: IconSVGControl,
+        },
+        {
+            id: 'paginationNextIcon',
+            label: __('Next Icon', 'gutenverse-news'),
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore',
+            component: IconSVGControl,
         },
         {
             id: 'paginationPost',

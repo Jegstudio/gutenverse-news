@@ -53,7 +53,7 @@ export const paginationStylePanel = (props) => {
         },
     ];
 
-    if (paginationMode === 'nextprev' || paginationMode === 'number') {
+    if (paginationMode === 'nextprev' || paginationMode === 'normal-nextprev' || paginationMode === 'number' || paginationMode === 'normal-number') {
         btnAlignOpts = [
             ...btnAlignOpts,
             {
@@ -229,7 +229,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnTypography',
             label: __('Typography', 'gutenverse-news'),
             component: TypographyControl,
-            show: (paginationMode === 'loadmore' || paginationMode === 'scrollload') || ((paginationMode === 'nextprev' || paginationMode === 'number') && showNavText),
+            show: (paginationMode === 'loadmore' || paginationMode === 'scrollload') || ((paginationMode === 'nextprev' || paginationMode === 'normal-nextprev') && showNavText) || paginationMode === 'number' || paginationMode === 'normal-number',
             liveStyle: [
                 {
                     'type': 'typography',
@@ -242,7 +242,7 @@ export const paginationStylePanel = (props) => {
             id: 'paginationBtnIconSize',
             label: __('Icon Size', 'gutenverse-news'),
             component: SizeControl,
-            show: paginationMode === 'nextprev' || paginationMode === 'number',
+            show: paginationMode === 'nextprev' || paginationMode === 'normal-nextprev' || paginationMode === 'number' || paginationMode === 'normal-number',
             units: {
                 px: {
                     text: 'px',
@@ -272,7 +272,7 @@ export const paginationStylePanel = (props) => {
             label: __('Icon Spacing', 'gutenverse-news'),
             component: SizeControl,
             allowDeviceControl: true,
-            show: (paginationMode === 'nextprev' || paginationMode === 'number') && showNavText,
+            show: (paginationMode === 'nextprev' || paginationMode === 'normal-nextprev' || paginationMode === 'normal-nextprev' || paginationMode === 'number' || paginationMode === 'normal-number') && showNavText,
             units: {
                 px: {
                     text: 'px',
@@ -411,7 +411,7 @@ export const paginationStylePanel = (props) => {
                 },
             },
             component: SizeControl,
-            show: paginationMode === 'number',
+            show: paginationMode === 'number' || paginationMode === 'normal-number',
             liveStyle: [
                 {
                     'type': 'unitPoint',
@@ -460,7 +460,7 @@ export const paginationStylePanel = (props) => {
         {
             id: '__paginationBtnHover',
             component: SwitchControl,
-            options: (paginationMode === 'nextprev' || paginationMode === 'number') ? nextPrevBtnSwitchOpts : btnSwitchOpts,
+            options: (paginationMode === 'nextprev' || paginationMode === 'normal-nextprev' || paginationMode === 'number' || paginationMode === 'normal-number') ? nextPrevBtnSwitchOpts : btnSwitchOpts,
             show: paginationMode !== 'disable' && paginationMode !== '',
             onChange: ({ __paginationBtnHover }) => setSwitcher({ ...switcher, state: __paginationBtnHover })
         },
