@@ -89,12 +89,6 @@ const AdditionalFeatures = (props) => {
             icon: <IconPaywallSVG />,
         },
         {
-            id: 'post_autoload',
-            title: __('Post Autoload', 'gutenverse-news'),
-            desc: __('Automatically load the next post when the user reaches the end of the current post.', 'gutenverse-news'),
-            icon: <IconPaywallSVG />,
-        },
-        {
             id: 'bookmark',
             title: 'Bookmark Post',
             desc: 'Allowing users to save their favorite posts with a bookmark button.',
@@ -105,12 +99,6 @@ const AdditionalFeatures = (props) => {
             title: 'Author Donation',
             desc: 'Adding donation button on single post, to give donation to your post author',
             icon: <IconDonationSVG />,
-        },
-        {
-            id: 'ads',
-            title: 'Ads',
-            desc: 'Adding donation button on single post, to give donation to your post author',
-            icon: <IconPaywallSVG />,
         },
     ];
 
