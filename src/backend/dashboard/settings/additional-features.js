@@ -83,6 +83,12 @@ const AdditionalFeatures = (props) => {
             icon: <IconLikeDislikeSVG />,
         },
         {
+            id: 'post_split',
+            title: 'Post Split',
+            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            icon: <IconPaywallSVG />,
+        },
+        {
             id: 'bookmark',
             title: 'Bookmark Post',
             desc: 'Allowing users to save their favorite posts with a bookmark button.',

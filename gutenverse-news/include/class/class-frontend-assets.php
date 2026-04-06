@@ -47,8 +47,9 @@ class Frontend_Assets {
 	/**
 	 * Get default attribute value from block.json
 	 *
-	 * @param string $block_name Block name (e.g. gutenverse/news-block-1)
-	 * @param string $attr Attribute name
+	 * @param string $block_name Block name (e.g. gutenverse/news-block-1).
+	 * @param string $attr       Attribute name.
+	 *
 	 * @return mixed|null
 	 */
 	private function get_block_default_attr( $block_name, $attr ) {
@@ -56,7 +57,7 @@ class Frontend_Assets {
 
 		$root = GUTENVERSE_NEWS_DIR;
 
-		// normalize block folder name
+		// normalize block folder name.
 		if ( 0 === strpos( $block_name, 'gutenverse/news-' ) ) {
 			$slug = substr( $block_name, strlen( 'gutenverse/news-' ) );
 		} else {
@@ -96,19 +97,20 @@ class Frontend_Assets {
 	/**
 	 * Check whether an attribute represents an icon (using value or block.json default)
 	 *
-	 * @param array $attrs Attributes passed from block
-	 * @param string $block_name Block name
-	 * @param string $attrName Attribute name to check for value
-	 * @param string|null $typeName Optional attribute name for icon type
+	 * @param array       $attrs    Attributes passed from block.
+	 * @param string      $block_name Block name.
+	 * @param string      $attr_name   Attribute name to check for value.
+	 * @param string|null $type_name   Optional attribute name for icon type.
+	 *
 	 * @return bool
 	 */
-	private function attr_has_icon( $attrs, $block_name, $attrName, $typeName = null ) {
-		$value = array_key_exists( $attrName, $attrs ) ? $attrs[ $attrName ] : $this->get_block_default_attr( $block_name, $attrName );
+	private function attr_has_icon( $attrs, $block_name, $attr_name, $type_name = null ) {
+		$value = array_key_exists( $attr_name, $attrs ) ? $attrs[ $attr_name ] : $this->get_block_default_attr( $block_name, $attr_name );
 		if ( empty( $value ) ) {
 			return false;
 		}
-		if ( $typeName ) {
-			$type = array_key_exists( $typeName, $attrs ) ? $attrs[ $typeName ] : $this->get_block_default_attr( $block_name, $typeName );
+		if ( $type_name ) {
+			$type = array_key_exists( $type_name, $attrs ) ? $attrs[ $type_name ] : $this->get_block_default_attr( $block_name, $type_name );
 			if ( isset( $type ) && 'icon' !== $type ) {
 				return false;
 			}
@@ -168,7 +170,7 @@ class Frontend_Assets {
 				}
 				break;
 
-			// Blocks that may have both `listIcon` and `icon` (use defaults when missing)
+			// Blocks that may have both `listIcon` and `icon` (use defaults when missing).
 			case 'gutenverse/news-block-1':
 			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-24':
