@@ -14,7 +14,7 @@ const readmoreStyle = (props) => {
     isNotEmpty(attributes['readmoreButtonTypography']) && data.push({
         'type': 'typography',
         'id': 'readmoreButtonTypography',
-        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+        'selector': `.editor-styles-wrapper .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_postblock_content .gvnews_post_excerpt a.gvnews_readmore`,
     });
 
     isNotEmpty(attributes['readmoreButtonBackground']) && data.push({

@@ -70,7 +70,10 @@ class Image {
 	 * @return void
 	 */
 	public function generate_image() {
-		add_action( 'init', array( $this, 'add_image_size' ) );
+		$generate_image = apply_filters( 'gutenverse_image_generator', 'normal' );
+		if ( 'normal' === $generate_image ) {
+			add_action( 'init', array( $this, 'add_image_size' ) );
+		}
 	}
 
 	/**

@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,6 +142,14 @@ Become part of our community, share your thoughts and experiences about Gutenber
 We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
 
 == Changelog ==
+
+= 3.1.6=
+##### Improvements
+* Compatibility with Dynamic Image Generator method in Gutenverse Pro
+
+##### Bug Fixes
+* Fix navigation icon color not working in Slider 1 when using SVG icons
+* Fix Read More button typography being overridden by the Content Typography option on the Archive Block
 
 = 3.1.5 =
 ##### Improvements

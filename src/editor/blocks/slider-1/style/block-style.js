@@ -80,7 +80,7 @@ export const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['nextButtonColor']) && data.push({
         'type': 'color',
         'id': 'nextButtonColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next i`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next`,
         'properties': [
             {
                 'name': 'color',
@@ -92,7 +92,7 @@ export const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['nextButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'nextButtonColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover i`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-next:hover`,
         'properties': [
             {
                 'name': 'color',
@@ -104,7 +104,7 @@ export const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['prevButtonColor']) && data.push({
         'type': 'color',
         'id': 'prevButtonColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev i`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev`,
         'properties': [
             {
                 'name': 'color',
@@ -116,7 +116,7 @@ export const getBlockStyle = (elementId, attributes) => {
     isNotEmpty(attributes['prevButtonColorHover']) && data.push({
         'type': 'color',
         'id': 'prevButtonColorHover',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover i`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .tns-controls .tns-prev:hover`,
         'properties': [
             {
                 'name': 'color',
