@@ -565,7 +565,7 @@ abstract class Block_View_Abstract {
 			$this->meta_settings,
 			$meta_settings
 		);
-		$this->post_title_tag = $attr['post_title_html_tag'];
+		$this->post_title_tag = isset( $attr['post_title_html_tag'] ) ? $attr['post_title_html_tag'] : 'h3';
 		return $this->attribute;
 	}
 
@@ -583,7 +583,7 @@ abstract class Block_View_Abstract {
 			$this->meta_settings,
 			$meta_settings
 		);
-		$this->post_title_tag = $attr['post_title_html_tag'];
+		$this->post_title_tag = isset( $attr['post_title_html_tag'] ) ? $attr['post_title_html_tag'] : 'h3';
 	}
 
 	/**
