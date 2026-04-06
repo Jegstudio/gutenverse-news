@@ -133,7 +133,7 @@ class Slider_1 extends Slider_View_Abstract {
                     <div class=\"gvnews_slider_type_1 gvnews_slider\" {$data_attr}>
                         {$content}
                     </div>
-                    <div class=\"gvnews_slider_thumbnail_wrapper\">
+						<div class=\"gvnews_slider_thumbnail_wrapper\">
                         <div class=\"gvnews_slider_thumbnail\">
                             {$slider}
                         </div>
