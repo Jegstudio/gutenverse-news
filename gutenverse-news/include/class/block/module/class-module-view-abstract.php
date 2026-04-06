@@ -463,7 +463,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				foreach ( $categories as $category ) {
 					$cat = get_category( trim( $category ) );
 					if ( ! empty( $cat ) && ! is_wp_error( $cat ) ) {
-						$sub_cat .= "<li><a class=\"subclass-filter\" href=\"#\" aria-label=\"" . esc_attr( $cat->name ) . "\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
+						$sub_cat .= '<li><a class="subclass-filter" href="#" aria-label="' . esc_attr( $cat->name ) . "\" data-type='category' data-id='{$cat->term_id}'>{$cat->name}</a></li>";
 					}
 				}
 			}
@@ -480,7 +480,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					$author_id   = trim( $author );
 					$author_url  = get_author_posts_url( $author_id );
 					$author_name = get_the_author_meta( 'display_name', $author_id );
-					$sub_cat    .= "<li><a class=\"subclass-filter\" href=\"#\" aria-label=\"" . esc_attr( $author_name ) . "\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
+					$sub_cat    .= '<li><a class="subclass-filter" href="#" aria-label="' . esc_attr( $author_name ) . "\" data-type='author' data-id='{$author_id}'>{$author_name}</a></li>";
 				}
 			}
 		}
@@ -505,7 +505,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		}
 
 		if ( ! empty( $sub_cat ) ) {
-			$sub_cat = "<li><a class=\"subclass-filter current\" href=\"#\" aria-label=\"" . esc_attr( $attr['header_filter_text'] ) . "\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
+			$sub_cat = '<li><a class="subclass-filter current" href="#" aria-label="' . esc_attr( $attr['header_filter_text'] ) . "\" data-type='all' data-id='0'>{$attr['header_filter_text']}</a></li>" . $sub_cat;
 			$sub_cat =
 				"<div class=\"gvnews_subcat okayNav loaded\">
                     <ul class=\"gvnews_subcat_list\">
@@ -641,6 +641,8 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'adsImageAlternateText'        => isset( $_REQUEST['data']['attribute']['adsImageAlternateText'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageAlternateText'] ) ) : '',
 							'adsImageAriaLabel'            => isset( $_REQUEST['data']['attribute']['adsImageAriaLabel'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageAriaLabel'] ) ) : '',
 							'adsImageFetchPriorityHigh'    => isset( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ) : false,
+							'adsFixedWidth'                => isset( $_REQUEST['data']['attribute']['adsFixedWidth'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsFixedWidth'] ) ) : '300',
+							'adsFixedHeight'               => isset( $_REQUEST['data']['attribute']['adsFixedHeight'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsFixedHeight'] ) ) : '300',
 						),
 				);
 

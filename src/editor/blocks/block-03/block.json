@@ -761,12 +761,18 @@
             "default": true
         },
         "adsFixedWidth": {
-            "type": "object",
-            "default": {}
+            "type": "string",
+            "default": "300"
         },
         "adsFixedHeight": {
-            "type": "object",
-            "default": {}
+            "type": "string",
+            "default": "300"
+        },
+        "adsImageFixedWidth": {
+            "type": "object"
+        },
+        "adsImageFixedHeight": {
+            "type": "object"
         },
 
         "adsGooglePubID": {

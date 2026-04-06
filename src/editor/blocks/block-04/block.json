@@ -752,23 +752,28 @@
             "type": "string",
             "default": "disable"
         },
- "adsHideIfUnfilled": {
+        "adsHideIfUnfilled": {
             "type": "boolean",
             "default": false
         },
-"adsResponsiveSize": {
+        "adsResponsiveSize": {
             "type": "boolean",
             "default": true
         },
-"adsFixedWidth": {
-            "type": "object",
-            "default": {}
+        "adsFixedWidth": {
+            "type": "string",
+            "default": "300"
         },
-"adsFixedHeight": {
-            "type": "object",
-            "default": {}
+        "adsFixedHeight": {
+            "type": "string",
+            "default": "300"
         },
-
+        "adsImageFixedWidth": {
+            "type": "object"
+        },
+        "adsImageFixedHeight": {
+            "type": "object"
+        },
         "adsGooglePubID": {
             "type": "string",
             "default": ""

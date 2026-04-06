@@ -1297,42 +1297,99 @@ const getBlockStyle = (
         ],
     });
 
-    if (attributes['adsType'] !== 'script' && attributes['adsType'] !== 'shortcode') {
-        isNotEmpty(attributes['adsFixedWidth']) && (!attributes['adsResponsiveSize'] || attributes['adsType'] !== 'google') && data.push({
-            'type': 'unitPoint',
-            'id': 'adsFixedWidth',
+    if ( attributes['adsType'] === 'image' ) {
+        isNotEmpty(attributes['adsImageFixedWidth']) && data.push({
+            'type': 'plain',
+            'id': 'adsImageFixedWidth',
             'responsive': true,
-            'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper.gvnews-fixed-width img`,
+            'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper img`,
             'properties': [
                 {
                     'name': 'width',
-                    'valueType': 'direct'
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        },
+                    }
+                }
+            ],
+        });
+        isNotEmpty(attributes['adsImageFixedHeight']) && data.push({
+            'type': 'plain',
+            'id': 'adsImageFixedHeight',
+            'responsive': true,
+            'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper img`,
+            'properties': [
+                {
+                    'name': 'height',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        },
+                    }
+                }
+            ],
+        });
+    }
+
+    if (!attributes['adsResponsiveSize'] && attributes['adsType'] === 'google') {
+        isNotEmpty(attributes['adsFixedWidth']) && data.push({
+            'type': 'plain',
+            'id': 'adsFixedWidth',
+            'responsive': false,
+            'selector': `.${elementId} .gvnews-ads-wrapper`,
+            'properties': [
+                {
+                    'name': 'width',
+                    'valueType': 'pattern',
+                    'pattern': '{value}px',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        },
+                    }
                 }
             ],
         });
 
-        isNotEmpty(attributes['adsFixedHeight']) && (!attributes['adsResponsiveSize'] || attributes['adsType'] !== 'google') && data.push(
+        isNotEmpty(attributes['adsFixedHeight']) && data.push(
             {
-                'type': 'unitPoint',
+                'type': 'plain',
                 'id': 'adsFixedHeight',
-                'responsive': true,
-                'selector': `.${elementId} .gvnews-ads-wrapper, .${elementId} .gvnews-ads-wrapper img`,
+                'responsive': false,
+                'selector': `.${elementId} .gvnews-ads-wrapper`,
                 'properties': [
                     {
                         'name': 'height',
-                        'valueType': 'direct'
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct',
+                            },
+                        }
                     }
                 ],
             },
             {
-                'type': 'unitPoint',
+                'type': 'plain',
                 'id': 'adsFixedHeight',
-                'responsive': true,
+                'responsive': false,
                 'selector': `.${elementId} .gvnews-ads-wrapper .gvnews-dummy-ads`,
                 'properties': [
                     {
                         'name': 'min-height',
-                        'valueType': 'direct'
+                        'valueType': 'pattern',
+                        'pattern': '{value}px',
+                        'patternValues': {
+                            'value': {
+                                'type': 'direct',
+                            },
+                        }
                     }
                 ],
             },
