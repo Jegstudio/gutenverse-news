@@ -14,3 +14,4 @@ gutenverse-news/lib/framework/*
 package-lock.json
 pnpm-lock.yaml
 gutenverse-news.pot
+.claude/*
