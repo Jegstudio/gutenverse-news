@@ -53,13 +53,13 @@ export const paginationPanel = (props) => {
         {
             id: 'paginationPrevIcon',
             label: __('Prev Icon', 'gutenverse-news'),
-            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore',
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore' && paginationMode !== 'disable',
             component: IconSVGControl,
         },
         {
             id: 'paginationNextIcon',
             label: __('Next Icon', 'gutenverse-news'),
-            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore',
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore' && paginationMode !== 'disable',
             component: IconSVGControl,
         },
         {

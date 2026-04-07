@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { TypographyControl, HeadingControl, DimensionControl, IconRadioControl, SizeControl, SwitchControl, ColorControl, BackgroundControl, BorderControl, BoxShadowControl, AlertControl, CheckboxControl, SelectControl, RangeControl, BorderResponsiveControl } from 'gutenverse-core/controls';
+import { TypographyControl, HeadingControl, DimensionControl, IconRadioControl, SizeControl, SwitchControl, ColorControl, BackgroundControl, BorderControl, BoxShadowControl, AlertControl, CheckboxControl, SelectControl, BorderResponsiveControl } from 'gutenverse-core/controls';
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from 'gutenverse-core/components';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -697,28 +697,6 @@ export const paginationStylePanel = (props) => {
                         }
                     ],
                     'id': 'paginationBtnDisableBoxShadow',
-                    'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
-                }
-            ]
-        },
-        {
-            id: 'paginationBtnDisableOpacity',
-            label: __('Opacity', '--gctd--'),
-            show: switcher.__paginationBtnHover === 'disable' && (paginationMode !== 'disable' && paginationMode !== ''),
-            component: RangeControl,
-            min: 0,
-            max: 1,
-            step: 0.1,
-            liveStyle: [
-                {
-                    'type': 'plain',
-                    'properties': [
-                        {
-                            'name': 'opacity',
-                            'valueType': 'direct'
-                        }
-                    ],
-                    'id': 'paginationBtnDisableOpacity',
                     'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
                 }
             ]
