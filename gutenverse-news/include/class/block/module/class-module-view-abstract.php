@@ -643,6 +643,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'adsImageFetchPriorityHigh'    => isset( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsImageFetchPriorityHigh'] ) ) : false,
 							'adsFixedWidth'                => isset( $_REQUEST['data']['attribute']['adsFixedWidth'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsFixedWidth'] ) ) : '300',
 							'adsFixedHeight'               => isset( $_REQUEST['data']['attribute']['adsFixedHeight'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsFixedHeight'] ) ) : '300',
+							'adsResponsiveSize'            => isset( $_REQUEST['data']['attribute']['adsResponsiveSize'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsResponsiveSize'] ) ) : true,
 						),
 				);
 

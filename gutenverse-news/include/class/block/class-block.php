@@ -207,6 +207,7 @@ class Block extends Grab {
 			'adsImageFetchPriorityHigh'    => isset( $this->attributes['adsImageFetchPriorityHigh'] ) ? $this->attributes['adsImageFetchPriorityHigh'] : false,
 			'adsFixedWidth'                => isset( $this->attributes['adsFixedWidth'] ) ? $this->attributes['adsFixedWidth'] : '300',
 			'adsFixedHeight'               => isset( $this->attributes['adsFixedHeight'] ) ? $this->attributes['adsFixedHeight'] : '300',
+			'adsResponsiveSize'            => isset( $this->attributes['adsResponsiveSize'] ) ? $this->attributes['adsResponsiveSize'] : true,
 		);
 		$sccontent  = '';
 
