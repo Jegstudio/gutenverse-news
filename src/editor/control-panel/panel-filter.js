@@ -9,7 +9,7 @@ const advanceFilter = ['bookmark', 'liked', 'disliked', 'unlockedPost'];
 export const filterPanel = (props, isModule = false) => {
     const { postType = 'post', contentType = '', context } = props;
 
-    let isInAccountPage = context && context['gutenverse-pro/account-page/activeMenu'] !== undefined;
+    let isInAccountPage = context && context['gutenverse-pro/account-details/activeMenu'] !== undefined;
 
     const contentFilter = applyFilters('gvnews.panel.options.contentType', [
         {

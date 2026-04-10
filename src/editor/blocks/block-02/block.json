@@ -892,6 +892,6 @@
     ],
     "usesContext": [
         "gutenverse/flexDirection",
-        "gutenverse-pro/account-page/activeMenu"
+        "gutenverse-pro/account-details/activeMenu"
     ]
 }
