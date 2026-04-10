@@ -143,6 +143,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
+= 3.1.7-dev=
+##### Bug Fixes
+* Fix PHP warning appear when using News Ticker block
+
 = 3.1.6=
 ##### Improvements
 * Compatibility with Dynamic Image Generator method in Gutenverse Pro
