@@ -21,6 +21,7 @@ const Block3Block = compose(
         freeModule={true}
         defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
         mainThumbnailClass={'gvnews_pl_md_2'}
+        withAds={true}
     />;
 });
 

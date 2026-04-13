@@ -42,7 +42,8 @@ const BlockModule = compose(
         useDedicatedStyle = false,
         dedicatedStyle = () => [],
         isMasonry = false,
-        checkLandscapeThumbnail = false
+        checkLandscapeThumbnail = false,
+        withAds = false,
     } = props;
 
     const {
@@ -171,6 +172,24 @@ const BlockModule = compose(
         }
     };
 
+    const adsSettings = {
+        adsType,
+        adsPosition,
+        adsRandomPosition,
+        adsGooglePubID,
+        adsGoogleSlotID,
+        adsImage,
+        adsImageLink,
+        adsImageAlternateText,
+        adsImageFetchPriorityHigh,
+        adsImageNormalLoad,
+        adsImageOpenNewTab,
+        adsImageAriaLabel,
+        adsScriptCode,
+        adsShortcode,
+        adsShowText,
+    }
+
     const elementRef = useRef(null);
     const device = getDeviceType();
 
@@ -221,6 +240,7 @@ const BlockModule = compose(
     });
     const [forceReload, setForceReload] = useState(false);
     const [masonryReload, setMasonryReload] = useState(false);
+    const [adsReload, setAdsReload] = useState(false);
     const [loadClass, setLoadClass] = useState('');
     const [postLoaded, setPostLoaded] = useState(0);
     const [postStart, setPostStart] = useState(0);
@@ -420,23 +440,7 @@ const BlockModule = compose(
                 rowItemGap,
                 postTitleHtmlTag,
                 overlayIconData,
-                adsSettings: {
-                    adsType,
-                    adsPosition,
-                    adsRandomPosition,
-                    adsGooglePubID,
-                    adsGoogleSlotID,
-                    adsImage,
-                    adsImageLink,
-                    adsImageAlternateText,
-                    adsImageFetchPriorityHigh,
-                    adsImageNormalLoad,
-                    adsImageOpenNewTab,
-                    adsImageAriaLabel,
-                    adsScriptCode,
-                    adsShortcode,
-                    adsShowText,
-                }
+                adsSettings,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -478,6 +482,14 @@ const BlockModule = compose(
         videoFormatIcon,
         videoFormatIconType,
         videoFormatIconSVG,
+        adsReload,
+    ]);
+
+    useEffect(() => {
+        if (firstRender || !withAds) return;
+        setAdsReload(prev => !prev);
+    }, [
+        withAds,
         adsType,
         adsPosition,
         adsRandomPosition,
