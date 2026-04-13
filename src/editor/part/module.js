@@ -107,6 +107,12 @@ const BlockModule = compose(
         rowItemGap,
         headerHtmlTag,
         postTitleHtmlTag,
+        paginationPrevIcon,
+        paginationPrevIconType,
+        paginationPrevIconSVG,
+        paginationNextIcon,
+        paginationNextIconType,
+        paginationNextIconSVG,
         showPostFormatIcon = false,
         galleryFormatIcon = '',
         galleryFormatIconType = 'icon',
@@ -543,7 +549,7 @@ const BlockModule = compose(
     const paginationData = {
         paginationMode,
         showNavText,
-        nextPrevTotalPagination,
+        nextPrevTotalPagination: { ...nextPrevTotalPagination, page },
         onPageChange: (amount, loadClass) => {
             const final = Math.max(page + amount, 1);
             setIsLoaded(false);
@@ -552,6 +558,14 @@ const BlockModule = compose(
             if (paginationMode !== 'loadmore' && paginationMode !== 'scrollload') {
                 setOverlay(true);
             }
+        },
+        icon: {
+            paginationPrevIcon,
+            paginationPrevIconType,
+            paginationPrevIconSVG,
+            paginationNextIcon,
+            paginationNextIconType,
+            paginationNextIconSVG,
         }
     };
 

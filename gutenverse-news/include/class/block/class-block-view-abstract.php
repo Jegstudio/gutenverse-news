@@ -527,6 +527,10 @@ abstract class Block_View_Abstract {
 			$this->set_attribute( $attr );
 		}
 
+		if ( str_contains( $attr['pagination_mode'], 'normal' ) ) {
+			$attr['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' ) ) ?: 1;
+		}
+
 		$result = Block_Query::do_query( $attr );
 
 		if ( isset( $attr['unique_content'] ) && 'disable' !== $attr['unique_content'] ) {
@@ -774,6 +778,10 @@ abstract class Block_View_Abstract {
 				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
 			}
 		} elseif ( ! empty( $icon ) ) {
+			if ( ! wp_style_is( 'fontawesome-gutenverse', 'enqueued' ) ) {
+				wp_enqueue_style( 'fontawesome-gutenverse' );
+				wp_enqueue_style( 'gutenverse-iconlist' );
+			}
 			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
 		}
 

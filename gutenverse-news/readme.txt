@@ -146,6 +146,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 = 3.1.7-dev=
 ##### Improvements
 * Adding more styling option on Header block
+* Add normal pagination option to all Module blocks
 
 ##### Bug Fixes
 * Fix PHP warning appear when using News Ticker block

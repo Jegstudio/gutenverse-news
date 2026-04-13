@@ -35,13 +35,24 @@ class GutenverseNewsModule {
         this.isMasonry = this.container.find('.gvnews_posts_masonry').length > 0;
         this.shuffleInstance = null;
 
-        if (this.ajax_mode === 'nextprev') {
+        this.attach_event();
+
+        this.masonry_init();
+        this.init();
+
+        this.element.trigger('gvnews_module_init', [this]);
+    }
+
+    attach_event = () => {
+        if (this.ajax_mode === 'nextprev' || this.ajax_mode === 'number') {
             this.nav_next = this.nav_block.find('.next');
             this.nav_prev = this.nav_block.find('.prev');
+            this.nav_number = this.nav_block.find('.btn-pagination');
 
             // assign click
             this.nav_next.on('click', this.click_next);
             this.nav_prev.on('click', this.click_prev);
+            this.nav_number.on('click', this.click_number);
         }
 
         if (this.ajax_mode === 'loadmore' || this.ajax_mode === 'scrollload') {
@@ -53,11 +64,22 @@ class GutenverseNewsModule {
             this.load_limit = this.data.attribute.pagination_scroll_limit;
             this.load_scroll();
         }
+    };
 
-        this.masonry_init();
-        this.init();
+    deattach_event = () => {
+        if (this.ajax_mode === 'nextprev' || this.ajax_mode === 'number') {
+            this.nav_next.off('click', this.click_next);
+            this.nav_prev.off('click', this.click_prev);
+            this.nav_number.off('click', this.click_number);
+        }
 
-        this.element.trigger('gvnews_module_init', [this]);
+        if (this.ajax_mode === 'loadmore' || this.ajax_mode === 'scrollload') {
+            this.nav_next.off('click', this.load_more);
+        }
+
+        if (this.ajax_mode === 'scrollload') {
+            window.removeEventListener('scroll', this.listen_scroll);
+        }
     }
 
     load_scroll = () => {
@@ -109,6 +131,17 @@ class GutenverseNewsModule {
         if (!u(element).hasClass('disabled') && !this.lock_action) {
             this.data.current_page = this.data.current_page - 1;
             this.request_ajax('prev');
+        }
+    }
+
+    click_number = (event) => {
+        event.preventDefault();
+        const number = u(event.currentTarget);
+        const val = Number.parseInt(number.data('page'));
+        if (val && !number.hasClass('current')) {
+            const isNext = val > this.data.current_page;
+            this.data.current_page = val;
+            this.request_ajax(isNext ? 'next' : 'prev');
         }
     }
 
@@ -350,6 +383,13 @@ class GutenverseNewsModule {
         // change content
         this.replace_content(content);
 
+        if (this.ajax_mode === 'number') {
+            const newNav = response.pagination;
+            this.deattach_event();
+            this.replace_navigation(newNav);
+            this.attach_event();
+        }
+
         // change navigation
         if (this.nav_next !== null) {
             if (response.next) {
@@ -382,38 +422,46 @@ class GutenverseNewsModule {
         u(window).trigger('resize');
     }
 
-    after_ajax_request = (type) => {
-        this.element.removeClass('loading').addClass('loaded').addClass(type);
+    after_ajax_request =
+        (type) => {
+            this.element.removeClass('loading').addClass('loaded').addClass(type);
 
-        if (type === 'next' || type === 'prev' || type === 'subclass') {
-            this.module_overlay.attr('style', 'display: none');
-        }
+            if (type === 'next' || type === 'prev' || type === 'subclass') {
+                this.module_overlay.attr('style', 'display: none');
+            }
 
-        if (type === 'more' || type === 'scroll') {
-            const loadMoreLink = this.load_more_block.find('a');
-            const loadText = loadMoreLink.data('load');
-            const iconHtml = loadMoreLink.data('icon-html');
-            const iconPosition = loadMoreLink.data('icon-position');
+            if (type === 'more' || type === 'scroll') {
+                const loadMoreLink = this.load_more_block.find('a');
+                const loadText = loadMoreLink.data('load');
+                const iconHtml = loadMoreLink.data('icon-html');
+                const iconPosition = loadMoreLink.data('icon-position');
 
-            // Restore text
-            loadMoreLink.text(loadText).removeClass('active');
+                // Restore text
+                loadMoreLink.text(loadText).removeClass('active');
 
-            // Restore icon if exists
-            if (typeof iconHtml !== 'undefined' && iconHtml) {
-                if (iconPosition === 'before') {
-                    loadMoreLink.html(iconHtml + ' ' + loadText);
-                } else {
-                    loadMoreLink.html(loadText + ' ' + iconHtml);
+                // Restore icon if exists
+                if (typeof iconHtml !== 'undefined' && iconHtml) {
+                    if (iconPosition === 'before') {
+                        loadMoreLink.html(iconHtml + ' ' + loadText);
+                    } else {
+                        loadMoreLink.html(loadText + ' ' + iconHtml);
+                    }
                 }
             }
         }
-    }
 
     replace_content = (content) => {
         this.container.children().each(function () {
             u(this).remove();
         });
         this.container.prepend(content);
+    }
+
+    replace_navigation = (content) => {
+        if (!content) {
+            return;
+        }
+        this.nav_block.html(content);
     }
 
     cache_get = (parameter) => {

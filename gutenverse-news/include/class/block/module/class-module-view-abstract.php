@@ -167,23 +167,37 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	 * @param bool|false $next       next.
 	 * @param bool|false $prev       prev.
 	 * @param int        $total_page total page.
+	 * @param bool       $from_ajax  from ajax.
 	 *
 	 * @return string
 	 */
-	public function render_navigation( $attr, $next = false, $prev = false, $total_page = 1 ) {
+	public function render_navigation( $attr, $next = false, $prev = false, $total_page = 1, $from_ajax = false ) {
 		$output           = '';
 		$additional_class = $next || $prev ? '' : 'inactive';
 
 		if ( 'disable' === $attr['pagination_mode'] ) {
 			return '';
-		}
-
-		if ( 'nextprev' === $attr['pagination_mode'] ) {
+		}else if ( false !== strpos( $attr['pagination_mode'], 'nextprev' ) || false !== strpos( $attr['pagination_mode'], 'number' ) ) {
 			$next = $next ? '' : 'disabled';
 			$prev = $prev ? '' : 'disabled';
 
-			$prev_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-left' );
-			$next_text = Svg_Icons::render_svg_icon( 'fas fa-chevron-right' );
+			$is_number    = false !== strpos( $attr['pagination_mode'], 'number' );
+			$is_normal    = false !== strpos( $attr['pagination_mode'], 'normal' );
+			$current_page = isset( $attr['paged'] ) ? ( int ) $attr['paged'] : 1;
+			if ( $is_normal ) {
+				$current_page = (int) ( ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' ) ) ?: '1' );
+			}
+			$numbers = '';
+
+			$prev_icon      = $attr['pagination_prev_icon'] ?? 'fas fa-chevron-left';
+			$prev_icon_type = $attr['pagination_prev_icon_type'] ?? 'icon';
+			$prev_icon_svg  = $attr['pagination_prev_icon_svg'] ?? '';
+			$next_icon      = $attr['pagination_next_icon'] ?? 'fas fa-chevron-right';
+			$next_icon_type = $attr['pagination_next_icon_type'] ?? 'icon';
+			$next_icon_svg  = $attr['pagination_next_icon_svg'] ?? '';
+
+			$prev_text = $this->render_icon( $prev_icon_type, $prev_icon, $prev_icon_svg );
+			$next_text = $this->render_icon( $next_icon_type, $next_icon, $next_icon_svg );
 
 			if ( $attr['pagination_nextprev_showtext'] ) {
 				$additional_class .= ' showtext';
@@ -191,14 +205,47 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$next_text         = esc_html__( 'Next', 'gutenverse-news' ) . ' ' . $next_text;
 			}
 
+			if ( $is_number ) {
+				$additional_class .= ' number';
+
+				$min_page          = max( $current_page - 1, 2);
+				$max_page          = min( $current_page + 1, $total_page - 1 );
+
+				$is_current = 1 === $current_page ? 'current' : '';
+				$link       = $is_normal ? $this->get_page_link_url( '1' ) : '#';
+				$numbers   .= '<a href="' . $link . '" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' 1" data-page="1">1</a>';
+
+				if ( $min_page > 2 ) {
+					$numbers .= '<span class="pagination-elipsis">...</span>';
+				}
+
+				for ( $i = $min_page; $i <= $max_page; $i++ ) {
+					$is_current = "{$i}" === "{$current_page}" ? 'current' : '';
+					$link       = $is_normal ? $this->get_page_link_url( "{$i}" ) : '#';
+					$numbers   .= '<a href="' . $link . '" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' ' . esc_attr( $i ) . '" data-page="' . esc_attr( $i ) . "\">{$i}</a>";
+				}
+
+				if ( $max_page < $total_page - 1 ) {
+					$numbers .= '<span class="pagination-elipsis">...</span>';
+				}
+
+				$is_current = $total_page === $current_page ? 'current' : '';
+				$link       = $is_normal ? $this->get_page_link_url( "{$total_page}" ) : '#';
+				$numbers   .= '<a href="' . $link . '" class="btn-pagination ' . esc_attr( $is_current ) . '" aria-label="' . esc_html__( 'Page', 'gutenverse-news' ) . ' ' . esc_attr( $total_page ) . '" data-page="' . esc_attr( $total_page ) . "\">{$total_page}</a>";
+			}
+
+			$prev_num  = max( 1, (int) $current_page - 1 );
+			$next_num  = min( (int) $total_page, (int) $current_page + 1 );
+			$prev_link = $is_normal ? $this->get_page_link_url( "{$prev_num}" ) : '#';
+			$next_link = $is_normal ? $this->get_page_link_url( "{$next_num}" ) : '#';
+
 			$output =
 				'<div class="gvnews_block_nav ' . esc_attr( $additional_class ) . '">
-                    <a href="#" class="prev ' . esc_attr( $prev ) . '" aria-label="' . esc_html__( 'Previous', 'gutenverse-news' ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
-                    <a href=\"#\" class=\"next " . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Next', 'gutenverse-news' ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
+                    <a href="' . $prev_link . '" class="prev ' . esc_attr( $prev ) . '" aria-label="' . esc_html__( 'Previous', 'gutenverse-news' ) . '" title="' . esc_html__( 'Previous', 'gutenverse-news' ) . "\">{$prev_text}</a>
+					{$numbers}
+                    <a href=\"{$next_link}\" class=\"next " . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Next', 'gutenverse-news' ) . '" title="' . esc_html__( 'Next', 'gutenverse-news' ) . "\">{$next_text}</a>
                 </div>";
-		}
-
-		if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
+		} else if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next   = $next ? '' : 'disabled';
 			$output =
 				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
@@ -212,6 +259,14 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$page   = $this->get_current_page();
 				$output = $this->render_normal_navigation( $attr, $total_page, $page );
 			}
+		}
+
+		if ( $from_ajax ) {
+			return "
+				{$this->get_navigation_before($attr)}
+                {$output}
+                {$this->get_navigation_after($attr)}
+			";
 		}
 
 		return "<div class=\"gvnews_block_navigation\">
@@ -408,10 +463,11 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 	 * @return string
 	 */
 	public function get_page_link_url( $i ) {
-		global $wp_rewrite;
-		$pagenum_link = html_entity_decode( get_pagenum_link() );
-		$url          = '' == get_option( 'permalink_structure' ) ? add_query_arg( 'paged', $i, $pagenum_link ) : trailingslashit( $pagenum_link ) . user_trailingslashit( "$wp_rewrite->pagination_base/" . $i, 'single_paged' );
-		return 1 === $i || '1' === $i ? $pagenum_link : $url;
+		// global $wp_rewrite;
+		// $pagenum_link = html_entity_decode( get_pagenum_link() );
+		// $url          = '' == get_option( 'permalink_structure' ) ? add_query_arg( 'paged', $i, $pagenum_link ) : trailingslashit( $pagenum_link ) . user_trailingslashit( "$wp_rewrite->pagination_base/" . $i, 'single_paged' );
+		// return 1 === $i || '1' === $i ? $pagenum_link : $url;
+		return get_pagenum_link( $i );
 	}
 
 	/**
@@ -601,7 +657,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'excerpt_ellipsis'             => isset( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['excerpt_ellipsis'] ) ) : '',
 							'image_load'                   => isset( $_REQUEST['data']['attribute']['image_load'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['image_load'] ) ) : '',
 							'pagination_mode'              => isset( $_REQUEST['data']['attribute']['pagination_mode'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_mode'] ) ) : '',
-							'pagination_nextprev_showtext' => isset( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ) : '',
+							'pagination_nextprev_showtext' => isset( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ? filter_var( sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_nextprev_showtext'] ) ), FILTER_VALIDATE_BOOLEAN ) : '',
 							'pagination_number_post'       => isset( $_REQUEST['data']['attribute']['pagination_number_post'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_number_post'] ) ) : '',
 							'pagination_scroll_limit'      => isset( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_scroll_limit'] ) ) : '',
 							'boxed'                        => isset( $_REQUEST['data']['attribute']['boxed'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['boxed'] ) ) : '',
@@ -628,6 +684,12 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'meta_settings'                => $meta_settings,
 							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 							'post_title_html_tag'          => isset( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ) : 'h3',
+							'pagination_prev_icon'         => isset( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ) : 'fas fa-chevron-left',
+							'pagination_prev_icon_type'    => isset( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ) : 'icon',
+							'pagination_prev_icon_svg'     => isset( $_REQUEST['data']['attribute']['pagination_prev_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon_svg'] ) ) : '',
+							'pagination_next_icon'         => isset( $_REQUEST['data']['attribute']['pagination_next_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon'] ) ) : 'fas fa-chevron-left',
+							'pagination_next_icon_type'    => isset( $_REQUEST['data']['attribute']['pagination_next_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon_type'] ) ) : 'icon',
+							'pagination_next_icon_svg'     => isset( $_REQUEST['data']['attribute']['pagination_next_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_next_icon_svg'] ) ) : '',
 							'adsPosition'                  => isset( $_REQUEST['data']['attribute']['adsPosition'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsPosition'] ) ) : '1',
 							'adsRandomPosition'            => isset( $_REQUEST['data']['attribute']['adsRandomPosition'] ) ? 'true' === sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsRandomPosition'] ) ) : false,
 							'adsType'                      => isset( $_REQUEST['data']['attribute']['adsType'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['adsType'] ) ) : 'disable',
@@ -652,6 +714,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$query_param                              = $this->build_ajax_query( $attr );
 				$results                                  = $this->build_query( $query_param );
 				$this->set_attribute( $attr['attribute'] );
+				$pagination   = '';
 
 				$content = $this->empty_content();
 				if ( ! empty( $results['result'] ) ) {
@@ -661,11 +724,17 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 					}
 				}
 
+				if ( 'number' === $attr['attribute']['pagination_mode'] ) {
+					$pagination = $this->render_navigation( array_merge( $attr['attribute'], array ( 'paged' => $attr['current_page'] ) ), $results['next'], $results['prev'], $results['total_page'], true );
+				}
+
 				wp_send_json(
 					array(
-						'content' => $content,
-						'next'    => $results['next'],
-						'prev'    => $results['prev'],
+						'content'    => $content,
+						'next'       => $results['next'],
+						'prev'       => $results['prev'],
+						'total_page' => $results['total_page'],
+						'pagination' => $pagination,
 					)
 				);
 			}

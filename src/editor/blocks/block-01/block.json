@@ -128,6 +128,28 @@
             "type": "boolean",
             "default": false
         },
+        "paginationPrevIcon": {
+			"type": "string",
+			"default": "fas fa-chevron-left"
+		},
+		"paginationPrevIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"paginationPrevIconSVG": {
+			"type": "string"
+		},
+        "paginationNextIcon": {
+			"type": "string",
+			"default": "fas fa-chevron-right"
+		},
+		"paginationNextIconType": {
+			"type": "string",
+			"default": "icon"
+		},
+		"paginationNextIconSVG": {
+			"type": "string"
+		},
         "paginationMode": {
             "type": "string",
             "default": "disable"
@@ -384,10 +406,16 @@
         "paginationBtnWidth": {
             "type": "object"
         },
+        "paginationNumberBtnWidth": {
+            "type": "object"
+        },
         "paginationBtnIconSize": {
             "type": "object"
         },
         "paginationBtnHeight": {
+            "type": "object"
+        },
+        "paginationNumberBtnHeight": {
             "type": "object"
         },
         "paginationBtnColor": {

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { SelectControl, CheckboxControl, RangeControl, NumberControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, RangeControl, NumberControl, IconSVGControl } from 'gutenverse-core/controls';
 
 export const paginationPanel = (props) => {
     const {
@@ -18,25 +18,49 @@ export const paginationPanel = (props) => {
                     value: 'disable'
                 },
                 {
-                    label: __('Next Prev', 'gutenverse-news'),
+                    label: __('Normal Prev Next (Best for SEO)', 'gutenverse-news'),
+                    value: 'normal-nextprev'
+                },
+                {
+                    label: __('Normal Number (Best for SEO)'),
+                    value: 'normal-number'
+                },
+                {
+                    label: __('Next Prev (Ajax)', 'gutenverse-news'),
                     value: 'nextprev'
                 },
                 {
-                    label: __('Load More', 'gutenverse-news'),
+                    label: __('Number (Ajax)'),
+                    value: 'number'
+                },
+                {
+                    label: __('Load More (Ajax)', 'gutenverse-news'),
                     value: 'loadmore'
                 },
                 {
-                    label: __('Autoload on Scroll', 'gutenverse-news'),
+                    label: __('Autoload on Scroll (Ajax)', 'gutenverse-news'),
                     value: 'scrollload'
                 },
             ],
         },
         {
             id: 'showNavText',
-            show: paginationMode === 'nextprev',
+            show: paginationMode === 'nextprev' || paginationMode === 'number' || paginationMode === 'normal-nextprev' || paginationMode === 'normal-number',
             label: __('Show Navigation Text', 'gutenverse-news'),
             description: __('Show previous and next text.', 'gutenverse-news'),
             component: CheckboxControl
+        },
+        {
+            id: 'paginationPrevIcon',
+            label: __('Prev Icon', 'gutenverse-news'),
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore' && paginationMode !== 'disable',
+            component: IconSVGControl,
+        },
+        {
+            id: 'paginationNextIcon',
+            label: __('Next Icon', 'gutenverse-news'),
+            show: paginationMode !== 'scrollload' && paginationMode !== 'loadmore' && paginationMode !== 'disable',
+            component: IconSVGControl,
         },
         {
             id: 'paginationPost',
