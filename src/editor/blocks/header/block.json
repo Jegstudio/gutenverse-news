@@ -38,31 +38,40 @@
         },
         "headerType": {
             "type": "string",
-            "default": "heading_6"
+            "default": "heading_6",
+            "copyStyle": true
         },
         "headerBackgroundColor": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerBackgroundColor2": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerTextColor": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerLineColor": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerLineColor2": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerSecondColor": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerAccentColor": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "headerAccentColor2": {
-            "type": "object"
+            "type": "object",
+            "copyStyle": true
         },
         "column": {
             "type": "object",
@@ -173,6 +182,30 @@
             "type": "object",
             "default": {},
             "copyStyle": true
+        },
+        "headerLineThick": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerLineThick2": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerTextTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerSecondTextTypography": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerSecondTextColor": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "headerHtmlTag": {
+            "type": "string",
+            "default": "h3"
         }
     },
     "supports": {

@@ -24,6 +24,7 @@ const Block7Block = compose(
         defaultImageSizeMain={{ height: 350, width: 180, dimension: 500 }}
         useDedicatedStyle={true}
         dedicatedStyle={dedicatedStyle}
+        withAds={true}
     />;
 });
 

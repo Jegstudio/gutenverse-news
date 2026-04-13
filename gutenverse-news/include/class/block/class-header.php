@@ -30,11 +30,12 @@ class Header extends Grab {
 		$icon_svg  = isset( $this->attributes['iconSVG'] ) ? $this->attributes['iconSVG'] : '';
 
 		$heading_icon  = gvnews_render_icon( $icon_type, $icon, $icon_svg );
-		$subtitle      = ! empty( $this->attributes['second_title'] ) ? '<strong>' . esc_attr( $this->attributes['second_title'] ) . '</strong>' : '';
+		$subtitle      = ! empty( $this->attributes['second_title'] ) ? '<strong>&nbsp;' . esc_attr( $this->attributes['second_title'] ) . '</strong>' : '';
 		$header_class  = 'gvnews_block_' . esc_attr( $this->attributes['headerType'] );
 		$heading_title = '<span>' . $heading_icon . esc_attr( $this->attributes['title'] ) . $subtitle . '</span>';
 		$heading_title = ! empty( $this->attributes['url_title'] ) ? "<a href='" . esc_url( $this->attributes['url_title'] ) . "'>{$heading_title}</a>" : $heading_title;
-		$heading_title = "<h3 class=\"gvnews_block_title\">{$heading_title}</h3>";
+		$heading_tag   = $this->attributes['headerHtmlTag'] ? $this->attributes['headerHtmlTag'] : 'h3';
+		$heading_title = "<{$heading_tag} class=\"gvnews_block_title\">{$heading_title}</{$heading_tag}>";
 
 		$wrapper_classes = gvnews_build_html_classes(
 			array(

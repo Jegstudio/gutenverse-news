@@ -85,7 +85,7 @@ const AdditionalFeatures = (props) => {
         {
             id: 'post_split',
             title: 'Post Split',
-            desc: 'Flexible and Design-Friendly Contact Form builder plugin for WordPress',
+            desc: 'Split your long content into multiple pages to increase page views and ad impressions or adding table of contents on your posts.',
             icon: <IconPaywallSVG />,
         },
         {
@@ -103,7 +103,7 @@ const AdditionalFeatures = (props) => {
         {
             id: 'ads',
             title: 'Ads',
-            desc: 'Adding ads to your article.',
+            desc: 'Add advertisements to your posts and pages with more customization options for Gutenverse News.',
             icon: <IconDonationSVG />,
         },
     ];

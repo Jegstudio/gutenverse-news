@@ -17,6 +17,7 @@ use GUTENVERSE\NEWS\Style\Archive_Pagination;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
+use GUTENVERSE\NEWS\Style\Header;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\Hero_14;
 use GUTENVERSE\NEWS\Style\Module_13;
@@ -122,7 +123,7 @@ class Style_Generator {
 					$instance = new News_Ticker( $attrs );
 					break;
 				case 'gutenverse/news-header' === $name:
-					$instance = new Block( $attrs, $name );
+					$instance = new Header( $attrs, $name );
 					break;
 				case 'gutenverse/news-user-list' === $name:
 					$instance = new User_List( $attrs, $name );
