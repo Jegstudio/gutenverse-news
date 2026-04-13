@@ -1351,14 +1351,14 @@
 
     span {
       padding: 0;
-      height: 30px !important;
-      line-height: 30px !important;
+      height: 30px;
+      line-height: 30px;
     }
 
     i,
     svg {
-      height: 30px !important;
-      line-height: 30px !important;
+      height: 30px;
+      line-height: 30px;
     }
   }
 
@@ -10633,6 +10633,7 @@ h3.gvnews_author_name {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
+
   /* Margin */
   .gvnews_pl_lg_box,
   .gvnews_pl_md_box {
@@ -10644,7 +10645,7 @@ h3.gvnews_author_name {
       margin-bottom: 15px;
     }
 
-    .gvnews_pl_sm_2:not(:last-of-type){
+    .gvnews_pl_sm_2:not(:last-of-type) {
       margin-bottom: 15px;
     }
   }
@@ -12540,13 +12541,9 @@ span.gvnews-category {
 /* Jeg After Inline CSS */
 
 
-@media only screen and (min-width: 567px) {
-  
-}
+@media only screen and (min-width: 567px) {}
 
-@media only screen and (min-width: 768px) {
-
-}
+@media only screen and (min-width: 768px) {}
 
 /*Post Masonry*/
 

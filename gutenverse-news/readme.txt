@@ -144,6 +144,9 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.1.7-dev=
+##### Improvements
+* Adding more styling option on Header block
+
 ##### Bug Fixes
 * Fix PHP warning appear when using News Ticker block
 
