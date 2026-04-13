@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { advancePanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { headerPanel } from './panel-header';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
+import { stylePanel } from './panel-style';
 
 export const panelList = () => {
     return [
@@ -10,6 +11,12 @@ export const panelList = () => {
             initialOpen: false,
             panelArray: headerPanel,
             tabRole: TabSetting
+        },
+        {
+            title: __('Style', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: stylePanel,
+            tabRole: TabStyle
         },
         {
             title: __('Border', 'gutenverse-news'),

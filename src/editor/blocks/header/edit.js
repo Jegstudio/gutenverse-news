@@ -36,6 +36,7 @@ const HeaderBlock = compose(
         title,
         second_title,
         headerType,
+        headerHtmlTag,
     } = attributes;
 
     const elementRef = useRef(null);
@@ -59,6 +60,7 @@ const HeaderBlock = compose(
         title,
         second_title,
         headerType,
+        headerHtmlTag,
     };
 
     const blockProps = useBlockProps({
