@@ -704,6 +704,10 @@ abstract class Block_View_Abstract {
 				return '<div class="gutenverse-icon-svg">' . $svg_data . '</div>';
 			}
 		} elseif ( ! empty( $icon ) ) {
+			if ( ! wp_style_is( 'fontawesome-gutenverse', 'enqueued' ) ) {
+				wp_enqueue_style( 'fontawesome-gutenverse' );
+				wp_enqueue_style( 'gutenverse-iconlist' );
+			}
 			return '<i aria-hidden="true" class="' . esc_attr( $icon ) . '"></i>';
 		}
 
