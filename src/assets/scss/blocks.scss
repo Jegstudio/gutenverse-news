@@ -1351,14 +1351,14 @@
 
     span {
       padding: 0;
-      height: 30px !important;
-      line-height: 30px !important;
+      height: 30px;
+      line-height: 30px;
     }
 
     i,
     svg {
-      height: 30px !important;
-      line-height: 30px !important;
+      height: 30px;
+      line-height: 30px;
     }
   }
 
@@ -12566,13 +12566,9 @@ span.gvnews-category {
 /* Jeg After Inline CSS */
 
 
-@media only screen and (min-width: 567px) {
-  
-}
+@media only screen and (min-width: 567px) {}
 
-@media only screen and (min-width: 768px) {
-
-}
+@media only screen and (min-width: 768px) {}
 
 /*Post Masonry*/
 
