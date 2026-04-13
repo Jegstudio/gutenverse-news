@@ -18,11 +18,11 @@ export const paginationPanel = (props) => {
                     value: 'disable'
                 },
                 {
-                    label: __('Next Prev (Normal)', 'gutenverse-news'),
+                    label: __('Normal Prev Next (Best for SEO)', 'gutenverse-news'),
                     value: 'normal-nextprev'
                 },
                 {
-                    label: __('Number (Normal)'),
+                    label: __('Normal Number (Best for SEO)'),
                     value: 'normal-number'
                 },
                 {
@@ -34,11 +34,11 @@ export const paginationPanel = (props) => {
                     value: 'number'
                 },
                 {
-                    label: __('Load More', 'gutenverse-news'),
+                    label: __('Load More (Ajax)', 'gutenverse-news'),
                     value: 'loadmore'
                 },
                 {
-                    label: __('Autoload on Scroll', 'gutenverse-news'),
+                    label: __('Autoload on Scroll (Ajax)', 'gutenverse-news'),
                     value: 'scrollload'
                 },
             ],
