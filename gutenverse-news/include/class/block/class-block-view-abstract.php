@@ -184,7 +184,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Method compatible_column
 	 *
-	 * @return string
+	 * @return array
 	 */
 	private function compatible_column() {
 		return $this->option_class->compatible_column();
@@ -527,8 +527,8 @@ abstract class Block_View_Abstract {
 			$this->set_attribute( $attr );
 		}
 
-		if ( str_contains( $attr['pagination_mode'], 'normal' ) ) {
-			$attr['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : get_query_var( 'page' ) ) ?: 1;
+		if ( isset( $attr['pagination_mode'] ) && false !== strpos( $attr['pagination_mode'], 'normal' ) ) {
+			$attr['paged'] = max( (int) get_query_var( 'paged' ), 1 );
 		}
 
 		$result = Block_Query::do_query( $attr );
@@ -676,7 +676,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Method element_id
 	 *
-	 * @param $attr $attr attribute.
+	 * @param array $attr attribute.
 	 *
 	 * @return string|null
 	 */
@@ -695,7 +695,7 @@ abstract class Block_View_Abstract {
 	/**
 	 * Get post meta date.
 	 *
-	 * @param object $post WP Post objcet.
+	 * @param object  $post WP Post objcet.
 	 * @param boolean $feed is feed.
 	 * @return string
 	 */

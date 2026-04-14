@@ -1,5 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
-import { positioningStyle } from "./positioning-style";
+import { positioningStyle } from './positioning-style';
 import { applyFilters } from '@wordpress/hooks';
 
 const getHeroStyle = (elementId, attributes) => {
@@ -11,7 +11,6 @@ const getHeroStyle = (elementId, attributes) => {
     } = attributes;
     data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
     data = overlayStyle(elementId, attributes, data);
-
 
     if (isNotEmpty(attributes['heroMargin'])) {
         data.push({

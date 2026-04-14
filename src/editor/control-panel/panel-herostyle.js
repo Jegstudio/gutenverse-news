@@ -11,7 +11,6 @@ import {
     BorderResponsiveControl,
     IconSVGControl
 } from 'gutenverse-core/controls';
-import { getDeviceType } from 'gutenverse-core/editor-helper';
 import { gvnewsEssentialsActive } from '../utils/helper';
 
 
@@ -22,7 +21,6 @@ export const styleHero = (props, typeCount = 1) => {
         showPostFormatIcon = false,
     } = props;
     let numberItem = 0;
-    const device = getDeviceType();
 
     const getNumberItem = () => {
         if (!props.heroItemOverlay) {
