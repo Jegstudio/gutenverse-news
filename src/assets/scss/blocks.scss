@@ -9046,29 +9046,6 @@ h3.gvnews_author_name {
     display: none;
   }
 
-  .gvnews_heroblock_13 {
-    &.gvnews_hero_style_1 .gvnews_postblock_content {
-      left: 20px;
-      bottom: 20px;
-      width: 70%;
-    }
-
-    &.gvnews_hero_style_2 .gvnews_postblock_content {
-      left: 20px;
-      right: 20px;
-    }
-
-    &.gvnews_hero_style_3 .gvnews_postblock_content {
-      left: 20px;
-      top: 20px;
-    }
-
-    &.gvnews_hero_style_7 .gvnews_postblock_content {
-      bottom: 30px;
-      left: 30px;
-      padding: 15px 25px;
-    }
-  }
 
   .gvnews_heroblock_skew.gvnews_hero_style_3 .gvnews_hero_item_1 .gvnews_postblock_content {
     left: -10px;
@@ -9902,9 +9879,6 @@ h3.gvnews_author_name {
   }
 
   .gvnews_heroblock_13 {
-    &.gvnews_hero_style_7 .gvnews_postblock_content {
-      width: 60%;
-    }
 
     &.gvnews_hero_style_5 .gvnews_postblock_content,
     &.gvnews_hero_style_6 .gvnews_postblock_content {
@@ -10458,7 +10432,6 @@ h3.gvnews_author_name {
         bottom: 20px;
         left: 20px;
         padding: 15px 20px;
-        width: 60%;
       }
 
       .gvnews_post_title {
@@ -13935,7 +13908,7 @@ span.gvnews-category {
     .gvnews_postblock_content {
       bottom: 40px;
       left: 40px;
-      width: 45%;
+      width: 70%;
       padding: 30px;
     }
 
@@ -14542,11 +14515,6 @@ span.gvnews-category {
       top: 20px;
     }
 
-    &.gvnews_hero_style_7 .gvnews_postblock_content {
-      bottom: 30px;
-      left: 30px;
-      padding: 15px 25px;
-    }
   }
 
   .gvnews_heroblock_skew.gvnews_hero_style_3 .gvnews_hero_item_1 .gvnews_postblock_content {
@@ -14702,10 +14670,6 @@ span.gvnews-category {
   }
 
   .gvnews_heroblock_13.gvnews_hero_style_7 {
-    .gvnews_postblock_content {
-      width: 50%;
-    }
-
     .gvnews_post_title {
       font-size: 22px;
     }
@@ -15165,9 +15129,6 @@ span.gvnews-category {
   }
 
   .gvnews_heroblock_13 {
-    &.gvnews_hero_style_7 .gvnews_postblock_content {
-      width: 60%;
-    }
 
     &.gvnews_hero_style_5 .gvnews_postblock_content,
     &.gvnews_hero_style_6 .gvnews_postblock_content {
@@ -15467,8 +15428,8 @@ span.gvnews-category {
       .gvnews_postblock_content {
         bottom: 20px;
         left: 20px;
+        right: 20px;
         padding: 15px 20px;
-        width: 60%;
       }
 
       .gvnews_post_title {
@@ -15844,44 +15805,45 @@ span.gvnews-category {
   }
 
   /* match caption style */
+  ..gvnews-block.gvnews-block-wrapper {
+    .gvnews_heroblock_13 {
+      &.gvnews_hero_style_1 .gvnews_postblock_content {
+        left: 0;
+        bottom: 0;
+        width: 85%;
+      }
 
-  .gvnews_heroblock_13 {
-    &.gvnews_hero_style_1 .gvnews_postblock_content {
-      left: 0;
-      bottom: 0;
-      width: 85%;
-    }
+      &.gvnews_hero_style_2 .gvnews_post_info {
+        width: 85%;
+      }
 
-    &.gvnews_hero_style_2 .gvnews_post_info {
-      width: 85%;
-    }
-
-    &.gvnews_hero_style_3 .gvnews_postblock_content {
-      left: 0;
-      top: 0;
-      width: auto;
-    }
-
-    &.gvnews_hero_style_5 .gvnews_postblock_content,
-    &.gvnews_hero_style_6 .gvnews_postblock_content {
-      width: auto;
-    }
-
-    &.gvnews_hero_style_7 {
-      .gvnews_postblock_content {
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
+      &.gvnews_hero_style_3 .gvnews_postblock_content {
+        left: 0;
+        top: 0;
         width: auto;
-        padding: 10px 12px;
       }
 
-      .gvnews_post_title {
-        max-width: 100%;
-        margin-bottom: 6px;
-        font-size: 16px;
+      &.gvnews_hero_style_5 .gvnews_postblock_content,
+      &.gvnews_hero_style_6 .gvnews_postblock_content {
+        width: auto;
+      }
+
+      &.gvnews_hero_style_7 {
+        .gvnews_postblock_content {
+          left: 5px !important;
+          right: 5px !important;
+          bottom: 5px !important;
+          padding: 10px 12px;
+        }
+
+        .gvnews_post_title {
+          max-width: 100%;
+          margin-bottom: 6px;
+          font-size: 16px;
+        }
       }
     }
+
   }
 
   .gvnews_heroblock_skew.gvnews_hero_style_3 .gvnews_hero_item_1 .gvnews_postblock_content {

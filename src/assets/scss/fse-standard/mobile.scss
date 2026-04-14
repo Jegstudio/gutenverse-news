@@ -329,4 +329,30 @@
         }
     }
 
+    .gvnews_heroblock_13 {
+        &.gvnews_hero_style_1 .gvnews_postblock_content {
+            left: 20px;
+            bottom: 20px;
+            width: 70%;
+        }
+
+        &.gvnews_hero_style_2 .gvnews_postblock_content {
+            left: 20px;
+            right: 20px;
+        }
+
+        &.gvnews_hero_style_3 .gvnews_postblock_content {
+            left: 20px;
+            top: 20px;
+        }
+
+        &.gvnews_hero_style_7 .gvnews_postblock_content {
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            width: auto;
+            padding: 15px 25px;
+        }
+    }
+
 }

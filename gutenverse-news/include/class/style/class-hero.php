@@ -539,19 +539,6 @@ class Hero extends StyleAbstract {
 				)
 			);
 		}
-
-		if ( 'GUTENVERSE\NEWS\Block\Hero\Hero_13' === $this->attrs['gvnewsModule'] && isset( $this->attrs['containerWidth'] ) ) {
-			$this->inject_style(
-				array(
-					'selector'       => '2' === $this->attrs['heroStyle'] ? '.gvnews_heroblock_13.gvnews_hero_style_2 .gvnews_post_info' : ".{$this->element_id} .gvnews_heroblock_13 .gvnews_postblock_content",
-					'property'       => function ( $value ) {
-						return "width: {$value}%;";
-					},
-					'value'          => $this->attrs['containerWidth'],
-					'device_control' => true,
-				)
-			);
-		}
 	}
 
 	/**
