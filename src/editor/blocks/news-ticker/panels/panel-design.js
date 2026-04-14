@@ -43,7 +43,7 @@ export const designPanel = (props) => {
                     'selector': `.${elementId} .gvnews_news_ticker`,
                     'properties': [
                         {
-                            'name': '.gvnews_news_ticker',
+                            'name': 'heigh',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
                             'patternValues': {

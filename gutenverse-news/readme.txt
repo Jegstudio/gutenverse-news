@@ -147,6 +147,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 ##### Improvements
 * Adding more styling option on Header block
 * Add normal pagination option to all Module blocks
+* Adding container width option on Hero 13 block
 
 ##### Bug Fixes
 * Fix PHP warning appear when using News Ticker block

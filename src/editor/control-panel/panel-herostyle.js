@@ -7,17 +7,19 @@ import {
     RepeaterControl,
     HeadingControl,
     SwitchControl,
-    BorderResponsiveControl
+    BorderResponsiveControl,
+    RangeControl
 } from 'gutenverse-core/controls';
-import { getDeviceType } from 'gutenverse-core/editor-helper';
 
 export const styleHero = (props, typeCount = 1) => {
     const {
         switcher,
         setSwitcher,
+        gvnewsModule,
+        elementId,
+        heroStyle
     } = props;
     let numberItem = 0;
-    const device = getDeviceType();
 
     const getNumberItem = () => {
         if (!props.heroItemOverlay) {
@@ -85,6 +87,38 @@ export const styleHero = (props, typeCount = 1) => {
             label: __('Title Typography', 'gutenverse-news'),
             description: __('This option will change your title typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'containerWidth',
+            label: __('Container Width', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            description: __('Width of container post content.', 'gutenverse-news'),
+            show: gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_13',
+            min: 1,
+            max: 100,
+            unit: '%',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'containerWidth',
+                    'responsive': true,
+                    'selector': heroStyle === '2' ? `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_13.gvnews_hero_style_2 .gvnews_post_info` : `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_13 .gvnews_postblock_content`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
         },
         {
             id: 'borderItem',

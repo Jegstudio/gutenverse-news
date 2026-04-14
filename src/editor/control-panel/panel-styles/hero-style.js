@@ -7,9 +7,10 @@ const getHeroStyle = (elementId, attributes) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
+        gvnewsModule = '',
+        heroStyle
     } = attributes;
     data = positioningStyle(elementId, attributes, data, `.gvnews-block.gvnews-block-wrapper.${elementId}`);
-
 
     if (isNotEmpty(attributes['heroMargin'])) {
         data.push({
@@ -430,6 +431,25 @@ const getHeroStyle = (elementId, attributes) => {
                 'name': 'color',
                 'valueType': 'direct'
             }
+        ],
+    });
+
+    gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_13' && isNotEmpty(attributes['containerWidth']) && data.push({
+        'type': 'plain',
+        'id': 'containerWidth',
+        'selector': heroStyle === '2' ? `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_13.gvnews_hero_style_2 .gvnews_post_info` : `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock_13 .gvnews_postblock_content`,
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'pattern',
+                'pattern': '{value}%',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            },
         ],
     });
 
