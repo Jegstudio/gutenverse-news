@@ -421,10 +421,6 @@
             "type": "object",
             "default": {},
             "copyStyle": true
-        },
-        "containerWidth": {
-            "type": "object",
-            "copyStyle": true
         }
     },
     "supports": {
