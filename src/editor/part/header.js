@@ -20,19 +20,11 @@ function SubCatItem(props) {
     );
 }
 
-function SubCat(props) {
-    const { onSubCatChange = () => { } } = props;
-    const [active, setActive] = useState(-100);
+function SubCatNav(props) {
+    const { active, catOnClickHandler } = props;
     const headerRef = useRef(null);
 
-    const catOnClickHandler = (type, val, label) => {
-        setActive(val);
-        onSubCatChange(val, type, label);
-    };
-
     useEffect(() => {
-        setActive(-100);
-        catOnClickHandler('all', -100, 'all');
         let okayNavInstance = null;
 
         if (headerRef.current) {
@@ -48,12 +40,7 @@ function SubCat(props) {
                 okayNavInstance.destroy();
             }
         };
-
-    }, [props.headerCategory, props.headerAuthor, props.headerTag]);
-
-    if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
-        return null;
-    }
+    }, []);
 
     return (
         <div ref={headerRef} className="gvnews_subcat">
@@ -73,6 +60,33 @@ function SubCat(props) {
             </ul>
         </div>
     );
+}
+
+function SubCat(props) {
+    const { onSubCatChange = () => { } } = props;
+    const [active, setActive] = useState(-100);
+
+    const catOnClickHandler = (type, val, label) => {
+        setActive(val);
+        onSubCatChange(val, type, label);
+    };
+
+    useEffect(() => {
+        setActive(-100);
+        catOnClickHandler('all', -100, 'all');
+    }, [props.headerCategory, props.headerAuthor, props.headerTag]);
+
+    if ( !Valid(props.headerCategory) && !Valid(props.headerAuthor) && !Valid(props.headerTag) ) {
+        return null;
+    }
+
+    const navKey = [
+        ...(props.headerCategory || []),
+        ...(props.headerAuthor || []),
+        ...(props.headerTag || []),
+    ].map(d => d.value).join(',');
+
+    return <SubCatNav key={navKey} active={active} catOnClickHandler={catOnClickHandler} {...props} />;
 }
 
 function HeadTitle(props) {
