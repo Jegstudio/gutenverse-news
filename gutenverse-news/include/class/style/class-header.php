@@ -30,10 +30,10 @@ class Header extends StyleAbstract {
 		$this->set_feature(
 			array(
 				'border'      => array(
-					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock",
-					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_postblock:hover",
+					'normal' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_block_heading",
+					'hover'  => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_block_heading:hover",
 				),
-				'advance'     => ".gvnews-block-wrapper.{$this->element_id} .gvnews_postblock",
+				'advance'     => ".gvnews-block-wrapper.{$this->element_id} .gvnews_block_heading",
 				'positioning' => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper",
 			)
 		);
