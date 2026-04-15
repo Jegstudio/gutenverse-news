@@ -17,10 +17,10 @@
 //     }
 // }
 
-.gvnews_postblock_19 {
+.gvnews-block .gvnews_postblock_19 {
     .gvnews_pl_md_box .gvnews_post_meta {
-        a {
-            color: unset !important;
+        a, a:hover {
+            color: unset;
         }
 
         svg {
