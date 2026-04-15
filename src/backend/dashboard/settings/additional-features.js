@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { ControlCheckbox } from 'gutenverse-core/backend';
-import { IconBookmarkSVG, IconDonationSVG, IconLikeDislikeSVG, IconPaywallSVG, IconReviewSVG, IconViewCounterSVG } from '../../../assets/dashboard-icons';
+import { IconAdsSVG, IconBookmarkSVG, IconDonationSVG, IconLikeDislikeSVG, IconPaywallSVG, IconReviewSVG, IconSplitPostSVG, IconViewCounterSVG } from '../../../assets/dashboard-icons';
 import apiFetch from '@wordpress/api-fetch';
 import { applyFilters } from '@wordpress/hooks';
 import { useState } from '@wordpress/element';
@@ -86,7 +86,7 @@ const AdditionalFeatures = (props) => {
             id: 'post_split',
             title: 'Post Split',
             desc: 'Split your long content into multiple pages to increase page views and ad impressions or adding table of contents on your posts.',
-            icon: <IconPaywallSVG />,
+            icon: <IconSplitPostSVG />,
         },
         {
             id: 'bookmark',
@@ -104,7 +104,7 @@ const AdditionalFeatures = (props) => {
             id: 'ads',
             title: 'Ads',
             desc: 'Add advertisements to your posts and pages with more customization options for Gutenverse News.',
-            icon: <IconDonationSVG />,
+            icon: <IconAdsSVG />,
         },
     ];
 
