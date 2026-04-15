@@ -36,7 +36,7 @@ class Module_19 extends Block {
 		if ( isset( $this->attrs['boxMetaColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta:hover, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta:hover .by",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta>div:not(.gvnews_meta_author) .by",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -62,7 +62,7 @@ class Module_19 extends Block {
 		if ( isset( $this->attrs['boxMetaIconColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta:hover svg",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_pl_md_box .gvnews_post_meta>div:hover svg",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -88,7 +88,8 @@ class Module_19 extends Block {
 		if ( isset( $this->attrs['metaColorHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_pl_sm .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover",
+					'selector'       => ".{$this->element_id} .gvnews_postblock .gvnews_pl_sm .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_postblock .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover",
+					// .${elementId} .gvnews_postblock .gvnews_pl_sm .gvnews_post_meta>div:not(.gvnews_meta_author) a:hover
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
