@@ -52,24 +52,28 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all', 
         {
             id: 'boxMetaColor',
             label: __('Box Meta Color', 'gutenverse-news'),
+            description: __('This option will override the meta color setting on the inner box of the post block.', 'gutenverse-news'),
             component: ColorControl,
             show: hasBoxMeta && isNormal && showMeta
         },
         {
             id: 'boxMetaColorHover',
             label: __('Box Meta Color', 'gutenverse-news'),
+            description: __('This option will override the meta color setting on the inner box of the post block.', 'gutenverse-news'),
             component: ColorControl,
             show: hasBoxMeta && !isNormal && showMeta && 'author-only' !== hover
         },
         {
             id: 'boxMetaIconColor',
             label: __('Box Meta Icon Color', 'gutenverse-news'),
+            description: __('This option will override the meta icon color setting on the inner box of the post block.', 'gutenverse-news'),
             component: ColorControl,
             show: hasBoxMeta && isNormal && showMeta && withIcon
         },
         {
             id: 'boxMetaIconColorHover',
             label: __('Box Meta Icon Color', 'gutenverse-news'),
+            description: __('This option will override the meta icon color setting on the inner box of the post block.', 'gutenverse-news'),
             component: ColorControl,
             show: hasBoxMeta && !isNormal && showMeta && withIcon && 'author-only' !== hover
         },
