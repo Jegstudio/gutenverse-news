@@ -92,11 +92,12 @@ class GutenverseNewsModule {
 
     listen_scroll = () => {
         const windowHeight = window.innerHeight;
-        const scrollTop = window.scrollY;
-        const elementOffset = this.nav_next.size().top;
-        const offset = 0; // Adjust this value if needed
 
-        if (elementOffset - scrollTop <= windowHeight + offset) {
+        const rect = this.nav_next.first().getBoundingClientRect();
+        const offset = -200; // adjust this value.
+        const top = rect.top + offset;
+
+        if (top <= windowHeight) {
             this.data.current_page = this.data.current_page + 1;
             this.request_ajax('scroll');
             window.removeEventListener('scroll', this.listen_scroll);

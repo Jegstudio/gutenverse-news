@@ -133,7 +133,7 @@ export const panelList = () => {
             {
                 title: __('Meta Style', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: (props) => metaStylePanel(props, ['date']),
+                panelArray: (props) => metaStylePanel(props, ['date'], true, 'all', true),
                 tabRole: TabStyle
             },
             {

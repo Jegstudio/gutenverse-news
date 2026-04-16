@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { TypographyControl, SwitchControl, ColorControl } from 'gutenverse-core/controls';
 import { applyFilters } from '@wordpress/hooks';
 
-export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') => {
+export const metaStylePanel = (props, settings, withIcon = true, hover = 'all', hasBoxMeta = false) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
@@ -73,7 +73,34 @@ export const metaStylePanel = (props, settings, withIcon = true, hover = 'all') 
             component: ColorControl,
             show: withIcon && !isNormal && showMeta && 'author-only' !== hover
         },
-
+        {
+            id: 'boxMetaColor',
+            label: __('Boxed Meta Color', 'gutenverse-news'),
+            description: __('This option will override the meta color setting on the boxed post content.', 'gutenverse-news'),
+            component: ColorControl,
+            show: hasBoxMeta && isNormal && showMeta
+        },
+        {
+            id: 'boxMetaColorHover',
+            label: __('Boxed Meta Color', 'gutenverse-news'),
+            description: __('This option will override the meta color setting on the boxed post content.', 'gutenverse-news'),
+            component: ColorControl,
+            show: hasBoxMeta && !isNormal && showMeta && 'author-only' !== hover
+        },
+        {
+            id: 'boxMetaIconColor',
+            label: __('Boxed Meta Icon Color', 'gutenverse-news'),
+            description: __('This option will override the meta icon color setting on the boxed post content.', 'gutenverse-news'),
+            component: ColorControl,
+            show: hasBoxMeta && isNormal && showMeta && withIcon
+        },
+        {
+            id: 'boxMetaIconColorHover',
+            label: __('Boxed Meta Icon Color', 'gutenverse-news'),
+            description: __('This option will override the meta icon color setting on the boxed post content.', 'gutenverse-news'),
+            component: ColorControl,
+            show: hasBoxMeta && !isNormal && showMeta && withIcon && 'author-only' !== hover
+        },
         {
             id: 'thridMetaColor',
             label: __('Thrid List Meta Color', 'gutenverse-news'),

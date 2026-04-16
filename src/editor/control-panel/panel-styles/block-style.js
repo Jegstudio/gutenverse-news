@@ -1080,13 +1080,13 @@ const getBlockStyle = (
     isNotEmpty(attributes['paginationBtnBorder']) && data.push({
         'type': 'border',
         'id': 'paginationBtnBorder',
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
     });
     isNotEmpty(attributes['paginationBtnBorderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'paginationBtnBorderResponsive',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a`,
+        'selector': `.${elementId} .gvnews_block_navigation .gvnews_block_loadmore a, .${elementId} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled)`,
     });
     isNotEmpty(attributes['paginationBtnHoverBorder']) && data.push({
         'type': 'border',
@@ -1102,13 +1102,13 @@ const getBlockStyle = (
     isNotEmpty(attributes['paginationBtnDisableBorder']) && data.push({
         'type': 'border',
         'id': 'paginationBtnDisableBorder',
-        'selector': `.${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+        'selector': `.${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled, .${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
     });
     isNotEmpty(attributes['paginationBtnDisableBorderResponsive']) && data.push({
         'type': 'borderResponsive',
         'id': 'paginationBtnDisableBorderResponsive',
         'responsive': true,
-        'selector': `.${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled`,
+        'selector': `.${elementId} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled, .${elementId} .gvnews_block_navigation .gvnews_block_nav a.disabled`,
     });
     isNotEmpty(attributes['paginationBtnBoxShadow']) && data.push({
         'type': 'boxShadow',

@@ -23,14 +23,14 @@ class Block extends StyleAbstract {
 	 *
 	 * @var string|null
 	 */
-	private string|null $main_thumbnail_class = null;
+	private $main_thumbnail_class = null;
 
 	/**
 	 * Undocumented variable
 	 *
 	 * @var string|null
 	 */
-	private string|null $second_thumbnail_class = null;
+	private $second_thumbnail_class = null;
 
 	/**
 	 * Constructor
@@ -891,6 +891,19 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
+	
+		if ( isset( $this->attrs['paginationNumberBtnWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['paginationNumberBtnWidth'],
+					'device_control' => true,
+				)
+			);
+		}
 
 		if ( isset( $this->attrs['paginationBtnIconSize'] ) ) {
 			$this->inject_style(
@@ -934,7 +947,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnHoverColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover, .{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_block_navigation .gvnews_block_nav a.current",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -947,7 +960,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnDisableColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.disabled",
+					'selector'       => ".{$this->element_id}.gvnews-block.gvnews-block-wrapper .gvnews_block_navigation .gvnews_block_nav a.disabled",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -962,7 +975,7 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['paginationBtnHoverBackground'] ) ) {
-			$this->handle_background( ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover", $this->attrs['paginationBtnHoverBackground'] );
+			$this->handle_background( ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.btn-pagination.current", $this->attrs['paginationBtnHoverBackground'] );
 		}
 
 		if ( isset( $this->attrs['paginationBtnDisableBackground'] ) ) {
@@ -970,15 +983,15 @@ class Block extends StyleAbstract {
 		}
 
 		if ( isset( $this->attrs['paginationBtnBorder'] ) ) {
-			$this->handle_border( 'paginationBtnBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a" );
+			$this->handle_border( 'paginationBtnBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnHoverBorder'] ) ) {
-			$this->handle_border( 'paginationBtnHoverBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a:hover" );
+			$this->handle_border( 'paginationBtnHoverBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.current" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnDisableBorder'] ) ) {
-			$this->handle_border( 'paginationBtnDisableBorder', ".{$this->element_id} .gvnews_pagination_nextprev .gvnews_block_navigation .gvnews_block_nav a.disabled" );
+			$this->handle_border( 'paginationBtnDisableBorder', ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.disabled" );
 		}
 
 		if ( isset( $this->attrs['paginationBtnBoxShadow'] ) ) {
@@ -997,7 +1010,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnHoverBoxShadow'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore a:hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a:not(.disabled):hover, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav a.current",
 					'property'       => function ( $value ) {
 						return $this->handle_box_shadow( $value );
 					},
@@ -1062,7 +1075,7 @@ class Block extends StyleAbstract {
 		if ( isset( $this->attrs['paginationBtnGap'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav, .{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore",
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav, .{$this->element_id} .gvnews_block_navigation .gvnews_block_loadmore, .{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.number",
 					'property'       => function ( $value ) {
 						return $this->handle_unit_point( $value, 'gap' );
 					},
@@ -1106,6 +1119,30 @@ class Block extends StyleAbstract {
 					)
 				);
 			}
+		}
+		if ( isset( $this->attrs['paginationNumberBtnWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['paginationNumberBtnWidth'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['paginationNumberBtnHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_block_navigation .gvnews_block_nav.number a.btn-pagination",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['paginationNumberBtnHeight'],
+					'device_control' => true,
+				)
+			);
 		}
 	}
 

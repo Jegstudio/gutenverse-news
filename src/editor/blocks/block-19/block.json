@@ -777,6 +777,18 @@
             "default": {},
             "copyStyle": true
         },
+        "boxMetaColor": {
+            "type": "object"
+        },
+        "boxMetaColorHover": {
+            "type": "object"
+        },
+        "boxMetaIconColor": {
+            "type": "object"
+        },
+        "boxMetaIconColorHover": {
+            "type": "object"
+        },
         "showMetaReview": {
             "type": "boolean"
         },
