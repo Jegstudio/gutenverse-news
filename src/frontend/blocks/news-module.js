@@ -315,6 +315,7 @@ class GutenverseNewsModule {
             this.nav_next.removeClass('disabled');
         } else {
             this.nav_next.addClass('disabled');
+            this.load_more_block.remove();
         }
 
         this.after_ajax_request(load_type);
