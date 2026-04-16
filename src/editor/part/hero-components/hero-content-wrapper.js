@@ -20,7 +20,7 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
             if (!postData[off]) {
                 break;
             }
-            let item = <HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />;
+            let item = <HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} heroType={heroType} />;
             if (i === parentIndex) {
                 firstBlock.push(item);
             } else {
@@ -40,7 +40,7 @@ const HeroContent = ({ heroType, index: parentIndex, attr, heroMargin, postData,
             if (!postData[off]) {
                 break;
             }
-            secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} />);
+            secondBlock.push(<HeroItemComponent index={index} post={postData[off]} attr={attr} margin={heroMargin} heroType={heroType} />);
             index++;
         }
         content = secondBlock;

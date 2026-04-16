@@ -146,4 +146,33 @@
         }
     }
 
+    .gvnews_heroblock_13 {
+        &.gvnews_hero_style_1 {
+            .gvnews_postblock_content_wrapper .gvnews_postblock_content {
+                padding: 0 0 50px 55px;
+            }
+        }
+
+        &.gvnews_hero_style_2 {
+            .gvnews_postblock_content_wrapper .gvnews_postblock_content {
+                padding-bottom: 10px;
+            }
+        }
+
+        &.gvnews_hero_style_6 {
+            .gvnews_postblock_content_wrapper .gvnews_postblock_content {
+                padding-bottom: 15px;
+            }
+        }
+
+        &.gvnews_hero_style_7 {
+            .gvnews_postblock_content_wrapper {
+                padding: 0 0 30px 30px;
+
+                .gvnews_postblock_content {
+                    padding: 15px 25px;
+                }
+            }
+        }
+    }
 }

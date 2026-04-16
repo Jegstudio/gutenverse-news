@@ -421,6 +421,14 @@
             "type": "object",
             "default": {},
             "copyStyle": true
+        },
+        "contentWidth": {
+            "type": "object",
+            "copyStyle": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "copyStyle": true
         }
     },
     "supports": {
