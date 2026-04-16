@@ -7,13 +7,18 @@ import {
     RepeaterControl,
     HeadingControl,
     SwitchControl,
-    BorderResponsiveControl
+    BorderResponsiveControl,
+    RangeControl,
+    DimensionControl
 } from 'gutenverse-core/controls';
 
 export const styleHero = (props, typeCount = 1) => {
     const {
         switcher,
         setSwitcher,
+        elementId,
+        heroStyle,
+        gvnewsModule
     } = props;
     let numberItem = 0;
 
@@ -83,6 +88,59 @@ export const styleHero = (props, typeCount = 1) => {
             label: __('Title Typography', 'gutenverse-news'),
             description: __('This option will change your title typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'contentWidth',
+            label: __('Content Width', 'gutenverse-news'),
+            component: RangeControl,
+            show: gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_13',
+            unit: '%',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'contentWidth',
+                    'responsive': true,
+                    'selector': heroStyle === '4' ? `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_col_3o3.gvnews_hero_style_4 .gvnews_post_info` : `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'contentPadding',
+            label: __('Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            show: gvnewsModule === 'GUTENVERSE\\NEWS\\Block\\Hero\\Hero_13' && heroStyle !== '5',
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
         },
         {
             id: 'borderItem',
