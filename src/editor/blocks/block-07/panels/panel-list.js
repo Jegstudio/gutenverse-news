@@ -21,6 +21,10 @@ import { postItemPanel } from '../../../control-panel/panel-post-item';
 import { applyFilters } from '@wordpress/hooks';
 
 export const panelList = () => {
+    const {
+        activeFeatures = [],
+    } = window.gvnewsEssentialsConfig ?? {};
+
     return applyFilters(
         'gutenverse.news.block.panels',
         [
@@ -206,17 +210,21 @@ export const panelList = () => {
                 initialOpen: false,
                 pro: true
             },
-            {
-                id: 'newsAds',
-                title: __('Ads', 'gutenverse-pro'),
-                initialOpen: false,
-                pro: true,
-                panelArray: () => {
-                    return [{
-                        component: LockedProPanel,
-                    }];
-                }
-            },
+            ...(
+                activeFeatures.includes('ads') ? [
+                    {
+                        id: 'newsAds',
+                        title: __('Ads', 'gutenverse-pro'),
+                        initialOpen: false,
+                        pro: true,
+                        panelArray: () => {
+                            return [{
+                                component: LockedProPanel,
+                            }];
+                        }
+                    },
+                ] : []
+            ),
         ]
     );
 };
