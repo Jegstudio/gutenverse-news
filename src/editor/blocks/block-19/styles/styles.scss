@@ -1,0 +1,30 @@
+// .gvnews_postblock_19 .gvnews_block_container .gvnews_posts {
+//     .gvnews_pl_md_box .box_wrap .gvnews_postblock_content .gvnews_post_meta {
+//         // a {
+//         //     color: salmon;
+//         // }
+
+//         // a:hover {
+//         //     color: unset;
+//         // }
+//         a {
+//             color: unset;
+//         }
+
+//         svg {
+//             color: #2e9fff;
+//         }
+//     }
+// }
+
+.gvnews-block .gvnews_postblock_19 {
+    .gvnews_pl_md_box .gvnews_post_meta {
+        a, a:hover {
+            color: unset;
+        }
+
+        svg {
+            color: #2e9fff;
+        }
+    }
+}
