@@ -87,7 +87,7 @@ class Post_Meta extends Post_Guten {
 	public function render_category( $is_last_item ) {
 		return '<div class="gvnews-meta-category meta-items ' . $is_last_item . '">
                 <span>
-                    <span class="meta-text">' . esc_html__( 'in', 'gutenverse-news' ) . '</span>
+                    <span class="meta-text">' . $this->attributes['categoryPrefix'] . '</span>
                     ' . get_the_category_list( '<span class="category-separator">, </span>' ) . ' 
                 </span>
             </div>';
