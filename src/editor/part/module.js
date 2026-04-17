@@ -19,6 +19,7 @@ import { getModuleOptions, getParentColumnWidth, getImageSizeDetail } from '../u
 import { ModuleSkeleton, ModuleOverlay } from './placeholder';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import NoContent from './no-content';
 
 const defaultOptions = getModuleOptions();
 
@@ -352,7 +353,7 @@ const BlockModule = compose(
             return;
         }
         if (gutenversePreviewBlock === 'noContent') {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            setBlock(<NoContent attributes={attributes} setAttributes={setAttributes} />);
             return;
         }
         if (postData.length > 0) {
@@ -390,7 +391,7 @@ const BlockModule = compose(
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
-            setBlock(<div className="gvnews_empty_module">{moduleOption.string && moduleOption.string.no_content}</div>);
+            setBlock(<NoContent attributes={attributes} setAttributes={setAttributes} />);
         }
         return () => setBlock(<ModuleSkeleton />);
     }, [
