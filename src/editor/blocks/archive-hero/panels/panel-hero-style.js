@@ -8,7 +8,9 @@ import {
     SwitchControl,
     BorderControl,
     BorderResponsiveControl,
-    HeadingControl
+    HeadingControl,
+    DimensionControl,
+    RangeControl
 } from 'gutenverse-core/controls';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -18,6 +20,7 @@ export const heroStylePanel = (props) => {
         heroType,
         switcher,
         setSwitcher,
+        heroStyle
     } = props;
 
     const heroTypes = [1, 2, 3, 4, 5, 6, 7];
@@ -104,6 +107,59 @@ export const heroStylePanel = (props) => {
             label: __('Title Typography', 'gutenverse-news'),
             description: __('This option will change your title typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'contentWidth',
+            label: __('Content Width', 'gutenverse-news'),
+            component: RangeControl,
+            show: heroType === '13',
+            unit: '%',
+            min: 1,
+            max: 100,
+            step: 1,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'contentWidth',
+                    'responsive': true,
+                    'selector': heroStyle === '4' ? `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_col_3o3.gvnews_hero_style_4 .gvnews_post_info` : `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'pattern',
+                            'pattern': '{value}%',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'contentPadding',
+            label: __('Padding', 'gutenverse-news'),
+            component: DimensionControl,
+            position: ['top', 'right', 'bottom', 'left'],
+            allowDeviceControl: true,
+            show: heroType === '13' && heroStyle !== '5',
+            units: {
+                px: {
+                    text: 'px',
+                    unit: 'px'
+                },
+                em: {
+                    text: 'em',
+                    unit: 'em'
+                },
+                percent: {
+                    text: '%',
+                    unit: '%'
+                },
+            },
         },
         {
             id: 'borderItem',
