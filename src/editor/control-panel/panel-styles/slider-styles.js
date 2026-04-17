@@ -1205,6 +1205,18 @@ const getNavigationStyle = (elementId, attributes, data = []) => {
 };
 
 const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTextAlign']) && data.push({
+        'type': 'plain',
+        'id': 'noContentTextAlign',
+        'properties': [
+            {
+                'name': 'text-align',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
     isNotEmpty(attributes['noContentTypography']) && data.push({
         'type': 'typography',
         'id': 'noContentTypography',

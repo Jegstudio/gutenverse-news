@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { BorderResponsiveControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl, PreviewControl } from 'gutenverse-core/controls';
+import { BorderResponsiveControl, DimensionControl, ColorControl, TypographyControl, BackgroundControl, PreviewControl, IconRadioControl } from 'gutenverse-core/controls';
+import { AlignCenter, AlignLeft, AlignRight } from 'gutenverse-core/components';
 
 
 export const noContentPanel = (props) => {
@@ -18,6 +19,29 @@ export const noContentPanel = (props) => {
                 <p>{__('Enable preview mode to simulate an empty state in the editor.', 'gutenverse-news')}</p>
             </>,
             component: PreviewControl
+        },
+        {
+            id: 'noContentTextAlign',
+            label: __('Text Align', 'gutenverse-news'),
+            component: IconRadioControl,
+            allowDeviceControl: false,
+            options: [
+                {
+                    label: __('Align Left', 'gutenverse-pro'),
+                    value: 'start',
+                    icon: <AlignLeft />,
+                },
+                {
+                    label: __('Align Center', 'gutenverse-pro'),
+                    value: 'center',
+                    icon: <AlignCenter />,
+                },
+                {
+                    label: __('Align Right', 'gutenverse-pro'),
+                    value: 'end',
+                    icon: <AlignRight />,
+                },
+            ],
         },
         {
             id: 'noContentTypography',

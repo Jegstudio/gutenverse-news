@@ -348,6 +348,16 @@
             "type": "string",
             "default": "h2"
         },
+        "noContentText": {
+            "type": "string",
+            "default": "No Content Available",
+            "copyStyle": true
+        },
+        "noContentTextAlign": {
+            "type": "string",
+            "default": "center",
+            "copyStyle": true
+        },
         "noContentTypography": {
             "type": "object",
             "copyStyle": true
