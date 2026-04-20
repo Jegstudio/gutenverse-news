@@ -247,9 +247,12 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
                 </div>";
 		} else if ( 'loadmore' === $attr['pagination_mode'] || 'scrollload' === $attr['pagination_mode'] ) {
 			$next   = $next ? '' : 'disabled';
+			$is_scrollload = 'scrollload' === $attr['pagination_mode'];
+			$autoload_attr = $is_scrollload ? ' data-autoload="scrollload"' : '';
+			$trigger_attr  = $is_scrollload ? ' data-autoload-trigger="true"' : '';
 			$output =
-				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '">
-                    <a href="#" class="' . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
+				'<div class="gvnews_block_loadmore ' . esc_attr( $additional_class ) . '"' . $autoload_attr . '>
+                    <a href="#" class="' . esc_attr( $next ) . '" aria-label="' . esc_html__( 'Load More', 'gutenverse-news' ) . '"' . $trigger_attr . ' data-load="' . esc_html__( 'Load More', 'gutenverse-news' ) . '" data-loading="' . esc_html__( 'Loading...', 'gutenverse-news' ) . '"> ' . esc_html__( 'Load More', 'gutenverse-news' ) . '</a>
                 </div>';
 		}
 

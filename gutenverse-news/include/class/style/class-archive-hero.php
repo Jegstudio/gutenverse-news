@@ -261,6 +261,44 @@ class Archive_Hero extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['heroType'] ) && '13' === $this->attrs['heroType'] ) {
+			$hero_style = isset( $this->attrs['heroStyle'] ) ? (string) $this->attrs['heroStyle'] : '';
+
+			if ( isset( $this->attrs['contentWidth'] ) ) {
+				$selector = '4' === $hero_style
+					? ".{$this->element_id}.gvnews-block .gvnews_heroblock_13.gvnews_col_3o3.gvnews_hero_style_4 .gvnews_post_info"
+					: ".{$this->element_id}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content";
+
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return "width: {$value}%;";
+						},
+						'value'          => $this->attrs['contentWidth'],
+						'device_control' => true,
+					)
+				);
+			}
+
+			if ( isset( $this->attrs['contentPadding'] ) && '5' !== $hero_style ) {
+				$selector = '7' === $hero_style
+					? ".{$this->element_id}.gvnews-block .gvnews_heroblock_13.gvnews_hero_style_7 .gvnews_postblock_content_wrapper"
+					: ".{$this->element_id}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content";
+
+				$this->inject_style(
+					array(
+						'selector'       => $selector,
+						'property'       => function ( $value ) {
+							return $this->handle_dimension( $value, 'padding' );
+						},
+						'value'          => $this->attrs['contentPadding'],
+						'device_control' => true,
+					)
+				);
+			}
+		}
+
 		if ( isset( $this->attrs['overlayIconColor'] ) ) {
 
 			$this->inject_style(
@@ -672,6 +710,19 @@ class Archive_Hero extends StyleAbstract {
 	}
 
 	private function no_content_style() {
+		if ( isset( $this->attrs['noContentTextAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return "text-align: {$value};";
+					},
+					'value'          => $this->attrs['noContentTextAlign'],
+					'device_control' => false,
+				)
+			);
+		}
+	
 		if ( isset( $this->attrs['noContentTypography'] ) ) {
 			$this->inject_typography(
 				array(

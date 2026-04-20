@@ -473,6 +473,19 @@ class Archive_Block extends StyleAbstract {
 	 * Generate style block no content style.
 	 */
 	private function no_content_style() {
+		if ( isset( $this->attrs['noContentTextAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_empty_module",
+					'property'       => function ( $value ) {
+						return "text-align: {$value};";
+					},
+					'value'          => $this->attrs['noContentTextAlign'],
+					'device_control' => false,
+				)
+			);
+		}
+	
 		if ( isset( $this->attrs['noContentTypography'] ) ) {
 			$this->inject_typography(
 				array(

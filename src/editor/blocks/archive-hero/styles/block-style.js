@@ -22,7 +22,8 @@ const getBlockStyle = (elementId, attributes) => {
     const {
         showMeta = true,
         showMetaAuthor = true,
-        heroType = '1'
+        heroType = '1',
+        heroStyle
     } = attributes;
 
     const withSecondTypo = ['1', '2', '3', '4', '5', '6', '10', '11', '12', '14'].includes(heroType);
@@ -308,6 +309,40 @@ const getBlockStyle = (elementId, attributes) => {
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_heroblock .gvnews_post .gvnews_post_title`,
     });
 
+    if (heroType === '13') {
+        isNotEmpty(attributes['contentWidth']) && data.push({
+            'type': 'plain',
+            'id': 'contentWidth',
+            'responsive': true,
+            'selector': heroStyle === '4' ? `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_col_3o3.gvnews_hero_style_4 .gvnews_post_info` : `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content`,
+            'properties': [
+                {
+                    'name': 'width',
+                    'valueType': 'pattern',
+                    'pattern': '{value}%',
+                    'patternValues': {
+                        'value': {
+                            'type': 'direct',
+                        }
+                    }
+                }
+            ],
+        });
+
+        isNotEmpty(attributes['contentPadding']) && '5' !== heroStyle && data.push({
+            'type': 'dimension',
+            'id': 'contentPadding',
+            'responsive': true,
+            'properties': [
+                {
+                    'name': 'padding',
+                    'valueType': 'direct'
+                }
+            ],
+            'selector': '7' === heroStyle ? `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_hero_style_7 .gvnews_postblock_content_wrapper` : `.${elementId}.gvnews-block .gvnews_heroblock_13.gvnews_heroblock .gvnews_postblock_content`,
+        });
+    }
+
 
     isNotEmpty(attributes['secondTitleTypography']) && withSecondTypo && data.push({
         'type': 'typography',
@@ -488,6 +523,18 @@ const getSecondTypographySelector = (templateType) => {
 };
 
 const noContentStyle = (elementId, attributes, data) => {
+    isNotEmpty(attributes['noContentTextAlign']) && data.push({
+        'type': 'plain',
+        'id': 'noContentTextAlign',
+        'properties': [
+            {
+                'name': 'text-align',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_empty_module`,
+    });
+
     isNotEmpty(attributes['noContentTypography']) && data.push({
         'type': 'typography',
         'id': 'noContentTypography',
