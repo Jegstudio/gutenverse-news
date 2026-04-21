@@ -20,10 +20,6 @@ import { cardStylePanelModule } from '../../../control-panel/panel-card-style-mo
 import { postItemPanel } from '../../../control-panel/panel-post-item';
 
 export const panelList = () => {
-    const {
-        activeFeatures = [],
-    } = window.gvnewsEssentialsConfig ?? {};
-
     return applyFilters(
         'gutenverse.news.block.panels',
         [
@@ -203,21 +199,19 @@ export const panelList = () => {
                 initialOpen: false,
                 pro: true
             },
-            ...(
-                activeFeatures.includes('ads') ? [
-                    {
-                        id: 'newsAds',
-                        title: __('Ads', 'gutenverse-pro'),
-                        initialOpen: false,
-                        pro: true,
-                        panelArray: () => {
-                            return [{
-                                component: LockedProPanel,
-                            }];
-                        }
-                    },
-                ] : []
-            ),
+            {
+                id: 'newsAds',
+                title: __('Ads', 'gutenverse-pro'),
+                initialOpen: false,
+                pro: true,
+                panelArray: (props) => applyFilters(
+                    'gutenverse.news.ads.control',
+                    [{
+                        component: LockedProPanel,
+                    }],
+                    props
+                )
+            },
         ]
     );
 };
