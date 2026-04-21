@@ -670,7 +670,9 @@ abstract class Block_View_Abstract {
 	 * @return string
 	 */
 	public function empty_content() {
-		return "<div class='gvnews_empty_module'>" . esc_html__( 'No Content Available', 'gutenverse-news' ) . '</div>';
+		$text = isset( $this->attribute['noContentText'] ) ? $this->attribute['noContentText'] : 'No Content available';
+
+		return "<div class='gvnews_empty_module'>" . esc_html__( $text, 'gutenverse-news' ) . '</div>';
 	}
 
 	/**

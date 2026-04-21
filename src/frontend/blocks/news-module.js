@@ -30,10 +30,12 @@ class GutenverseNewsModule {
         this.ad_code = this.element.find('.gvnews_ad_code').first().value;
         this.module_overlay = this.container.find('.module-overlay');
         this.load_more_block = this.nav_block.find('.gvnews_block_loadmore');
+        this.load_more_target = null;
         this.nav_next = null;
         this.nav_prev = null;
         this.isMasonry = this.container.find('.gvnews_posts_masonry').length > 0;
         this.shuffleInstance = null;
+        this.scrollObserver = null;
 
         this.attach_event();
 
@@ -57,6 +59,12 @@ class GutenverseNewsModule {
 
         if (this.ajax_mode === 'loadmore' || this.ajax_mode === 'scrollload') {
             this.nav_next = this.load_more_block.find('a');
+            this.load_more_target = this.load_more_block.find('[data-autoload-trigger="true"]');
+
+            if (!this.load_more_target.length) {
+                this.load_more_target = this.nav_next;
+            }
+
             this.nav_next.on('click', this.load_more);
         }
 
@@ -78,28 +86,57 @@ class GutenverseNewsModule {
         }
 
         if (this.ajax_mode === 'scrollload') {
-            window.removeEventListener('scroll', this.listen_scroll);
+            this.stop_scroll_listener();
         }
     }
 
     load_scroll = () => {
         if (!this.nav_next.hasClass('disabled')) {
             if (this.load_limit > this.data.current_page || this.load_limit == 0) {
-                window.addEventListener('scroll', this.listen_scroll);
+                if (window.IntersectionObserver && this.load_more_target?.length) {
+                    this.stop_scroll_listener();
+
+                    this.scrollObserver = new IntersectionObserver((entries) => {
+                        const entry = entries[0];
+
+                        if (entry?.isIntersecting) {
+                            this.listen_scroll();
+                        }
+                    });
+
+                    this.scrollObserver.observe(this.load_more_target.first());
+                } else {
+                    window.addEventListener('scroll', this.listen_scroll, { passive: true });
+                    this.listen_scroll();
+                }
             }
         }
     };
 
-    listen_scroll = () => {
-        const windowHeight = window.innerHeight;
-        const scrollTop = window.scrollY;
-        const elementOffset = this.nav_next.size().top;
-        const offset = 0; // Adjust this value if needed
+    stop_scroll_listener = () => {
+        window.removeEventListener('scroll', this.listen_scroll);
 
-        if (elementOffset - scrollTop <= windowHeight + offset) {
+        if (this.scrollObserver) {
+            this.scrollObserver.disconnect();
+            this.scrollObserver = null;
+        }
+    };
+
+    listen_scroll = () => {
+        const trigger = this.load_more_target?.length ? this.load_more_target.first() : this.nav_next.first();
+
+        if (!trigger || this.lock_action || this.nav_next.hasClass('disabled')) {
+            this.stop_scroll_listener();
+            return;
+        }
+
+        const rect = trigger.getBoundingClientRect();
+        const isInsideViewport = rect.top <= window.innerHeight && rect.bottom >= 0;
+
+        if (isInsideViewport) {
+            this.stop_scroll_listener();
             this.data.current_page = this.data.current_page + 1;
             this.request_ajax('scroll');
-            window.removeEventListener('scroll', this.listen_scroll);
         }
     };
 

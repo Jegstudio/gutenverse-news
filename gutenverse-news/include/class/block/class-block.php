@@ -190,6 +190,7 @@ class Block extends Grab {
 			'pagination_next_icon'         => isset( $this->attributes['paginationNextIcon'] ) ? $this->attributes['paginationNextIcon'] : 'fas fa-chevron-right',
 			'pagination_next_icon_type'    => isset( $this->attributes['paginationNextIconType'] ) ? $this->attributes['paginationNextIconType'] : 'icon',
 			'pagination_next_icon_svg'     => isset( $this->attributes['paginationNextIconSVG'] ) ? $this->attributes['paginationNextIconSVG'] : '',
+			'noContentText'                => isset( $this->attributes['noContentText'] ) ? $this->attributes['noContentText'] : 'No Content Available',
 			'show_post_format_icon'        => isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false,
 			'gallery_format_icon'          => isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '',
 			'gallery_format_icon_type'     => isset( $this->attributes['galleryFormatIconType'] ) ? $this->attributes['galleryFormatIconType'] : 'icon',
