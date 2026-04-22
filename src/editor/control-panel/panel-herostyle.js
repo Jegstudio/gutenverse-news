@@ -114,7 +114,7 @@ export const styleHero = (props, typeCount = 1) => {
         // First Item
         {
             id: 'overlayIconSizeMain',
-            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.typeCount || switcher.typeCount === 'first'),
+            show: showPostFormatIcon && gvnewsEssentialsActive && (switcher.typeCount === 'first' || !switcher.typeCount),
             label: __('Icon Size', 'gutenverse'),
             component: RangeControl,
             allowDeviceControl: true,
@@ -194,8 +194,8 @@ export const styleHero = (props, typeCount = 1) => {
         // Second Item
         {
             id: 'overlayIconSizeSecond',
-            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.typeCount || switcher.typeCount === 'second'),
-            label: __('Icon Size', 'gutenverse'),
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.typeCount === 'second',
+            label: __('Second Icon Size', 'gutenverse'),
             component: RangeControl,
             allowDeviceControl: true,
             min: 5,
@@ -221,8 +221,8 @@ export const styleHero = (props, typeCount = 1) => {
         // Third Item
         {
             id: 'overlayIconSizeThrid',
-            show: showPostFormatIcon && gvnewsEssentialsActive && (!switcher.typeCount || switcher.typeCount === 'third'),
-            label: __('Icon Size', 'gutenverse'),
+            show: showPostFormatIcon && gvnewsEssentialsActive && switcher.typeCount === 'third',
+            label: __('Third Icon Size', 'gutenverse'),
             component: RangeControl,
             allowDeviceControl: true,
             min: 5,
