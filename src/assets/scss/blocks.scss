@@ -1102,6 +1102,7 @@
 
 .gvnews_block_heading_5 .gvnews_block_title span {
   padding-right: 15px;
+  white-space: nowrap;
 }
 
 .gvnews_block_heading {
@@ -1300,6 +1301,7 @@
 
   &.gvnews_aligncenter .gvnews_block_title span {
     padding: 0px 15px;
+    white-space: nowrap;
   }
 
   .line {
