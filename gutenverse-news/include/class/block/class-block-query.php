@@ -18,6 +18,13 @@ namespace GUTENVERSE\NEWS\Block;
 class Block_Query {
 
 	/**
+	 * Check if recustive category option is enebled.
+	 *
+	 * @var boolean
+	 */
+	private static $is_recursive_category = false;
+
+	/**
 	 * Cache thumbnail
 	 *
 	 * @var array
@@ -33,6 +40,9 @@ class Block_Query {
 	 */
 	public static function do_query( $attr ) {
 		$attr = self::unset_unnecessary( $attr );
+
+		$gvnews_options              = gvnews_get_option( 'block_settings', array() );
+		self::$is_recursive_category = isset( $gvnews_options['recursive_category'] ) && $gvnews_options['recursive_category'];
 
 		if ( isset( $attr['sort_by'] ) ) {
 			if ( 'most_comment_day' === $attr['sort_by'] ||
@@ -550,6 +560,9 @@ class Block_Query {
 				$result[] = $category;
 				$children = array();
 
+				if ( self::$is_recursive_category ) {
+					$children = apply_filters( 'gvnews_recursive_category_filter', get_categories( array( 'parent' => $category ) ), $category, $categories );
+				}
 				if ( ! empty( $children ) ) {
 					$child_id = array();
 					foreach ( $children as $child ) {
