@@ -36,6 +36,7 @@ class Header extends Grab {
 		$heading_title = ! empty( $this->attributes['url_title'] ) ? "<a href='" . esc_url( $this->attributes['url_title'] ) . "'>{$heading_title}</a>" : $heading_title;
 		$heading_tag   = $this->attributes['headerHtmlTag'] ? $this->attributes['headerHtmlTag'] : 'h3';
 		$heading_title = "<{$heading_tag} class=\"gvnews_block_title\">{$heading_title}</{$heading_tag}>";
+		$heading_line  = $this->attributes['headerType'] === 'heading_5' ? '<span class="line"></span>' : '';
 
 		$wrapper_classes = gvnews_build_html_classes(
 			array(
@@ -47,6 +48,7 @@ class Header extends Grab {
 		// Now Render Output.
 		return "<div class=\"{$wrapper_classes}\">
                 {$heading_title}
+				{$heading_line}
             </div>";
 	}
 }
