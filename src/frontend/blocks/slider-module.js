@@ -308,7 +308,7 @@ class GutenverseSliderModule {
             } else if (u(wrapper).find('gvnews_col_1o3')) {
                 items_tablet = 1;
 
-                if (this.windowWidth() >= 1024) items_desktop = 1;
+                if (this.getWindowWidth() >= 1024) items_desktop = 1;
             }
 
             sliderDefault.nav = false;
@@ -387,10 +387,10 @@ class GutenverseSliderModule {
             items_phone = sliderDefault.items < 2 ? sliderDefault.items : 2;
 
             if (u(wrapper).find('gvnews_col_2o3')) {
-                if (items_desktop > 3 && this.windowWidth() == 1024) items_desktop = 3;
+                if (items_desktop > 3 && this.getWindowWidth() == 1024) items_desktop = 3;
             } else if (u(wrapper).find('gvnews_col_1o3')) {
                 items_tablet = 1;
-                if (this.windowWidth() >= 1024) items_desktop = 1;
+                if (this.getWindowWidth() >= 1024) items_desktop = 1;
             }
 
             sliderDefault.nav = false;
@@ -493,7 +493,17 @@ class GutenverseSliderModule {
                                     debounceResize = setTimeout(() => {
                                         this.setNavCenter(sliderOption.container, wrapper);
                                     }, 150);
-                                }); break;
+                                });
+                                if ('ResizeObserver' in window) {
+                                    const resizeObserver = new ResizeObserver(() => {
+                                        clearTimeout(debounceResize);
+                                        debounceResize = setTimeout(() => {
+                                            this.setNavCenter(sliderOption.container, wrapper);
+                                        }, 100);
+                                    });
+                                    if (wrapper) resizeObserver.observe(wrapper);
+                                }
+                                break;
                             case 9:
                                 const parent = sliderOption.container.closest('.gvnews_slider_wrapper');
                                 u(parent).find(('.gvnews_slider_type_9_thumb article')).map(element => {
