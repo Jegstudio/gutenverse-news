@@ -130,6 +130,7 @@ class Editor_Assets {
 	 */
 	public function gvnews_config() {
 		$config['imgDir']          = GUTENVERSE_NEWS_URL . '/assets/img';
+		$config['assetsDir']       = GUTENVERSE_NEWS_URL . '/assets';
 		$config['gvnews_ajax_url'] = esc_url_raw( add_query_arg( array( 'ajax-request' => 'gvnews' ), esc_url( gvnews_home_url_multilang( '/', 'relative' ) ) ) );
 		$config['moduleOption']    = $this->get_module_option();
 		$config['gutenversePro']   = gutenverse_pro_active();
@@ -144,7 +145,7 @@ class Editor_Assets {
 	 * @param array $config Config.
 	 */
 	public function block_config( $config ) {
-		$config['gutenverseFormImgDir']              = GUTENVERSE_NEWS_URL . '/assets/img';
+
 		$config['pluginVersions'][ GUTENVERSE_NEWS ] = array(
 			'name'           => GUTENVERSE_NEWS_NAME,
 			'version'        => GUTENVERSE_NEWS_VERSION,

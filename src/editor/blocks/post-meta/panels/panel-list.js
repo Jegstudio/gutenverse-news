@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel, LockedNewsLikeDislikeButton, LockedNewsReadingTime, LockedNewsBookmark, LockedNewsAuthorDonation } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, responsivePanel } from 'gutenverse-core/controls';
 import { generalPanel } from './panel-general';
 import { applyFilters } from '@wordpress/hooks';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
@@ -9,6 +9,10 @@ import { styleDatePanel } from './panel-style-date';
 import { styleCategoryPanel } from './panel-style-category';
 import { styleCommentPanel } from './panel-style-comment';
 import { designPanel } from './panel-design';
+import LockedNewsLikeDislikeButton from '../../../controls/locked/locked-news-like-dislike-button';
+import LockedNewsReadingTime from '../../../controls/locked/locked-news-reading-time';
+import LockedNewsBookmark from '../../../controls/locked/locked-news-bookmark';
+import LockedNewsMetaAuthorDonation from '../../../controls/locked/locked-news-meta-author-donation';
 
 export const panelList = () => {
     const customPanels = applyFilters(
@@ -93,7 +97,7 @@ export const panelList = () => {
                 initialOpen: false,
                 panelArray: () => {
                     return [{
-                        component: LockedNewsAuthorDonation,
+                        component: LockedNewsMetaAuthorDonation,
                     }];
                 },
                 pro: true,

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, LockedProPanel, responsivePanel, LockedNewsAuthorDonation } from 'gutenverse-core/controls';
+import { backgroundPanel, borderPanel, conditionPanel, positioningPanel, LockedProPanel, responsivePanel } from 'gutenverse-core/controls';
 import { biographyStylePanel } from './panel-biography-style';
 import { TabSetting, TabStyle } from 'gutenverse-core/controls';
 import layoutPanel from './panel-layout';
@@ -8,6 +8,7 @@ import { nameStylePanel } from './panel-name-style';
 import { iconStylePanel } from './panel-icon-style';
 import { generalPanel } from './panel-general';
 import { applyFilters } from '@wordpress/hooks';
+import LockedNewsAuthorDonation from '../../../controls/locked/locked-news-author-donation';
 
 export const panelList = () => {
     return applyFilters('gvnews.post-author.panel.panelList', [

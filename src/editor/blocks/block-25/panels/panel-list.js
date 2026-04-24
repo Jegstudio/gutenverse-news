@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel, conditionPanel, LockedProPanel, LockedNewsAdsControl } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel, conditionPanel, LockedProPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
@@ -18,6 +18,7 @@ import { contentContainerPanel } from '../../../control-panel/panel-content-cont
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 import { postItemPanel } from '../../../control-panel/panel-post-item';
+import LockedNewsAdsControl from '../../../controls/locked/locked-news-ads-control';
 
 export const panelList = () => {
     return applyFilters(
