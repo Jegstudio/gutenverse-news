@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel, conditionPanel, LockedProPanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel, conditionPanel, LockedProPanel, LockedNewsAdsControl } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
@@ -207,7 +207,7 @@ export const panelList = () => {
                 panelArray: (props) => applyFilters(
                     'gutenverse.news.ads.control',
                     [{
-                        component: LockedProPanel,
+                        component: LockedNewsAdsControl,
                     }],
                     props
                 )
