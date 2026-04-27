@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { ColorControl,DimensionControl ,RangeControl, TypographyControl } from 'gutenverse-core/controls';
-export const designPanel = () => {
+export const designPanel = (props) => {
+    const {elementId}= props;
 
     return [
         {
@@ -24,6 +25,36 @@ export const designPanel = () => {
             label: __('Excerpt Typography', 'gutenverse-news'),
             description: __('This option will change your post excerpt typography.', 'gutenverse-news'),
             component: TypographyControl,
+        },
+        {
+            id: 'excerptMetaGap',
+            label: __('Excerpt - Meta Gap', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 1,
+            max: 100,
+            unit: 'px',
+            step: 1,
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'excerptMetaGap',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider .gvnews_slide_caption .gvnews_post_meta`,
+                    'properties': [
+                        {
+                            'name': 'margin-top',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             id: 'excerptColor',

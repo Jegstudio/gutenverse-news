@@ -221,6 +221,9 @@
         "excerptColor": {
             "type": "object"
         },
+        "excerptMetaGap": {
+            "type": "object"
+        },
         "enableExcerpt": {
             "type": "boolean",
             "default": true

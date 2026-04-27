@@ -436,6 +436,19 @@ class Slider extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['excerptMetaGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption .gvnews_post_meta",
+					'property'       => function ( $value ) {
+						return "margin-top:	{$value}px";
+					},
+					'value'          => $this->attrs['excerptMetaGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['excerptColor'] ) ) {
 			$this->inject_style(
 				array(

@@ -439,7 +439,7 @@ class GutenverseSliderModule {
     setNavCenter = (element, wrapper) => {
         let slider_nav = u(wrapper).find('.tns-controls button');
         if (slider_nav.nodes.length) {
-            let thumb = u(element).find('.thumbnail-container');
+            let thumb = u(element).find('.gvnews_slide_item_wrapper');
             if (thumb.length) {
                 let thumb_height = thumb?.nodes[0].getBoundingClientRect().height;
                 slider_nav.map((ele) => {
