@@ -352,7 +352,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['sliderHeight'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_wrapper",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_wrapper, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slider_type_9_thumb",
 					'property'       => function ( $value ) {
 						return "height: {$value}px;";
 					},
