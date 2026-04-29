@@ -101,6 +101,32 @@ const readmoreStyle = (props) => {
         ],
     });
 
+    isNotEmpty(attributes['readmoreButtonPadding']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonPadding',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+    });
+
+    isNotEmpty(attributes['readmoreButtonMargin']) && data.push({
+        'type': 'dimension',
+        'id': 'readmoreButtonMargin',
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'margin',
+                'valueType': 'direct'
+            }
+        ],
+        'selector': `.${elementId} .gvnews_post_excerpt .gvnews_readmore`,
+    });
+
     return data;
 };
 
