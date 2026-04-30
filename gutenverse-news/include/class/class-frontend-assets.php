@@ -314,6 +314,7 @@ class Frontend_Assets {
 			'module',
 			'pagination',
 			'archive-pagination',
+			'news-ticker',
 		);
 
 		foreach ( $modules as $module ) {
