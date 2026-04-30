@@ -33,7 +33,7 @@ class Editor_Assets {
 	public function enqueue_style() {
 		wp_enqueue_style(
 			'gvnews-gutenverse-editor-style',
-			GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/blocks-trim.css',
 			array(),
 			GUTENVERSE_NEWS_VERSION
 		);

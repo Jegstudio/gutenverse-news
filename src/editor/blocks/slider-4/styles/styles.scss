@@ -147,15 +147,3 @@
 		}
 	}
 }
-@media (min-width: 1200px) {
-	.gvnews_vc_content
-		.vc_row[data-vc-stretch-content="true"]
-		.gvnews_slider_type_4
-		.gvnews_slide_item,
-	.elementor-element.elementor-section-stretched
-		.gvnews_slider_type_4
-		.gvnews_slide_item {
-		height: 540px;
-		padding-bottom: 0;
-	}
-}
