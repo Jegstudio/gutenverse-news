@@ -312,6 +312,8 @@ class Frontend_Assets {
 			'user-list',
 			'header',
 			'module',
+			'pagination',
+			'archive-pagination',
 		);
 
 		foreach ( $modules as $module ) {
@@ -327,7 +329,7 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/frontend/blocks-trim.css',
-			array( 'gutenverse-news-frontend-header-style' ),
+			array( 'gutenverse-news-frontend-header-style', 'gutenverse-news-frontend-pagination-style' ),
 			GUTENVERSE_NEWS_VERSION
 		);
 	}

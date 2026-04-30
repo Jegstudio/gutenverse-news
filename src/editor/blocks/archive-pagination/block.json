@@ -294,7 +294,7 @@
         "pagination"
     ],
     "style": [
-        "gutenverse-news-frontend-blocks-style"
+        "gutenverse-news-frontend-archive-pagination-style"
     ],
     "usesContext": [
         "gutenverse/flexDirection"
