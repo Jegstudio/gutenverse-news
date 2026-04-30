@@ -318,6 +318,8 @@ class Frontend_Assets {
 			'post-title',
 			'social-author-icon',
 			'user-list',
+			'header',
+			'module',
 		);
 
 		foreach ( $modules as $module ) {
