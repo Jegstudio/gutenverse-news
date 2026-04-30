@@ -93,36 +93,6 @@ export const designPanel = (props) => {
             },
         },
         {
-            id: 'lineWidth',
-            label: __('Line Width', 'gutenverse-news'),
-            component: RangeControl,
-            allowDeviceControl: true,
-            min: 1,
-            max: 85,
-            unit: 'px',
-            step: 1,
-            liveStyle: [
-                {
-                    'type': 'plain',
-                    'id': 'lineWidth',
-                    'responsive': true,
-                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-slider-6 .gvnews_slider_wrapper .gvnews_post_title:before`,
-                    'properties': [
-                        {
-                            'name': 'width',
-                            'valueType': 'pattern',
-                            'pattern': '{value}px',
-                            'patternValues': {
-                                'value': {
-                                    'type': 'direct',
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             id: 'lineThick',
             label: __('Line Thick', 'gutenverse-news'),
             component: RangeControl,
@@ -142,36 +112,6 @@ export const designPanel = (props) => {
                             'name': 'border-width',
                             'valueType': 'pattern',
                             'pattern': '{value}px',
-                            'patternValues': {
-                                'value': {
-                                    'type': 'direct',
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            id: 'lineVerticalPosition',
-            label: __('Line Vertical Position', 'gutenverse-news'),
-            component: RangeControl,
-            allowDeviceControl: true,
-            min: 0,
-            max: 100,
-            unit: 'px',
-            step: 1,
-            liveStyle: [
-                {
-                    'type': 'plain',
-                    'id': 'lineVerticalPosition',
-                    'responsive': true,
-                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId}.gvnews-slider-6 .gvnews_slider_wrapper .gvnews_post_title:before`,
-                    'properties': [
-                        {
-                            'name': 'top',
-                            'valueType': 'pattern',
-                            'pattern': 'calc(100% + {value}px)',
                             'patternValues': {
                                 'value': {
                                     'type': 'direct',

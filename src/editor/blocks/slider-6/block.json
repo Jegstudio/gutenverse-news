@@ -292,13 +292,7 @@
         "containerPadding": {
             "type": "object"
         },
-        "lineWidth": {
-            "type": "object"
-        },
         "lineThick": {
-            "type": "object"
-        },
-        "lineVerticalPosition": {
             "type": "object"
         },
         "categoryButtonMargin": {
