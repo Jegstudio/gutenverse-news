@@ -3778,47 +3778,6 @@
   display: none;
 }
 
-/* Pagination: Loadmore */
-
-.gvnews_loadmore {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  margin-top: 30px;
-
-  .btn {
-    position: relative;
-    min-width: 30%;
-    height: 30px;
-    line-height: 30px;
-
-    &:before,
-    &:after {
-      content: '';
-      height: 2px;
-      background: #eee;
-      width: 1000px;
-      margin: auto;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      display: block;
-      cursor: none;
-      pointer-events: none;
-    }
-
-    &:before {
-      right: 100%;
-      margin-right: 20px;
-    }
-
-    &:after {
-      left: 100%;
-      margin-left: 20px;
-    }
-  }
-}
-
 /** Author Box **/
 
 .gvnews_authorbox {
