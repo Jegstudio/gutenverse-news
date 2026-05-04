@@ -96,9 +96,9 @@ class Frontend_Assets {
 	/**
 	 * Check whether an attribute represents an icon (using value or block.json default)
 	 *
-	 * @param array $attrs Attributes passed from block
-	 * @param string $block_name Block name
-	 * @param string $attrName Attribute name to check for value
+	 * @param array       $attrs Attributes passed from block
+	 * @param string      $block_name Block name
+	 * @param string      $attrName Attribute name to check for value
 	 * @param string|null $typeName Optional attribute name for icon type
 	 * @return bool
 	 */
@@ -341,6 +341,32 @@ class Frontend_Assets {
 			array( 'gutenverse-news-frontend-blocks-style' ),
 			GUTENVERSE_NEWS_VERSION
 		);
+
+		$this->register_slider_style_handler();
+	}
+
+	/**
+	 * Register spesific slider style handler
+	 */
+	private function register_slider_style_handler() {
+		$slider_blocks = array(
+			'slider-1',
+			'slider-2',
+			'slider-3',
+			'slider-4',
+			'slider-5',
+			'slider-6',
+			'slider-7',
+			'slider-8',
+		);
+		foreach ( $slider_blocks as $block ) {
+			wp_register_style(
+				'gutenverse-news-frontend-' . $block . '-style',
+				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $block . '.css',
+				array( 'gutenverse-news-frontend-slider-style' ),
+				GUTENVERSE_NEWS_VERSION
+			);
+		}
 	}
 
 	/**
