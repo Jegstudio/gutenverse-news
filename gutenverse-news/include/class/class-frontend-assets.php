@@ -330,7 +330,15 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/frontend/blocks-trim.css',
-			array( 'gutenverse-news-frontend-header-style', 'gutenverse-news-frontend-pagination-style' ),
+			// GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
+			array(),
+			GUTENVERSE_NEWS_VERSION
+		);
+
+		wp_register_style(
+			'gutenverse-news-frontend-slider-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/slider.css',
+			array( 'gutenverse-news-frontend-blocks-style' ),
 			GUTENVERSE_NEWS_VERSION
 		);
 	}
