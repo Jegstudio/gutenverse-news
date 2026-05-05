@@ -918,6 +918,30 @@ class Archive_Block extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['readmoreButtonPadding'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'padding' );
+					},
+					'value'          => $this->attrs['readmoreButtonPadding'],
+					'device_control' => true,
+				)
+			);
+		}
+		if ( isset( $this->attrs['readmoreButtonMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_post_excerpt .gvnews_readmore",
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['readmoreButtonMargin'],
+					'device_control' => true,
+				)
+			);
+		}
 		if ( isset( $this->attrs['aHover'] ) ) {
 			$selector = '14' === $this->attrs['blockType'] ? '.gvnews_posts .gvnews_pl_md_1 .gvnews_post_title a' : '.gvnews_postblock .gvnews_post_title a';
 			$this->inject_style(
