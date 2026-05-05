@@ -152,10 +152,10 @@
             "type": "object"
         },
         "nameColor": {
-            "type": "string"
+            "type": "object"
         },
         "nameColorHover": {
-            "type": "string"
+            "type": "object"
         },
         "nameTextShadow": {
             "type": "object"
