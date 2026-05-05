@@ -455,7 +455,7 @@
         "className": false
     },
     "keywords": [],
-    "style": ["gutenverse-news-frontend-blocks-style"],
+    "style": ["gutenverse-news-frontend-hero-01-style"],
     "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
 	"usesContext": [
 		"gutenverse/flexDirection"
