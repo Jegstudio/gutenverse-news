@@ -347,6 +347,9 @@
         "positioningBottom": {
             "type": "object"
         },
+        "sliderHeight": {
+            "type": "object"
+        },
         "flexAlignSelf": {
             "type": "object",
             "default": {},
