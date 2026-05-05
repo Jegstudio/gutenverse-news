@@ -358,6 +358,7 @@ class Frontend_Assets {
 			'slider-6',
 			'slider-7',
 			'slider-8',
+			'slider-9',
 		);
 		foreach ( $slider_blocks as $block ) {
 			wp_register_style(
