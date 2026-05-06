@@ -1,5 +1,6 @@
 # Folders to ignore
 .idea
+.serena
 build
 vendor
 release
