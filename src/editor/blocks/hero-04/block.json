@@ -447,7 +447,7 @@
         "className": false
     },
     "keywords": [],
-    "style": ["gutenverse-news-frontend-blocks-style"],
+    "style": ["gutenverse-news-frontend-hero-04-style"],
     "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
 	"usesContext": [
 		"gutenverse/flexDirection"
