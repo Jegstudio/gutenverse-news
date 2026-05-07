@@ -152,6 +152,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Bug Fixes
 * Fix PHP warning appear when using News Ticker block
+* Fix incorrect navigation button position in Carousel 1.
 
 = 3.1.6=
 ##### Improvements
