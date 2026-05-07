@@ -367,6 +367,12 @@ class Frontend_Assets {
 			'hero-07',
 			'hero-08',
 			'hero-09',
+			'hero-10',
+			'hero-11',
+			'hero-12',
+			'hero-13',
+			'hero-14',
+			'hero-skew',
 		);
 		foreach ( $hero_blocks as $block ) {
 			wp_register_style(
