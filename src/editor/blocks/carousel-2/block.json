@@ -444,7 +444,7 @@
     "keywords": [],
     "gutenversePro": true,
     "viewScript": ["gutenverse-news-frontend-carousel-slider-script"],
-    "style": ["gutenverse-news-frontend-carousel-style"],
+    "style": ["gutenverse-news-frontend-carousel-2-style"],
 	"usesContext": [
 		"gutenverse/flexDirection"
 	]
