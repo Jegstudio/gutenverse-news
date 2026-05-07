@@ -349,6 +349,13 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_VERSION
 		);
 
+		wp_register_style(
+			'gutenverse-news-frontend-carousel-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/carousel.css',
+			array( 'gutenverse-news-frontend-blocks-style' ),
+			GUTENVERSE_NEWS_VERSION
+		);
+
 		$this->register_slider_style_handler();
 		$this->register_hero_style_handler();
 	}
