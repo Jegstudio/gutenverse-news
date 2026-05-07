@@ -172,6 +172,12 @@
         "readmoreButtonBoxShadowHover": {
             "type": "object"
         },
+        "readmoreButtonPadding": {
+            "type": "object"
+        },
+        "readmoreButtonMargin": {
+            "type": "object"
+        },
         "condition": {
             "type": "object",
             "default": {}

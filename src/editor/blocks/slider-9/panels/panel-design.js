@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { ColorControl, DimensionControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
-export const designPanel = () => {
+export const designPanel = (props) => {
+    const { elementId } = props;
 
     return [
         {
@@ -29,6 +30,36 @@ export const designPanel = () => {
             id: 'secondTitleColor',
             label: __('Second Title Color', 'gutenverse-news'),
             component: ColorControl,
+        },
+        {
+            id: 'sliderHeight',
+            label: __('Slider Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 10,
+            max: 540,
+            unit: 'px',
+            step: 10,
+            liveStyle: [
+                {
+                    'type': 'pattern',
+                    'id': 'sliderHeight',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_item, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slider_type_9_thumb`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
         },
         {
             id: 'containerWidth',
