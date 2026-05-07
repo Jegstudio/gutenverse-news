@@ -221,6 +221,9 @@
         "excerptColor": {
             "type": "object"
         },
+        "excerptMetaGap": {
+            "type": "object"
+        },
         "enableExcerpt": {
             "type": "boolean",
             "default": true
@@ -287,6 +290,9 @@
             "type": "object"
         },
         "containerPadding": {
+            "type": "object"
+        },
+        "lineThick": {
             "type": "object"
         },
         "categoryButtonMargin": {
