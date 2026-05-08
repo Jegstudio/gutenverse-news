@@ -64,7 +64,7 @@ const Block2Columns = props => {
 
         return (
             <>
-                <article className="gvnews_post gvnews_pl_lg_1">
+                <article className="gvnews_post gvnews_pl_lg_2">
                     {postData.length > 0 && <RenderBlock1 key={postData[0].id} attr={attr} post={postData[0]} />}
                 </article>
                 <div className="gvnews_postsmall">
