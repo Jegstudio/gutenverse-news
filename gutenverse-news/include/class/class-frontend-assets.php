@@ -356,6 +356,15 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_VERSION
 		);
 
+		wp_register_style(
+			'gutenverse-news-frontend-all-module-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/module.css',
+			array( 'gutenverse-news-frontend-blocks-style', 'gutenverse-news-frontend-header-style', 'gutenverse-news-frontend-pagination-style' ),
+			GUTENVERSE_NEWS_VERSION
+		);
+
+		$this->register_module_style_handler();
+		$this->register_carousel_style_handler();
 		$this->register_slider_style_handler();
 		$this->register_hero_style_handler();
 	}
@@ -363,6 +372,55 @@ class Frontend_Assets {
 		/**
 		 * Register spesific slider style handler
 		 */
+	private function register_module_style_handler() {
+		$hero_blocks = array(
+			'block-01',
+			'block-02',
+			'block-03',
+			'block-04',
+			'block-05',
+			'block-06',
+			'block-07',
+			'block-08',
+			'block-09',
+			'block-10',
+			'block-11',
+			'block-12',
+			'block-13',
+			'block-14',
+		);
+		foreach ( $hero_blocks as $block ) {
+			wp_register_style(
+				'gutenverse-news-frontend-' . $block . '-style',
+				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $block . '.css',
+				array( 'gutenverse-news-frontend-all-module-style' ),
+				GUTENVERSE_NEWS_VERSION
+			);
+		}
+	}
+
+	/**
+	 * Register spesific slider style handler
+	 */
+	private function register_carousel_style_handler() {
+		$hero_blocks = array(
+			'carousel-1',
+			'carousel-2',
+			'carousel-3',
+		);
+		foreach ( $hero_blocks as $block ) {
+			wp_register_style(
+				'gutenverse-news-frontend-' . $block . '-style',
+				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $block . '.css',
+				array( 'gutenverse-news-frontend-carousel-style' ),
+				GUTENVERSE_NEWS_VERSION
+			);
+		}
+	}
+
+	/**
+	 * Register spesific slider style handler
+	 */
 	private function register_hero_style_handler() {
 		$hero_blocks = array(
 			'hero-01',
@@ -390,6 +448,7 @@ class Frontend_Assets {
 			);
 		}
 	}
+
 
 	/**
 	 * Register spesific slider style handler
