@@ -1,31 +1,7 @@
 @media only screen and (max-width: 1024px) {
-    .gvnews_postblock_8 {
-        .gvnews_thumb {
-            margin-bottom: 10px;
-        }
+    
 
-        .gvnews_post_title {
-            font-size: 13px;
-        }
-
-        &.gvnews_col_3o3 .gvnews_post {
-            grid-column: span 4;
-
-            &:nth-child(-n + 4) {
-                grid-column: span 6;
-            }
-        }
-    }
-
-    .gvnews_postblock_9 {
-
-        &.gvnews_col_3o3,
-        .gvnews_col_2o3 {
-            .gvnews_posts {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    }
+    
 
     .gvnews_postblock_21 {
         &.gvnews_col_3o3 .gvnews_posts {
