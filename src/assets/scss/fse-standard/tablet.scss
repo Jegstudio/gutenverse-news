@@ -3,13 +3,6 @@
 
     
 
-    .gvnews_postblock_21 {
-        &.gvnews_col_3o3 .gvnews_posts {
-            grid-template-columns: repeat(1, 1fr);
-        }
-    }
-
-
     .gvnews_postblock_37 {
         .gvnews_posts {
             grid-template-columns: repeat(2, 1fr);
@@ -21,24 +14,6 @@
     
 
     
-
-    /* Postblock 20 */
-    .gvnews_postblock_20 {
-        &.gvnews_col_3o3 {
-
-            .gvnews_postsmall {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    }
-
-    .gvnews_postblock_22 {
-        &.gvnews_col_3o3 {
-            .gvnews_posts {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    }
 
     /* Postblock 23 */
     .gvnews_postblock_23 {
