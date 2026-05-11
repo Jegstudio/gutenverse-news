@@ -1,0 +1,40 @@
+/* src/assets/scss/parts/module.scss */
+.gvnews_postblock_26 {
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .gvnews_postblock_26 .gvnews_meta_footer {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .gvnews_postblock_26 .gvnews_meta_footer {
+        margin-top: 20px;
+
+        >div {
+            padding: 8px;
+            font-size: 11px;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .gvnews_postblock_26 .gvnews_meta_footer {
+        >div {
+            width: 100%;
+            display: block;
+            border-right: 0;
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .gvnews_post_share a {
+            margin: 0 6px;
+        }
+    }
+}

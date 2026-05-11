@@ -16,39 +16,6 @@
 
     
 
-    .gvnews_postblock_23 {
-        .gvnews_post_title {
-            font-size: 16px;
-        }
-
-        .gvnews_post_excerpt {
-            margin: 0 0 0.5em;
-        }
-
-        .gvnews_post {
-            margin-bottom: 20px;
-        }
-
-        &.gvnews_postblock {
-            .gvnews_posts {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    }
-
-    .gvnews_postblock_24 {
-
-        &.gvnews_postblock {
-            .gvnews_posts {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-
-        .gvnews_pl_md_box {
-            margin-bottom: 7px;
-        }
-    }
-
     /* Module 27 */
     .gvnews_postblock_27 {
         &.gvnews_postblock {
