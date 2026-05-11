@@ -9,6 +9,13 @@
     }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .gvnews_postblock_26 .gvnews_meta_footer>div {
+        font-size: 11px;
+        padding: 5px;
+    }
+}
+
 @media only screen and (max-width: 568px) {
     .gvnews_postblock_26 .gvnews_meta_footer {
         margin-top: 20px;
