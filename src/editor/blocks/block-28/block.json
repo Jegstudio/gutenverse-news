@@ -686,7 +686,7 @@
     "gutenversePro": true,
     "viewScript": ["gutenverse-news-frontend-blocks-script"],
     "style": [
-        "gutenverse-news-frontend-all-module-style"
+        "gutenverse-news-frontend-block-28-style"
     ],
 	"usesContext": [
 		"gutenverse/flexDirection"

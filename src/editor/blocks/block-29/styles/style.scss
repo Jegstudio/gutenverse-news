@@ -1,0 +1,15 @@
+/* src/assets/scss/parts/module.scss */
+.gvnews_postblock_29 .show_border article {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.gvnews_postblock_29 .show_border article:last-child {
+    border-bottom: 0;
+}
+
+.gvnews-block.gvnews-block-wrapper {
+    .gvnews_postblock_29 .gvnews_pl_xs .gvnews_post_title {
+        display: block;
+    }
+}

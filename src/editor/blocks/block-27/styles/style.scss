@@ -1,0 +1,108 @@
+/* src/assets/scss/fse-standard/desktop.scss */
+.gvnews_postblock_27 {
+    &.gvnews_postblock {
+        .gvnews_block_navigation {
+            margin-top: 40px;
+        }
+    }
+
+    .gvnews_posts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 40px;
+        column-gap: 40px;
+    }
+
+    &.gvnews_col_2o3 .gvnews_posts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.gvnews_col_1o3 {
+        .gvnews_posts {
+            grid-template-columns: repeat(1, 1fr);
+            row-gap: 20px;
+        }
+
+        .gvnews_block_navigation {
+            margin-top: 20px;
+        }
+    }
+
+    .gvnews_post {
+        padding-right: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
+}
+
+/* src/assets/scss/fse-standard/tablet.scss */
+@media only screen and (max-width: 1024px) {
+    .gvnews_postblock_27 {
+        .gvnews_posts {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+/* src/assets/scss/fse-standard/mobile.scss */
+@media only screen and (max-width: 767px) {
+    .gvnews_postblock_27 {
+        &.gvnews_postblock {
+            .gvnews_posts {
+                grid-template-columns: repeat(1, 1fr);
+                row-gap: 30px;
+            }
+
+            .gvnews_block_navigation {
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+/* src/assets/scss/parts/module.scss */
+@media only screen and (max-width: 1024px) {
+    .gvnews_postblock_27 .gvnews_post_title {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .gvnews_postblock_27 {
+        .gvnews_post_title {
+            font-size: 18px !important;
+        }
+
+        .gvnews_post_category a {
+            font-size: 11px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .gvnews_postblock_27 {
+        .gvnews_post_title {
+            font-size: 18px !important;
+        }
+
+        .gvnews_post_category a {
+            font-size: 11px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .gvnews_postblock_27 {
+        .gvnews_thumb {
+            margin-bottom: 10px;
+        }
+
+        .gvnews_post_title {
+            font-size: 14px !important;
+        }
+
+        .gvnews_post_category a {
+            font-size: 11px !important;
+        }
+    }
+}
