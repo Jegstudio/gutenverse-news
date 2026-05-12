@@ -148,6 +148,10 @@ class GutenverseCarouselModule {
                 768: { items: options?.tabletItem ? options.tabletItem : ('undefined' === typeof carouselDefault.container.dataset.tabletItem ? 2 : carouselDefault.container.dataset.tabletItem) },
                 1024: { items: options?.desktopItem ? options.desktopItem : ('undefined' === typeof carouselDefault.container.dataset.desktopItem ? 3 : carouselDefault.container.dataset.desktopItem) },
             };
+
+            if (u(this.block).hasClass('gvnews_postblock_carousel_1')) {
+                carouselDefault.controlsPosition = 'bottom';
+            }
             return { carouselType: true, carouselDefault };
 
         }

@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: blocks, blog, gutenberg, gutenberg blocks, news
 Tested up to: 6.8.2
 Requires PHP: 7.4.30
-Stable tag: 3.1.6
+Stable tag: 3.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,7 +143,7 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 == Changelog ==
 
-= 3.1.7-dev=
+= 3.1.7=
 ##### Improvements
 * Adding more styling option on Header block
 * Add normal pagination option to all Module blocks
@@ -152,6 +152,8 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 
 ##### Bug Fixes
 * Fix PHP warning appear when using News Ticker block
+* Fix incorrect navigation button position in Carousel 1.
+* Fix issue with frontend animation rendering
 
 = 3.1.6=
 ##### Improvements

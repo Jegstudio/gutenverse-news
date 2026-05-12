@@ -413,6 +413,19 @@ class Slider extends StyleAbstract {
 			);
 		}
 
+		if ( isset( $this->attrs['lineThick'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id}.gvnews-slider-6 .gvnews_slider_wrapper .gvnews_post_title:before",
+					'property'       => function ( $value ) {
+						return "border-width: {$value}px;";
+					},
+					'value'          => $this->attrs['lineThick'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['hideTitleStyling'] ) && $this->attrs['hideTitleStyling'] ) { // For Slider 4.
 			$this->inject_style(
 				array(
@@ -446,6 +459,19 @@ class Slider extends StyleAbstract {
 					'property'       => function ( $value ) {},
 					'value'          => $this->attrs['typographyContent'],
 					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['excerptMetaGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_slider .gvnews_slide_caption .gvnews_post_meta",
+					'property'       => function ( $value ) {
+						return "margin-top:	{$value}px";
+					},
+					'value'          => $this->attrs['excerptMetaGap'],
+					'device_control' => true,
 				)
 			);
 		}
