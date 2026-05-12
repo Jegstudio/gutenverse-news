@@ -467,7 +467,6 @@ class Frontend_Assets {
 			'hero-11',
 			'hero-12',
 			'hero-13',
-			'hero-14',
 			'hero-skew',
 		);
 		foreach ( $hero_blocks as $block ) {
@@ -478,6 +477,13 @@ class Frontend_Assets {
 				GUTENVERSE_NEWS_VERSION
 			);
 		}
+
+		wp_register_style(
+			'gutenverse-news-frontend-hero-14-style',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/hero-14.css',
+			array( 'gutenverse-news-frontend-all-module-style', 'gutenverse-news-frontend-hero-style' ),
+			GUTENVERSE_NEWS_VERSION
+		);
 	}
 
 
