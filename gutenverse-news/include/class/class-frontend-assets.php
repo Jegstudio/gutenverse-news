@@ -404,6 +404,9 @@ class Frontend_Assets {
 			'block-28',
 			'block-29',
 			'block-30',
+			'block-32',
+			'block-33',
+			'block-34',
 		);
 		foreach ( $hero_blocks as $block ) {
 			wp_register_style(
