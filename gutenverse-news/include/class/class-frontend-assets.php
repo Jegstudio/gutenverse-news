@@ -297,6 +297,13 @@ class Frontend_Assets {
 	 * Load the styles
 	 */
 	public function load_conditional_styles() {
+		wp_register_style(
+			'gvnews-deprecated-blocks',
+			GUTENVERSE_NEWS_URL . '/assets/css/frontend/deprecated.css',
+			array(),
+			GUTENVERSE_NEWS_VERSION
+		);
+
 		/** Register Post Block */
 		$modules = array(
 			'post-author',
