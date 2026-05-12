@@ -1,20 +1,6 @@
 @import 'fse-standard';
-@import 'single-post-block';
 @import 'deprecated';
 @import 'okeynav';
-
-// Slider
-@import '../../editor/blocks/slider-2/styles/styles.scss';
-@import '../../editor/blocks/slider-4/styles/styles.scss';
-@import '../../editor/blocks/slider-6/styles/styles.scss';
-@import '../../editor/blocks/slider-7/styles/styles.scss';
-@import '../../editor/blocks/slider-8/styles/styles.scss';
-/* Module */
-@import '../../editor/blocks/block-05/styles/styles.scss';
-@import '../../editor/blocks/block-06/styles/styles.scss';
-@import '../../editor/blocks/block-07/styles/styles.scss';
-@import '../../editor/blocks/block-25/styles/styles.scss';
-@import '../../editor/blocks/block-19/styles/styles.scss';
 
 
 /* Clearfix */
@@ -20403,64 +20389,6 @@ input:checked+.slider {
   }
 }
 
-.gvnews_meta_option {
-
-  .loader,
-  &.loading .initial,
-  &.active .loader {
-    display: none;
-  }
-}
-
-.gvnews_moreoption {
-
-  .icon-loader,
-  .icon-active {
-    display: none;
-  }
-
-  a {
-    &.loading .icon-default {
-      display: none;
-    }
-
-    &.active {
-      .icon-default {
-        display: none;
-      }
-
-      &.loading {
-
-        .icon-default,
-        .icon-active {
-          display: none;
-        }
-      }
-    }
-  }
-}
-
-.gvnews_meta_option {
-  &.loading .loader {
-    display: block;
-  }
-
-  &.active {
-
-    .initial,
-    .gvnews_moreoption {
-      display: block;
-    }
-  }
-}
-
-.gvnews_moreoption a {
-
-  &.loading>.icon-loader,
-  &.active>.icon-active {
-    display: inline-block;
-  }
-}
 
 .gvnews_thumb .gvnews_video_length {
   display: inline-block;
