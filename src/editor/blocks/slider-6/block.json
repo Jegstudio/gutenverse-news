@@ -483,9 +483,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-blocks-style"],
-    "viewScript": ["gutenverse-news-frontend-slider-script"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "style": [
+        "gutenverse-news-frontend-slider-6-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

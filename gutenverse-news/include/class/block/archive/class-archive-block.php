@@ -53,6 +53,9 @@ class Archive_Block extends Archive_View_Abstract {
 		$attr['results']         = $result;
 		$attr['image_load']      = Options::get_instance()->get_image_load( 'normal', false, $attr['image_load'] );
 
+		$style_hanlder = (int) $attr['block_type'] > 9 ? 'gutenverse-news-frontend-block-' . $attr['block_type'] . '-style' : 'gutenverse-news-frontend-block-0' . $attr['block_type'] . '-style';
+		wp_enqueue_style( $style_hanlder );
+
 		return $instance->build_module( $attr );
 	}
 }

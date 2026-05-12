@@ -1,0 +1,374 @@
+/* Archive Pagination */
+.gvnews_navigation {
+  position: relative;
+}
+
+.gvnews-block.gvnews-block-wrapper {
+  .gvnews_pagination {
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.gvnews_pagination {
+  .page_nav {
+    height: 30px;
+
+    &.prev .gutenverse-icon-svg {
+      padding-right: 6px;
+    }
+
+    &.next .gutenverse-icon-svg {
+      padding-left: 6px;
+    }
+  }
+
+  .gvnews_pagenav_3 {
+    .nav-wrapper {
+      align-items: start;
+    }
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &.gvnews_alignleft {
+    .nav-wrapper {
+      justify-content: flex-start;
+    }
+  }
+
+  &.gvnews_alignright {
+    .nav-wrapper {
+      justify-content: flex-end;
+    }
+  }
+
+  &.gvnews_aligncenter {
+    text-align: center;
+
+    .nav-wrapper {
+      justify-content: center;
+    }
+  }
+}
+
+.no_navtext {
+  .navtext {
+    display: none;
+  }
+
+  .page_nav {
+    &.prev .gutenverse-icon-svg {
+      padding-right: 0;
+    }
+
+    &.next .gutenverse-icon-svg {
+      padding-left: 0;
+    }
+  }
+}
+
+.no_pageinfo .page_info {
+  display: none;
+}
+
+.page_nav {
+  &.hide {
+    display: none;
+  }
+
+  &.disable {
+    background: #f5f5f5;
+
+    a {
+      color: #a0a0a0;
+    }
+  }
+}
+
+/* Pagination: Style 1 */
+.gvnews-block.gvnews-block-wrapper {
+  .gvnews_pagenav_1 {
+
+    .page_nav,
+    .page_number {
+      color: #212121;
+      padding: 0 10px;
+      border: 1px solid #eee;
+      text-align: center;
+      min-width: 30px;
+      line-height: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      -webkit-transition: .2s ease;
+      transition: .2s ease;
+
+      &.active {
+        color: #fff;
+        border-color: #f70d28;
+        background: #f70d28;
+      }
+    }
+
+    .page_number.dots {
+      border: 0;
+      font-weight: normal;
+    }
+
+    .page_info {
+      margin: 0 10px 0 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      line-height: 32px;
+      float: left;
+    }
+  }
+
+  .gvnews_pagenav_2 {
+    .page_info {
+      margin: 0 10px 0 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      line-height: 32px;
+      float: left;
+    }
+  }
+}
+
+.gvnews_pagenav_1 {
+  a {
+
+    &.page_nav:hover,
+    &.page_number:hover {
+      background: #f5f5f5;
+    }
+  }
+
+  &.gvnews_alignright {
+
+    .page_nav,
+    .page_number {
+      margin-right: 0;
+      margin-left: 5px;
+    }
+  }
+
+  &.gvnews_aligncenter:not(.no_pageinfo) .page_info {
+    float: none;
+    display: block;
+    margin: 0;
+  }
+
+  .nav_link {
+    display: inline-block;
+  }
+
+  .page_nav.disabled {
+    display: none;
+  }
+}
+
+.gvnews_pagenav_1.gvnews_alignleft .page_info,
+.gvnews_pagenav_2.gvnews_alignleft .page_info {
+  float: right;
+  margin: 0 0 0 10px;
+}
+
+.gvnews_pagenav_2.gvnews_aligncenter:not(.no_pageinfo) .page_info {
+  float: none;
+  display: block;
+  margin: 0;
+}
+
+/* Pagination: Style 2 */
+.gvnews-block.gvnews-block-wrapper {
+  .gvnews_pagenav_2 {
+
+    .page_nav,
+    .page_number {
+      color: #212121;
+      padding: 0 10px;
+      text-align: center;
+      min-width: 30px;
+      line-height: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      -webkit-transition: .2s ease;
+      transition: .2s ease;
+
+      &.active {
+        background: #212121;
+        color: #fff;
+      }
+    }
+
+    .page_number.dots {
+      border: 0;
+      font-weight: normal;
+    }
+  }
+}
+
+.gvnews_pagenav_2 {
+  .page_nav:hover {
+    background: #eee;
+  }
+
+  .page_number {
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  .nav_link {
+    display: inline-block;
+  }
+
+  .page_nav.disabled {
+    display: none;
+  }
+}
+
+/* Pagination: Style 3 */
+.gvnews_pagenav_3 {
+  border-top: 2px solid #eee;
+
+  &.gvnews_aligncenter {
+    padding-bottom: 30px;
+
+    &.no_pageinfo {
+      padding-bottom: 0;
+    }
+
+    .page_nav {
+      width: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.next {
+        right: 0;
+      }
+
+      &.prev {
+        left: 0;
+      }
+    }
+  }
+
+  .next-prev-button {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    justify-content: flex-end;
+  }
+
+  .page_number:hover {
+    border-color: var(--wp--preset--color--primary);
+  }
+
+  .page_nav:hover {
+    color: #212121;
+    border-color: #e0e0e0;
+    background: #f5f5f5;
+  }
+}
+
+.gvnews-block.gvnews-block-wrapper {
+  .gvnews_pagenav_3 {
+    .page_nav {
+      color: #666;
+      border: 1px solid #eee;
+      min-height: 30px;
+      min-width: 30px;
+      font-weight: bold;
+      padding: 0 10px;
+      line-height: 28px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .page_number {
+      color: #666;
+      padding: 30px 0 0;
+      margin-bottom: 0;
+      text-align: center;
+      min-width: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      border-top: 2px solid transparent;
+      margin-top: -2px;
+      -webkit-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+
+      &.active {
+        color: #212121;
+        border-color: #212121;
+      }
+
+      &.dots {
+        color: #a0a0a0;
+        border-color: transparent;
+        font-weight: normal;
+      }
+    }
+
+    a {
+      &.page_number {
+        &:hover {
+          color: #212121;
+          border-color: #f70d28;
+        }
+      }
+    }
+
+    .page_info {
+      float: left;
+      margin-right: 15px;
+      padding-top: 30px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    &.gvnews_aligncenter .page_info {
+      color: #a0a0a0;
+      font-size: 11px;
+      float: none;
+      padding: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin-right: 0;
+    }
+
+    .nav_link {
+      display: inline-block;
+    }
+
+    .page_nav.disabled {
+      color: #a0a0a0;
+    }
+  }
+}

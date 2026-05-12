@@ -404,7 +404,7 @@
 		"link"
 	],
 	"style": [
-		"gutenverse-news-frontend-blocks-style"
+		"gutenverse-news-frontend-news-ticker-style"
 	],
 	"viewScript": [
 		"gutenverse-news-frontend-newsticker-script"

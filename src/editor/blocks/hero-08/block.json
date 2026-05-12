@@ -476,7 +476,7 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-blocks-style"],
+    "style": ["gutenverse-news-frontend-hero-08-style"],
     "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
 	"usesContext": [
 		"gutenverse/flexDirection"

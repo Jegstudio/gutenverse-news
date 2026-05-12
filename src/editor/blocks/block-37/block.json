@@ -808,7 +808,7 @@
         "gutenverse-news-frontend-blocks-script"
     ],
     "style": [
-        "gutenverse-news-frontend-blocks-style"
+        "gutenverse-news-frontend-block-37-style"
     ],
     "usesContext": [
         "gutenverse/flexDirection",

@@ -338,7 +338,6 @@ const Hero14Block = compose(
                 <div className={wrapperClass}>
                     <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                     <div className={'gvnews_heropost gvnews_heropost_14 gvnews_heropost_1 gvnews_postblock'}>
-                        <div className="gvnews-element-overlay" style={{ pointerEvents: isSelected ? 'none' : 'auto' }}></div>
                         {block}
                         {(overlay && !firstRender.current) && <ModuleOverlay />}
                     </div>

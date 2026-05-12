@@ -36,6 +36,7 @@ module.exports = {
 const blocksDir = path.resolve(__dirname, './src/editor/blocks');
 const blocksStyle = blocksDir + '/**/styles/style.scss';
 const finalDest = path.join(__dirname, 'gutenverse-news/assets/css/frontend');
+const frontendPartsStyle = path.resolve(__dirname, './src/assets/scss/parts/*.scss');
 
 gulp.task('frontend-block-styles', function () {
     return gulp
@@ -49,6 +50,16 @@ gulp.task('frontend-block-styles', function () {
 
             file.path = path.join(file.base, blockName + '.css');
         })
+        .pipe(gulp.dest(finalDest));
+});
+
+gulp.task('frontend-parts-styles', function () {
+    return gulp
+        .src([frontendPartsStyle])
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(postCSSOptions))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(finalDest));
 });
 
@@ -112,7 +123,7 @@ gulp.task('minify-tns', function () {
         .pipe(gulp.dest('gutenverse-news/assets/js/frontend/'));
 });
 
-gulp.task('build-process', gulp.parallel('blocks', 'blocks-editor', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
+gulp.task('build-process', gulp.parallel('blocks', 'blocks-editor', 'frontend-block-styles', 'frontend-parts-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns'));
 
 gulp.task('build', gulp.series('build-process'));
 
@@ -121,7 +132,7 @@ const watchProcess = (basePath = '.') => {
         `${basePath}/src/**/*.scss`,
         `${basePath}/src/frontend/okaynav/*.js`,
         `${basePath}/src/frontend/tiny-slider/*.js`,
-    ], gulp.parallel(['blocks', 'blocks-editor', 'frontend-block-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
+    ], gulp.parallel(['blocks', 'blocks-editor', 'frontend-block-styles', 'frontend-parts-styles', 'downgrade-plugin', 'update-notice', 'minify-okaynav', 'minify-tns']));
 };
 
 gulp.task(
@@ -208,6 +219,8 @@ gulp.task('generate-pot', () => {
 
 gulp.task('clean-maps', function () {
     return del([
+        './gutenverse-news/assets/css/**/*.map',
+        './gutenverse-news/assets/js/**/*.map',
         './release/gutenverse-news/assets/css/**/*.map',
         './release/gutenverse-news/assets/js/**/*.map',
     ], { force: true });

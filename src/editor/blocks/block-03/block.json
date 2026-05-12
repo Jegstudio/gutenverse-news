@@ -866,7 +866,9 @@
         "gutenverse-news-frontend-blocks-script"
     ],
     "style": [
-        "gutenverse-news-frontend-blocks-style"
+        "gutenverse-news-frontend-block-03-style",
+        "gutenverse-news-frontend-header-style",
+        "gutenverse-news-frontend-pagination-style"
     ],
     "usesContext": [
         "gutenverse/flexDirection",

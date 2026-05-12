@@ -215,7 +215,7 @@
         "header"
     ],
     "style": [
-        "gutenverse-news-frontend-blocks-style"
+        "gutenverse-news-frontend-header-style"
     ],
     "usesContext": [
         "gutenverse/flexDirection"

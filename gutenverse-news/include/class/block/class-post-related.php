@@ -102,7 +102,9 @@ class Post_Related extends Post_Guten {
 
 		);
 
-		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . str_replace( 'template_', '', $this->attributes['templateType'] );
+		$template_type = str_replace( 'template_', '', $this->attributes['templateType'] );
+
+		$name = 'GUTENVERSE\\NEWS\\Block\\Module\\Module_' . $template_type;
 		$mod  = gvnews_get_view_class_from_shortcode( $name );
 
 		do_action( 'gvnews_build_shortcode_' . strtolower( $mod ) );
@@ -115,6 +117,9 @@ class Post_Related extends Post_Guten {
 		$instance = call_user_func( array( $mod, 'get_instance' ) );
 
 		$content = $instance->build_module( $attribute );
+
+		$style_hanlder = (int) $template_type > 9 ? 'gutenverse-news-frontend-block-' . $template_type . '-style' : 'gutenverse-news-frontend-block-0' . $template_type . '-style';
+		wp_enqueue_style( $style_hanlder );
 		return $content;
 	}
 }

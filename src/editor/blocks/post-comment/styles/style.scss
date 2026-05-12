@@ -506,3 +506,28 @@
 		left: -55px;
 	}
 }
+
+@media only screen and (max-width: 480px) {
+	.comment-body {
+		padding: 10px 0 0 0;
+	}
+
+	.commentlist {
+		margin-bottom: 10px;
+
+		.comment-author {
+			margin-bottom: 5px;
+		}
+
+		.avatar {
+			display: none;
+		}
+	}
+
+	.comment-form-email,
+	.comment-form-url {
+		width: 100%;
+		float: none;
+		padding: 0;
+	}
+}

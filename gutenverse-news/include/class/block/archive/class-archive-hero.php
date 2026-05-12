@@ -40,6 +40,13 @@ class Archive_Hero extends Archive_View_Abstract {
 		$result        = $this->get_result( $attr, $instance->get_number_post() );
 		$column_class  = $this->get_module_column_class( $attr );
 		$column_class .= ' ' . esc_attr( $this->get_vc_class_name() );
+		$hero_type     = $attr['hero_type'];
+		if ( 'skew' === $hero_type ) {
+			wp_enqueue_style( 'gutenverse-news-frontend-hero-skew-style' );
+		} else {
+			$style_hanlder = (int) $hero_type > 9 ? 'gutenverse-news-frontend-hero-' . $hero_type . '-style' : 'gutenverse-news-frontend-hero-0' . $hero_type . '-style';
+			wp_enqueue_style( $style_hanlder );
+		}
 
 		return $instance->render_output( $result['result'], $attr, $column_class );
 	}

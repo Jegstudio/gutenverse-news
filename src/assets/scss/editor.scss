@@ -1,1 +1,202 @@
+@import 'parts/blocks-trim.scss';
 @import '../../editor/blocks/user-list/styles/style.scss';
+@import 'parts/header.scss';
+@import 'parts/pagination.scss';
+@import '../../editor/blocks/archive-pagination/styles/style.scss';
+@import '../../editor/blocks/news-ticker/styles/style.scss';
+@import 'parts/slider.scss';
+@import '../../editor/blocks/slider-1/styles/style.scss';
+@import '../../editor/blocks/slider-2/styles/style.scss';
+@import '../../editor/blocks/slider-3/styles/style.scss';
+@import '../../editor/blocks/slider-4/styles/style.scss';
+@import '../../editor/blocks/slider-5/styles/style.scss';
+@import '../../editor/blocks/slider-6/styles/style.scss';
+@import '../../editor/blocks/slider-7/styles/style.scss';
+@import '../../editor/blocks/slider-8/styles/style.scss';
+@import '../../editor/blocks/slider-9/styles/style.scss';
+@import 'parts/hero.scss';
+@import '../../editor/blocks/hero-01/styles/style.scss';
+@import '../../editor/blocks/hero-02/styles/style.scss';
+@import '../../editor/blocks/hero-03/styles/style.scss';
+@import '../../editor/blocks/hero-04/styles/style.scss';
+@import '../../editor/blocks/hero-05/styles/style.scss';
+@import '../../editor/blocks/hero-06/styles/style.scss';
+@import '../../editor/blocks/hero-07/styles/style.scss';
+@import '../../editor/blocks/hero-08/styles/style.scss';
+@import '../../editor/blocks/hero-09/styles/style.scss';
+@import '../../editor/blocks/hero-10/styles/style.scss';
+@import '../../editor/blocks/hero-11/styles/style.scss';
+@import '../../editor/blocks/hero-12/styles/style.scss';
+@import '../../editor/blocks/hero-13/styles/style.scss';
+@import '../../editor/blocks/hero-14/styles/style.scss';
+@import '../../editor/blocks/hero-skew/styles/style.scss';
+@import 'parts/carousel.scss';
+@import '../../editor/blocks/carousel-1/styles/style.scss';
+@import '../../editor/blocks/carousel-2/styles/style.scss';
+@import '../../editor/blocks/carousel-3/styles/style.scss';
+@import 'parts/module.scss';
+@import '../../editor/blocks/block-01/styles/style.scss';
+@import '../../editor/blocks/block-02/styles/style.scss';
+@import '../../editor/blocks/block-03/styles/style.scss';
+@import '../../editor/blocks/block-04/styles/style.scss';
+@import '../../editor/blocks/block-05/styles/style.scss';
+@import '../../editor/blocks/block-06/styles/style.scss';
+@import '../../editor/blocks/block-07/styles/style.scss';
+@import '../../editor/blocks/block-08/styles/style.scss';
+@import '../../editor/blocks/block-09/styles/style.scss';
+@import '../../editor/blocks/block-10/styles/style.scss';
+@import '../../editor/blocks/block-11/styles/style.scss';
+@import '../../editor/blocks/block-12/styles/style.scss';
+@import '../../editor/blocks/block-13/styles/style.scss';
+@import '../../editor/blocks/block-14/styles/style.scss';
+@import '../../editor/blocks/block-15/styles/style.scss';
+@import '../../editor/blocks/block-16/styles/style.scss';
+@import '../../editor/blocks/block-17/styles/style.scss';
+@import '../../editor/blocks/block-18/styles/style.scss';
+@import '../../editor/blocks/block-19/styles/style.scss';
+@import '../../editor/blocks/block-20/styles/style.scss';
+@import '../../editor/blocks/block-21/styles/style.scss';
+@import '../../editor/blocks/block-22/styles/style.scss';
+@import '../../editor/blocks/block-23/styles/style.scss';
+@import '../../editor/blocks/block-24/styles/style.scss';
+@import '../../editor/blocks/block-25/styles/style.scss';
+@import '../../editor/blocks/block-26/styles/style.scss';
+@import '../../editor/blocks/block-27/styles/style.scss';
+@import '../../editor/blocks/block-28/styles/style.scss';
+@import '../../editor/blocks/block-29/styles/style.scss';
+@import '../../editor/blocks/block-30/styles/style.scss';
+@import '../../editor/blocks/block-31/styles/style.scss';
+@import '../../editor/blocks/block-32/styles/style.scss';
+@import '../../editor/blocks/block-33/styles/style.scss';
+@import '../../editor/blocks/block-34/styles/style.scss';
+@import '../../editor/blocks/block-35/styles/style.scss';
+@import '../../editor/blocks/block-36/styles/style.scss';
+@import '../../editor/blocks/block-37/styles/style.scss';
+@import '../../editor/blocks/block-38/styles/style.scss';
+@import '../../editor/blocks/block-39/styles/style.scss';
+@import 'parts/deprecated.scss';
+@import '../../editor/blocks/post-author/styles/style.scss';
+@import '../../editor/blocks/post-breadcrumb/styles/style.scss';
+@import '../../editor/blocks/post-comment/styles/style.scss';
+@import '../../editor/blocks/post-featured-image/styles/style.scss';
+@import '../../editor/blocks/post-meta/styles/style.scss';
+@import '../../editor/blocks/post-prev-next/styles/style.scss';
+@import '../../editor/blocks/post-related/styles/style.scss';
+@import '../../editor/blocks/post-tag/styles/style.scss';
+@import '../../editor/blocks/post-title/styles/style.scss';
+
+.editor-styles-wrapper .gvnews_post_category {
+    font-size: 12px;
+    clear: both;
+
+    span {
+        font-weight: bold;
+        margin-right: 3px;
+    }
+}
+
+.editor-styles-wrapper {
+    .gvnews_meta_comment a {
+        color: #53585c;
+        font-weight: normal;
+    }
+
+    .gvnews_meta_like {
+        position: relative;
+    }
+}
+
+.editor-styles-wrapper {
+
+    .gvnews_post_meta {
+
+        .fa,
+        .fas,
+        .far,
+        .fab,
+        .gtn {
+            color: #2e9fff;
+            font-size: inherit;
+            margin-right: 2px;
+        }
+    }
+
+    .gvnews_meta_author+.gvnews_meta_date:before {
+        content: '\2014';
+        margin-right: 10px;
+    }
+
+    .meta_right {
+        text-align: right;
+        flex: 1 0 auto;
+        margin-left: auto;
+    }
+
+    .meta_left>div {
+        display: inline-block;
+
+        &:not(:last-of-type) {
+            margin-right: 6px;
+        }
+    }
+
+    .meta_right>div {
+        display: inline-block;
+        font-size: 18px;
+        margin-left: 15px;
+    }
+
+    .gvnews_post_meta .meta_right .fa,
+    .gvnews_post_meta .meta_right svg {
+        font-size: inherit;
+    }
+
+    .gvnews_meta_trending,
+    .gvnews_post_meta .gvnews_meta_trending {
+        .fa {
+            width: 22px;
+            border-radius: 50px;
+            background: #f93d53;
+            line-height: 22px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 0px;
+        }
+
+        svg {
+            border-radius: 50px;
+            background: #f93d53;
+            line-height: 22px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 0px;
+        }
+    }
+}
+
+.editor-styles-wrapper {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+@media only screen and (max-width: 568px) {
+    .editor-styles-wrapper {
+
+        .gvnews_meta_category,
+        .gvnews_meta_comment {
+            display: none !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .editor-styles-wrapper {
+
+        .gvnews_meta_category,
+        .gvnews_meta_comment {
+            display: none !important;
+        }
+    }
+}

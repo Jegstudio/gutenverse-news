@@ -1,6 +1,12 @@
 import { activeTheme, clientUrl, upgradeProUrl } from 'gutenverse-core/config';
+import { getUpgradeProps, prefetchPricingPlanData } from 'gutenverse-core/helper';
 
 const UpgradeProOverlay = () => {
+    const hoverProps = {
+        onMouseEnter: () => prefetchPricingPlanData(),
+        onFocus: () => prefetchPricingPlanData(),
+    };
+
     return (
         <div className="deprecated-block-content upgrade-to-pro">
             <span>
@@ -20,7 +26,12 @@ const UpgradeProOverlay = () => {
                     <b>Upgrade Required</b>: This block is part of Gutenverse Pro.
                 </p>
             </span>
-            <a target="_blank" rel="noreferrer" href={`${upgradeProUrl}?utm_source=gutenverse-news&utm_medium=blockProOverlay&utm_client_site=${clientUrl}&utm_client_theme=${activeTheme}`}>Upgrade to Pro</a>
+            <a
+                {...getUpgradeProps(`${upgradeProUrl}?utm_source=gutenverse-news&utm_medium=blockProOverlay&utm_client_site=${clientUrl}&utm_client_theme=${activeTheme}`)}
+                {...hoverProps}
+            >
+                Upgrade to Pro
+            </a>
             <p className="note">*This message does not appear to site visitors.</p>
         </div>
     );

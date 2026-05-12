@@ -665,7 +665,9 @@
     "keywords": [],
     "gutenversePro": true,
     "viewScript": ["gutenverse-news-frontend-blocks-script"],
-    "style": ["gutenverse-news-frontend-blocks-style"],
+    "style": [
+        "gutenverse-news-frontend-block-28-style"
+    ],
 	"usesContext": [
 		"gutenverse/flexDirection",
         "gutenverse-pro/account-details/activeMenu"	
