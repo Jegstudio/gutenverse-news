@@ -407,6 +407,11 @@ class Frontend_Assets {
 			'block-32',
 			'block-33',
 			'block-34',
+			'block-35',
+			'block-36',
+			'block-37',
+			'block-38',
+			'block-39',
 		);
 		foreach ( $hero_blocks as $block ) {
 			wp_register_style(
