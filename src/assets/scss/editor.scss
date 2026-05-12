@@ -1,3 +1,4 @@
+@import 'parts/blocks-trim.scss';
 @import '../../editor/blocks/user-list/styles/style.scss';
 @import 'parts/header.scss';
 @import 'parts/pagination.scss';
@@ -40,12 +41,10 @@
 @import '../../editor/blocks/block-04/styles/style.scss';
 @import '../../editor/blocks/block-05/styles/style.scss';
 @import '../../editor/blocks/block-06/styles/style.scss';
-
 @import '../../editor/blocks/block-07/styles/style.scss';
 @import '../../editor/blocks/block-08/styles/style.scss';
 @import '../../editor/blocks/block-09/styles/style.scss';
 @import '../../editor/blocks/block-10/styles/style.scss';
-
 @import '../../editor/blocks/block-11/styles/style.scss';
 @import '../../editor/blocks/block-12/styles/style.scss';
 @import '../../editor/blocks/block-13/styles/style.scss';
@@ -75,6 +74,16 @@
 @import '../../editor/blocks/block-37/styles/style.scss';
 @import '../../editor/blocks/block-38/styles/style.scss';
 @import '../../editor/blocks/block-39/styles/style.scss';
+@import 'parts/deprecated.scss';
+@import '../../editor/blocks/post-author/styles/style.scss';
+@import '../../editor/blocks/post-breadcrumb/styles/style.scss';
+@import '../../editor/blocks/post-comment/styles/style.scss';
+@import '../../editor/blocks/post-featured-image/styles/style.scss';
+@import '../../editor/blocks/post-meta/styles/style.scss';
+@import '../../editor/blocks/post-prev-next/styles/style.scss';
+@import '../../editor/blocks/post-related/styles/style.scss';
+@import '../../editor/blocks/post-tag/styles/style.scss';
+@import '../../editor/blocks/post-title/styles/style.scss';
 
 .editor-styles-wrapper .gvnews_post_category {
     font-size: 12px;
