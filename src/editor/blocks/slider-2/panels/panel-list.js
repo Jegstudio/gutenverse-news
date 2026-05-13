@@ -10,6 +10,7 @@ import { designPanel } from './panel-design';
 import { categoryStylePanel } from '../../../control-panel/panel-category-style';
 import { dotStylePanel } from '../../../control-panel/panel-dot-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
+import { sliderThumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 
 export const panelList = () => {
     return applyFilters(
@@ -37,6 +38,12 @@ export const panelList = () => {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: designPanel,
+                tabRole: TabStyle
+            },
+            {
+                title: __('Thumbnail Overlay', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: sliderThumbnailOverlayPanel,
                 tabRole: TabStyle
             },
             {
