@@ -22,6 +22,8 @@ import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import { getOverlayIconData } from '../../part/thumbnail';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -67,6 +69,13 @@ const Slider9Block = compose(
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = '',
         showMetaReview = false,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
     const metaSettings = {
@@ -81,6 +90,19 @@ const Slider9Block = compose(
         option: {
             ...defaultOptions.option,
             ...metaSettings
+        }
+    };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
         }
     };
 
@@ -124,9 +146,12 @@ const Slider9Block = compose(
     const TitleTag = postTitleHtmlTag;
 
     function RenderContent(props) {
+        const format = props.post?.format || 'standard';
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
-            <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
+            <div className={`gvnews_slide_item format-${format}`} style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
+                {withIcon && <div className="gvnews-thumb-overlay-icon">{renderIcon(icon, type, svg)}</div>}
                 <div className="gvnews_slide_wrapper">
                     <SliderCaption {...props} />
                 </div>
@@ -317,6 +342,7 @@ const Slider9Block = compose(
         postTitleHtmlTag,
         gutenversePreviewBlock,
         showMetaReview,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

@@ -22,6 +22,8 @@ import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
 import { blockStyle } from './styles/block-style';
+import { getOverlayIconData } from '../../part/thumbnail';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -65,6 +67,13 @@ const Slider3Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = ''
     } = attributes;
@@ -80,6 +89,19 @@ const Slider3Block = compose(
         option: {
             ...defaultOptions.option,
             ...metaSettings
+        }
+    };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
         }
     };
 
@@ -132,8 +154,16 @@ const Slider3Block = compose(
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     function RenderContent(props) {
+        const format = props.post?.format || 'standard';
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
             <div className="gvnews_slide_item">
+                {
+                    withIcon &&
+                    <div className="gvnews-thumb-overlay-icon">
+                        {renderIcon(icon, type, svg)}
+                    </div>
+                }
                 <ThumbModule size={1400} cat={false} post={props.post} />
                 <SliderCaption {...props} excerpt date />
             </div>
@@ -316,7 +346,8 @@ const Slider3Block = compose(
         showMetaDate,
         showMetaAuthor,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

@@ -17,6 +17,19 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		overflow: hidden;
+
+		.gvnews_slide_image {
+			position: relative;
+
+			.gvnews-thumb-overlay-icon {
+				position: absolute;
+            	font-size: 22px;
+				top: 10px;
+				right: 10px;
+				z-index: 1;
+				color: #fff;
+			}
+		}
 	}
 
 	&:not(.tns-slider) .gvnews_slide_item {

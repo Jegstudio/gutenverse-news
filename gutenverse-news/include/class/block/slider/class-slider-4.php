@@ -29,6 +29,7 @@ class Slider_4 extends Slider_View_Abstract {
 		$content = '';
 		foreach ( $results as $key => $post ) {
 			$primary_category = $this->get_primary_category( $post->ID );
+			$overlay_icon     = $this->get_overlay_icon( $post->ID );
 			$size             = $attr['fullsize_image'] ? 'full' : 'gvnews-1140x815';
 			$image            = get_the_post_thumbnail_url( $post->ID, $size );
 			$hidden_image     = $this->attribute['normal_image'] && 0 === $key ? '<img loading="eager" fetchpriority="high" class="thumbnail-prioritize" src="' . esc_url( $image ) . '" style="display: none" >' : '';
@@ -37,6 +38,7 @@ class Slider_4 extends Slider_View_Abstract {
 			'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . ' style="background-image: url(' . esc_url( $image ) . ')">
 					' . $hidden_image . '
                     ' . gvnews_edit_post( $post->ID ) . "
+                    {$overlay_icon['overlay_icon']}
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">

@@ -34,6 +34,16 @@
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
 		flex-direction: column;
+
+		.gvnews-thumb-overlay-icon {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			font-size: 22px;
+			z-index: 3;
+			color: #fff;
+			line-height: 1;
+		}
 	}
 
 	.gvnews_item_caption {

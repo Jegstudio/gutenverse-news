@@ -81,6 +81,32 @@ class Slider extends StyleAbstract {
 			}
 		}
 
+		if ( isset( $this->attrs['overlayIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['overlayIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['overlayIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['overlayIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['categoryButtonTypography'] ) ) {
 			$selector = 'GUTENVERSE\\NEWS\\Block\\Slider\\Slider_8' === $this->attrs['gvnewsModule'] ? '.gvnews_slider_type_8 .gvnews_post_category a' : '.gvnews_slide_caption .gvnews_post_category a';
 

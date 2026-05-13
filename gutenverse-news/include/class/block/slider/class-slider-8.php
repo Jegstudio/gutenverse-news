@@ -29,6 +29,7 @@ class Slider_8 extends Slider_View_Abstract {
 		$image_load = \Gutenverse\Framework\Options::get_instance()->get_image_load( 'normal', $this->attribute['normal_image'], $this->attribute['image_load'] );
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
+			$overlay_icon      = $this->get_overlay_icon( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $image_load, $this->attribute['fetch_priority_high'] );
 			$content          .=
@@ -37,6 +38,7 @@ class Slider_8 extends Slider_View_Abstract {
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
                         {$image}
                     </a>
+                    {$overlay_icon['overlay_icon']}
                     <div class=\"gvnews_item_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">
