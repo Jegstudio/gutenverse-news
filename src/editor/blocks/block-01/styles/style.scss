@@ -82,3 +82,35 @@
     }
 
 }
+
+/* Moved from src/assets/scss/fse-standard.scss */
+.gvnews_postblock {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: #fff;
+            line-height: 1;
+            pointer-events: none;
+        }
+    }
+
+    .with-overlay-icon .gvnews-thumb-overlay {
+        background: #000;
+        opacity: 0.3;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+.gvnews_post {
+    .gvnews-thumb-overlay-icon {
+        transition: all .3s;
+    }
+}
+
