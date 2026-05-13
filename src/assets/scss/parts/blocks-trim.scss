@@ -3536,3 +3536,15 @@ input:checked+.slider {
 .gvnews_pl_lg_box .gvnews_review_stars {
     font-size: 16px;
 }
+
+
+/* Editor specific styles */
+.gvnews-element-overlay {
+  z-index: 9999;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  letter-spacing: 0;
+}
