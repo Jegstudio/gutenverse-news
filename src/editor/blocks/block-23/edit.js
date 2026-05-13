@@ -15,17 +15,22 @@ const Block23Block = compose(
         blockWidth: 12,
     };
     const moduleName = '23';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+    ];
     if (gutenverseProActive) {
         return <BlockModule
             columnAttr={columnAttr}
             moduleName={moduleName}
-            {...props}
+            iconMappings={iconMappings} {...props}
             panelList={panelList}
             defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
             mainThumbnailClass={'gvnews_pl_md_1'}
         />;
     } else {
-        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
+        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} iconMappings={iconMappings} {...props} />;
     }
 });
 

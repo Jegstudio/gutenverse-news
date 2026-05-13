@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor, useIsFirstRender } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useIsFirstRender, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -35,6 +35,7 @@ const BlockModule = compose(
         moduleName,
         columnAttr,
         panelList,
+        iconMappings = [],
         freeModule = false,
         defaultImageSizeMain = {},
         defaultImageSizeSecond = {},
@@ -163,6 +164,13 @@ const BlockModule = compose(
         },
         elementRef
     );
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: iconMappings,
+    });
 
     const {
         getBlock,

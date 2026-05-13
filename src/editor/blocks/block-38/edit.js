@@ -15,10 +15,15 @@ const Block38Block = compose(
         blockWidth: 12,
     };
     const moduleName = '38';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+    ];
     if (gutenverseProActive) {
-        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} panelList={panelList} />;
+        return <BlockModule columnAttr={columnAttr} moduleName={moduleName} iconMappings={iconMappings} {...props} panelList={panelList} />;
     } else {
-        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
+        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} iconMappings={iconMappings} {...props} />;
     }
 });
 

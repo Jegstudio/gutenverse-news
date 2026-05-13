@@ -330,7 +330,7 @@ class Frontend_Assets {
 			wp_register_style(
 				$handle,
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $module . '.css',
-				array(),
+				array( 'gutenverse-frontend-style' ),
 				GUTENVERSE_NEWS_VERSION
 			);
 
@@ -345,8 +345,7 @@ class Frontend_Assets {
 		wp_register_style(
 			'gutenverse-news-frontend-blocks-style',
 			GUTENVERSE_NEWS_URL . '/assets/css/frontend/blocks-trim.css',
-			// GUTENVERSE_NEWS_URL . '/assets/css/blocks-styles.css',
-			array(),
+			array( 'gutenverse-frontend-style' ),
 			GUTENVERSE_NEWS_VERSION
 		);
 
