@@ -1,4 +1,6 @@
-/** Carousel **/
+.gvnews_carousel_placeholder .thumbnail-wrapper.gvnews_thumb:before {
+    content: unset;
+}
 
 .gvnews_carousel_post {
     position: relative;
