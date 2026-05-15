@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -182,6 +182,19 @@ const PostRelated = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+            { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+            { type: 'iconType', svg: 'iconSVG' },
+            { type: 'listIconType', svg: 'listIconSVG' },
+        ],
+    });
+
 
     useEffect(() => {
         if (elementRef) {

@@ -16,11 +16,16 @@ const Block13Block = compose(
         blockWidth: 12,
     };
     const moduleName = '13';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+    ];
     if (gutenverseProActive) {
         return <BlockModule
             columnAttr={columnAttr}
             moduleName={moduleName}
-            {...props}
+            iconMappings={iconMappings} {...props}
             panelList={panelList}
             defaultImageSizeMain={{ height: 360, width: 504, dimension: 1400 }}
             defaultImageSizeSecond={{ height: 350, width: 250, dimension: 715 }}
@@ -28,7 +33,7 @@ const Block13Block = compose(
             dedicatedStyle={dedicatedStyle}
         />;
     } else {
-        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
+        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} iconMappings={iconMappings} {...props} />;
     }
 
 });

@@ -13,10 +13,15 @@ const Block9Block = compose(
         blockWidth: 12,
     };
     const moduleName = '9';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+    ];
     return <BlockModule
         columnAttr={columnAttr}
         moduleName={moduleName}
-        {...props}
+        iconMappings={iconMappings} {...props}
         panelList={panelList}
         freeModule={true}
         defaultImageSizeMain={{ height: 350, width: 180, dimension: 500 }}
