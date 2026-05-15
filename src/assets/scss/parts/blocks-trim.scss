@@ -643,6 +643,7 @@
     position: relative;
     overflow: hidden;
     z-index: 0;
+    height: fit-content;
 }
 
 .thumbnail-container {
@@ -3535,4 +3536,88 @@ input:checked+.slider {
 .gvnews_pl_lg_card .gvnews_review_stars,
 .gvnews_pl_lg_box .gvnews_review_stars {
     font-size: 16px;
+}
+
+.gvnews_postblock {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: #fff;
+            line-height: 1;
+            pointer-events: none;
+        }
+    }
+
+    .with-overlay-icon .gvnews-thumb-overlay {
+        background: #000;
+        opacity: 0.3;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+.gvnews_heroblock {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 22px;
+            z-index: 1;
+            color: #fff;
+            line-height: 1;
+            pointer-events: none;
+        }
+    }
+}
+
+.gvnews_heroblock.gvnews_heroblock_skew {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            transform: skewX(7deg);
+            right: 30px;
+        }
+
+        &.gvnews_hero_item_2 {
+            .gvnews-thumb-overlay-icon {
+                margin-right: 8%;
+            }
+        }
+    }
+}
+
+.gvnews_heroblock_1 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,
+.gvnews_heroblock_13 .gvnews_post.gvnews_post .gvnews-thumb-overlay-icon,
+.gvnews_heroblock_2 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,
+.gvnews_heroblock_4 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,
+.gvnews_heroblock_5 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon,
+.gvnews_heroblock_6 .gvnews_hero_item_1.gvnews_post .gvnews-thumb-overlay-icon {
+    font-size: 30px;
+}
+
+.gvnews_postblock_carousel_2.gvnews_postblock {
+    .gvnews_post {
+        .gvnews-thumb-overlay-icon {
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: none;
+        }
+    }
+}
+
+.gvnews_postblock_carousel .gvnews_thumb .gvnews-thumb-overlay {
+    opacity: 0.3;
+}
+
+.gvnews_post {
+    .gvnews-thumb-overlay-icon {
+        transition: all .3s;
+    }
 }
