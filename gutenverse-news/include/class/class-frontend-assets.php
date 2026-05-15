@@ -225,7 +225,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/news-module.js',
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_localize_script(
@@ -239,7 +242,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/tiny-slider.js',
 			array(),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_register_script(
@@ -247,7 +253,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/hero-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_register_script(
@@ -255,7 +264,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/carousel-slider.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_register_script(
@@ -263,7 +275,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/slider-module.js',
 			array( 'gutenverse-frontend-event', 'gutenverse-tinyslider' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_register_script(
@@ -271,7 +286,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/frontend/newsticker-module.js',
 			array( 'gutenverse-frontend-event' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_register_script(
@@ -279,7 +297,10 @@ class Frontend_Assets {
 			GUTENVERSE_NEWS_URL . '/assets/js/deprecated-block.js',
 			array( 'wp-api-fetch' ),
 			GUTENVERSE_NEWS_VERSION,
-			true
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 
 		wp_localize_script(
