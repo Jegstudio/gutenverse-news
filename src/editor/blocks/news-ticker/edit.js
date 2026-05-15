@@ -109,7 +109,6 @@ const NewsTickerBlock = compose(
             setPostLoaded(parseInt(numberPost));
         } else {
             setAttributes({
-                ...attributes,
                 numberPost: '1'
             });
         }
@@ -117,7 +116,6 @@ const NewsTickerBlock = compose(
             setOffsetLoaded(parseInt(postOffset));
         } else {
             setAttributes({
-                ...attributes,
                 postOffset: '0'
             });
         }
@@ -170,7 +168,6 @@ const NewsTickerBlock = compose(
 
     useEffect(() => {
         setAttributes({
-            ...attributes,
             tickerLineHeight: getLineHeight(attributes)
         });
     }, [contentBorder, contentBorderResponsive, contentHeight, contentHeightResponsive]);

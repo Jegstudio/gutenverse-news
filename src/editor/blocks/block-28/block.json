@@ -134,7 +134,7 @@
 		},
 		"paginationPrevIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"paginationPrevIconSVG": {
 			"type": "string",
@@ -146,7 +146,7 @@
 		},
 		"paginationNextIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"paginationNextIconSVG": {
 			"type": "string",
@@ -509,7 +509,7 @@
         },
         "listIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "listIconSVG": {
             "type": "string",

@@ -166,7 +166,7 @@
 		},
 		"likeIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"likeIconSVG": {
 			"type": "string",
@@ -179,7 +179,7 @@
 		},
 		"likeIconActiveType": {
 			"type": "string",
-			"default": "svg"
+            "default": "icon"
 		},
 		"likeIconActiveSVG": {
 			"type": "string",
@@ -250,7 +250,7 @@
 		},
 		"dislikeIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"dislikeIconSVG": {
 			"type": "string",
@@ -263,7 +263,7 @@
 		},
 		"dislikeIconActiveType": {
 			"type": "string",
-			"default": "svg"
+            "default": "icon"
 		},
 		"dislikeIconActiveSVG": {
 			"type": "string",
@@ -308,7 +308,7 @@
 		},
 		"bookmarkIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"bookmarkIconSVG": {
 			"type": "string",
@@ -529,7 +529,7 @@
 		},
 		"donationIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"donationIconSVG": {
 			"type": "string",

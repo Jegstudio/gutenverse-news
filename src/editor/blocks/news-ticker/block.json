@@ -119,7 +119,7 @@
 		},
 		"iconType": {
 			"type": "string",
-			"default": "svg"
+            "default": "icon"
 		},
 		"iconSVG": {
 			"type": "string",
@@ -229,7 +229,7 @@
 		},
 		"nextIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"nextIconSVG": {
 			"type": "string",
@@ -241,7 +241,7 @@
 		},
 		"prevIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"prevIconSVG": {
 			"type": "string",

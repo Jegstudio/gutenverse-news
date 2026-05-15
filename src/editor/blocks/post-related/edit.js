@@ -192,6 +192,8 @@ const PostRelated = compose(
             { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
             { type: 'iconType', svg: 'iconSVG' },
             { type: 'listIconType', svg: 'listIconSVG' },
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
         ],
     });
 
@@ -575,5 +577,4 @@ const PostRelated = compose(
 });
 
 export default PostRelated;
-
 

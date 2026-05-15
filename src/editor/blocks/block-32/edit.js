@@ -20,6 +20,8 @@ const Block32Block = compose(
         { type: 'iconType', svg: 'iconSVG' },
         { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
         { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+        { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+        { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
     ];
     if (gutenverseProActive) {
         return <BlockModule

@@ -344,7 +344,7 @@
         },
         "galleryFormatIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "galleryFormatIconSVG": {
             "type": "string",
@@ -356,7 +356,7 @@
         },
         "videoFormatIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "videoFormatIconSVG": {
             "type": "string",

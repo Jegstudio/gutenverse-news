@@ -43,7 +43,7 @@
 		},
 		"paginationPrevIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"paginationPrevIconSVG": {
 			"type": "string",
@@ -55,7 +55,7 @@
 		},
 		"paginationNextIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"paginationNextIconSVG": {
 			"type": "string",
@@ -366,7 +366,7 @@
         },
         "listIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "listIconSVG": {
             "type": "string",
@@ -780,7 +780,7 @@
         },
         "galleryFormatIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "galleryFormatIconSVG": {
             "type": "string",
@@ -792,7 +792,7 @@
         },
         "videoFormatIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "videoFormatIconSVG": {
             "type": "string",

@@ -2,7 +2,7 @@ import { compose } from '@wordpress/compose';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useEffect, useRef } from '@wordpress/element';
 import { HeroHandler } from '../../part/hero';
@@ -21,6 +21,7 @@ const ArchiveHero = compose(
         clientId,
         setBlockRef,
         isSelected,
+        setAttributes,
     } = props;
 
     const {
@@ -41,6 +42,16 @@ const ArchiveHero = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+        ],
+    });
 
     useEffect(() => {
         if (elementRef) {

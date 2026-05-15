@@ -275,7 +275,7 @@
 		},
 		"donationIconType": {
 			"type": "string",
-			"default": "svg"
+			"default": "icon"
 		},
 		"donationIconSVG": {
 			"type": "string",

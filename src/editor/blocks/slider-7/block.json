@@ -293,7 +293,7 @@
         },
         "nextButtonIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "nextButtonIconSVG": {
             "type": "string",
@@ -305,7 +305,7 @@
         },
         "prevButtonIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "prevButtonIconSVG": {
             "type": "string",
