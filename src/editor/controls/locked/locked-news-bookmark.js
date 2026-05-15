@@ -10,8 +10,8 @@ const LockedNewsBookmark = ({ isOpen }) => {
         <DefaultLayout
             title={__('Unlock Bookmark Feature', 'gutenverse-pro')}
             description={__('Allow your readers to save their favorite posts. Upgrade to unlock the Bookmark feature and keep your audience engaged with personalized reading lists.', 'gutenverse-pro')}
-            img={`${assetsDir}/video/bookmark.mp4`}
-            useFullUrl={true}
+            img="/video/bookmark.mp4"
+            assetDir={assetsDir}
             isOpen={isOpen}
         />
     </div>;

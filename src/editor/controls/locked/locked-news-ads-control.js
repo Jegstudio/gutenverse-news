@@ -11,8 +11,8 @@ const LockedNewsAdsControl = ({ isOpen }) => {
         <DefaultLayout
             title={__('Unlock Ads on Article Lists', 'gutenverse-pro')}
             description={__('Increase your ad revenue by seamlessly placing advertisements within the post list in your Module block, helping you maximize visibility without disrupting the user experience.', 'gutenverse-pro')}
-            img={`${assetsDir}/video/ads.mp4`}
-            useFullUrl={true}
+            img="/video/ads.mp4"
+            assetDir={assetsDir}
             isOpen={isOpen}
         />
     </div>;

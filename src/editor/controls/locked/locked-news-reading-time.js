@@ -10,8 +10,8 @@ const LockedNewsReadingTime = ({ isOpen }) => {
         <DefaultLayout
             title={__('Unlock Reading Time Feature', 'gutenverse-pro')}
             description={__('Give readers a quick estimate of how long evaluating an article will take. Upgrade to unlock the Reading Time feature and set clear expectations for your audience.', 'gutenverse-pro')}
-            img={`${assetsDir}/video/reading-time.mp4`}
-            useFullUrl={true}
+            img="/video/reading-time.mp4"
+            assetDir={assetsDir}
             isOpen={isOpen}
         />
     </div>;
