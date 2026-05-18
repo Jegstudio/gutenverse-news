@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useRef } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
@@ -78,6 +78,18 @@ const NewsTickerBlock = compose(
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'iconType', svg: 'iconSVG' },
+            { type: 'nextIconType', svg: 'nextIconSVG' },
+            { type: 'prevIconType', svg: 'prevIconSVG' },
+        ],
+    });
+
+
     useEffect(() => {
         if (elementRef) {
             setBlockRef(elementRef);
@@ -97,7 +109,6 @@ const NewsTickerBlock = compose(
             setPostLoaded(parseInt(numberPost));
         } else {
             setAttributes({
-                ...attributes,
                 numberPost: '1'
             });
         }
@@ -105,7 +116,6 @@ const NewsTickerBlock = compose(
             setOffsetLoaded(parseInt(postOffset));
         } else {
             setAttributes({
-                ...attributes,
                 postOffset: '0'
             });
         }
@@ -158,7 +168,6 @@ const NewsTickerBlock = compose(
 
     useEffect(() => {
         setAttributes({
-            ...attributes,
             tickerLineHeight: getLineHeight(attributes)
         });
     }, [contentBorder, contentBorderResponsive, contentHeight, contentHeightResponsive]);

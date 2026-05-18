@@ -10,8 +10,8 @@ const LockedNewsMetaAuthorDonation = ({ isOpen }) => {
         <DefaultLayout
             title={__('Unlock Author Donation', 'gutenverse-pro')}
             description={__('Empower your writers! Upgrade to unlock the Author Donation feature, allowing your readers to support their favorite authors directly.', 'gutenverse-pro')}
-            img={`${assetsDir}/video/post-meta-donation.mp4`}
-            useFullUrl={true}
+            img="/video/post-meta-donation.mp4"
+            assetDir={assetsDir}
             isOpen={isOpen}
         />
     </div>;

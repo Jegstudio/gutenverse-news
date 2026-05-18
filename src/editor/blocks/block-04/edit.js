@@ -9,14 +9,21 @@ const Block4Block = compose(
     withPassRef
 )((props) => {
     const columnAttr = {
-        block       : Block4Columns,
-        blockWidth  : 8,
+        block: Block4Columns,
+        blockWidth: 8,
     };
     const moduleName = '4';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+        { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+        { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+    ];
     return <BlockModule
         columnAttr={columnAttr}
         moduleName={moduleName}
-        {...props}
+        iconMappings={iconMappings} {...props}
         panelList={panelList}
         freeModule={true}
         defaultImageSizeMain={{ height: 350, width: 250, dimension: 715 }}
