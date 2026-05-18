@@ -144,6 +144,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 == Changelog ==
 
 = 3.2.1 =
+
+##### New and improved:
+* Add responsive option for background color
+
 ##### Bug Fixes
 * Fix background image preload fetch priority
 * Fix color option bug with hex input
