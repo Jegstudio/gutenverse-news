@@ -149,8 +149,10 @@ We have some [documentation articles here](https://gutenverse.com/docs/) that 
 * Add responsive option for background color
 
 ##### Bug Fixes
-* Fix background image preload fetch priority
-* Fix color option bug with hex input
+* Fixed background image preload fetch priority.
+* Fixed color option bug with hex input.
+* Fixed video background issue.
+* Fixed template library only load two layouts initially.
 
 = 3.2.0 =
 ##### Improvements
