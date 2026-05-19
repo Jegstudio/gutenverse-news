@@ -119,6 +119,8 @@ const Slider5Block = compose(
         attributes,
         setAttributes,
         icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
             { type: 'nextButtonIconType', svg: 'nextButtonIconSVG' },
             { type: 'prevButtonIconType', svg: 'prevButtonIconSVG' },
         ],
