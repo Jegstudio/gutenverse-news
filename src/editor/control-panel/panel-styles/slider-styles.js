@@ -18,7 +18,7 @@ const getSliderStyle = (elementId, attributes, data = []) => {
     isNotEmpty(attributes['overlayIconColor']) && data.push({
         'type': 'color',
         'id': 'overlayIconColor',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
         'properties': [
             {
                 'name': 'color',
@@ -31,7 +31,7 @@ const getSliderStyle = (elementId, attributes, data = []) => {
         'type': 'plain',
         'id': 'overlayIconSize',
         'responsive': true,
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon`,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
         'properties': [
             {
                 'name': 'font-size',

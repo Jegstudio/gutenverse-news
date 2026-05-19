@@ -22,8 +22,6 @@ import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
-import { getOverlayIconData } from '../../part/thumbnail';
-import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -146,12 +144,9 @@ const Slider9Block = compose(
     const TitleTag = postTitleHtmlTag;
 
     function RenderContent(props) {
-        const format = props.post?.format || 'standard';
-        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
-            <div className={`gvnews_slide_item format-${format}`} style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
+            <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
-                {withIcon && <div className="gvnews-thumb-overlay-icon">{renderIcon(icon, type, svg)}</div>}
                 <div className="gvnews_slide_wrapper">
                     <SliderCaption {...props} />
                 </div>
@@ -162,7 +157,7 @@ const Slider9Block = compose(
     function RenderSlider(props) {
         return (
             <article className="gvnews_post gvnews_pl_sm" data-index={props.index}>
-                <ThumbModule size={715} cat={false} post={props.post} />
+                <ThumbModule size={715} cat={false} post={props.post} overlayIconData={overlayIconData} />
                 <div className="gvnews_postblock_content">
                     <MetaModule2 {...props} />
                     <TitleTag className="gvnews_post_title">

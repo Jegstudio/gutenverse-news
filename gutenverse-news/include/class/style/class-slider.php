@@ -84,7 +84,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['overlayIconColor'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon, .{$this->element_id} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'color' );
 					},
@@ -97,7 +97,7 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['overlayIconSize'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slide_item .gvnews_slide_image .gvnews-thumb-overlay-icon, .{$this->element_id} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon",
 					'property'       => function ( $value ) {
 						return "font-size: {$value}px;";
 					},

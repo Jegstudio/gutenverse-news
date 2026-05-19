@@ -301,7 +301,7 @@ export const sliderThumbnailOverlayPanel = (props) => {
                     'type': 'plain',
                     'id': 'overlayIconSize',
                     'responsive': true,
-                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon`,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
                     'properties': [
                         {
                             'name': 'font-size',
@@ -326,7 +326,7 @@ export const sliderThumbnailOverlayPanel = (props) => {
                 {
                     'type': 'color',
                     'id': 'overlayIconColor',
-                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon`,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
                     'properties': [
                         {
                             'name': 'color',

@@ -45,7 +45,6 @@ class Slider_9 extends Slider_View_Abstract {
 				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . " style=\"background-image: url({$image})\">
 					{$hidden_image}
                     " . gvnews_edit_post( $post->ID ) . "
-					{$overlay_icon['overlay_icon']}
                     <div class=\"gvnews_slide_wrapper\">
                         <div class=\"gvnews_slide_caption\">
                             <div class=\"gvnews_caption_container\">
@@ -66,8 +65,9 @@ class Slider_9 extends Slider_View_Abstract {
 
 			$thumb .=
 				"<article data-index='{$index}' " . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post->ID ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . '</a>
+                        ' . $overlay_icon['overlay_icon'] . '
                     </div>
                     <div class="gvnews_postblock_content">
                         ' . $this->post_meta_2( $post ) . '
