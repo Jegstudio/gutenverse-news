@@ -290,6 +290,7 @@ class Grab {
 		}
 
 		if ( $this->is_pro_block ) {
+			wp_enqueue_style( 'gvnews-deprecated-blocks' );
 			$upgrade_url = 'https://gutenverse.com/pricing/?' . http_build_query(
 				array(
 					'utm_source'       => 'gutenverse-news',

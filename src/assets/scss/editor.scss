@@ -151,29 +151,6 @@
         font-size: inherit;
     }
 
-    .gvnews_meta_trending,
-    .gvnews_post_meta .gvnews_meta_trending {
-        .fa {
-            width: 22px;
-            border-radius: 50px;
-            background: #f93d53;
-            line-height: 22px;
-            text-align: center;
-            color: #fff;
-            font-size: 14px;
-            margin-right: 0px;
-        }
-
-        svg {
-            border-radius: 50px;
-            background: #f93d53;
-            line-height: 22px;
-            text-align: center;
-            color: #fff;
-            font-size: 14px;
-            margin-right: 0px;
-        }
-    }
 }
 
 .editor-styles-wrapper {
@@ -199,4 +176,15 @@
             display: none !important;
         }
     }
+}
+
+
+.gvnews-element-overlay {
+    z-index: 9999;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    letter-spacing: 0;
 }

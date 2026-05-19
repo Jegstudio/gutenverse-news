@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
@@ -43,6 +43,21 @@ const PostMeta = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'likeIconType', svg: 'likeIconSVG' },
+            { type: 'likeIconActiveType', svg: 'likeIconActiveSVG' },
+            { type: 'dislikeIconType', svg: 'dislikeIconSVG' },
+            { type: 'dislikeIconActiveType', svg: 'dislikeIconActiveSVG' },
+            { type: 'bookmarkIconType', svg: 'bookmarkIconSVG' },
+            { type: 'bookmarkIconActiveType', svg: 'bookmarkIconActiveSVG' },
+            { type: 'donationIconType', svg: 'donationIconSVG' },
+        ],
+    });
 
     useEffect(() => {
         const updates = {};

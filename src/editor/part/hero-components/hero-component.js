@@ -5,6 +5,7 @@ import { ModuleOverlay, ModuleSkeleton } from '../placeholder';
 import HeroContentWrapperComponent from './hero-content-wrapper';
 import HeroViewComponent from './hero-view-component';
 import { getModuleOptions } from '../../utils/helper';
+import { useInitializeIconToSvg } from 'gutenverse-core/hooks';
 
 
 const defaultOptions = getModuleOptions();
@@ -62,6 +63,16 @@ const HeroComponent = (props) => {
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
     } = attributes;
+
+    useInitializeIconToSvg({
+        elementId: attributes.elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+        ],
+    });
 
     const metaSettings = {
         meta_show: showMeta,

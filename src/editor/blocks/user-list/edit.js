@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -25,6 +25,7 @@ const UserlistBlock = compose(
 )((props) => {
     const {
         attributes,
+        setAttributes,
         clientId,
         setBlockRef
     } = props;
@@ -58,6 +59,16 @@ const UserlistBlock = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'iconType', svg: 'iconSVG' },
+        ],
+    });
+
 
     useEffect(() => {
         if (elementRef) {

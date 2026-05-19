@@ -5,7 +5,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
 import { CopyElementToolbar } from 'gutenverse-core/components';
@@ -34,6 +34,15 @@ const PostAuthor = compose(
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'donationIconType', svg: 'donationIconSVG' },
+        ],
+    });
 
     useEffect(() => {
         if (elementRef) {

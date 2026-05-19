@@ -5,7 +5,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -118,6 +118,17 @@ const Slider1Block = compose(
         ),
         elementRef
     );
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'nextButtonIconType', svg: 'nextButtonIconSVG' },
+            { type: 'prevButtonIconType', svg: 'prevButtonIconSVG' },
+        ],
+    });
+
 
     useEffect(() => {
         if (elementRef) {

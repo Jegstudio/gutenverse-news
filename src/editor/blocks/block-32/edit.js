@@ -16,11 +16,18 @@ const Block32Block = compose(
         blockWidth: 12,
     };
     const moduleName = '32';
+    const iconMappings = [
+        { type: 'iconType', svg: 'iconSVG' },
+        { type: 'paginationPrevIconType', svg: 'paginationPrevIconSVG' },
+        { type: 'paginationNextIconType', svg: 'paginationNextIconSVG' },
+        { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+        { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+    ];
     if (gutenverseProActive) {
         return <BlockModule
             columnAttr={columnAttr}
             moduleName={moduleName}
-            {...props}
+            iconMappings={iconMappings} {...props}
             panelList={panelList}
             defaultImageSizeMain={{ height: 350, width: 350, dimension: 1000, class: 'default' }}
             useDedicatedStyle={true}
@@ -28,7 +35,7 @@ const Block32Block = compose(
             isMasonry={true}
         />;
     } else {
-        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} {...props} />;
+        return <LockedBlockModule columnAttr={columnAttr} moduleName={moduleName} iconMappings={iconMappings} {...props} />;
     }
 });
 

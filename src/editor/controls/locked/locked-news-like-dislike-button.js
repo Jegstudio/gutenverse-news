@@ -10,8 +10,8 @@ const LockedNewsLikeDislikeButton = ({ isOpen }) => {
         <DefaultLayout
             title={__('Unlock Like/Dislike Feature', 'gutenverse-pro')}
             description={__('Engage your audience! Upgrade to unlock the Like/Dislike feature and get valuable feedback on your content.', 'gutenverse-pro')}
-            img={`${assetsDir}/video/like-dislike.mp4`}
-            useFullUrl={true}
+            img="/video/like-dislike.mp4"
+            assetDir={assetsDir}
             isOpen={isOpen}
         />
     </div>;
