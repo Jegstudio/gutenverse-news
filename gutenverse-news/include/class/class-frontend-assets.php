@@ -648,13 +648,13 @@ class Frontend_Assets {
 				wp_enqueue_style( 'gutenverse-news-frontend-blocks-style' );
 			}
 
-			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-block' ) ) {
+			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-block' ) || 'gutenverse/news-archive-block' === $parsed_block['blockName'] || 'gutenverse/news-post-related' === $parsed_block['blockName'] ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-header-style' );
 				wp_enqueue_style( 'gutenverse-news-frontend-module-style' );
 				wp_enqueue_style( 'gutenverse-news-frontend-pagination-style' );
 			}
 
-			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-hero' ) && 'gutenverse/news-hero-14' !== $parsed_block['blockName'] ) {
+			if ( ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-hero' ) || 'gutenverse/news-archive-hero' === $parsed_block['blockName'] ) && 'gutenverse/news-hero-14' !== $parsed_block['blockName'] ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-hero-style' );
 			}
 
