@@ -175,7 +175,6 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-28':
-			case 'gutenverse/news-post-related':
 				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
@@ -183,7 +182,15 @@ class Frontend_Assets {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;
-
+			case 'gutenverse/news-post-related':
+				$template_type = isset( $attrs['templateType'] ) ? $attrs['templateType'] : 'template_1';
+				if ( in_array( $template_type, array( 'template_1', 'template_16', 'template_24' ) ) && $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
+					$this->icon_conditional_load( $conditions );
+				}
+				break;
 			case 'gutenverse/news-slider-1':
 			case 'gutenverse/news-slider-4':
 			case 'gutenverse/news-slider-5':
