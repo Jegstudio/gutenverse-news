@@ -331,8 +331,8 @@ class Init {
 
 		$framework_file    = GUTENVERSE_NEWS_DIR . 'lib/framework/bootstrap.php';
 		$framework_version = $init->get_framework_version( $framework_file );
-		$init->register_version( GUTENVERSE_NEWS_DIR, $framework_version );
-		$init->register_pro_version( GUTENVERSE_NEWS_DIR, GUTENVERSE_NEWS_REQUIRED_PRO_VERSION );
+		$init->register_version( GUTENVERSE_NEWS, $framework_version );
+		$init->register_pro_version( GUTENVERSE_NEWS, GUTENVERSE_NEWS_REQUIRED_PRO_VERSION );
 		return true;
 	}
 
@@ -344,7 +344,6 @@ class Init {
 	public function can_load_framework() {
 		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
 		$init = \Gutenverse_Initialize_Framework::instance();
-
 		return $init->can_load_version( GUTENVERSE_NEWS );
 	}
 
@@ -355,7 +354,12 @@ class Init {
 	 * @return void
 	 */
 	public function plugin_loaded() {
-		$this->init_framework();
+		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
+		$init = \Gutenverse_Initialize_Framework::instance();
+
+		if ( $init->check_compatibility() ) {
+			$this->init_framework();
+		}
 	}
 
 
