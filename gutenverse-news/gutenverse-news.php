@@ -26,6 +26,10 @@ defined( 'GUTENVERSE_NEWS_LANG_DIR' ) || define( 'GUTENVERSE_NEWS_LANG_DIR', GUT
 // Use GUTENVERSE_FRAMEWORK_URL_PATH instead.
 defined( 'GUTENVERSE_FRAMEWORK_URL' ) || define( 'GUTENVERSE_FRAMEWORK_URL', GUTENVERSE_NEWS_URL . '/lib/framework' );
 
+// Required Pro Version.
+defined( 'GUTENVERSE_NEWS_REQUIRED_PRO_VERSION' ) || define( 'GUTENVERSE_NEWS_REQUIRED_PRO_VERSION', '2.0.0' );
+
+
 require_once GUTENVERSE_NEWS_DIR . 'include/autoload.php';
 require_once GUTENVERSE_NEWS_DIR . 'include/helper.php';
 
