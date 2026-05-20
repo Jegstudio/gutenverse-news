@@ -141,9 +141,10 @@ class Init {
 	 * @return void
 	 */
 	private function __construct() {
-		$this->init_hook();
-		$this->register_framework();
-		add_action( 'plugins_loaded', array( $this, 'plugin_loaded' ) );
+		$flag = $this->register_framework();
+		if ( $flag ) {
+			add_action( 'plugins_loaded', array( $this, 'plugin_loaded' ) );
+		}
 		add_action( 'plugins_loaded', array( $this, 'framework_loaded' ), 99 );
 		add_filter( 'gutenverse_companion_plugin_list', array( $this, 'plugin_name' ) );
 		add_filter( 'user_contactmethods', array( $this, 'add_additional_admin_contact' ) );
@@ -172,22 +173,167 @@ class Init {
 	 * Only load when framework already loaded.
 	 */
 	public function framework_loaded() {
-		$this->init_instance();
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		$plugins = \get_plugins();
+		$checks  = array(
+			'gutenverse-form/gutenverse-form.php',
+			'gutenverse/gutenverse.php',
+			'gutenverse-pro/gutenverse-pro.php',
+		);
+
+		$notices = array();
+		foreach ( $checks as $plugin ) {
+			if ( isset( $plugins[ $plugin ] ) ) {
+				$form             = $plugins[ $plugin ];
+				$plugin_name      = '';
+				$required_version = '1.0.0';
+				$plugin_arr       = explode( '/', $plugin );
+				$plugin_slug      = $plugin_arr[0];
+
+				switch ( $plugin ) {
+					case 'gutenverse-form/gutenverse-form.php':
+						$required_version = '3.0.0';
+						$plugin_name      = 'Gutenverse Form';
+						break;
+					case 'gutenverse-news/gutenverse-news.php':
+						$required_version = '1.0.0';
+						$plugin_name      = 'Gutenverse News';
+						break;
+					case 'gutenverse-pro/gutenverse-pro.php':
+						$required_version = '2.0.0';
+						$plugin_name      = 'Gutenverse Pro';
+						break;
+				}
+
+				if ( version_compare( $form['Version'], $required_version, '<' ) && is_plugin_active( $plugin ) ) {
+					$notices[ 'gutenverse-update-' . $plugin_slug . '-notice' ] = array(
+						'show'               => true,
+						'notice_header'      => "Update {$plugin_name} Plugin!",
+						'notice_description' => "We notice that you haven't update {$plugin_name} plugin to version {$required_version} or above but, currently using Gutenverse version 3.0.0 or above.",
+						'notice_action'      => 'You might see issue on the Editor. ',
+						'notice_action_2'    => 'to ensure smooth editing experience!',
+						'action_url'         => admin_url( 'plugins.php' ),
+						'plugin_name'        => $plugin_name,
+					);
+				}
+			}
+		}
+
+		add_filter(
+			'gutenverse_dashboard_config',
+			function ( $config ) use ( $notices ) {
+				$config['noticeActions'] = ! empty( $config['noticeActions'] ) ? $config['noticeActions'] : array();
+				$merging_notices         = array_merge( $config['noticeActions'], $notices );
+				$config['noticeActions'] = $merging_notices;
+				return $config;
+			}
+		);
+
 		$this->load_textdomain();
+		$this->init_instance();
+		$this->init_hook();
+	}
+
+	/**
+	 * Get Framework version from file.
+	 *
+	 * @param string $file file path of the file that has the data framework.
+	 */
+	public function get_framework_version_from_file( $file ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		if ( $wp_filesystem->exists( $file ) ) {
+
+			$content = $wp_filesystem->get_contents( $file );
+			if ( preg_match( "/define\(\s*'GUTENVERSE_FRAMEWORK_VERSION'\s*,\s*'([^']+)'\s*\)/", $content, $matches ) ) {
+				$version = $matches[1];
+				return $version;
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * Method register_framework
 	 *
-	 * @return void
+	 * @return boolean
 	 */
 	public function register_framework() {
 		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
 		$init = \Gutenverse_Initialize_Framework::instance();
 
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		/**Get self framework version */
+		$bootstrap_path         = '/lib/framework/bootstrap.php';
+		$self_bootstrap_path    = WP_PLUGIN_DIR . '/gutenverse-news' . $bootstrap_path;
+		$self_framework_version = $this->get_framework_version_from_file( $self_bootstrap_path );
+		if ( ! $self_framework_version ) {
+			$self_framework_version = '1.0.0';
+		}
+		$plugins = get_plugins();
+		$checks  = array(
+			'gutenverse-form' => array(
+				'plugin' => 'gutenverse-form/gutenverse-form.php',
+			),
+			'gutenverse' => array(
+				'plugin' => 'gutenverse/gutenverse.php',
+			),
+		);
+
+		$is_using_other_framework = false;
+		$arr_equal_ver            = array();
+
+		/**Compare self framework version with other plugin framework version*/
+		foreach ( $checks as $key => $plugin ) {
+			if ( isset( $plugins[ $plugin['plugin'] ] ) ) {
+				if ( is_plugin_active( $plugin['plugin'] ) ) {
+					$plugin_bootstrap_path     = WP_PLUGIN_DIR . '/' . $key . '/' . $bootstrap_path;
+					$plugin_framework_version  = $this->get_framework_version_from_file( $plugin_bootstrap_path );
+					$compare_framework_version = version_compare( $self_framework_version, $plugin_framework_version, '<' );
+					/**If there a bigger version framework then self then stop looping */
+					if ( $compare_framework_version ) {
+						$is_using_other_framework = true;
+						break;
+					}
+					/**If there a equal version framework then self then add plugin name to arr_equal_var */
+					$compare_equal_framework_version = version_compare( $self_framework_version, $plugin_framework_version, '=' );
+					if ( $compare_equal_framework_version ) {
+						array_push( $arr_equal_ver, $key );
+					}
+				}
+			}
+		}
+
+		/**If loop done and there is no plugin that has bigger framework version then check arr_equal_var */
+		if ( ! $is_using_other_framework && ! empty( $arr_equal_ver ) ) {
+			/**Add self plugin then sort */
+			$arr_equal_ver[] = 'gutenverse-news';
+			sort( $arr_equal_ver );
+
+			/**Check if the first value is self plugin or not, if not then it will not load framework from this plugin */
+			if ( GUTENVERSE_NEWS !== $arr_equal_ver[0] ) {
+				$is_using_other_framework = true;
+			}
+		}
+
+		/**Check if framework is loaded from this plugin or not */
+		if ( $is_using_other_framework ) {
+			return false;
+		}
+
 		$framework_file    = GUTENVERSE_NEWS_DIR . 'lib/framework/bootstrap.php';
 		$framework_version = $init->get_framework_version( $framework_file );
 		$init->register_version( GUTENVERSE_NEWS, $framework_version );
+		$init->register_pro_version( GUTENVERSE_NEWS, GUTENVERSE_NEWS_REQUIRED_PRO_VERSION );
+		return true;
 	}
 
 	/**
@@ -198,7 +344,6 @@ class Init {
 	public function can_load_framework() {
 		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
 		$init = \Gutenverse_Initialize_Framework::instance();
-
 		return $init->can_load_version( GUTENVERSE_NEWS );
 	}
 
@@ -211,6 +356,7 @@ class Init {
 	public function plugin_loaded() {
 		require_once GUTENVERSE_NEWS_DIR . 'lib/framework/init.php';
 		$init = \Gutenverse_Initialize_Framework::instance();
+
 		if ( $init->check_compatibility() ) {
 			$this->init_framework();
 		}
