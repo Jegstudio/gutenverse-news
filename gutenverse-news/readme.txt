@@ -1,357 +1,151 @@
-=== Gutenverse News –  Advanced News Magazine Blog Gutenberg Blocks Addons ===
+=== Gutenverse News - News Blocks for Blog & Magazine Sites ===
 Contributors: Jegstudio
-Tags: blocks, blog, gutenberg, gutenberg blocks, news
+Tags: news, news blocks, blog, magazine, news ticker
 Tested up to: 6.9
 Requires PHP: 7.4.30
 Stable tag: 3.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Create professional news, blog, or magazine layouts with the best Gutenberg blocks editor, Full Site Editor, and ready to import template library.
+Build news websites, blog and magazine layouts with WordPress news blocks, post grids, post sliders, post carousels, archive blocks, and a news ticker.
 
-## Description
+== Description ==
 
+Gutenverse News is a WordPress news plugin and news blocks toolkit for publishers, bloggers, magazines, newspapers, and editorial websites that need flexible layouts inside the Block Editor and Site Editor. Create news layouts, blog layouts, magazine layouts, post grids, post sliders, post carousels, archive pages, single post templates, and a breaking news ticker without code.
 
-**GUTENVERSE NEWS – NEWS MAGAZINE BLOG LAYOUTS BUILDER FOR GUTENBERG BLOCK EDITOR AND FULL SITE EDITOR, 26+ FREE USER-FRIENDLY NEWS BLOCKS ADDONS**
+Use Gutenverse News to build a complete news website with featured stories, latest posts, category sections, archive blocks, related posts, author information, post meta, responsive layouts, and ready-to-use templates from the Gutenverse ecosystem.
 
+Gutenverse News is designed for WordPress users who want a publishing-focused block toolkit instead of a generic page builder. It helps you turn posts into professional news sections, magazine homepages, blog pages, editorial archives, and single post designs that are easy to customize.
 
-Gutenverse News empowers you to easily create professional news, blog, or magazine layouts for any publishing need on your WordPress site. As part of the Gutenverse ecosystem, it provides seamless flexibility and control, enabling you to build and customize news content that perfectly fits your site’s design. Whether you’re building news layouts from scratch or enhancing existing pages, Gutenverse News ensures your publishing website is always up-to-date, keeping your audience informed and engaged.
+= News, Blog, and Magazine Layouts =
 
+Create layouts for:
 
-To kickstart your project, we’ve crafted a stunning WordPress theme that integrates seamlessly with Gutenverse News. This theme comes with pre-designed layouts, flexible settings, and intuitive controls, making website creation straightforward. It’s fully compatible with the Gutenberg Block Editor and Site Editor, ensuring it supports all Gutenverse and Gutenverse News features for optimal performance.
+* News websites and online newspapers.
+* Magazine websites and editorial landing pages.
+* Blog homepages and category pages.
+* Post grids, post lists, and featured post sections.
+* Breaking news areas with a news ticker.
+* Latest posts, popular stories, related posts, and archive pages.
+* Single post templates with author, featured image, meta, tags, comments, and navigation.
 
-[Explore The Gutenverse Theme Collection](https://gutenverse.com/theme-list/)
+= WordPress News Blocks =
 
+Gutenverse News includes publishing-focused blocks for building complete post layouts:
 
-Unlock all the features needed to create your website with [Gutenverse PRO](https://gutenverse.com/pro/).
+* News Module blocks for post grids, post lists, category sections, and story collections.
+* News Hero blocks for lead stories, featured posts, and magazine-style headlines.
+* News Slider blocks for featured posts, latest news, and editorial highlights.
+* News Carousel blocks for swipeable post sections.
+* News Ticker block for breaking news and urgent updates.
+* Archive blocks for category, tag, author, search, and date archives.
+* Single Post blocks for author box, post title, featured image, post meta, related posts, tags, breadcrumbs, comments, and next/previous navigation.
+* Header, User List, RSS, and About Widget blocks for publishing websites.
 
+= Why Choose Gutenverse News? =
 
-## 🚀 Boost Productivity
+* Built for news sites, blogs, magazines, newspapers, and editorial WordPress websites.
+* Create post grids, news layouts, blog layouts, sliders, carousels, and archive pages in the editor.
+* Works with the WordPress Block Editor and Site Editor.
+* Responsive editing controls for desktop, tablet, and mobile layouts.
+* Global color and font controls through the Gutenverse design system.
+* Block management tools to enable or disable the blocks you need.
+* Responsive breakpoint controls for better mobile publishing layouts.
+* Template library support for faster website creation.
+* Lightweight publishing blocks for fast front-end experiences.
 
-Your time is worth every second. Save countless hours by getting your work done more efficiently.
+= Template Library and Themes =
 
-*   **Responsive Editing -** Deliver an amazing website appearance on any device, ensuring a seamless and visually appealing experience.
-*   **Lightweight & Fast User Experience -** Gutenverse enhances code flow for a faster and better WordPress Block Editor and Site Editor experience, resulting in a lighter website for your users.
-*   **High-Speed Performance -** Gutenverse improves your website’s speed by reducing response time, achieving loading speeds twice as fast as other page builders.
-*   **Built for Everyone -** Whether you're a beginner or a pro at website creation, you deserve to create a stunningly designed website for your business needs.
+Gutenverse News works with the Gutenverse ecosystem, including the Gutenverse template library and publishing-ready themes. You can start with news, blog, and magazine templates, then customize your layout with Gutenverse News blocks.
 
+[Explore the Gutenverse Theme Collection](https://gutenverse.com/theme-list/)
 
-## 🔑 Key Features
+= Pro Features =
 
-**1\.** [**Template Library**](https://gutenverse.com/#library)
+Gutenverse PRO adds more tools for website creation, including premium templates, premium themes, custom fonts, popup builder features, and advanced design options.
 
-Access a range of layouts and sections tailored to your needs with Gutenverse News. Install theme templates directly from the library for quick and effortless form customization.
+[Explore Gutenverse PRO](https://gutenverse.com/pro/)
 
-**2\. Improved Publishing Experience**
+== Installation ==
 
-Experience live responsive editing with Gutenverse’s enhanced WordPress Block Editor for news blocks. The section block and customizable design of each block ensure a perfect fit with your site’s aesthetic.
-
-**3\. Live Responsive Editing**
-
-Gutenverse’s seamless integration of responsive editing empowers you to create news layouts that look flawless on any device.
-
-**4\. Global Color & Font Variables**
-
-Effortlessly control the color and typography of all Gutenverse news blocks using the extended Global Style feature.
-
-**5\. Blocks Management**
-
-Customize your editing experience by enabling or disabling blocks for a smoother workflow.
-
-**6\. Responsive Breakpoints**
-
-Edit breakpoints for tablets and mobile devices to optimize the responsiveness of your news layouts.
-
-
-## Wrapper Blocks
-
-*   [**Section**](https://gutenverse.com/elements/#wrapper): Add a section to wrap several blocks within columns.
-*   [**Column**](https://gutenverse.com/elements/#wrapper)**:** Resizable column to hold your block elements, with draggable resize control that makes it convenient to use.
-*   [**Flexible Wrapper**](https://gutenverse.com/elements/#wrapper): Flexible Wrapper / Container to contain your block.
-
-
-## News Module Blocks
-
-Effortlessly create structured news sections with **9 brand-new Gutenberg news blocks**, fully customizable to highlight key stories and articles. Each block is designed to emphasize important content, ensuring your news is displayed in a visually appealing and engaging way.
-
-## News Hero Blocks
-
-Make your headlines stand out with **5 captivating news hero blocks**, designed to grab attention and showcase your most important news stories. Each section is crafted to highlight top content, ensuring your key messages make a lasting impact.
+1. Go to Plugins > Add New in your WordPress dashboard.
+2. Search for Gutenverse News.
+3. Install and activate the plugin.
+4. Open the Block Editor or Site Editor.
+5. Add Gutenverse News blocks to create news layouts, blog layouts, post grids, sliders, archive pages, and single post templates.
 
 
-## News Slider Blocks
+== Frequently Asked Questions ==
 
-Showcase your latest or featured news with an interactive slider, offering readers an engaging way to browse through top articles.
+= Can I build a news website with Gutenverse News? =
 
+Yes. You can build a news website with featured stories, post grids, latest posts, news sliders, post carousels, category sections, archive blocks, single post blocks, and a news ticker.
 
-## News Single Post Blocks
+= Can I create blog and magazine layouts? =
 
-*   **Post Author Box:** Display the author’s name prominently to give credit to the writer.
-*   **Advanced Post Featured Image:** Highlight the main image of your news post, making the content more look good.
-*   **Post Meta:** Display essential post information such as the publish date, categories, and tags.
-*   **Post Related:** Suggest related articles to keep your audience engaged and on your site longer.
+Yes. Gutenverse News includes blog layout and magazine layout blocks for post lists, post grids, hero sections, sliders, carousels, archive pages, and single post templates.
 
+= Does Gutenverse News include post grid blocks? =
 
-## News Archive Blocks
+Yes. Gutenverse News includes post blocks for post grids, post lists, category sections, featured stories, and modular news layouts.
 
-*   **Archive Block:** Design and organize blocks of archived news content for easy browsing.
-*   **Archive Description:** Offer a brief overview or description of the archived content to give context to readers.
-*   **Archive Pagination:** Allow readers to navigate through multiple pages of archived content smoothly.
+= Can I make a post slider or post carousel? =
 
+Yes. Gutenverse News includes news slider blocks and post carousel blocks for featured posts, latest posts, and editorial highlights.
 
-## News Element Blocks
+= Does Gutenverse News include a news ticker? =
 
-*   **Header:** Create a consistent, professional header for your news site that guides your audience through your content.
-*   **News Ticker:** Display breaking news or important updates with a scrolling ticker for real-time information.
-*   **User List:** Showcase a list of authors, contributors, or users associated with your news site for better community engagement.
+Yes. Gutenverse News includes a news ticker block that can be used for breaking news, latest news, urgent updates, or highlighted stories.
 
+= Can I design archive and single post templates? =
 
-## 🏆 \[PRO\] Advanced Features
+Yes. Gutenverse News includes archive blocks and single post blocks for archive pages, category pages, tag pages, author pages, search pages, related posts, author boxes, post meta, post tags, comments, breadcrumbs, and next/previous post navigation.
 
-*   [**Advanced Form Builder**](https://gutenverse.com/form/): Design any type of forms that perform using advanced features to collect all types of data for your business in less time.
-*   **Custom Font**: Personalize your website with custom fonts to match your brand’s unique style.
-*   [**Premium Themes**](https://gutenverse.com/theme-list/): Access a selection of premium themes designed to elevate the look and functionality of your website.
-*   [**Premium Template Library**](https://gutenverse.com/#library): Explore a wide variety of beautifully designed templates to make building your website 
-*   [**Advanced Popup Builder**](https://gutenverse.com/popup/): Packed with premade templates and advanced triggering options, optimize user engagement and conversions on your WordPress websites without needing to code. 
+= Does Gutenverse News work with the Block Editor and Site Editor? =
 
-## Use of 3rd-Party Services
+Yes. Gutenverse News works with the WordPress Block Editor and Site Editor, so you can create news, blog, magazine, archive, and single post layouts visually.
 
-To improve the user experience, Gutenverse may use the following third-party services. Here are the details:
+= Do I need the Gutenberg plugin? =
 
-*   **Gutenverse Newsletter**
+No. Gutenverse News works with the WordPress Block Editor. The separate Gutenberg plugin is not required unless you want to test upcoming WordPress editor features.
 
-Our Gutenverse dashboard offers a form for subscribing to our newsletter. By subscribing, we will send you recent updates about Gutenverse. The only information required and sent is the email address you manually input into the designated box.
+= Is Gutenverse News useful for newspaper websites? =
 
-This data is securely sent to our server at [gutenverse.com](https://gutenverse.com/). Rest assured, no information is transmitted automatically without your explicit consent.
+Yes. Gutenverse News can be used for online newspapers, local news websites, niche magazines, editorial blogs, and content-heavy publishing sites.
 
-If you’d like more details about Gutenverse, you can check out the terms and conditions [here!](https://gutenverse.com/terms-and-conditions/)
+== Use of 3rd-Party Services ==
 
-## ⭐️ Join Gutenverse Community
+Gutenverse News may display a Gutenverse newsletter subscription form in the Gutenverse dashboard. If you choose to subscribe, the email address you enter is sent to our server at [gutenverse.com](https://gutenverse.com/). No newsletter data is sent automatically without your consent.
 
-Become part of our community, share your thoughts and experiences about Gutenberg, and let’s collaborate to achieve your goals!
+Terms and conditions are available at [https://gutenverse.com/terms-and-conditions/](https://gutenverse.com/terms-and-conditions/).
 
-*   [**Facebook Community**](https://www.facebook.com/groups/gutenversecommunity) – Join hundreds of members (and still growing) for support, advice, bug reports, and feedback.
-*   [**Social Media**](https://gutenverse.com/links/) [](https://gutenverse.com/links/) – Gain valuable insights from our Instagram, Facebook Page, X (formerly Twitter), and TikTok.
-*   [**Documentation**](https://gutenverse.com/docs/) – Access guides, tutorials, and resources to answer your questions.
-*   [**Need Help?**](https://gutenverse.com/contact/) – Kindly visit the Gutenverse Forum for any inquiries and support.
+== Community and Support ==
 
-  
-
-## Documentation
-
-We have some [documentation articles here](https://gutenverse.com/docs/) that might help you start your journey with Gutenverse.
+* [Documentation](https://gutenverse.com/docs/)
+* [Facebook Community](https://www.facebook.com/groups/gutenversecommunity)
+* [Social Media](https://gutenverse.com/links/)
+* [Support](https://gutenverse.com/contact/)
 
 == Changelog ==
 
 = 3.2.1 =
 
-##### New and improved:
-* Add responsive option for background color
-
-##### Bug Fixes
+* Added responsive background color options.
 * Fixed background image preload fetch priority.
-* Fixed color option bug with hex input.
+* Fixed color option issues with hex input.
 * Fixed video background issue.
-* Fixed template library only load two layouts initially.
+* Fixed template library loading behavior.
 
 = 3.2.0 =
-##### Improvements
-* Improve premium upgrade UI
 
-= 3.1.7=
-##### Improvements
-* Adding more styling option on Header block
-* Add normal pagination option to all Module blocks
-* Add Boxed Meta Style for Module 20
-* Add Content Width and padding option on Hero 13
+* Improved premium upgrade UI.
 
-##### Bug Fixes
-* Fix PHP warning appear when using News Ticker block
-* Fix incorrect navigation button position in Carousel 1.
-* Fix issue with frontend animation rendering
+= 3.1.7 =
 
-= 3.1.6=
-##### Improvements
-* Compatibility with Dynamic Image Generator method in Gutenverse Pro
-
-##### Bug Fixes
-* Fix navigation icon color not working in Slider 1 when using SVG icons
-* Fix Read More button typography being overridden by the Content Typography option on the Archive Block
-
-= 3.1.5 =
-##### Improvements
-* Remove additional margin on "no content" state
-* Remove aria-hidden attribute on slider blocks to prevent accessibility issues
-* Add responsive value on number of column option on Carousel blocks
-* Add more styling option on RSS block
-
-##### Bug Fixes
-* Fix responsive border issue on all blocks
-* Fix thumbnail overlay option issue on editor
-
-= 3.1.3 =
-##### Improvements
-* Add fetch priority high option on all post blocks
-##### Bug Fixes
-* Fix responsive design issue on Module 20, 32, 33, 34, 35
-
-= 3.1.2 =
-##### Improvements
-* Add post title html tag option on all post blocks
-* Add header html tag option on Header block and all Module blocks 
-* Add options to style the “no content” state on all Hero, Slider and Carousel blocks
-
-= 3.1.1 =
-##### Changes
-* Remove default additional margin on all Module Block
-* Changed Use Normal Load option with Image Load option on some blocks
-* Changed Use Normal Load option name with Load Image Immediately on some blocks to more easily understand the function of that option
-##### Improvements
-* Add post item gap option on all Module Block
-* Add item gap on User List block
-* Add aria-label attribute on navigation button and anchor link on all blocks
-##### Bug Fixes
-* Fix the meta icon color option not working on Archive Block and Post Related Block
-* Fix Space Bottom option not working on Biography Style on Author Box block
-
-= 3.1.0 =
-##### Improvements
-* Bring back the Archive Hero block as a free feature
-* Add an option to convert webfonts to SVG icons for improved SEO
-* Add more Meta options to all blocks
-* Add more Typography options to all blocks
-* Add more styling options to the Module Header
-* Add an option to disable the Read More button on blocks
-* Add more styling options to the Archive Pagination block
-* Add navigation styling options to Slider blocks
-* Add more styling options to the News Ticker block
-* Add Tag Type options to the Archive Description block
-* Add an option to change the rendered thumbnail size on Module blocks
-* Add an option to change the container and card styles on Module blocks
-* Add padding and margin options for category labels
-* Add Post Item Gap options to selected Module blocks
-* Add options to style the “no content” state on the Archive block and all Module blocks
-* Add border options for items in Hero blocks
-* Add social media URL options to user profiles to be displayed in the Post Author Box block
-* Add more styling options to the Post Author Box block
-* Move Spacing options to the Settings tab
-* Display a “no content available” message on the Archive block when no search results are found
-* Remove jQuery usage from all blocks
-* Improve the asset loading mechanism across all blocks
-
-##### Bug Fixes
-* Fix the Archive block not working on archive search pages
-* Fix Post Masonry issues on “Module – 32”, “Module – 33”, “Module – 34”, and “Module – 35”
-* Fix the inability to leave the Left/Right Meta elements empty on the Post Meta block
-* Fix spacing option issues on the Archive Description block
-
-= 3.0.2 =
-##### Improvements
-* Removed the Jegicon font and replaced it with Font Awesome icons
-* Update the block API version to v3
-* Bring back the Module 9 , Module 17 and Module 21
-* Changing Block title :
-    - Module 17 -> Module 10
-    - Module 21 -> Module 11
-* Introduce 53 new Pro blocks
-
-##### Bug Fixes
-* Fix slider navigation icon not showing on Editor
-* Fix additional spacing in a few module header styles
-* Fix incorrect block icon in Hero - 4 Block
-* Fix News Ticker arrow icon not clickable (only arrow box worked)
-
-= 3.0.1 =
-##### Bug Fixes
-* Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
-* Fix auto column width detection not working on Carousel 3
-* Fix Hero Slider icon missing on responsive view editor
-* Fix Hero Slider style on mobile device
-* Fix filter by Role option not working on User List block
-
-##### Improvements
-* Added Pagination Style options on Module blocks
-* Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
-* Changed the Post Offset option to an Input Range control
-* Changed the default color on blocks, from using wp--preset--color to a predefined color
-
-= 3.0.0 =
-##### Bug Fixes
-* Fix deprecated warning on the strpost function passing a null value
-* Fix: 'Include Post' filter not working properly when adding more than one post
-
-##### Block Name Changes
-* Post Author → Post Autho Box
-* Post Featured Image → Advanced Post Featured Image
-
-##### Deprecated blocks
-RSS Block, Module 10, Module 11, Module 12, Module 13, Module 14, Module 15, Module 16, Module 17, Module 18, Module 19, Module 20, Module 21, Module 22, Module 23, Module 24, Module 25, Module 26, Module 27, Module 28, Module 29, Module 30, Module 31, Module 32, Module 33, Module 34, Module 35, Module 36, Module 37, Module 38, Module 39, Carousel 1, Carousel 2, Carousel 3, Slider 2, Slider 3, Slider 4, Slider 5, Slider 6, Slider 7, Slider 8, Slider 9, Hero 6, Hero 7, Hero 8, Hero 9, Hero 10, Hero 11, Hero 12, Hero 13, Hero 14, Hero Skew, Hero Archive, Archive Title, Post Title, Archive Breadcrumb Post Tag, Post Comment, Post Next Prev, Post Breadcrumb
-
-##### Deprecated options
-* Some Block Type choices in the Archive Block option
-* Some Related Post Template choices in Post Related option
-
-
-= 2.0.1 =
-##### Bug Fixes
-* Fix missing Submit Comment button on the Post Comment block
-* Fix block error when the Custom Format option is left empty
-* Fix pagination not working on all Module Blocks
-* Fix Header Filter option not working on all Module Blocks
-* Fix error when Excerpt Ellipsis is empty on Slider 7 block
-* Fix Post Next Prev not renderd on frontend
-* Fix auto column width detection not working on Post Related block
-* Fix incorrect category displayed on the Post Breadcrumb block
-
-##### Improvements
-* Added style options for "Read More" button and "Category Label" on Blocks
-* Added more style options for all Post Blocks
-* Improved default styles for all Post Blocks
-
-= 2.0.0 =
-##### Bug Fixes
-* Fix Blocks Module (1–9) not working
-* Fix Blocks Hero (1–9) not working
-* Fix Title Typography in News Module not working
-* Fix Undefined Offset warning when post not have a thumbnail
-* Fix auto column width detection not working on Block Module
-* Fix display option not working
-* Fix thumbnails not showing on RSS Block
-* Fix Gutenverse News Archive blocks not working properly
-* Fix some options not working on Gutenverse News Single Post blocks
-* Fix vulnerability issue in elementId parameter
-* Fix PHP Deprecated warnings
-
-##### Improvements
-* Improve blocks loading inside editor
-
-= 1.0.4 =
-##### Bug Fixes
-* Fix sticky & vertical align issue on wrapped column 100%
-* Fix sticky & vertical align issue
-* Fix animation effect on frontend
-* Fix section vertical-align when column position stretch
-* Fix section "fixed background" responsive on frontend
-* Fix warning issue related to global fonts when certain values are empty
-* Fix issue with scrolling when url has no anchor tag
-* Fix issue with opening link in flexible wrapper
-
-##### Improvements
-* Improve banner experience
-* Improve Blocks Loading inside editor
-* Add option in dashboard to enable/disable lazy load blocks in editor
-
-= 1.0.3 =
-##### Bug Fixes
-* Fix issue with system status on sites using WP Engine
-
-= 1.0.2 =
-##### Improvements
-* Improve blocks loading inside editor
-
-= 1.0.1 =
-##### Bug Fixes
-* Fix compatibility with translation plugin.
-
-##### Improvements
-* Better Frontend Script Load Mechanism.
+* Added more styling options for the Header block.
+* Added normal pagination options to module blocks.
+* Added Boxed Meta Style for Module 20.
+* Added content width and padding options on Hero 13.
+* Fixed PHP warning in the News Ticker block.
+* Fixed carousel navigation positioning.
+* Fixed frontend animation rendering.
