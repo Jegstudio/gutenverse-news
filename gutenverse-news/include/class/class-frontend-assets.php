@@ -128,6 +128,7 @@ class Frontend_Assets {
 	public function font_icon_conditional_load( $conditions, $attrs, $block_name ) {
 		switch ( $block_name ) {
 			// Header-only blocks: check `icon` + optional `iconType`.
+			case 'gutenverse/news-block-1':
 			case 'gutenverse/news-block-2':
 			case 'gutenverse/news-block-3':
 			case 'gutenverse/news-block-4':
@@ -142,6 +143,7 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-13':
 			case 'gutenverse/news-block-14':
 			case 'gutenverse/news-block-15':
+			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-17':
 			case 'gutenverse/news-block-18':
 			case 'gutenverse/news-block-19':
@@ -149,9 +151,11 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-21':
 			case 'gutenverse/news-block-22':
 			case 'gutenverse/news-block-23':
+			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-25':
 			case 'gutenverse/news-block-26':
 			case 'gutenverse/news-block-27':
+			case 'gutenverse/news-block-28':
 			case 'gutenverse/news-block-29':
 			case 'gutenverse/news-block-30':
 			case 'gutenverse/news-block-31':
@@ -165,19 +169,6 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-39':
 			case 'gutenverse/news-user-list':
 			case 'gutenverse/news-header':
-				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
-					$this->icon_conditional_load( $conditions );
-				}
-				break;
-
-			// Blocks that may have both `listIcon` and `icon` (use defaults when missing).
-			case 'gutenverse/news-block-1':
-			case 'gutenverse/news-block-16':
-			case 'gutenverse/news-block-24':
-			case 'gutenverse/news-block-28':
-				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
-					$this->icon_conditional_load( $conditions );
-				}
 				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
