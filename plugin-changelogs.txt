@@ -1,0 +1,214 @@
+== Changelog ==
+
+= 3.2.1 =
+
+##### New and improved:
+* Add responsive option for background color
+
+##### Bug Fixes
+* Fixed background image preload fetch priority.
+* Fixed color option bug with hex input.
+* Fixed video background issue.
+* Fixed template library only load two layouts initially.
+
+= 3.2.0 =
+##### Improvements
+* Improve premium upgrade UI
+
+= 3.1.7=
+##### Improvements
+* Adding more styling option on Header block
+* Add normal pagination option to all Module blocks
+* Add Boxed Meta Style for Module 20
+* Add Content Width and padding option on Hero 13
+
+##### Bug Fixes
+* Fix PHP warning appear when using News Ticker block
+* Fix incorrect navigation button position in Carousel 1.
+* Fix issue with frontend animation rendering
+
+= 3.1.6=
+##### Improvements
+* Compatibility with Dynamic Image Generator method in Gutenverse Pro
+
+##### Bug Fixes
+* Fix navigation icon color not working in Slider 1 when using SVG icons
+* Fix Read More button typography being overridden by the Content Typography option on the Archive Block
+
+= 3.1.5 =
+##### Improvements
+* Remove additional margin on "no content" state
+* Remove aria-hidden attribute on slider blocks to prevent accessibility issues
+* Add responsive value on number of column option on Carousel blocks
+* Add more styling option on RSS block
+
+##### Bug Fixes
+* Fix responsive border issue on all blocks
+* Fix thumbnail overlay option issue on editor
+
+= 3.1.3 =
+##### Improvements
+* Add fetch priority high option on all post blocks
+##### Bug Fixes
+* Fix responsive design issue on Module 20, 32, 33, 34, 35
+
+= 3.1.2 =
+##### Improvements
+* Add post title html tag option on all post blocks
+* Add header html tag option on Header block and all Module blocks 
+* Add options to style the “no content” state on all Hero, Slider and Carousel blocks
+
+= 3.1.1 =
+##### Changes
+* Remove default additional margin on all Module Block
+* Changed Use Normal Load option with Image Load option on some blocks
+* Changed Use Normal Load option name with Load Image Immediately on some blocks to more easily understand the function of that option
+##### Improvements
+* Add post item gap option on all Module Block
+* Add item gap on User List block
+* Add aria-label attribute on navigation button and anchor link on all blocks
+##### Bug Fixes
+* Fix the meta icon color option not working on Archive Block and Post Related Block
+* Fix Space Bottom option not working on Biography Style on Author Box block
+
+= 3.1.0 =
+##### Improvements
+* Bring back the Archive Hero block as a free feature
+* Add an option to convert webfonts to SVG icons for improved SEO
+* Add more Meta options to all blocks
+* Add more Typography options to all blocks
+* Add more styling options to the Module Header
+* Add an option to disable the Read More button on blocks
+* Add more styling options to the Archive Pagination block
+* Add navigation styling options to Slider blocks
+* Add more styling options to the News Ticker block
+* Add Tag Type options to the Archive Description block
+* Add an option to change the rendered thumbnail size on Module blocks
+* Add an option to change the container and card styles on Module blocks
+* Add padding and margin options for category labels
+* Add Post Item Gap options to selected Module blocks
+* Add options to style the “no content” state on the Archive block and all Module blocks
+* Add border options for items in Hero blocks
+* Add social media URL options to user profiles to be displayed in the Post Author Box block
+* Add more styling options to the Post Author Box block
+* Move Spacing options to the Settings tab
+* Display a “no content available” message on the Archive block when no search results are found
+* Remove jQuery usage from all blocks
+* Improve the asset loading mechanism across all blocks
+
+##### Bug Fixes
+* Fix the Archive block not working on archive search pages
+* Fix Post Masonry issues on “Module – 32”, “Module – 33”, “Module – 34”, and “Module – 35”
+* Fix the inability to leave the Left/Right Meta elements empty on the Post Meta block
+* Fix spacing option issues on the Archive Description block
+
+= 3.0.2 =
+##### Improvements
+* Removed the Jegicon font and replaced it with Font Awesome icons
+* Update the block API version to v3
+* Bring back the Module 9 , Module 17 and Module 21
+* Changing Block title :
+    - Module 17 -> Module 10
+    - Module 21 -> Module 11
+* Introduce 53 new Pro blocks
+
+##### Bug Fixes
+* Fix slider navigation icon not showing on Editor
+* Fix additional spacing in a few module header styles
+* Fix incorrect block icon in Hero - 4 Block
+* Fix News Ticker arrow icon not clickable (only arrow box worked)
+
+= 3.0.1 =
+##### Bug Fixes
+* Fix block error when accidentally entering a negative value in the Post Offset, Slider Item, and Autoplay Duration options.
+* Fix auto column width detection not working on Carousel 3
+* Fix Hero Slider icon missing on responsive view editor
+* Fix Hero Slider style on mobile device
+* Fix filter by Role option not working on User List block
+
+##### Improvements
+* Added Pagination Style options on Module blocks
+* Add use Normal Gradient option on Slider 2 , Slider 5 and Slider 6 Block
+* Changed the Post Offset option to an Input Range control
+* Changed the default color on blocks, from using wp--preset--color to a predefined color
+
+= 3.0.0 =
+##### Bug Fixes
+* Fix deprecated warning on the strpost function passing a null value
+* Fix: 'Include Post' filter not working properly when adding more than one post
+
+##### Block Name Changes
+* Post Author → Post Autho Box
+* Post Featured Image → Advanced Post Featured Image
+
+##### Deprecated blocks
+RSS Block, Module 10, Module 11, Module 12, Module 13, Module 14, Module 15, Module 16, Module 17, Module 18, Module 19, Module 20, Module 21, Module 22, Module 23, Module 24, Module 25, Module 26, Module 27, Module 28, Module 29, Module 30, Module 31, Module 32, Module 33, Module 34, Module 35, Module 36, Module 37, Module 38, Module 39, Carousel 1, Carousel 2, Carousel 3, Slider 2, Slider 3, Slider 4, Slider 5, Slider 6, Slider 7, Slider 8, Slider 9, Hero 6, Hero 7, Hero 8, Hero 9, Hero 10, Hero 11, Hero 12, Hero 13, Hero 14, Hero Skew, Hero Archive, Archive Title, Post Title, Archive Breadcrumb Post Tag, Post Comment, Post Next Prev, Post Breadcrumb
+
+##### Deprecated options
+* Some Block Type choices in the Archive Block option
+* Some Related Post Template choices in Post Related option
+
+
+= 2.0.1 =
+##### Bug Fixes
+* Fix missing Submit Comment button on the Post Comment block
+* Fix block error when the Custom Format option is left empty
+* Fix pagination not working on all Module Blocks
+* Fix Header Filter option not working on all Module Blocks
+* Fix error when Excerpt Ellipsis is empty on Slider 7 block
+* Fix Post Next Prev not renderd on frontend
+* Fix auto column width detection not working on Post Related block
+* Fix incorrect category displayed on the Post Breadcrumb block
+
+##### Improvements
+* Added style options for "Read More" button and "Category Label" on Blocks
+* Added more style options for all Post Blocks
+* Improved default styles for all Post Blocks
+
+= 2.0.0 =
+##### Bug Fixes
+* Fix Blocks Module (1–9) not working
+* Fix Blocks Hero (1–9) not working
+* Fix Title Typography in News Module not working
+* Fix Undefined Offset warning when post not have a thumbnail
+* Fix auto column width detection not working on Block Module
+* Fix display option not working
+* Fix thumbnails not showing on RSS Block
+* Fix Gutenverse News Archive blocks not working properly
+* Fix some options not working on Gutenverse News Single Post blocks
+* Fix vulnerability issue in elementId parameter
+* Fix PHP Deprecated warnings
+
+##### Improvements
+* Improve blocks loading inside editor
+
+= 1.0.4 =
+##### Bug Fixes
+* Fix sticky & vertical align issue on wrapped column 100%
+* Fix sticky & vertical align issue
+* Fix animation effect on frontend
+* Fix section vertical-align when column position stretch
+* Fix section "fixed background" responsive on frontend
+* Fix warning issue related to global fonts when certain values are empty
+* Fix issue with scrolling when url has no anchor tag
+* Fix issue with opening link in flexible wrapper
+
+##### Improvements
+* Improve banner experience
+* Improve Blocks Loading inside editor
+* Add option in dashboard to enable/disable lazy load blocks in editor
+
+= 1.0.3 =
+##### Bug Fixes
+* Fix issue with system status on sites using WP Engine
+
+= 1.0.2 =
+##### Improvements
+* Improve blocks loading inside editor
+
+= 1.0.1 =
+##### Bug Fixes
+* Fix compatibility with translation plugin.
+
+##### Improvements
+* Better Frontend Script Load Mechanism.
