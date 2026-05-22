@@ -9,6 +9,17 @@
 
 .gvnews_slider_type_1_wrapper {
 
+    .gvnews_slide_thumbnail_item_wrapper .gvnews_slide_thumbnail_item.with-thumbnail .thumbnail-container {
+        position: static;
+        padding-bottom: 0;
+        height: auto;
+    }
+
+    .gvnews_slide_thumbnail_item_wrapper .gvnews_slide_thumbnail_item.with-thumbnail .thumbnail-container img {
+        position: static;
+        height: auto;
+    }
+
     .tns-outer {
         visibility: visible;
         position: relative;
