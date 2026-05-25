@@ -5,7 +5,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { BlockPanelController } from 'gutenverse-core/controls';
 import { panelList } from './panels/panel-list';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -67,6 +67,13 @@ const Slider9Block = compose(
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = '',
         showMetaReview = false,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
     } = attributes;
 
     const metaSettings = {
@@ -83,12 +90,35 @@ const Slider9Block = compose(
             ...metaSettings
         }
     };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const elementRef = useRef(null);
     const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
     useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+        ],
+    });
 
     useEffect(() => {
         if (elementRef) {
@@ -137,7 +167,7 @@ const Slider9Block = compose(
     function RenderSlider(props) {
         return (
             <article className="gvnews_post gvnews_pl_sm" data-index={props.index}>
-                <ThumbModule size={715} cat={false} post={props.post} />
+                <ThumbModule size={715} cat={false} post={props.post} overlayIconData={overlayIconData} />
                 <div className="gvnews_postblock_content">
                     <MetaModule2 {...props} />
                     <TitleTag className="gvnews_post_title">
@@ -317,6 +347,7 @@ const Slider9Block = compose(
         postTitleHtmlTag,
         gutenversePreviewBlock,
         showMetaReview,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

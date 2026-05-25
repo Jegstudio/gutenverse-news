@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { DimensionControl, ColorControl, RangeControl, TypographyControl } from 'gutenverse-core/controls';
-export const designPanel = () => {
-
+export const designPanel = (props) => {
     return [
         {
             id: 'typography',

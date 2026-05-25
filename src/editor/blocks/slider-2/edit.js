@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
-import { useAnimationEditor } from 'gutenverse-core/hooks';
+import { useAnimationEditor, useInitializeIconToSvg } from 'gutenverse-core/hooks';
 import { useDisplayEditor } from 'gutenverse-core/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -20,6 +20,8 @@ import { panelList } from './panels/panel-list';
 import { gutenverseProActive } from '../../utils/helper';
 import { CopyElementToolbar, InspectorControls } from 'gutenverse-core/components';
 import { applyFilters } from '@wordpress/hooks';
+import { getOverlayIconData } from '../../part/thumbnail';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -62,6 +64,13 @@ const Slider2Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = ''
     } = attributes;
@@ -79,6 +88,19 @@ const Slider2Block = compose(
             ...metaSettings
         }
     };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const elementRef = useRef(null);
     const blockRef = useRef(null);
@@ -90,6 +112,16 @@ const Slider2Block = compose(
         getSliderStyle,
         elementRef
     );
+
+    useInitializeIconToSvg({
+        elementId,
+        attributes,
+        setAttributes,
+        icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+        ],
+    });
 
     useEffect(() => {
         if (elementRef) {
@@ -124,8 +156,11 @@ const Slider2Block = compose(
     const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
 
     function RenderContent(props) {
+        const format = props.post?.format || 'standard';
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
-            <div className="gvnews_slide_item" style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
+            <div className={`gvnews_slide_item format-${format}`} style={props.post?.thumbnail?.url ? { backgroundImage: 'url(' + props.post.thumbnail.url + ')' } : {}}>
+                {withIcon && <div className="gvnews-thumb-overlay-icon">{renderIcon(icon, type, svg)}</div>}
                 {props.index == 0 && <img className="thumbnail-prioritize" src={props.post.thumbnail.url} style={{ display: 'none' }} />}
                 <SliderCaption {...props} />
             </div>
@@ -289,7 +324,8 @@ const Slider2Block = compose(
         showMetaDate,
         showMetaAuthor,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

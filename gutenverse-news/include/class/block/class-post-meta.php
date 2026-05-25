@@ -67,13 +67,25 @@ class Post_Meta extends Post_Guten {
 	 * @param integer $post_id Post ID.
 	 */
 	private function set_meta_components( $post_id ) {
-		$meta_components       = array(
+		$meta_components = array(
 			'author'   => $this->render_author(),
 			'category' => $this->render_category(),
 			'comment'  => $this->render_comment(),
 			'date'     => $this->render_date(),
 		);
-		$meta_components       = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes, $post_id );
+		$meta_left       = isset( $this->attributes['metaLeft'] ) ? $this->attributes['metaLeft'] : array();
+		$meta_right      = isset( $this->attributes['metaRight'] ) ? $this->attributes['metaRight'] : array();
+		$items           = array_merge( $meta_left, $meta_right );
+		$item_lists      = array();
+
+		foreach ( $items as $item ) {
+			if ( isset( $item['value'] ) && is_string( $item['value'] ) ) {
+				$item_lists[] = $item['value'];
+			}
+		}
+
+		$item_lists            = array_values( array_unique( $item_lists ) );
+		$meta_components       = apply_filters( 'gvnews_post_meta_components', $meta_components, $this->attributes, $post_id, $item_lists );
 		$this->meta_components = $meta_components;
 	}
 

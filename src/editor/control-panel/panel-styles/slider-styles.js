@@ -15,6 +15,37 @@ const getSliderStyle = (elementId, attributes, data = []) => {
     /**
      * Panel General
      */
+    isNotEmpty(attributes['overlayIconColor']) && data.push({
+        'type': 'color',
+        'id': 'overlayIconColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['overlayIconSize']) && data.push({
+        'type': 'plain',
+        'id': 'overlayIconSize',
+        'responsive': true,
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+
     if (isNotEmpty(attributes['overrideOverlay']) && isNotEmpty(attributes['isOverrideOverlay']) && attributes['overlayOption'] === 'gradient') {
         data.push({
             'type': 'plain',

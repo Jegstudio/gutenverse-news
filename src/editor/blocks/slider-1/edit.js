@@ -17,6 +17,8 @@ import { CopyElementToolbar, u } from 'gutenverse-core/components';
 import { getModuleOptions } from '../../utils/helper';
 import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
 import { getBlockStyle } from './style/block-style';
+import { getOverlayIconData } from '../../part/thumbnail';
+import { renderIcon } from 'gutenverse-core/helper';
 
 const defaultOptions = getModuleOptions();
 
@@ -65,6 +67,13 @@ const Slider1Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = ''
     } = attributes;
@@ -80,6 +89,19 @@ const Slider1Block = compose(
         option: {
             ...defaultOptions.option,
             ...metaSettings
+        }
+    };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
         }
     };
 
@@ -102,6 +124,8 @@ const Slider1Block = compose(
         attributes,
         setAttributes,
         icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
             { type: 'nextButtonIconType', svg: 'nextButtonIconSVG' },
             { type: 'prevButtonIconType', svg: 'prevButtonIconSVG' },
         ],
@@ -140,8 +164,11 @@ const Slider1Block = compose(
     const blockRef = useRef(null);
 
     function RenderContent(props) {
+        const format = props.post?.format || 'standard';
+        const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
-            <div className="gvnews_slide_item">
+            <div className={`gvnews_slide_item format-${format}`}>
+                {withIcon && <div className="gvnews-thumb-overlay-icon">{renderIcon(icon, type, svg)}</div>}
                 <a className="gvnews_slide_img">
                     <div className="thumbnail-container size-500">
                         <img src={props.post.thumbnail.url} style={{ objectFit: 'cover', verticalAlign: 'middle', maxHeight: '100%', maxWidth: '100%' }} className="lazyloaded" />
@@ -353,7 +380,8 @@ const Slider1Block = compose(
         prevButtonIconType,
         prevButtonIconSVG,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

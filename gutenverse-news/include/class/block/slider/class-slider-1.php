@@ -38,6 +38,7 @@ class Slider_1 extends Slider_View_Abstract {
 				$fetch_priority_high = false;
 			}
 			$primary_category  = $this->get_primary_category( $post->ID );
+			$overlay_icon      = $this->get_overlay_icon( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			if ( $this->manager->get_current_width() > 8 ) {
 				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-1140x570', $image_load, $fetch_priority_high );
@@ -49,6 +50,7 @@ class Slider_1 extends Slider_View_Abstract {
 				'<div class="gvnews_slide_item">
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . get_permalink( $post ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . "\" class=\"gvnews_slide_img\">{$image}</a>
+                    {$overlay_icon['overlay_icon']}
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">
@@ -84,7 +86,9 @@ class Slider_1 extends Slider_View_Abstract {
 				$image = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-120x86', $image_load );
 			}
 
-			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item', $post->ID ) . '><a href="' . get_permalink( $post ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . "\">{$image}</a></div></div>";
+			$additioanl_class = $post_thumbnail_id ? ' with-thumbnail' : '';
+
+			$content .= '<div class="gvnews_slide_thumbnail_item_wrapper" ><div  ' . gvnews_post_class( 'gvnews_slide_thumbnail_item' . $additioanl_class, $post->ID ) . '><a href="' . get_permalink( $post ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . "\">{$image}</a></div></div>";
 		}
 
 		return $content;

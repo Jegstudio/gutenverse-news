@@ -278,3 +278,63 @@ export const carouselThumbnailOverlayPanel = (props, withHover = false) => {
         },
     ], props);
 };
+
+export const sliderThumbnailOverlayPanel = (props) => {
+    const {
+        elementId,
+        showPostFormatIcon = false
+    } = props;
+
+    return applyFilters('gvnews.panel.thumbnailOverlay', [
+        {
+            id: 'overlayIconSize',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Icon Size', 'gutenverse'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 5,
+            max: 100,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'type': 'plain',
+                    'id': 'overlayIconSize',
+                    'responsive': true,
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct'
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'overlayIconColor',
+            show: showPostFormatIcon && gvnewsEssentialsActive,
+            label: __('Icon Color', 'gutenverse-news'),
+            component: ColorControl,
+            liveStyle: [
+                {
+                    'type': 'color',
+                    'id': 'overlayIconColor',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slide_item .gvnews-thumb-overlay-icon, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_thumb.with-overlay-icon .gvnews-thumb-overlay-icon`,
+                    'properties': [
+                        {
+                            'name': 'color',
+                            'valueType': 'direct'
+                        }
+                    ],
+                }
+            ],
+        }
+    ], props);
+};

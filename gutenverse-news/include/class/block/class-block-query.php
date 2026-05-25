@@ -367,9 +367,21 @@ class Block_Query {
 
 		return array(
 			'result'     => $result,
-			'next'       => self::has_next_page( $query->found_posts, $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
-			'prev'       => self::has_prev_page( $args['paged'] ),
-			'total_page' => self::count_total_page( $query->found_posts, $args['paged'], $args['offset'], $attr['number_post'], $attr['pagination_number_post'] ),
+			'next'       => self::has_next_page(
+				$query->found_posts,
+				isset( $args['paged'] ) ? $args['paged'] : 1,
+				isset( $args['offset'] ) ? $args['offset'] : 0,
+				isset( $attr['number_post'] ) ? $attr['number_post'] : 0,
+				isset( $attr['pagination_number_post'] ) ? $attr['pagination_number_post'] : 0
+			),
+			'prev'       => self::has_prev_page( isset( $args['paged'] ) ? $args['paged'] : 1 ),
+			'total_page' => self::count_total_page(
+				$query->found_posts,
+				isset( $args['paged'] ) ? $args['paged'] : 1,
+				isset( $args['offset'] ) ? $args['offset'] : 0,
+				isset( $attr['number_post'] ) ? $attr['number_post'] : 0,
+				isset( $attr['pagination_number_post'] ) ? $attr['pagination_number_post'] : 0
+			),
 		);
 	}
 

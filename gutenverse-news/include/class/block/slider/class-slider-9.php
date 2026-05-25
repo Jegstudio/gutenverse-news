@@ -33,6 +33,7 @@ class Slider_9 extends Slider_View_Abstract {
 
 		foreach ( $results as $key => $post ) {
 			$primary_category = $this->get_primary_category( $post->ID );
+			$overlay_icon     = $this->get_overlay_icon( $post->ID );
 			if ( $this->manager->get_current_width() > 8 ) {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-1140x570' );
 			} else {
@@ -64,8 +65,9 @@ class Slider_9 extends Slider_View_Abstract {
 
 			$thumb .=
 				"<article data-index='{$index}' " . gvnews_post_class( 'gvnews_post gvnews_pl_sm' . $additional_class, $post->ID ) . '>
-                    <div class="gvnews_thumb">
+                    <div class="gvnews_thumb' . $overlay_icon['with_overlay_icon'] . '">
                         <a href="' . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . $thumbnail . '</a>
+                        ' . $overlay_icon['overlay_icon'] . '
                     </div>
                     <div class="gvnews_postblock_content">
                         ' . $this->post_meta_2( $post ) . '

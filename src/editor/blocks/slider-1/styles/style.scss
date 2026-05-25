@@ -9,6 +9,17 @@
 
 .gvnews_slider_type_1_wrapper {
 
+    .gvnews_slide_thumbnail_item_wrapper .gvnews_slide_thumbnail_item.with-thumbnail .thumbnail-container {
+        position: static;
+        padding-bottom: 0;
+        height: auto;
+    }
+
+    .gvnews_slide_thumbnail_item_wrapper .gvnews_slide_thumbnail_item.with-thumbnail .thumbnail-container img {
+        position: static;
+        height: auto;
+    }
+
     .tns-outer {
         visibility: visible;
         position: relative;
@@ -119,6 +130,16 @@
     .gvnews_slide_item {
         position: relative;
         -webkit-backface-visibility: hidden;
+
+        .gvnews-thumb-overlay-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 22px;
+            z-index: 3;
+            color: #fff;
+            line-height: 1;
+        }
     }
 
     .gvnews_caption_container {

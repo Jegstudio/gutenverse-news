@@ -30,6 +30,7 @@ class Slider_3 extends Slider_View_Abstract {
 		$content = '';
 		foreach ( $results as $key => $post ) {
 			$primary_category  = $this->get_primary_category( $post->ID );
+			$overlay_icon      = $this->get_overlay_icon( $post->ID );
 			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
 			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504', $this->attribute['image_load'] );
 			$content          .=
@@ -38,6 +39,7 @@ class Slider_3 extends Slider_View_Abstract {
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
                         {$image}
                     </a>
+                    {$overlay_icon['overlay_icon']}
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">
                             <div class=\"gvnews_post_category\">

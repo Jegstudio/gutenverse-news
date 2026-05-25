@@ -65,6 +65,13 @@ const Slider8Block = compose(
         showMeta = true,
         showMetaDate = true,
         showMetaAuthor = true,
+        showPostFormatIcon = false,
+        galleryFormatIcon = '',
+        galleryFormatIconType = 'icon',
+        galleryFormatIconSVG = '',
+        videoFormatIcon = '',
+        videoFormatIconType = 'icon',
+        videoFormatIconSVG = '',
         nextButtonIcon,
         nextButtonIconType,
         nextButtonIconSVG,
@@ -88,6 +95,19 @@ const Slider8Block = compose(
             ...metaSettings
         }
     };
+    const overlayIconData = {
+        show: showPostFormatIcon,
+        gallery: {
+            icon: galleryFormatIcon,
+            type: galleryFormatIconType,
+            svg: galleryFormatIconSVG
+        },
+        video: {
+            icon: videoFormatIcon,
+            type: videoFormatIconType,
+            svg: videoFormatIconSVG
+        }
+    };
 
     const elementRef = useRef(null);
     const blockRef = useRef(null);
@@ -100,6 +120,8 @@ const Slider8Block = compose(
         attributes,
         setAttributes,
         icons: [
+            { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
+            { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
             { type: 'nextButtonIconType', svg: 'nextButtonIconSVG' },
             { type: 'prevButtonIconType', svg: 'prevButtonIconSVG' },
         ],
@@ -145,7 +167,7 @@ const Slider8Block = compose(
             <div className="gvnews_slide_item_wrapper">
                 <div className="gvnews_slide_item">
                     <a>
-                        <ThumbModule size={715} cat={false} post={props.post} />
+                        <ThumbModule size={715} cat={false} post={props.post} overlayIconData={overlayIconData} />
                     </a>
                     <div className="gvnews_item_caption">
                         <div className="gvnews_caption_container">
@@ -344,7 +366,8 @@ const Slider8Block = compose(
         nextButtonIcon,
         prevButtonIcon,
         postTitleHtmlTag,
-        gutenversePreviewBlock
+        gutenversePreviewBlock,
+        showPostFormatIcon
     ]);
 
     useEffect(() => {

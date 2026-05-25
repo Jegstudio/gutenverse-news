@@ -34,6 +34,7 @@ class Slider_7 extends Slider_View_Abstract {
 
 		foreach ( $results as $key => $post ) {
 			$primary_category = $this->get_primary_category( $post->ID );
+			$overlay_icon     = $this->get_overlay_icon( $post->ID );
 			if ( $this->manager->get_current_width() > 8 ) {
 				$image = get_the_post_thumbnail_url( $post->ID, 'gvnews-1140x570' );
 			} else {
@@ -46,8 +47,9 @@ class Slider_7 extends Slider_View_Abstract {
 				'<div ' . gvnews_post_class( 'gvnews_slide_item clearfix', $post->ID ) . '>
 					' . $hidden_image . '
                     ' . gvnews_edit_post( $post->ID ) . '
-                    <div class="gvnews_slide_image" style="background-image: url(' . esc_url( $image ) . ')">
+                    <div class="gvnews_slide_image' . $overlay_icon['with_overlay_icon'] . '" style="background-image: url(' . esc_url( $image ) . ')">
                 		<a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\"></a>
+						{$overlay_icon['overlay_icon']}
 					</div>
                     <div class=\"gvnews_slide_caption\">
                         <div class=\"gvnews_caption_container\">

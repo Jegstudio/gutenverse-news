@@ -25,7 +25,7 @@ class Frontend_Assets {
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_scripts' ) );
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_styles' ) );
 		add_filter( 'gutenverse_conditional_script_attributes', array( $this, 'font_icon_conditional_load' ), null, 3 );
-		add_action( 'gutenverse_loop_blocks', array( $this, 'enqueue_frontend_style' ), 10, 3 );
+		add_filter( 'pre_render_block', array( $this, 'enqueue_frontend_deps_style' ), 10, 2 );
 	}
 
 	/**
@@ -128,6 +128,7 @@ class Frontend_Assets {
 	public function font_icon_conditional_load( $conditions, $attrs, $block_name ) {
 		switch ( $block_name ) {
 			// Header-only blocks: check `icon` + optional `iconType`.
+			case 'gutenverse/news-block-1':
 			case 'gutenverse/news-block-2':
 			case 'gutenverse/news-block-3':
 			case 'gutenverse/news-block-4':
@@ -142,6 +143,7 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-13':
 			case 'gutenverse/news-block-14':
 			case 'gutenverse/news-block-15':
+			case 'gutenverse/news-block-16':
 			case 'gutenverse/news-block-17':
 			case 'gutenverse/news-block-18':
 			case 'gutenverse/news-block-19':
@@ -149,9 +151,11 @@ class Frontend_Assets {
 			case 'gutenverse/news-block-21':
 			case 'gutenverse/news-block-22':
 			case 'gutenverse/news-block-23':
+			case 'gutenverse/news-block-24':
 			case 'gutenverse/news-block-25':
 			case 'gutenverse/news-block-26':
 			case 'gutenverse/news-block-27':
+			case 'gutenverse/news-block-28':
 			case 'gutenverse/news-block-29':
 			case 'gutenverse/news-block-30':
 			case 'gutenverse/news-block-31':
@@ -169,21 +173,15 @@ class Frontend_Assets {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;
-
-			// Blocks that may have both `listIcon` and `icon` (use defaults when missing).
-			case 'gutenverse/news-block-1':
-			case 'gutenverse/news-block-16':
-			case 'gutenverse/news-block-24':
-			case 'gutenverse/news-block-28':
 			case 'gutenverse/news-post-related':
-				if ( $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
+				$template_type = isset( $attrs['templateType'] ) ? $attrs['templateType'] : 'template_1';
+				if ( in_array( $template_type, array( 'template_1', 'template_16', 'template_24' ) ) && $this->attr_has_icon( $attrs, $block_name, 'listIcon', 'listIconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
 				if ( $this->attr_has_icon( $attrs, $block_name, 'icon', 'iconType' ) ) {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;
-
 			case 'gutenverse/news-slider-1':
 			case 'gutenverse/news-slider-4':
 			case 'gutenverse/news-slider-5':
@@ -608,7 +606,7 @@ class Frontend_Assets {
 			wp_register_style(
 				$handle,
 				GUTENVERSE_NEWS_URL . '/assets/css/frontend/' . $block . '.css',
-				array(),
+				array( 'gutenverse-news-frontend-slider-style' ),
 				GUTENVERSE_NEWS_VERSION
 			);
 
@@ -636,61 +634,40 @@ class Frontend_Assets {
 	}
 
 	/**
-	 * Queue the base frontend style when Gutenverse blocks exist so WordPress can inline it.
+	 * Enqueue frontend style dependencies
 	 *
-	 * @param array  $block Parsed block data.
-	 * @param string $style Generated style.
-	 * @param mixed  $generator Frontend generator instance.
+	 * @param string $pre_rendered Pre-rendered block.
+	 * @param array  $parsed_block Parshed block data.
+	 * @return string
 	 */
-	public function enqueue_frontend_style( $block, $style = null, $generator = null ) {
-		if ( isset( $block['blockName'] ) ) {
-
-			if ( 0 === strpos( $block['blockName'], 'gutenverse/news' ) ) {
+	public function enqueue_frontend_deps_style( $pre_rendered, $parsed_block ) {
+		if ( isset( $parsed_block['blockName'] ) ) {
+			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news' ) ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-blocks-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-blocks-style' ) );
-
 			}
 
-			if ( 0 === strpos( $block['blockName'], 'gutenverse/news-block' ) ) {
+			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-block' ) || 'gutenverse/news-archive-block' === $parsed_block['blockName'] || 'gutenverse/news-post-related' === $parsed_block['blockName'] ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-header-style' );
 				wp_enqueue_style( 'gutenverse-news-frontend-module-style' );
 				wp_enqueue_style( 'gutenverse-news-frontend-pagination-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-header-style' ) );
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-module-style' ) );
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-pagination-style' ) );
-
 			}
 
-			if ( 0 === strpos( $block['blockName'], 'gutenverse/news-hero' ) && 'gutenverse/news-hero-14' !== $block['blockName'] ) {
+			if ( ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-hero' ) || 'gutenverse/news-archive-hero' === $parsed_block['blockName'] ) && 'gutenverse/news-hero-14' !== $parsed_block['blockName'] ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-hero-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-hero-style' ) );
 			}
 
-			if ( 'gutenverse/news-hero-14' === $block['blockName'] ) {
+			if ( 'gutenverse/news-hero-14' === $parsed_block['blockName'] ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-module-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-module-style' ) );
-
 			}
 
-			if ( 0 === strpos( $block['blockName'], 'gutenverse/news-slider' ) ) {
-
+			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-slider' ) ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-slider-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-slider-style' ) );
-
 			}
 
-			if ( 0 === strpos( $block['blockName'], 'gutenverse/news-carousel' ) ) {
-
+			if ( 0 === strpos( $parsed_block['blockName'], 'gutenverse/news-carousel' ) ) {
 				wp_enqueue_style( 'gutenverse-news-frontend-carousel-style' );
-
-				$generator->add_script( array( 'style' => 'gutenverse-news-frontend-carousel-style' ) );
-
 			}
 		}
+		return $pre_rendered;
 	}
 }

@@ -4,7 +4,7 @@
  * Description: Powerful and intuitive News Block designed to streamline the process of creating WordPress news website.
  * Plugin URI: https://gutenverse.com/
  * Author: Jegstudio
- * Version: 3.2.0
+ * Version: 3.2.1
  * Author URI: https://jegtheme.com/
  * License: GPLv3
  * Text Domain: gutenverse-news
@@ -13,7 +13,7 @@
  */
 
 defined( 'GUTENVERSE_NEWS' ) || define( 'GUTENVERSE_NEWS', 'gutenverse-news' );
-defined( 'GUTENVERSE_NEWS_VERSION' ) || define( 'GUTENVERSE_NEWS_VERSION', '3.2.0' );
+defined( 'GUTENVERSE_NEWS_VERSION' ) || define( 'GUTENVERSE_NEWS_VERSION', '3.2.1' );
 defined( 'GUTENVERSE_NEWS_NOTICE_VERSION' ) || define( 'GUTENVERSE_NEWS_NOTICE_VERSION', '3.1.0' );
 defined( 'GUTENVERSE_NEWS_NAME' ) || define( 'GUTENVERSE_NEWS_NAME', 'Gutenverse News' );
 defined( 'GUTENVERSE_NEWS_FILE' ) || define( 'GUTENVERSE_NEWS_FILE', __FILE__ );
@@ -25,6 +25,10 @@ defined( 'GUTENVERSE_NEWS_LANG_DIR' ) || define( 'GUTENVERSE_NEWS_LANG_DIR', GUT
 // This constant has been deprecated as of Gutenverse Core v1.0.6 and Gutenverse News v1.0.2.
 // Use GUTENVERSE_FRAMEWORK_URL_PATH instead.
 defined( 'GUTENVERSE_FRAMEWORK_URL' ) || define( 'GUTENVERSE_FRAMEWORK_URL', GUTENVERSE_NEWS_URL . '/lib/framework' );
+
+// Required Pro Version.
+defined( 'GUTENVERSE_NEWS_REQUIRED_PRO_VERSION' ) || define( 'GUTENVERSE_NEWS_REQUIRED_PRO_VERSION', '2.0.0' );
+
 
 require_once GUTENVERSE_NEWS_DIR . 'include/autoload.php';
 require_once GUTENVERSE_NEWS_DIR . 'include/helper.php';
