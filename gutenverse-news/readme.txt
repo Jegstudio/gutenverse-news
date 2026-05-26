@@ -62,7 +62,12 @@ Gutenverse News works with the Gutenverse ecosystem, including the Gutenverse te
 
 = Pro Features =
 
-Gutenverse PRO adds more tools for website creation, including premium templates, premium themes, custom fonts, popup builder features, and advanced design options.
+Gutenverse PRO extends the toolkit for publishers who need greater design control and faster production workflows.
+
+Pro includes access to premium news, blog and magazine templates that can be imported and adapted in minutes, advanced typography controls with custom font management, a popup builder for subscription prompts and breaking news alerts, and expanded design options across all blocks.
+
+For editorial teams publishing at volume, Pro reduces the time between concept and a fully designed page.
+
 
 [Explore Gutenverse PRO](https://gutenverse.com/pro/)
 
