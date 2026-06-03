@@ -595,7 +595,6 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 		$attr['paged']        = 1;
 		$attr['column_class'] = $column_class;
 		$attr['class']        = $this->class_name;
-		$attr['nonce']        = wp_create_nonce( 'gvnews-module-nonce' );
 		$json_attr            = wp_json_encode( $attr );
 
 		$output = "<script>var {$this->unique_id} = {$json_attr};</script>";
@@ -685,7 +684,6 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 							'list_icon_type'               => isset( $_REQUEST['data']['attribute']['list_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon_type'] ) ) : '',
 							'list_icon_svg'                => isset( $_REQUEST['data']['attribute']['list_icon_svg'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['list_icon_svg'] ) ) : '',
 							'meta_settings'                => $meta_settings,
-							'nonce'                        => wp_create_nonce( 'gvnews-module-nonce' ),
 							'post_title_html_tag'          => isset( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['post_title_html_tag'] ) ) : 'h3',
 							'pagination_prev_icon'         => isset( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon'] ) ) : 'fas fa-chevron-left',
 							'pagination_prev_icon_type'    => isset( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['data']['attribute']['pagination_prev_icon_type'] ) ) : 'icon',
