@@ -142,7 +142,7 @@ class Editor_Assets {
 	 * @param array $config Config.
 	 */
 	public function block_config( $config ) {
-		$config['gutenverseFormImgDir']              = GUTENVERSE_NEWS_URL . '/assets/img';
+		$config['gutenverseNewsImgDir']              = GUTENVERSE_NEWS_URL . '/assets/img';
 		$config['pluginVersions'][ GUTENVERSE_NEWS ] = array(
 			'name'           => GUTENVERSE_NEWS_NAME,
 			'version'        => GUTENVERSE_NEWS_VERSION,
