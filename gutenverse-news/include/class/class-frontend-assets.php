@@ -26,6 +26,23 @@ class Frontend_Assets {
 		add_filter( 'gutenverse_include_frontend', array( $this, 'load_conditional_styles' ) );
 		add_filter( 'gutenverse_conditional_script_attributes', array( $this, 'font_icon_conditional_load' ), null, 3 );
 		add_filter( 'pre_render_block', array( $this, 'enqueue_frontend_deps_style' ), 10, 2 );
+		add_filter( 'gutenverse_nonce_actions', array( $this, 'nonce_actions' ) );
+	}
+
+	/**
+	 * Register nonce action.
+	 *
+	 * @param array $actions Nonce actions.
+	 * @return array
+	 */
+	public function nonce_actions( $actions ) {
+		if ( ! is_array( $actions ) ) {
+			$actions = array();
+		}
+
+		$actions[] = 'gvnews-module-nonce';
+
+		return $actions;
 	}
 
 	/**

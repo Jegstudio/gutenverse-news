@@ -1,4 +1,4 @@
-import { u } from 'gutenverse-core-frontend';
+import { u, getNonce } from 'gutenverse-core-frontend';
 import OkayNav from '../okaynav/okaynav';
 import Shuffle from 'shufflejs';
 
@@ -242,34 +242,38 @@ class GutenverseNewsModule {
     request_ajax = (type) => {
         this.lock_action = true;
 
-        let action = window.GVNewsConfig.module_prefix + this.data.attribute.class;
-        let parameter = {
-            action: action,
-            module: true,
-            data: this.data,
-        };
-        let result = this.cache_get(parameter);
+        getNonce('gvnews-module-nonce').then((nonce) => {
+            this.data.attribute.nonce = nonce;
 
-        if (result) {
-            this.before_ajax_request(type, false);
-            setTimeout(() => {
-                this.load_ajax(type, parameter, result);
-                this.element.trigger('gvnews_module_ajax');
-            }, 100);
-        } else {
-            this.before_ajax_request(type, true);
-            const params = new URLSearchParams(this.toFormParams(parameter));
+            let action = window.GVNewsConfig.module_prefix + this.data.attribute.class;
+            let parameter = {
+                action: action,
+                module: true,
+                data: this.data,
+            };
+            let result = this.cache_get(parameter);
 
-            fetch(window.GVNewsConfig.ajax_url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                body: params,
-            }).then(res => res.json()).then(response => {
-                this.load_ajax(type, parameter, response);
-                this.cache_save(parameter, response);
-                this.element.trigger('gvnews_module_ajax', response);
-            });
-        }
+            if (result) {
+                this.before_ajax_request(type, false);
+                setTimeout(() => {
+                    this.load_ajax(type, parameter, result);
+                    this.element.trigger('gvnews_module_ajax');
+                }, 100);
+            } else {
+                this.before_ajax_request(type, true);
+                const params = new URLSearchParams(this.toFormParams(parameter));
+
+                fetch(window.GVNewsConfig.ajax_url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                    body: params,
+                }).then(res => res.json()).then(response => {
+                    this.load_ajax(type, parameter, response);
+                    this.cache_save(parameter, response);
+                    this.element.trigger('gvnews_module_ajax', response);
+                });
+            }
+        });
     }
 
     cache_save = (parameter, response) => {

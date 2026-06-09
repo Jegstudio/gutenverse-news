@@ -567,6 +567,14 @@
         },
         "donationTextColorHover": {
             "type": "object"
+        },
+        "showCounterLoader": {
+            "type": "boolean",
+            "default": false
+        },
+        "showStatusLoader": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
