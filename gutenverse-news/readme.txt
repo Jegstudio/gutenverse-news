@@ -3,7 +3,7 @@ Contributors: Jegstudio
 Tags: news, news blocks, blog, magazine, news ticker
 Tested up to: 6.9
 Requires PHP: 7.4.30
-Stable tag: 3.3.0
+Stable tag: 3.3.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -132,6 +132,10 @@ Terms and conditions are available at [https://gutenverse.com/terms-and-conditio
 * [Support](https://gutenverse.com/contact/)
 
 == Changelog ==
+
+= 3.3.1 =
+
+* Fixed font global vulnerability.
 
 = 3.3.0 =
 
