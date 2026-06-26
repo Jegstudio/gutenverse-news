@@ -190,6 +190,7 @@ class Block extends Grab {
 			'pagination_next_icon_type'    => isset( $this->attributes['paginationNextIconType'] ) ? $this->attributes['paginationNextIconType'] : 'icon',
 			'pagination_next_icon_svg'     => isset( $this->attributes['paginationNextIconSVG'] ) ? $this->attributes['paginationNextIconSVG'] : '',
 			'noContentText'                => isset( $this->attributes['noContentText'] ) ? $this->attributes['noContentText'] : 'No Content Available',
+			'always_show_excerpt'          => isset( $this->attributes['alwaysShowExcerpt'] ) ? $this->attributes['alwaysShowExcerpt'] : false,
 		);
 		$sccontent  = '';
 

@@ -112,6 +112,7 @@ const BlockModule = compose(
         paginationNextIcon,
         paginationNextIconType,
         paginationNextIconSVG,
+        alwaysShowExcerpt = false,
     } = attributes;
 
     useEffect(() => {
@@ -388,6 +389,7 @@ const BlockModule = compose(
                 gutterWidth,
                 rowItemGap,
                 postTitleHtmlTag,
+                alwaysShowExcerpt
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -421,6 +423,7 @@ const BlockModule = compose(
         gutenversePreviewBlock,
         masonryReload,
         postTitleHtmlTag,
+        alwaysShowExcerpt
     ]);
 
     const blockProps = useBlockProps({
