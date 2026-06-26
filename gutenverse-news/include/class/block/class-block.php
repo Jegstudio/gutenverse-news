@@ -215,6 +215,7 @@ class Block extends Grab {
 			'adsFixedWidth'                => isset( $this->attributes['adsFixedWidth'] ) ? $this->attributes['adsFixedWidth'] : '300',
 			'adsFixedHeight'               => isset( $this->attributes['adsFixedHeight'] ) ? $this->attributes['adsFixedHeight'] : '300',
 			'adsResponsiveSize'            => isset( $this->attributes['adsResponsiveSize'] ) ? $this->attributes['adsResponsiveSize'] : true,
+			'always_show_excerpt'          => isset( $this->attributes['alwaysShowExcerpt'] ) ? $this->attributes['alwaysShowExcerpt'] : false,
 		);
 		$sccontent  = '';
 

@@ -34,8 +34,6 @@ class Module_27 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block_type( $post, $image_size, $type = 1 ) {
-		$icon_clock = '';
-		$icon_clock = Svg_Icons::render_svg_icon( 'far fa-clock' );
 
 		$post_id   = $post->ID;
 		$permalink = esc_url( get_the_permalink( $post ) );
@@ -43,15 +41,16 @@ class Module_27 extends Module_View_Abstract {
 		$category  = gvnews_get_primary_category( $post_id );
 		$category  = '<a href="' . get_category_link( $category ) . '" aria-label="' . esc_attr( get_cat_name( $category ) ) . '">' . get_cat_name( $category ) . '</a>';
 		$read_more = $this->attribute['disable_readmore'] ? '' : ' <a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
-		$excerpt   = 1 === $type ? null :
+
+		$show_excerpt = 1 === $type ? isset( $this->attribute['always_show_excerpt'] ) ? $this->attribute['always_show_excerpt'] : false : true;
+
+		$excerpt = ! $show_excerpt ? null :
 			'<div class="gvnews_post_excerpt">
                             <p>' . esc_attr( $this->get_excerpt( $post ) ) . '</p>'
 			. $read_more . ' 
                         </div>';
 
-		$post_meta = "<div class=\"gvnews_post_meta\">
-                            <div class=\"gvnews_meta_date\">{$icon_clock} {$this->format_date( $post )}</div>
-                        </div>";
+		$post_meta = $this->post_meta_3( $post );
 		$overlay_icon = $this->get_overlay_icon( $post_id );
 
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_4', $post_id ) . '>

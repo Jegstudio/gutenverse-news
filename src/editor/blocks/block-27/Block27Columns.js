@@ -18,16 +18,18 @@ const Block27Columns = props => {
         readmoreButtonDisabled = false,
         imageSizeMain = {},
         postTitleHtmlTag = 'h3',
+        alwaysShowExcerpt = false,
         overlayIconData = {}
     } = props;
     const postDataLen = postData.length;
     const loadValidAnim = postDataLen - paginationPost;
+    const excerpt = blockWidth === '4' ? (false || alwaysShowExcerpt) : true;
 
     const RenderBlock1 = props=>{
         const {post, attr, index = 'x'} = props;
         return  <article className={`gvnews_post gvnews_pl_md_4 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
             <ThumbModule size={715} cat={false} post={post} imageSize={imageSizeMain}  overlayIconData={overlayIconData} />
-            <ContentModule title={true} cat={true} meta={3} excerpt={true} read={!readmoreButtonDisabled} post={post} attr={attr}/>
+            <ContentModule title={true} cat={true} meta={3} excerpt={excerpt} read={!readmoreButtonDisabled && excerpt} post={post} attr={attr}/>
         </article>;
     };
 

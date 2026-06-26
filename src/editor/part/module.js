@@ -115,6 +115,7 @@ const BlockModule = compose(
         paginationNextIcon,
         paginationNextIconType,
         paginationNextIconSVG,
+        alwaysShowExcerpt = false,
         showPostFormatIcon = false,
         galleryFormatIcon = '',
         galleryFormatIconType = 'icon',
@@ -454,6 +455,7 @@ const BlockModule = compose(
                 gutterWidth,
                 rowItemGap,
                 postTitleHtmlTag,
+                alwaysShowExcerpt,
                 overlayIconData,
                 adsSettings,
             }} />;
@@ -490,6 +492,7 @@ const BlockModule = compose(
         gutenversePreviewBlock,
         masonryReload,
         postTitleHtmlTag,
+        alwaysShowExcerpt,
         showPostFormatIcon,
         galleryFormatIcon,
         galleryFormatIconType,

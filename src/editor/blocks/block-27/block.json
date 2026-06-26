@@ -168,6 +168,10 @@
             "type": "number",
             "default": 0
         },
+        "alwaysShowExcerpt": {
+            "type": "boolean",
+            "default": false
+        },
         "enableBoxed": {
             "type": "boolean",
             "default": false
@@ -518,7 +522,7 @@
         },
         "showMetaAuthor": {
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "metaColorHover": {
             "type": "object"

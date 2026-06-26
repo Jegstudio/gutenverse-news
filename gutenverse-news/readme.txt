@@ -133,6 +133,9 @@ Terms and conditions are available at [https://gutenverse.com/terms-and-conditio
 
 == Changelog ==
 
+= 3.3.3-dev =
+* Fix inconsistent Module 27 display between the frontend and editor.
+
 = 3.3.2 =
 * Fix issue with font slug name
 
