@@ -80,6 +80,7 @@ const BlockModule = compose(
         enableBoxed,
         enableBoxShadow,
         columnWidth,
+        enableExcerpt,
         excerptLength,
         excerptEllipsis,
         metaDateType,
@@ -197,7 +198,7 @@ const BlockModule = compose(
         adsScriptCode,
         adsShortcode,
         adsShowText,
-    }
+    };
 
     const elementRef = useRef(null);
     const device = getDeviceType();
@@ -458,6 +459,7 @@ const BlockModule = compose(
                 alwaysShowExcerpt,
                 overlayIconData,
                 adsSettings,
+                enableExcerpt,
             }} />;
             setBlock(allColumns);
         } else if (isLoaded) {
@@ -466,6 +468,7 @@ const BlockModule = compose(
         return () => setBlock(<ModuleSkeleton />);
     }, [
         blockWidth,
+        enableExcerpt,
         excerptLength,
         excerptEllipsis,
         metaDateType,

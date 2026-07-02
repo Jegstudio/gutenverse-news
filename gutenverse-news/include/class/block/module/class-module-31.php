@@ -26,7 +26,15 @@ class Module_31 extends Module_View_Abstract {
 	 * @return string
 	 */
 	public function render_block( $post, $attr ) {
-		$post_id = $post->ID;
+		$post_id        = $post->ID;
+		$enable_excerpt = isset( $this->attribute['enable_excerpt'] ) && $this->attribute['enable_excerpt'] ? true : false;
+		$render_excerpt = '';
+		if ( $enable_excerpt ) {
+			$excerpt        = esc_attr( $this->get_excerpt( $post ) );
+			$render_excerpt = "<div class=\"gvnews_post_excerpt\">
+				<p>{$excerpt}</p>
+			</div>";
+		}
 		return '<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_sm_2', $post_id ) . ">
                     <div class=\"gvnews_postblock_content\">
                         <div class=\"gvnews_post_category\">
@@ -36,6 +44,7 @@ class Module_31 extends Module_View_Abstract {
                             <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
                         </{$this->post_title_tag}>
                         {$this->post_meta_2($post)}
+						{$render_excerpt}
                     </div>
                 </article>";
 	}

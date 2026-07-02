@@ -143,6 +143,7 @@ class Block extends Grab {
 			'sort_by'                      => $this->attributes['sortBy'],
 			'date_format'                  => $this->attributes['metaDateFormat'],
 			'date_format_custom'           => $this->attributes['metaDateFormatCustom'],
+			'enable_excerpt'               => isset( $this->attributes['enableExcerpt'] ) ? $this->attributes['enableExcerpt'] : false,
 			'excerpt_length'               => $this->attributes['excerptLength'],
 			'excerpt_ellipsis'             => $this->attributes['excerptEllipsis'],
 			'pagination_mode'              => $this->attributes['paginationMode'],

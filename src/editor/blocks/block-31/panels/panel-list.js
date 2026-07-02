@@ -13,6 +13,7 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { postItemPanel } from '../../../control-panel/panel-post-item';
+import { settingPanel } from './panel-setting';
 
 export const panelList = () =>
     applyFilters(
@@ -37,6 +38,12 @@ export const panelList = () =>
                 title: __('Content Filter', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: (props) => filterPanel(props, true),
+                tabRole: TabSetting
+            },
+            {
+                title: __('Content Setting', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) => settingPanel(props),
                 tabRole: TabSetting
             },
             {

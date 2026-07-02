@@ -15,6 +15,7 @@ const Block31Columns = (props) => {
         page = 1,
         isLoadMore = false,
         postTitleHtmlTag = 'h3',
+        enableExcerpt = false,
     } = props;
 
     const postDataLen = postData.length;
@@ -24,7 +25,7 @@ const Block31Columns = (props) => {
         const { post, attr, index = 'x' } = props;
         return (
             <article className={`gvnews_post gvnews_pl_sm_2 ${isLoadMore && index >= loadValidAnim && index <= postDataLen && page > 1 ? `gvnews_ajax_loaded anim_${(index - loadValidAnim)}` : ''}`}>
-                <ContentModule cat={true} meta={2} title={true} post={post} attr={attr} />
+                <ContentModule excerpt={enableExcerpt} cat={true} meta={2} title={true} post={post} attr={attr} />
             </article>
         );
     };
