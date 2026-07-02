@@ -7,7 +7,7 @@ Stable tag: 3.3.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Build news websites, blog and magazine layouts with WordPress news blocks, post grids, post sliders, post carousels, archive blocks, and a news ticker.
+Build news websites, blog and magazine layouts with WordPress news blocks, post grids, post sliders, archive blocks, and a news ticker.
 
 == Description ==
 
