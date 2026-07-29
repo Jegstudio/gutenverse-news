@@ -1397,14 +1397,14 @@ if ( ! function_exists( 'gvnews_allowed_html' ) ) {
 			)
 		);
 
-		$allowedtags['script'] = array_merge(
-			isset( $allowedtags['script'] ) ? $allowedtags['script'] : array(),
-			array(
-				'id'    => true,
-				'class' => true,
-				'type'  => true,
-			)
-		);
+		// $allowedtags['script'] = array_merge(
+		// 	isset( $allowedtags['script'] ) ? $allowedtags['script'] : array(),
+		// 	array(
+		// 		'id'    => true,
+		// 		'class' => true,
+		// 		'type'  => true,
+		// 	)
+		// );
 
 		$allowedtags['ins']   = array_merge( isset( $allowedtags['ins'] ) ? $allowedtags['ins'] : array(), array() );
 		$allowedtags['style'] = array_merge( isset( $allowedtags['style'] ) ? $allowedtags['style'] : array(), array() );
