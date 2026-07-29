@@ -48,7 +48,7 @@
             left: 0;
         }
 
-        &:before {
+        &:not(:has(> .gutenverse-icon-svg)):not(:has(> i)):before, & > i, & > .gutenverse-icon-svg {
             display: block;
             position: absolute;
             top: 50%;
@@ -64,11 +64,11 @@
             z-index: 1;
         }
 
-        &.tns-prev:before {
+        &.tns-prev:not(:has(> .gutenverse-icon-svg)):not(:has(> i)):before {
             content: '\f104';
         }
 
-        &.tns-next:before {
+        &.tns-next:not(:has(> .gutenverse-icon-svg)):not(:has(> i)):before {
             content: '\f105';
         }
     }
