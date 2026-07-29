@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { applyFilters } from '@wordpress/hooks';
-import { SelectControl, CheckboxControl, TypographyControl, ColorControl, BorderControl, BorderResponsiveControl, HeadingControl } from 'gutenverse-core/controls';
+import { SelectControl, CheckboxControl, TypographyControl, ColorControl, BorderControl, BorderResponsiveControl, HeadingControl, RangeControl } from 'gutenverse-core/controls';
 import { theDeviceType } from 'gutenverse-core/helper';
 import { handleTypography, handleColor } from 'gutenverse-core/styling';
 
@@ -9,7 +9,7 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
         enableBoxed,
         elementId,
         enableExcerpt,
-        extendedOption = props => { return []; },
+        extendedOption = () => { return []; },
         columnWidth,
         columnWidthExcept = [],
         hasColumnWidth = true,
@@ -146,6 +146,47 @@ export const designPanel = (props, typeCount = 1, listIcon = false) => {
             description: __('This option will change the list icon color.', 'gutenverse-news'),
             show: listIcon,
             component: ColorControl,
+        },
+        {
+            id: 'listIconSize',
+            label: __('List Icon Size', 'gutenverse-news'),
+            description: __('This option will change the list icon size.', 'gutenverse-news'),
+            show: listIcon,
+            component: RangeControl,
+            min: 1,
+            max: 50,
+            unit: 'px',
+        },
+        {
+            id: 'listIconSpacing',
+            label: __('List Icon Spacing', 'gutenverse-news'),
+            description: __('This option will change the list icon spacing.', 'gutenverse-news'),
+            show: listIcon,
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            unit: 'px',
+        },
+        {
+            id: 'listIconAlign',
+            label: __('List Icon Align', 'gutenverse-news'),
+            description: __('This option will change the list icon vertical align.', 'gutenverse-news'),
+            show: listIcon,
+            component: SelectControl,
+            options: [
+                {
+                    value: 'top',
+                    label: __('Top', 'gutenverse-news')
+                },
+                {
+                    value: 'center',
+                    label: __('Center', 'gutenverse-news')
+                },
+                {
+                    value: 'bottom',
+                    label: __('Bottom', 'gutenverse-news')
+                },
+            ],
         },
         {
             id: '__borderHeader',

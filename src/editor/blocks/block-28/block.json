@@ -659,6 +659,18 @@
             "type": "object",
             "default": {},
             "copyStyle": true
+        },
+        "listIconSize": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconSpacing": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconAlign": {
+            "type": "string",
+            "copyStyle": true
         }
     },
     "supports": {

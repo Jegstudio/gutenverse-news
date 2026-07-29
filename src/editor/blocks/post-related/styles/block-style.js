@@ -438,6 +438,102 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['listIconSize']) && data.push({
+        'type': 'plain',
+        'id': 'listIconSize',
+        'selector': [
+            `.${elementId} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > i:first-child`,
+            `.${elementId} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > i:first-child`,
+            `.${elementId} .gvnews_postblock_16 .gvnews_pl_xs_2 > i:first-child`,
+            `.${elementId} .gvnews_postblock_16 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_1 .gvnews_pl_xs_2 > i:first-child`,
+            `.${elementId} .gvnews_postblock_1 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg`,
+        ],
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+    isNotEmpty(attributes['listIconSpacing']) && data.push({
+        'type': 'plain',
+        'id': 'listIconSpacing',
+        'selector': `
+            .${elementId} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content,
+            .${elementId} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content
+        `,
+        'properties': [
+            {
+                'name': 'padding',
+                'valueType': 'pattern',
+                'pattern': '0 0 0 {value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+    isNotEmpty(attributes['listIconSpacing']) && data.push({
+        'type': 'plain',
+        'id': 'listIconSpacing',
+        'selector': `
+            .${elementId} .gvnews_postblock_1 .gvnews_pl_xs_2,
+            .${elementId} .gvnews_postblock_16 .gvnews_pl_xs_2
+        `,
+        'properties': [
+            {
+                'name': 'padding-left',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct'
+                    }
+                }
+            }
+        ],
+    });
+    isNotEmpty(attributes['listIconAlign']) && data.push({
+        'type': 'plain',
+        'id': 'listIconAlign',
+        'selector': [
+            `.${elementId} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > i:first-child`,
+            `.${elementId} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > i:first-child`,
+            `.${elementId} .gvnews_postblock_16 .gvnews_pl_xs_2 > i:first-child`,
+            `.${elementId} .gvnews_postblock_16 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg`,
+            `.${elementId} .gvnews_postblock_1 .gvnews_pl_xs_2 > i:first-child`,
+            `.${elementId} .gvnews_postblock_1 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg`,
+        ],
+        'properties': [
+            {
+                'name': 'top',
+                'valueType': 'function',
+                'valueFunc': (value) => {
+                    if (value === 'center') {
+                        return '50%; transform: translateY(-50%);';
+                    }
+                    if (value === 'bottom') {
+                        return 'unset; bottom: 0;';
+                    }
+                    return '0';
+                }
+            }
+        ],
+    });
+
 
     /**
      * Panel Meta Style
