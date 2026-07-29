@@ -876,6 +876,10 @@
         "fetchPriorityHigh": {
             "type": "boolean"
         },
+        "fetchPriorityHighPosition": {
+            "type": "string",
+            "default": ""
+        },
         "flexAlignSelf": {
             "type": "object",
             "default": {},

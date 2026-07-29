@@ -183,6 +183,7 @@ class Block extends Grab {
 			'image_load'                   => $image_load,
 			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
 			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+			'fetch_priority_high_position' => isset( $this->attributes['fetchPriorityHighPosition'] ) ? $this->attributes['fetchPriorityHighPosition'] : '',
 			'fetch_priority_high'          => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 			'pagination_prev_icon'         => isset( $this->attributes['paginationPrevIcon'] ) ? $this->attributes['paginationPrevIcon'] : 'fas fa-chevron-left',
 			'pagination_prev_icon_type'    => isset( $this->attributes['paginationPrevIconType'] ) ? $this->attributes['paginationPrevIconType'] : 'icon',

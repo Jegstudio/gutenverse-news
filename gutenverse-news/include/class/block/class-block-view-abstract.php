@@ -78,6 +78,13 @@ abstract class Block_View_Abstract {
 	protected $content;
 
 	/**
+	 * Render Image Index
+	 *
+	 * @var int
+	 */
+	protected $render_image_idx = 0;
+
+	/**
 	 * Meta settings.
 	 *
 	 * @var array
@@ -397,11 +404,19 @@ abstract class Block_View_Abstract {
 	 * @return mixed|string
 	 */
 	public function get_thumbnail( $post_id, $size, $force_lazy_load = false ) {
+		++$this->render_image_idx;
 		/* need to lazy load the hidden element like some of carousel items that not visible on first time load */
 		if ( $force_lazy_load ) {
 			return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, 'lazy' );
 		}
-		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'], $this->attribute['fetch_priority_high'] );
+
+		$fetchpriority_high = $this->attribute['fetch_priority_high'];
+		$position           = isset( $this->attribute['fetch_priority_high_position'] ) ? (int) $this->attribute['fetch_priority_high_position'] : '';
+		if ( $fetchpriority_high && $position ) {
+			$fetchpriority_high = $this->render_image_idx === $position;
+		}
+
+		return Image_Normal_Load::get_instance()->image_thumbnail( $post_id, $size, $this->attribute['image_load'], $fetchpriority_high );
 	}
 
 	/**
