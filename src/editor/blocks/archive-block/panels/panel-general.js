@@ -6,6 +6,7 @@ export const generalPanel = (props) => {
     const {
         boxed,
         imageLoad = '',
+        fetchPriorityHigh = false,
     } = props;
     const defaultImageLoad = getDefaultImageLoad(imageLoad, false);
 
@@ -107,6 +108,16 @@ export const generalPanel = (props) => {
             label: __('Fetch Priority High', 'gutenverse-news'),
             description: __('Signals the browser to prioritize fetching this image. Use this only for the LCP (Largest Contentful Paint) element.', 'gutenverse-news'),
             component: CheckboxControl,
+        },
+        {
+            id: 'fetchPriorityHighPosition',
+            show: (imageLoad === 'eager' || defaultImageLoad.value === 'eager') && fetchPriorityHigh,
+            label: __('Fetch Priority Post', 'gutenverse-news'),
+            description: __('Choose which rendered post image should receive fetchpriority high. 1 is the first post image.', 'gutenverse-news'),
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            step: 1,
         },
     ];
 };

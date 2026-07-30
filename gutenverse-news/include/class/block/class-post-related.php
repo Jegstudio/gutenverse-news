@@ -91,6 +91,7 @@ class Post_Related extends Post_Guten {
 			'image_load'                   => Options::get_instance()->get_image_load( 'normal', false, $this->attributes['imageLoad'] ),
 			'header_html_tag'              => isset( $this->attributes['headerHtmlTag'] ) ? $this->attributes['headerHtmlTag'] : 'h3',
 			'post_title_html_tag'          => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
+			'fetch_priority_high_position' => isset( $this->attributes['fetchPriorityHighPosition'] ) ? $this->attributes['fetchPriorityHighPosition'] : '',
 			'fetch_priority_high'          => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 			'show_post_format_icon'        => isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false,
 			'gallery_format_icon'          => isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '',

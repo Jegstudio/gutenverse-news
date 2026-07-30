@@ -145,7 +145,7 @@ abstract class Block_View_Abstract {
 	 *
 	 * @param int $post_id post id.
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function get_overlay_icon( $post_id ) {
 		if ( ! $this->post_format_icon['show'] ) {

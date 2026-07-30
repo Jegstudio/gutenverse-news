@@ -39,7 +39,7 @@ class Archive extends Grab {
 	 * @param string $inner         Inner element.
 	 * @param array  $array_classes Classes.
 	 * @param array  $array_data    Data attribute.
-	 * @param array  $id            Element ID.
+	 * @param mixed  $id            Element ID.
 	 *
 	 * @return string
 	 */
@@ -229,25 +229,26 @@ class Archive extends Grab {
 	 */
 	private function archive_block( $attr ) {
 		if ( 'gutenverse/news-archive-block' === $this->name ) {
-			$attr['block_type']               = $this->attributes['blockType'];
-			$attr['number_post']              = $this->attributes['numberPost'];
-			$attr['excerpt_length']           = $this->attributes['excerptLength'];
-			$attr['excerpt_ellipsis']         = $this->attributes['excerptEllipsis'];
-			$attr['date_format']              = $this->attributes['dateFormat'];
-			$attr['date_format_custom']       = $this->attributes['dateFormatCustom'];
-			$attr['first_page']               = $this->attributes['firstPage'];
-			$attr['column_width']             = $this->attributes['columnWidth'];
-			$attr['gutter_width']             = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
-			$attr['image_load']               = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
-			$attr['post_title_html_tag']      = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3';
-			$attr['fetch_priority_high']      = isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false;
-			$attr['show_post_format_icon']    = isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false;
-			$attr['gallery_format_icon']      = isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '';
-			$attr['gallery_format_icon_type'] = isset( $this->attributes['galleryFormatIconType'] ) ? $this->attributes['galleryFormatIconType'] : 'icon';
-			$attr['gallery_format_icon_svg']  = isset( $this->attributes['galleryFormatIconSVG'] ) ? $this->attributes['galleryFormatIconSVG'] : '';
-			$attr['video_format_icon']        = isset( $this->attributes['videoFormatIcon'] ) ? $this->attributes['videoFormatIcon'] : '';
-			$attr['video_format_icon_type']   = isset( $this->attributes['videoFormatIconType'] ) ? $this->attributes['videoFormatIconType'] : 'icon';
-			$attr['video_format_icon_svg']    = isset( $this->attributes['videoFormatIconSVG'] ) ? $this->attributes['videoFormatIconSVG'] : '';
+			$attr['block_type']                   = $this->attributes['blockType'];
+			$attr['number_post']                  = $this->attributes['numberPost'];
+			$attr['excerpt_length']               = $this->attributes['excerptLength'];
+			$attr['excerpt_ellipsis']             = $this->attributes['excerptEllipsis'];
+			$attr['date_format']                  = $this->attributes['dateFormat'];
+			$attr['date_format_custom']           = $this->attributes['dateFormatCustom'];
+			$attr['first_page']                   = $this->attributes['firstPage'];
+			$attr['column_width']                 = $this->attributes['columnWidth'];
+			$attr['gutter_width']                 = isset( $this->attributes['gutterWidth'] ) ? $this->attributes['gutterWidth'] : 30;
+			$attr['image_load']                   = isset( $this->attributes['imageLoad'] ) ? $this->attributes['imageLoad'] : '';
+			$attr['post_title_html_tag']          = isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3';
+			$attr['fetch_priority_high_position'] = isset( $this->attributes['fetchPriorityHighPosition'] ) ? $this->attributes['fetchPriorityHighPosition'] : '';
+			$attr['fetch_priority_high']          = isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false;
+			$attr['show_post_format_icon']        = isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false;
+			$attr['gallery_format_icon']          = isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '';
+			$attr['gallery_format_icon_type']     = isset( $this->attributes['galleryFormatIconType'] ) ? $this->attributes['galleryFormatIconType'] : 'icon';
+			$attr['gallery_format_icon_svg']      = isset( $this->attributes['galleryFormatIconSVG'] ) ? $this->attributes['galleryFormatIconSVG'] : '';
+			$attr['video_format_icon']            = isset( $this->attributes['videoFormatIcon'] ) ? $this->attributes['videoFormatIcon'] : '';
+			$attr['video_format_icon_type']       = isset( $this->attributes['videoFormatIconType'] ) ? $this->attributes['videoFormatIconType'] : 'icon';
+			$attr['video_format_icon_svg']        = isset( $this->attributes['videoFormatIconSVG'] ) ? $this->attributes['videoFormatIconSVG'] : '';
 		}
 		return $attr;
 	}
