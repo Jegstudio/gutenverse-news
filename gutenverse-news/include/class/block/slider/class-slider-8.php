@@ -25,14 +25,18 @@ class Slider_8 extends Slider_View_Abstract {
 	 * @return string
 	 */
 	public function content( $results ) {
-		$content    = '';
-		$image_load = \Gutenverse\Framework\Options::get_instance()->get_image_load( 'normal', $this->attribute['normal_image'], $this->attribute['image_load'] );
+		$content             = '';
+		$image_load          = \Gutenverse\Framework\Options::get_instance()->get_image_load( 'normal', $this->attribute['normal_image'], $this->attribute['image_load'] );
+		$fetch_priority_high = $this->attribute['fetch_priority_high'];
+		$fetch_priority_pos  = isset( $this->attribute['fetch_priority_high_pos'] ) ? (int) $this->attribute['fetch_priority_high_pos'] : '';
+
 		foreach ( $results as $key => $post ) {
-			$primary_category  = $this->get_primary_category( $post->ID );
-			$overlay_icon      = $this->get_overlay_icon( $post->ID );
-			$post_thumbnail_id = get_post_thumbnail_id( $post->ID );
-			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $image_load, $this->attribute['fetch_priority_high'] );
-			$content          .=
+			$primary_category   = $this->get_primary_category( $post->ID );
+			$overlay_icon       = $this->get_overlay_icon( $post->ID );
+			$post_thumbnail_id  = get_post_thumbnail_id( $post->ID );
+			$fetchpriority_high = $fetch_priority_high && ( ! $fetch_priority_pos || $key + 1 === $fetch_priority_pos );
+			$image              = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-350x250', $image_load, $fetchpriority_high );
+			$content           .=
 				'<div class="gvnews_slide_item_wrapper"><div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
                     ' . gvnews_edit_post( $post->ID ) . '
                     <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">

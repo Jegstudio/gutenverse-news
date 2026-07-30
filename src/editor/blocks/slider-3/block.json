@@ -323,6 +323,10 @@
         "fetchPriorityHigh": {
             "type": "boolean"
         },
+        "fetchPriorityHighPosition": {
+            "type": "string",
+            "default": ""
+        },
         "positioningType": {
             "type": "object"
         },

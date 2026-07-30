@@ -144,6 +144,7 @@ class Slider extends Grab {
 			'image_load'               => $image_load,
 			'normal_image'             => $this->attributes['normalImage'],
 			'post_title_html_tag'      => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h2',
+			'fetch_priority_high_pos'  => isset( $this->attributes['fetchPriorityHighPosition'] ) ? $this->attributes['fetchPriorityHighPosition'] : '',
 			'fetch_priority_high'      => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
 			'show_post_format_icon'    => isset( $this->attributes['showPostFormatIcon'] ) ? $this->attributes['showPostFormatIcon'] : false,
 			'gallery_format_icon'      => isset( $this->attributes['galleryFormatIcon'] ) ? $this->attributes['galleryFormatIcon'] : '',

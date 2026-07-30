@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { CheckboxControl, IconSVGControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
-import { getDefaultImageLoad } from "../../../utils/helper";
+import { getDefaultImageLoad } from '../../../utils/helper';
 
 
 
@@ -10,7 +10,9 @@ export const sliderPanel = (props) => {
         hideNavigationButton,
         alwaysShowNavigationButton,
         normalImage,
-        imageLoad = "", } = props;
+        imageLoad = '',
+        fetchPriorityHigh = false,
+    } = props;
 
     const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
     return [
@@ -58,6 +60,16 @@ export const sliderPanel = (props) => {
             label: __('Fetch Priority High', 'gutenverse-news'),
             description: __('Signals the browser to prioritize fetching this image. Use this only for the LCP (Largest Contentful Paint) element.', 'gutenverse-news'),
             component: CheckboxControl,
+        },
+        {
+            id: 'fetchPriorityHighPosition',
+            show: (imageLoad === 'eager' || defaultImageLoad.value === 'eager') && fetchPriorityHigh,
+            label: __('Fetch Priority Post', 'gutenverse-news'),
+            description: __('Choose which rendered post image should receive fetchpriority high. 1 is the first post image.', 'gutenverse-news'),
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            step: 1,
         },
         {
             id: 'postTitleHtmlTag',
