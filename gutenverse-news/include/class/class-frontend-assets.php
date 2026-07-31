@@ -139,7 +139,7 @@ class Frontend_Assets {
 	 * Conditional load font icon
 	 *
 	 * @param mixed  $conditions The value from the attributes array.
-	 * @param string $attrs The comparison operator (e.g., '===', '!==').
+	 * @param array  $attrs The comparison operator (e.g., '===', '!==').
 	 * @param mixed  $block_name The value to compare against.
 	 */
 	public function font_icon_conditional_load( $conditions, $attrs, $block_name ) {
@@ -200,6 +200,7 @@ class Frontend_Assets {
 				}
 				break;
 			case 'gutenverse/news-slider-1':
+			case 'gutenverse/news-slider-3':
 			case 'gutenverse/news-slider-4':
 			case 'gutenverse/news-slider-5':
 			case 'gutenverse/news-slider-6':
