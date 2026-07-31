@@ -76,6 +76,7 @@ const Carousel1Block = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        navigationEnableSeparator = false
     } = attributes;
 
     const overlayIconData = {
@@ -231,7 +232,7 @@ const Carousel1Block = compose(
         };
         if (postData.length > 0) {
             setBlock(
-                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12">
+                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12 ${navigationEnableSeparator ? 'with-nav-separator' : ''}`}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
@@ -388,6 +389,7 @@ const Carousel1Block = compose(
         videoFormatIcon,
         videoFormatIconType,
         videoFormatIconSVG,
+        navigationEnableSeparator
     ]);
 
     useEffect(() => {

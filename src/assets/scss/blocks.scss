@@ -18983,6 +18983,8 @@ input:checked+.slider {
 
   .tns-outer .tns-controls {
     margin-top: 15px;
+    display: flex;
+    align-items: center;
   }
 
   .gvnews_block_heading_6 .tns-outer .tns-controls {
@@ -18994,6 +18996,26 @@ input:checked+.slider {
 
   [data-margin='0'] .gvnews_postblock_content {
     padding: 0 10px;
+  }
+}
+
+.gvnews_postblock_carousel_1.with-nav-separator .tns-outer .tns-controls {
+  &:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #eee;
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #eee;
+    flex: 1;
+    margin-left: 10px;
   }
 }
 

@@ -5,6 +5,7 @@ const getCarouselStyle = (elementId, attributes) => {
     let data = [];
     const {
         showMeta = true,
+        showNav = false,
     } = attributes;
 
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
@@ -315,6 +316,183 @@ const getCarouselStyle = (elementId, attributes) => {
                 'valueType': 'direct'
             }
         ],
+    });
+
+    data = navigationStyle(elementId, attributes, data);
+
+    return data;
+};
+
+const navigationStyle = (elementId, attributes, data) => {
+    const controlsSelector = `.${elementId} .tns-outer .tns-controls`;
+    const separatorSelector = '.gvnews_postblock_carousel_1.with-nav-separator .tns-outer .tns-controls:before, .gvnews_postblock_carousel_1.with-nav-separator .tns-outer .tns-controls:after';
+
+    isNotEmpty(attributes['navigationWrapperMargin']) && data.push({
+        type: 'dimension',
+        id: 'navigationWrapperMargin',
+        responsive: true,
+        properties: [
+            {
+                name: 'margin',
+                valueType: 'direct'
+            }
+        ],
+        selector: controlsSelector,
+    });
+
+    if (
+        isNotEmpty(attributes['navigationWrapperAlign']) ||
+        isNotEmpty(attributes['navigationBtnGap']) ||
+        attributes['navigationEnableSeparator']
+    ) {
+        data.push({
+            'type': 'plain',
+            'id': 'navigationControlsDisplay',
+            'selector': controlsSelector,
+            'properties': [
+                {
+                    'name': 'display',
+                    'valueType': 'static',
+                    'staticValue': 'flex',
+                },
+                {
+                    'name': 'align-items',
+                    'valueType': 'static',
+                    'staticValue': 'center',
+                }
+            ],
+        });
+    }
+
+    isNotEmpty(attributes['navigationWrapperAlign']) && data.push({
+        type: 'plain',
+        id: 'navigationWrapperAlign',
+        responsive: true,
+        properties: [
+            {
+                name: 'justify-content',
+                valueType: 'direct'
+            }
+        ],
+        selector: controlsSelector,
+    });
+
+    isNotEmpty(attributes['navigationBtnGap']) && data.push({
+        type: 'unitPoint',
+        id: 'navigationBtnGap',
+        properties: [
+            {
+                name: 'gap',
+                valueType: 'direct'
+            }
+        ],
+        responsive: true,
+        selector: controlsSelector,
+    });
+
+    if (attributes['navigationEnableSeparator']) {
+        data.push(
+            {
+                'type': 'plain',
+                'id': 'navigationSeparatorContent',
+                'selector': separatorSelector,
+                'properties': [
+                    {
+                        'name': 'content',
+                        'valueType': 'static',
+                        'staticValue': '""',
+                    },
+                    {
+                        'name': 'display',
+                        'valueType': 'static',
+                        'staticValue': 'block',
+                    },
+                    {
+                        'name': 'flex-grow',
+                        'valueType': 'static',
+                        'staticValue': '1',
+                    },
+                    {
+                        'name': 'border-bottom-style',
+                        'valueType': 'static',
+                        'staticValue': 'solid',
+                    },
+                    {
+                        'name': 'border-bottom-width',
+                        'valueType': 'static',
+                        'staticValue': '1px',
+                    }
+                ],
+            },
+            {
+                'type': 'plain',
+                'id': 'navigationWrapperAlign',
+                'responsive': true,
+                'selector': `${controlsSelector}:before`,
+                'properties': [
+                    {
+                        'name': 'display',
+                        'valueType': 'function',
+                        'functionName': 'modulePaginationAlign',
+                        'functionProps': {
+                            'selectTarget': 'before',
+                        }
+                    }
+                ],
+            },
+            {
+                'type': 'plain',
+                'id': 'navigationWrapperAlign',
+                'responsive': true,
+                'selector': `${controlsSelector}:after`,
+                'properties': [
+                    {
+                        'name': 'display',
+                        'valueType': 'function',
+                        'functionName': 'modulePaginationAlign',
+                        'functionProps': {
+                            'selectTarget': 'after',
+                        }
+                    }
+                ],
+            }
+        );
+    }
+
+    isNotEmpty(attributes['navigationSeparatorStyle']) && data.push({
+        type: 'plain',
+        id: 'navigationSeparatorStyle',
+        properties: [
+            {
+                name: 'border-bottom-style',
+                valueType: 'direct'
+            }
+        ],
+        selector: separatorSelector,
+    });
+
+    isNotEmpty(attributes['navigationSeparatorColor']) && data.push({
+        type: 'color',
+        id: 'navigationSeparatorColor',
+        properties: [
+            {
+                name: 'border-bottom-color',
+                valueType: 'direct'
+            }
+        ],
+        selector: separatorSelector,
+    });
+
+    isNotEmpty(attributes['navigationSeparatorWidth']) && data.push({
+        type: 'unitPoint',
+        id: 'navigationSeparatorWidth',
+        properties: [
+            {
+                name: 'border-bottom-width',
+                valueType: 'direct'
+            }
+        ],
+        selector: separatorSelector,
     });
 
     return data;

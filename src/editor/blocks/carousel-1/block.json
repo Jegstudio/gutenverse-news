@@ -29,6 +29,34 @@
             "type": "boolean",
             "default": false
         },
+        "navigationWrapperMargin": {
+            "type": "object"
+        },
+        "navigationWrapperAlign": {
+            "type": "object",
+            "default": {
+                "Desktop": "start",
+                "Tablet": "start",
+                "Mobile": "start"
+            }
+        },
+        "navigationBtnGap": {
+            "type": "object"
+        },
+        "navigationEnableSeparator": {
+            "type": "boolean",
+            "default": false
+        },
+        "navigationSeparatorStyle": {
+            "type": "string",
+            "default": ""
+        },
+        "navigationSeparatorColor": {
+            "type": "object"
+        },
+        "navigationSeparatorWidth": {
+            "type": "object"
+        },
         "iMargin": {
             "type": "string",
             "default": 20

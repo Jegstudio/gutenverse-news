@@ -49,6 +49,9 @@ class Carousel extends StyleAbstract {
 		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
 				$this->generate_meta_style();
 		}
+		if ( isset( $this->attrs['showNav'] ) && $this->attrs['showNav'] ) {
+			$this->generate_navigation_style();
+		}
 
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
@@ -162,6 +165,143 @@ class Carousel extends StyleAbstract {
 						return $this->handle_color( $value, 'color' );
 					},
 					'value'          => $this->attrs['metaIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Generate carousel navigation style.
+	 */
+	private function generate_navigation_style() {
+		$controls_selector  = ".{$this->element_id} .tns-outer .tns-controls";
+		$separator_selector = "{$controls_selector}:before, {$controls_selector}:after";
+
+		if ( isset( $this->attrs['navigationWrapperAlign'] ) || isset( $this->attrs['navigationBtnGap'] ) || ! empty( $this->attrs['navigationEnableSeparator'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $controls_selector,
+					'property'       => function () {
+						return 'display: flex; align-items: center;';
+					},
+					'value'          => 'flex',
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationWrapperMargin'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $controls_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_dimension( $value, 'margin' );
+					},
+					'value'          => $this->attrs['navigationWrapperMargin'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationWrapperAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $controls_selector,
+					'property'       => function ( $value ) {
+						return "justify-content: {$value};";
+					},
+					'value'          => $this->attrs['navigationWrapperAlign'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationBtnGap'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $controls_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'gap' );
+					},
+					'value'          => $this->attrs['navigationBtnGap'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( ! empty( $this->attrs['navigationEnableSeparator'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_selector,
+					'property'       => function () {
+						return 'content: ""; display: block; flex-grow: 1; border-bottom-style: solid; border-bottom-width: 1px;';
+					},
+					'value'          => 'separator',
+					'device_control' => false,
+				)
+			);
+
+			if ( isset( $this->attrs['navigationWrapperAlign'] ) ) {
+				$this->inject_style(
+					array(
+						'selector'       => "{$controls_selector}:before",
+						'property'       => function ( $value ) {
+							$result = ( 'start' === $value || 'space-between' === $value ) ? 'none' : 'block';
+							return "display: {$result};";
+						},
+						'value'          => $this->attrs['navigationWrapperAlign'],
+						'device_control' => true,
+					)
+				);
+				$this->inject_style(
+					array(
+						'selector'       => "{$controls_selector}:after",
+						'property'       => function ( $value ) {
+							$result = ( 'end' === $value || 'space-between' === $value ) ? 'none' : 'block';
+							return "display: {$result};";
+						},
+						'value'          => $this->attrs['navigationWrapperAlign'],
+						'device_control' => true,
+					)
+				);
+			}
+		}
+
+		if ( isset( $this->attrs['navigationSeparatorStyle'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_selector,
+					'property'       => function ( $value ) {
+						return "border-bottom-style: {$value};";
+					},
+					'value'          => $this->attrs['navigationSeparatorStyle'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationSeparatorColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'border-bottom-color' );
+					},
+					'value'          => $this->attrs['navigationSeparatorColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationSeparatorWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => $separator_selector,
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'border-bottom-width' );
+					},
+					'value'          => $this->attrs['navigationSeparatorWidth'],
 					'device_control' => false,
 				)
 			);
