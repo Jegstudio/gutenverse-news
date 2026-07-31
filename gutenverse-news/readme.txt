@@ -135,6 +135,7 @@ Terms and conditions are available at [https://gutenverse.com/terms-and-conditio
 
 = 3.3.3-dev =
 * Fix inconsistent Module 27 display between the frontend and editor.
+* Fix security issue on wp_kses_allowed_html
 
 = 3.3.2 =
 * Fix issue with font slug name
