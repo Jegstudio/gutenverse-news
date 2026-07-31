@@ -3,11 +3,11 @@ Contributors: Jegstudio
 Tags: news, news blocks, blog, magazine, news ticker
 Tested up to: 6.9
 Requires PHP: 7.4.30
-Stable tag: 3.3.0
+Stable tag: 3.3.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Build news websites, blog and magazine layouts with WordPress news blocks, post grids, post sliders, post carousels, archive blocks, and a news ticker.
+Build news websites, blog and magazine layouts with WordPress news blocks, post grids, post sliders, archive blocks, and a news ticker.
 
 == Description ==
 
@@ -132,6 +132,17 @@ Terms and conditions are available at [https://gutenverse.com/terms-and-conditio
 * [Support](https://gutenverse.com/contact/)
 
 == Changelog ==
+
+= 3.3.3-dev =
+* Fix inconsistent Module 27 display between the frontend and editor.
+* Fix security issue on wp_kses_allowed_html
+
+= 3.3.2 =
+* Fix issue with font slug name
+
+= 3.3.1 =
+
+* Fixed font global vulnerability.
 
 = 3.3.0 =
 

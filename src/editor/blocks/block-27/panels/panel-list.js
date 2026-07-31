@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { advancePanel, backgroundPanel, borderPanel, positioningPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
+import { advancePanel, backgroundPanel, borderPanel, CheckboxControl, positioningPanel, responsivePanel, conditionPanel } from 'gutenverse-core/controls';
 import { filterPanel } from '../../../control-panel/panel-filter';
 import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } from '../../../control-panel/panel-header';
 import { settingPanel } from '../../../control-panel/panel-setting';
@@ -86,7 +86,17 @@ export const panelList = () => {
             {
                 title: __('Design', 'gutenverse-news'),
                 initialOpen: false,
-                panelArray: designPanel,
+                panelArray: props => designPanel({
+                    ...props,
+                    extendedOption: () => [
+                        {
+                            id: 'alwaysShowExcerpt',
+                            label: __('Always Show Excerpt', 'gutenverse-news'),
+                            description: __('Enable this option to always show the excerpt even on 4 Column layout.', 'gutenverse-news'),
+                            component: CheckboxControl
+                        },
+                    ]
+                }),
                 tabRole: TabStyle
             },
             {
