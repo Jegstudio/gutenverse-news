@@ -410,16 +410,13 @@
         "overlayIconColor": {
             "type": "object"
         },
-        "overrideIcon": {
-            "type": "boolean"
-        },
         "nextButtonIcon": {
             "type": "string",
             "default": "fas fa-chevron-right"
         },
         "nextButtonIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "nextButtonIconSVG": {
             "type": "string",
@@ -431,7 +428,7 @@
         },
         "prevButtonIconType": {
             "type": "string",
-            "default": "svg"
+            "default": "icon"
         },
         "prevButtonIconSVG": {
             "type": "string",

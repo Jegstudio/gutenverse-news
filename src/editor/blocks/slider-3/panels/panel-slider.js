@@ -7,7 +7,6 @@ export const sliderPanel = (props) => {
         autoplay,
         normalImage,
         imageLoad = '',
-        overrideIcon = false,
     } = props;
     const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
 
@@ -90,19 +89,12 @@ export const sliderPanel = (props) => {
             ],
         },
         {
-            id: 'overrideIcon',
-            label: __( 'Override Nav Icon', 'gutenverse-news' ),
-            component: CheckboxControl,
-        },
-        {
             id: 'nextButtonIcon',
-            show: overrideIcon,
             label: __('Icon Next', 'gutenverse-news'),
             component: IconSVGControl,
         },
         {
             id: 'prevButtonIcon',
-            show: overrideIcon,
             label: __('Icon Previous', 'gutenverse-news'),
             component: IconSVGControl,
         },

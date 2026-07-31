@@ -85,23 +85,16 @@ class Slider_3 extends Slider_View_Abstract {
 			);
 
 			$data_attr = array(
-				'items'    => $number_item,
-				'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-				'delay'    => esc_attr( $autoplay_delay ),
+				'items'           => $number_item,
+				'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+				'delay'           => esc_attr( $autoplay_delay ),
+				'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+				'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+				'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+				'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+				'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+				'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 			);
-			if ( isset( $attr['override_icon'] ) && $attr['override_icon'] ) {
-				$data_attr = array_merge(
-					$data_attr,
-					array(
-						'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
-						'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
-						'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
-						'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
-						'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
-						'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
-					),
-				);
-			}
 
 			$data_attr = gvnews_build_data_attr( $data_attr );
 

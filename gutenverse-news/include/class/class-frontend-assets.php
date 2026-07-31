@@ -199,18 +199,8 @@ class Frontend_Assets {
 					$this->icon_conditional_load( $conditions );
 				}
 				break;
-			case 'gutenverse/news-slider-3':
-				if ( ! isset( $attrs['overrideIcon'] ) || ! $attrs['overrideIcon'] ) {
-					$this->icon_conditional_load( $conditions );
-				} else {
-					if ( $this->attr_has_icon( $attrs, $block_name, 'nextButtonIcon', 'nextButtonIconType' ) ) {
-						$this->icon_conditional_load( $conditions );
-					}
-					if ( $this->attr_has_icon( $attrs, $block_name, 'prevButtonIcon', 'prevButtonIconType' ) ) {
-						$this->icon_conditional_load( $conditions );
-					}
-				}
 			case 'gutenverse/news-slider-1':
+			case 'gutenverse/news-slider-3':
 			case 'gutenverse/news-slider-4':
 			case 'gutenverse/news-slider-5':
 			case 'gutenverse/news-slider-6':

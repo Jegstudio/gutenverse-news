@@ -116,6 +116,7 @@
 
     .gvnews_slide_caption {
         background: transparent;
+        padding: 40px 20px 20px;
     }
 
     .gvnews_slide_item:before {
@@ -465,6 +466,10 @@
 
         .gvnews_caption_container {
             padding: 0 15px;
+        }
+
+        .gvnews_slide_caption {
+            padding: 40px 0px 20px;
         }
     }
 
