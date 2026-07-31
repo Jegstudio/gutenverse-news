@@ -53,12 +53,12 @@ export const panelList = () => {
                 panelArray: mainContainerPanel,
                 tabRole: TabStyle
             },
-            {
-                title: __('Main Category Label', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: mainCategoryStylePanel,
-                tabRole: TabStyle
-            },
+            // {
+            //     title: __('Main Category Label', 'gutenverse-news'),
+            //     initialOpen: false,
+            //     panelArray: mainCategoryStylePanel,
+            //     tabRole: TabStyle
+            // },
             {
                 title: __('Side Category Label', 'gutenverse-news'),
                 initialOpen: false,
