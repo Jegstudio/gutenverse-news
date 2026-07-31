@@ -135,6 +135,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerSecondTextColor": {
             "type": "object"
         },

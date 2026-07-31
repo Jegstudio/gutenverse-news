@@ -1,5 +1,5 @@
 import { isNotEmpty } from 'gutenverse-core/helper';
-import { positioningStyle } from "./positioning-style";
+import { positioningStyle } from './positioning-style';
 import { applyFilters } from '@wordpress/hooks';
 
 const getBlockStyle = (
@@ -80,6 +80,21 @@ const getBlockStyle = (
         'type': 'color',
         'id': 'headerTextColor',
         'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['headerIconColor']) && data.push({
+        'type': 'color',
+        'id': 'headerIconColor',
+        'selector': `
+            .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span .gutenverse-icon-svg,
+            .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span i
+        `,
         'properties': [
             {
                 'name': 'color',

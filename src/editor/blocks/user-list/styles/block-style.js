@@ -222,6 +222,21 @@ const getBlockStyle = (elementId, attributes) => {
         ],
     });
 
+    isNotEmpty(attributes['headerIconColor']) && data.push({
+        'type': 'color',
+        'id': 'headerIconColor',
+        'selector': `
+            .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span .gutenverse-icon-svg,
+            .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_title span i
+        `,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     isNotEmpty(attributes['headerSecondColor']) && data.push({
         'type': 'color',
         'id': 'headerSecondColor',
