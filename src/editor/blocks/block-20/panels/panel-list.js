@@ -13,7 +13,6 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
-import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 import { postItemGridPanel } from './panel-post-item';
@@ -102,16 +101,6 @@ export const panelList = () => {
                 title: __('Card Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: cardStylePanelModule,
-                tabRole: TabStyle,
-            },
-            {
-                title: __('Content Container', 'gutenverse-news'),
-                initialOpen: false,
-                panelArray: (props) =>
-                    contentContainerPanel({
-                        ...props,
-                        contentAlignVertical: { main: true },
-                    }),
                 tabRole: TabStyle,
             },
             {
