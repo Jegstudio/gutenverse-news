@@ -564,7 +564,8 @@
             "type": "object"
         },
         "readmoreButtonDisabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
         },
         "headerLineThick": {
             "type": "object",
