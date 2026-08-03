@@ -518,7 +518,7 @@
         },
         "showMetaAuthor": {
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "metaColorHover": {
             "type": "object"
