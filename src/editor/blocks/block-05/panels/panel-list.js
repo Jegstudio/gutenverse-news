@@ -16,6 +16,7 @@ import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-se
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { postItemPanel } from '../../../control-panel/panel-post-item';
 import { applyFilters } from '@wordpress/hooks';
 import LockedNewsAdsControl from '../../../controls/locked/locked-news-ads-control';
@@ -107,6 +108,17 @@ export const panelList = () => {
             title: __('Card Style', 'gutenverse-news'),
             initialOpen: false,
             panelArray: cardStylePanelModule,
+            tabRole: TabStyle,
+        },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) => contentContainerPanel({
+                ...props,
+                contentAlignVertical: {
+                    main: true,
+                }
+            }),
             tabRole: TabStyle,
         },
         {
