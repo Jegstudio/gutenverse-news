@@ -22,6 +22,14 @@
         padding-right: 0;
         margin-bottom: 0;
     }
+
+    .gvnews_pl_sm {
+        display: flex;
+
+        .gvnews_postblock_content {
+            margin-left: 0;
+        }
+    }
 }
 
 /* src/assets/scss/fse-standard/mobile.scss */
