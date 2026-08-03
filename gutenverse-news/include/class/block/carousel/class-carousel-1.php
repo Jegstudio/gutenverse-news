@@ -69,6 +69,7 @@ class Carousel_1 extends Carousel_View_Abstract {
 			$autoplay_delay  = isset( $attr['autoplay_delay']['size'] ) ? $attr['autoplay_delay']['size'] : $attr['autoplay_delay'];
 			$margin          = isset( $attr['margin']['size'] ) ? $attr['margin']['size'] : $attr['margin'];
 			$responsive_item = isset( $attr['responsive_item'] ) ? $attr['responsive_item'] : array();
+			$has_nav_separator = isset( $attr['navigation_enable_separator'] ) ? $attr['navigation_enable_separator'] : false;
 			$data_attr       = gvnews_build_data_attr(
 				array(
 					'nav'            => esc_attr( $attr['show_nav'] ),
@@ -91,6 +92,7 @@ class Carousel_1 extends Carousel_View_Abstract {
 					'gvnews_postblock',
 					'gvnews_col_12',
 					esc_attr( $this->get_vc_class_name() ),
+					$has_nav_separator ? 'with-nav-separator' : ''
 				)
 			);
 

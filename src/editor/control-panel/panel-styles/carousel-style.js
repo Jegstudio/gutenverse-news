@@ -5,7 +5,6 @@ const getCarouselStyle = (elementId, attributes) => {
     let data = [];
     const {
         showMeta = true,
-        showNav = false,
     } = attributes;
 
     data = thumbnailAndOverlayStyle(elementId, attributes, data);
@@ -328,171 +327,112 @@ const navigationStyle = (elementId, attributes, data) => {
     const separatorSelector = '.gvnews_postblock_carousel_1.with-nav-separator .tns-outer .tns-controls:before, .gvnews_postblock_carousel_1.with-nav-separator .tns-outer .tns-controls:after';
 
     isNotEmpty(attributes['navigationWrapperMargin']) && data.push({
-        type: 'dimension',
-        id: 'navigationWrapperMargin',
-        responsive: true,
-        properties: [
+        'type': 'dimension',
+        'id': 'navigationWrapperMargin',
+        'responsive': true,
+        'properties': [
             {
                 name: 'margin',
                 valueType: 'direct'
             }
         ],
-        selector: controlsSelector,
+        'selector': controlsSelector,
     });
 
-    if (
-        isNotEmpty(attributes['navigationWrapperAlign']) ||
-        isNotEmpty(attributes['navigationBtnGap']) ||
-        attributes['navigationEnableSeparator']
-    ) {
-        data.push({
+    isNotEmpty(attributes['navigationWrapperAlign']) && data.push(
+        {
             'type': 'plain',
-            'id': 'navigationControlsDisplay',
+            'id': 'navigationWrapperAlign',
+            'responsive': true,
+            'properties': [
+                {
+                    name: 'justify-content',
+                    valueType: 'direct'
+                }
+            ],
             'selector': controlsSelector,
+        },
+        {
+            'type': 'plain',
+            'id': 'navigationWrapperAlign',
+            'selector': `${controlsSelector}:before`,
             'properties': [
                 {
                     'name': 'display',
-                    'valueType': 'static',
-                    'staticValue': 'flex',
-                },
-                {
-                    'name': 'align-items',
-                    'valueType': 'static',
-                    'staticValue': 'center',
+                    'valueType': 'function',
+                    'functionName': 'modulePaginationAlign',
+                    'functionProps': {
+                        'selectTarget': 'before',
+                    }
                 }
             ],
-        });
-    }
-
-    isNotEmpty(attributes['navigationWrapperAlign']) && data.push({
-        type: 'plain',
-        id: 'navigationWrapperAlign',
-        responsive: true,
-        properties: [
-            {
-                name: 'justify-content',
-                valueType: 'direct'
-            }
-        ],
-        selector: controlsSelector,
-    });
+            'responsive': true,
+        },
+        {
+            'type': 'plain',
+            'id': 'navigationWrapperAlign',
+            'selector': `${controlsSelector}:after`,
+            'properties': [
+                {
+                    'name': 'display',
+                    'valueType': 'function',
+                    'functionName': 'modulePaginationAlign',
+                    'functionProps': {
+                        'selectTarget': 'after',
+                    }
+                }
+            ],
+            'responsive': true,
+        }
+    );
 
     isNotEmpty(attributes['navigationBtnGap']) && data.push({
-        type: 'unitPoint',
-        id: 'navigationBtnGap',
-        properties: [
+        'type': 'unitPoint',
+        'id': 'navigationBtnGap',
+        'properties': [
             {
                 name: 'gap',
                 valueType: 'direct'
             }
         ],
-        responsive: true,
-        selector: controlsSelector,
+        'responsive': true,
+        'selector': controlsSelector,
     });
 
-    if (attributes['navigationEnableSeparator']) {
-        data.push(
-            {
-                'type': 'plain',
-                'id': 'navigationSeparatorContent',
-                'selector': separatorSelector,
-                'properties': [
-                    {
-                        'name': 'content',
-                        'valueType': 'static',
-                        'staticValue': '""',
-                    },
-                    {
-                        'name': 'display',
-                        'valueType': 'static',
-                        'staticValue': 'block',
-                    },
-                    {
-                        'name': 'flex-grow',
-                        'valueType': 'static',
-                        'staticValue': '1',
-                    },
-                    {
-                        'name': 'border-bottom-style',
-                        'valueType': 'static',
-                        'staticValue': 'solid',
-                    },
-                    {
-                        'name': 'border-bottom-width',
-                        'valueType': 'static',
-                        'staticValue': '1px',
-                    }
-                ],
-            },
-            {
-                'type': 'plain',
-                'id': 'navigationWrapperAlign',
-                'responsive': true,
-                'selector': `${controlsSelector}:before`,
-                'properties': [
-                    {
-                        'name': 'display',
-                        'valueType': 'function',
-                        'functionName': 'modulePaginationAlign',
-                        'functionProps': {
-                            'selectTarget': 'before',
-                        }
-                    }
-                ],
-            },
-            {
-                'type': 'plain',
-                'id': 'navigationWrapperAlign',
-                'responsive': true,
-                'selector': `${controlsSelector}:after`,
-                'properties': [
-                    {
-                        'name': 'display',
-                        'valueType': 'function',
-                        'functionName': 'modulePaginationAlign',
-                        'functionProps': {
-                            'selectTarget': 'after',
-                        }
-                    }
-                ],
-            }
-        );
-    }
-
     isNotEmpty(attributes['navigationSeparatorStyle']) && data.push({
-        type: 'plain',
-        id: 'navigationSeparatorStyle',
-        properties: [
+        'type': 'plain',
+        'id': 'navigationSeparatorStyle',
+        'properties': [
             {
-                name: 'border-bottom-style',
-                valueType: 'direct'
+                'name': 'border-bottom-style',
+                'valueType': 'direct'
             }
         ],
-        selector: separatorSelector,
+        'selector': separatorSelector,
     });
 
     isNotEmpty(attributes['navigationSeparatorColor']) && data.push({
-        type: 'color',
-        id: 'navigationSeparatorColor',
-        properties: [
+        'type': 'color',
+        'id': 'navigationSeparatorColor',
+        'properties': [
             {
-                name: 'border-bottom-color',
-                valueType: 'direct'
+                'name': 'border-bottom-color',
+                'valueType': 'direct'
             }
         ],
-        selector: separatorSelector,
+        'selector': separatorSelector,
     });
 
     isNotEmpty(attributes['navigationSeparatorWidth']) && data.push({
-        type: 'unitPoint',
-        id: 'navigationSeparatorWidth',
-        properties: [
+        'type': 'unitPoint',
+        'id': 'navigationSeparatorWidth',
+        'properties': [
             {
-                name: 'border-bottom-width',
-                valueType: 'direct'
+                'name': 'border-bottom-width',
+                'valueType': 'direct'
             }
         ],
-        selector: separatorSelector,
+        'selector': separatorSelector,
     });
 
     return data;
