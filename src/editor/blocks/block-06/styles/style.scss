@@ -21,6 +21,10 @@
     }
 
     .gvnews_postblock_6.gvnews_col_1o3 .gvnews_post {
+        flex-direction: column;
+    }
+
+    .gvnews_postblock_6.gvnews_col_1o3 .gvnews_post {
         .gvnews_thumb {
             width: auto;
             float: none;
