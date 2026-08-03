@@ -16,6 +16,7 @@ import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-ov
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 import { postItemGridPanel } from './panel-post-item';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return applyFilters(
@@ -101,6 +102,16 @@ export const panelList = () => {
                 title: __('Card Style', 'gutenverse-news'),
                 initialOpen: false,
                 panelArray: cardStylePanelModule,
+                tabRole: TabStyle,
+            },
+            {
+                title: __('Content Container', 'gutenverse-news'),
+                initialOpen: false,
+                panelArray: (props) =>
+                    contentContainerPanel({
+                        ...props,
+                        contentAlignVertical: { main: true },
+                    }),
                 tabRole: TabStyle,
             },
             {
