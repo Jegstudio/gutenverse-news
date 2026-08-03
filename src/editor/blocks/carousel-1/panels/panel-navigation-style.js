@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { AlertControl, DimensionControl, IconRadioControl, SizeControl, CheckboxControl, SelectControl, ColorControl } from 'gutenverse-core/controls';
+import { AlertControl, DimensionControl, IconRadioControl, SizeControl, CheckboxControl, SelectControl, ColorControl, HeadingControl, TypographyControl } from 'gutenverse-core/controls';
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from 'gutenverse-core/components';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -214,6 +214,117 @@ export const navigationStylePanel = (props) => {
                         }
                     ],
                     selector: separatorSelector,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnHeading',
+            component: HeadingControl,
+            first: false,
+            label: __('Button Style'),
+            show: showNav,
+        },
+        {
+            id: 'navigationBtnIconSize',
+            label: __('Icon Size', 'gutenverse-news'),
+            allowDeviceControl: true,
+            component: SizeControl,
+            show: showNav,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'px',
+                },
+            },
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'navigationBtnIconSize',
+                    'properties': [
+                        {
+                            'name': 'font-size',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'responsive': true,
+                    'selector': `${controlsSelector} button .gutenverse-icon-svg svg`,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnWidth',
+            label: __('Width', 'gutenverse-news'),
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 1000,
+                    step: 1,
+                    unit: 'px',
+                },
+                ['%']: {
+                    text: '%',
+                    min: 30,
+                    max: 100,
+                    step: 1,
+                    unit: '%',
+                },
+                vh: {
+                    text: 'vh',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'vh',
+                },
+            },
+            component: SizeControl,
+            show: showNav,
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'navigationBtnWidth',
+                    'selector': `${controlsSelector} button`,
+                    'properties': [
+                        {
+                            'name': 'width',
+                            'valueType': 'direct',
+                        }
+                    ],
+                    'responsive': true,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnHeight',
+            label: __('Height', 'gutenverse-news'),
+            allowDeviceControl: true,
+            units: {
+                px: {
+                    text: 'px',
+                    min: 1,
+                    max: 100,
+                    step: 1,
+                    unit: 'px',
+                },
+            },
+            component: SizeControl,
+            show: showNav,
+            liveStyle: [
+                {
+                    'type': 'unitPoint',
+                    'id': 'navigationBtnHeight',
+                    'selector': `${controlsSelector} button`,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'direct',
+                        }
+                    ],
+                    'responsive': true,
                 }
             ]
         },

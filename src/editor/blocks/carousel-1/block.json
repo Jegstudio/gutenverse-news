@@ -57,6 +57,15 @@
         "navigationSeparatorWidth": {
             "type": "object"
         },
+        "navigationBtnIconSize": {
+            "type": "object"
+        },
+        "navigationBtnWidth": {
+            "type": "object"
+        },
+        "navigationBtnHeight": {
+            "type": "object"
+        },
         "iMargin": {
             "type": "string",
             "default": 20

@@ -283,6 +283,45 @@ class Carousel extends StyleAbstract {
 				)
 			);
 		}
+
+		if ( isset( $this->attrs['navigationBtnIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .tns-outer .tns-controls button .gutenverse-icon-svg svg",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'font-size' );
+					},
+					'value'          => $this->attrs['navigationBtnIconSize'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationBtnWidth'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .tns-outer .tns-controls button",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'width' );
+					},
+					'value'          => $this->attrs['navigationBtnWidth'],
+					'device_control' => true,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['navigationBtnHeight'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .tns-outer .tns-controls button",
+					'property'       => function ( $value ) {
+						return $this->handle_unit_point( $value, 'height' );
+					},
+					'value'          => $this->attrs['navigationBtnHeight'],
+					'device_control' => true,
+				)
+			);
+		}
 	}
 
 	/**

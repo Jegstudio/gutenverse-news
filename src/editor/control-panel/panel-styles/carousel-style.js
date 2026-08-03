@@ -435,6 +435,45 @@ const navigationStyle = (elementId, attributes, data) => {
         'selector': separatorSelector,
     });
 
+    isNotEmpty(attributes['navigationBtnIconSize']) && data.push({
+        'type': 'unitPoint',
+        'id': 'navigationBtnIconSize',
+        'selector': `${controlsSelector} button .gutenverse-icon-svg svg`,
+        'properties': [
+            {
+                'name': 'font-size',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
+
+    isNotEmpty(attributes['navigationBtnWidth']) && data.push({
+        'type': 'unitPoint',
+        'id': 'navigationBtnWidth',
+        'selector': `${controlsSelector} button`,
+        'properties': [
+            {
+                'name': 'width',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
+
+    isNotEmpty(attributes['navigationBtnHeight']) && data.push({
+        'type': 'unitPoint',
+        'id': 'navigationBtnHeight',
+        'selector': `${controlsSelector} button`,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'direct'
+            }
+        ],
+        'responsive': true,
+    });
+
     return data;
 };
 
