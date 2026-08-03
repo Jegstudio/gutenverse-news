@@ -66,6 +66,30 @@
         "navigationBtnHeight": {
             "type": "object"
         },
+        "navigationBtnColor": {
+            "type": "object"
+        },
+        "navigationBtnBgColor": {
+            "type": "object"
+        },
+        "navigationBtnBorderResponsive": {
+            "type": "object"
+        },
+        "navigationBtnBoxShadow": {
+            "type": "object"
+        },
+        "navigationBtnColorHover": {
+            "type": "object"
+        },
+        "navigationBtnBgColorHover": {
+            "type": "object"
+        },
+        "navigationBtnBorderResponsiveHover": {
+            "type": "object"
+        },
+        "navigationBtnBoxShadowHover": {
+            "type": "object"
+        },
         "iMargin": {
             "type": "string",
             "default": 20

@@ -474,6 +474,92 @@ const navigationStyle = (elementId, attributes, data) => {
         'responsive': true,
     });
 
+    isNotEmpty(attributes['navigationBtnColor']) && data.push({
+        'type': 'color',
+        'id': 'navigationBtnColor',
+        'selector': `${controlsSelector} button`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navigationBtnBgColor']) && data.push({
+        'type': 'color',
+        'id': 'navigationBtnBgColor',
+        'selector': `${controlsSelector} button`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navigationBtnBorderResponsive']) && data.push({
+        'id': 'navigationBtnBorderResponsive',
+        'type': 'borderResponsive',
+        'responsive': true,
+        'selector': `${controlsSelector} button`,
+    });
+
+    isNotEmpty(attributes['navigationBtnBoxShadow']) && data.push({
+        'type': 'boxShadow',
+        'id': 'navigationBtnBoxShadow',
+        'selector': `${controlsSelector} button`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navigationBtnColorHover']) && data.push({
+        'type': 'color',
+        'id': 'navigationBtnColorHover',
+        'selector': `${controlsSelector} button:hover`,
+        'properties': [
+            {
+                'name': 'color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navigationBtnBgColorHover']) && data.push({
+        'type': 'color',
+        'id': 'navigationBtnBgColorHover',
+        'selector': `${controlsSelector} button:hover`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct',
+            }
+        ],
+    });
+
+    isNotEmpty(attributes['navigationBtnBorderResponsiveHover']) && data.push({
+        'id': 'navigationBtnBorderResponsiveHover',
+        'type': 'borderResponsive',
+        'responsive': true,
+        'selector': `${controlsSelector} button:hover`,
+    });
+
+    isNotEmpty(attributes['navigationBtnBoxShadowHover']) && data.push({
+        'type': 'boxShadow',
+        'id': 'navigationBtnBoxShadowHover',
+        'selector': `${controlsSelector} button:hover`,
+        'properties': [
+            {
+                'name': 'box-shadow',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     return data;
 };
 

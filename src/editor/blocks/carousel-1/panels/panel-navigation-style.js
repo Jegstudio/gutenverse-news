@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { AlertControl, DimensionControl, IconRadioControl, SizeControl, CheckboxControl, SelectControl, ColorControl, HeadingControl, TypographyControl } from 'gutenverse-core/controls';
+import { AlertControl, DimensionControl, IconRadioControl, SizeControl, CheckboxControl, SelectControl, ColorControl, HeadingControl, SwitchControl, BorderResponsiveControl, BoxShadowControl } from 'gutenverse-core/controls';
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from 'gutenverse-core/components';
 import { getDeviceType } from 'gutenverse-core/editor-helper';
 
@@ -9,6 +9,8 @@ export const navigationStylePanel = (props) => {
         showNav,
         navigationEnableSeparator = false,
         navigationWrapperAlign,
+        switcher,
+        setSwitcher,
     } = props;
     const device = getDeviceType();
     const controlsSelector = `.${elementId} .tns-outer .tns-controls`;
@@ -20,7 +22,7 @@ export const navigationStylePanel = (props) => {
             component: AlertControl,
             show: !showNav,
             children: <>
-                <span>{__('Show naviation to use these options.', 'gutenverse-news')}</span>
+                <span>{__('Show navigation to use these options.', 'gutenverse-news')}</span>
             </>
         },
         {
@@ -325,6 +327,166 @@ export const navigationStylePanel = (props) => {
                         }
                     ],
                     'responsive': true,
+                }
+            ]
+        },
+        {
+            id: '__navigationBtnHover',
+            component: SwitchControl,
+            options: [
+                {
+                    value: 'normal',
+                    label: 'Normal'
+                },
+                {
+                    value: 'hover',
+                    label: 'Hover'
+                }
+            ],
+            show: showNav,
+            onChange: ({ __navigationBtnHover }) => setSwitcher({ ...switcher, state: __navigationBtnHover })
+        },
+        {
+            id: 'navigationBtnColor',
+            component: ColorControl,
+            show: showNav && (!switcher.__navigationBtnHover || switcher.__navigationBtnHover === 'normal'),
+            label: __('Color', 'gutenverse-news'),
+            liveStyle: [
+                {
+                    'type': 'color',
+                    'id': 'navigationBtnColor',
+                    'selector': `${controlsSelector} button`,
+                    'properties': [
+                        {
+                            'name': 'color',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBgColor',
+            component: ColorControl,
+            show: showNav && (!switcher.__navigationBtnHover || switcher.__navigationBtnHover === 'normal'),
+            label: __('Background Color', 'gutenverse-news'),
+            liveStyle: [
+                {
+                    'type': 'color',
+                    'id': 'navigationBtnBgColor',
+                    'selector': `${controlsSelector} button`,
+                    'properties': [
+                        {
+                            'name': 'background-color',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBorderResponsive',
+            show: showNav && (!switcher.__navigationBtnHover || switcher.__navigationBtnHover === 'normal'),
+            label: __('Border', 'gutenverse'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'id': 'navigationBtnBorderResponsive',
+                    'type': 'borderResponsive',
+                    'responsive': true,
+                    'selector': `${controlsSelector} button`,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBoxShadow',
+            label: __('Box Shadow', '--gctd--'),
+            show: showNav && (!switcher.__navigationBtnHover || switcher.__navigationBtnHover === 'normal'),
+            component: BoxShadowControl,
+            liveStyle: [
+                {
+                    'type': 'boxShadow',
+                    'properties': [
+                        {
+                            'name': 'box-shadow',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'id': 'navigationBtnBoxShadow',
+                    'selector': `${controlsSelector} button`,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnColorHover',
+            component: ColorControl,
+            show: showNav && (switcher.__navigationBtnHover === 'hover'),
+            label: __('Color', 'gutenverse-news'),
+            liveStyle: [
+                {
+                    'type': 'color',
+                    'id': 'navigationBtnColorHover',
+                    'selector': `${controlsSelector} button:hover`,
+                    'properties': [
+                        {
+                            'name': 'color',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBgColorHover',
+            component: ColorControl,
+            show: showNav && (switcher.__navigationBtnHover === 'hover'),
+            label: __('Background Color', 'gutenverse-news'),
+            liveStyle: [
+                {
+                    'type': 'color',
+                    'id': 'navigationBtnBgColorHover',
+                    'selector': `${controlsSelector} button:hover`,
+                    'properties': [
+                        {
+                            'name': 'background-color',
+                            'valueType': 'direct',
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBorderResponsiveHover',
+            show: showNav && (switcher.__navigationBtnHover === 'hover'),
+            label: __('Border', 'gutenverse'),
+            component: BorderResponsiveControl,
+            allowDeviceControl: true,
+            liveStyle: [
+                {
+                    'id': 'navigationBtnBorderResponsiveHover',
+                    'type': 'borderResponsive',
+                    'responsive': true,
+                    'selector': `${controlsSelector} button:hover`,
+                }
+            ]
+        },
+        {
+            id: 'navigationBtnBoxShadowHover',
+            label: __('Box Shadow', '--gctd--'),
+            show: showNav && (switcher.__navigationBtnHover === 'hover'),
+            component: BoxShadowControl,
+            liveStyle: [
+                {
+                    'type': 'boxShadow',
+                    'properties': [
+                        {
+                            'name': 'box-shadow',
+                            'valueType': 'direct'
+                        }
+                    ],
+                    'id': 'navigationBtnBoxShadow',
+                    'selector': `${controlsSelector} button:hover`,
                 }
             ]
         },
