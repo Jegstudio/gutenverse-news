@@ -28,6 +28,7 @@
 
         .gvnews_postblock_content {
             margin-left: 0;
+            flex: 1;
         }
     }
 }
@@ -45,7 +46,6 @@
             flex-wrap: wrap;
             display: flex;
             align-items: stretch;
-            margin-right: -30px;
         }
     }
 }

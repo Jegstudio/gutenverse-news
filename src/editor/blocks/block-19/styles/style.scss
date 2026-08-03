@@ -1,6 +1,8 @@
 .gvnews-block .gvnews_postblock_19 {
     .gvnews_pl_md_box .gvnews_post_meta {
-        a, a:hover {
+
+        a,
+        a:hover {
             color: unset;
         }
 
@@ -23,7 +25,17 @@
         }
     }
 
+    .gvnews_pl_sm {
+        display: flex;
+
+        .gvnews_postblock_content {
+            margin-left: 0;
+            flex: 1;
+        }
+    }
+
     &.gvnews_col_1o3 {
+
         .gvnews_postsmall,
         .gvnews_posts {
             display: flex;
