@@ -166,9 +166,9 @@ class Header extends StyleAbstract {
 			if ( 'heading_5' === $this->attrs['headerType'] ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:before",
+						'selector'       => ".{$this->element_id} .gvnews_block_heading_5 .line",
 						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'border-color' );
+							return $this->handle_color( $value, 'border-bottom-color' );
 						},
 						'value'          => $this->attrs['headerLineColor2'],
 						'device_control' => false,
