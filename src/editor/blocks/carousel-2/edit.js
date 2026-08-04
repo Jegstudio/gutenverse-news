@@ -406,6 +406,24 @@ const Carousel2Block = compose(
         initSlider();
     }, [block]);
 
+    useEffect(() => {
+        if (!blockRef.current) {
+            return;
+        }
+        let animationFrameId;
+        const resizeObserver = new ResizeObserver(() => {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(() => {
+                window.dispatchEvent(new Event('resize'));
+            });
+        });
+        resizeObserver.observe(blockRef.current);
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            resizeObserver.disconnect();
+        };
+    }, [block]);
+
     if (!gutenverseProActive) {
         return <>
             <PanelUpgradePro title="Carousel 2" />

@@ -17,6 +17,7 @@ use GUTENVERSE\NEWS\Style\Archive_Pagination;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
+use GUTENVERSE\NEWS\Style\Carousel_1;
 use GUTENVERSE\NEWS\Style\Header;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\Hero_14;
@@ -127,6 +128,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-slider' ):
 					$instance = new Slider( $attrs, $name );
+					break;
+				case 'gutenverse/news-carousel-1' === $name:
+					$instance = new Carousel_1( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-carousel' ):
 					$instance = new Carousel( $attrs, $name );
