@@ -109,6 +109,12 @@ export const stylePanel = (props) => {
             component: ColorControl,
         },
         {
+            id: 'headerIconColor',
+            label: __('Header Icon Color', 'gutenverse-news'),
+            description: __('Change color of your header icon.', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
             id: 'headerTextColor',
             label: __('Header Text Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),

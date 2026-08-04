@@ -464,6 +464,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
@@ -472,9 +476,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-hero-skew-style"],
-    "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "style": [
+        "gutenverse-news-frontend-hero-skew-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-hero-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

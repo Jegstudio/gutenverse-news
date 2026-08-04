@@ -293,6 +293,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object"
         },
@@ -839,6 +842,10 @@
         },
         "overlayIconColorMain": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

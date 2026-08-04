@@ -333,8 +333,8 @@
         "transitionShow": {
             "type": "string"
         },
-        "buttonTransition":{
-            "type":"string"
+        "buttonTransition": {
+            "type": "string"
         },
         "borderButton": {
             "type": "object"
@@ -515,6 +515,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

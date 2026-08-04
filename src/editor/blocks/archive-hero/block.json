@@ -373,6 +373,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

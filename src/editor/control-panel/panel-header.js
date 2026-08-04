@@ -72,15 +72,9 @@ export const headerPanel = (props) => {
 
 export const headerSettingsPanel = (props) => {
     const {
-        elementId,
-        headerType,
         title,
         second_title
     } = props;
-
-    const {
-        imgDir
-    } = window['GVNewsConfig'];
 
     return [
         {
@@ -270,6 +264,13 @@ export const headerStylesPanel = (props) => {
                     render: value => handleColor(value, 'background')
                 }
             ],
+        },
+        {
+            id: 'headerIconColor',
+            label: __('Header Icon Color', 'gutenverse-news'),
+            description: __('Change color of your header icon.', 'gutenverse-news'),
+            component: ColorControl,
+            show: withText
         },
         {
             id: 'headerTextColor',

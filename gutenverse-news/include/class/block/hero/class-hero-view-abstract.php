@@ -117,6 +117,7 @@ abstract class Hero_View_Abstract extends Block_View_Abstract {
 				esc_attr( $this->unique_id ),
 				esc_attr( $this->get_vc_class_name() ),
 				esc_attr( $attr['el_class'] ),
+				$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 			)
 		);
 

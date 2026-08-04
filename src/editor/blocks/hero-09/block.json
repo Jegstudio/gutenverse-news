@@ -40,11 +40,14 @@
         },
         "heroItemOverlay": {
             "type": "array",
-            "default": [{
-                "overlayEnable": false
-            }, {
-                "overlayEnable": false
-            }]
+            "default": [
+                {
+                    "overlayEnable": false
+                },
+                {
+                    "overlayEnable": false
+                }
+            ]
         },
         "postOffset": {
             "type": "string",
@@ -468,6 +471,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
@@ -476,9 +483,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-hero-09-style"],
-    "viewScript": ["gutenverse-news-frontend-hero-slider-script"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "style": [
+        "gutenverse-news-frontend-hero-09-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-hero-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

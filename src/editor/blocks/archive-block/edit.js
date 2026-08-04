@@ -58,6 +58,7 @@ const ArchiveBlock = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const [masonryReload, setMasonryReload] = useState(false);
@@ -172,7 +173,7 @@ const ArchiveBlock = compose(
             <CopyElementToolbar {...props} />
             <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
             <div {...blockProps}>
-                <div className="guten-raw-wrapper gvnews-editor">
+                <div className={`guten-raw-wrapper gvnews-editor ${allowOverrideCategoryColor ? 'gvnews_override_category': ''}`}>
                     <BlockHandler {...theProps} />
                 </div>
             </div>

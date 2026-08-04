@@ -81,6 +81,12 @@ class GutenverseCarouselModule {
     }
 
     getDefaultOption = (options, wrapper) => {
+        const parseItemCount = (value, fallback) => {
+            const parsed = parseInt(value, 10);
+
+            return Number.isNaN(parsed) ? fallback : parsed;
+        };
+
         let carouselDefault = {
             textDirection: 'ltr',
             container: wrapper.nodes[0],
@@ -142,11 +148,24 @@ class GutenverseCarouselModule {
         const responsiveItem = options?.responsiveItem ? options.responsiveItem : ('undefined' === typeof carouselDefault.container.dataset.responsiveItem ? false : carouselDefault.container.dataset.responsiveItem);
 
         if (useResponsive) {
-            carouselDefault.items = responsiveItem.Desktop;
+            const desktopItem = parseItemCount(
+                options?.desktopItem ?? responsiveItem?.Desktop ?? carouselDefault.container.dataset.desktopItem,
+                carouselDefault.items
+            );
+            const tabletItem = parseItemCount(
+                options?.tabletItem ?? responsiveItem?.Tablet ?? carouselDefault.container.dataset.tabletItem,
+                Math.min(desktopItem, 2)
+            );
+            const mobileItem = parseItemCount(
+                options?.mobileItem ?? responsiveItem?.Mobile ?? carouselDefault.container.dataset.mobileItem,
+                1
+            );
+
+            carouselDefault.items = desktopItem;
             carouselDefault.responsive = {
-                0: { items: options?.mobileItem ? options.mobileItem : ('undefined' === typeof carouselDefault.container.dataset.mobileItem ? 1 : carouselDefault.container.dataset.mobileItem) },
-                768: { items: options?.tabletItem ? options.tabletItem : ('undefined' === typeof carouselDefault.container.dataset.tabletItem ? 2 : carouselDefault.container.dataset.tabletItem) },
-                1024: { items: options?.desktopItem ? options.desktopItem : ('undefined' === typeof carouselDefault.container.dataset.desktopItem ? 3 : carouselDefault.container.dataset.desktopItem) },
+                0: { items: mobileItem },
+                768: { items: tabletItem },
+                1024: { items: desktopItem },
             };
 
             if (u(this.block).hasClass('gvnews_postblock_carousel_1')) {
@@ -189,7 +208,7 @@ class GutenverseCarouselModule {
                             info.event.stopPropagation();
                         });
 
-                        u(this.block).addClass('gvnews_tns_active');
+                        u(carousel).addClass('gvnews_tns_active');
                     }
                 }
             }

@@ -134,6 +134,12 @@ export const headerPanel = (props) => {
             ],
         },
         {
+            id: 'headerIconColor',
+            label: __('Header Icon Color', 'gutenverse-news'),
+            description: __('Change color of your header icon.', 'gutenverse-news'),
+            component: ColorControl,
+        },
+        {
             id: 'headerSecondColor',
             show: headerType === 'heading_2',
             label: __('Header Secondary Color', 'gutenverse-news'),

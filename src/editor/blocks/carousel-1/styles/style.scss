@@ -17,20 +17,3 @@
         padding: 0 10px;
     }
 }
-
-@media only screen and (min-width: 768px) {
-    .gvnews_postblock_carousel_1 .gvnews_carousel_post:not(.owl-loaded) .gvnews_post:nth-child(n+4) {
-        display: none !important;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    /* Postblock Carousel 1 */
-
-    .gvnews_postblock_carousel_1 .gvnews_carousel_post:not(.owl-loaded) .gvnews_post {
-        &:nth-child(n+3) {
-            display: none !important;
-        }
-    }
-
-}

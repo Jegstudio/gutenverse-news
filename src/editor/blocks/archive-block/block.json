@@ -420,7 +420,7 @@
         "fetchPriorityHigh": {
             "type": "boolean"
         },
-        "showMetaReview":{
+        "showMetaReview": {
             "type": "boolean"
         },
         "flexAlignSelf": {
@@ -491,6 +491,10 @@
         },
         "overlayIconColorSecond": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

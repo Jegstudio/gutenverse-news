@@ -106,6 +106,12 @@ const AdditionalFeatures = (props) => {
             desc: 'Add advertisements to your posts and pages with more customization options for Gutenverse News.',
             icon: <IconAdsSVG />,
         },
+        {
+            id: 'extend_category_setting',
+            title: 'Extend Category Settings',
+            desc: 'Extend category settings to add more options on category label.',
+            icon: <IconSplitPostSVG />,
+        },
     ];
 
     return (
