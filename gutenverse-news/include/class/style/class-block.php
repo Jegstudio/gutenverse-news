@@ -59,6 +59,13 @@ class Block extends StyleAbstract {
 	}
 
 	/**
+	 * Generate additional style.
+	 */
+	protected function generate_additional_style() {
+		// do nothing.
+	}
+
+	/**
 	 * Generate style base on attribute.
 	 */
 	public function generate() {
@@ -71,6 +78,7 @@ class Block extends StyleAbstract {
 		$this->post_item_style();
 		$this->no_content_style();
 		$this->generate_card_style();
+		$this->generate_additional_style();
 
 		do_action( 'gvnews_module_style', $this );
 
@@ -552,7 +560,7 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
-	
+
 		if ( isset( $this->attrs['noContentTypography'] ) ) {
 			$this->inject_typography(
 				array(
@@ -904,7 +912,7 @@ class Block extends StyleAbstract {
 				)
 			);
 		}
-	
+
 		if ( isset( $this->attrs['paginationNumberBtnWidth'] ) ) {
 			$this->inject_style(
 				array(

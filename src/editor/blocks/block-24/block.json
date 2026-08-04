@@ -799,6 +799,18 @@
         },
         "overlayIconColorMain": {
             "type": "object"
+        },
+         "listIconSize": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconSpacing": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconAlign": {
+            "type": "string",
+            "copyStyle": true
         }
     },
     "supports": {
