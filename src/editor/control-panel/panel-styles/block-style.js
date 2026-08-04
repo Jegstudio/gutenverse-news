@@ -131,10 +131,10 @@ const getBlockStyle = (
     isNotEmpty(attributes['headerLineColor2']) && data.push({
         'type': 'color',
         'id': 'headerLineColor2',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_5:before`,
+        'selector': `.${elementId} .gvnews_block_heading_5 .line`,
         'properties': [
             {
-                'name': 'border-color',
+                'name': 'border-bottom-color',
                 'valueType': 'direct'
             }
         ],

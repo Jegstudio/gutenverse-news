@@ -338,8 +338,8 @@ export const headerStylesPanel = (props) => {
             component: ColorControl,
             style: [
                 {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_5:before`,
-                    render: value => handleColor(value, 'border-color')
+                    selector: `.${elementId} .gvnews_block_heading_5 .line`,
+                    render: value => handleColor(value, 'border-bottom-color')
                 }
             ],
         },
