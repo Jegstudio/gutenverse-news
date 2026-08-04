@@ -22,6 +22,18 @@
             "type": "string",
             "default": 3
         },
+        "ncolumnResponsive": {
+            "type": "object",
+            "default": {
+                "Desktop": 3,
+                "Tablet": 3,
+                "Mobile": 1
+            }
+        },
+        "enableResponsiveColumn": {
+            "type": "boolean",
+            "default": false
+        },
         "autoplayDelay": {
             "type": "string",
             "default": 2000

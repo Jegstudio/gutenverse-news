@@ -97,6 +97,13 @@ class Slider_3 extends Slider_View_Abstract {
 				'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 			);
 
+			if ( isset( $attr['enable_responsive_column'] ) && $attr['enable_responsive_column'] ) {
+				$data_attr['enable-responsive-column'] = 'true';
+				$data_attr['responsive-items-desktop'] = isset( $attr['ncolumn_responsive']['Desktop'] ) ? $attr['ncolumn_responsive']['Desktop'] : 3;
+				$data_attr['responsive-items-tablet']  = isset( $attr['ncolumn_responsive']['Tablet'] ) ? $attr['ncolumn_responsive']['Tablet'] : 3;
+				$data_attr['responsive-items-mobile']  = isset( $attr['ncolumn_responsive']['Mobile'] ) ? $attr['ncolumn_responsive']['Mobile'] : 1;
+			}
+
 			$data_attr = gvnews_build_data_attr( $data_attr );
 
 			$output =

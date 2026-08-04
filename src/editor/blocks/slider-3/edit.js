@@ -83,6 +83,8 @@ const Slider3Block = compose(
         prevButtonIcon,
         prevButtonIconType,
         prevButtonIconSVG,
+        enableResponsiveColumn = false,
+        ncolumnResponsive,
     } = attributes;
 
     const metaSettings = {
@@ -220,6 +222,10 @@ const Slider3Block = compose(
                 data-class-prev={prevButtonIcon}
                 data-class-prev-type={prevButtonIconType}
                 data-class-prev-svg={prevButtonIconSVG}
+                data-enable-responsive-column={enableResponsiveColumn ? 'true' : ''}
+                data-responsive-items-desktop={ncolumnResponsive?.Desktop}
+                data-responsive-items-tablet={ncolumnResponsive?.Tablet}
+                data-responsive-items-mobile={ncolumnResponsive?.Mobile}
             >
                 {content}
             </div>
@@ -378,7 +384,9 @@ const Slider3Block = compose(
         showMetaAuthor,
         postTitleHtmlTag,
         gutenversePreviewBlock,
-        showPostFormatIcon
+        showPostFormatIcon,
+        enableResponsiveColumn,
+        ncolumnResponsive,
     ]);
 
     useEffect(() => {

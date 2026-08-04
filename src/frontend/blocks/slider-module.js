@@ -295,20 +295,29 @@ class GutenverseSliderModule {
         if (u(sliderDefault.container).hasClass('gvnews_slider_type_3')) {
             slideType = 3;
             wrapper = u(sliderDefault.container).parent('.gvnews_slider_wrapper');
-            sliderDefault.items = sliderDefault.container.dataset.items;
-            items_desktop = sliderDefault.items;
-            items_tablet = sliderDefault.items < 3 ? sliderDefault.items : 3;
-            items_phone = sliderDefault.items < 2 ? sliderDefault.items : 2;
 
-            // Main Content
-            if (u(wrapper).find('gvnews_col_2o3')) {
-                if (items_desktop > 3 && this.getWindowWidth() == 1024) {
-                    items_desktop = 3;
+            const enableResponsive = sliderDefault.container.dataset.enableResponsiveColumn === 'true';
+            if (enableResponsive) {
+                items_desktop = sliderDefault.container.dataset.responsiveItemsDesktop ? parseInt(sliderDefault.container.dataset.responsiveItemsDesktop) : 3;
+                items_tablet  = sliderDefault.container.dataset.responsiveItemsTablet ? parseInt(sliderDefault.container.dataset.responsiveItemsTablet) : 3;
+                items_phone   = sliderDefault.container.dataset.responsiveItemsMobile ? parseInt(sliderDefault.container.dataset.responsiveItemsMobile) : 1;
+                sliderDefault.items = items_desktop;
+            } else {
+                sliderDefault.items = sliderDefault.container.dataset.items;
+                items_desktop = sliderDefault.items;
+                items_tablet = sliderDefault.items < 3 ? sliderDefault.items : 3;
+                items_phone = sliderDefault.items < 2 ? sliderDefault.items : 2;
+
+                // Main Content
+                if (u(wrapper).find('gvnews_col_2o3')) {
+                    if (items_desktop > 3 && this.getWindowWidth() == 1024) {
+                        items_desktop = 3;
+                    }
+                } else if (u(wrapper).find('gvnews_col_1o3')) {
+                    items_tablet = 1;
+
+                    if (this.getWindowWidth() >= 1024) items_desktop = 1;
                 }
-            } else if (u(wrapper).find('gvnews_col_1o3')) {
-                items_tablet = 1;
-
-                if (this.getWindowWidth() >= 1024) items_desktop = 1;
             }
 
             sliderDefault.nav = false;
@@ -318,12 +327,22 @@ class GutenverseSliderModule {
             sliderDefault.gutter = 5;
             sliderDefault.lazyload = true;
             sliderDefault.lazyloadSelector = '.gvnews_slide_item .owl-lazy';
-            sliderDefault.responsive = {
-                0: { items: 1 },
-                568: { items: items_phone },
-                768: { items: items_tablet },
-                1024: { items: items_desktop },
-            };
+
+            if (enableResponsive) {
+                sliderDefault.responsive = {
+                    0: { items: items_phone },
+                    568: { items: items_phone },
+                    768: { items: items_tablet },
+                    1024: { items: items_desktop },
+                };
+            } else {
+                sliderDefault.responsive = {
+                    0: { items: 1 },
+                    568: { items: items_phone },
+                    768: { items: items_tablet },
+                    1024: { items: items_desktop },
+                };
+            }
 
             return { slideType, sliderDefault };
         }

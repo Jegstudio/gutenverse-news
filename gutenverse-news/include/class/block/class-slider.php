@@ -124,6 +124,8 @@ class Slider extends Grab {
 			'autoplay_delay'           => isset( $this->attributes['autoplayDelay'] ) ? $this->attributes['autoplayDelay'] : '',
 			'enable_hover_action'      => isset( $this->attributes['hoverEffect'] ) ? $this->attributes['hoverEffect'] : '',
 			'number_item'              => isset( $this->attributes['ncolumn'] ) ? $this->attributes['ncolumn'] : '',
+			'enable_responsive_column' => isset( $this->attributes['enableResponsiveColumn'] ) ? $this->attributes['enableResponsiveColumn'] : false,
+			'ncolumn_responsive'       => isset( $this->attributes['ncolumnResponsive'] ) ? $this->attributes['ncolumnResponsive'] : array(),
 			'fullsize_image'           => isset( $this->attributes['fimage'] ) ? $this->attributes['fimage'] : '',
 			'featured_position'        => isset( $this->attributes['fimagePosition'] ) ? $this->attributes['fimagePosition'] : '',
 			'short_code'               => $this->attributes['gvnewsModule'],

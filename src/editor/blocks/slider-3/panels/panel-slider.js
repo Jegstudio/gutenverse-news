@@ -7,6 +7,7 @@ export const sliderPanel = (props) => {
         autoplay,
         normalImage,
         imageLoad = '',
+        enableResponsiveColumn = false
     } = props;
     const defaultImageLoad = getDefaultImageLoad(imageLoad, normalImage);
 
@@ -15,9 +16,25 @@ export const sliderPanel = (props) => {
             id: 'ncolumn',
             label: __('Number of Column', 'gutenverse-news'),
             component: RangeControl,
+            show: !enableResponsiveColumn,
             min: 1,
             max: 5,
             step: 1,
+        },
+        {
+            id: 'ncolumnResponsive',
+            label: __('Number of Column', 'gutenverse-news'),
+            component: RangeControl,
+            show: enableResponsiveColumn,
+            min: 1,
+            max: 5,
+            step: 1,
+            allowDeviceControl: true
+        },
+        {
+            id: 'enableResponsiveColumn',
+            label: __('Enable Responsive Column', 'gutenverse-news'),
+            component: CheckboxControl,
         },
         {
             id: 'autoplay',
