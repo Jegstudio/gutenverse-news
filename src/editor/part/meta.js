@@ -48,8 +48,10 @@ const MetaComments = props => {
 };
 
 const MetaCategory = props => {
+    const { category } = props.post;
+    const slugClass = category && category.slug ? `category-${category.slug}` : '';
     return <div className="gvnews_post_category">
-        <span><a>{props.post.category.name}</a></span>
+        <span><a className={slugClass}>{category.name}</a></span>
     </div>;
 };
 

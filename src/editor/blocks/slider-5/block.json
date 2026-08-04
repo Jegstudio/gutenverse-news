@@ -39,7 +39,7 @@
             "default": false
         },
         "normalOverlay": {
-            "type":"object"
+            "type": "object"
         },
         "overrideOverlay": {
             "type": "object"
@@ -384,7 +384,6 @@
             "default": "center",
             "copyStyle": true
         },
-
         "noContentTypography": {
             "type": "object",
             "copyStyle": true
@@ -491,6 +490,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
@@ -499,9 +502,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-slider-5-style"],
-    "viewScript": ["gutenverse-news-frontend-slider-script"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "style": [
+        "gutenverse-news-frontend-slider-5-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

@@ -1,5 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { DimensionControl, SwitchControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl } from 'gutenverse-core/controls';
+import { DimensionControl, SwitchControl, ColorControl, TypographyControl, BorderControl, BoxShadowControl, CheckboxControl } from 'gutenverse-core/controls';
+import { featureActive, newsEssentialsActive } from '../utils/helper';
+
+const isEssentialsActive = newsEssentialsActive();
+const isExtendCategoryActive = featureActive('extend_category_setting');
 
 export const categoryStylePanel = (props) => {
     const {
@@ -9,6 +13,13 @@ export const categoryStylePanel = (props) => {
     } = props;
 
     return [
+        {
+            id: 'allowOverrideCategoryColor',
+            label: __('Allow Override Color', 'gutenverse-news'),
+            description: __('If enabled, the styles configured in "Posts > Categories > Edit Category > Override Category Color" will be applied.', 'gutenverse-news'),
+            show: isEssentialsActive && isExtendCategoryActive,
+            component: CheckboxControl,
+        },
         {
             id: 'categoryButtonTypography',
             label: __('Typography', 'gutenverse-news'),

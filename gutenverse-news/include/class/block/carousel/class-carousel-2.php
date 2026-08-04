@@ -94,6 +94,7 @@ class Carousel_2 extends Carousel_View_Abstract {
 					'gvnews_postblock',
 					'gvnews_col_12',
 					esc_attr( $this->get_vc_class_name() ),
+					$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 				)
 			);
 

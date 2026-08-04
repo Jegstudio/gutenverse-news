@@ -84,6 +84,7 @@ class Slider_6 extends Slider_View_Abstract {
 					esc_attr( $this->get_vc_class_name() ),
 					$additional_class,
 					esc_attr( $attr['el_class'] ),
+					$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 				)
 			);
 

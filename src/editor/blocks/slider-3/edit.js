@@ -76,6 +76,7 @@ const Slider3Block = compose(
         videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
         gutenversePreviewBlock = '',
+        allowOverrideCategoryColor = false,
         nextButtonIcon,
         nextButtonIconType,
         nextButtonIconSVG,
@@ -169,7 +170,7 @@ const Slider3Block = compose(
 
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
-    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''} ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`;
 
     function RenderContent(props) {
         const format = props.post?.format || 'standard';

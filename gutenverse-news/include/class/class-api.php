@@ -724,13 +724,15 @@ class Api {
 		) : array();
 
 		foreach ( $result['result'] as $post ) {
-			$cat_id   = gvnews_get_primary_category( $post->ID );
-			$category = '';
+			$cat_id        = gvnews_get_primary_category( $post->ID );
+			$category_name = '';
+			$category_slug = '';
 
 			if ( $cat_id ) {
 				$category = get_category( $cat_id );
 				if ( $category && isset( $category->name ) ) {
-					$category = $category->name;
+					$category_name = $category->name;
+					$category_slug = $category->slug;
 				}
 			}
 			$excerpt = '';
@@ -758,7 +760,8 @@ class Api {
 				),
 				'category'           => array(
 					'id'   => $cat_id,
-					'name' => $category,
+					'name' => $category_name,
+					'slug' => $category_slug,
 				),
 				'date'               => array(
 					'published' => get_post_timestamp( $post->ID, 'date' ),
@@ -815,13 +818,15 @@ class Api {
 
 		if ( isset( $result_query['result'] ) ) {
 			foreach ( $result_query['result'] as $post ) {
-				$cat_id   = gvnews_get_primary_category( $post->ID );
-				$category = '';
+				$cat_id        = gvnews_get_primary_category( $post->ID );
+				$category_name = '';
+				$category_slug = '';
 
 				if ( $cat_id ) {
 					$category = get_category( $cat_id );
 					if ( $category && isset( $category->name ) ) {
-						$category = $category->name;
+						$category_name = $category->name;
+						$category_slug = $category->slug;
 					}
 				}
 				$excerpt = '';
@@ -847,7 +852,8 @@ class Api {
 					),
 					'category'  => array(
 						'id'   => $cat_id,
-						'name' => $category,
+						'name' => $category_name,
+						'slug' => $category_slug,
 					),
 					'date'      => array(
 						'published' => get_post_timestamp( $post->ID, 'date' ),

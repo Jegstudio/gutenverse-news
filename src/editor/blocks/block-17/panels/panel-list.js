@@ -13,10 +13,10 @@ import { metaPanel } from '../../../control-panel/panel-meta';
 import { metaStylePanel } from '../../../control-panel/panel-meta-style';
 import { thumbnailSettingPanel } from '../../../control-panel/panel-thumbnail-setting';
 import { thumbnailOverlayPanel } from '../../../control-panel/panel-thumbnail-overlay';
-import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
 import { postItemGridPanel } from '../../../control-panel/panel-post-item';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return [

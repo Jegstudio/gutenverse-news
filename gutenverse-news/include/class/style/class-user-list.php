@@ -57,6 +57,21 @@ class User_List extends StyleAbstract {
 				)
 			);
 		}
+		if ( isset( $this->attrs['headerIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "
+						.{$this->element_id} .gvnews_block_title span .gutenverse-icon-svg,
+						.{$this->element_id} .gvnews_block_title span i
+					",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['headerIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
 		if ( isset( $this->attrs['headerBackgroundColor'] ) ) {
 			if ( 'heading_1' === $this->attrs['headerType'] || 'heading_2' === $this->attrs['headerType'] || 'heading_4' === $this->attrs['headerType'] || 'heading_5' === $this->attrs['headerType'] ) {
 				$this->inject_style(
