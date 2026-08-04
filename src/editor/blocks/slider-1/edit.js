@@ -75,7 +75,8 @@ const Slider1Block = compose(
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
-        gutenversePreviewBlock = ''
+        gutenversePreviewBlock = '',
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const metaSettings = {
@@ -397,7 +398,7 @@ const Slider1Block = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
+            <div className={`gvnews-raw-wrapper gvnews-editor ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`}>
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 {block}
                 {(overlay && !firstRender.current) && <ModuleOverlay />}

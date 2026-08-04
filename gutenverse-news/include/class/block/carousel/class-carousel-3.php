@@ -100,6 +100,7 @@ class Carousel_3 extends Carousel_View_Abstract {
 					'gvnews_col_' . esc_attr( $width ),
 					esc_attr( $additional_class ),
 					esc_attr( $this->get_vc_class_name() ),
+					$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 				)
 			);
 

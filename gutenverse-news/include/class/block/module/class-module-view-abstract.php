@@ -58,6 +58,7 @@ abstract class Module_View_Abstract extends Block_View_Abstract {
 				$this->unique_id,
 				$this->get_vc_class_name(),
 				$this->additional_class,
+				$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 			)
 		);
 

@@ -78,6 +78,7 @@ const Carousel2Block = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const overlayIconData = {
@@ -429,7 +430,7 @@ const Carousel2Block = compose(
             )}
         </InspectorControls>
         <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
+            <div className={`gvnews-raw-wrapper gvnews-editor ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`}>
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 {block}
                 {(overlay && !firstRender.current) && <ModuleOverlay />}

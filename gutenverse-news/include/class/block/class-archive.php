@@ -101,6 +101,7 @@ class Archive extends Grab {
 			),
 			'post_title_html_tag'   => isset( $this->attributes['postTitleHtmlTag'] ) ? $this->attributes['postTitleHtmlTag'] : 'h3',
 			'fetch_priority_high'   => isset( $this->attributes['fetchPriorityHigh'] ) ? $this->attributes['fetchPriorityHigh'] : false,
+			'allow_override_category_color' => isset( $this->attributes['allowOverrideCategoryColor'] ) ? $this->attributes['allowOverrideCategoryColor'] : false,
 		);
 
 		$attr = $this->archive_title( $attr );

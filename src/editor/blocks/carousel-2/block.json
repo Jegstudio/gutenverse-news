@@ -477,6 +477,10 @@
         },
         "overlayOpacityHover": {
             "type": "string"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
@@ -485,9 +489,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "viewScript": ["gutenverse-news-frontend-carousel-slider-script"],
-    "style": ["gutenverse-news-frontend-carousel-2-style"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "viewScript": [
+        "gutenverse-news-frontend-carousel-slider-script"
+    ],
+    "style": [
+        "gutenverse-news-frontend-carousel-2-style"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

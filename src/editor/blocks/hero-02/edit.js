@@ -54,6 +54,7 @@ const Hero2Block = compose(
         metaDateFormatCustom,
         heroMargin,
         heightDesktop,
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const animationClass = useAnimationEditor(attributes);
@@ -86,7 +87,7 @@ const Hero2Block = compose(
         <CopyElementToolbar {...props} />
         <BlockPanelController panelList={panelList} props={props} elementRef={elementRef} />
         <div  {...blockProps}>
-            <div className="gvnews-raw-wrapper gvnews-editor">
+            <div className={`gvnews-raw-wrapper gvnews-editor ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`}>
                 <div className="gvnews-element-overlay" style={{ 'pointerEvents': isSelected ? 'none' : 'auto' }}></div>
                 <HeroHandler
                     {...{

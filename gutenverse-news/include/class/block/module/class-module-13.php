@@ -64,6 +64,8 @@ class Module_13 extends Module_View_Abstract {
                 </div>
             </div>';
 
+		error_log( $output ) ;
+
 		return 1 === $type ? $output :
 		'<article ' . gvnews_post_class( 'gvnews_post gvnews_pl_md_1', $post->ID ) . '>' .
 		$output

@@ -72,6 +72,7 @@ const Hero14Block = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const overlayIconData = {
@@ -140,7 +141,7 @@ const Hero14Block = compose(
 
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
-    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''} ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`;
 
     function RenderBlock1(props) {
         return (

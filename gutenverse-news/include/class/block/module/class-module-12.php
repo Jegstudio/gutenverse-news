@@ -35,7 +35,6 @@ class Module_12 extends Module_View_Abstract {
 	 */
 	public function render_block_type_1( $post, $image_size, $column_class ) {
 		$post_id          = $post->ID;
-		$primary_category = gvnews_get_primary_category( $post_id );
 		$additional_class = ( ! has_post_thumbnail( $post_id ) ) ? ' no_thumbnail' : '';
 		$permalink        = esc_url( get_the_permalink( $post ) );
 		$read_more        = $this->attribute['disable_readmore'] ? '' : '<a href="' . $permalink . '" aria-label="' . esc_attr__( 'Read more about ', 'gutenverse-news' ) . esc_attr( get_the_title( $post ) ) . '" class="gvnews_readmore">' . esc_html__( 'Read more', 'gutenverse-news' ) . '<span class="screen-reader-text">' . esc_html__( ' about ', 'gutenverse-news' ) . esc_html( get_the_title( $post ) ) . '</span></a>';
@@ -55,9 +54,7 @@ class Module_12 extends Module_View_Abstract {
                         </div>
                         <div class=\"gvnews_postblock_content\">
                             <div class=\"gvnews_post_category\">
-                                <span>
-                                    <a href=\"" . get_category_link( $primary_category ) . '" aria-label="' . esc_attr( get_cat_name( $primary_category ) ) . '">' . get_cat_name( $primary_category ) . "</a>
-                                </span>
+                                <span>{$this->get_primary_category($post_id)}</span>
                             </div>
                             <{$this->post_title_tag} class=\"gvnews_post_title\">
                                 <a href=\"{$permalink}\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . "</a>
