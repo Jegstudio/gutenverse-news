@@ -10,7 +10,7 @@ import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
+import getBlockStyle from './styles/block-style';
 import { getModuleOptions, gutenverseProActive } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
@@ -126,7 +126,7 @@ const Carousel1Block = compose(
     }, [elementRef]);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useInitializeIconToSvg({
         elementId,
