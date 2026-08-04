@@ -12,20 +12,24 @@ const PostTitle = (props) => {
 
 const PostExcerpt = (props) => {
     return (
-        <div className="gvnews_post_excerpt">
-            <p>
-                {props.post.excerpt
-                    .replace('&hellip;', '')
-                    .split(' ')
-                    .splice(0, props.attr.length)
-                    .join(' ') + props.attr.elipsis}
-            </p>{' '}
+        <>
+            <div className="gvnews_post_excerpt">
+                <p>
+                    {props.post.excerpt
+                        .replace('&hellip;', '')
+                        .split(' ')
+                        .splice(0, props.attr.length)
+                        .join(' ') + props.attr.elipsis}
+                </p>{' '}
+            </div>
             {props.read && (
-                <a className="gvnews_readmore">
-                    {props.attr.option.string && props.attr.option.string.read_more}
-                </a>
+                <div className="gvnews_readmore_wrap">
+                    <a className="gvnews_readmore">
+                        {props.attr.option.string && props.attr.option.string.read_more}
+                    </a>
+                </div>
             )}
-        </div>
+        </>
     );
 };
 
