@@ -15,6 +15,7 @@ import { headerSettingsPanel, HeaderFilterDropdownPanel, headerStylesPanel } fro
 import { postItemGridPanel } from '../../../control-panel/panel-post-item';
 import { noContentPanel } from '../../../control-panel/panel-no-content';
 import { cardStylePanelModule } from '../../../control-panel/panel-card-style-module';
+import { contentContainerPanel } from '../../../control-panel/panel-content-container';
 
 export const panelList = () => {
     return [
@@ -99,6 +100,17 @@ export const panelList = () => {
             panelArray: cardStylePanelModule,
             tabRole: TabStyle,
         },
+        {
+            title: __('Content Container', 'gutenverse-news'),
+            initialOpen: false,
+            panelArray: (props) =>
+                contentContainerPanel({
+                    ...props,
+                    contentAlignVertical: { main: true },
+                }),
+            tabRole: TabStyle,
+        },
+
         {
             title: __('Meta Style', 'gutenverse-news'),
             initialOpen: false,

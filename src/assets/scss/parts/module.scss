@@ -836,9 +836,13 @@
         font-size: 18px;
     }
 
-    .gvnews_pl_md_2 .gvnews_post_title,
-    .gvnews_pl_md_3 .gvnews_post_title {
-        font-size: 16px;
+    .gvnews_pl_md_2, .gvnews_pl_md_3 {
+        .gvnews_post_title {
+            font-size: 16px;
+        }
+        .gvnews_thumb {
+            width: 200px;
+        }
     }
 
     .gvnews_pl_md_card {
