@@ -103,6 +103,11 @@ class Grab {
 		if ( isset( $this->attributes['extraClass'] ) && $this->attributes['extraClass'] ) {
 			$extra_classes .= $this->attributes['extraClass'];
 		}
+
+		if ( isset( $this->attributes['className'] ) && $this->attributes['className'] ) {
+			$extra_classes .= $this->attributes['className'];
+		}
+
 		return '<div class="' . $element_id . $display_classes . $extra_classes . ' gvnews-block gvnews-block-wrapper">' . $this->render_content() . '</div>';
 	}
 
