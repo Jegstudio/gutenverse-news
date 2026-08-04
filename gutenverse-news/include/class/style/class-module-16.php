@@ -27,7 +27,7 @@ class Module_16 extends Block {
 						.{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2 > i:first-child
 					",
 					'property'       => function ( $value ) {
-						return "font-size: {$value}px";
+						return "font-size: {$value}px;";
 					},
 					'value'          => $this->attrs['listIconSize'],
 					'device_control' => false,
