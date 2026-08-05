@@ -22,16 +22,36 @@ export const designPanel = (props) => {
             component: ColorControl,
         },
         // TODO: Add gap item and item width
-        // {
-        //     id: 'gapItem',
-        //     label: __('Gap Item', 'gutenverse-news'),
-        //     component: RangeControl,
-        //     allowDeviceControl: true,
-        //     min: 0,
-        //     max: 100,
-        //     step: 1,
-        //     unit: 'px',
-        // },
+        {
+            id: 'gapItem',
+            label: __('Gap Item', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 0,
+            max: 30,
+            step: 1,
+            unit: 'px',
+            liveStyle: [
+                {
+                    'id': 'gapItem',
+                    'type': 'plain',
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'padding-right',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px !important',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                },
+                            }
+                        }
+                    ],
+                    'selector': `.gvnews-slider-3.${elementId} .tns-inner .gvnews_slider_type_3 .tns-item`,
+                }
+            ]
+        },
         // {
         //     id: 'itemWidth',
         //     label: __('Width Item', 'gutenverse-news'),
