@@ -85,8 +85,10 @@
 }
 
 @media only screen and (min-width: 1024px) {
-    .gvnews_postblock_32 .gvnews_post_title {
-        font-size: 22px;
+    .gvnews_postblock_32 {
+        .gvnews_post_title {
+            font-size: 22px;
+        }
     }
 }
 

@@ -35,7 +35,7 @@
             "default": false
         },
         "normalOverlay": {
-            "type":"object"
+            "type": "object"
         },
         "overrideOverlay": {
             "type": "object"
@@ -446,6 +446,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

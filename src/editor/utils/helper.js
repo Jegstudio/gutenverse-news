@@ -128,6 +128,17 @@ const searchCustomPostTemplate = input => new Promise(resolve => {
 
 const gutenverseProActive = (window.GVNewsConfig && window.GVNewsConfig.gutenversePro);
 
+export const gvnewsConfig = window.GVNewsConfig || {};
+const features = gvnewsConfig.features || [];
+
+export const featureActive = (featureName) => {
+    return features.includes(featureName);
+};
+
+export const newsEssentialsActive = () => {
+    return (gvnewsConfig.gvnewsEssentials && gvnewsConfig.gvnewsEssentials === '1');
+};
+
 // const phpFunctionCaller = input => new Promise(resolve => {
 //     apiFetch({
 //         path: addQueryArgs('/gvnews-client/v1/php-function-caller'),

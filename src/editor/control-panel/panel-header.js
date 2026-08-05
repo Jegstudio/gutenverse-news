@@ -72,15 +72,9 @@ export const headerPanel = (props) => {
 
 export const headerSettingsPanel = (props) => {
     const {
-        elementId,
-        headerType,
         title,
         second_title
     } = props;
-
-    const {
-        imgDir
-    } = window['GVNewsConfig'];
 
     return [
         {
@@ -272,6 +266,13 @@ export const headerStylesPanel = (props) => {
             ],
         },
         {
+            id: 'headerIconColor',
+            label: __('Header Icon Color', 'gutenverse-news'),
+            description: __('Change color of your header icon.', 'gutenverse-news'),
+            component: ColorControl,
+            show: withText
+        },
+        {
             id: 'headerTextColor',
             label: __('Header Text Color', 'gutenverse-news'),
             description: __('Change color of your header text.', 'gutenverse-news'),
@@ -338,8 +339,8 @@ export const headerStylesPanel = (props) => {
             component: ColorControl,
             style: [
                 {
-                    selector: `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_block_heading_5:before`,
-                    render: value => handleColor(value, 'border-color')
+                    selector: `.${elementId} .gvnews_block_heading_5 .line`,
+                    render: value => handleColor(value, 'border-bottom-color')
                 }
             ],
         },

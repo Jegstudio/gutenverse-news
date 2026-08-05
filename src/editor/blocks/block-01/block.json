@@ -293,6 +293,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object"
         },
@@ -951,6 +954,22 @@
         },
         "overlayIconColorSecond": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
+        },
+        "listIconSize": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconSpacing": {
+            "type": "string",
+            "copyStyle": true
+        },
+        "listIconAlign": {
+            "type": "string",
+            "copyStyle": true
         }
     },
     "supports": {

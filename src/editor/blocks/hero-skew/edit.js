@@ -55,6 +55,7 @@ const HeroSkewBlock = compose(
         metaDateFormatCustom,
         heroMargin,
         heightDesktop,
+        allowOverrideCategoryColor = false
     } = attributes;
 
     const animationClass = useAnimationEditor(attributes);
@@ -78,7 +79,7 @@ const HeroSkewBlock = compose(
         ref: elementRef,
     });
     const isDeprecated = !gutenverseProActive;
-    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''} ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`;
 
     return (
         <>

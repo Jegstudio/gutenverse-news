@@ -203,6 +203,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object"
         },

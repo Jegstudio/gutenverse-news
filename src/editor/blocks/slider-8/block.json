@@ -367,7 +367,6 @@
             "default": "center",
             "copyStyle": true
         },
-
         "noContentTypography": {
             "type": "object",
             "copyStyle": true
@@ -481,6 +480,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

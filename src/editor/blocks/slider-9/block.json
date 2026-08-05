@@ -421,6 +421,10 @@
         },
         "overlayIconColor": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {
@@ -429,9 +433,13 @@
     },
     "keywords": [],
     "gutenversePro": true,
-    "style": ["gutenverse-news-frontend-slider-9-style"],
-    "viewScript": ["gutenverse-news-frontend-slider-script"],
-	"usesContext": [
-		"gutenverse/flexDirection"
-	]
+    "style": [
+        "gutenverse-news-frontend-slider-9-style"
+    ],
+    "viewScript": [
+        "gutenverse-news-frontend-slider-script"
+    ],
+    "usesContext": [
+        "gutenverse/flexDirection"
+    ]
 }

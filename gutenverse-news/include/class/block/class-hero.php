@@ -84,6 +84,7 @@ class Hero extends Grab {
 			'video_format_icon'        => isset( $this->attributes['videoFormatIcon'] ) ? $this->attributes['videoFormatIcon'] : '',
 			'video_format_icon_type'   => isset( $this->attributes['videoFormatIconType'] ) ? $this->attributes['videoFormatIconType'] : 'icon',
 			'video_format_icon_svg'    => isset( $this->attributes['videoFormatIconSVG'] ) ? $this->attributes['videoFormatIconSVG'] : '',
+			'allow_override_category_color' => isset( $this->attributes['allowOverrideCategoryColor'] ) ? $this->attributes['allowOverrideCategoryColor'] : false,
 		);
 
 		foreach ( $this->attributes['includePost'] as $item ) {

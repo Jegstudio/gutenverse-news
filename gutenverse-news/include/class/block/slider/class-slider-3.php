@@ -86,16 +86,23 @@ class Slider_3 extends Slider_View_Abstract {
 					esc_attr( $this->unique_id ),
 					esc_attr( $this->get_vc_class_name() ),
 					esc_attr( $attr['el_class'] ),
+					$attr['allow_override_category_color'] ? 'gvnews_override_category' : '',
 				)
 			);
 
-			$data_attr = gvnews_build_data_attr(
-				array(
-					'items'    => $number_item,
-					'autoplay' => esc_attr( $attr['enable_autoplay'] ),
-					'delay'    => esc_attr( $autoplay_delay ),
-				)
+			$data_attr = array(
+				'items'           => $number_item,
+				'autoplay'        => esc_attr( $attr['enable_autoplay'] ),
+				'delay'           => esc_attr( $autoplay_delay ),
+				'class-next'      => esc_attr( $attr['nextButtonIcon'] ),
+				'class-next-type' => esc_attr( $attr['next_button_icon_type'] ),
+				'class-next-svg'  => esc_attr( $attr['next_button_icon_svg'] ),
+				'class-prev'      => esc_attr( $attr['prevButtonIcon'] ),
+				'class-prev-type' => esc_attr( $attr['prev_button_icon_type'] ),
+				'class-prev-svg'  => esc_attr( $attr['prev_button_icon_svg'] ),
 			);
+
+			$data_attr = gvnews_build_data_attr( $data_attr );
 
 			$output =
 				'<div ' . esc_attr( $this->element_id( $attr ) ) . " class=\"{$html_classes}\">

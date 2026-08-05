@@ -3,6 +3,7 @@ import { withPartialRender, withPassRef } from 'gutenverse-core/hoc';
 import { panelList } from './panels/panel-list';
 import Block1Columns from './Block1Columns';
 import BlockModule from '../../part/module';
+import dedicatedStyle from './styles/block-style';
 
 const Block1Block = compose(
     withPartialRender,
@@ -31,6 +32,8 @@ const Block1Block = compose(
         defaultImageSizeSecond={{ height: 120, width: 86, dimension: 715 }}
         mainThumbnailClass={'gvnews_pl_lg_1'}
         secondThumbnailClass={'gvnews_pl_sm'}
+        useDedicatedStyle={true}
+        dedicatedStyle={dedicatedStyle}
     />;
 });
 

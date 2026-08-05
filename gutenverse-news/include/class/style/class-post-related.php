@@ -326,6 +326,80 @@ class Post_Related extends Style_Abstract {
 				)
 			);
 		}
+
+
+		if ( isset( $this->attrs['listIconSize'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "
+						.{$this->element_id} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .i:first-child,
+						.{$this->element_id} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .i:first-child,
+						.{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2 > i:first-child,
+						.{$this->element_id} .gvnews_postblock_1 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_1 .gvnews_pl_xs_2 > i:first-child
+					",
+					'property'       => function ( $value ) {
+						return "font-size: {$value}px;";
+					},
+					'value'          => $this->attrs['listIconSize'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['listIconSpacing'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content, .{$this->element_id} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content",
+					'property'       => function ( $value ) {
+						return "padding: 0 0 0 {$value}px;";
+					},
+					'value'          => $this->attrs['listIconSpacing'],
+					'device_control' => false,
+				)
+			);
+			$this->inject_style(
+				array(
+					'selector'       => ".{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2, .{$this->element_id} .gvnews_postblock_1 .gvnews_pl_xs_2",
+					'property'       => function ( $value ) {
+						return "padding-left: {$value}px;";
+					},
+					'value'          => $this->attrs['listIconSpacing'],
+					'device_control' => false,
+				)
+			);
+		}
+
+		if ( isset( $this->attrs['listIconAlign'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "
+						.{$this->element_id} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_24 .gvnews_pl_xs_4 .gvnews_postblock_content > .i:first-child,
+						.{$this->element_id} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_28 .gvnews_pl_xs_4 .gvnews_postblock_content > .i:first-child,
+						.{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_16 .gvnews_pl_xs_2 > i:first-child,
+						.{$this->element_id} .gvnews_postblock_1 .gvnews_pl_xs_2 > .gutenverse-icon-svg:first-child svg,
+						.{$this->element_id} .gvnews_postblock_1 .gvnews_pl_xs_2 > i:first-child
+					",
+					'property'       => function ( $value ) {
+						if ( 'center' === $value ) {
+							return 'top: 50%; transform: translateY(-50%);';
+						}
+						if ( 'bottom' === $value ) {
+							return 'bottom: 0;';
+						}
+						return 'top: 0;';
+					},
+					'value'          => $this->attrs['listIconAlign'],
+					'device_control' => false,
+				)
+			);
+		}
 	}
 	/**
 	 * Generate read more style.
@@ -1078,6 +1152,22 @@ class Post_Related extends Style_Abstract {
 			);
 		}
 
+		if ( isset( $this->attrs['headerIconColor'] ) ) {
+			$this->inject_style(
+				array(
+					'selector'       => "
+						.{$this->element_id} .gvnews_block_title span .gutenverse-icon-svg,
+						.{$this->element_id} .gvnews_block_title span i
+					",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'color' );
+					},
+					'value'          => $this->attrs['headerIconColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
 		if ( isset( $this->attrs['headerSecondTextColor'] ) ) {
 			$this->inject_style(
 				array(
@@ -1150,9 +1240,9 @@ class Post_Related extends Style_Abstract {
 			if ( 'heading_5' === $this->attrs['headerType'] ) {
 				$this->inject_style(
 					array(
-						'selector'       => ".{$this->element_id} .gvnews_block_{$this->attrs['headerType']}:before",
+						'selector'       => ".{$this->element_id} .gvnews_block_heading_5 .line",
 						'property'       => function ( $value ) {
-							return $this->handle_color( $value, 'border-color' );
+							return $this->handle_color( $value, 'border-bottom-color' );
 						},
 						'value'          => $this->attrs['headerLineColor2'],
 						'device_control' => false,

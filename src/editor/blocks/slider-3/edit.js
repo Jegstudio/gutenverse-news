@@ -75,7 +75,14 @@ const Slider3Block = compose(
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
         postTitleHtmlTag = 'h2',
-        gutenversePreviewBlock = ''
+        gutenversePreviewBlock = '',
+        allowOverrideCategoryColor = false,
+        nextButtonIcon,
+        nextButtonIconType,
+        nextButtonIconSVG,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
     } = attributes;
 
     const metaSettings = {
@@ -127,6 +134,8 @@ const Slider3Block = compose(
         icons: [
             { type: 'galleryFormatIconType', svg: 'galleryFormatIconSVG' },
             { type: 'videoFormatIconType', svg: 'videoFormatIconSVG' },
+            { type: 'nextButtonIconType', svg: 'nextButtonIconSVG' },
+            { type: 'prevButtonIconType', svg: 'prevButtonIconSVG' },
         ],
     });
 
@@ -161,7 +170,7 @@ const Slider3Block = compose(
 
     const firstRender = useRef(true);
     const isDeprecated = !gutenverseProActive;
-    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''}`;
+    const wrapperClass = `gvnews-raw-wrapper gvnews-editor${isDeprecated ? ' gvnews-deprecated-block' : ''} ${allowOverrideCategoryColor ? 'gvnews_override_category' : ''}`;
 
     function RenderContent(props) {
         const format = props.post?.format || 'standard';
@@ -205,6 +214,12 @@ const Slider3Block = compose(
                 data-items={sliderColumn}
                 data-autoplay={autoplay ? true : ''}
                 data-delay={sliderDelay}
+                data-class-next={nextButtonIcon}
+                data-class-next-type={nextButtonIconType}
+                data-class-next-svg={nextButtonIconSVG}
+                data-class-prev={prevButtonIcon}
+                data-class-prev-type={prevButtonIconType}
+                data-class-prev-svg={prevButtonIconSVG}
             >
                 {content}
             </div>
@@ -349,6 +364,12 @@ const Slider3Block = compose(
         metaDateFormatCustom,
         overlay,
         showNav,
+        nextButtonIcon,
+        nextButtonIconSVG,
+        nextButtonIconType,
+        prevButtonIcon,
+        prevButtonIconType,
+        prevButtonIconSVG,
         autoplay,
         sliderDelay,
         sliderColumn,

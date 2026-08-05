@@ -12,6 +12,7 @@
     }
 
     &.gvnews_col_1o3 {
+
         .gvnews_postsmall,
         .gvnews_posts {
             display: flex;
@@ -31,7 +32,13 @@
     }
 
     .gvnews_pl_sm {
+        display: flex;
         margin-bottom: 3px;
+
+        .gvnews_postblock_content {
+            margin-left: 0;
+            flex: 1;
+        }
     }
 }
 

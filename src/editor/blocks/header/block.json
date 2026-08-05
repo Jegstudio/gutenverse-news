@@ -53,6 +53,9 @@
             "type": "object",
             "copyStyle": true
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object",
             "copyStyle": true

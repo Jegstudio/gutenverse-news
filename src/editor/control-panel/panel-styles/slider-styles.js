@@ -479,8 +479,8 @@ const getSliderStyle = (elementId, attributes, data = []) => {
         'type': 'plain',
         'id': 'hideTitleStyling',
         'selector': [
-            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:before`,
-            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:after`,
+            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .gvnews_slide_caption:before`,
+            `.gvnews-slider-4.${elementId} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .gvnews_slide_caption:after`,
         ],
         'properties': [
             {

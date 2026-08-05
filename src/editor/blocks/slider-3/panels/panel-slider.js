@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { CheckboxControl, RangeControl, SelectControl } from 'gutenverse-core/controls';
+import { CheckboxControl, RangeControl, SelectControl, IconSVGControl } from 'gutenverse-core/controls';
 import { getDefaultImageLoad } from '../../../utils/helper';
 
 export const sliderPanel = (props) => {
@@ -98,6 +98,16 @@ export const sliderPanel = (props) => {
                     value: 'h6'
                 },
             ],
+        },
+        {
+            id: 'nextButtonIcon',
+            label: __('Icon Next', 'gutenverse-news'),
+            component: IconSVGControl,
+        },
+        {
+            id: 'prevButtonIcon',
+            label: __('Icon Previous', 'gutenverse-news'),
+            component: IconSVGControl,
         },
     ];
 };

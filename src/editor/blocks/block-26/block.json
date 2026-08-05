@@ -293,6 +293,9 @@
         "headerTextColor": {
             "type": "object"
         },
+        "headerIconColor": {
+            "type": "object"
+        },
         "headerLineColor": {
             "type": "object"
         },
@@ -518,7 +521,7 @@
         },
         "showMetaAuthor": {
             "type": "boolean",
-            "default": true
+            "default": false
         },
         "metaColorHover": {
             "type": "object"
@@ -843,6 +846,10 @@
         },
         "overlayIconColorMain": {
             "type": "object"
+        },
+        "allowOverrideCategoryColor": {
+            "type": "boolean",
+            "default": false
         }
     },
     "supports": {

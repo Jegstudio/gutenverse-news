@@ -217,6 +217,7 @@ class Block extends Grab {
 			'adsFixedHeight'               => isset( $this->attributes['adsFixedHeight'] ) ? $this->attributes['adsFixedHeight'] : '300',
 			'adsResponsiveSize'            => isset( $this->attributes['adsResponsiveSize'] ) ? $this->attributes['adsResponsiveSize'] : true,
 			'always_show_excerpt'          => isset( $this->attributes['alwaysShowExcerpt'] ) ? $this->attributes['alwaysShowExcerpt'] : false,
+			'allow_override_category_color' => isset( $this->attributes['allowOverrideCategoryColor'] ) ? $this->attributes['allowOverrideCategoryColor'] : false,
 		);
 		$sccontent  = '';
 

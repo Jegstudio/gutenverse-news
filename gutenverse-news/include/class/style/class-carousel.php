@@ -49,6 +49,9 @@ class Carousel extends StyleAbstract {
 		if ( empty( $this->attrs['showMeta'] ) || ( isset( $this->attrs['showMeta'] ) && $this->attrs['showMeta'] ) ) {
 				$this->generate_meta_style();
 		}
+		if ( isset( $this->attrs['showNav'] ) && $this->attrs['showNav'] ) {
+			$this->generate_navigation_style();
+		}
 
 		if ( isset( $this->attrs['gvnewsModule'] ) && 'GUTENVERSE\\NEWS\\Block\\Carousel\\Carousel_2' === $this->attrs['gvnewsModule'] ) {
 			$this->generate_category_label_style();
@@ -513,5 +516,13 @@ class Carousel extends StyleAbstract {
 				)
 			);
 		}
+	}
+
+	/**
+	 * Generate carousel navigation style.
+	 * 
+	 * @return void
+	 */
+	protected function generate_navigation_style() {
 	}
 }

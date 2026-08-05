@@ -65,7 +65,7 @@ class Archive_Block extends StyleAbstract {
 		$this->generate_content_container_style();
 		$this->title_container_style();
 		$this->no_content_style();
-		if ( ! in_array( $this->attrs['blockType'], array( '3', '4', '7', '10', '25' ) ) ) {
+		if ( ! in_array( $this->attrs['blockType'], array( '3', '4', '7', '25' ) ) ) {
 			$this->generate_category_label_style();
 		}
 
@@ -583,7 +583,7 @@ class Archive_Block extends StyleAbstract {
 		if ( isset( $this->attrs['categoryButtonBackground'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},
@@ -596,7 +596,7 @@ class Archive_Block extends StyleAbstract {
 		if ( isset( $this->attrs['categoryButtonBackgroundHover'] ) ) {
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post .gvnews_post_category a:hover",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_post_category span a:hover",
 					'property'       => function ( $value ) {
 						return $this->handle_color( $value, 'background-color' );
 					},

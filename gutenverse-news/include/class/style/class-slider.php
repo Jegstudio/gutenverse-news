@@ -456,8 +456,8 @@ class Slider extends StyleAbstract {
 		if ( isset( $this->attrs['hideTitleStyling'] ) && $this->attrs['hideTitleStyling'] ) { // For Slider 4.
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:before,
-										.gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .tns-slide-active .gvnews_slide_caption:after",
+					'selector'       => ".gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .gvnews_slide_caption:before,
+										.gvnews-slider-4.{$this->element_id} .gvnews_slider_type_4_wrapper.gvnews_slider_wrapper .gvnews_slider_type_4 .gvnews_slide_caption:after",
 					'property'       => function ( $value ) {
 						return 'content: none;';
 					},
