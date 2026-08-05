@@ -5,6 +5,25 @@ export const blockStyle = (elementId, attributes) => {
 
     data = noContentStyle(elementId, attributes, data);
 
+    isNotEmpty(attributes['sliderHeight']) && data.push({
+        'type': 'pattern',
+        'id': 'sliderHeight',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_item, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_thumb div`,
+        'responsive': true,
+        'properties': [
+            {
+                'name': 'height',
+                'valueType': 'pattern',
+                'pattern': '{value}px',
+                'patternValues': {
+                    'value': {
+                        'type': 'direct',
+                    }
+                }
+            }
+        ],
+    });
+
     isNotEmpty(attributes['gapItem']) && data.push({
         'id': 'gapItem',
         'type': 'plain',

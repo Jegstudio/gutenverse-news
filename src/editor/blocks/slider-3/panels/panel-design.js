@@ -1,6 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, TypographyControl, DimensionControl } from 'gutenverse-core/controls';
+import { ColorControl, TypographyControl, DimensionControl, RangeControl } from 'gutenverse-core/controls';
 export const designPanel = (props) => {
+    const {
+        elementId
+    } = props;
     return [
         {
             id: 'typography',
@@ -52,6 +55,36 @@ export const designPanel = (props) => {
         //         },
         //     },
         // },
+        {
+            id: 'sliderHeight',
+            label: __('Slider Height', 'gutenverse-news'),
+            component: RangeControl,
+            allowDeviceControl: true,
+            min: 10,
+            max: 670,
+            unit: 'px',
+            step: 10,
+            liveStyle: [
+                {
+                    'type': 'pattern',
+                    'id': 'sliderHeight',
+                    'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_item, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_thumb div`,
+                    'responsive': true,
+                    'properties': [
+                        {
+                            'name': 'height',
+                            'valueType': 'pattern',
+                            'pattern': '{value}px',
+                            'patternValues': {
+                                'value': {
+                                    'type': 'direct',
+                                }
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
         {
             id: 'containerPadding',
             label: __('Container Padding', 'gutenverse-news'),
