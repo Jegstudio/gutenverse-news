@@ -112,6 +112,6 @@ export const panelList = () => {
                 pro: true
             },
         ],
-        ['postTitleHtmlTag', 'fetchPriorityHigh', 'responsiveItem']
+        ['postTitleHtmlTag', 'fetchPriorityHigh', 'fetchPriorityHighPosition', 'responsiveItem']
     );
 };
