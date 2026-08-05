@@ -39,6 +39,7 @@ use GUTENVERSE\NEWS\Style\Post_Meta;
 use GUTENVERSE\NEWS\Style\Post_Next_Prev;
 use GUTENVERSE\NEWS\Style\Post_Related;
 use GUTENVERSE\NEWS\Style\Slider;
+use GUTENVERSE\NEWS\Style\Slider_9;
 use GUTENVERSE\NEWS\Style\User_List;
 use GUTENVERSE\NEWS\Style\Post_Title;
 use GUTENVERSE\NEWS\Style\Post_Tag;
@@ -125,6 +126,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-hero' ):
 					$instance = new Hero( $attrs, $name );
+					break;
+				case stristr( $name, 'gutenverse/news-slider-9' ):
+					$instance = new Slider_9( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-slider' ):
 					$instance = new Slider( $attrs, $name );

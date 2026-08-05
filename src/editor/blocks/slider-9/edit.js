@@ -15,7 +15,7 @@ import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import ThumbModule from '../../part/thumbnail';
 import { useRef } from '@wordpress/element';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import getSliderStyle from '../../control-panel/panel-styles/slider-styles';
+import getBlockStyle from './styles/block-style';
 import { getModuleOptions } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
@@ -109,7 +109,7 @@ const Slider9Block = compose(
     const blockRef = useRef(null);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getSliderStyle, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useInitializeIconToSvg({
         elementId,

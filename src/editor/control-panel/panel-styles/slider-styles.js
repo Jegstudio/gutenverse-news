@@ -509,25 +509,6 @@ const getSliderStyle = (elementId, attributes, data = []) => {
         ],
     });
 
-    isNotEmpty(attributes['sliderHeight']) && data.push({
-        'type': 'pattern',
-        'id': 'sliderHeight',
-        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_item, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slide_wrapper, .gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_wrapper .gvnews_slider_type_9_thumb`,
-        'responsive': true,
-        'properties': [
-            {
-                'name': 'height',
-                'valueType': 'pattern',
-                'pattern': '{value}px',
-                'patternValues': {
-                    'value': {
-                        'type': 'direct',
-                    }
-                }
-            }
-        ],
-    });
-
     isNotEmpty(attributes['excerptMetaGap']) && data.push({
         'type': 'plain',
         'id': 'excerptMetaGap',
