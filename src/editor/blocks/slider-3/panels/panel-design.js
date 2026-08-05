@@ -21,7 +21,11 @@ export const designPanel = (props) => {
             label: __('Title Color Hover', 'gutenverse-news'),
             component: ColorControl,
         },
-        // TODO: Add gap item and item width
+        {
+            id: 'slideBackgroundColor',
+            label: __('Slide Background Color', 'gutenverse-news'),
+            component: ColorControl,
+        },
         {
             id: 'gapItem',
             label: __('Gap Item', 'gutenverse-news'),
@@ -52,29 +56,6 @@ export const designPanel = (props) => {
                 }
             ]
         },
-        // {
-        //     id: 'itemWidth',
-        //     label: __('Width Item', 'gutenverse-news'),
-        //     component: SizeControl,
-        //     allowDeviceControl: true,
-        //     defaultUnit: '%',
-        //     units: {
-        //         px: {
-        //             text: 'px',
-        //             min: 1,
-        //             max: 300,
-        //             step: 1,
-        //             unit: 'px',
-        //         },
-        //         ['%']: {
-        //             text: '%',
-        //             min: 1,
-        //             max: 20,
-        //             step: 1,
-        //             unit: '%',
-        //         },
-        //     },
-        // },
         {
             id: 'sliderHeight',
             label: __('Slider Height', 'gutenverse-news'),

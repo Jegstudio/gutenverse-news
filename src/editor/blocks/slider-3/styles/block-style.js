@@ -5,6 +5,18 @@ export const blockStyle = (elementId, attributes) => {
 
     data = noContentStyle(elementId, attributes, data);
 
+    isNotEmpty(attributes['slideBackgroundColor']) && data.push({
+        'type': 'color',
+        'id': 'slideBackgroundColor',
+        'selector': `.gvnews-block.gvnews-block-wrapper.${elementId} .gvnews_slider_type_3_wrapper`,
+        'properties': [
+            {
+                'name': 'background-color',
+                'valueType': 'direct'
+            }
+        ],
+    });
+
     isNotEmpty(attributes['sliderHeight']) && data.push({
         'type': 'pattern',
         'id': 'sliderHeight',

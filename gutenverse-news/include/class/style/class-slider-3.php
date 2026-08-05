@@ -53,5 +53,32 @@ class Slider_3 extends Slider {
 				)
 			);
 		}
+
+        if ( isset( $this->attrs['slideBackgroundColor'] ) ) {
+
+			$this->inject_style(
+				array(
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper",
+					'property'       => function ( $value ) {
+						return $this->handle_color( $value, 'background-color' );
+					},
+					'value'          => $this->attrs['slideBackgroundColor'],
+					'device_control' => false,
+				)
+			);
+		}
+
+        if ( isset( $this->attrs['gapItem'] ) ) {
+            $this->inject_style(
+                array(
+                    'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_type_3_wrapper .tns-inner .gvnews_slider_type_3 .tns-item",
+                    'property'       => function ( $value ) {
+                        return "padding-right: {$value}px !important;";
+                    },
+                    'value'          => $this->attrs['gapItem'],
+                    'device_control' => true,
+                )
+            );
+        }
     }
 }

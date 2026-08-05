@@ -37,6 +37,9 @@
         "sliderHeight": {
             "type": "object"
         },
+        "slideBackgroundColor": {
+            "type": "object"
+        },
         "autoplayDelay": {
             "type": "string",
             "default": 2000
