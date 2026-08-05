@@ -10,7 +10,7 @@ import { addQueryArgs } from '@wordpress/url';
 import { SliderMeta } from '../../part/slider';
 import { ModuleSkeleton, ModuleOverlay } from '../../part/placeholder';
 import { useDynamicStyle, useGenerateElementId } from 'gutenverse-core/styling';
-import getCarouselStyle from '../../control-panel/panel-styles/carousel-style';
+import getBlockStyle from './styles/block-style';
 import { getModuleOptions, gutenverseProActive } from '../../utils/helper';
 import PanelUpgradePro from '../../panels/panel-upgrade-pro';
 import UpgradeProOverlay from '../../part/upgrade-pro-overlay';
@@ -76,6 +76,7 @@ const Carousel1Block = compose(
         videoFormatIcon = '',
         videoFormatIconType = 'icon',
         videoFormatIconSVG = '',
+        navigationEnableSeparator = false
     } = attributes;
 
     const overlayIconData = {
@@ -125,7 +126,7 @@ const Carousel1Block = compose(
     }, [elementRef]);
 
     useGenerateElementId(clientId, elementId, elementRef);
-    useDynamicStyle(elementId, attributes, getCarouselStyle, elementRef);
+    useDynamicStyle(elementId, attributes, getBlockStyle, elementRef);
 
     useInitializeIconToSvg({
         elementId,
@@ -231,7 +232,7 @@ const Carousel1Block = compose(
         };
         if (postData.length > 0) {
             setBlock(
-                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className="gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12">
+                <div ref={blockRef} key={Math.random().toString(36).substring(2)} className={`gvnews_postblock_carousel gvnews_postblock_carousel_1 gvnews_postblock  gvnews_col_12 ${navigationEnableSeparator ? 'with-nav-separator' : ''}`}>
                     <RenderColumn {...moduleData} />
                 </div>
             );
@@ -388,6 +389,7 @@ const Carousel1Block = compose(
         videoFormatIcon,
         videoFormatIconType,
         videoFormatIconSVG,
+        navigationEnableSeparator
     ]);
 
     useEffect(() => {
@@ -395,6 +397,24 @@ const Carousel1Block = compose(
             return;
         }
         initSlider();
+    }, [block]);
+
+    useEffect(() => {
+        if (!blockRef.current) {
+            return;
+        }
+        let animationFrameId;
+        const resizeObserver = new ResizeObserver(() => {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(() => {
+                window.dispatchEvent(new Event('resize'));
+            });
+        });
+        resizeObserver.observe(blockRef.current);
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            resizeObserver.disconnect();
+        };
     }, [block]);
 
     if (!gutenverseProActive) {

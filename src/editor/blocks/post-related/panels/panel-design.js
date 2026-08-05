@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { ColorControl, SelectControl, TypographyControl } from 'gutenverse-core/controls';
+import { ColorControl, SelectControl, TypographyControl, RangeControl } from 'gutenverse-core/controls';
 
 
 export const designPanel = (props) => {
@@ -83,6 +83,47 @@ export const designPanel = (props) => {
             description: __('This option will change the list icon color.', 'gutenverse-news'),
             show: withListIcon,
             component: ColorControl,
+        },
+        {
+            id: 'listIconSize',
+            label: __('List Icon Size', 'gutenverse-news'),
+            description: __('This option will change the list icon size.', 'gutenverse-news'),
+            show: withListIcon,
+            component: RangeControl,
+            min: 1,
+            max: 50,
+            unit: 'px',
+        },
+        {
+            id: 'listIconSpacing',
+            label: __('List Icon Spacing', 'gutenverse-news'),
+            description: __('This option will change the list icon spacing.', 'gutenverse-news'),
+            show: withListIcon,
+            component: RangeControl,
+            min: 1,
+            max: 100,
+            unit: 'px',
+        },
+        {
+            id: 'listIconAlign',
+            label: __('List Icon Align', 'gutenverse-news'),
+            description: __('This option will change the list icon vertical align.', 'gutenverse-news'),
+            show: withListIcon,
+            component: SelectControl,
+            options: [
+                {
+                    value: 'top',
+                    label: __('Top', 'gutenverse-news')
+                },
+                {
+                    value: 'center',
+                    label: __('Center', 'gutenverse-news')
+                },
+                {
+                    value: 'bottom',
+                    label: __('Bottom', 'gutenverse-news')
+                },
+            ],
         },
     ];
 };

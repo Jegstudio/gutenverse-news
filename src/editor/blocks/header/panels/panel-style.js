@@ -180,8 +180,8 @@ export const stylePanel = (props) => {
             component: ColorControl,
             style: [
                 {
-                    selector: `.editor-styles-wrapper .wp-block .${elementId} .gvnews_block_heading_5:before`,
-                    render: value => handleColor(value, 'border-color')
+                    selector: `.${elementId} .gvnews_block_heading_5 .line`,
+                    render: value => handleColor(value, 'border-bottom-color')
                 }
             ],
         },

@@ -17,13 +17,17 @@ use GUTENVERSE\NEWS\Style\Archive_Pagination;
 use GUTENVERSE\NEWS\Style\Block;
 use GUTENVERSE\NEWS\Style\Block_Link;
 use GUTENVERSE\NEWS\Style\Carousel;
+use GUTENVERSE\NEWS\Style\Carousel_1;
 use GUTENVERSE\NEWS\Style\Header;
 use GUTENVERSE\NEWS\Style\Hero;
 use GUTENVERSE\NEWS\Style\Hero_14;
+use GUTENVERSE\NEWS\Style\Module_1;
 use GUTENVERSE\NEWS\Style\Module_13;
+use GUTENVERSE\NEWS\Style\Module_16;
 use GUTENVERSE\NEWS\Style\Module_19;
 use GUTENVERSE\NEWS\Style\Module_20;
 use GUTENVERSE\NEWS\Style\Module_24;
+use GUTENVERSE\NEWS\Style\Module_28;
 use GUTENVERSE\NEWS\Style\Module_32;
 use GUTENVERSE\NEWS\Style\Module_7;
 use GUTENVERSE\NEWS\Style\News_Ticker;
@@ -83,8 +87,14 @@ class Style_Generator {
 				case 'gutenverse/news-block-link' === $name:
 					$instance = new Block_Link( $attrs, $name );
 					break;
+				case 'gutenverse/news-block-1' === $name:
+					$instance = new Module_1( $attrs, $name );
+					break;
 				case 'gutenverse/news-block-13' === $name:
 					$instance = new Module_13( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-16' === $name:
+					$instance = new Module_16( $attrs, $name );
 					break;
 				case 'gutenverse/news-block-19' === $name:
 					$instance = new Module_19( $attrs, $name );
@@ -94,6 +104,9 @@ class Style_Generator {
 					break;
 				case 'gutenverse/news-block-24' === $name:
 					$instance = new Module_24( $attrs, $name );
+					break;
+				case 'gutenverse/news-block-28' === $name:
+					$instance = new Module_28( $attrs, $name );
 					break;
 				case 'gutenverse/news-block-32' === $name:
 				case 'gutenverse/news-block-33' === $name:
@@ -115,6 +128,9 @@ class Style_Generator {
 					break;
 				case stristr( $name, 'gutenverse/news-slider' ):
 					$instance = new Slider( $attrs, $name );
+					break;
+				case 'gutenverse/news-carousel-1' === $name:
+					$instance = new Carousel_1( $attrs, $name );
 					break;
 				case stristr( $name, 'gutenverse/news-carousel' ):
 					$instance = new Carousel( $attrs, $name );

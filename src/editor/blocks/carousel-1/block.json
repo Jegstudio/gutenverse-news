@@ -29,6 +29,67 @@
             "type": "boolean",
             "default": false
         },
+        "navigationWrapperMargin": {
+            "type": "object"
+        },
+        "navigationWrapperAlign": {
+            "type": "object",
+            "default": {
+                "Desktop": "start",
+                "Tablet": "start",
+                "Mobile": "start"
+            }
+        },
+        "navigationBtnGap": {
+            "type": "object"
+        },
+        "navigationEnableSeparator": {
+            "type": "boolean",
+            "default": false
+        },
+        "navigationSeparatorStyle": {
+            "type": "string",
+            "default": ""
+        },
+        "navigationSeparatorColor": {
+            "type": "object"
+        },
+        "navigationSeparatorWidth": {
+            "type": "object"
+        },
+        "navigationBtnIconSize": {
+            "type": "object"
+        },
+        "navigationBtnWidth": {
+            "type": "object"
+        },
+        "navigationBtnHeight": {
+            "type": "object"
+        },
+        "navigationBtnColor": {
+            "type": "object"
+        },
+        "navigationBtnBgColor": {
+            "type": "object"
+        },
+        "navigationBtnBorderResponsive": {
+            "type": "object"
+        },
+        "navigationBtnBoxShadow": {
+            "type": "object"
+        },
+        "navigationBtnColorHover": {
+            "type": "object"
+        },
+        "navigationBtnBgColorHover": {
+            "type": "object"
+        },
+        "navigationBtnBorderResponsiveHover": {
+            "type": "object"
+        },
+        "navigationBtnBoxShadowHover": {
+            "type": "object"
+        },
         "iMargin": {
             "type": "string",
             "default": 20
