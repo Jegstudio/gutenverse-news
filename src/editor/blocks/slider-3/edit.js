@@ -179,14 +179,16 @@ const Slider3Block = compose(
         const { withIcon, type, icon, svg } = getOverlayIconData(overlayIconData, format);
         return (
             <div className="gvnews_slide_item">
-                {
-                    withIcon &&
-                    <div className="gvnews-thumb-overlay-icon">
-                        {renderIcon(icon, type, svg)}
-                    </div>
-                }
-                <ThumbModule size={1400} cat={false} post={props.post} />
-                <SliderCaption {...props} excerpt date />
+                <div className="gvnews_slide_item_inner">
+                    {
+                        withIcon &&
+                        <div className="gvnews-thumb-overlay-icon">
+                            {renderIcon(icon, type, svg)}
+                        </div>
+                    }
+                    <ThumbModule size={1400} cat={false} post={props.post} />
+                    <SliderCaption {...props} excerpt date />
+                </div>
             </div>
         );
     }

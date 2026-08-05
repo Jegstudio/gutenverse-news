@@ -34,7 +34,7 @@ class Slider_3 extends Slider {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item > a, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item > a .thumbnail-container",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item_inner > a, .gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item_inner > a .thumbnail-container",
 					'property'       => function ( $value ) {
 						return 'height: 100% !important; padding-bottom: 0 !important;';
 					},
@@ -44,7 +44,7 @@ class Slider_3 extends Slider {
 			);
 			$this->inject_style(
 				array(
-					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item > a .thumbnail-container img",
+					'selector'       => ".gvnews-block.gvnews-block-wrapper.{$this->element_id} .gvnews_slider_wrapper .gvnews_slide_item_inner > a .thumbnail-container img",
 					'property'       => function ( $value ) {
 						return 'height: 100% !important; width: 100% !important; object-fit: cover !important;';
 					},

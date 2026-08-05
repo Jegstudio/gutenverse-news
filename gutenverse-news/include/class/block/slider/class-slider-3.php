@@ -35,21 +35,23 @@ class Slider_3 extends Slider_View_Abstract {
 			$image             = \GUTENVERSE\NEWS\Util\Image\Image_Normal_Load::get_instance()->owl_single_image( $post_thumbnail_id, 'gvnews-360x504', $this->attribute['image_load'] );
 			$content          .=
 				'<div ' . gvnews_post_class( 'gvnews_slide_item', $post->ID ) . '>
-                    ' . gvnews_edit_post( $post->ID ) . '
-                    <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
-                        {$image}
-                    </a>
-                    {$overlay_icon['overlay_icon']}
-                    <div class=\"gvnews_slide_caption\">
-                        <div class=\"gvnews_caption_container\">
-                            <div class=\"gvnews_post_category\">
-                                {$primary_category}
+                    <div class="gvnews_slide_item_inner">
+                        ' . gvnews_edit_post( $post->ID ) . '
+                        <a href="' . esc_url( get_the_permalink( $post ) ) . "\" aria-label=\"" . esc_attr( get_the_title( $post ) ) . "\">
+                            {$image}
+                        </a>
+                        {$overlay_icon['overlay_icon']}
+                        <div class=\"gvnews_slide_caption\">
+                            <div class=\"gvnews_caption_container\">
+                                <div class=\"gvnews_post_category\">
+                                    {$primary_category}
+                                </div>
+                                <{$this->post_title_tag} class=\"gvnews_post_title\">
+                                    <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
+                                </' . $this->post_title_tag . '>
+                                <p class="gvnews_post_excerpt"> ' . esc_attr( $this->get_excerpt( $post ) ) . " </p>
+                                {$this->render_meta( $post )}
                             </div>
-                            <{$this->post_title_tag} class=\"gvnews_post_title\">
-                                <a href=\"" . esc_url( get_the_permalink( $post ) ) . '" aria-label="' . esc_attr( get_the_title( $post ) ) . '">' . esc_attr( get_the_title( $post ) ) . '</a>
-                            </' . $this->post_title_tag . '>
-                            <p class="gvnews_post_excerpt"> ' . esc_attr( $this->get_excerpt( $post ) ) . " </p>
-                            {$this->render_meta( $post )}
                         </div>
                     </div>
                 </div>";
