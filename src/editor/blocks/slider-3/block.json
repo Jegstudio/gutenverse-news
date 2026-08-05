@@ -34,6 +34,9 @@
             "type": "boolean",
             "default": false
         },
+        "sliderHeight": {
+            "type": "object"
+        },
         "autoplayDelay": {
             "type": "string",
             "default": 2000
