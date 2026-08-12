@@ -1,11 +1,15 @@
 import { u } from 'gutenverse-core-frontend';
 
 class GutenverseCarouselModule {
+    static renderLater = [];
+    static initObs = false;
+
     constructor(element, options = {}) {
         this.block = u(element);
         this.options = options;
 
         this.init();
+        this.initObs();
     }
 
     carousel_1 = (carouselDefault) => {
@@ -199,8 +203,7 @@ class GutenverseCarouselModule {
                 let container = u(carousel).find('.gvnews_carousel_post');
                 if (container.length) {
                     let { carouselType, carouselDefault } = this.getDefaultOption(this.options, container);
-
-                    if (carouselType) {
+                    if (carouselType && carousel.getClientRects().length > 0) {
                         let carouselSlider = window.tns(carouselDefault);
 
                         carouselSlider.events.on('dragStart', function (info) {
@@ -209,10 +212,39 @@ class GutenverseCarouselModule {
                         });
 
                         u(carousel).addClass('gvnews_tns_active');
+                        GutenverseCarouselModule.renderLater = GutenverseCarouselModule.renderLater.filter(item => item !== carousel);
+                    } else if (!GutenverseCarouselModule.renderLater.includes(carousel)) {
+                        GutenverseCarouselModule.renderLater.push(carousel);
                     }
                 }
             }
         });
+    }
+
+    initObs = () => {
+        if (GutenverseCarouselModule.initObs) {
+            return;
+        }
+        let tmId = null;
+        const observer = new MutationObserver(() => {
+            clearTimeout(tmId);
+            tmId = setTimeout(() => {
+                const oldBlocks = this.block;
+                this.block = u(GutenverseCarouselModule.renderLater);
+                this.init();
+                this.block = oldBlocks;
+
+                if (!GutenverseCarouselModule.renderLater?.length) {
+                    observer.disconnect();
+                }
+            }, 1);
+        });
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ['style', 'class'],
+            subtree: true
+        });
+        GutenverseCarouselModule.initObs = true;
     }
 }
 
