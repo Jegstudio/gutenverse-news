@@ -133,7 +133,7 @@ Terms and conditions are available at [https://gutenverse.com/terms-and-conditio
 
 == Changelog ==
 
-= 3.3.3-dev =
+= 3.3.3 =
 * Fix inconsistent Module 27 display between the frontend and editor.
 * Fix security issue on wp_kses_allowed_html
 
